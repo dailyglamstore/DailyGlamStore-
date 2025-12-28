@@ -52,21 +52,91 @@
       border-radius: 5px;
       font-size: 14px;
     }
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+  padding: 15px;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  background: #fff;
+}
+
+.slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 5px;
+}
+
+.slider img {
+  width: 100%;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.product-card h3 {
+  font-size: 16px;
+  margin: 8px 0 4px;
+}
+
+.price {
+  font-weight: bold;
+  color: #000;
+}
+
+.desc {
+  font-size: 14px;
+  color: #555;
+}
+
+.whatsapp-btn {
+  display: block;
+  margin-top: 8px;
+  text-align: center;
+  background: #25D366;
+  color: #fff;
+  padding: 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
   </style>
 </head>
 <body>
 
-<header>Daily Glam Store</header>
+<header>
+  Daily Glam Store
+</header>
 
-<div class="category">✨ Earrings</div>
+<div class="category">
+  🧿 Earrings, Jewellery and Cosmetics
+</div>
 
 <div class="products">
-  <div class="card">
-    <img src="https://via.placeholder.com/300" alt="Earring">
-    <div>Stylish Earrings</div>
-    <div class="price">₹299</div>
-    <div class="btn">Order on WhatsApp</div>
+
+  <!-- PRODUCT CARD 1 -->
+  <div class="product-card">
+    <div class="slider">
+      <img src="https://via.placeholder.com/300x300?text=Earring+1" />
+      <img src="https://via.placeholder.com/300x300?text=Earring+2" />
+      <img src="https://via.placeholder.com/300x300?text=Earring+3" />
+    </div>
+
+    <h3>Oxidised Silver Earrings</h3>
+    <p class="price">₹499</p>
+    <p class="desc">Premium quality oxidised earrings. Lightweight & stylish.</p>
+
+    <a class="whatsapp-btn"
+       href="https://wa.me/919463638810"
+       target="_blank">
+       Order on WhatsApp
+    </a>
   </div>
+
 </div>
 
 </body>
