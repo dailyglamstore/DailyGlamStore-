@@ -104,6 +104,19 @@
   text-decoration: none;
   font-weight: bold;
 }
+.slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.slider img {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 10px;
+  scroll-snap-align: start;
+}
   </style>
 </head>
 <body>
@@ -121,14 +134,18 @@
   <!-- PRODUCT CARD 1 -->
   <div class="product-card">
     <div class="slider">
-      <img src="https://via.placeholder.com/300x300?text=Earring+1" />
-      <img src="https://via.placeholder.com/300x300?text=Earring+2" />
-      <img src="https://via.placeholder.com/300x300?text=Earring+3" />
+      <img src="images/earrings1-1.jpg" />
+<img src="images/earrings1-2.jpg" />
+<img src="images/earrings1-3.jpg" />
+<img src="images/earrings1-4.jpg" />
+<img src="images/earrings1-5.jpg" />
+<img src="images/earrings1-6.jpg" />
+
     </div>
 
-    <h3>Oxidised Silver Earrings</h3>
-    <p class="price">₹499</p>
-    <p class="desc">Premium quality oxidised earrings. Lightweight & stylish.</p>
+    <h3>Stone Embedded Earrings</h3>
+    <p class="price">₹249</p>
+    <p class="desc">Premium quality earrings. Lightweight & stylish.</p>
 
     <a class="whatsapp-btn"
        href="https://wa.me/919463638810"
