@@ -140,17 +140,13 @@
 }
 
 .header-inner {
-  position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 12px;
+  max-width: 100%;
+  margin: 0 auto;
 }
-.brand-text {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-}
-
 
 
 .logo-small {
@@ -160,10 +156,20 @@
 }
 
 
+.logo-small {
+  width: 52px;
+  height: auto;
+}
+
+.brand-text {
+  text-align: left;
+}
+
 .brand-name {
   font-size: 20px;
   font-weight: bold;
   color: #e86b78;
+  line-height: 1.2;
 }
 
 .brand-tagline {
@@ -172,19 +178,19 @@
   margin-top: 2px;
 }
 
+
   </style>
 </head>
 <body>
 
 <header class="site-header">
-  <div class="header-inner">
+  <div class="header-inner center-header">
 
-    <img src="images/logo.png" class="logo-small" alt="Daily Glam Store Logo">
+    <img src="images/logo.png" class="logo-small">
 
-    <div class="brand-center">
+    <div class="brand-text">
       <div class="brand-name">Daily Glam Store</div>
       <div class="brand-tagline">Your luxury shopping destination</div>
-
     </div>
 
   </div>
