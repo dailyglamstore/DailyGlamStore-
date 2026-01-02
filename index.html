@@ -124,15 +124,24 @@
   margin: 2px 0 6px;
 }
 .ig-link {
-  display: block;
-  text-align: center;
-  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(45deg,
+    #f58529, #dd2a7b, #8134af);
   color: white;
   padding: 8px;
   font-weight: bold;
   text-decoration: none;
   font-size: 14px;
 }
+.insta-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 .site-header {
   background: #F5F0EB;
   padding: 6px 10px;
@@ -196,8 +205,21 @@
 <a class="ig-link"
    href="https://www.instagram.com/daily_glam_store/"
    target="_blank">
-  📸 Follow us on Instagram @daily_glam_store
+
+  <svg
+    class="insta-icon"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 448 512"
+    aria-label="Instagram"
+    role="img">
+    <path
+      fill="white"
+      d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 190.5c-41.7 0-75.6-33.9-75.6-75.6s33.9-75.6 75.6-75.6 75.6 33.9 75.6 75.6-33.9 75.6-75.6 75.6zm146.4-194.3c0 14.9-12 26.9-26.9 26.9-14.9 0-26.9-12-26.9-26.9s12-26.9 26.9-26.9c14.9 0 26.9 12 26.9 26.9z"/>
+  </svg>
+
+  Follow us on Instagram @daily_glam_store
 </a>
+
 
 <div class="category">
   🧿 Earrings, Jewellery and Cosmetics
