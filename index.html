@@ -20,11 +20,12 @@
   font-weight: bold;
 }
     .category {
-      color: #5a2a3a;
-      padding: 15px;
-      font-size: 18px;
-      font-weight: bold;
-    }
+  padding: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #7b5a63;
+}
+
     .products {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -62,10 +63,17 @@
 }
 
 .product-card {
-  border: 1px solid #ddd;
+  border: 1px solid #eee;
   border-radius: 10px;
   padding: 10px;
   background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
 .slider {
