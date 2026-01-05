@@ -103,12 +103,10 @@
 .slider {
   display: flex;
   gap: 10px;
-  overflow-x: auto;
+  overflow-x: hidden; /* IMPORTANT */
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
   padding-right: 12%;
-  scrollbar-width: none;
-  overscroll-behavior-x: contain;
   touch-action: pan-x pinch-zoom;
 }
 
@@ -120,7 +118,10 @@
   width: calc(100% - 12%);
   flex: 0 0 calc(100% - 12%);
   border-radius: 8px;
+  user-select: none;
+  -webkit-user-drag: none;
 }
+
 
     .product-card h3 {
       color: #8f3d4f;
@@ -237,12 +238,16 @@
     let startX = 0;
     let currentIndex = 0;
 
-    const images = slider.querySelectorAll('img');
-    const imageCount = images.length;
+    const slides = slider.querySelectorAll('img');
+    const gap = parseInt(getComputedStyle(slider).gap) || 0;
+
+    function getSlideWidth() {
+      return slides[0].offsetWidth + gap;
+    }
 
     slider.addEventListener('touchstart', e => {
       startX = e.touches[0].clientX;
-      currentIndex = Math.round(slider.scrollLeft / slider.clientWidth);
+      currentIndex = Math.round(slider.scrollLeft / getSlideWidth());
     }, { passive: true });
 
     slider.addEventListener('touchend', e => {
@@ -251,19 +256,20 @@
 
       if (Math.abs(diff) < 40) return;
 
-      if (diff > 0 && currentIndex < imageCount - 1) {
+      if (diff > 0 && currentIndex < slides.length - 1) {
         currentIndex++;
       } else if (diff < 0 && currentIndex > 0) {
         currentIndex--;
       }
 
       slider.scrollTo({
-        left: currentIndex * slider.clientWidth,
+        left: currentIndex * getSlideWidth(),
         behavior: 'smooth'
       });
     });
   });
 </script>
+
 
 </body>
 </html>
