@@ -100,27 +100,32 @@
       box-shadow: 0 6px 18px rgba(0,0,0,0.12);
     }
 
-    .slider {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scroll-behavior: smooth;
-      padding-right: 15%;
-      scrollbar-width: none;
-    }
+   .slider {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  padding-right: 15%;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pinch-zoom;
+}
+
 
     .slider::-webkit-scrollbar {
       display: none;
     }
 
-    .slider img {
-      width: 100%;
-      border-radius: 8px;
-      scroll-snap-align: start;
-      flex-shrink: 0;
-    }
+   .slider img {
+  width: 100%;
+  border-radius: 8px;
+  scroll-snap-align: center;
+  flex-shrink: 0;
+  user-select: none;
+  -webkit-user-drag: none;
+}
 
     .product-card h3 {
       color: #8f3d4f;
@@ -231,6 +236,25 @@
     </div>
 
   </div>
+
+<script>
+  document.querySelectorAll('.slider').forEach(slider => {
+    let isScrolling;
+
+    slider.addEventListener('scroll', () => {
+      window.clearTimeout(isScrolling);
+
+      isScrolling = setTimeout(() => {
+        const slideWidth = slider.querySelector('img').offsetWidth + 10;
+        const index = Math.round(slider.scrollLeft / slideWidth);
+        slider.scrollTo({
+          left: index * slideWidth,
+          behavior: 'smooth'
+        });
+      }, 80);
+    });
+  });
+</script>
 
 </body>
 </html>
