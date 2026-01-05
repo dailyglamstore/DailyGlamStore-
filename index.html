@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Daily Glam Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,299 +12,225 @@
       padding: 0;
       background: #fff;
     }
-    header {
-  background: #F0626E;
-  color: #fff;
-  padding: 15px;
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
-}
+
+    .site-header {
+      background: #ffe3d8;
+      padding: 6px 10px;
+      border-bottom: 1px solid #f2b9a6;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .logo-small {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .brand-text {
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .brand-name {
+      font-size: 20px;
+      font-weight: bold;
+      color: #b2455a;
+      margin: 0;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+    }
+
+    .brand-tagline {
+      font-size: 10px;
+      color: #9a6b5f;
+      margin-top: 1px;
+    }
+
+    .ig-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #fbf6f3;
+      color: #a44a5c;
+      padding: 3px 8px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 12px;
+      border-bottom: 1px solid #f2d6dc;
+    }
+
+    .insta-icon-img {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+    }
+
     .category {
-  padding: 15px;
-  font-size: 18px;
-  font-weight: 600;
-  color: #7a3b4a;
-}
+      padding: 15px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #7a3b4a;
+    }
 
     .products {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 15px;
+      padding: 15px;
+    }
+
+    .product-card {
+      border: 1px solid #eee;
+      border-radius: 10px;
       padding: 10px;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
-    .card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-      text-align: center;
-      padding-bottom: 10px;
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
     }
-    .card img {
+
+    .slider {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      padding-right: 15%;
+      scrollbar-width: none;
+    }
+
+    .slider::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slider img {
       width: 100%;
+      border-radius: 8px;
+      scroll-snap-align: start;
+      flex-shrink: 0;
     }
-    .price {
-      font-weight: bold;
-      margin-top: 5px;
-    }
-    .btn {
-      background: black;
-      color: white;
-      padding: 6px 10px;
-      margin-top: 6px;
-      display: inline-block;
-      border-radius: 5px;
+
+    .product-card h3 {
+      color: #8f3d4f;
+      font-weight: 600;
       font-size: 14px;
+      margin: 6px 0 4px;
     }
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 15px;
-  padding: 15px;
-}
 
-.product-card {
-  border: 1px solid #eee;
-  border-radius: 10px;
-  padding: 10px;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  scroll-snap-align: start;
-  flex: 0 0 78%;
-}
+    .desc {
+      font-size: 14px;
+      color: #555;
+    }
 
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-}
+    .code {
+      font-size: 14px;
+      color: #777;
+      margin: 2px 0 6px;
+    }
 
-.slider {
-  display: flex;
-  overflow-x: auto;
-  gap: 10px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-  touch-action: pan-x;
+    .price-box {
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-  padding-right: 15%;
-}
+    .mrp-label {
+      font-size: 13px;
+      color: #777;
+    }
 
-.slider img {
-  width: 100%;
-  border-radius: 8px;
-  flex-shrink: 0;
-}
+    .mrp-amount {
+      font-size: 13px;
+      color: #9a9a9a;
+      text-decoration: line-through;
+    }
 
-.product-card h3 {
-  color: #8f3d4f;
-  font-weight: 600;
-  font-size: 14px;
-  margin: 6px 0 4px;
-}
+    .final-price {
+      font-size: 16px;
+      font-weight: 700;
+      color: #8f3d4f;
+    }
 
-.price {
-  color: #7a3b4a;
-  font-weight: 600;
-  font-size: 15px;
-}
-
-
-.desc {
-  font-size: 14px;
-  color: #555;
-}
-
-.whatsapp-btn {
-  display: block;
-  margin-top: 8px;
-  text-align: center;
-  background: #25D366;
-  color: #fff;
-  padding: 8px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.code {
-  font-size: 14px;
-  color: #777;
-  margin: 2px 0 6px;
-}
-.ig-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: #fbf6f3;
-  color: #a44a5c;
-  padding: 3px 8px;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 12px;
-  border-bottom: 1px solid #f2d6dc;
-}
-
-
-
-.insta-icon-img {
-  width: 18px;
-  height: 18px;
-  border-radius: 4px;
-}
-
-.site-header {
-  background: #ffe3d8;
-  padding: 6px 10px;
-  border-bottom: 1px solid #f2b9a6;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
-}
-
-
-
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-
-.logo-small {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-}
-
-
-.brand-text {
-  text-align: center;
-  line-height: 1.1;
-}
-
-
-.brand-name {
-  font-size: 20px;
-  font-weight: bold;
-  color: #b2455a;
-  line-height: 1.1;
-  margin: 0;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.4);
-}
-
-
-.brand-tagline {
-  font-size: 10px;
-  color: #9a6b5f;
-  margin-top: 1px;
-}
-
-
-.price-box {
-  margin-top: 6px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.price {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.mrp-label {
-  font-size: 13px;
-  color: #777;
-}
-
-.mrp-amount {
-  font-size: 13px;
-  color: #9a9a9a;
-  text-decoration: line-through;
-}
-
-.final-price {
-  font-size: 16px;
-  font-weight: 700;
-  color: #8f3d4f;
-}
-
+    .whatsapp-btn {
+      display: block;
+      margin-top: 8px;
+      text-align: center;
+      background: #25D366;
+      color: #fff;
+      padding: 8px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
   </style>
 </head>
+
 <body>
 
-<header class="site-header">
-  <div class="header-inner center-header">
+  <header class="site-header">
+    <div class="header-inner">
+      <img src="images/logo.png" class="logo-small" alt="Daily Glam Store Logo">
+      <div class="brand-text">
+        <div class="brand-name">Daily Glam Store</div>
+        <div class="brand-tagline">Your luxury shopping destination</div>
+      </div>
+    </div>
+  </header>
 
-    <img src="images/logo.png" class="logo-small">
+  <a class="ig-link" href="https://www.instagram.com/daily_glam_store/" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+         alt="Instagram"
+         class="insta-icon-img">
+    Follow us on Instagram @daily_glam_store
+  </a>
 
-    <div class="brand-text">
-      <div class="brand-name">Daily Glam Store</div>
-      <div class="brand-tagline">Your luxury shopping destination</div>
+  <div class="category">
+    🧿 Earrings, Jewellery and Cosmetics
+  </div>
+
+  <div class="products">
+
+    <div class="product-card">
+      <div class="slider">
+        <img src="images/earrings1-1.jpg" alt="Stone Embedded Earrings">
+        <img src="images/earrings1-2.jpg" alt="Stone Embedded Earrings">
+        <img src="images/earrings1-3.jpg" alt="Stone Embedded Earrings">
+        <img src="images/earrings1-4.jpg" alt="Stone Embedded Earrings">
+        <img src="images/earrings1-5.jpg" alt="Stone Embedded Earrings">
+        <img src="images/earrings1-6.jpg" alt="Stone Embedded Earrings">
+      </div>
+
+      <h3>Stone Embedded Earrings</h3>
+
+      <div class="price-box">
+        <span class="mrp-label">MRP</span>
+        <span class="mrp-amount">₹450</span>
+        <span class="final-price">₹249</span>
+      </div>
+
+      <p class="code">Product Code: <strong>ZN-DGS</strong></p>
+      <p class="desc">Premium quality earrings. Lightweight & stylish.</p>
+
+      <a class="whatsapp-btn" href="https://wa.me/919463638810" target="_blank">
+        Order on WhatsApp
+      </a>
+
     </div>
 
   </div>
-</header>
-
-<a class="ig-link"
-   href="https://www.instagram.com/daily_glam_store/"
-   target="_blank">
-
-  <img
-    src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
-    alt="Instagram"
-    class="insta-icon-img"
-  />
-
-  Follow us on Instagram @daily_glam_store
-</a>
-
-
-<div class="category">
-  🧿 Earrings, Jewellery and Cosmetics
-</div>
-
-<div class="products">
-
-  <!-- PRODUCT CARD 1 -->
-  <div class="product-card">
-    <div class="slider">
-      <img src="images/earrings1-1.jpg" />
-<img src="images/earrings1-2.jpg" />
-<img src="images/earrings1-3.jpg" />
-<img src="images/earrings1-4.jpg" />
-<img src="images/earrings1-5.jpg" />
-<img src="images/earrings1-6.jpg" />
-
-    </div>
-
-  <h3>Stone Embedded Earrings</h3>
-
-<div class="price-box">
-  <span class="mrp-label">MRP</span>
-  <span class="mrp-amount">₹450</span>
-  <span class="final-price">₹249</span>
-</div>
-
-<p class="code">Product Code: <strong>ZN-DGS</strong></p>
-<p class="desc">Premium quality earrings. Lightweight & stylish.</p>
-
-
-    <a class="whatsapp-btn"
-   href="https://wa.me/919463638810?text=Hi%2C%20I%20want%20to%20order%20Stone%20Embedded%20Earrings.%0AProduct%20Code%3A%20ZN-DGS%0AMRP%3A%20₹450%0AOffer%20Price%3A%20₹249.%0APlease%20share%20availability%20and%20delivery%20details."
-
-   target="_blank">
-   Order on WhatsApp
-</a>
-
-  </div>
-
-</div>
 
 </body>
 </html>
