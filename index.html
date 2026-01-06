@@ -253,6 +253,7 @@
 </div>
 
 <script>
+ 
   document.querySelectorAll('.slider').forEach(slider => {
     const slidesWrap = slider.querySelector('.slides');
     const slides = slidesWrap.querySelectorAll('img');
@@ -270,7 +271,9 @@
       counter.textContent = `${index + 1} / ${slides.length}`;
       counter.style.opacity = '1';
       clearTimeout(counterTimer);
-      counterTimer = setTimeout(() => counter.style.opacity = '0', 2000);
+      counterTimer = setTimeout(() => {
+        counter.style.opacity = '0';
+      }, 2000);
     }
 
     updateCounter();
@@ -283,9 +286,15 @@
     slidesWrap.addEventListener('touchend', e => {
       const diff = startX - e.changedTouches[0].clientX;
       if (Math.abs(diff) < 40) return;
+
       if (diff > 0 && index < slides.length - 1) index++;
       if (diff < 0 && index > 0) index--;
-      slidesWrap.scrollTo({ left: index * slideWidth(), behavior: 'smooth' });
+
+      slidesWrap.scrollTo({
+        left: index * slideWidth(),
+        behavior: 'smooth'
+      });
+
       updateCounter();
     });
   });
@@ -302,6 +311,7 @@
 
   document.querySelectorAll('.slider').forEach(slider => {
     const imgs = slider.querySelectorAll('.slides img');
+
     imgs.forEach((img, i) => {
       img.addEventListener('click', () => {
         zoomImages = Array.from(imgs).map(el => el.src);
@@ -319,25 +329,29 @@
   }, { passive: true });
 
   zoomOverlay.addEventListener('touchend', e => {
-  const diff = startX - e.changedTouches[0].clientX;
-  if (Math.abs(diff) < 50) return;
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) < 50) return;
 
-  const prevIndex = zoomIndex;
+    const prevIndex = zoomIndex;
 
-  if (diff > 0 && zoomIndex < zoomImages.length - 1) zoomIndex++;
-  if (diff < 0 && zoomIndex > 0) zoomIndex--;
+    if (diff > 0 && zoomIndex < zoomImages.length - 1) zoomIndex++;
+    if (diff < 0 && zoomIndex > 0) zoomIndex--;
 
-  if (zoomIndex !== prevIndex) {
-    zoomImage.src = zoomImages[zoomIndex];
-    const sound = document.getElementById('swipeSound');
-sound.volume = 0.2;
-sound.currentTime = 0;
-sound.play();
+    if (zoomIndex !== prevIndex) {
+      zoomImage.style.opacity = '0.7';
+      zoomImage.src = zoomImages[zoomIndex];
 
-    resetZoom();
-  }
-});
+      if (navigator.vibrate) {
+        navigator.vibrate(10);
+      }
 
+      setTimeout(() => {
+        zoomImage.style.opacity = '1';
+      }, 120);
+
+      resetZoom();
+    }
+  });
 
   function resetZoom() {
     zoomed = false;
@@ -364,9 +378,6 @@ sound.play();
   });
 </script>
 
-<audio id="swipeSound" preload="auto">
-  <source src="swipe.wav" type="audio/wav">
-</audio>
 
 </body>
 </html>
