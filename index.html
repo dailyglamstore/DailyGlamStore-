@@ -176,6 +176,54 @@
       text-decoration: none;
       font-weight: bold;
     }
+
+    .image-counter {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    background: rgba(0,0,0,0.65);
+    color: #fff;
+    font-size: 12px;
+    padding: 3px 7px;
+    border-radius: 12px;
+    pointer-events: none;
+  }
+
+    .product-card {
+    position: relative;
+  }
+
+    .zoom-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+
+    .zoom-overlay.active {
+    display: flex;
+  }
+
+    .zoom-overlay img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    touch-action: pinch-zoom;
+  }
+
+    .zoom-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
   </style>
 </head>
 
@@ -213,6 +261,8 @@
         <img src="images/earrings1-5.jpg" alt="Stone Embedded Earrings">
         <img src="images/earrings1-6.jpg" alt="Stone Embedded Earrings">
       </div>
+      <div class="image-counter">1 / 1</div>
+
 
       <h3>Stone Embedded Earrings</h3>
 
@@ -233,21 +283,35 @@
 
   </div>
 
+<div class="zoom-overlay" id="zoomOverlay">
+  <span class="zoom-close" id="zoomClose">✕</span>
+  <img id="zoomImage" src="" alt="">
+</div>
+
 <script>
   document.querySelectorAll('.slider').forEach(slider => {
     let startX = 0;
     let currentIndex = 0;
 
     const slides = slider.querySelectorAll('img');
+    const counter = slider.parentElement.querySelector('.image-counter');
     const gap = parseInt(getComputedStyle(slider).gap) || 0;
 
-    function getSlideWidth() {
+    function slideWidth() {
       return slides[0].offsetWidth + gap;
     }
 
+    function updateCounter() {
+      if (counter) {
+        counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+      }
+    }
+
+    updateCounter();
+
     slider.addEventListener('touchstart', e => {
       startX = e.touches[0].clientX;
-      currentIndex = Math.round(slider.scrollLeft / getSlideWidth());
+      currentIndex = Math.round(slider.scrollLeft / slideWidth());
     }, { passive: true });
 
     slider.addEventListener('touchend', e => {
@@ -263,13 +327,38 @@
       }
 
       slider.scrollTo({
-        left: currentIndex * getSlideWidth(),
+        left: currentIndex * slideWidth(),
         behavior: 'smooth'
       });
+
+      updateCounter();
     });
   });
-</script>
 
+  /* Fullscreen zoom */
+  const zoomOverlay = document.getElementById('zoomOverlay');
+  const zoomImage = document.getElementById('zoomImage');
+  const zoomClose = document.getElementById('zoomClose');
+
+  document.querySelectorAll('.slider img').forEach(img => {
+    img.addEventListener('click', () => {
+      zoomImage.src = img.src;
+      zoomOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeZoom() {
+    zoomOverlay.classList.remove('active');
+    zoomImage.src = '';
+    document.body.style.overflow = '';
+  }
+
+  zoomClose.addEventListener('click', closeZoom);
+  zoomOverlay.addEventListener('click', e => {
+    if (e.target === zoomOverlay) closeZoom();
+  });
+</script>
 
 </body>
 </html>
