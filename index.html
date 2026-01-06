@@ -101,6 +101,7 @@
     }
 
 .slider {
+  position: relative;   
   display: flex;
   gap: 10px;
   overflow-x: hidden; /* IMPORTANT */
@@ -176,18 +177,20 @@
       text-decoration: none;
       font-weight: bold;
     }
-
+    
     .image-counter {
-    position: absolute;
-    bottom: 8px;
-    right: 10px;
-    background: rgba(0,0,0,0.65);
-    color: #fff;
-    font-size: 12px;
-    padding: 3px 7px;
-    border-radius: 12px;
-    pointer-events: none;
-  }
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 14px;
+  pointer-events: none;
+  z-index: 2;
+}
 
     .product-card {
     position: relative;
@@ -260,9 +263,8 @@
         <img src="images/earrings1-4.jpg" alt="Stone Embedded Earrings">
         <img src="images/earrings1-5.jpg" alt="Stone Embedded Earrings">
         <img src="images/earrings1-6.jpg" alt="Stone Embedded Earrings">
-      </div>
       <div class="image-counter">1 / 1</div>
-
+      </div>
 
       <h3>Stone Embedded Earrings</h3>
 
@@ -294,7 +296,8 @@
     let currentIndex = 0;
 
     const slides = slider.querySelectorAll('img');
-    const counter = slider.parentElement.querySelector('.image-counter');
+    const counter = slider.querySelector('.image-counter');
+
     const gap = parseInt(getComputedStyle(slider).gap) || 0;
 
     function slideWidth() {
