@@ -35,7 +35,6 @@
       font-size: 20px;
       font-weight: bold;
       color: #b2455a;
-      line-height: 1.1;
     }
 
     .brand-tagline {
@@ -122,6 +121,7 @@
       border-radius: 14px;
       pointer-events: none;
       z-index: 5;
+      transition: opacity 0.3s ease;
     }
 
     .product-card h3 {
@@ -185,6 +185,7 @@
       max-height: 100%;
       object-fit: contain;
       touch-action: pinch-zoom;
+      transition: transform 0.3s ease;
     }
 
     .zoom-close {
@@ -219,7 +220,6 @@
 <div class="category">🧿 Earrings, Jewellery & Cosmetics</div>
 
 <div class="products">
-
   <div class="product-card">
     <div class="slider">
       <div class="slides">
@@ -228,6 +228,7 @@
         <img src="images/earrings1-3.jpg">
         <img src="images/earrings1-4.jpg">
         <img src="images/earrings1-5.jpg">
+        <img src="images/earrings1-6.jpg">
       </div>
       <div class="image-counter">1 / 1</div>
     </div>
@@ -244,7 +245,6 @@
       Order on WhatsApp
     </a>
   </div>
-
 </div>
 
 <div class="zoom-overlay" id="zoomOverlay">
@@ -260,6 +260,7 @@
     const gap = parseInt(getComputedStyle(slidesWrap).gap) || 0;
     let startX = 0;
     let index = 0;
+    let counterTimer;
 
     function slideWidth() {
       return slides[0].offsetWidth + gap;
@@ -267,6 +268,9 @@
 
     function updateCounter() {
       counter.textContent = `${index + 1} / ${slides.length}`;
+      counter.style.opacity = '1';
+      clearTimeout(counterTimer);
+      counterTimer = setTimeout(() => counter.style.opacity = '0', 2000);
     }
 
     updateCounter();
@@ -279,15 +283,9 @@
     slidesWrap.addEventListener('touchend', e => {
       const diff = startX - e.changedTouches[0].clientX;
       if (Math.abs(diff) < 40) return;
-
       if (diff > 0 && index < slides.length - 1) index++;
       if (diff < 0 && index > 0) index--;
-
-      slidesWrap.scrollTo({
-        left: index * slideWidth(),
-        behavior: 'smooth'
-      });
-
+      slidesWrap.scrollTo({ left: index * slideWidth(), behavior: 'smooth' });
       updateCounter();
     });
   });
@@ -296,12 +294,51 @@
   const zoomImage = document.getElementById('zoomImage');
   const zoomClose = document.getElementById('zoomClose');
 
-  document.querySelectorAll('.slides img').forEach(img => {
-    img.addEventListener('click', () => {
-      zoomImage.src = img.src;
-      zoomOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
+  let zoomImages = [];
+  let zoomIndex = 0;
+  let startX = 0;
+  let lastTap = 0;
+  let zoomed = false;
+
+  document.querySelectorAll('.slider').forEach(slider => {
+    const imgs = slider.querySelectorAll('.slides img');
+    imgs.forEach((img, i) => {
+      img.addEventListener('click', () => {
+        zoomImages = Array.from(imgs).map(el => el.src);
+        zoomIndex = i;
+        zoomImage.src = zoomImages[zoomIndex];
+        zoomOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        resetZoom();
+      });
     });
+  });
+
+  zoomOverlay.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  zoomOverlay.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) < 50) return;
+    if (diff > 0 && zoomIndex < zoomImages.length - 1) zoomIndex++;
+    if (diff < 0 && zoomIndex > 0) zoomIndex--;
+    zoomImage.src = zoomImages[zoomIndex];
+    resetZoom();
+  });
+
+  function resetZoom() {
+    zoomed = false;
+    zoomImage.style.transform = 'scale(1)';
+  }
+
+  zoomImage.addEventListener('click', () => {
+    const now = Date.now();
+    if (now - lastTap < 300) {
+      zoomed = !zoomed;
+      zoomImage.style.transform = zoomed ? 'scale(2)' : 'scale(1)';
+    }
+    lastTap = now;
   });
 
   function closeZoom() {
