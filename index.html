@@ -330,8 +330,10 @@
   if (zoomIndex !== prevIndex) {
     zoomImage.src = zoomImages[zoomIndex];
     const sound = document.getElementById('swipeSound');
-    sound.currentTime = 0;
-    sound.play();
+sound.volume = 0.2;
+sound.currentTime = 0;
+sound.play();
+
     resetZoom();
   }
 });
