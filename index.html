@@ -319,13 +319,23 @@
   }, { passive: true });
 
   zoomOverlay.addEventListener('touchend', e => {
-    const diff = startX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) < 50) return;
-    if (diff > 0 && zoomIndex < zoomImages.length - 1) zoomIndex++;
-    if (diff < 0 && zoomIndex > 0) zoomIndex--;
+  const diff = startX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) < 50) return;
+
+  const prevIndex = zoomIndex;
+
+  if (diff > 0 && zoomIndex < zoomImages.length - 1) zoomIndex++;
+  if (diff < 0 && zoomIndex > 0) zoomIndex--;
+
+  if (zoomIndex !== prevIndex) {
     zoomImage.src = zoomImages[zoomIndex];
+    const sound = document.getElementById('swipeSound');
+    sound.currentTime = 0;
+    sound.play();
     resetZoom();
-  });
+  }
+});
+
 
   function resetZoom() {
     zoomed = false;
@@ -351,6 +361,10 @@
     if (e.target === zoomOverlay) closeZoom();
   });
 </script>
+
+<audio id="swipeSound" preload="auto">
+  <source src="swipe.wav" type="audio/wav">
+</audio>
 
 </body>
 </html>
