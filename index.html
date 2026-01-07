@@ -212,18 +212,27 @@
   color: #8f3d4f;
   cursor: pointer;
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  user-select: none;
+}
+
+.view-details-btn .arrow {
+  transition: transform 0.3s ease;
 }
 
 .product-details {
-  display: none;
+  max-height: 0;
+  overflow: hidden;
   font-size: 12px;
   color: #555;
-  margin-top: 6px;
   line-height: 1.5;
+  transition: max-height 0.35s ease;
 }
 
 .product-details.active {
-  display: block;
+  max-height: 300px;
 }
 
 
@@ -351,8 +360,10 @@
     </div>
 
     <div class="view-details-btn" onclick="toggleDetails(this)">
-  View Details
+  <span class="text">View Details</span>
+  <span class="arrow">⌄</span>
 </div>
+
 
     <div class="product-details">
   Premium quality build<br>
@@ -539,14 +550,15 @@ function orderOnWhatsApp(button) {
 
 
 function toggleDetails(btn) {
-  const details = btn
-    .closest('.product-card')
-    .querySelector('.product-details');
+  const card = btn.closest('.product-card');
+  const details = card.querySelector('.product-details');
+  const arrow = btn.querySelector('.arrow');
 
   details.classList.toggle('active');
-  btn.textContent = details.classList.contains('active')
-    ? 'Hide Details'
-    : 'View Details';
+
+  const isOpen = details.classList.contains('active');
+  btn.querySelector('.text').textContent = isOpen ? 'Hide Details' : 'View Details';
+  arrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
 }
 
 </script>
