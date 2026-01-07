@@ -206,6 +206,27 @@
   font-weight: 500;
 }
 
+.view-details-btn {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #8f3d4f;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.product-details {
+  display: none;
+  font-size: 12px;
+  color: #555;
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.product-details.active {
+  display: block;
+}
+
+
   </style>
 </head>
 
@@ -328,6 +349,18 @@
       <span class="mrp-amount">₹1200</span>
       <span class="final-price">₹600</span>
     </div>
+
+    <div class="view-details-btn" onclick="toggleDetails(this)">
+  View Details
+</div>
+
+    <div class="product-details">
+  Premium quality build<br>
+  Money clipper design<br>
+  Sleek & compact style<br>
+  Ideal for daily use & gifting<br>
+  Free shipping
+</div>
 
     <a class="whatsapp-btn"
        href="#"
@@ -504,6 +537,17 @@ function orderOnWhatsApp(button) {
   window.open(whatsappURL, '_blank');
 }
 
+
+function toggleDetails(btn) {
+  const details = btn
+    .closest('.product-card')
+    .querySelector('.product-details');
+
+  details.classList.toggle('active');
+  btn.textContent = details.classList.contains('active')
+    ? 'Hide Details'
+    : 'View Details';
+}
 
 </script>
 
