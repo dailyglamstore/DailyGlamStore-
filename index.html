@@ -241,9 +241,15 @@
       <span class="final-price">₹249</span>
     </div>
 
-    <a class="whatsapp-btn" href="https://wa.me/919463638810" target="_blank">
-      Order on WhatsApp
-    </a>
+    <a class="whatsapp-btn"
+   href="#"
+   data-product="Stone Embedded Earrings"
+   data-code="E01"
+   onclick="orderOnWhatsApp(this)">
+  Order on WhatsApp
+</a>
+
+
   </div>
 </div>
 
@@ -376,6 +382,42 @@
   zoomOverlay.addEventListener('click', e => {
     if (e.target === zoomOverlay) closeZoom();
   });
+
+function orderOnWhatsApp(button) {
+  const productCard = button.closest('.product-card');
+
+  const productName = button.getAttribute('data-product');
+  const productCode = button.getAttribute('data-code');
+
+  const slider = productCard.querySelector('.slider');
+  const slides = slider.querySelectorAll('.slides img');
+
+  const counterText = slider.querySelector('.image-counter').textContent;
+  const imageIndex = parseInt(counterText.split('/')[0].trim(), 10) - 1;
+
+  const selectedImageURL = slides[imageIndex].src;
+
+  const mrp = productCard.querySelector('.mrp-amount').textContent;
+  const finalPrice = productCard.querySelector('.final-price').textContent;
+
+  const message =
+    `Hello Daily Glam Store 👋\n\n` +
+    `I want to order:\n` +
+    `*${productName}*\n` +
+    `Product Code: *${productCode}*\n` +
+    `Selected Image: *${imageIndex + 1}*\n` +
+    `MRP: ${mrp}\n` +
+    `Final Price: *${finalPrice}*\n\n` +
+    `Image Preview 👇\n${selectedImageURL}\n\n` +
+    `Please share availability & payment details.`;
+
+  const whatsappURL =
+    `https://wa.me/919463638810?text=${encodeURIComponent(message)}`;
+
+  window.open(whatsappURL, '_blank');
+}
+
+
 </script>
 
 
