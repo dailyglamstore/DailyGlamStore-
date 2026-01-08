@@ -583,15 +583,26 @@ function orderOnWhatsApp(button) {
 
 
 function toggleDetails(btn) {
-  const card = btn.closest('.product-card');
-  const details = card.querySelector('.product-details');
-  const arrow = btn.querySelector('.arrow');
+  const currentCard = btn.closest('.product-card');
+  const currentDetails = currentCard.querySelector('.product-details');
+  const currentArrow = btn.querySelector('.arrow');
+  const currentText = btn.querySelector('.text');
+  document.querySelectorAll('.product-details.active').forEach(details => {
+    if (details !== currentDetails) {
+      details.classList.remove('active');
+      const card = details.closest('.product-card');
+      const otherBtn = card.querySelector('.view-details-btn');
+      if (otherBtn) {
+        otherBtn.querySelector('.text').textContent = 'View Details';
+        otherBtn.querySelector('.arrow').style.transform = 'rotate(0deg)';
+      }
+    }
+  });
+  currentDetails.classList.toggle('active');
+  const isOpen = currentDetails.classList.contains('active');
 
-  details.classList.toggle('active');
-
-  const isOpen = details.classList.contains('active');
-  btn.querySelector('.text').textContent = isOpen ? 'Hide Details' : 'View Details';
-  arrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+  currentText.textContent = isOpen ? 'Hide Details' : 'View Details';
+  currentArrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
 }
 
 </script>
