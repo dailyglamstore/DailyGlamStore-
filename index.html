@@ -25,6 +25,58 @@
       gap: 8px;
     }
 
+.header-inner {
+  justify-content: space-between;
+}
+
+.brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.top-menu {
+  position: relative;
+}
+
+.menu-btn {
+  font-size: 22px;
+  cursor: pointer;
+  color: #8f3d4f;
+  padding: 4px 8px;
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  background: #fff;
+  border: 1px solid #f2b9a6;
+  border-radius: 8px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  display: none;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.menu-dropdown a {
+  display: block;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: #7a3b4a;
+  text-decoration: none;
+  border-bottom: 1px solid #f5d8cf;
+}
+
+.menu-dropdown a:last-child {
+  border-bottom: none;
+}
+
+.menu-dropdown a:active {
+  background: #fff3ee;
+}
+
+
     .logo-small {
       width: 48px;
       height: 48px;
@@ -280,11 +332,25 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <img src="images/logo.png" class="logo-small">
-    <div>
-      <div class="brand-name">Daily Glam Store</div>
-      <div class="brand-tagline">Your luxury shopping destination</div>
+
+    <div class="brand-wrap">
+      <img src="images/logo.png" class="logo-small">
+      <div>
+        <div class="brand-name">Daily Glam Store</div>
+        <div class="brand-tagline">Your luxury shopping destination</div>
+      </div>
     </div>
+
+    <div class="top-menu">
+      <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+      <div class="menu-dropdown" id="menuDropdown">
+        <a href="#earrings">🧿 Earrings, Jewellery & Cosmetics</a>
+        <a href="#handbags">👜 Handbags & Purses</a>
+        <a href="#wallets">⌚ Wallets, Belts & Watches</a>
+      </div>
+    </div>
+
   </div>
 </header>
 
@@ -359,7 +425,8 @@
   </div>
 </div>
 
-<div class="category">🧿 Earrings, Jewellery & Cosmetics</div>
+<div class="category" id="earrings">🧿 Earrings, Jewellery & Cosmetics</div>
+
 
 <div class="products">
   <div class="product-card">
@@ -409,7 +476,8 @@
   </div>
 </div>
 
-<div class="category">👜 Handbags & Purses</div>
+<div class="category" id="handbags">👜 Handbags & Purses</div>
+
 
 <div class="products">
 
@@ -463,7 +531,8 @@
 
 </div>
 
-<div class="category">⌚ Wallets, Belts & Watches</div>
+<div class="category" id="wallets">⌚ Wallets, Belts & Watches</div>
+
 
 <div class="products">
 
@@ -730,6 +799,18 @@ if (dealEnabled) {
     timerEl.textContent = `${d}d ${h}h ${m}m ${s}s`;
   }, 1000);
 }
+
+function toggleMenu() {
+  const menu = document.getElementById("menuDropdown");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+document.querySelectorAll(".menu-dropdown a").forEach(link => {
+  link.addEventListener("click", () => {
+    document.getElementById("menuDropdown").style.display = "none";
+  });
+});
+
 
 </script>
 
