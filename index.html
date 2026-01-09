@@ -24,17 +24,17 @@
   justify-content: space-between;
 }
 
-
     .brand-wrap {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
 }
 
 .brand-text {
-  margin-left: 12px;
+  text-align: center;
+  flex: 1;
 }
-
 
     .top-menu {
   position: relative;
@@ -92,7 +92,6 @@
       .menu-dropdown a:active {
   background: #fff3ee;
 }
-
 
     .logo-small {
       width: 48px;
@@ -159,7 +158,6 @@
 .glam-countdown span {
   color: #b2455a;
 }
-
 
     .category {
       padding: 15px;
@@ -351,11 +349,13 @@
   <div class="header-inner">
 
     <div class="brand-wrap">
-  <img src="logo.png" alt="Daily Glam Store" class="logo">
+  <img src="logo.png" alt="Daily Glam Store" class="logo-small">
+
   
   <div class="brand-text">
     <div class="brand-name">Daily Glam Store</div>
-    <div class="tagline">Your luxury shopping destination</div>
+    <div class="brand-tagline">Your luxury shopping destination</div>
+
   </div>
 </div>
 
