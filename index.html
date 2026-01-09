@@ -61,6 +61,37 @@
       height: 18px;
     }
 
+.glam-deal-wrapper {
+  display: none;
+}
+
+.glam-deal-wrapper.active {
+  display: block;
+}
+
+.glam-deal-offer-line {
+  margin: 0 15px 6px;
+  padding: 8px 10px;
+  background: #fff3ee;
+  border-left: 4px solid #b2455a;
+  font-size: 14px;
+  font-weight: 600;
+  color: #8f3d4f;
+}
+
+.glam-countdown {
+  margin: 0 15px 12px;
+  font-size: 13px;
+  color: #7a3b4a;
+  text-align: center;
+  font-weight: 600;
+}
+
+.glam-countdown span {
+  color: #b2455a;
+}
+
+
     .category {
       padding: 15px;
       font-size: 18px;
@@ -261,6 +292,72 @@
   <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="insta-icon-img">
   Follow us on Instagram @daily_glam_store
 </a>
+
+
+<div class="glam-deal-wrapper" id="glamDeal">
+
+  <div class="category">🔥 Glam Deal Of The Week</div>
+
+  <div class="glam-deal-offer-line">
+    🎁 Buy 1, Get 1 FREE
+  </div>
+
+  <div class="glam-countdown">
+    ⏳ Deal ends in <span id="dealTimer">--</span>
+  </div>
+
+  <div class="products">
+
+    <div class="product-card">
+      <div class="slider">
+        <div class="slides">
+          <img src="images/deal1-1.jpg">
+          <img src="images/deal1-2.jpg">
+          <img src="images/deal1-3.jpg">
+          <img src="images/deal1-4.jpg">
+          <img src="images/deal1-5.jpg">
+          <img src="images/deal1-6.jpg">
+          <img src="images/deal1-7.jpg">
+          <img src="images/deal1-8.jpg">
+          <img src="images/deal1-9.jpg">
+        </div>
+        <div class="image-counter">1 / 9</div>
+      </div>
+
+      <h3>Premium Handbag & Sling Combo</h3>
+      <div class="product-code">Product Code: SC-DGS</div>
+
+      <div class="price-box">
+        <span class="mrp-label">MRP</span>
+        <span class="mrp-amount">₹1500</span>
+        <span class="final-price">₹750</span>
+      </div>
+
+      <div class="view-details-btn" onclick="toggleDetails(this)">
+        <span class="text">View Details</span>
+        <span class="arrow">⌄</span>
+      </div>
+
+      <div class="product-details">
+        Buy 1 Get 1 Free offer<br>
+        Premium quality handbag<br>
+        Includes handbag & sling<br>
+        Adjustable long belt<br>
+        Limited time glam deal
+      </div>
+
+      <a class="whatsapp-btn"
+         href="#"
+         data-product="Premium Handbag & Sling Combo (Buy 1 Get 1 Free)"
+         data-code="SC-DGS"
+         onclick="orderOnWhatsApp(this)">
+        Order on WhatsApp
+      </a>
+
+    </div>
+
+  </div>
+</div>
 
 <div class="category">🧿 Earrings, Jewellery & Cosmetics</div>
 
@@ -603,6 +700,35 @@ function toggleDetails(btn) {
 
   currentText.textContent = isOpen ? 'Hide Details' : 'View Details';
   currentArrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+}
+
+
+const dealEndTime = new Date("2026-01-09T21:59:59").getTime();
+const dealEnabled = true;
+
+const dealBox = document.getElementById("glamDeal");
+const timerEl = document.getElementById("dealTimer");
+
+if (dealEnabled) {
+  const timerInterval = setInterval(() => {
+    const now = new Date().getTime();
+    const diff = dealEndTime - now;
+
+    if (diff <= 0) {
+      clearInterval(timerInterval);
+      dealBox.classList.remove("active");
+      return;
+    }
+
+    dealBox.classList.add("active");
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+
+    timerEl.textContent = `${d}d ${h}h ${m}m ${s}s`;
+  }, 1000);
 }
 
 </script>
