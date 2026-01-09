@@ -33,13 +33,29 @@
 
     .top-menu {
   position: relative;
+} 
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-    .menu-btn {
-  font-size: 22px;
-  cursor: pointer;
+.menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
   color: #8f3d4f;
-  padding: 4px 8px;
+  cursor: pointer;
+  padding: 6px 8px;
+  user-select: none;
+}
+
+.menu-icon {
+  font-size: 22px;
+  line-height: 1;
 }
 
     .menu-dropdown {
@@ -338,14 +354,18 @@
     </div>
 
     <div class="top-menu">
-      <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <div class="menu-btn" onclick="toggleMenu()">
+    <span class="menu-text">Menu</span>
+    <span class="menu-icon">☰</span>
+  </div>
 
-      <div class="menu-dropdown" id="menuDropdown">
-        <a href="#earrings">🧿 Earrings, Jewellery & Cosmetics</a>
-        <a href="#handbags">👜 Handbags & Purses</a>
-        <a href="#wallets">⌚ Wallets, Belts & Watches</a>
-      </div>
-    </div>
+  <div class="menu-dropdown" id="menuDropdown">
+    <a href="#earrings">🧿 Earrings, Jewellery & Cosmetics</a>
+    <a href="#handbags">👜 Handbags & Purses</a>
+    <a href="#wallets">⌚ Wallets, Belts & Watches</a>
+  </div>
+</div>
+
 
   </div>
 </header>
@@ -805,6 +825,15 @@ document.querySelectorAll(".menu-dropdown a").forEach(link => {
   link.addEventListener("click", () => {
     document.getElementById("menuDropdown").style.display = "none";
   });
+});
+
+document.addEventListener("click", function (e) {
+  const menu = document.getElementById("menuDropdown");
+  const button = document.querySelector(".menu-btn");
+
+  if (!button.contains(e.target) && !menu.contains(e.target)) {
+    menu.style.display = "none";
+  }
 });
 
 
