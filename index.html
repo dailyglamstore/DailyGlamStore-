@@ -93,6 +93,36 @@ body{
 .menu-dropdown a:last-child{border-bottom:none;}
 .menu-dropdown a:active{background:#fff3ee;}
 
+.menu-sub {
+  position: relative;
+}
+
+.menu-sub > a {
+  font-weight: 600;
+}
+
+.submenu {
+  display: none;
+  background: #fff;
+}
+
+.menu-sub:hover .submenu {
+  display: block;
+}
+
+.submenu a {
+  padding-left: 26px;
+  font-size: 13px;
+  color: #8f3d4f;
+}
+
+.menu-dropdown hr {
+  border: none;
+  border-top: 1px solid #f2b9a6;
+  margin: 6px 0;
+}
+
+
 .ig-link{
   display:flex;
   align-items:center;
@@ -258,6 +288,44 @@ body{
   text-align:center;
   font-weight:600;
 }
+
+footer {
+  background: #fff3ee;
+  padding: 24px 14px;
+  font-size: 13px;
+  color: #7a3b4a;
+}
+
+.footer-box {
+  margin-bottom: 16px;
+}
+
+.footer-box h3 {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #8f3d4f;
+}
+
+.whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #25d366;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.whatsapp-link img {
+  width: 18px;
+  height: 18px;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 14px;
+}
+
 </style>
 </head>
 
@@ -276,20 +344,27 @@ body{
   </div>
 </div>
 
+    <div class="menu-dropdown" id="menuDropdown">
 
-    <div class="top-menu">
-  <div class="menu-btn" onclick="toggleMenu()">
-    <span class="menu-text">Menu</span>
-    <span class="menu-icon">☰</span>
+  <a href="#about">About Us</a>
+
+  <div class="menu-sub">
+    <a href="javascript:void(0)">Categories</a>
+    <div class="submenu">
+      <a href="#earrings">Earrings</a>
+      <a href="#handbags">Handbags</a>
+      <a href="#wallets">Wallets</a>
+    </div>
   </div>
 
-  <div class="menu-dropdown" id="menuDropdown">
-    <a href="#earrings">🧿 Earrings, Jewellery & Cosmetics</a>
-    <a href="#handbags">👜 Handbags & Purses</a>
-    <a href="#wallets">⌚ Wallets, Belts & Watches</a>
-  </div>
+  <hr>
+
+  <a href="#ordering">How Ordering Works</a>
+  <a href="#shipping">Shipping Info</a>
+  <a href="#returns">Returns Policy</a>
+  <a href="#contact">Contact & Support</a>
+
 </div>
-
 
   </div>
 </header>
@@ -910,7 +985,7 @@ window.addEventListener("scroll", function () {
 <footer style="background:#fff3ee;border-top:1px solid #f1cfc4;margin-top:30px;">
   <div style="padding:22px 15px;max-width:1100px;margin:auto;">
 
-    <div style="font-size:16px;font-weight:700;color:#8f3d4f;margin-bottom:8px;">
+    <div id="about" style="font-size:16px;font-weight:700;color:#8f3d4f;margin-bottom:8px;">
       💎 About Daily Glam Store
     </div>
     <div style="font-size:13px;color:#555;line-height:1.6;">
@@ -919,7 +994,7 @@ window.addEventListener("scroll", function () {
       handbags, wallets and everyday glam essentials, available online across India.
     </div>
 
-    <div style="font-size:16px;font-weight:700;color:#8f3d4f;margin:18px 0 8px;">
+    <div id="ordering" style="font-size:16px;font-weight:700;color:#8f3d4f;margin:18px 0 8px;">
       🛍️ How Ordering Works
     </div>
     <div style="font-size:13px;color:#555;line-height:1.6;">
@@ -927,7 +1002,7 @@ window.addEventListener("scroll", function () {
       shipped to your doorstep pan India or sent to our local partner store for pickup (for local customers).
     </div>
 
-    <div style="font-size:16px;font-weight:700;color:#8f3d4f;margin:18px 0 8px;">
+    <div id="shipping" style="font-size:16px;font-weight:700;color:#8f3d4f;margin:18px 0 8px;">
       📦 Shipping & Delivery
     </div>
     <div style="font-size:13px;color:#555;line-height:1.6;">
@@ -936,7 +1011,7 @@ window.addEventListener("scroll", function () {
       ✔️ Dispatch after order confirmation
     </div>
 
-    <div style="font-size:16px;font-weight:700;color:#8f3d4f;margin:18px 0 8px;">
+    <div id="returns" style="font-size:16px;font-weight:700;color:#8f3d4f;margin:18px 0 8px;">
       🔁 Returns & Refunds
     </div>
     <div style="font-size:13px;color:#555;line-height:1.6;">
@@ -953,12 +1028,18 @@ window.addEventListener("scroll", function () {
       Daily Glam Store operates as an order-based accessories platform.
     </div>
 
-    <div style="font-size:16px;font-weight:700;color:#8f3d4f;margin:18px 0 8px;">
+    <div id="contact" style="font-size:16px;font-weight:700;color:#8f3d4f;margin:18px 0 8px;">
       📞 Contact & Support
     </div>
     <div style="font-size:13px;color:#555;line-height:1.6;">
       For orders, support or queries, please contact us directly on WhatsApp.<br>
-      📲 <b>Fast response during business hours</b>
+      <a href="https://wa.me/919463638810" target="_blank"
+         style="display:inline-flex;align-items:center;gap:6px;margin-top:6px;
+                color:#25d366;font-weight:600;text-decoration:none;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+             alt="WhatsApp" style="width:18px;height:18px;">
+        Chat on WhatsApp
+      </a>
     </div>
 
     <div style="text-align:center;margin-top:20px;font-size:13px;color:#7a3b4a;font-weight:600;">
@@ -974,8 +1055,8 @@ window.addEventListener("scroll", function () {
 
 <script>
   document.getElementById("currentYear").textContent = new Date().getFullYear();
-
 </script>
+
 
 </body>
 </html>
