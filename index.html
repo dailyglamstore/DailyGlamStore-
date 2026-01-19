@@ -122,6 +122,11 @@ body{
   display:block;
 }
 
+.sub-menu.open{
+  border-top:1px solid #d9a9b2;
+  border-bottom:1px solid #d9a9b2;
+}
+
 .ig-link{
   display:flex;
   align-items:center;
@@ -936,6 +941,11 @@ function toggleMenu() {
 document.querySelectorAll(".menu-dropdown a").forEach(link => {
   link.addEventListener("click", () => {
     document.getElementById("menuDropdown").style.display = "none";
+
+    const subMenu = document.getElementById("categorySubMenu");
+    if (subMenu) {
+      subMenu.classList.remove("open");
+    }
   });
 });
 
@@ -960,7 +970,9 @@ window.addEventListener("scroll", function () {
 
 function toggleCategoryMenu(e){
   e.stopPropagation();
-  document.getElementById("categorySubMenu").classList.toggle("open");
+
+  const subMenu = document.getElementById("categorySubMenu");
+  subMenu.classList.toggle("open");
 }
 
 </script>
@@ -1026,7 +1038,7 @@ function toggleCategoryMenu(e){
    style="color:#25D366;font-weight:700;text-decoration:none;">
   WhatsApp
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-       style="width:16px;vertical-align:middle;margin-left:4px;">
+     style="width:16px;vertical-align:middle;margin-left:2px;">
 </a>
 <br>
 📲 <b>Fast response during business hours</b>
