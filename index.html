@@ -95,6 +95,26 @@ body{
 .menu-dropdown a:last-child{border-bottom:none;}
 .menu-dropdown a:active{background:#fff3ee;}
 
+.menu-category {
+  font-weight:700;
+  background:#fff3ee;
+  cursor:pointer;
+}
+
+.sub-menu {
+  display:none;
+  background:#fff;
+}
+
+.sub-menu a {
+  padding-left:26px;
+  font-size:13px;
+}
+
+.sub-menu.open {
+  display:block;
+}
+
 .ig-link{
   display:flex;
   align-items:center;
@@ -260,6 +280,15 @@ body{
   text-align:center;
   font-weight:600;
 }
+
+#footer-about,
+#footer-shipping,
+#footer-returns,
+#footer-disclaimer,
+#footer-contact {
+  scroll-margin-top: 90px;
+}
+
 </style>
 </head>
 
@@ -289,9 +318,15 @@ body{
 
   <a href="#footer-about">💎 About Daily Glam Store</a>
 
-  <a href="#earrings">🧿 Earrings</a>
-  <a href="#handbags">👜 Handbags</a>
-  <a href="#wallets">⌚ Wallets</a>
+  <div class="menu-category" onclick="toggleCategoryMenu(event)">
+    📂 Categories ▸
+  </div>
+
+  <div class="sub-menu" id="categorySubMenu">
+    <a href="#earrings">🧿 Earrings</a>
+    <a href="#handbags">👜 Handbags</a>
+    <a href="#wallets">⌚ Wallets</a>
+  </div>
 
   <a href="#footer-shipping">📦 Shipping & Delivery</a>
   <a href="#footer-returns">🔁 Returns & Refunds</a>
@@ -301,7 +336,7 @@ body{
   <a href="https://wa.me/919463638810" target="_blank">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
          style="width:18px;vertical-align:middle;margin-right:6px;">
-    WhatsApp: 9463638810
+    Chat on WhatsApp
   </a>
 
 </div>
@@ -920,6 +955,11 @@ window.addEventListener("scroll", function () {
   }
 });
 
+function toggleCategoryMenu(e){
+  e.stopPropagation();
+  document.getElementById("categorySubMenu").classList.toggle("open");
+}
+
 </script>
 
 <footer style="background:#fff3ee;border-top:1px solid #f1cfc4;margin-top:30px;">
@@ -982,7 +1022,7 @@ window.addEventListener("scroll", function () {
    style="color:#25D366;font-weight:700;text-decoration:none;">
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
        style="width:18px;vertical-align:middle;margin-right:6px;">
-  Chat on WhatsApp – 9463638810
+  Chat on WhatsApp
 </a><br>
 📲 <b>Fast response during business hours</b>
     </div>
