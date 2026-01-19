@@ -95,10 +95,16 @@ body{
 .menu-dropdown a:last-child{border-bottom:none;}
 .menu-dropdown a:active{background:#fff3ee;}
 
-.menu-category {
-  font-weight:700;
-  background:#fff3ee;
+.menu-category{
+  padding:10px 14px;
+  font-size:14px;
+  font-weight:600;
+  color:#7a3b4a;
   cursor:pointer;
+  border-bottom:1px solid #f5d8cf;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 .sub-menu {
@@ -319,8 +325,9 @@ body{
   <a href="#footer-about">💎 About Daily Glam Store</a>
 
   <div class="menu-category" onclick="toggleCategoryMenu(event)">
-    📂 Categories ▸
-  </div>
+  <span>Categories</span>
+  <span>›</span>
+</div>
 
   <div class="sub-menu" id="categorySubMenu">
     <a href="#earrings">🧿 Earrings</a>
@@ -328,6 +335,7 @@ body{
     <a href="#wallets">⌚ Wallets</a>
   </div>
 
+ <a href="#footer-ordering">🛍️ How Ordering Works</a>
   <a href="#footer-shipping">📦 Shipping & Delivery</a>
   <a href="#footer-returns">🔁 Returns & Refunds</a>
   <a href="#footer-disclaimer">⚠️ Disclaimer</a>
@@ -975,9 +983,10 @@ function toggleCategoryMenu(e){
       handbags, wallets and everyday glam essentials, available online across India.
     </div>
 
-    <div style="font-size:16px;font-weight:700;color:#8f3d4f;margin:18px 0 8px;">
-      🛍️ How Ordering Works
-    </div>
+    <div id="footer-ordering" style="font-size:16px;font-weight:700;color:#8f3d4f;margin:18px 0 8px;">
+  🛍️ How Ordering Works
+</div>
+
     <div style="font-size:13px;color:#555;line-height:1.6;">
       All products are <b>order-based</b>. Once payment is confirmed, your order is processed and
       shipped to your doorstep pan India or sent to our local partner store for pickup (for local customers).
