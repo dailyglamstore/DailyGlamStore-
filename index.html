@@ -130,9 +130,13 @@ body{
 .sub-menu.open{
   max-height:300px;
   opacity:1;
-  border-top:1px solid #d9a9b2;
-  box-shadow:
-    inset 0 2px 0 rgba(217,169,178,0.9);
+}
+
+.sub-menu.open::before{
+  content:"";
+  display:block;
+  height:3px;
+  background:#d9a9b2;
 }
 
 .sub-menu.open::after{
