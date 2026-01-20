@@ -107,21 +107,38 @@ body{
   gap:6px;
 }
 
-.sub-menu {
-  display:none;
+.cat-arrow{
+  display:inline-block;
+  transition:transform 0.25s ease;
+  font-size:12px;
+  margin-right:6px;
+}
+
+.menu-category.open .cat-arrow{
+  transform:rotate(90deg);
+}
+
+.sub-menu{
+  max-height:0;
+  overflow:hidden;
   background:#fff;
+  transition:max-height 0.3s ease, opacity 0.25s ease;
+  opacity:0;
   border-bottom:1px solid #f5d8cf;
 }
 
-.sub-menu a {
-  padding-left:26px;
-  font-size:13px;
-}
-
 .sub-menu.open{
-  display:block;
+  max-height:300px;
+  opacity:1;
   border-top:1px solid #d9a9b2;
   border-bottom:1px solid #d9a9b2;
+}
+
+.sub-menu a{
+  padding:10px 14px 10px 26px;
+  font-size:13px;
+  background:#fff7f4;
+  border-bottom:1px solid #f1d2c9;
 }
 
 .ig-link{
@@ -329,7 +346,8 @@ body{
   <a href="#footer-about">💎 About Daily Glam Store</a>
 
   <div class="menu-category" onclick="toggleCategoryMenu(event)">
-  📁 Categories ›
+  <span class="cat-arrow">▶</span>
+  Categories
 </div>
 
   <div class="sub-menu" id="categorySubMenu">
@@ -969,7 +987,10 @@ function toggleCategoryMenu(e){
   e.stopPropagation();
 
   const subMenu = document.getElementById("categorySubMenu");
+  const categoryBtn = e.currentTarget;
+
   subMenu.classList.toggle("open");
+  categoryBtn.classList.toggle("open");
 }
 
 </script>
