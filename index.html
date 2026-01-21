@@ -959,6 +959,27 @@ function toggleDetails(btn) {
   currentArrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
 }
 
+let lastScrollY = window.scrollY;
+
+window.addEventListener("scroll", () => {
+  const currentScrollY = window.scrollY;
+
+  if (Math.abs(currentScrollY - lastScrollY) > 30) {
+    document.querySelectorAll(".product-details.active").forEach(details => {
+      details.classList.remove("active");
+
+      const card = details.closest(".product-card");
+      const btn = card.querySelector(".view-details-btn");
+
+      if (btn) {
+        btn.querySelector(".text").textContent = "View Details";
+        btn.querySelector(".arrow").style.transform = "rotate(0deg)";
+      }
+    });
+
+    lastScrollY = currentScrollY;
+  }
+});
 
 const dealEndTime = new Date("2026-01-17T23:59:59").getTime();
 const dealEnabled = true;
