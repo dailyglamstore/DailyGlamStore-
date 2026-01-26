@@ -53,4 +53,11 @@ fetch("data/products.json")
       productsWrap.insertAdjacentHTML("beforeend", productHTML);
     });
   })
+
+.then(() => {
+  if (typeof initSliders === "function") {
+    initSliders();
+  }
+});
+
   .catch(err => console.error("JSON load error:", err));
