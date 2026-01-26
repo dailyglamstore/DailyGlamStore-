@@ -685,11 +685,13 @@ body{
 
 <script>
  
+  function initSliders() {
   document.querySelectorAll('.slider').forEach(slider => {
     const slidesWrap = slider.querySelector('.slides');
     const slides = slidesWrap.querySelectorAll('img');
     const counter = slider.querySelector('.image-counter');
     const gap = parseInt(getComputedStyle(slidesWrap).gap) || 0;
+
     let startX = 0;
     let index = 0;
     let counterTimer;
@@ -729,6 +731,7 @@ body{
       updateCounter();
     });
   });
+}
 
   const zoomOverlay = document.getElementById('zoomOverlay');
   const zoomImage = document.getElementById('zoomImage');
