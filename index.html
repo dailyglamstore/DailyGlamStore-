@@ -449,6 +449,7 @@ body{
 
 <script>
  
+  function initSliders() {
   document.querySelectorAll('.slider').forEach(slider => {
     const slidesWrap = slider.querySelector('.slides');
     const slides = slidesWrap.querySelectorAll('img');
@@ -493,7 +494,9 @@ body{
       updateCounter();
     });
   });
-
+}
+ 
+function initZoom() {
   const zoomOverlay = document.getElementById('zoomOverlay');
   const zoomImage = document.getElementById('zoomImage');
   const zoomClose = document.getElementById('zoomClose');
@@ -536,9 +539,7 @@ body{
       zoomImage.style.opacity = '0.7';
       zoomImage.src = zoomImages[zoomIndex];
 
-      if (navigator.vibrate) {
-        navigator.vibrate(10);
-      }
+      if (navigator.vibrate) navigator.vibrate(10);
 
       setTimeout(() => {
         zoomImage.style.opacity = '1';
@@ -568,9 +569,11 @@ body{
   }
 
   zoomClose.addEventListener('click', closeZoom);
+
   zoomOverlay.addEventListener('click', e => {
     if (e.target === zoomOverlay) closeZoom();
   });
+}
 
 function orderOnWhatsApp(button) {
   const productCard = button.closest('.product-card');
