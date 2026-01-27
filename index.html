@@ -575,44 +575,37 @@ function initZoom() {
   });
 }
 
-function orderOnWhatsApp(button) {
-  const productCard = button.closest('.product-card');
+function orderOnWhatsApp(btn) {
+  const card = btn.closest('.product-card');
+  if (!card) return;
 
-  const productName = button.getAttribute('data-product');
-  const productCode = button.getAttribute('data-code');
+  const name = btn.dataset.product;
+  const code = btn.dataset.code;
 
-  const slider = productCard.querySelector('.slider');
-  const slides = slider.querySelectorAll('.slides img');
+  const mrp = card.querySelector('.mrp-amount')?.textContent || '';
+  const price = card.querySelector('.final-price')?.textContent || '';
 
-  const counterText = slider.querySelector('.image-counter').textContent;
-  const imageIndex = parseInt(counterText.split('/')[0].trim(), 10) - 1;
+  const msg =
+`Hello Daily Glam Store 👋
 
-  const selectedImageURL = slides[imageIndex].src;
+I want to order:
+${name}
+Code: ${code}
+MRP: ${mrp}
+Final Price: ${price}
 
-  const mrp = productCard.querySelector('.mrp-amount').textContent;
-  const finalPrice = productCard.querySelector('.final-price').textContent;
+Please share availability & payment details.`;
 
-  const message =
-    `Hello Daily Glam Store 👋\n\n` +
-    `I want to order:\n` +
-    `*${productName}*\n` +
-    `Product Code: *${productCode}*\n` +
-    `Selected Image: *${imageIndex + 1}*\n` +
-    `MRP: ${mrp}\n` +
-    `Final Price: *${finalPrice}*\n\n` +
-    `Image Preview 👇\n${selectedImageURL}\n\n` +
-    `Please share availability & payment details.`;
-
-  const whatsappURL =
-    `https://wa.me/919463638810?text=${encodeURIComponent(message)}`;
-
-  window.open(whatsappURL, '_blank');
+  const url = "https://wa.me/919463638810?text=" + encodeURIComponent(msg);
+  window.open(url, "_blank");
 }
-
 
 function toggleDetails(btn) {
   const card = btn.closest('.product-card');
+  if (!card) return;
+
   const details = card.querySelector('.product-details');
+  if (!details) return;
 
   details.classList.toggle('active');
 
@@ -852,6 +845,11 @@ function renderProducts(products, containerId) {
   `).join('');
 }
 
+window.onerror = function (msg, url, line) {
+  console.error("JS Error:", msg, "at line:", line);
+  return true;
+};
+
 fetch('products.json')
   .then(res => res.json())
   .then(data => {
@@ -863,7 +861,6 @@ fetch('products.json')
 
     setTimeout(() => {
       initSliders();
-      initZoom();
     }, 100);
 
   })
