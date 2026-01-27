@@ -813,6 +813,58 @@ function toggleCategoryMenu(e){
 <script>
   document.getElementById("currentYear").textContent = new Date().getFullYear();
 
+function renderProducts(products, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container || !products) return;
+
+  container.innerHTML = products.map(p => `
+    <div class="product-card">
+      <div class="slider">
+        <div class="slides">
+          ${p.images.map(img => `<img src="${img}" class="product-img">`).join('')}
+        </div>
+        <div class="image-counter"></div>
+      </div>
+
+      <div class="product-details">
+        <div class="product-title">${p.title}</div>
+
+        <div class="price">
+          <span class="new-price">₹${p.price}</span>
+          ${p.oldPrice ? `<span class="old-price">₹${p.oldPrice}</span>` : ''}
+        </div>
+
+        <div class="product-actions">
+          <button class="view-details" onclick="toggleDetails(this)">View Details</button>
+          <button class="order-btn" onclick="orderOnWhatsApp(this)"
+            data-title="${p.title}"
+            data-price="${p.price}">
+            Order on WhatsApp
+          </button>
+        </div>
+
+        <div class="product-extra">
+          ${p.details || ''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+fetch('products.json')
+  .then(res => res.json())
+  .then(data => {
+
+    renderProducts(data.deal, 'deal-products');
+    renderProducts(data.earrings, 'earrings-products');
+    renderProducts(data.handbags, 'handbags-products');
+    renderProducts(data.wallets, 'wallets-products');
+
+    initSliders();
+    initZoom();
+  })
+  .catch(err => console.error('JSON load error:', err));
+
 </script>
 
 </body>
