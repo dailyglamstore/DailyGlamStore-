@@ -612,7 +612,7 @@ function orderOnWhatsApp(button) {
 
 function toggleDetails(btn) {
   const card = btn.closest('.product-card');
-  const details = card.querySelector('.product-details ul').parentElement;
+  const details = card.querySelector('.product-details');
 
   details.classList.toggle('active');
 
@@ -620,18 +620,7 @@ function toggleDetails(btn) {
     ? 'Hide Details'
     : 'View Details';
 }
- document.querySelectorAll('.product-details.active').forEach(details => {
-    if (details !== currentDetails) {
-      details.classList.remove('active');
-      const card = details.closest('.product-card');
-      const otherBtn = card.querySelector('.view-details-btn');
-      if (otherBtn) {
-        otherBtn.querySelector('.text').textContent = 'View Details';
-        otherBtn.querySelector('.arrow').style.transform = 'rotate(0deg)';
-      }
-    }
-  });
-  currentDetails.classList.toggle('active');
+ currentDetails.classList.toggle('active');
   const isOpen = currentDetails.classList.contains('active');
 
   currentText.textContent = isOpen ? 'Hide Details' : 'View Details';
@@ -842,12 +831,13 @@ function renderProducts(products, containerId) {
         <span class="final-price">₹${p.price}</span>
       </div>
 
-      <a class="whatsapp-btn"
-         onclick="orderOnWhatsApp(this)"
-         data-product="${p.name}"
-         data-code="${p.code}">
-         Order on WhatsApp
-      </a>
+      <a href="javascript:void(0)"
+   class="whatsapp-btn"
+   onclick="orderOnWhatsApp(this)"
+   data-product="${p.name}"
+   data-code="${p.code}">
+  Order on WhatsApp
+</a>
 
       <div class="view-details-btn" onclick="toggleDetails(this)">
         View Details
@@ -868,13 +858,15 @@ fetch('products.json')
   .then(data => {
 
     renderProducts(data.deal, 'deal-products');
-    renderProducts(data.earrings, 'earrings-products');
-    renderProducts(data.handbags, 'handbags-products');
-    renderProducts(data.wallets, 'wallets-products');
+renderProducts(data.earrings, 'earrings-products');
+renderProducts(data.handbags, 'handbags-products');
+renderProducts(data.wallets, 'wallets-products');
 
-    initSliders();
-    initZoom();
-  })
+setTimeout(() => {
+  initSliders();
+  initZoom();
+}, 100);
+
   .catch(err => console.error('JSON load error:', err));
 
 </script>
