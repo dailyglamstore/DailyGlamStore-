@@ -807,7 +807,6 @@ function toggleCategoryMenu(e){
 <script>
   document.getElementById("currentYear").textContent = new Date().getFullYear();
 
-
 function renderProducts(products, containerId) {
   const container = document.getElementById(containerId);
   if (!container || !products) return;
@@ -832,12 +831,12 @@ function renderProducts(products, containerId) {
       </div>
 
       <a href="javascript:void(0)"
-   class="whatsapp-btn"
-   onclick="orderOnWhatsApp(this)"
-   data-product="${p.name}"
-   data-code="${p.code}">
-  Order on WhatsApp
-</a>
+         class="whatsapp-btn"
+         onclick="orderOnWhatsApp(this)"
+         data-product="${p.name}"
+         data-code="${p.code}">
+        Order on WhatsApp
+      </a>
 
       <div class="view-details-btn" onclick="toggleDetails(this)">
         View Details
@@ -858,18 +857,20 @@ fetch('products.json')
   .then(data => {
 
     renderProducts(data.deal, 'deal-products');
-renderProducts(data.earrings, 'earrings-products');
-renderProducts(data.handbags, 'handbags-products');
-renderProducts(data.wallets, 'wallets-products');
+    renderProducts(data.earrings, 'earrings-products');
+    renderProducts(data.handbags, 'handbags-products');
+    renderProducts(data.wallets, 'wallets-products');
 
-setTimeout(() => {
-  initSliders();
-  initZoom();
-}, 100);
+    setTimeout(() => {
+      initSliders();
+      initZoom();
+    }, 100);
 
+  })
   .catch(err => console.error('JSON load error:', err));
 
 </script>
+
 
 </body>
 </html>
