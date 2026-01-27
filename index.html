@@ -818,46 +818,47 @@ function toggleCategoryMenu(e){
 <script>
   document.getElementById("currentYear").textContent = new Date().getFullYear();
 
+
 function renderProducts(products, containerId) {
   const container = document.getElementById(containerId);
   if (!container || !products) return;
 
   container.innerHTML = products.map(p => `
     <div class="product-card">
+
       <div class="slider">
         <div class="slides">
-          ${p.images.map(img => `<img src="${img}" class="product-img">`).join('')}
+          ${p.images.map(img => `<img src="${img}">`).join('')}
         </div>
         <div class="image-counter"></div>
       </div>
 
-      <div class="product-details">
-        <div class="product-title">${p.name}</div>
+      <h3>${p.name}</h3>
+      <div class="product-code">Code: ${p.code}</div>
 
-        <div class="price">
-          <span class="new-price">₹${p.price}</span>
-          <span class="old-price">₹${p.mrp}</span>
-        </div>
-
-        <div class="product-actions">
-          <button class="view-details-btn" onclick="toggleDetails(this)">
-            View Details
-          </button>
-
-          <button class="order-btn"
-            onclick="orderOnWhatsApp(this)"
-            data-product="${p.name}"
-            data-code="${p.code}">
-            Order on WhatsApp
-          </button>
-        </div>
-
-        <div class="product-details">
-          <ul>
-            ${p.details.map(d => `<li>${d}</li>`).join('')}
-          </ul>
-        </div>
+      <div class="price-box">
+        <span class="mrp-label">MRP:</span>
+        <span class="mrp-amount">₹${p.mrp}</span>
+        <span class="final-price">₹${p.price}</span>
       </div>
+
+      <a class="whatsapp-btn"
+         onclick="orderOnWhatsApp(this)"
+         data-product="${p.name}"
+         data-code="${p.code}">
+         Order on WhatsApp
+      </a>
+
+      <div class="view-details-btn" onclick="toggleDetails(this)">
+        View Details
+      </div>
+
+      <div class="product-details">
+        <ul>
+          ${p.details.map(d => `<li>${d}</li>`).join('')}
+        </ul>
+      </div>
+
     </div>
   `).join('');
 }
