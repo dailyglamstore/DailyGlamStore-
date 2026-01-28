@@ -204,16 +204,19 @@ body{
 
 .slides {
   display: flex;
-  width: 100%;
+  gap: 8px;
   transition: transform 0.3s ease;
+  padding-left: 6px;
 }
 
 .slides img {
-  width: 100%;
-  min-width: 100%;
+  width: 88%;
+  min-width: 88%;
   height: auto;
   display: block;
   object-fit: cover;
+  border-radius: 10px;
+  touch-action: pan-y;
 }
 
 .image-counter{
