@@ -284,25 +284,40 @@ body{
 
 .product-details.active{max-height:300px;}
 
-.zoom-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.9);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
+.zoom-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
 }
 
-.zoom-overlay.active{display:flex;}
-.zoom-overlay img{max-width:100%;max-height:100%;}
-.zoom-close{
-  position:absolute;
-  top:12px;
-  right:14px;
-  font-size:28px;
-  color:#fff;
-  cursor:pointer;
+.zoom-overlay.active {
+  display: flex;
+}
+
+.zoom-overlay img {
+  max-width: 92%;
+  max-height: 80%;
+  object-fit: contain;
+}
+
+.zoom-close {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  font-size: 26px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.zoom-counter {
+  color: #fff;
+  font-size: 14px;
+  margin-top: 12px;
 }
 
 .glam-deal-wrapper{display:none;}
@@ -542,6 +557,12 @@ body{
 </script>
 
 <script src="main.js"></script>
+
+<div class="zoom-overlay" id="zoomOverlay">
+  <span class="zoom-close" id="zoomClose">✕</span>
+  <img id="zoomImage">
+  <div class="zoom-counter" id="zoomCounter"></div>
+</div>
 
 </body>
 </html>
