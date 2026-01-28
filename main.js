@@ -161,36 +161,22 @@ Please share availability & payment details.`;
 
 let zoomImages = [];
 let zoomIndex = 0;
-let lastTap = 0;
 
 const zoomOverlay = document.getElementById("zoomOverlay");
 const zoomImage = document.getElementById("zoomImage");
 const zoomCounter = document.getElementById("zoomCounter");
 const zoomClose = document.getElementById("zoomClose");
 
-document.addEventListener("touchend", e => {
-  const img = e.target.closest(".slides img");
-  if (!img) return;
-
-  const now = Date.now();
-  if (now - lastTap < 300) {
-    openZoom(img);
-  }
-  lastTap = now;
-});
-
 document.addEventListener("click", e => {
   const img = e.target.closest(".slides img");
   if (!img) return;
-  openZoom(img);
-});
 
-function openZoom(img) {
   const slides = img.closest(".slides");
   zoomImages = Array.from(slides.querySelectorAll("img"));
   zoomIndex = zoomImages.indexOf(img);
+
   showZoom();
-}
+});
 
 function showZoom() {
   zoomImage.src = zoomImages[zoomIndex].src;
@@ -209,10 +195,14 @@ zoomOverlay.addEventListener("touchstart", e => {
 });
 
 zoomOverlay.addEventListener("touchend", e => {
-  const diff = startX - e.changedTouches[0].clientX;
+  const endX = e.changedTouches[0].clientX;
+  const diff = startX - endX;
 
-  if (diff > 50 && zoomIndex < zoomImages.length - 1) zoomIndex++;
-  else if (diff < -50 && zoomIndex > 0) zoomIndex--;
+  if (diff > 50 && zoomIndex < zoomImages.length - 1) {
+    zoomIndex++;
+  } else if (diff < -50 && zoomIndex > 0) {
+    zoomIndex--;
+  }
 
   showZoom();
 });
