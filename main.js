@@ -80,16 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   document.addEventListener("click", e => {
-    if (!e.target.classList.contains("view-details-btn")) return;
-    const card = e.target.closest(".product-card");
-    const details = card.querySelector(".product-details");
-    details.classList.toggle("active");
-    e.target.textContent = details.classList.contains("active")
-      ? "Hide Details"
-      : "View Details";
-  });
-
-  document.addEventListener("click", e => {
   if (!e.target.classList.contains("whatsapp-btn")) return;
 
   const btn = e.target;
@@ -139,7 +129,7 @@ Please share availability & payment details.`;
     let startX = 0;
 
     function update() {
-      slides.style.transform = `translateX(-${index * 100}%)`;
+      slides.style.transform = `translateX(-${index * 96}%)`;
       counter.textContent = `${index + 1} / ${images.length}`;
     }
 
