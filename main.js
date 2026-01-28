@@ -16,13 +16,25 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   document.addEventListener("click", e => {
-    const menu = document.getElementById("menuDropdown");
-    const button = document.querySelector(".menu-btn");
-    if (!menu || !button) return;
-    if (!menu.contains(e.target) && !button.contains(e.target)) {
-      menu.style.display = "none";
-    }
-  });
+  if (!e.target.closest(".view-details-btn")) return;
+
+  const btn = e.target.closest(".view-details-btn");
+  const card = btn.closest(".product-card");
+  const details = card.querySelector(".product-details");
+  const arrow = btn.querySelector(".vd-arrow");
+  const text = btn.querySelector(".vd-text");
+
+  details.classList.toggle("active");
+
+  if (details.classList.contains("active")) {
+    text.textContent = "Hide Details";
+    arrow.textContent = "▲";
+  } else {
+    text.textContent = "View Details";
+    arrow.textContent = "▼";
+  }
+});
+
 
   function renderProducts(products, containerId) {
     const container = document.getElementById(containerId);
@@ -52,7 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
           Order on WhatsApp
         </a>
 
-        <div class="view-details-btn">View Details</div>
+        <div class="view-details-btn">
+  <span class="vd-text">View Details</span>
+  <span class="vd-arrow">▼</span>
+</div>
+
 
         <div class="product-details">
           <ul>
@@ -74,41 +90,73 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.addEventListener("click", e => {
-    if (!e.target.classList.contains("whatsapp-btn")) return;
-    const btn = e.target;
-    const card = btn.closest(".product-card");
+  if (!e.target.classList.contains("whatsapp-btn")) return;
 
-    const msg =
+  const btn = e.target;
+  const card = btn.closest(".product-card");
+
+  const name = btn.dataset.product;
+  const code = btn.dataset.code;
+
+  const mrp = card.querySelector(".mrp-amount").textContent;
+  const price = card.querySelector(".final-price").textContent;
+
+  const slider = card.querySelector(".slider");
+  const slides = slider.querySelectorAll(".slides img");
+  const counter = slider.querySelector(".image-counter").textContent;
+  const selectedIndex = parseInt(counter.split("/")[0].trim()) - 1;
+  const imageUrl = slides[selectedIndex].src;
+
+  const message =
 `Hello Daily Glam Store 👋
 
 I want to order:
-${btn.dataset.product}
-Code: ${btn.dataset.code}
+*${name}*
+Product Code: *${code}*
+Selected Image: *${selectedIndex + 1}*
+MRP: ${mrp}
+Final Price: *${price}*
 
-Price: ${card.querySelector(".final-price").textContent}
+Image Preview 👇
+${imageUrl}
 
 Please share availability & payment details.`;
 
-    window.open(
-      "https://wa.me/919463638810?text=" + encodeURIComponent(msg),
-      "_blank"
-    );
-  });
+  window.open(
+    "https://wa.me/919463638810?text=" + encodeURIComponent(message),
+    "_blank"
+  );
+});
+
 
   function initSliders() {
-    document.querySelectorAll(".slider").forEach(slider => {
-      const slides = slider.querySelector(".slides");
-      let index = 0;
+  document.querySelectorAll(".slider").forEach(slider => {
+    const slides = slider.querySelector(".slides");
+    const images = slides.querySelectorAll("img");
+    const counter = slider.querySelector(".image-counter");
 
-      slider.addEventListener("click", () => {
-        index = (index + 1) % slides.children.length;
-        slides.scrollTo({
-          left: slides.children[index].offsetLeft,
-          behavior: "smooth"
-        });
-      });
+    let index = 0;
+    let startX = 0;
+
+    function update() {
+      slides.style.transform = `translateX(-${index * 100}%)`;
+      counter.textContent = `${index + 1} / ${images.length}`;
+    }
+
+    update();
+
+    slider.addEventListener("touchstart", e => {
+      startX = e.touches[0].clientX;
     });
-  }
+
+    slider.addEventListener("touchend", e => {
+      const endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50 && index < images.length - 1) index++;
+      if (endX - startX > 50 && index > 0) index--;
+      update();
+    });
+  });
+}
 
   fetch("products.json")
     .then(r => r.json())
