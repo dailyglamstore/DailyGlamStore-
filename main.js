@@ -129,7 +129,7 @@ Please share availability & payment details.`;
     let startX = 0;
 
     function update() {
-      slides.style.transform = `translateX(-${index * 96}%)`;
+      slides.style.transform = `translateX(-${index * 92}%)`;
       counter.textContent = `${index + 1} / ${images.length}`;
     }
 
