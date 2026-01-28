@@ -172,13 +172,11 @@ document.addEventListener("touchend", e => {
   const img = e.target.closest(".slides img");
   if (!img) return;
 
-  const currentTime = new Date().getTime();
-  const tapLength = currentTime - lastTap;
-  lastTap = currentTime;
-
-  if (tapLength < 300 && tapLength > 0) {
+  const now = Date.now();
+  if (now - lastTap < 300) {
     openZoom(img);
   }
+  lastTap = now;
 });
 
 document.addEventListener("click", e => {
@@ -211,14 +209,10 @@ zoomOverlay.addEventListener("touchstart", e => {
 });
 
 zoomOverlay.addEventListener("touchend", e => {
-  const endX = e.changedTouches[0].clientX;
-  const diff = startX - endX;
+  const diff = startX - e.changedTouches[0].clientX;
 
-  if (diff > 50 && zoomIndex < zoomImages.length - 1) {
-    zoomIndex++;
-  } else if (diff < -50 && zoomIndex > 0) {
-    zoomIndex--;
-  }
+  if (diff > 50 && zoomIndex < zoomImages.length - 1) zoomIndex++;
+  else if (diff < -50 && zoomIndex > 0) zoomIndex--;
 
   showZoom();
 });
