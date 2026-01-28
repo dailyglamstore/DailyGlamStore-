@@ -159,4 +159,52 @@ Please share availability & payment details.`;
     })
     .catch(err => console.error(err));
 
+let zoomImages = [];
+let zoomIndex = 0;
+
+const zoomOverlay = document.getElementById("zoomOverlay");
+const zoomImage = document.getElementById("zoomImage");
+const zoomCounter = document.getElementById("zoomCounter");
+const zoomClose = document.getElementById("zoomClose");
+
+document.addEventListener("click", e => {
+  const img = e.target.closest(".slides img");
+  if (!img) return;
+
+  const slides = img.closest(".slides");
+  zoomImages = Array.from(slides.querySelectorAll("img"));
+  zoomIndex = zoomImages.indexOf(img);
+
+  showZoom();
+});
+
+function showZoom() {
+  zoomImage.src = zoomImages[zoomIndex].src;
+  zoomCounter.textContent = `${zoomIndex + 1} / ${zoomImages.length}`;
+  zoomOverlay.classList.add("active");
+}
+
+zoomClose.addEventListener("click", () => {
+  zoomOverlay.classList.remove("active");
+});
+
+let startX = 0;
+
+zoomOverlay.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+zoomOverlay.addEventListener("touchend", e => {
+  const endX = e.changedTouches[0].clientX;
+  const diff = startX - endX;
+
+  if (diff > 50 && zoomIndex < zoomImages.length - 1) {
+    zoomIndex++;
+  } else if (diff < -50 && zoomIndex > 0) {
+    zoomIndex--;
+  }
+
+  showZoom();
+});
+
 });
