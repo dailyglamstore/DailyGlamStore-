@@ -216,3 +216,5 @@ zoomOverlay.addEventListener("touchend", e => {
 
   showZoom();
 });
+
+});
