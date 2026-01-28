@@ -161,22 +161,38 @@ Please share availability & payment details.`;
 
 let zoomImages = [];
 let zoomIndex = 0;
+let lastTap = 0;
 
 const zoomOverlay = document.getElementById("zoomOverlay");
 const zoomImage = document.getElementById("zoomImage");
 const zoomCounter = document.getElementById("zoomCounter");
 const zoomClose = document.getElementById("zoomClose");
 
-document.addEventListener("click", e => {
+document.addEventListener("touchend", e => {
   const img = e.target.closest(".slides img");
   if (!img) return;
 
+  const currentTime = new Date().getTime();
+  const tapLength = currentTime - lastTap;
+  lastTap = currentTime;
+
+  if (tapLength < 300 && tapLength > 0) {
+    openZoom(img);
+  }
+});
+
+document.addEventListener("click", e => {
+  const img = e.target.closest(".slides img");
+  if (!img) return;
+  openZoom(img);
+});
+
+function openZoom(img) {
   const slides = img.closest(".slides");
   zoomImages = Array.from(slides.querySelectorAll("img"));
   zoomIndex = zoomImages.indexOf(img);
-
   showZoom();
-});
+}
 
 function showZoom() {
   zoomImage.src = zoomImages[zoomIndex].src;
@@ -205,6 +221,4 @@ zoomOverlay.addEventListener("touchend", e => {
   }
 
   showZoom();
-});
-
 });
