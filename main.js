@@ -78,21 +78,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const counter = slider.querySelector(".image-counter");
     const gap = parseInt(getComputedStyle(slidesWrap).gap) || 0;
 
-    slidesWrap.style.overflowX = "auto";
-    slidesWrap.style.scrollSnapType = "x mandatory";
-    slidesWrap.style.webkitOverflowScrolling = "touch";
-    slidesWrap.style.scrollBehavior = "smooth";
-
-    slides.forEach(img => {
-      img.style.scrollSnapAlign = "center";
-      img.style.flexShrink = "0";
-    });
-
     let index = 0;
     let startX = 0;
+    let isDragging = false;
     let counterTimer;
 
     const slideWidth = () => slides[0].offsetWidth + gap;
+
+    const updatePosition = () => {
+      slidesWrap.style.transform =
+        `translateX(-${index * slideWidth()}px)`;
+    };
 
     const updateCounter = () => {
       counter.textContent = `${index + 1} / ${slides.length}`;
@@ -104,34 +100,38 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     updateCounter();
+    updatePosition();
 
     slidesWrap.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-}, { passive: true });
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    }, { passive: true });
 
-slidesWrap.addEventListener("touchend", e => {
-  const endX = e.changedTouches[0].clientX;
-  const diff = startX - endX;
+    slidesWrap.addEventListener("touchmove", e => {
+      if (!isDragging) return;
+      e.preventDefault();
+    }, { passive: false });
 
-  if (Math.abs(diff) < 40) return;
+    slidesWrap.addEventListener("touchend", e => {
+      if (!isDragging) return;
+      isDragging = false;
 
-  if (diff > 0 && index < slides.length - 1) {
-    index++;
-  } else if (diff < 0 && index > 0) {
-    index--;
-  }
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
 
-  slidesWrap.scrollTo({
-    left: index * slideWidth(),
-    behavior: "smooth"
-  });
+      if (Math.abs(diff) < 45) return;
 
-  updateCounter();
-});
+      if (diff > 0 && index < slides.length - 1) {
+        index++;
+      } else if (diff < 0 && index > 0) {
+        index--;
+      }
 
+      updatePosition();
+      updateCounter();
+    });
   });
 }
-
 
   const zoomOverlay = document.getElementById("zoomOverlay");
   const zoomImage = document.getElementById("zoomImage");
