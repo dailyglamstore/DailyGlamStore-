@@ -78,58 +78,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const counter = slider.querySelector(".image-counter");
     const gap = parseInt(getComputedStyle(slidesWrap).gap) || 0;
 
-    let index = 0;
-    let startX = 0;
-    let isSwiping = false;
-    let counterTimer;
-
     const slideWidth = () => slides[0].offsetWidth + gap;
 
-    const updatePosition = () => {
-      slidesWrap.style.transform =
-        `translateX(-${index * slideWidth()}px)`;
-    };
+    let counterTimer;
 
     const updateCounter = () => {
+      const index = Math.round(slidesWrap.scrollLeft / slideWidth());
       counter.textContent = `${index + 1} / ${slides.length}`;
       counter.style.opacity = "1";
+
       clearTimeout(counterTimer);
       counterTimer = setTimeout(() => {
         counter.style.opacity = "0";
       }, 2000);
     };
 
-    updatePosition();
+    // Initial
     updateCounter();
 
-    slidesWrap.addEventListener("touchstart", e => {
-      startX = e.touches[0].clientX;
-      isSwiping = true;
-    }, { passive: true });
-
-    slidesWrap.addEventListener("touchmove", e => {
-      if (!isSwiping) return;
-      e.preventDefault();
-    }, { passive: false });
-
-    slidesWrap.addEventListener("touchend", e => {
-      if (!isSwiping) return;
-      isSwiping = false;
-
-      const endX = e.changedTouches[0].clientX;
-      const diff = startX - endX;
-
-      if (Math.abs(diff) < 45) return;
-
-      if (diff > 0 && index < slides.length - 1) {
-        index++;
-      } else if (diff < 0 && index > 0) {
-        index--;
-      }
-
-      updatePosition();
-      updateCounter();
-    });
+    slidesWrap.addEventListener("scroll", updateCounter, { passive: true });
   });
 }
 
