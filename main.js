@@ -106,22 +106,29 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCounter();
 
     slidesWrap.addEventListener("touchstart", e => {
-      startX = e.touches[0].clientX;
-    }, { passive: true });
+  startX = e.touches[0].clientX;
+}, { passive: true });
 
-    slidesWrap.addEventListener("touchend", () => {
-      
-      index = Math.round(slidesWrap.scrollLeft / slideWidth());
+slidesWrap.addEventListener("touchend", e => {
+  const endX = e.changedTouches[0].clientX;
+  const diff = startX - endX;
 
-      index = Math.max(0, Math.min(index, slides.length - 1));
+  if (Math.abs(diff) < 40) return;
 
-      slidesWrap.scrollTo({
-        left: index * slideWidth(),
-        behavior: "smooth"
-      });
+  if (diff > 0 && index < slides.length - 1) {
+    index++;
+  } else if (diff < 0 && index > 0) {
+    index--;
+  }
 
-      updateCounter();
-    });
+  slidesWrap.scrollTo({
+    left: index * slideWidth(),
+    behavior: "smooth"
+  });
+
+  updateCounter();
+});
+
   });
 }
 
