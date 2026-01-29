@@ -72,44 +72,58 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   function initSliders() {
-    document.querySelectorAll(".slider").forEach(slider => {
-      const slidesWrap = slider.querySelector(".slides");
-      const slides = slidesWrap.querySelectorAll("img");
-      const counter = slider.querySelector(".image-counter");
-      const gap = parseInt(getComputedStyle(slidesWrap).gap) || 0;
+  document.querySelectorAll(".slider").forEach(slider => {
+    const slidesWrap = slider.querySelector(".slides");
+    const slides = slidesWrap.querySelectorAll("img");
+    const counter = slider.querySelector(".image-counter");
+    const gap = parseInt(getComputedStyle(slidesWrap).gap) || 0;
 
-      let index = 0;
-      let startX = 0;
-      let counterTimer;
+    slidesWrap.style.overflowX = "auto";
+    slidesWrap.style.scrollSnapType = "x mandatory";
+    slidesWrap.style.webkitOverflowScrolling = "touch";
+    slidesWrap.style.scrollBehavior = "smooth";
 
-      const slideWidth = () => slides[0].offsetWidth + gap;
+    slides.forEach(img => {
+      img.style.scrollSnapAlign = "center";
+      img.style.flexShrink = "0";
+    });
 
-      const updateCounter = () => {
-        counter.textContent = `${index + 1} / ${slides.length}`;
-        counter.style.opacity = "1";
-        clearTimeout(counterTimer);
-        counterTimer = setTimeout(() => counter.style.opacity = "0", 2000);
-      };
+    let index = 0;
+    let startX = 0;
+    let counterTimer;
+
+    const slideWidth = () => slides[0].offsetWidth + gap;
+
+    const updateCounter = () => {
+      counter.textContent = `${index + 1} / ${slides.length}`;
+      counter.style.opacity = "1";
+      clearTimeout(counterTimer);
+      counterTimer = setTimeout(() => {
+        counter.style.opacity = "0";
+      }, 2000);
+    };
+
+    updateCounter();
+
+    slidesWrap.addEventListener("touchstart", e => {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    slidesWrap.addEventListener("touchend", () => {
+      
+      index = Math.round(slidesWrap.scrollLeft / slideWidth());
+
+      index = Math.max(0, Math.min(index, slides.length - 1));
+
+      slidesWrap.scrollTo({
+        left: index * slideWidth(),
+        behavior: "smooth"
+      });
 
       updateCounter();
-
-      slidesWrap.addEventListener("touchstart", e => {
-        startX = e.touches[0].clientX;
-        index = Math.round(slidesWrap.scrollLeft / slideWidth());
-      }, { passive: true });
-
-      slidesWrap.addEventListener("touchend", e => {
-        const diff = startX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) < 40) return;
-
-        if (diff > 0 && index < slides.length - 1) index++;
-        if (diff < 0 && index > 0) index--;
-
-        slidesWrap.scrollTo({ left: index * slideWidth(), behavior: "smooth" });
-        updateCounter();
-      });
     });
-  }
+  });
+}
 
 
   const zoomOverlay = document.getElementById("zoomOverlay");
