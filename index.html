@@ -197,32 +197,33 @@ body{
 }
 
 .slider {
-  overflow: hidden;
   position: relative;
   width: 100%;
+  overflow: hidden;
 }
 
-.slides {
+
+..slides {
   display: flex;
   gap: 8px;
   padding-left: 6px;
 
-  overflow: hidden;
-  touch-action: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 
-  transition: transform 0.35s ease;
+  scroll-snap-type: x mandatory;
 }
-
 
 .slides img {
   width: 84%;
   min-width: 84%;
   height: auto;
-  display: block;
-  object-fit: cover;
-  border-radius: 10px;
-
   flex-shrink: 0;
+
+  scroll-snap-align: center;
+  border-radius: 10px;
 }
 
 .image-counter {
