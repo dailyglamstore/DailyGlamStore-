@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let index = 0;
     let startX = 0;
-    let isDragging = false;
+    let isSwiping = false;
     let counterTimer;
 
     const slideWidth = () => slides[0].offsetWidth + gap;
@@ -99,22 +99,22 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 2000);
     };
 
-    updateCounter();
     updatePosition();
+    updateCounter();
 
     slidesWrap.addEventListener("touchstart", e => {
       startX = e.touches[0].clientX;
-      isDragging = true;
+      isSwiping = true;
     }, { passive: true });
 
     slidesWrap.addEventListener("touchmove", e => {
-      if (!isDragging) return;
+      if (!isSwiping) return;
       e.preventDefault();
     }, { passive: false });
 
     slidesWrap.addEventListener("touchend", e => {
-      if (!isDragging) return;
-      isDragging = false;
+      if (!isSwiping) return;
+      isSwiping = false;
 
       const endX = e.changedTouches[0].clientX;
       const diff = startX - endX;
