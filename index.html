@@ -202,16 +202,15 @@ body{
   width: 100%;
 }
 
-.slides {
+..slides {
   display: flex;
   gap: 8px;
   padding-left: 6px;
 
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
+  touch-action: pan-y;
 
-  transition: none;
+  transition: transform 0.35s ease;
 }
 
 .slides img {
@@ -222,10 +221,7 @@ body{
   object-fit: cover;
   border-radius: 10px;
 
-  scroll-snap-align: center;
   flex-shrink: 0;
-
-  touch-action: auto;
 }
 
 .image-counter {
