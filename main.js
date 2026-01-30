@@ -80,23 +80,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const slideWidth = () => slides[0].offsetWidth + gap;
 
-    let counterTimer;
+    let lastIndex = 0;
+    let scrollTimeout;
 
-    const updateCounter = () => {
-      const index = Math.round(slidesWrap.scrollLeft / slideWidth());
+    const updateCounter = (index) => {
       counter.textContent = `${index + 1} / ${slides.length}`;
       counter.style.opacity = "1";
-
-      clearTimeout(counterTimer);
-      counterTimer = setTimeout(() => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
         counter.style.opacity = "0";
-      }, 2000);
+      }, 1800);
     };
 
-    // Initial
-    updateCounter();
+    slidesWrap.addEventListener("scroll", () => {
+      clearTimeout(scrollTimeout);
 
-    slidesWrap.addEventListener("scroll", updateCounter, { passive: true });
+      scrollTimeout = setTimeout(() => {
+        const rawIndex = Math.round(slidesWrap.scrollLeft / slideWidth());
+
+        let targetIndex = rawIndex;
+        if (rawIndex > lastIndex + 1) targetIndex = lastIndex + 1;
+        if (rawIndex < lastIndex - 1) targetIndex = lastIndex - 1;
+
+        targetIndex = Math.max(0, Math.min(targetIndex, slides.length - 1));
+
+        slidesWrap.scrollTo({
+          left: targetIndex * slideWidth(),
+          behavior: "smooth"
+        });
+
+        lastIndex = targetIndex;
+        updateCounter(targetIndex);
+      }, 80); //
+    });
+
+    updateCounter(0);
   });
 }
 
