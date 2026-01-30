@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     menu.style.display = "none";
   });
 
+
   function renderProducts(products, containerId) {
     const container = document.getElementById(containerId);
     if (!container || !products.length) return;
@@ -71,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function initControlledSliders() {
     document.querySelectorAll(".slider").forEach(slider => {
+
       const track = slider.querySelector(".slides");
       const slides = [...track.querySelectorAll("img")];
       const counter = slider.querySelector(".image-counter");
@@ -78,19 +80,32 @@ document.addEventListener("DOMContentLoaded", () => {
       let index = 0;
       let startX = 0;
       let isDragging = false;
+      let slideSize = 0;
 
       const gap = parseInt(getComputedStyle(track).gap) || 0;
-      const slideWidth = () => slides[0].offsetWidth + gap;
+
+      function calculateSlideSize() {
+        slideSize = slides[0].getBoundingClientRect().width + gap;
+      }
 
       function update() {
-        track.style.transform = `translateX(-${index * slideWidth()}px)`;
+        if (!slideSize) return;
+        track.style.transform = `translateX(-${index * slideSize}px)`;
         counter.textContent = `${index + 1} / ${slides.length}`;
         counter.style.opacity = "1";
         clearTimeout(counter._t);
         counter._t = setTimeout(() => counter.style.opacity = "0", 1500);
       }
 
-      update();
+      if (slides[0].complete) {
+        calculateSlideSize();
+        update();
+      } else {
+        slides[0].addEventListener("load", () => {
+          calculateSlideSize();
+          update();
+        }, { once: true });
+      }
 
       track.addEventListener("touchstart", e => {
         startX = e.touches[0].clientX;
@@ -102,7 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
         isDragging = false;
 
         const diff = startX - e.changedTouches[0].clientX;
-
         if (Math.abs(diff) < 40) return;
 
         if (diff > 0 && index < slides.length - 1) index++;
@@ -110,8 +124,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         update();
       }, { passive: true });
+
+      window.addEventListener("resize", () => {
+        calculateSlideSize();
+        update();
+      });
+
     });
   }
+
 
   const zoomOverlay = document.getElementById("zoomOverlay");
   const zoomImage = document.getElementById("zoomImage");
@@ -182,6 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "";
   }
 
+
   document.addEventListener("click", e => {
     const btn = e.target.closest(".view-details-btn");
     if (!btn) return;
@@ -204,6 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
     text.textContent = open ? "Hide Details" : "View Details";
     arrow.textContent = open ? "▲" : "▼";
   });
+
 
   document.addEventListener("click", e => {
     const btn = e.target.closest(".whatsapp-btn");
@@ -229,6 +252,7 @@ ${slides[index].src}`;
     window.open(`https://wa.me/919463638810?text=${encodeURIComponent(msg)}`, "_blank");
   });
 
+
   fetch("products.json")
     .then(r => r.json())
     .then(data => {
@@ -236,7 +260,7 @@ ${slides[index].src}`;
       renderProducts(data.earrings, "earrings-products");
       renderProducts(data.handbags, "handbags-products");
       renderProducts(data.wallets, "wallets-products");
-      setTimeout(initControlledSliders, 50);
+      setTimeout(initControlledSliders, 100);
     });
 
 });
