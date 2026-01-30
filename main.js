@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     menu.style.display = "none";
   });
 
-
   function renderProducts(products, containerId) {
     const container = document.getElementById(containerId);
     if (!container || !products.length) return;
@@ -70,35 +69,49 @@ document.addEventListener("DOMContentLoaded", () => {
     `).join("");
   }
 
+  function initControlledSliders() {
+    document.querySelectorAll(".slider").forEach(slider => {
+      const track = slider.querySelector(".slides");
+      const slides = [...track.querySelectorAll("img")];
+      const counter = slider.querySelector(".image-counter");
 
-  function initSliders() {
-  document.querySelectorAll(".slider").forEach(slider => {
-    const slidesWrap = slider.querySelector(".slides");
-    const slides = slidesWrap.querySelectorAll("img");
-    const counter = slider.querySelector(".image-counter");
-    const gap = parseInt(getComputedStyle(slidesWrap).gap) || 0;
+      let index = 0;
+      let startX = 0;
+      let isDragging = false;
 
-    const slideWidth = () => slides[0].offsetWidth + gap;
-    let counterTimer;
+      const gap = parseInt(getComputedStyle(track).gap) || 0;
+      const slideWidth = () => slides[0].offsetWidth + gap;
 
-    const updateCounter = () => {
-      const index = Math.round(slidesWrap.scrollLeft / slideWidth());
-      counter.textContent = `${index + 1} / ${slides.length}`;
-      counter.style.opacity = "1";
+      function update() {
+        track.style.transform = `translateX(-${index * slideWidth()}px)`;
+        counter.textContent = `${index + 1} / ${slides.length}`;
+        counter.style.opacity = "1";
+        clearTimeout(counter._t);
+        counter._t = setTimeout(() => counter.style.opacity = "0", 1500);
+      }
 
-      clearTimeout(counterTimer);
-      counterTimer = setTimeout(() => {
-        counter.style.opacity = "0";
-      }, 1800);
-    };
+      update();
 
-    updateCounter();
+      track.addEventListener("touchstart", e => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+      }, { passive: true });
 
-    slidesWrap.addEventListener("scroll", updateCounter, { passive: true });
-  });
-}
+      track.addEventListener("touchend", e => {
+        if (!isDragging) return;
+        isDragging = false;
 
+        const diff = startX - e.changedTouches[0].clientX;
 
+        if (Math.abs(diff) < 40) return;
+
+        if (diff > 0 && index < slides.length - 1) index++;
+        if (diff < 0 && index > 0) index--;
+
+        update();
+      }, { passive: true });
+    });
+  }
 
   const zoomOverlay = document.getElementById("zoomOverlay");
   const zoomImage = document.getElementById("zoomImage");
@@ -118,7 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const imgs = img.closest(".slides").querySelectorAll("img");
     zoomImages = [...imgs].map(i => i.src);
     zoomIndex = [...imgs].indexOf(img);
-
     openZoom();
   });
 
@@ -170,7 +182,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "";
   }
 
-
   document.addEventListener("click", e => {
     const btn = e.target.closest(".view-details-btn");
     if (!btn) return;
@@ -183,10 +194,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".product-details.active").forEach(d => {
       if (d !== details) {
         d.classList.remove("active");
-        const b = d.closest(".product-card").querySelector(".vd-text");
-        const a = d.closest(".product-card").querySelector(".vd-arrow");
-        b.textContent = "View Details";
-        a.textContent = "▼";
+        d.closest(".product-card").querySelector(".vd-text").textContent = "View Details";
+        d.closest(".product-card").querySelector(".vd-arrow").textContent = "▼";
       }
     });
 
@@ -196,15 +205,15 @@ document.addEventListener("DOMContentLoaded", () => {
     arrow.textContent = open ? "▲" : "▼";
   });
 
-
   document.addEventListener("click", e => {
     const btn = e.target.closest(".whatsapp-btn");
     if (!btn) return;
 
     const card = btn.closest(".product-card");
     const slider = card.querySelector(".slider");
+    const counterText = slider.querySelector(".image-counter").textContent;
+    const index = parseInt(counterText) - 1;
     const slides = slider.querySelectorAll(".slides img");
-    const index = parseInt(slider.querySelector(".image-counter").textContent) - 1;
 
     const msg = `Hello Daily Glam Store 👋
 
@@ -220,7 +229,6 @@ ${slides[index].src}`;
     window.open(`https://wa.me/919463638810?text=${encodeURIComponent(msg)}`, "_blank");
   });
 
-
   fetch("products.json")
     .then(r => r.json())
     .then(data => {
@@ -228,7 +236,7 @@ ${slides[index].src}`;
       renderProducts(data.earrings, "earrings-products");
       renderProducts(data.handbags, "handbags-products");
       renderProducts(data.wallets, "wallets-products");
-      setTimeout(initSliders, 100);
+      setTimeout(initControlledSliders, 50);
     });
 
 });
