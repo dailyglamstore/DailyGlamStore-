@@ -207,16 +207,11 @@ body{
   gap: 12px;
   padding-left: 6px;
 
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: hidden;
+  touch-action: pan-y;
 
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-
-  scroll-snap-type: x mandatory;
-  scroll-snap-stop: always;
-
-  overscroll-behavior-x: contain;
+  transition: transform 0.35s ease
+  will-change: transform;
 }
 
 .slides img {
@@ -225,9 +220,11 @@ body{
   height: auto;
   flex-shrink: 0;
 
-  scroll-snap-align: center;
   border-radius: 10px;
+  user-select: none;
+  -webkit-user-drag: none;
 }
+
 
 .image-counter {
   position: absolute;
