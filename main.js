@@ -61,7 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="product-code">Product Code: ${p.code}</div>
 
 <div class="price-box">
-  <span class="mrp-amount">MRP: ₹${p.mrp}</span>
+  <span class="mrp-label">MRP:</span>
+  <span class="mrp-amount">₹${p.mrp}</span>
   <span class="final-price">₹${p.price}</span>
 </div>
 
