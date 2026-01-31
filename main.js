@@ -29,8 +29,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("scroll", () => {
     menu.style.display = "none";
-  });
 
+    const activeDetails = document.querySelector(".product-details.active");
+    if (!activeDetails) return;
+
+    const card = activeDetails.closest(".product-card");
+    const rect = card.getBoundingClientRect();
+
+    if (rect.bottom < 80 || rect.top > window.innerHeight - 80) {
+      activeDetails.classList.remove("active");
+
+      const btn = card.querySelector(".view-details-btn");
+      btn.querySelector(".vd-text").textContent = "View Details";
+      btn.querySelector(".vd-arrow").textContent = "▼";
+    }
+  });
 
   function renderProducts(products, containerId) {
     const container = document.getElementById(containerId);
@@ -79,12 +92,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let index = 0;
       let startX = 0;
-      let isDragging = false;
       let slideSize = 0;
 
       const gap = parseInt(getComputedStyle(track).gap) || 0;
 
-      function calculateSlideSize() {
+      function calcSize() {
         slideSize = slides[0].getBoundingClientRect().width + gap;
       }
 
@@ -98,111 +110,30 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (slides[0].complete) {
-        calculateSlideSize();
-        update();
+        calcSize(); update();
       } else {
         slides[0].addEventListener("load", () => {
-          calculateSlideSize();
-          update();
+          calcSize(); update();
         }, { once: true });
       }
 
       track.addEventListener("touchstart", e => {
         startX = e.touches[0].clientX;
-        isDragging = true;
       }, { passive: true });
 
       track.addEventListener("touchend", e => {
-        if (!isDragging) return;
-        isDragging = false;
-
         const diff = startX - e.changedTouches[0].clientX;
         if (Math.abs(diff) < 40) return;
-
         if (diff > 0 && index < slides.length - 1) index++;
         if (diff < 0 && index > 0) index--;
-
         update();
       }, { passive: true });
 
       window.addEventListener("resize", () => {
-        calculateSlideSize();
-        update();
+        calcSize(); update();
       });
-
     });
   }
-
-
-  const zoomOverlay = document.getElementById("zoomOverlay");
-  const zoomImage = document.getElementById("zoomImage");
-  const zoomCounter = document.getElementById("zoomCounter");
-  const zoomClose = document.getElementById("zoomClose");
-
-  let zoomImages = [];
-  let zoomIndex = 0;
-  let startX = 0;
-  let lastTap = 0;
-  let zoomed = false;
-
-  document.addEventListener("click", e => {
-    const img = e.target.closest(".slides img");
-    if (!img) return;
-
-    const imgs = img.closest(".slides").querySelectorAll("img");
-    zoomImages = [...imgs].map(i => i.src);
-    zoomIndex = [...imgs].indexOf(img);
-    openZoom();
-  });
-
-  function openZoom() {
-    zoomImage.src = zoomImages[zoomIndex];
-    zoomCounter.textContent = `${zoomIndex + 1} / ${zoomImages.length}`;
-    zoomOverlay.classList.add("active");
-    document.body.style.overflow = "hidden";
-    resetZoom();
-  }
-
-  function resetZoom() {
-    zoomed = false;
-    zoomImage.style.transform = "scale(1)";
-  }
-
-  zoomImage.addEventListener("click", () => {
-    const now = Date.now();
-    if (now - lastTap < 300) {
-      zoomed = !zoomed;
-      zoomImage.style.transform = zoomed ? "scale(2)" : "scale(1)";
-    }
-    lastTap = now;
-  });
-
-  zoomOverlay.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-  }, { passive: true });
-
-  zoomOverlay.addEventListener("touchend", e => {
-    const diff = startX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) < 50) return;
-
-    if (diff > 0 && zoomIndex < zoomImages.length - 1) zoomIndex++;
-    if (diff < 0 && zoomIndex > 0) zoomIndex--;
-
-    zoomImage.src = zoomImages[zoomIndex];
-    zoomCounter.textContent = `${zoomIndex + 1} / ${zoomImages.length}`;
-    resetZoom();
-  });
-
-  zoomClose.addEventListener("click", closeZoom);
-  zoomOverlay.addEventListener("click", e => {
-    if (e.target === zoomOverlay) closeZoom();
-  });
-
-  function closeZoom() {
-    zoomOverlay.classList.remove("active");
-    document.body.style.overflow = "";
-  }
-
 
   document.addEventListener("click", e => {
     const btn = e.target.closest(".view-details-btn");
@@ -216,8 +147,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".product-details.active").forEach(d => {
       if (d !== details) {
         d.classList.remove("active");
-        d.closest(".product-card").querySelector(".vd-text").textContent = "View Details";
-        d.closest(".product-card").querySelector(".vd-arrow").textContent = "▼";
+        const c = d.closest(".product-card");
+        c.querySelector(".vd-text").textContent = "View Details";
+        c.querySelector(".vd-arrow").textContent = "▼";
       }
     });
 
@@ -226,7 +158,6 @@ document.addEventListener("DOMContentLoaded", () => {
     text.textContent = open ? "Hide Details" : "View Details";
     arrow.textContent = open ? "▲" : "▼";
   });
-
 
   document.addEventListener("click", e => {
     const btn = e.target.closest(".whatsapp-btn");
@@ -251,7 +182,6 @@ ${slides[index].src}`;
 
     window.open(`https://wa.me/919463638810?text=${encodeURIComponent(msg)}`, "_blank");
   });
-
 
   fetch("products.json")
     .then(r => r.json())
