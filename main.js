@@ -243,9 +243,12 @@ Selected Image: *${index + 1}*
 MRP: ${card.querySelector(".mrp-amount").textContent}
 Final Price: *${card.querySelector(".final-price").textContent}*
 
-${slides[index].src}`;
+Image Preview 👇
+${slides[index].src}
 
-    window.open(`https://wa.me/919463638810?text=${encodeURIComponent(msg)}`, "_blank");
+Please share availability & payment details.`;
+
+ window.open(`https://wa.me/919463638810?text=${encodeURIComponent(msg)}`, "_blank");
   });
 
   fetch("products.json")
