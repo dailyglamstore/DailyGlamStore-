@@ -58,12 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
 
         <h3>${p.name}</h3>
-        <div class="product-code">Code: ${p.code}</div>
+<div class="product-code">Product Code: ${p.code}</div>
 
-        <div class="price-box">
-          <span class="mrp-amount">₹${p.mrp}</span>
-          <span class="final-price">₹${p.price}</span>
-        </div>
+<div class="price-box">
+  <span class="mrp-amount">MRP: ₹${p.mrp}</span>
+  <span class="final-price">₹${p.price}</span>
+</div>
 
         <a href="javascript:void(0)" class="whatsapp-btn"
            data-product="${p.name}" data-code="${p.code}">
