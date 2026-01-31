@@ -255,8 +255,8 @@ Please share availability & payment details.`;
 const glamDealBox = document.getElementById("glamDeal");
 const timerEl = document.getElementById("dealTimer");
 
-const DEAL_START = new Date("2026-02-01T00:00:00").getTime();
-const DEAL_END   = new Date("2026-02-07T23:59:59").getTime();
+const DEAL_START = new Date("2026-01-31T20:50:00").getTime();
+const DEAL_END   = new Date("2026-02-06T23:59:59").getTime();
 
 if (glamDealBox && timerEl) {
   const dealInterval = setInterval(() => {
