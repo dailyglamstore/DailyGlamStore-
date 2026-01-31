@@ -252,6 +252,40 @@ Please share availability & payment details.`;
  window.open(`https://wa.me/919463638810?text=${encodeURIComponent(msg)}`, "_blank");
   });
 
+const glamDealBox = document.getElementById("glamDeal");
+const timerEl = document.getElementById("dealTimer");
+
+const DEAL_START = new Date("2026-02-01T00:00:00").getTime();
+const DEAL_END   = new Date("2026-02-07T23:59:59").getTime();
+
+if (glamDealBox && timerEl) {
+  const dealInterval = setInterval(() => {
+    const now = Date.now();
+
+    if (now < DEAL_START) {
+      glamDealBox.style.display = "none";
+      return;
+    }
+
+    if (now >= DEAL_END) {
+      glamDealBox.style.display = "none";
+      clearInterval(dealInterval);
+      return;
+    }
+
+    glamDealBox.style.display = "block";
+
+    const diff = DEAL_END - now;
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+
+    timerEl.textContent = `${d}d ${h}h ${m}m ${s}s`;
+  }, 1000);
+}
+
   fetch("products.json")
     .then(r => r.json())
     .then(data => {
