@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (rect.bottom < 80 || rect.top > window.innerHeight - 80) {
       activeDetails.classList.remove("active");
-
       const btn = card.querySelector(".view-details-btn");
       btn.querySelector(".vd-text").textContent = "View Details";
       btn.querySelector(".vd-arrow").textContent = "▼";
@@ -93,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
       let index = 0;
       let startX = 0;
       let slideSize = 0;
-
       const gap = parseInt(getComputedStyle(track).gap) || 0;
 
       function calcSize() {
@@ -133,6 +131,73 @@ document.addEventListener("DOMContentLoaded", () => {
         calcSize(); update();
       });
     });
+  }
+
+  const zoomOverlay = document.getElementById("zoomOverlay");
+  const zoomImage = document.getElementById("zoomImage");
+  const zoomCounter = document.getElementById("zoomCounter");
+  const zoomClose = document.getElementById("zoomClose");
+
+  let zoomImages = [];
+  let zoomIndex = 0;
+  let startX = 0;
+  let lastTap = 0;
+  let zoomed = false;
+
+  document.addEventListener("click", e => {
+    const img = e.target.closest(".slides img");
+    if (!img) return;
+
+    const imgs = img.closest(".slides").querySelectorAll("img");
+    zoomImages = [...imgs].map(i => i.src);
+    zoomIndex = [...imgs].indexOf(img);
+    openZoom();
+  });
+
+  function openZoom() {
+    zoomImage.src = zoomImages[zoomIndex];
+    zoomCounter.textContent = `${zoomIndex + 1} / ${zoomImages.length}`;
+    zoomOverlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+    resetZoom();
+  }
+
+  function resetZoom() {
+    zoomed = false;
+    zoomImage.style.transform = "scale(1)";
+  }
+
+  zoomImage.addEventListener("click", () => {
+    const now = Date.now();
+    if (now - lastTap < 300) {
+      zoomed = !zoomed;
+      zoomImage.style.transform = zoomed ? "scale(2)" : "scale(1)";
+    }
+    lastTap = now;
+  });
+
+  zoomOverlay.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  zoomOverlay.addEventListener("touchend", e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) < 50) return;
+    if (diff > 0 && zoomIndex < zoomImages.length - 1) zoomIndex++;
+    if (diff < 0 && zoomIndex > 0) zoomIndex--;
+    zoomImage.src = zoomImages[zoomIndex];
+    zoomCounter.textContent = `${zoomIndex + 1} / ${zoomImages.length}`;
+    resetZoom();
+  });
+
+  zoomClose.addEventListener("click", closeZoom);
+  zoomOverlay.addEventListener("click", e => {
+    if (e.target === zoomOverlay) closeZoom();
+  });
+
+  function closeZoom() {
+    zoomOverlay.classList.remove("active");
+    document.body.style.overflow = "";
   }
 
   document.addEventListener("click", e => {
