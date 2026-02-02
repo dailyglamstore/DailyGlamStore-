@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       track.addEventListener("touchend", e => {
         const diff = startX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) < 40) return;
+        if (Math.abs(diff) < 22) return;
         if (diff > 0 && index < slides.length - 1) index++;
         if (diff < 0 && index > 0) index--;
         update();
