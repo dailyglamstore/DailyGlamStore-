@@ -48,6 +48,31 @@
         "Perfect for gifting"
       ]
     },
+{
+  "name": "A.D. Stone Earrings",
+  "code": "ZN-DGS",
+  "mrp": 700,
+  "price": 350,
+  "images": [
+    "images/er1-1.jpg",
+    "images/er1-2.jpg",
+    "images/er1-3.jpg",
+    "images/er1-4.jpg",
+    "images/er1-5.jpg",
+    "images/er1-6.jpg",
+    "images/er1-7.jpg",
+    "images/er1-8.jpg",
+    "images/er1-9.jpg",
+    "images/er1-10.jpg"
+  ],
+  "details": [
+    "A.D. stone work",
+    "Lightweight design",
+    "Premium shine",
+    "Daily & party wear",
+    "Free shipping"
+  ]
+},
     {
       "name": "Baby Mala Combo Set",
       "code": "VI-DGS",
@@ -71,6 +96,82 @@
         "Ideal for gifting and special occasions"
       ]
     },
+{
+  "name": "Divine Pendant Chain",
+  "code": "DE-DGS",
+  "mrp": 700,
+  "price": 350,
+  "images": [
+    "images/divine1-1.jpg",
+    "images/divine1-2.jpg",
+    "images/divine1-3.jpg",
+    "images/divine1-4.jpg",
+    "images/divine1-5.jpg",
+    "images/divine1-6.jpg",
+    "images/divine1-7.jpg",
+    "images/divine1-8.jpg",
+    "images/divine1-9.jpg"
+  ],
+  "details": [
+    "Gold polish finish",
+    "Divine pendant",
+    "Lightweight chain",
+    "Daily wear",
+    "Free shipping"
+  ]
+},
+
+{
+  "name": "A.D. Chain & Pendant Combo",
+  "code": "DE-DGS",
+  "mrp": 750,
+  "price": 375,
+  "images": [
+    "images/chain1-1.jpg",
+    "images/chain1-2.jpg",
+    "images/chain1-3.jpg",
+    "images/chain1-4.jpg",
+    "images/chain1-5.jpg",
+    "images/chain1-6.jpg",
+    "images/chain1-7.jpg",
+    "images/chain1-8.jpg",
+    "images/chain1-9.jpg",
+    "images/chain1-10.jpg",
+    "images/chain1-11.jpg",
+    "images/chain1-12.jpg"
+  ],
+  "details": [
+    "1 Gold chain + 2 pendants",
+    "A.D. gold polish",
+    "Lightweight set",
+    "Daily & festive wear",
+    "Free shipping"
+  ]
+},
+{
+  "name": "Men’s Rudraksh Chain & Bracelet",
+  "code": "DE-DGS",
+  "mrp": 1200,
+  "price": 600,
+  "images": [
+    "images/menchain1-1.jpg",
+    "images/menchain1-2.jpg",
+    "images/menchain1-3.jpg",
+    "images/menchain1-4.jpg",
+    "images/menchain1-5.jpg",
+    "images/menchain1-6.jpg",
+    "images/menchain1-7.jpg",
+    "images/menchain1-8.jpg",
+    "images/menchain1-9.jpg"
+  ],
+  "details": [
+    "Chain + bracelet set",
+    "High gold brass finish",
+    "Original rudraksh beads",
+    "Daily wear comfort",
+    "Free shipping"
+  ]
+},
 {
   "name": "Branded Watch & Kada Combo",
   "code": "PN-DGS",
