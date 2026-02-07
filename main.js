@@ -52,7 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="product-card">
         <div class="slider">
           <div class="slides">
-            ${p.images.map(img => `<img src="${img}">`).join("")}
+            ${p.images.map((img, i) => 
+  `<img src="${img}" ${i === 0 ? "" : 'loading="lazy"'}>`
+).join("")}
           </div>
           <div class="image-counter"></div>
         </div>
