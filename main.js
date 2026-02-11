@@ -303,3 +303,6 @@ loadCategory("deals", "deal-products");
 loadCategory("earrings", "earrings-products");
 loadCategory("handbags", "handbags-products");
 loadCategory("wallets", "wallets-products");
+
+});
+
