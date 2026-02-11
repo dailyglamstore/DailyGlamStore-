@@ -1,1 +1,72 @@
 
+"handbags": [
+    {
+      "name": "Adorable PU Sling Bag",
+      "code": "A1-DGS",
+      "mrp": 650,
+      "price": 450,
+      "images": [
+        "images/sling1-1.jpg",
+        "images/sling1-2.jpg",
+        "images/sling1-3.jpg",
+        "images/sling1-4.jpg",
+        "images/sling1-5.jpg",
+        "images/sling1-6.jpg",
+        "images/sling1-7.jpg",
+        "images/sling1-8.jpg"
+      ],
+      "details": [
+        "PU leather material",
+        "Two main compartments",
+        "Magnetic snap closure",
+        "Long detachable strap",
+        "Ideal for daily use"
+      ]
+    },
+    {
+      "name": "NEW ARRIVAL – Tai Sling Bag",
+      "code": "TS-DGS",
+      "mrp": 680,
+      "price": 430,
+      "images": [
+        "images/taisling1-1.jpg",
+        "images/taisling1-2.jpg",
+        "images/taisling1-3.jpg",
+        "images/taisling1-4.jpg",
+        "images/taisling1-5.jpg",
+        "images/taisling1-6.jpg",
+        "images/taisling1-7.jpg",
+        "images/taisling1-8.jpg"
+      ],
+      "details": [
+        "Premium Tai sling bag",
+        "Stylish & lightweight design",
+        "High-quality finish",
+        "Size as shown in images",
+        "Perfect for daily use"
+      ]
+    },
+{
+  "name": "Vegan Faux Leather Handbag",
+  "code": "DR-DGS",
+  "mrp": 1250,
+  "price": 870,
+  "images": [
+    "images/fauxbag1-1.jpg",
+    "images/fauxbag1-2.jpg",
+    "images/fauxbag1-3.jpg",
+    "images/fauxbag1-4.jpg",
+    "images/fauxbag1-5.jpg",
+    "images/fauxbag1-6.jpg",
+    "images/fauxbag1-7.jpg",
+    "images/fauxbag1-8.jpg"
+  ],
+  "details": [
+    "Premium vegan faux leather",
+    "Satchel handbag design",
+    "With scarf & sling strap",
+    "Cute & classy look",
+    "Free shipping"
+  ]
+}
+  ]
