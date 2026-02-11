@@ -1,1 +1,163 @@
+"wallets": [
+    {
+      "name": "Premium Branded Wallet",
+      "code": "IS-DGS",
+      "mrp": 1200,
+      "price": 600,
+      "images": [
+        "images/wallet1-1.jpg",
+        "images/wallet1-2.jpg",
+        "images/wallet1-3.jpg",
+        "images/wallet1-4.jpg",
+        "images/wallet1-5.jpg",
+        "images/wallet1-6.jpg"
+      ],
+      "details": [
+        "Premium quality build",
+        "Money clipper design",
+        "Sleek & compact style",
+        "Ideal for daily use & gifting",
+        "Free shipping"
+      ]
+    },
+{
+      "name": "BURBERRY Premium Wallet",
+      "code": "BB-DGS",
+      "mrp": 900,
+      "price": 650,
+      "images": [
+        "images/BBWallet1-1.jpg",
+        "images/BBWallet1-2.jpg",
+        "images/BBWallet1-3.jpg",
+        "images/BBWallet1-4.jpg"
+      ],
+      "details": [
+        "Premium Burberry wallet",
+        "Branded box included",
+        "Elegant & durable build",
+        "Ideal for gifting",
+        "Free shipping available"
+      ]
+    },
+{
+  "name": "Allen Solly Men’s Wallet",
+  "code": "IS-DGS",
+  "mrp": 960,
+  "price": 480,
+  "images": [
+    "images/ASW1-1.jpg",
+    "images/ASW1-2.jpg",
+    "images/ASW1-3.jpg",
+    "images/ASW1-4.jpg",
+    "images/ASW1-5.jpg",
+    "images/ASW1-6.jpg",
+    "images/ASW1-7.jpg"
+  ],
+  "details": [
+    "Allen Solly branded wallet",
+    "A1 quality finish",
+    "Genuine men’s wallet",
+    "With original box",
+    "Free shipping"
+  ]
+},
+{
+  "name": "Tommy Hilfiger Men’s Wallet",
+  "code": "SC-DGS",
+  "mrp": 1200,
+  "price": 600,
+  "images": [
+    "images/TomW1-1.jpg",
+    "images/TomW1-2.jpg",
+    "images/TomW1-3.jpg",
+    "images/TomW1-4.jpg",
+    "images/TomW1-5.jpg",
+    "images/TomW1-6.jpg",
+    "images/TomW1-7.jpg",
+    "images/TomW1-8.jpg"
+  ],
+  "details": [
+    "Faux leather wallet",
+    "2 fold slim design",
+    "5 card slots inside",
+    "Coin compartment",
+    "Comes with brand box",
+    "Free shipping"
+  ]
+},
+{
+  "name": "Tommy Hilfiger Wallet & Belt Combo",
+  "code": "SC-DGS",
+  "mrp": 1900,
+  "price": 950,
+  "images": [
+    "images/Tomco1-1.jpg",
+    "images/Tomco1-2.jpg",
+    "images/Tomco1-3.jpg",
+    "images/Tomco1-4.jpg",
+    "images/Tomco1-5.jpg",
+    "images/Tomco1-6.jpg",
+    "images/Tomco1-7.jpg",
+    "images/Tomco1-8.jpg",
+    "images/Tomco1-9.jpg",
+    "images/Tomco1-10.jpg"
+  ],
+  "details": [
+    "Wallet + belt combo",
+    "Imported belt (28–44)",
+    "Faux leather wallet",
+    "2 fold slim design",
+    "Comes with brand box",
+    "Free shipping"
+  ]
+},
+{
+  "name": "Gucci Wallet & Belt Combo",
+  "code": "SC-DGS",
+  "mrp": 1900,
+  "price": 950,
+  "images": [
+    "images/Guccico1-1.jpg",
+    "images/Guccico1-2.jpg",
+    "images/Guccico1-3.jpg",
+    "images/Guccico1-4.jpg",
+    "images/Guccico1-5.jpg",
+    "images/Guccico1-6.jpg",
+    "images/Guccico1-7.jpg"
+  ],
+  "details": [
+    "Wallet + belt combo",
+    "Imported belt (28–44)",
+    "Faux leather wallet",
+    "2 fold slim design",
+    "Comes with brand box",
+    "Free shipping"
+  ]
+},
+{
+  "name": "Tommy Hilfiger Wallet & Belt Combo",
+  "code": "SC-DGS",
+  "mrp": 1900,
+  "price": 950,
+  "images": [
+    "images/TomCombo1-1.jpg",
+    "images/TomCombo1-2.jpg",
+    "images/TomCombo1-3.jpg",
+    "images/TomCombo1-4.jpg",
+    "images/TomCombo1-5.jpg",
+    "images/TomCombo1-6.jpg",
+    "images/TomCombo1-7.jpg"
+  ],
+  "details": [
+    "Wallet + belt combo",
+    "Imported belt (28–44)",
+    "Imported buckle",
+    "Faux leather wallet",
+    "2 fold slim design",
+    "Comes with brand box",
+    "Free shipping"
+  ]
+}
+  ]
+
 
