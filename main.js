@@ -288,15 +288,18 @@ if (glamDealBox && timerEl) {
   }, 1000);
 }
 
-  fetch("products.json")
-    .then(r => r.json())
-    .then(data => {
-      renderProducts(data.deal, "deal-products");
-      renderProducts(data.earrings, "earrings-products");
-      renderProducts(data.handbags, "handbags-products");
-      renderProducts(data.wallets, "wallets-products");
-      setTimeout(initControlledSliders, 100);
-    });
+  async function loadCategory(category, containerId) {
+  try {
+    const res = await fetch(`data/${category}.json`);
+    const products = await res.json();
+    renderProducts(products, containerId);
+    initControlledSliders();
+  } catch (err) {
+    console.error(`Error loading ${category}`, err);
+  }
+}
 
-});
-
+loadCategory("deals", "deal-products");
+loadCategory("earrings", "earrings-products");
+loadCategory("handbags", "handbags-products");
+loadCategory("wallets", "wallets-products");
