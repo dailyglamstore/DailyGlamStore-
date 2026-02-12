@@ -46,6 +46,29 @@
       ]
     },
 {
+  "name": "GUCCI Style Premium Sling Bag",
+  "code": "SC-DGS",
+  "mrp": 900,
+  "price": 450,
+  "images": [
+    "images/gucsli1-1.jpg",
+    "images/gucsli1-2.jpg",
+    "images/gucsli1-3.jpg",
+    "images/gucsli1-4.jpg",
+    "images/gucsli1-5.jpg",
+    "images/gucsli1-6.jpg",
+    "images/gucsli1-7.jpg",
+    "images/gucsli1-8.jpg"
+  ],
+  "details": [
+    "Premium quality material",
+    "Front logo design",
+    "Two main compartments",
+    "Back pocket for phone safety",
+    "Long adjustable strap"
+  ]
+},
+{
   "name": "Vegan Faux Leather Handbag",
   "code": "DR-DGS",
   "mrp": 1250,
