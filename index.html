@@ -382,8 +382,10 @@ body{
 #footer-shipping,
 #footer-returns,
 #footer-disclaimer,
+#footer-privacy,
+#footer-affiliate,
 #footer-contact {
-  scroll-margin-top: 90px;
+scroll-margin-top: 90px;
 }
 
 .menu-ig{
@@ -529,7 +531,18 @@ html {
  <a href="#footer-ordering">🛍️ How Ordering Works</a>
   <a href="#footer-shipping">📦 Shipping & Delivery</a>
   <a href="#footer-returns">🔁 Returns & Refunds</a>
-  <a href="#footer-disclaimer">⚠️ Disclaimer</a>
+
+  <div class="menu-category" onclick="toggleLegalMenu(event)">
+<span class="cat-arrow">▶</span>
+⚖️ Legal & Policies
+</div>
+
+<div class="sub-menu" id="legalSubMenu">
+<a href="#footer-disclaimer">⚠️ Disclaimer</a>
+<a href="#footer-privacy">🔐 Privacy Policy</a>
+<a href="#footer-affiliate">💼 Affiliate Disclosure</a>
+</div>
+
   <a href="#footer-contact">📞 Contact & Support</a>
   <a href="https://www.instagram.com/daily_glam_store/"
    target="_blank"
@@ -665,9 +678,41 @@ After successful payment, your order is processed and securely packed for dispat
 
     <div style="font-size:12px;color:#666;line-height:1.6;">
       Product colors may slightly vary due to lighting and screen resolution.
-      Images are for reference purposes only.
-      Daily Glam Store operates as an order-based accessories platform.
+Images are for reference purposes only.
+Daily Glam Store operates as an order-based accessories platform.
+
+Some external links may be affiliate links. Please refer to our Affiliate Disclosure section for more details.
     </div>
+
+<div id="footer-privacy" style="font-size:16px;font-weight:700;color:#8f3d4f;margin:18px 0 8px;">
+🔐 Privacy Policy
+</div>
+
+<div style="font-size:12px;color:#666;line-height:1.6;">
+Daily Glam Store respects your privacy.
+
+✔️ We collect customer information only for order processing and delivery purposes.  
+✔️ Information such as name, phone number and delivery address is used strictly for order fulfilment.  
+✔️ We do not sell, rent or share customer data with third parties for marketing purposes.  
+✔️ Our website uses Google Analytics to understand visitor behaviour and improve user experience.  
+✔️ Google Analytics may use cookies to collect anonymous traffic data.  
+
+By using this website, you consent to our privacy practices.
+</div>
+
+<div id="footer-affiliate" style="font-size:16px;font-weight:700;color:#8f3d4f;margin:18px 0 8px;">
+💼 Affiliate Disclosure
+</div>
+
+<div style="font-size:12px;color:#666;line-height:1.6;">
+Daily Glam Store may participate in affiliate marketing programs in the future.
+
+This means we may earn a small commission when you purchase products through certain links, at no additional cost to you.
+
+We only promote products that align with our brand values and customer interests.
+
+Affiliate relationships do not influence our pricing, product selection or recommendations.
+</div>
 
     <div id="footer-contact" style="font-size:16px;font-weight:700;color:#8f3d4f;margin:18px 0 8px;">
   📞 Contact & Support
