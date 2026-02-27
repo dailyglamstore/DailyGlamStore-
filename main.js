@@ -3,6 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const menu = document.getElementById("menuDropdown");
   const menuBtn = document.querySelector(".menu-btn");
   const categorySubMenu = document.getElementById("categorySubMenu");
+  const legalSubMenu = document.getElementById("legalSubMenu");
+
+window.toggleLegalMenu = (e) => {
+e.stopPropagation();
+legalSubMenu.classList.toggle("open");
+e.currentTarget.classList.toggle("open");
+};
 
   window.toggleMenu = () => {
     menu.style.display = menu.style.display === "block" ? "none" : "block";
@@ -15,11 +22,12 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   document.querySelectorAll(".menu-dropdown a").forEach(link => {
-    link.addEventListener("click", () => {
-      menu.style.display = "none";
-      categorySubMenu.classList.remove("open");
-    });
-  });
+link.addEventListener("click", () => {
+menu.style.display = "none";
+categorySubMenu.classList.remove("open");
+if (legalSubMenu) legalSubMenu.classList.remove("open");
+});
+});
 
   document.addEventListener("click", e => {
     if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
