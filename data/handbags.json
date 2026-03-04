@@ -1,136 +1,18 @@
 [
-    {
-      "name": "Adorable PU Sling Bag",
-      "code": "A1-DGS",
-      "mrp": 650,
-      "price": 450,
-      "images": [
-        "images/handbags/sling1-1.jpg",
-        "images/handbags/sling1-2.jpg",
-        "images/handbags/sling1-3.jpg",
-        "images/handbags/sling1-4.jpg",
-        "images/handbags/sling1-5.jpg",
-        "images/handbags/sling1-6.jpg",
-        "images/handbags/sling1-7.jpg",
-        "images/handbags/sling1-8.jpg"
-      ],
-      "details": [
-        "PU leather material",
-        "Two main compartments",
-        "Magnetic snap closure",
-        "Long detachable strap",
-        "Ideal for daily use"
-      ]
-    },
-    {
-      "name": "NEW ARRIVAL – Tai Sling Bag",
-      "code": "TS-DGS",
-      "mrp": 680,
-      "price": 430,
-      "images": [
-        "images/handbags/taisling1-1.jpg",
-        "images/handbags/taisling1-2.jpg",
-        "images/handbags/taisling1-3.jpg",
-        "images/handbags/taisling1-4.jpg",
-        "images/handbags/taisling1-5.jpg",
-        "images/handbags/taisling1-6.jpg",
-        "images/handbags/taisling1-7.jpg",
-        "images/handbags/taisling1-8.jpg"
-      ],
-      "details": [
-        "Premium Tai sling bag",
-        "Stylish & lightweight design",
-        "High-quality finish",
-        "Size as shown in images",
-        "Perfect for daily use"
-      ]
-    },
 {
-  "name": "GUCCI Style Premium Sling Bag",
-  "code": "SC-DGS",
-  "mrp": 900,
-  "price": 450,
+  "name": "Puffer Hearts Tote Bag",
+  "code": "PTB-DGS",
+  "mrp": 550,
+  "price": 300,
   "images": [
-    "images/handbags/gucsli1-1.jpg",
-    "images/handbags/gucsli1-2.jpg",
-    "images/handbags/gucsli1-3.jpg",
-    "images/handbags/gucsli1-4.jpg",
-    "images/handbags/gucsli1-5.jpg",
-    "images/handbags/gucsli1-6.jpg",
-    "images/handbags/gucsli1-7.jpg",
-    "images/handbags/gucsli1-8.jpg"
+    "images/handbags/puffertote.jpg"
   ],
   "details": [
-    "Premium quality material",
-    "Front logo design",
-    "Two main compartments",
-    "Back pocket for phone safety",
-    "Long adjustable strap"
-  ]
-},
-{
-  "name": "Charles & Keith Handy Crossbody Sling Bag",
-  "code": "SC-DGS",
-  "mrp": 1100,
-  "price": 550,
-  "images": [
-    "images/handbags/xbsling1-1.jpg",
-    "images/handbags/xbsling1-2.jpg",
-    "images/handbags/xbsling1-3.jpg",
-    "images/handbags/xbsling1-4.jpg",
-    "images/handbags/xbsling1-5.jpg",
-    "images/handbags/xbsling1-6.jpg"
-  ],
-  "details": [
-    "Handy sling + crossbody design",
-    "Two main compartments",
-    "Compact lady sling bag",
-    "Size: 9 x 6 x 3 inches",
-    "Stylish and easy to carry"
-  ]
-},
-{
-  "name": "New Arrival Handy Crossbody Sling Bag",
-  "code": "SC-DGS",
-  "mrp": 900,
-  "price": 450,
-  "images": [
-    "images/handbags/bodysling1-1.jpg",
-    "images/handbags/bodysling1-2.jpg",
-    "images/handbags/bodysling1-3.jpg",
-    "images/handbags/bodysling1-4.jpg",
-    "images/handbags/bodysling1-5.jpg",
-    "images/handbags/bodysling1-6.jpg"
-  ],
-  "details": [
-    "Handy + sling design",
-    "Lady crossbody style",
-    "Premium quality finish",
-    "Compact and easy to carry",
-    "Perfect for daily use"
-  ]
-},
-{
-  "name": "Vegan Faux Leather Handbag",
-  "code": "DR-DGS",
-  "mrp": 1250,
-  "price": 870,
-  "images": [
-    "images/handbags/fauxbag1-1.jpg",
-    "images/handbags/fauxbag1-2.jpg",
-    "images/handbags/fauxbag1-3.jpg",
-    "images/handbags/fauxbag1-4.jpg",
-    "images/handbags/fauxbag1-5.jpg",
-    "images/handbags/fauxbag1-6.jpg",
-    "images/handbags/fauxbag1-7.jpg",
-    "images/handbags/fauxbag1-8.jpg"
-  ],
-  "details": [
-    "Premium vegan faux leather",
-    "Satchel handbag design",
-    "With scarf & sling strap",
-    "Cute & classy look",
-    "Free shipping"
+    "Cute puffer tote bag",
+    "Embroidered heart design",
+    "Kiddy playful style",
+    "Size: 8 x 8 inches",
+    "Lightweight and soft"
   ]
 }
-  ]
+]
