@@ -14,5 +14,28 @@
     "Size: 8 x 8 inches",
     "Lightweight and soft"
   ]
+},
+{
+  "name": "Imported Lighting Kids Sling",
+  "code": "A1-DGS",
+  "mrp": 500,
+  "price": 300,
+  "images": [
+    "images/handbags/kidsling1-1.jpg",
+    "images/handbags/kidsling1-2.jpg",
+    "images/handbags/kidsling1-3.jpg",
+    "images/handbags/kidsling1-4.jpg",
+    "images/handbags/kidsling1-5.jpg",
+    "images/handbags/kidsling1-6.jpg",
+    "images/handbags/kidsling1-7.jpg"
+  ],
+  "details": [
+    "Imported girls sling bag",
+    "Soft silicon material",
+    "Cute lighting design",
+    "Magnetic snap closure",
+    "Long chain strap",
+    "Size: 5 x 2 x 3 inch"
+  ]
 }
 ]
