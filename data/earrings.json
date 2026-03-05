@@ -19,7 +19,8 @@
     "Elegant hanging style",
     "Shiny decorative stones",
     "Lightweight to wear",
-    "Perfect for parties"
+    "Perfect for parties",
+    "Free Shipping"
   ]
 },
 {
@@ -36,7 +37,8 @@
     "Anti tarnish finish",
     "Daily wear jewellery",
     "Elegant silver color",
-    "Lightweight design"
+    "Lightweight design",
+    "Free Shipping"
   ]
 },
 {
@@ -59,7 +61,27 @@
     "Beauty blender included",
     "Eye Lash Glue",
     "Makeup fixer spray",
-    "Eyeshadow + blusher kit"
+    "Eyeshadow + blusher kit",
+    "Free Shipping"
+  ]
+},
+{
+  "name": "Instant Hair Color Comb Set",
+  "code": "A1-DGS",
+  "mrp": 450,
+  "price": 220,
+  "images": [
+    "images/cosmetics/haircolor1-1.jpg",
+    "images/cosmetics/haircolor1-2.jpg",
+    "images/cosmetics/haircolor1-3.jpg"
+  ],
+  "details": [
+    "Instant hair color comb",
+    "Temporary hair coloring",
+    "6 pcs combo set",
+    "Easy to use",
+    "Quick color in minutes",
+    "Free Shipping"
   ]
 }
 ]
