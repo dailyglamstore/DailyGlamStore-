@@ -21,5 +21,28 @@
     "Lightweight to wear",
     "Perfect for parties"
   ]
+},
+{
+  "name": "Red Bridal Vanity Combo Kit",
+  "code": "A1-DGS",
+  "mrp": 3500,
+  "price": 1800,
+  "images": [
+    "images/cosmetics/bridekit.jpg"
+  ],
+  "details": [
+    "Red bridal vanity combo",
+    "Makeup brush set",
+    "MAC eyelashes (2 pcs)",
+    "MAC foundation",
+    "BB foundation cream",
+    "MAC eyeliner and mascara",
+    "MAC lipsticks (2 pcs)",
+    "Compact and blusher",
+    "Beauty blender included",
+    "Eye Lash Glue",
+    "Makeup fixer spray",
+    "Eyeshadow + blusher kit"
+  ]
 }
 ]
