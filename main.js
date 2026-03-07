@@ -114,6 +114,10 @@ if (legalSubMenu) legalSubMenu.classList.remove("open");
       function update() {
         if (!slideSize) return;
         track.style.transform = `translateX(-${index * slideSize}px)`;
+
+slides.forEach(img => img.classList.remove("active-slide"));
+slides[index].classList.add("active-slide");
+
         counter.textContent = `${index + 1} / ${slides.length}`;
         counter.style.opacity = "1";
         clearTimeout(counter._t);
