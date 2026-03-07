@@ -129,8 +129,12 @@ if (legalSubMenu) legalSubMenu.classList.remove("open");
       }
 
       track.addEventListener("touchstart", e => {
-        startX = e.touches[0].clientX;
-      }, { passive: true });
+startX = e.touches[0].clientX;
+
+const arrow = slider.querySelector(".swipe-arrow");
+if (arrow) arrow.style.display = "none";
+
+}, { passive: true });
 
       track.addEventListener("touchend", e => {
         const diff = startX - e.changedTouches[0].clientX;
