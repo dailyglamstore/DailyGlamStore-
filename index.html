@@ -486,26 +486,26 @@ html {
 
 .swipe-arrow{
 position:absolute;
-right:8px;
+right:30px;
 top:50%;
 transform:translateY(-50%);
-font-size:26px;
+font-size:22px;
 color:#fff;
-background:rgba(0,0,0,0.45);
-width:30px;
-height:30px;
+background:rgba(0,0,0,0.35);
+width:26px;
+height:26px;
 border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
 pointer-events:none;
-animation:arrowPulse 1.4s infinite;
+animation:arrowPulse 1.6s ease-in-out infinite;
 }
 
 @keyframes arrowPulse{
-0%{transform:translateY(-50%) translateX(0)}
-50%{transform:translateY(-50%) translateX(6px)}
-100%{transform:translateY(-50%) translateX(0)}
+0%{transform:translateY(-50%) translateX(0); opacity:0.7;}
+50%{transform:translateY(-50%) translateX(4px); opacity:1;}
+100%{transform:translateY(-50%) translateX(0); opacity:0.7;}
 }
 
 </style>
