@@ -65,7 +65,9 @@ if (legalSubMenu) legalSubMenu.classList.remove("open");
 ).join("")}
           </div>
           <div class="image-counter"></div>
-        </div>
+<div class="swipe-arrow">›</div>
+
+</div>
 
         <h3>${p.name}</h3>
 <div class="product-code">Product Code: ${p.code}</div>
