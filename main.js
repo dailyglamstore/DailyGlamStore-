@@ -65,7 +65,7 @@ if (legalSubMenu) legalSubMenu.classList.remove("open");
 ).join("")}
           </div>
           <div class="image-counter"></div>
-${p.images.length > 1 ? '<div class="swipe-arrow">→</div>' : ''}
+${p.images.length > 1 ? '<div class="swipe-arrow">➜</div>' : ''}
 
 </div>
 
