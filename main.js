@@ -264,7 +264,7 @@ Selected Image: *${index + 1}*
 MRP: ${card.querySelector(".mrp-amount").textContent}
 Final Price: *${card.querySelector(".final-price").textContent}*
 
-Image Preview 👇
+View Your Selected Image 👇
 ${slides[index].src}
 
 Please share availability & payment details.`;
