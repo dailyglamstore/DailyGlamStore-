@@ -521,6 +521,28 @@ pointer-events:none;
 text-shadow:0 1px 4px rgba(0,0,0,0.45);
 }
 
+#backToTop{
+position:fixed;
+bottom:20px;
+right:18px;
+width:44px;
+height:44px;
+border:none;
+border-radius:50%;
+background:#b2455a;
+color:#fff;
+font-size:20px;
+font-weight:bold;
+cursor:pointer;
+display:none;
+z-index:9999;
+box-shadow:0 4px 10px rgba(0,0,0,0.25);
+}
+
+#backToTop:active{
+transform:scale(0.92);
+}
+
 </style>
 
 <link rel="stylesheet" href="style.css">
@@ -812,6 +834,7 @@ In Collaboration With <strong>Deepak Cosmetic Store</strong>
 
 </script>
 
+<button id="backToTop">⬆</button>
 <div class="zoom-overlay" id="zoomOverlay">
   <span class="zoom-close" id="zoomClose">✕</span>
   <img id="zoomImage">
