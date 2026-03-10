@@ -322,5 +322,23 @@ loadCategory("earrings", "earrings-products");
 loadCategory("handbags", "handbags-products");
 loadCategory("wallets", "wallets-products");
 
+
+const backBtn = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+if (window.scrollY > 500) {
+backBtn.style.display = "block";
+} else {
+backBtn.style.display = "none";
+}
+});
+
+backBtn.addEventListener("click", () => {
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+});
+
 });
 
