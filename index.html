@@ -539,6 +539,32 @@ z-index:9999;
 box-shadow:0 4px 12px rgba(0,0,0,0.25);
 }
 
+.timer-boxes{
+display:flex;
+justify-content:center;
+gap:6px;
+margin-top:6px;
+}
+
+.timer-box{
+background:#fff;
+border:2px solid #b2455a;
+border-radius:8px;
+padding:6px 8px;
+min-width:38px;
+text-align:center;
+font-weight:bold;
+color:#b2455a;
+box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+.timer-box small{
+display:block;
+font-size:10px;
+color:#7a3b4a;
+margin-top:2px;
+}
+
 </style>
 
 <link rel="stylesheet" href="style.css">
@@ -639,8 +665,14 @@ Main Bazar, Gurdaspur
   </div>
 
   <div class="glam-countdown">
-  <span class="timer-icon">⏳</span>
-  Deal ends in <span id="dealTimer">--</span>
+<span class="timer-icon">⏳</span>
+Deal ends in
+<div class="timer-boxes">
+<div class="timer-box"><span id="days">00</span><small>D</small></div>
+<div class="timer-box"><span id="hours">00</span><small>H</small></div>
+<div class="timer-box"><span id="minutes">00</span><small>M</small></div>
+<div class="timer-box"><span id="seconds">00</span><small>S</small></div>
+</div>
 </div>
 
 <div class="products" id="deal-products"></div>
