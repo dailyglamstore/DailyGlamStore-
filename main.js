@@ -302,7 +302,11 @@ if (glamDealBox && timerEl) {
     const m = Math.floor((diff / (1000 * 60)) % 60);
     const s = Math.floor((diff / 1000) % 60);
 
-    timerEl.textContent = `${d}d ${h}h ${m}m ${s}s`;
+    document.getElementById("days").textContent = d;
+document.getElementById("hours").textContent = h;
+document.getElementById("minutes").textContent = m;
+document.getElementById("seconds").textContent = s;
+
   }, 1000);
 }
 
