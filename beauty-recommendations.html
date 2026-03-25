@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Glam Store | Beauty Recommendation Platform</title>
+  <meta name="description" content="Daily Glam Store is a beauty recommendation platform featuring curated skincare and haircare picks from trusted brands through official brand websites.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://dailyglamstore.in/beauty-recommendations.html">
+
+  <style>
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:#fffaf8;
+      color:#333;
+      line-height:1.6;
+    }
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:#ffffff;
+      border-bottom:1px solid #eadfd8;
+      padding:10px 16px;
+    }
+
+    .header-inner{
+      max-width:1100px;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .brand{
+      text-decoration:none;
+      color:inherit;
+      display:flex;
+      flex-direction:column;
+      line-height:1.2;
+    }
+
+    .brand-name{
+      font-size:18px;
+      font-weight:700;
+      color:#a63a50;
+    }
+
+    .brand-tagline{
+      font-size:11px;
+      color:#7a6d66;
+      margin-top:2px;
+    }
+
+    .menu-toggle{
+      display:none;
+      font-size:24px;
+      cursor:pointer;
+      color:#a63a50;
+    }
+
+    .main-nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+
+    .main-nav a{
+      text-decoration:none;
+      color:#4b3f3a;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .main-nav a:hover{
+      color:#a63a50;
+    }
+
+    .nav-dropdown{
+      position:relative;
+    }
+
+    .nav-dropbtn{
+      background:none;
+      border:none;
+      cursor:pointer;
+      font-size:14px;
+      font-weight:600;
+      color:#4b3f3a;
+      padding:0;
+      font-family:inherit;
+    }
+
+    .nav-dropbtn:hover{
+      color:#a63a50;
+    }
+
+    .dropdown-content{
+      display:none;
+      position:absolute;
+      top:24px;
+      left:0;
+      min-width:220px;
+      background:#fff;
+      border:1px solid #eadfd8;
+      border-radius:8px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.08);
+      padding:8px 0;
+    }
+
+    .dropdown-content a{
+      display:block;
+      padding:10px 14px;
+      font-size:13px;
+    }
+
+    .dropdown-content a:hover{
+      background:#fff3f0;
+    }
+
+    .nav-dropdown:hover .dropdown-content{
+      display:block;
+    }
+
+    .hero{
+      background:#fff;
+      text-align:center;
+      padding:28px 16px 20px;
+    }
+
+    .hero-inner{
+      max-width:800px;
+      margin:auto;
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-size:26px;
+      line-height:1.3;
+      color:#a63a50;
+    }
+
+    .hero p{
+      margin:0;
+      font-size:15px;
+      color:#6d625d;
+    }
+
+    .trust-strip{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:8px;
+      padding:10px 12px;
+      background:#fdf1ee;
+      border-top:1px solid #eadfd8;
+      border-bottom:1px solid #eadfd8;
+      font-size:12.5px;
+      font-weight:600;
+    }
+
+    .trust-strip div{
+      text-align:center;
+    }
+
+    .brand-strip{
+      background:#fff;
+      text-align:center;
+      padding:22px 16px;
+      border-bottom:1px solid #eadfd8;
+    }
+
+    .brand-strip h3{
+      margin:0 0 14px;
+      font-size:20px;
+      color:#a63a50;
+    }
+
+    .brand-logos{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      align-items:center;
+      gap:22px;
+      margin-bottom:12px;
+    }
+
+    .brand-logos img{
+      height:34px;
+      width:auto;
+      max-width:120px;
+      object-fit:contain;
+    }
+
+    .brand-note{
+      margin:0;
+      font-size:13px;
+      color:#7a6d66;
+    }
+
+    .section{
+      max-width:1100px;
+      margin:auto;
+      padding:28px 16px;
+    }
+
+    .section-title{
+      text-align:center;
+      margin:0 0 8px;
+      font-size:24px;
+      color:#a63a50;
+    }
+
+    .section-intro{
+      text-align:center;
+      max-width:720px;
+      margin:0 auto 20px;
+      color:#6d625d;
+      font-size:14px;
+    }
+
+    .section-divider{
+      width:72px;
+      height:3px;
+      background:#a63a50;
+      margin:0 auto 16px;
+      border-radius:4px;
+    }
+
+    .products{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:18px;
+    }
+
+    .product-card{
+      background:#fff;
+      border:1px solid #eadfd8;
+      border-radius:12px;
+      padding:10px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .product-img{
+      width:100%;
+      border-radius:8px;
+      display:block;
+      margin-bottom:10px;
+    }
+
+    .product-title{
+      margin:0 0 5px;
+      font-size:15px;
+      line-height:1.4;
+      color:#4b3f3a;
+    }
+
+    .product-meta{
+      font-size:12px;
+      color:#7a6d66;
+      margin-bottom:6px;
+    }
+
+    .price-row{
+      font-size:13px;
+      margin-bottom:8px;
+      color:#7a6d66;
+    }
+
+    .mrp-value{
+      text-decoration:line-through;
+    }
+
+    .price-btn{
+      display:block;
+      text-align:center;
+      text-decoration:none;
+      background:#a63a50;
+      color:#fff;
+      padding:10px 12px;
+      border-radius:8px;
+      font-size:14px;
+      font-weight:700;
+      margin-bottom:6px;
+    }
+
+    .price-note{
+      margin:0;
+      text-align:center;
+      font-size:12px;
+      color:#7a6d66;
+    }
+
+    .toggle-header{
+      margin-top:8px;
+      font-size:12px;
+      color:#a63a50;
+      font-weight:700;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      gap:4px;
+    }
+
+    .toggle-content{
+      display:none;
+      margin-top:8px;
+      font-size:12px;
+      color:#5c514c;
+    }
+
+    .toggle-content ul{
+      margin:0;
+      padding-left:18px;
+    }
+
+    .toggle-content li{
+      margin-bottom:5px;
+    }
+
+    .guide-box{
+      background:#fff;
+      border:1px solid #eadfd8;
+      border-radius:12px;
+      padding:18px;
+      margin-top:18px;
+    }
+
+    .guide-box h3{
+      margin-top:0;
+      color:#a63a50;
+    }
+
+    .footer-section{
+      max-width:1100px;
+      margin:auto;
+      padding:24px 16px;
+      border-top:1px solid #eadfd8;
+    }
+
+    .footer-section h2{
+      margin:0 0 10px;
+      font-size:22px;
+      color:#a63a50;
+    }
+
+    .site-footer{
+      background:#2f2623;
+      color:#f2eae7;
+      text-align:center;
+      padding:18px 16px;
+      font-size:13px;
+    }
+
+    .site-footer a{
+      color:#f2eae7;
+      text-decoration:none;
+      margin:0 8px;
+    }
+
+    @media (max-width:768px){
+      .menu-toggle{
+        display:block;
+      }
+
+      .main-nav{
+        display:none;
+        position:absolute;
+        top:60px;
+        right:16px;
+        flex-direction:column;
+        align-items:flex-start;
+        background:#fff;
+        border:1px solid #eadfd8;
+        border-radius:10px;
+        padding:14px;
+        width:230px;
+        box-shadow:0 10px 24px rgba(0,0,0,0.08);
+      }
+
+      .main-nav.show{
+        display:flex;
+      }
+
+      .nav-dropdown{
+        width:100%;
+      }
+
+      .nav-dropbtn{
+        width:100%;
+        text-align:left;
+      }
+
+      .dropdown-content{
+        position:static;
+        display:block;
+        border:none;
+        box-shadow:none;
+        padding:6px 0 0 10px;
+        min-width:auto;
+      }
+
+      .trust-strip{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .hero h1{
+        font-size:22px;
+      }
+    }
+
+    @media (max-width:520px){
+      .trust-strip{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#home" class="brand">
+        <span class="brand-name">Daily Glam Store</span>
+        <span class="brand-tagline">Beauty Recommendation Platform</span>
+      </a>
+
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="#home">Home</a>
+
+        <div class="nav-dropdown">
+          <button class="nav-dropbtn" type="button">Categories ▼</button>
+          <div class="dropdown-content">
+            <a href="#top-picks">Top Picks</a>
+            <a href="#skincare-recommendations">Skincare Recommendations</a>
+            <a href="#haircare-recommendations">Haircare Recommendations</a>
+          </div>
+        </div>
+
+        <a href="#skincare-guide">Skincare Guide</a>
+        <a href="#haircare-guide">Haircare Guide</a>
+        <a href="#about">About</a>
+        <a href="#disclosure">Disclosure</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <h1>Discover Trusted Beauty Products From Official Brand Websites</h1>
+      <p>Carefully selected skincare and haircare recommendations to help you choose better.</p>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    <div>✔ Curated beauty recommendations</div>
+    <div>✔ Based on real retail experience</div>
+    <div>✔ Save time choosing the right products</div>
+    <div>✔ Buy directly from official brand websites</div>
+    <div>✔ No fake discounts or misleading offers</div>
+    <div>✔ Transparent affiliate recommendations</div>
+  </div>
+
+  <section class="brand-strip">
+    <h3>Featured Beauty Brands</h3>
+    <div class="brand-logos">
+      <img src="images/brands/lotus-logo.png" alt="Lotus Botanicals">
+      <img src="images/brands/DotNKey-logo.png" alt="Dot & Key">
+      <img src="images/brands/plum-logo.png" alt="Plum">
+      <img src="images/brands/mamaearth-logo.png" alt="Mamaearth">
+    </div>
+    <p class="brand-note">and more trusted beauty brands</p>
+  </section>
+
+  <section class="section" id="top-picks">
+    <h2 class="section-title">🔥 Editor’s Top Picks</h2>
+    <div class="section-divider"></div>
+    <p class="section-intro">
+      Carefully selected products customers often explore for daily skincare and haircare needs.
+    </p>
+
+    <div class="products">
+      <!-- Product cards will be added in next step -->
+    </div>
+  </section>
+
+  <section class="section" id="skincare-recommendations">
+    <h2 class="section-title">Skincare Recommendations</h2>
+    <div class="section-divider"></div>
+    <p class="section-intro">
+      Explore selected face washes, serums, moisturisers and sunscreens for a simple skincare routine.
+    </p>
+
+    <div class="products">
+      <!-- Product cards will be added in next step -->
+    </div>
+  </section>
+
+  <section class="section" id="haircare-recommendations">
+    <h2 class="section-title">Haircare Recommendations</h2>
+    <div class="section-divider"></div>
+    <p class="section-intro">
+      Explore selected hair oils, shampoos and conditioners for healthier looking hair.
+    </p>
+
+    <div class="products">
+      <!-- Product cards will be added in next step -->
+    </div>
+  </section>
+
+  <section class="section" id="skincare-guide">
+    <h2 class="section-title">Skincare Guide</h2>
+    <div class="section-divider"></div>
+
+    <div class="guide-box">
+      <h3>Simple Daily Skincare Routine</h3>
+      <p><strong>Morning:</strong> Face Wash → Serum → Moisturiser → Sunscreen</p>
+      <p><strong>Night:</strong> Face Wash → Serum → Moisturiser</p>
+    </div>
+  </section>
+
+  <section class="section" id="haircare-guide">
+    <h2 class="section-title">Haircare Guide</h2>
+    <div class="section-divider"></div>
+
+    <div class="guide-box">
+      <h3>Simple Haircare Routine</h3>
+      <p>Use hair oil as needed, wash with a suitable shampoo, and follow with conditioner for smoother looking hair.</p>
+    </div>
+  </section>
+
+  <section class="footer-section" id="about">
+    <h2>About</h2>
+    <p>
+      Daily Glam Store shares carefully selected beauty recommendations to help customers discover products from official brand websites with confidence.
+    </p>
+  </section>
+
+  <section class="footer-section" id="disclosure">
+    <h2>Affiliate Disclosure</h2>
+    <p>
+      This page contains affiliate links. If you purchase through these links, we may earn a small commission at no extra cost to you.
+    </p>
+  </section>
+
+  <section class="footer-section" id="privacy">
+    <h2>Privacy Policy</h2>
+    <p>
+      This page does not collect payment information. Affiliate links may use tracking cookies to identify purchases on official brand websites.
+    </p>
+  </section>
+
+  <section class="footer-section" id="contact">
+    <h2>Contact</h2>
+    <p><strong>dmahajan152@gmail.com</strong></p>
+  </section>
+
+  <footer class="site-footer">
+    <p>© 2026 Daily Glam Store</p>
+    <p>
+      <a href="#about">About</a> |
+      <a href="#disclosure">Disclosure</a> |
+      <a href="#privacy">Privacy</a>
+    </p>
+  </footer>
+
+  <script>
+    function toggleMenu(){
+      var nav = document.getElementById("mainNav");
+      nav.classList.toggle("show");
+    }
+
+    function toggleDetails(element){
+      const content = element.nextElementSibling;
+      const arrow = element.querySelector(".arrow");
+
+      document.querySelectorAll(".toggle-content").forEach(function(el){
+        if(el !== content){
+          el.style.display = "none";
+        }
+      });
+
+      document.querySelectorAll(".arrow").forEach(function(ar){
+        if(ar !== arrow){
+          ar.innerHTML = "▼";
+        }
+      });
+
+      if(content.style.display === "block"){
+        content.style.display = "none";
+        if(arrow){ arrow.innerHTML = "▼"; }
+      }else{
+        content.style.display = "block";
+        if(arrow){ arrow.innerHTML = "▲"; }
+      }
+    }
+  </script>
+
+</body>
+</html>
