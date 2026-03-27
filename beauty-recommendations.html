@@ -1,443 +1,627 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Daily Glam Store | Beauty Recommendation Platform</title>
-  <meta name="description" content="Daily Glam Store is a beauty recommendation platform featuring curated skincare and haircare picks from trusted brands through official brand websites.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://dailyglamstore.in/beauty-recommendations.html">
+  <meta
+    name="description"
+    content="Daily Glam Store is a beauty recommendation platform featuring curated skincare and haircare picks from trusted brands through official brand websites."
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dailyglamstore.in/beauty-recommendations.html" />
 
   <style>
-    html{
-      scroll-behavior:smooth;
+    html {
+      scroll-behavior: smooth;
     }
 
-    body{
-      margin:0;
-      font-family:Arial, sans-serif;
-      background:#fffaf8;
-      color:#333;
-      line-height:1.6;
+    * {
+      box-sizing: border-box;
     }
 
-    .site-header{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      background:#ffffff;
-      border-bottom:1px solid #eadfd8;
-      padding:10px 16px;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #faf7f6;
+      color: #4b3f3a;
+      line-height: 1.6;
     }
 
-    .header-inner{
-      max-width:1100px;
-      margin:auto;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
+    a {
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .brand{
-      text-decoration:none;
-      color:inherit;
-      display:flex;
-      flex-direction:column;
-      line-height:1.2;
+    :root {
+      --bg-main: #faf7f6;
+      --bg-soft: #fff7f4;
+      --bg-soft-2: #fff3ee;
+      --bg-header: #ffe0ea;
+      --brand: #b2455a;
+      --brand-dark: #7a3b4a;
+      --text-soft: #9a6b5f;
+      --border: #f1b6c6;
+      --border-soft: #f1cfc4;
+      --white: #ffffff;
+      --shadow: 0 8px 24px rgba(178, 69, 90, 0.08);
+      --header-height: 78px;
     }
 
-    .brand-name{
-      font-size:18px;
-      font-weight:700;
-      color:#a63a50;
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--bg-header);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(178, 69, 90, 0.06);
+      transition: padding 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
     }
 
-    .brand-tagline{
-      font-size:11px;
-      color:#7a6d66;
-      margin-top:2px;
+    .site-header.scrolled {
+      box-shadow: 0 6px 18px rgba(178, 69, 90, 0.12);
     }
 
-    .menu-toggle{
-      display:none;
-      font-size:24px;
-      cursor:pointer;
-      color:#a63a50;
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+      min-height: var(--header-height);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      position: relative;
     }
 
-    .main-nav{
-      display:flex;
-      align-items:center;
-      gap:18px;
+    .brand {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
     }
 
-    .main-nav a{
-      text-decoration:none;
-      color:#4b3f3a;
-      font-size:14px;
-      font-weight:600;
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 2px;
     }
 
-    .main-nav a:hover{
-      color:#a63a50;
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+      min-width: 0;
     }
 
-    .nav-dropdown{
-      position:relative;
+    .brand-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--brand);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .nav-dropbtn{
-      background:none;
-      border:none;
-      cursor:pointer;
-      font-size:14px;
-      font-weight:600;
-      color:#4b3f3a;
-      padding:0;
-      font-family:inherit;
+    .brand-tagline {
+      font-size: 11px;
+      color: var(--text-soft);
+      margin-top: 2px;
     }
 
-    .nav-dropbtn:hover{
-      color:#a63a50;
+    .menu-toggle {
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--brand-dark);
+      border-radius: 10px;
+      width: 42px;
+      height: 42px;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(178, 69, 90, 0.06);
     }
 
-    .dropdown-content{
-      display:none;
-      position:absolute;
-      top:24px;
-      left:0;
-      min-width:220px;
-      background:#fff;
-      border:1px solid #eadfd8;
-      border-radius:8px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.08);
-      padding:8px 0;
+    .menu-toggle:hover {
+      background: #fff8fb;
     }
 
-    .dropdown-content a{
-      display:block;
-      padding:10px 14px;
-      font-size:13px;
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
     }
 
-    .dropdown-content a:hover{
-      background:#fff3f0;
+    .main-nav > a,
+    .nav-dropbtn {
+      text-decoration: none;
+      color: #4b3f3a;
+      font-size: 14px;
+      font-weight: 600;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-family: inherit;
     }
 
-    .nav-dropdown:hover .dropdown-content{
-      display:block;
+    .main-nav > a:hover,
+    .nav-dropbtn:hover {
+      color: var(--brand);
     }
 
-    .hero{
-      background:#fff;
-      text-align:center;
-      padding:28px 16px 20px;
+    .nav-dropdown {
+      position: relative;
     }
 
-    .hero-inner{
-      max-width:800px;
-      margin:auto;
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 24px;
+      left: 0;
+      min-width: 230px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      padding: 8px 0;
     }
 
-    .hero h1{
-      margin:0 0 10px;
-      font-size:26px;
-      line-height:1.3;
-      color:#a63a50;
+    .dropdown-content a {
+      display: block;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #4b3f3a;
+      text-decoration: none;
+      font-weight: 500;
     }
 
-    .hero p{
-      margin:0;
-      font-size:15px;
-      color:#6d625d;
+    .dropdown-content a:hover {
+      background: var(--bg-soft);
+      color: var(--brand);
     }
 
-    .trust-strip{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:8px;
-      padding:10px 12px;
-      background:#fdf1ee;
-      border-top:1px solid #eadfd8;
-      border-bottom:1px solid #eadfd8;
-      font-size:12.5px;
-      font-weight:600;
+    .nav-dropdown:hover .dropdown-content {
+      display: block;
     }
 
-    .trust-strip div{
-      text-align:center;
+    .hero,
+    .section,
+    .footer-section,
+    #home,
+    #top-picks,
+    #skincare-recommendations,
+    #haircare-recommendations,
+    #skincare-guide,
+    #haircare-guide,
+    #about,
+    #disclosure,
+    #privacy,
+    #contact {
+      scroll-margin-top: 95px;
     }
 
-    .brand-strip{
-      background:#fff;
-      text-align:center;
-      padding:22px 16px;
-      border-bottom:1px solid #eadfd8;
+    .hero {
+      background: var(--white);
+      text-align: center;
+      padding: 28px 16px 22px;
+      border-bottom: 1px solid #f4e1e7;
     }
 
-    .brand-strip h3{
-      margin:0 0 14px;
-      font-size:20px;
-      color:#a63a50;
+    .hero-inner {
+      max-width: 800px;
+      margin: auto;
     }
 
-    .brand-logos{
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      align-items:center;
-      gap:22px;
-      margin-bottom:12px;
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 26px;
+      line-height: 1.3;
+      color: var(--brand);
     }
 
-    .brand-logos img{
-      height:34px;
-      width:auto;
-      max-width:120px;
-      object-fit:contain;
+    .hero p {
+      margin: 0;
+      font-size: 15px;
+      color: var(--text-soft);
     }
 
-    .brand-note{
-      margin:0;
-      font-size:13px;
-      color:#7a6d66;
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 12px;
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border-soft);
+      border-bottom: 1px solid var(--border-soft);
+      font-size: 12.5px;
+      font-weight: 600;
     }
 
-    .section{
-      max-width:1100px;
-      margin:auto;
-      padding:28px 16px;
+    .trust-strip div {
+      text-align: center;
+      color: var(--brand-dark);
     }
 
-    .section-title{
-      text-align:center;
-      margin:0 0 8px;
-      font-size:24px;
-      color:#a63a50;
+    .brand-strip {
+      background: var(--white);
+      text-align: center;
+      padding: 22px 16px;
+      border-bottom: 1px solid var(--border-soft);
     }
 
-    .section-intro{
-      text-align:center;
-      max-width:720px;
-      margin:0 auto 20px;
-      color:#6d625d;
-      font-size:14px;
+    .brand-strip h3 {
+      margin: 0 0 14px;
+      font-size: 20px;
+      color: var(--brand);
     }
 
-    .section-divider{
-      width:72px;
-      height:3px;
-      background:#a63a50;
-      margin:0 auto 16px;
-      border-radius:4px;
+    .brand-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 22px;
+      margin-bottom: 12px;
     }
 
-    .products{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:18px;
+    .brand-logos img {
+      height: 34px;
+      width: auto;
+      max-width: 120px;
+      object-fit: contain;
     }
 
-    .product-card{
-      background:#fff;
-      border:1px solid #eadfd8;
-      border-radius:12px;
-      padding:10px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.05);
+    .brand-note {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text-soft);
     }
 
-    .product-img{
-      width:100%;
-      border-radius:8px;
-      display:block;
-      margin-bottom:10px;
+    .section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 28px 16px;
     }
 
-    .product-title{
-      margin:0 0 5px;
-      font-size:15px;
-      line-height:1.4;
-      color:#4b3f3a;
+    .section-title {
+      text-align: center;
+      margin: 0 0 8px;
+      font-size: 24px;
+      color: var(--brand-dark);
     }
 
-    .product-meta{
-      font-size:12px;
-      color:#7a6d66;
-      margin-bottom:6px;
+    .section-intro {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 18px;
+      color: var(--text-soft);
+      font-size: 14px;
     }
 
-    .price-row{
-      font-size:13px;
-      margin-bottom:8px;
-      color:#7a6d66;
+    .section-divider {
+      width: 72px;
+      height: 3px;
+      background: var(--brand);
+      margin: 0 auto 16px;
+      border-radius: 4px;
     }
 
-    .mrp-value{
-      text-decoration:line-through;
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 15px;
     }
 
-    .price-btn{
-      display:block;
-      text-align:center;
-      text-decoration:none;
-      background:#a63a50;
-      color:#fff;
-      padding:10px 12px;
-      border-radius:8px;
-      font-size:14px;
-      font-weight:700;
-      margin-bottom:6px;
+    .product-card {
+      background: var(--white);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 4px 14px rgba(178, 69, 90, 0.08);
     }
 
-    .price-note{
-      margin:0;
-      text-align:center;
-      font-size:12px;
-      color:#7a6d66;
+    .product-img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+      margin-bottom: 10px;
     }
 
-    .toggle-header{
-      margin-top:8px;
-      font-size:12px;
-      color:#a63a50;
-      font-weight:700;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      gap:4px;
+    .product-title {
+      margin: 0 0 5px;
+      font-size: 15px;
+      line-height: 1.4;
+      color: #4b3f3a;
     }
 
-    .toggle-content{
-      display:none;
-      margin-top:8px;
-      font-size:12px;
-      color:#5c514c;
+    .product-meta {
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-bottom: 6px;
     }
 
-    .toggle-content ul{
-      margin:0;
-      padding-left:18px;
+    .price-row {
+      font-size: 13px;
+      margin-bottom: 8px;
+      color: var(--text-soft);
     }
 
-    .toggle-content li{
-      margin-bottom:5px;
+    .mrp-value {
+      text-decoration: line-through;
     }
 
-    .guide-box{
-      background:#fff;
-      border:1px solid #eadfd8;
-      border-radius:12px;
-      padding:18px;
-      margin-top:18px;
+    .price-btn {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      background: var(--brand);
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
     }
 
-    .guide-box h3{
-      margin-top:0;
-      color:#a63a50;
+    .price-btn:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
     }
 
-    .footer-section{
-      max-width:1100px;
-      margin:auto;
-      padding:24px 16px;
-      border-top:1px solid #eadfd8;
+    .price-note {
+      margin: 0;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-soft);
     }
 
-    .footer-section h2{
-      margin:0 0 10px;
-      font-size:22px;
-      color:#a63a50;
+    .toggle-header {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--brand);
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
-    .site-footer{
-      background:#2f2623;
-      color:#f2eae7;
-      text-align:center;
-      padding:18px 16px;
-      font-size:13px;
+    .toggle-content {
+      display: none;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #5c514c;
     }
 
-    .site-footer a{
-      color:#f2eae7;
-      text-decoration:none;
-      margin:0 8px;
+    .toggle-content ul {
+      margin: 0;
+      padding-left: 18px;
     }
 
-    @media (max-width:768px){
-      .menu-toggle{
-        display:block;
+    .toggle-content li {
+      margin-bottom: 5px;
+    }
+
+    .guide-box {
+      background: var(--white);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 18px;
+      margin-top: 18px;
+      box-shadow: 0 4px 14px rgba(178, 69, 90, 0.05);
+    }
+
+    .guide-box h3 {
+      margin-top: 0;
+      color: var(--brand);
+    }
+
+    .footer-section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 24px 16px;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .footer-section h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      color: var(--brand-dark);
+    }
+
+    .site-footer {
+      background: #2f2623;
+      color: #f2eae7;
+      text-align: center;
+      padding: 18px 16px;
+      font-size: 13px;
+    }
+
+    .site-footer a {
+      color: #f2eae7;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+
+    @media (max-width: 768px) {
+      .header-inner {
+        min-height: 74px;
       }
 
-      .main-nav{
-        display:none;
-        position:absolute;
-        top:60px;
-        right:16px;
-        flex-direction:column;
-        align-items:flex-start;
-        background:#fff;
-        border:1px solid #eadfd8;
-        border-radius:10px;
-        padding:14px;
-        width:230px;
-        box-shadow:0 10px 24px rgba(0,0,0,0.08);
+      .menu-toggle {
+        display: inline-flex;
       }
 
-      .main-nav.show{
-        display:flex;
+      .main-nav {
+        display: none;
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 16px;
+        flex-direction: column;
+        align-items: stretch;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 10px 0;
+        width: 270px;
+        box-shadow: var(--shadow);
+        gap: 0;
+        overflow: hidden;
       }
 
-      .nav-dropdown{
-        width:100%;
+      .main-nav.show {
+        display: flex;
       }
 
-      .nav-dropbtn{
-        width:100%;
-        text-align:left;
+      .main-nav > a {
+        display: block;
+        padding: 12px 14px;
+        border-bottom: 1px solid #f4dedf;
       }
 
-      .dropdown-content{
-        position:static;
-        display:block;
-        border:none;
-        box-shadow:none;
-        padding:6px 0 0 10px;
-        min-width:auto;
+      .main-nav > a:last-of-type {
+        border-bottom: 1px solid #f4dedf;
       }
 
-      .trust-strip{
-        grid-template-columns:repeat(2,1fr);
+      .nav-dropdown {
+        width: 100%;
+        border-bottom: 1px solid #f4dedf;
       }
 
-      .hero h1{
-        font-size:22px;
+      .nav-dropbtn {
+        width: 100%;
+        text-align: left;
+        padding: 12px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--brand-dark);
+      }
+
+      .nav-dropbtn .menu-arrow {
+        font-size: 12px;
+        transition: transform 0.25s ease;
+      }
+
+      .nav-dropdown.open .nav-dropbtn .menu-arrow {
+        transform: rotate(180deg);
+      }
+
+      .dropdown-content {
+        position: static;
+        display: none;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+        min-width: auto;
+        padding: 0;
+        background: var(--bg-soft);
+        border-top: 1px solid #f4dedf;
+      }
+
+      .nav-dropdown.open .dropdown-content {
+        display: block;
+      }
+
+      .dropdown-content a {
+        padding: 11px 14px 11px 28px;
+        font-size: 13px;
+        background: var(--bg-soft);
+        border-bottom: 1px solid #f1d2c9;
+        color: var(--brand-dark);
+      }
+
+      .dropdown-content a:last-child {
+        border-bottom: none;
+      }
+
+      .hero h1 {
+        font-size: 22px;
+      }
+
+      .trust-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .brand-logo {
+        width: 38px;
+        height: 38px;
+      }
+
+      .brand-name {
+        font-size: 17px;
+      }
+
+      .section-title {
+        font-size: 22px;
       }
     }
 
-    @media (max-width:520px){
-      .trust-strip{
-        grid-template-columns:1fr;
+    @media (max-width: 520px) {
+      .trust-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .main-nav {
+        width: calc(100% - 32px);
+        right: 16px;
+      }
+
+      .brand-tagline {
+        font-size: 10px;
+      }
+
+      .hero {
+        padding-top: 24px;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-
-  <header class="site-header">
+  <header class="site-header" id="siteHeader">
     <div class="header-inner">
       <a href="#home" class="brand">
-        <span class="brand-name">Daily Glam Store</span>
-        <span class="brand-tagline">Beauty Recommendation Platform</span>
+        <img src="images/logo.png" alt="Daily Glam Store" class="brand-logo" />
+        <span class="brand-text">
+          <span class="brand-name">Daily Glam Store</span>
+          <span class="brand-tagline">Beauty Recommendation Platform</span>
+        </span>
       </a>
 
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mainNav"
+      >
+        ☰
+      </button>
 
       <nav class="main-nav" id="mainNav">
         <a href="#home">Home</a>
 
-        <div class="nav-dropdown">
-          <button class="nav-dropbtn" type="button">Categories ▼</button>
+        <div class="nav-dropdown" id="categoriesDropdown">
+          <button class="nav-dropbtn" type="button" id="categoriesBtn">
+            <span>Categories</span>
+            <span class="menu-arrow">▼</span>
+          </button>
           <div class="dropdown-content">
             <a href="#top-picks">Top Picks</a>
             <a href="#skincare-recommendations">Skincare Recommendations</a>
@@ -458,7 +642,9 @@
   <section class="hero" id="home">
     <div class="hero-inner">
       <h1>Discover Trusted Beauty Products From Official Brand Websites</h1>
-      <p>Carefully selected skincare and haircare recommendations to help you choose better.</p>
+      <p>
+        Carefully selected skincare and haircare recommendations to help you choose better.
+      </p>
     </div>
   </section>
 
@@ -474,10 +660,10 @@
   <section class="brand-strip">
     <h3>Featured Beauty Brands</h3>
     <div class="brand-logos">
-      <img src="images/lotus-logo.png" alt="Lotus Botanicals">
-      <img src="images/DotNKey-logo.png" alt="Dot & Key">
-      <img src="images/plum-logo.png" alt="Plum">
-      <img src="images/mamaearth-logo.png" alt="Mamaearth">
+      <img src="images/lotus-logo.png" alt="Lotus Botanicals" />
+      <img src="images/DotNKey-logo.png" alt="Dot & Key" />
+      <img src="images/plum-logo.png" alt="Plum" />
+      <img src="images/mamaearth-logo.png" alt="Mamaearth" />
     </div>
     <p class="brand-note">and more trusted beauty brands</p>
   </section>
@@ -490,48 +676,44 @@
     </p>
 
     <div class="products">
-      
-   <div class="product-card">
-  <img src="images/top-picks/lotus-vitamin-c-skin-brightening-day-creme.JPG"
-       alt="Lotus Vitamin C Skin Brightening Day Creme"
-       class="product-img">
+      <div class="product-card">
+        <img
+          src="images/top-picks/lotus-vitamin-c-skin-brightening-day-creme.JPG"
+          alt="Lotus Vitamin C Skin Brightening Day Creme"
+          class="product-img"
+        />
+        <h3 class="product-title">Vitamin C Skin Brightening Day Crème</h3>
+        <div class="product-meta">Brand : Lotus Botanicals</div>
+        <div class="price-row">
+          <span>MRP: </span>
+          <span class="mrp-value">₹685</span>
+        </div>
+        <a
+          href="https://www.lotusbotanicals.com/products/vitamin-c-skin-brightening-day-creme?ref=DGS￾Deepak"
+          target="_blank"
+          rel="nofollow sponsored"
+          class="price-btn"
+        >
+          View on Official Website
+        </a>
+        <p class="price-note">Final price may vary on official website</p>
 
-  <h3 class="product-title">Vitamin C Skin Brightening Day Crème</h3>
-
-  <div class="product-meta">Brand : Lotus Botanicals</div>
-
-  <div class="price-row">
-    <span>MRP: </span>
-    <span class="mrp-value">₹685</span>
-  </div>
-
-  <a href="https://www.lotusbotanicals.com/products/vitamin-c-skin-brightening-day-creme?ref=DGS-Deepak"
-     target="_blank"
-     rel="nofollow sponsored"
-     class="price-btn">
-    View on Official Website
-  </a>
-
-  <p class="price-note">Final price may vary on official website</p>
-
-  <div class="toggle-box">
-    <div class="toggle-header" onclick="toggleDetails(this)">
-      View Details <span class="arrow">▼</span>
-    </div>
-
-    <div class="toggle-content">
-      <ul>
-        <li>Reduces dark spots & uneven skin tone</li>
-        <li>Vitamin C + Niacinamide for visible glow</li>
-        <li>Lightweight, non-greasy daily cream</li>
-        <li>Hydrates and refreshes dull skin</li>
-        <li>Ideal for daily morning routine</li>
-        <li>Best for dull and tired-looking skin</li>
-      </ul>
-    </div>
-  </div>
-</div>
-      
+        <div class="toggle-box">
+          <div class="toggle-header" onclick="toggleDetails(this)">
+            View Details <span class="arrow">▼</span>
+          </div>
+          <div class="toggle-content">
+            <ul>
+              <li>Reduces dark spots & uneven skin tone</li>
+              <li>Vitamin C + Niacinamide for visible glow</li>
+              <li>Lightweight, non-greasy daily cream</li>
+              <li>Hydrates and refreshes dull skin</li>
+              <li>Ideal for daily morning routine</li>
+              <li>Best for dull and tired-looking skin</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -539,9 +721,9 @@
     <h2 class="section-title">Skincare Recommendations</h2>
     <div class="section-divider"></div>
     <p class="section-intro">
-      Explore selected face washes, serums, moisturisers and sunscreens for a simple skincare routine.
+      Explore selected face washes, serums, moisturisers and sunscreens for a simple skincare
+      routine.
     </p>
-
     <div class="products">
       <!-- Product cards will be added in next step -->
     </div>
@@ -553,18 +735,14 @@
     <p class="section-intro">
       Explore selected hair oils, shampoos and conditioners for healthier looking hair.
     </p>
-
     <div class="products">
-      
-      <            >
-
+      < >
     </div>
   </section>
 
   <section class="section" id="skincare-guide">
     <h2 class="section-title">Skincare Guide</h2>
     <div class="section-divider"></div>
-
     <div class="guide-box">
       <h3>Simple Daily Skincare Routine</h3>
       <p><strong>Morning:</strong> Face Wash → Serum → Moisturiser → Sunscreen</p>
@@ -575,31 +753,36 @@
   <section class="section" id="haircare-guide">
     <h2 class="section-title">Haircare Guide</h2>
     <div class="section-divider"></div>
-
     <div class="guide-box">
       <h3>Simple Haircare Routine</h3>
-      <p>Use hair oil as needed, wash with a suitable shampoo, and follow with conditioner for smoother looking hair.</p>
+      <p>
+        Use hair oil as needed, wash with a suitable shampoo, and follow with conditioner for
+        smoother looking hair.
+      </p>
     </div>
   </section>
 
   <section class="footer-section" id="about">
     <h2>About</h2>
     <p>
-      Daily Glam Store shares carefully selected beauty recommendations to help customers discover products from official brand websites with confidence.
+      Daily Glam Store shares carefully selected beauty recommendations to help customers
+      discover products from official brand websites with confidence.
     </p>
   </section>
 
   <section class="footer-section" id="disclosure">
     <h2>Affiliate Disclosure</h2>
     <p>
-      This page contains affiliate links. If you purchase through these links, we may earn a small commission at no extra cost to you.
+      This page contains affiliate links. If you purchase through these links, we may earn a small
+      commission at no extra cost to you.
     </p>
   </section>
 
   <section class="footer-section" id="privacy">
     <h2>Privacy Policy</h2>
     <p>
-      This page does not collect payment information. Affiliate links may use tracking cookies to identify purchases on official brand websites.
+      This page does not collect payment information. Affiliate links may use tracking cookies to
+      identify purchases on official brand websites.
     </p>
   </section>
 
@@ -618,36 +801,85 @@
   </footer>
 
   <script>
-    function toggleMenu(){
-      var nav = document.getElementById("mainNav");
-      nav.classList.toggle("show");
+    const menuToggle = document.getElementById("menuToggle");
+    const mainNav = document.getElementById("mainNav");
+    const categoriesDropdown = document.getElementById("categoriesDropdown");
+    const categoriesBtn = document.getElementById("categoriesBtn");
+    const siteHeader = document.getElementById("siteHeader");
+
+    function closeMenu() {
+      mainNav.classList.remove("show");
+      menuToggle.setAttribute("aria-expanded", "false");
+      categoriesDropdown.classList.remove("open");
     }
 
-    function toggleDetails(element){
+    function toggleMenu() {
+      const isOpen = mainNav.classList.contains("show");
+      mainNav.classList.toggle("show");
+      menuToggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
+    }
+
+    menuToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    categoriesBtn.addEventListener("click", function (e) {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        e.stopPropagation();
+        categoriesDropdown.classList.toggle("open");
+      }
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest(".header-inner")) {
+        closeMenu();
+      }
+    });
+
+    document.querySelectorAll("#mainNav a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        closeMenu();
+      });
+    });
+
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 10) {
+        siteHeader.classList.add("scrolled");
+      } else {
+        siteHeader.classList.remove("scrolled");
+      }
+    });
+
+    function toggleDetails(element) {
       const content = element.nextElementSibling;
       const arrow = element.querySelector(".arrow");
 
-      document.querySelectorAll(".toggle-content").forEach(function(el){
-        if(el !== content){
+      document.querySelectorAll(".toggle-content").forEach(function (el) {
+        if (el !== content) {
           el.style.display = "none";
         }
       });
 
-      document.querySelectorAll(".arrow").forEach(function(ar){
-        if(ar !== arrow){
+      document.querySelectorAll(".arrow").forEach(function (ar) {
+        if (ar !== arrow) {
           ar.innerHTML = "▼";
         }
       });
 
-      if(content.style.display === "block"){
+      if (content.style.display === "block") {
         content.style.display = "none";
-        if(arrow){ arrow.innerHTML = "▼"; }
-      }else{
+        if (arrow) {
+          arrow.innerHTML = "▼";
+        }
+      } else {
         content.style.display = "block";
-        if(arrow){ arrow.innerHTML = "▲"; }
+        if (arrow) {
+          arrow.innerHTML = "▲";
+        }
       }
     }
   </script>
-
 </body>
 </html>
