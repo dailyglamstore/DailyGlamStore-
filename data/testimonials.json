@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Simran Kaur",
+    "product": "Premium Stone Hanging Earrings",
+    "rating": 5,
+    "review": "Very pretty finish and same as shown in photos. Delivery was smooth.",
+    "city": "Gurdaspur",
+    "approved": "yes",
+    "timestamp": "2026-03-10T10:25:00Z"
+  },
+  {
+    "name": "Neha Sharma",
+    "product": "Designer Belt Sling Bag",
+    "rating": 4,
+    "review": "Quality is good and the bag looks stylish for daily outings.",
+    "city": "Pathankot",
+    "approved": "approved",
+    "timestamp": "2026-03-12T09:00:00Z"
+  },
+  {
+    "name": "Ritika",
+    "product": "Tommy Hilfiger Wallet & Belt Combo",
+    "rating": 5,
+    "review": "Gifted this to my husband and he liked it a lot. Packaging was nice too.",
+    "city": "Amritsar",
+    "approved": "true",
+    "timestamp": "2026-03-14T13:30:00Z"
+  }
+]
