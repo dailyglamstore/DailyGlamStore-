@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const submitBtn = document.getElementById("feedbackSubmitBtn");
   const statusBox = document.getElementById("feedbackStatus");
 
-  // INSERT GOOGLE APPS SCRIPT SUBMISSION URL HERE
+  // Live Google Apps Script web app endpoint
   const submitEndpoint = "https://script.google.com/macros/s/AKfycbwc9J69Q5I2BWbhr5P1j8-zUbob2vjNLJf7PaTDXcoDE2l7qfSMjrcb-8JpCne9CNII/exec";
 
   function showStatus(type, message) {

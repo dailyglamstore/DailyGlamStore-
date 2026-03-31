@@ -379,7 +379,7 @@ document.getElementById("seconds").textContent = s;
   async function loadTestimonials() {
     const localFallback = "data/testimonials.json";
 
-    // INSERT GOOGLE APPS SCRIPT READ URL HERE
+    // Live Google Apps Script web app endpoint
     const readEndpoint = "https://script.google.com/macros/s/AKfycbwc9J69Q5I2BWbhr5P1j8-zUbob2vjNLJf7PaTDXcoDE2l7qfSMjrcb-8JpCne9CNII/exec";
 
     let testimonialRows = [];
