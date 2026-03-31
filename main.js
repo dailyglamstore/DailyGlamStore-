@@ -323,10 +323,93 @@ document.getElementById("seconds").textContent = s;
   }
 }
 
+  function normalizeApprovalValue(value) {
+    const normalized = String(value || "").trim().toLowerCase();
+
+    // Update this list if you want to allow more approval words later.
+    const allowedApprovalValues = ["true", "yes", "approved", "1"];
+
+    return allowedApprovalValues.includes(normalized);
+  }
+
+  function normalizeRatingValue(value) {
+    const parsed = Number(value);
+    if (Number.isNaN(parsed)) return 0;
+    if (parsed < 1) return 1;
+    if (parsed > 5) return 5;
+    return Math.round(parsed);
+  }
+
+  function renderTestimonials(testimonials) {
+    const container = document.getElementById("testimonials-list");
+    if (!container) return;
+
+    if (!testimonials.length) {
+      container.innerHTML = "";
+      return;
+    }
+
+    container.innerHTML = testimonials.map((item) => {
+      const name = item.name || "Verified Customer";
+      const product = item.product ? `<div class="testimonial-product">Product: ${item.product}</div>` : "";
+      const rating = normalizeRatingValue(item.rating);
+      const stars = "★".repeat(rating) + "☆".repeat(5 - rating);
+      const review = item.review || "";
+
+      return `
+        <div class="testimonial-card">
+          <div class="testimonial-top">
+            <div class="testimonial-name">${name}</div>
+            <div class="testimonial-stars" aria-label="${rating} star rating">${stars}</div>
+          </div>
+          ${product}
+          <p class="testimonial-review">${review}</p>
+        </div>
+      `;
+    }).join("");
+  }
+
+  async function fetchTestimonialsFromSource(sourceUrl) {
+    const res = await fetch(sourceUrl);
+    if (!res.ok) throw new Error("Failed to load testimonials");
+    const data = await res.json();
+    return Array.isArray(data) ? data : [];
+  }
+
+  async function loadTestimonials() {
+    const localFallback = "data/testimonials.json";
+
+    // INSERT GOOGLE APPS SCRIPT READ URL HERE
+    const readEndpoint = "";
+
+    let testimonialRows = [];
+
+    try {
+      if (readEndpoint) {
+        testimonialRows = await fetchTestimonialsFromSource(readEndpoint);
+      } else {
+        testimonialRows = await fetchTestimonialsFromSource(localFallback);
+      }
+    } catch (err) {
+      console.error("Primary testimonials fetch failed:", err);
+
+      try {
+        testimonialRows = await fetchTestimonialsFromSource(localFallback);
+      } catch (fallbackErr) {
+        console.error("Fallback testimonials fetch failed:", fallbackErr);
+        testimonialRows = [];
+      }
+    }
+
+    const approvedTestimonials = testimonialRows.filter(row => normalizeApprovalValue(row.approved));
+    renderTestimonials(approvedTestimonials);
+  }
+
 loadCategory("deals", "deal-products");
 loadCategory("earrings", "earrings-products");
 loadCategory("handbags", "handbags-products");
 loadCategory("wallets", "wallets-products");
+loadTestimonials();
 
 
 const backBtn = document.getElementById("backToTop");
@@ -347,4 +430,3 @@ behavior:"smooth"
 });
 
 });
-

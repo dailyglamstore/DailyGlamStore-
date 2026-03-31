@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Share Your Feedback | Daily Glam Store</title>
+<link rel="icon" type="image/png" href="../images/logo.png">
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#faf7f6;
+  color:#555;
+}
+
+.feedback-page{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px 14px;
+}
+
+.feedback-card{
+  width:100%;
+  max-width:520px;
+  background:#fff;
+  border:1.5px solid #f1cfc4;
+  border-radius:14px;
+  box-shadow:0 4px 14px rgba(178,69,90,.08);
+  padding:18px 16px;
+}
+
+.feedback-title{
+  margin:0;
+  font-size:24px;
+  color:#8f3d4f;
+}
+
+.feedback-subtitle{
+  margin:8px 0 16px;
+  font-size:13px;
+  color:#8f5a66;
+  line-height:1.6;
+}
+
+.feedback-form{
+  display:grid;
+  gap:12px;
+}
+
+.form-label{
+  display:block;
+  margin-bottom:6px;
+  font-size:13px;
+  font-weight:600;
+  color:#7a3b4a;
+}
+
+.input-control,
+.textarea-control,
+.select-control{
+  width:100%;
+  box-sizing:border-box;
+  border:1px solid #efc8d2;
+  border-radius:10px;
+  padding:10px 12px;
+  font-size:14px;
+  color:#4f3c42;
+  background:#fff;
+}
+
+.textarea-control{
+  min-height:110px;
+  resize:vertical;
+}
+
+.input-control:focus,
+.textarea-control:focus,
+.select-control:focus{
+  outline:none;
+  border-color:#b2455a;
+  box-shadow:0 0 0 2px rgba(178,69,90,.12);
+}
+
+.submit-note{
+  margin:2px 0 2px;
+  font-size:12px;
+  line-height:1.55;
+  color:#7a5a61;
+}
+
+.feedback-submit{
+  border:none;
+  border-radius:10px;
+  padding:11px;
+  background:#b2455a;
+  color:#fff;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.feedback-submit:disabled{
+  opacity:.65;
+  cursor:not-allowed;
+}
+
+.feedback-status{
+  margin-top:12px;
+  font-size:13px;
+  border-radius:10px;
+  padding:10px;
+  display:none;
+}
+
+.feedback-status.success{
+  display:block;
+  background:#edf9f0;
+  color:#186a3b;
+  border:1px solid #b9e8c8;
+}
+
+.feedback-status.error{
+  display:block;
+  background:#fff1f1;
+  color:#9f3030;
+  border:1px solid #f1c6c6;
+}
+</style>
+</head>
+<body>
+  <main class="feedback-page">
+    <section class="feedback-card">
+      <h1 class="feedback-title">Share Your Feedback</h1>
+      <p class="feedback-subtitle">We’d love to hear about your experience with Daily Glam Store.</p>
+
+      <form id="feedbackForm" class="feedback-form" novalidate>
+        <div>
+          <label class="form-label" for="name">Full Name</label>
+          <input class="input-control" id="name" name="name" type="text" required>
+        </div>
+
+        <div>
+          <label class="form-label" for="product">Product Purchased</label>
+          <input class="input-control" id="product" name="product" type="text" required>
+        </div>
+
+        <div>
+          <label class="form-label" for="rating">Star Rating</label>
+          <select class="select-control" id="rating" name="rating" required>
+            <option value="">Select rating</option>
+            <option value="1">1 Star</option>
+            <option value="2">2 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="5">5 Stars</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="form-label" for="review">Review Text</label>
+          <textarea class="textarea-control" id="review" name="review" required></textarea>
+        </div>
+
+        <div>
+          <label class="form-label" for="city">City (optional)</label>
+          <input class="input-control" id="city" name="city" type="text">
+        </div>
+
+        <p class="submit-note">By submitting your feedback, you allow Daily Glam Store to review and publish your name and review on the website after approval.</p>
+
+        <button type="submit" class="feedback-submit" id="feedbackSubmitBtn">Submit Feedback</button>
+      </form>
+
+      <div class="feedback-status" id="feedbackStatus"></div>
+    </section>
+  </main>
+
+  <script src="feedback.js"></script>
+</body>
+</html>
