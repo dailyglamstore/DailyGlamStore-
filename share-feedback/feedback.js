@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const statusBox = document.getElementById("feedbackStatus");
 
   // INSERT GOOGLE APPS SCRIPT SUBMISSION URL HERE
-  const submitEndpoint = "";
+  const submitEndpoint = "https://script.google.com/macros/s/AKfycbwc9J69Q5I2BWbhr5P1j8-zUbob2vjNLJf7PaTDXcoDE2l7qfSMjrcb-8JpCne9CNII/exec";
 
   function showStatus(type, message) {
     statusBox.className = `feedback-status ${type}`;
