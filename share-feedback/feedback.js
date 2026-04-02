@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const statusBox = document.getElementById("feedbackStatus");
 
   // Live Google Apps Script web app endpoint
-  const submitEndpoint = "https://script.google.com/macros/s/AKfycbwc9J69Q5I2BWbhr5P1j8-zUbob2vjNLJf7PaTDXcoDE2l7qfSMjrcb-8JpCne9CNII/exec";
+  const submitEndpoint = "https://script.google.com/macros/s/AKfycbxvX3Ar48y49TXjAUM_rtYk6xTFuJ_ZSTCcwbXNsQJ618o81eXVMBETYovfu7_aCc1U2Q/exec";
 
   function showStatus(type, message) {
     statusBox.className = `feedback-status ${type}`;
