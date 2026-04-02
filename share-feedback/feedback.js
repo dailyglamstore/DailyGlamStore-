@@ -19,15 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const payload = {
+    const payload = new URLSearchParams({
       name: form.name.value.trim(),
       product: form.product.value.trim(),
       rating: form.rating.value,
       review: form.review.value.trim(),
-      city: form.city.value.trim(),
-      approved: "",
-      timestamp: new Date().toISOString()
-    };
+      city: form.city.value.trim()
+    });
 
     submitBtn.disabled = true;
     showStatus("", "");
@@ -41,10 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const res = await fetch(submitEndpoint, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
+        body: payload
       });
 
       if (!res.ok) {
