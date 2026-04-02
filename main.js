@@ -380,7 +380,7 @@ document.getElementById("seconds").textContent = s;
     const localFallback = "data/testimonials.json";
 
     // Live Google Apps Script web app endpoint
-    const readEndpoint = "https://script.google.com/macros/s/AKfycbwc9J69Q5I2BWbhr5P1j8-zUbob2vjNLJf7PaTDXcoDE2l7qfSMjrcb-8JpCne9CNII/exec";
+    const readEndpoint = "https://script.google.com/macros/s/AKfycbxvX3Ar48y49TXjAUM_rtYk6xTFuJ_ZSTCcwbXNsQJ618o81eXVMBETYovfu7_aCc1U2Q/exec";
 
     let testimonialRows = [];
 
