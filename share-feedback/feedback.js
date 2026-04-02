@@ -3,8 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const submitBtn = document.getElementById("feedbackSubmitBtn");
   const statusBox = document.getElementById("feedbackStatus");
 
-  // Live Google Apps Script web app endpoint
-  const submitEndpoint = "https://script.google.com/macros/s/AKfycbxvX3Ar48y49TXjAUM_rtYk6xTFuJ_ZSTCcwbXNsQJ618o81eXVMBETYovfu7_aCc1U2Q/exec";
+  const submitEndpoint = "https://docs.google.com/forms/d/e/1FAIpQLScI5TOfpN4u2B95iEf5ComAyqCXtc_dfgsKWi-qCtDn6lm5aQ/formResponse";
 
   function showStatus(type, message) {
     statusBox.className = `feedback-status ${type}`;
@@ -20,31 +19,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const payload = new URLSearchParams({
-      name: form.name.value.trim(),
-      product: form.product.value.trim(),
-      rating: form.rating.value,
-      review: form.review.value.trim(),
-      city: form.city.value.trim()
+      "entry.1208653749": form.name.value.trim(),
+      "entry.1184556433": form.product.value.trim(),
+      "entry.645265237": form.rating.value,
+      "entry.983392800": form.review.value.trim(),
+      "entry.557158305": form.city.value.trim()
     });
 
     submitBtn.disabled = true;
     showStatus("", "");
 
-    if (!submitEndpoint) {
-      submitBtn.disabled = false;
-      showStatus("error", "Feedback form is not connected yet. Please try again shortly.");
-      return;
-    }
-
     try {
-      const res = await fetch(submitEndpoint, {
+      await fetch(submitEndpoint, {
         method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        },
         body: payload
       });
-
-      if (!res.ok) {
-        throw new Error("Submission failed");
-      }
 
       form.reset();
       showStatus("success", "Thank you! Your feedback has been received and will be reviewed soon.");
