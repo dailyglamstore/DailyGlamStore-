@@ -79,7 +79,7 @@
       color: inherit;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       min-width: 0;
     }
 
@@ -94,7 +94,7 @@
       display: flex;
       flex-direction: column;
       text-align: center;
-      line-height: 1.2;
+      line-height: 1.15;
       min-width: 0;
     }
 
@@ -108,7 +108,7 @@
     }
 
     .brand-tagline {
-      font-size: 10px;
+      font-size: 10.5px;
       color: var(--text-soft);
       margin-top: 2px;
     }
@@ -194,8 +194,10 @@
       color: var(--brand);
     }
 
-    .nav-dropdown:hover .dropdown-content {
-      display: block;
+    @media (min-width: 769px) {
+      .nav-dropdown:hover .dropdown-content {
+        display: block;
+      }
     }
 
     .hero,
@@ -474,7 +476,7 @@
         border: 1px solid var(--border);
         border-radius: 12px;
         padding: 10px 0;
-        width: 270px;
+        width: min(235px, calc(100vw - 24px));
         box-shadow: var(--shadow);
         gap: 0;
         overflow: hidden;
@@ -555,7 +557,12 @@
       }
 
       .brand-name {
-        font-size: 17px;
+        font-size: 18px;
+      }
+
+      .brand-logo {
+        width: 44px;
+        height: 44px;
       }
 
       .section-title {
@@ -569,12 +576,12 @@
       }
 
       .main-nav {
-        width: calc(100% - 32px);
-        right: 16px;
+        width: min(220px, calc(100vw - 20px));
+        right: 10px;
       }
 
       .brand-tagline {
-        font-size: 10px;
+        font-size: 10.5px;
       }
 
       .hero {
@@ -611,26 +618,26 @@
       </button>
 
       <nav class="main-nav" id="mainNav">
-        <a href="#home">Home</a>
+        <a href="#home">🏠 Home</a>
 
         <div class="nav-dropdown" id="categoriesDropdown">
-          <button class="nav-dropbtn" type="button" id="categoriesBtn">
-            <span>Categories</span>
+          <button class="nav-dropbtn" type="button" id="categoriesBtn" aria-expanded="false">
+            <span>▶ Categories</span>
             <span class="menu-arrow">▼</span>
           </button>
           <div class="dropdown-content">
-            <a href="#top-picks">Top Picks</a>
-            <a href="#skincare-recommendations">Skincare Recommendations</a>
-            <a href="#haircare-recommendations">Haircare Recommendations</a>
+            <a href="#top-picks">🔥 Top Picks</a>
+            <a href="#skincare-recommendations">✨ Skincare Recommendations</a>
+            <a href="#haircare-recommendations">💁‍♀️ Haircare Recommendations</a>
           </div>
         </div>
 
-        <a href="#skincare-guide">Skincare Guide</a>
-        <a href="#haircare-guide">Haircare Guide</a>
-        <a href="#about">About</a>
-        <a href="#disclosure">Disclosure</a>
-        <a href="#privacy">Privacy</a>
-        <a href="#contact">Contact</a>
+        <a href="#skincare-guide">🧴 Skincare Guide</a>
+        <a href="#haircare-guide">🪮 Haircare Guide</a>
+        <a href="#about">💎 About</a>
+        <a href="#disclosure">💼 Disclosure</a>
+        <a href="#privacy">🔐 Privacy</a>
+        <a href="#contact">📞 Contact</a>
       </nav>
     </div>
   </header>
@@ -803,10 +810,15 @@
     const categoriesBtn = document.getElementById("categoriesBtn");
     const siteHeader = document.getElementById("siteHeader");
 
+    function setCategoriesOpen(isOpen) {
+      categoriesDropdown.classList.toggle("open", isOpen);
+      categoriesBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    }
+
     function closeMenu() {
       mainNav.classList.remove("show");
       menuToggle.setAttribute("aria-expanded", "false");
-      categoriesDropdown.classList.remove("open");
+      setCategoriesOpen(false);
     }
 
     function toggleMenu() {
@@ -824,7 +836,8 @@
       if (window.innerWidth <= 768) {
         e.preventDefault();
         e.stopPropagation();
-        categoriesDropdown.classList.toggle("open");
+        const willOpen = !categoriesDropdown.classList.contains("open");
+        setCategoriesOpen(willOpen);
       }
     });
 
