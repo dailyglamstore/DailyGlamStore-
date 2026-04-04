@@ -105,6 +105,7 @@ ${p.images.length > 1 ? '<div class="swipe-arrow">➜</div>' : ''}
       const slides = [...track.querySelectorAll(".slide-item, img")];
       if (!slides.length) return;
       const counter = slider.querySelector(".image-counter");
+      const swipeArrow = slider.querySelector(".swipe-arrow");
 
       let index = 0;
       let startX = 0;
@@ -139,9 +140,7 @@ ${p.images.length > 1 ? '<div class="swipe-arrow">➜</div>' : ''}
 
       track.addEventListener("touchstart", e => {
 startX = e.touches[0].clientX;
-
-const arrow = slider.querySelector(".swipe-arrow");
-if (arrow) arrow.style.display = "none";
+if (swipeArrow) swipeArrow.style.display = "none";
 
 }, { passive: true });
 
@@ -156,6 +155,13 @@ if (arrow) arrow.style.display = "none";
       window.addEventListener("resize", () => {
         calcSize(); update();
       });
+
+      if (swipeArrow && slides.length > 1) {
+        swipeArrow.addEventListener("click", () => {
+          index = index >= slides.length - 1 ? 0 : index + 1;
+          update();
+        });
+      }
     });
   }
 

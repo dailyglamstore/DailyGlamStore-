@@ -229,6 +229,9 @@ body{
 }
 
 .feedback-submit{
+  display:block;
+  width:min(240px,100%);
+  margin:2px auto 0;
   border:none;
   border-radius:10px;
   padding:11px;
@@ -280,8 +283,8 @@ body{
 }
 
 .footer-bottom{
-  margin-top:14px;
-  padding-top:10px;
+  margin-top:10px;
+  padding-top:0;
   text-align:center;
 }
 
@@ -290,7 +293,17 @@ body{
 .footer-location{
   font-size:11px;
   color:#9a6b5f;
-  margin-top:4px;
+}
+
+.footer-powered{
+  margin-top:6px;
+  color:#7a3b4a;
+  font-weight:500;
+}
+
+.footer-location{
+  margin-top:2px;
+  font-size:10px;
 }
 
 #feedback-form-section,
@@ -390,7 +403,7 @@ body{
 
         <div>
           <label class="form-label" for="city">City</label>
-          <input class="input-control" id="city" name="city" type="text">
+          <input class="input-control" id="city" name="city" type="text" required>
         </div>
 
         <p class="submit-note">By submitting your feedback, you allow Daily Glam Store to review and publish your name and review on the website after approval.</p>

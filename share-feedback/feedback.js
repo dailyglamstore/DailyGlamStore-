@@ -3,24 +3,50 @@ document.addEventListener("DOMContentLoaded", () => {
   const submitBtn = document.getElementById("feedbackSubmitBtn");
   const statusBox = document.getElementById("feedbackStatus");
   let statusFadeTimeout;
+  let statusHideTimeout;
 
   const submitEndpoint = "https://docs.google.com/forms/d/e/1FAIpQLScI5TOfpN4u2B95iEf5ComAyqCXtc_dfgsKWi-qCtDn6lm5aQ/formResponse";
 
+  form.city.addEventListener("input", () => {
+    form.city.setCustomValidity("");
+  });
+
   function showStatus(type, message) {
     clearTimeout(statusFadeTimeout);
+    clearTimeout(statusHideTimeout);
     statusBox.classList.remove("fade-out");
+    statusBox.style.display = "none";
+
+    if (!message) return;
+
     statusBox.className = `feedback-status ${type}`;
     statusBox.textContent = message;
+    statusBox.style.display = "block";
 
     if (type === "success" && message) {
       statusFadeTimeout = setTimeout(() => {
         statusBox.classList.add("fade-out");
-      }, 25000);
+      }, 8000);
+
+      statusHideTimeout = setTimeout(() => {
+        statusBox.style.display = "none";
+        statusBox.classList.remove("fade-out");
+        statusBox.textContent = "";
+      }, 8800);
     }
   }
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    const cityValue = form.city.value.trim();
+    form.city.value = cityValue;
+
+    if (!cityValue) {
+      form.city.setCustomValidity("Please enter your city.");
+    } else {
+      form.city.setCustomValidity("");
+    }
 
     if (!form.checkValidity()) {
       form.reportValidity();
@@ -32,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "entry.1184556433": form.product.value.trim(),
       "entry.645265237": form.rating.value,
       "entry.983392800": form.review.value.trim(),
-      "entry.557158305": form.city.value.trim()
+      "entry.557158305": cityValue
     });
 
     submitBtn.disabled = true;
