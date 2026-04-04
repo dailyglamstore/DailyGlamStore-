@@ -363,12 +363,29 @@ document.getElementById("seconds").textContent = s;
     return Math.round(parsed);
   }
 
+  function parseTestimonialTimestamp(value) {
+    const raw = String(value || "").trim();
+    if (!raw) return null;
+
+    const directParse = new Date(raw);
+    if (!Number.isNaN(directParse.getTime())) return directParse;
+
+    const normalized = raw.replace(/(\d+)\/(\d+)\/(\d{2,4})/, (_, month, day, year) => {
+      const fullYear = year.length === 2 ? `20${year}` : year;
+      return `${fullYear}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+    });
+    const fallbackParse = new Date(normalized);
+    if (!Number.isNaN(fallbackParse.getTime())) return fallbackParse;
+
+    return null;
+  }
+
   function formatTestimonialDate(value) {
     const raw = String(value || "").trim();
     if (!raw) return "";
 
-    const parsedDate = new Date(raw);
-    if (Number.isNaN(parsedDate.getTime())) return raw;
+    const parsedDate = parseTestimonialTimestamp(raw);
+    if (!parsedDate) return raw;
 
     return new Intl.DateTimeFormat("en-GB", {
       day: "numeric",
@@ -542,7 +559,14 @@ document.getElementById("seconds").textContent = s;
       }
     }
 
-    const approvedTestimonials = testimonialRows.filter(row => normalizeApprovalValue(row.approved));
+    const approvedTestimonials = testimonialRows
+      .filter(row => normalizeApprovalValue(row.approved))
+      .sort((a, b) => {
+        const timeA = parseTestimonialTimestamp(a.timestamp)?.getTime() || 0;
+        const timeB = parseTestimonialTimestamp(b.timestamp)?.getTime() || 0;
+        return timeB - timeA;
+      });
+
     renderTestimonials(approvedTestimonials);
   }
 
