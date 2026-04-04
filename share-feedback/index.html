@@ -6,6 +6,11 @@
 <title>Share Your Feedback | Daily Glam Store</title>
 <link rel="icon" type="image/png" href="../images/logo.png">
 <style>
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:95px;
+}
+
 body{
   margin:0;
   font-family:Arial,sans-serif;
@@ -306,8 +311,8 @@ body{
   font-size:10px;
 }
 
-#feedback-form-section,
-#feedback-contact{
+#feedback-form,
+#contact{
   scroll-margin-top:95px;
 }
 </style>
@@ -331,44 +336,16 @@ body{
 
         <div class="menu-dropdown" id="menuDropdown">
           <a href="/#top">🏠 Home</a>
-          <a href="/#footer-about">💎 About Us</a>
-
-          <div class="menu-category" onclick="toggleCategoryMenu(event)">
-            <span class="cat-arrow">▶</span>
-            🗂️ Categories
-          </div>
-          <div class="sub-menu" id="categorySubMenu">
-            <a href="/#earrings">🧿 Earrings, Jewellery & Cosmetics</a>
-            <a href="/#handbags">👜 Handbags & Purses</a>
-            <a href="/#wallets">⌚ Wallets, Belts & Watches</a>
-          </div>
-
-          <a href="/#footer-ordering">🛍️ How Ordering Works?</a>
-          <a href="/#footer-shipping">📦 Shipping & Delivery</a>
-          <a href="/#footer-returns">🔁 Returns & Refunds</a>
-
-          <div class="menu-category" onclick="toggleLegalMenu(event)">
-            <span class="cat-arrow">▶</span>
-            ⚖️ Legal & Policies
-          </div>
-          <div class="sub-menu" id="legalSubMenu">
-            <a href="/#footer-disclaimer">⚠️ Disclaimer</a>
-            <a href="/#footer-privacy">🔐 Privacy Policy</a>
-            <a href="/#footer-affiliate">💼 Affiliate Disclosure</a>
-          </div>
-
-          <a href="#feedback-form-section">📝 Feedback Form</a>
-          <a href="#feedback-contact">📞 Contact & Support</a>
-          <a href="https://www.instagram.com/daily_glam_store/" target="_blank" class="menu-ig">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="ig-icon">
-            Follow on Instagram
-          </a>
+          <a href="/#categories">🗂️ Categories</a>
+          <a href="/#testimonials">⭐ Customer Reviews</a>
+          <a href="#feedback-form">📝 Feedback Form</a>
+          <a href="#contact">📞 Contact & Support</a>
         </div>
       </div>
     </div>
   </header>
 
-  <main class="feedback-page" id="feedback-form-section">
+  <main class="feedback-page" id="feedback-form">
     <section class="feedback-card">
       <h1 class="feedback-title">Share Your Feedback</h1>
       <p class="feedback-subtitle">We’d love to hear about your experience with Daily Glam Store.</p>
@@ -415,7 +392,7 @@ body{
     </section>
   </main>
 
-  <section class="feedback-bottom" id="feedback-contact">
+  <section class="feedback-bottom" id="contact">
     <div class="feedback-bottom-inner">
       <div style="font-size:16px;font-weight:700;color:#8f3d4f;margin-bottom:8px;">📞 Contact & Support</div>
       <div style="font-size:13px;color:#555;line-height:1.6;">
@@ -444,30 +421,46 @@ body{
 
     const menu = document.getElementById("menuDropdown");
     const menuBtn = document.querySelector(".menu-btn");
-    const categorySubMenu = document.getElementById("categorySubMenu");
-    const legalSubMenu = document.getElementById("legalSubMenu");
+    function ensureSectionId(selector, preferredId) {
+      const section = document.querySelector(selector);
+      if (!section) return null;
+
+      if (!section.id) {
+        section.id = preferredId;
+      }
+
+      if (document.querySelectorAll(`#${CSS.escape(section.id)}`).length > 1) {
+        let suffix = 2;
+        let nextId = preferredId;
+        while (document.getElementById(nextId)) {
+          nextId = `${preferredId}-${suffix++}`;
+        }
+        section.id = nextId;
+      }
+
+      return section.id;
+    }
+
+    const feedbackFormId = ensureSectionId(".feedback-page", "feedback-form");
+    const contactId = ensureSectionId(".feedback-bottom", "contact");
+
+    const feedbackFormLink = menu.querySelector('a[href^="#feedback-form"]');
+    const contactLink = menu.querySelector('a[href^="#contact"]');
+
+    if (feedbackFormLink && feedbackFormId) {
+      feedbackFormLink.setAttribute("href", `#${feedbackFormId}`);
+    }
+
+    if (contactLink && contactId) {
+      contactLink.setAttribute("href", `#${contactId}`);
+    }
 
     function closeMenu() {
       menu.style.display = "none";
-      categorySubMenu.classList.remove("open");
-      legalSubMenu.classList.remove("open");
-      document.querySelectorAll(".menu-category").forEach(item => item.classList.remove("open"));
     }
 
     window.toggleMenu = () => {
       menu.style.display = menu.style.display === "block" ? "none" : "block";
-    };
-
-    window.toggleCategoryMenu = (e) => {
-      e.stopPropagation();
-      categorySubMenu.classList.toggle("open");
-      e.currentTarget.classList.toggle("open");
-    };
-
-    window.toggleLegalMenu = (e) => {
-      e.stopPropagation();
-      legalSubMenu.classList.toggle("open");
-      e.currentTarget.classList.toggle("open");
     };
 
     document.querySelectorAll(".menu-dropdown a").forEach(link => {
