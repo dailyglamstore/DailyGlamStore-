@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const statusBox = document.getElementById("feedbackStatus");
   let statusFadeTimeout;
   let statusHideTimeout;
+  const successVisibleMs = 5000;
+  const fadeDurationMs = 700;
 
   const submitEndpoint = "https://docs.google.com/forms/d/e/1FAIpQLScI5TOfpN4u2B95iEf5ComAyqCXtc_dfgsKWi-qCtDn6lm5aQ/formResponse";
 
@@ -16,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     clearTimeout(statusHideTimeout);
     statusBox.classList.remove("fade-out");
     statusBox.style.display = "none";
+    statusBox.textContent = "";
 
     if (!message) return;
 
@@ -26,13 +29,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (type === "success" && message) {
       statusFadeTimeout = setTimeout(() => {
         statusBox.classList.add("fade-out");
-      }, 8000);
+      }, Math.max(successVisibleMs - fadeDurationMs, 0));
 
       statusHideTimeout = setTimeout(() => {
         statusBox.style.display = "none";
         statusBox.classList.remove("fade-out");
         statusBox.textContent = "";
-      }, 8800);
+      }, successVisibleMs);
     }
   }
 

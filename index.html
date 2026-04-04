@@ -649,12 +649,26 @@ margin-top:2px;
   color:#a17a84;
 }
 
-.testimonials-slider .swipe-arrow{
-  right:6px;
-  bottom:10px;
-  font-size:14px;
-  background:rgba(178,69,90,.72);
-  padding:4px 8px;
+.slider-dots{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  margin-top:10px;
+}
+
+.slider-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  border:none;
+  background:rgba(45,45,45,.22);
+  padding:0;
+  cursor:pointer;
+}
+
+.slider-dot.active{
+  background:#2f2f2f;
 }
 
 </style>

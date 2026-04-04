@@ -105,6 +105,7 @@ ${p.images.length > 1 ? '<div class="swipe-arrow">➜</div>' : ''}
       const slides = [...track.querySelectorAll(".slide-item, img")];
       if (!slides.length) return;
       const counter = slider.querySelector(".image-counter");
+      const dots = [...slider.querySelectorAll(".slider-dot")];
       const swipeArrow = slider.querySelector(".swipe-arrow");
 
       let index = 0;
@@ -123,11 +124,18 @@ ${p.images.length > 1 ? '<div class="swipe-arrow">➜</div>' : ''}
         slides.forEach(slide => slide.classList.remove("active-slide"));
         slides[index].classList.add("active-slide");
 
-        if (!counter) return;
-        counter.textContent = `${index + 1} / ${slides.length}`;
-        counter.style.opacity = "1";
-        clearTimeout(counter._t);
-        counter._t = setTimeout(() => counter.style.opacity = "0", 1500);
+        if (dots.length) {
+          dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === index);
+          });
+        }
+
+        if (counter) {
+          counter.textContent = `${index + 1} / ${slides.length}`;
+          counter.style.opacity = "1";
+          clearTimeout(counter._t);
+          counter._t = setTimeout(() => counter.style.opacity = "0", 1500);
+        }
       }
 
       if (!(slides[0] instanceof HTMLImageElement) || slides[0].complete) {
@@ -138,13 +146,12 @@ ${p.images.length > 1 ? '<div class="swipe-arrow">➜</div>' : ''}
         }, { once: true });
       }
 
-      track.addEventListener("touchstart", e => {
-startX = e.touches[0].clientX;
-if (swipeArrow) swipeArrow.style.display = "none";
+      slider.addEventListener("touchstart", e => {
+        startX = e.touches[0].clientX;
+        if (swipeArrow) swipeArrow.style.display = "none";
+      }, { passive: true });
 
-}, { passive: true });
-
-      track.addEventListener("touchend", e => {
+      slider.addEventListener("touchend", e => {
         const diff = startX - e.changedTouches[0].clientX;
         if (Math.abs(diff) < 22) return;
         if (diff > 0 && index < slides.length - 1) index++;
@@ -160,6 +167,15 @@ if (swipeArrow) swipeArrow.style.display = "none";
         swipeArrow.addEventListener("click", () => {
           index = index >= slides.length - 1 ? 0 : index + 1;
           update();
+        });
+      }
+
+      if (dots.length) {
+        dots.forEach((dot, dotIndex) => {
+          dot.addEventListener("click", () => {
+            index = dotIndex;
+            update();
+          });
         });
       }
     });
@@ -401,8 +417,11 @@ document.getElementById("seconds").textContent = s;
       <div class="slides testimonial-slides">
         ${slidesMarkup}
       </div>
-      <div class="image-counter"></div>
-      ${testimonials.length > 1 ? '<div class="swipe-arrow">➜</div>' : ""}
+      ${testimonials.length > 1 ? `
+        <div class="slider-dots" aria-label="Testimonial slider indicators">
+          ${testimonials.map((_, i) => `<button type="button" class="slider-dot${i === 0 ? " active" : ""}" aria-label="Go to testimonial ${i + 1}"></button>`).join("")}
+        </div>
+      ` : ""}
     `;
 
     initControlledSliders();
