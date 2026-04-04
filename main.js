@@ -324,12 +324,7 @@ document.getElementById("seconds").textContent = s;
 }
 
   function normalizeApprovalValue(value) {
-    const normalized = String(value || "").trim().toLowerCase();
-
-    // Update this list if you want to allow more approval words later.
-    const allowedApprovalValues = ["true", "yes", "approved", "1"];
-
-    return allowedApprovalValues.includes(normalized);
+    return String(value || "").trim().toLowerCase() === "yes";
   }
 
   function normalizeRatingValue(value) {
@@ -369,32 +364,112 @@ document.getElementById("seconds").textContent = s;
     }).join("");
   }
 
-  async function fetchTestimonialsFromSource(sourceUrl) {
+  function parseCSV(csvText) {
+    if (!csvText) return [];
+
+    const rows = [];
+    let row = [];
+    let cell = "";
+    let inQuotes = false;
+
+    for (let i = 0; i < csvText.length; i++) {
+      const char = csvText[i];
+      const nextChar = csvText[i + 1];
+
+      if (char === "\"") {
+        if (inQuotes && nextChar === "\"") {
+          cell += "\"";
+          i++;
+        } else {
+          inQuotes = !inQuotes;
+        }
+        continue;
+      }
+
+      if (char === "," && !inQuotes) {
+        row.push(cell);
+        cell = "";
+        continue;
+      }
+
+      if ((char === "\n" || char === "\r") && !inQuotes) {
+        if (char === "\r" && nextChar === "\n") i++;
+        row.push(cell);
+        if (row.some(value => value.trim() !== "")) rows.push(row);
+        row = [];
+        cell = "";
+        continue;
+      }
+
+      cell += char;
+    }
+
+    if (cell !== "" || row.length) {
+      row.push(cell);
+      if (row.some(value => value.trim() !== "")) rows.push(row);
+    }
+
+    return rows;
+  }
+
+  function parseTestimonialsCsvToJson(csvText) {
+    const expectedHeaders = [
+      "Name",
+      "Product Purchased",
+      "Rating",
+      "Review",
+      "City",
+      "approved"
+    ];
+
+    const csvRows = parseCSV(csvText);
+    if (!csvRows.length) return [];
+
+    const headerRow = csvRows[0].map((header) => String(header || "").trim());
+    const headerIndexMap = expectedHeaders.reduce((acc, header) => {
+      const index = headerRow.indexOf(header);
+      if (index === -1) throw new Error(`Missing required CSV header: ${header}`);
+      acc[header] = index;
+      return acc;
+    }, {});
+
+    return csvRows.slice(1).map((columns) => ({
+      name: String(columns[headerIndexMap["Name"]] || "").trim(),
+      product: String(columns[headerIndexMap["Product Purchased"]] || "").trim(),
+      rating: String(columns[headerIndexMap["Rating"]] || "").trim(),
+      review: String(columns[headerIndexMap["Review"]] || "").trim(),
+      city: String(columns[headerIndexMap["City"]] || "").trim(),
+      approved: String(columns[headerIndexMap["approved"]] || "").trim()
+    }));
+  }
+
+  async function fetchTestimonialsFromCsv(sourceUrl) {
     const res = await fetch(sourceUrl);
-    if (!res.ok) throw new Error("Failed to load testimonials");
+    if (!res.ok) throw new Error("Failed to load testimonials CSV");
+    const csvText = await res.text();
+    return parseTestimonialsCsvToJson(csvText);
+  }
+
+  async function fetchTestimonialsFromJson(sourceUrl) {
+    const res = await fetch(sourceUrl);
+    if (!res.ok) throw new Error("Failed to load testimonials JSON");
     const data = await res.json();
     return Array.isArray(data) ? data : [];
   }
 
   async function loadTestimonials() {
     const localFallback = "data/testimonials.json";
-
-    // Live Google Apps Script web app endpoint
-    const readEndpoint = "https://script.google.com/macros/s/AKfycbxvX3Ar48y49TXjAUM_rtYk6xTFuJ_ZSTCcwbXNsQJ618o81eXVMBETYovfu7_aCc1U2Q/exec";
+    const csvEndpoint = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQKCr35cDOhCG0FTf-l5W8AhjjaPU5cvKdXwOVD2s840rtkANRHRYw-OZOFEpJOl01TUizdc9WglJyS/pub?output=csv";
 
     let testimonialRows = [];
 
     try {
-      if (readEndpoint) {
-        testimonialRows = await fetchTestimonialsFromSource(readEndpoint);
-      } else {
-        testimonialRows = await fetchTestimonialsFromSource(localFallback);
-      }
+      testimonialRows = await fetchTestimonialsFromCsv(csvEndpoint);
     } catch (err) {
       console.error("Primary testimonials fetch failed:", err);
 
       try {
-        testimonialRows = await fetchTestimonialsFromSource(localFallback);
+        testimonialRows = await fetchTestimonialsFromJson(localFallback);
       } catch (fallbackErr) {
         console.error("Fallback testimonials fetch failed:", fallbackErr);
         testimonialRows = [];
