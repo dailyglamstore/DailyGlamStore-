@@ -97,9 +97,13 @@ ${p.images.length > 1 ? '<div class="swipe-arrow">➜</div>' : ''}
 
   function initControlledSliders() {
     document.querySelectorAll(".slider").forEach(slider => {
+      if (slider.dataset.sliderReady === "yes") return;
+      slider.dataset.sliderReady = "yes";
 
       const track = slider.querySelector(".slides");
-      const slides = [...track.querySelectorAll("img")];
+      if (!track) return;
+      const slides = [...track.querySelectorAll(".slide-item, img")];
+      if (!slides.length) return;
       const counter = slider.querySelector(".image-counter");
 
       let index = 0;
@@ -115,16 +119,17 @@ ${p.images.length > 1 ? '<div class="swipe-arrow">➜</div>' : ''}
         if (!slideSize) return;
         track.style.transform = `translateX(-${index * slideSize}px)`;
 
-slides.forEach(img => img.classList.remove("active-slide"));
-slides[index].classList.add("active-slide");
+        slides.forEach(slide => slide.classList.remove("active-slide"));
+        slides[index].classList.add("active-slide");
 
+        if (!counter) return;
         counter.textContent = `${index + 1} / ${slides.length}`;
         counter.style.opacity = "1";
         clearTimeout(counter._t);
         counter._t = setTimeout(() => counter.style.opacity = "0", 1500);
       }
 
-      if (slides[0].complete) {
+      if (!(slides[0] instanceof HTMLImageElement) || slides[0].complete) {
         calcSize(); update();
       } else {
         slides[0].addEventListener("load", () => {
@@ -335,6 +340,20 @@ document.getElementById("seconds").textContent = s;
     return Math.round(parsed);
   }
 
+  function formatTestimonialDate(value) {
+    const raw = String(value || "").trim();
+    if (!raw) return "";
+
+    const parsedDate = new Date(raw);
+    if (Number.isNaN(parsedDate.getTime())) return raw;
+
+    return new Intl.DateTimeFormat("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric"
+    }).format(parsedDate);
+  }
+
   function renderTestimonials(testimonials) {
     const container = document.getElementById("testimonials-list");
     if (!container) return;
@@ -344,24 +363,43 @@ document.getElementById("seconds").textContent = s;
       return;
     }
 
-    container.innerHTML = testimonials.map((item) => {
+    const slidesMarkup = testimonials.map((item) => {
       const name = item.name || "Verified Customer";
+      const city = item.city ? `<div class="testimonial-city">${item.city}</div>` : "";
       const product = item.product ? `<div class="testimonial-product">Product: ${item.product}</div>` : "";
       const rating = normalizeRatingValue(item.rating);
       const stars = "★".repeat(rating) + "☆".repeat(5 - rating);
       const review = item.review || "";
+      const reviewDate = formatTestimonialDate(item.timestamp);
+      const dateMarkup = reviewDate ? `<div class="testimonial-date">${reviewDate}</div>` : "";
 
       return `
-        <div class="testimonial-card">
-          <div class="testimonial-top">
-            <div class="testimonial-name">${name}</div>
+        <div class="testimonial-slide slide-item">
+          <div class="testimonial-card">
+            <div class="testimonial-top">
+              <div>
+                <div class="testimonial-name">${name}</div>
+                ${city}
+              </div>
             <div class="testimonial-stars" aria-label="${rating} star rating">${stars}</div>
           </div>
           ${product}
           <p class="testimonial-review">${review}</p>
+          ${dateMarkup}
+          </div>
         </div>
       `;
     }).join("");
+
+    container.innerHTML = `
+      <div class="slides testimonial-slides">
+        ${slidesMarkup}
+      </div>
+      <div class="image-counter"></div>
+      ${testimonials.length > 1 ? '<div class="swipe-arrow">➜</div>' : ""}
+    `;
+
+    initControlledSliders();
   }
 
   function parseCSV(csvText) {
@@ -414,6 +452,7 @@ document.getElementById("seconds").textContent = s;
 
   function parseTestimonialsCsvToJson(csvText) {
     const expectedHeaders = [
+      "Timestamp",
       "Name",
       "Product Purchased",
       "Rating",
@@ -434,6 +473,7 @@ document.getElementById("seconds").textContent = s;
     }, {});
 
     return csvRows.slice(1).map((columns) => ({
+      timestamp: String(columns[headerIndexMap["Timestamp"]] || "").trim(),
       name: String(columns[headerIndexMap["Name"]] || "").trim(),
       product: String(columns[headerIndexMap["Product Purchased"]] || "").trim(),
       rating: String(columns[headerIndexMap["Rating"]] || "").trim(),

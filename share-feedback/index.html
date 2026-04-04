@@ -144,19 +144,18 @@ body{
 }
 
 .menu-ig{
-  display:flex !important;
+  display:flex;
   align-items:center;
-  justify-content:center;
   gap:8px;
-  padding:4px 10px !important;
-  background:#fbf6f3;
-  font-size:12px !important;
-  color:#a44a5c !important;
+  padding:10px 14px;
+  font-size:13px;
+  color:#a44a5c;
   text-decoration:none;
-  border-bottom:1px solid #f2d6dc;
+  border-bottom:1px solid #f5d8cf;
 }
 
-.ig-icon{width:18px;height:18px;}
+.menu-ig:hover{background:#fff3ee;}
+.menu-ig .ig-icon{width:16px;height:16px;}
 
 .feedback-page{
   min-height:calc(100vh - 180px);
@@ -238,9 +237,11 @@ body{
   font-size:14px;
   font-weight:700;
   cursor:pointer;
+  transition:transform .12s ease, box-shadow .18s ease, filter .18s ease;
 }
 
 .feedback-submit:disabled{opacity:.65;cursor:not-allowed;}
+.feedback-submit:active:not(:disabled){transform:scale(.98);box-shadow:inset 0 2px 6px rgba(0,0,0,.2);filter:brightness(.97);}
 
 .feedback-status{
   margin-top:12px;
@@ -248,7 +249,10 @@ body{
   border-radius:10px;
   padding:10px;
   display:none;
+  opacity:1;
+  transition:opacity .7s ease;
 }
+.feedback-status.fade-out{opacity:0;}
 
 .feedback-status.success{
   display:block;
@@ -277,7 +281,6 @@ body{
 
 .footer-bottom{
   margin-top:14px;
-  border-top:1px solid #efc8d2;
   padding-top:10px;
   text-align:center;
 }
@@ -386,7 +389,7 @@ body{
         </div>
 
         <div>
-          <label class="form-label" for="city">City (optional)</label>
+          <label class="form-label" for="city">City</label>
           <input class="input-control" id="city" name="city" type="text">
         </div>
 
