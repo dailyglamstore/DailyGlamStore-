@@ -2,12 +2,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("feedbackForm");
   const submitBtn = document.getElementById("feedbackSubmitBtn");
   const statusBox = document.getElementById("feedbackStatus");
+  let statusFadeTimeout;
 
   const submitEndpoint = "https://docs.google.com/forms/d/e/1FAIpQLScI5TOfpN4u2B95iEf5ComAyqCXtc_dfgsKWi-qCtDn6lm5aQ/formResponse";
 
   function showStatus(type, message) {
+    clearTimeout(statusFadeTimeout);
+    statusBox.classList.remove("fade-out");
     statusBox.className = `feedback-status ${type}`;
     statusBox.textContent = message;
+
+    if (type === "success" && message) {
+      statusFadeTimeout = setTimeout(() => {
+        statusBox.classList.add("fade-out");
+      }, 25000);
+    }
   }
 
   form.addEventListener("submit", async (e) => {

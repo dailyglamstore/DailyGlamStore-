@@ -576,10 +576,21 @@ margin-top:2px;
   color:#8f5a66;
 }
 
-.testimonials-grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:14px;
+.testimonials-slider{
+  position:relative;
+  overflow:hidden;
+  padding-bottom:4px;
+}
+
+.testimonials-slider .slides{
+  gap:12px;
+  padding-left:4px;
+}
+
+.testimonial-slide{
+  width:86%;
+  min-width:86%;
+  flex-shrink:0;
 }
 
 .testimonial-card{
@@ -588,12 +599,14 @@ margin-top:2px;
   border-radius:12px;
   padding:12px;
   box-shadow:0 4px 14px rgba(178,69,90,.08);
+  height:100%;
+  box-sizing:border-box;
 }
 
 .testimonial-top{
   display:flex;
   justify-content:space-between;
-  align-items:center;
+  align-items:flex-start;
   gap:8px;
 }
 
@@ -603,10 +616,17 @@ margin-top:2px;
   color:#8f3d4f;
 }
 
+.testimonial-city{
+  margin-top:2px;
+  font-size:12px;
+  color:#9a6b5f;
+}
+
 .testimonial-stars{
   font-size:14px;
   color:#c58f00;
   letter-spacing:1px;
+  white-space:nowrap;
 }
 
 .testimonial-product{
@@ -622,16 +642,18 @@ margin-top:2px;
   color:#555;
 }
 
-@media (min-width:760px){
-  .testimonials-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
+.testimonial-date{
+  margin-top:8px;
+  font-size:11px;
+  color:#a17a84;
 }
 
-@media (min-width:1020px){
-  .testimonials-grid{
-    grid-template-columns:repeat(3,minmax(0,1fr));
-  }
+.testimonials-slider .swipe-arrow{
+  right:6px;
+  bottom:10px;
+  font-size:14px;
+  background:rgba(178,69,90,.72);
+  padding:4px 8px;
 }
 
 </style>
@@ -770,7 +792,7 @@ Main Bazar, Gurdaspur
 <div class="testimonials-wrap">
   <div class="category" id="testimonials">💬 What Our Customers Say</div>
   <p class="testimonials-subtext">Real feedback from Daily Glam Store customers</p>
-  <div class="testimonials-grid" id="testimonials-list"></div>
+  <div class="slider testimonials-slider" id="testimonials-list"></div>
 </div>
 
 <footer style="background:#fff3ee;border-top:1px solid #f1cfc4;margin-top:30px;">
