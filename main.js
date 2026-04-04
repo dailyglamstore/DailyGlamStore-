@@ -98,12 +98,13 @@ ${p.images.length > 1 ? '<div class="swipe-arrow">➜</div>' : ''}
   function initControlledSliders() {
     document.querySelectorAll(".slider").forEach(slider => {
       if (slider.dataset.sliderReady === "yes") return;
-      slider.dataset.sliderReady = "yes";
 
       const track = slider.querySelector(".slides");
       if (!track) return;
       const slides = [...track.querySelectorAll(".slide-item, img")];
       if (!slides.length) return;
+
+      slider.dataset.sliderReady = "yes";
       const counter = slider.querySelector(".image-counter");
       const dots = [...slider.querySelectorAll(".slider-dot")];
       const swipeArrow = slider.querySelector(".swipe-arrow");
