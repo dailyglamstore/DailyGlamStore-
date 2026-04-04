@@ -13,12 +13,157 @@ body{
   color:#555;
 }
 
-.feedback-page{
-  min-height:100vh;
+.site-header{
+  background:#ffe0ea;
+  padding:6px 10px;
+  border-bottom:1px solid #f1b6c6;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  transition:padding .25s ease,box-shadow .25s ease;
+}
+
+.site-header.shrink{
+  padding:3px 10px;
+  box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+
+.site-header.shrink .logo-small{width:36px;height:36px;}
+.site-header.shrink .brand-name{font-size:17px;}
+.site-header.shrink .brand-tagline{font-size:11px;}
+
+.header-inner{
   display:flex;
   align-items:center;
+  justify-content:space-between;
+}
+
+.brand-wrap{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+}
+
+.logo-small{
+  width:48px;
+  height:48px;
+  object-fit:contain;
+}
+
+.brand-text{text-align:center;}
+.brand-name{font-size:20px;font-weight:bold;color:#b2455a;}
+.brand-tagline{font-size:10px;color:#9a6b5f;}
+
+.top-menu{position:relative;}
+
+.menu-btn{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:14px;
+  font-weight:600;
+  color:#8f3d4f;
+  cursor:pointer;
+  padding:6px 8px;
+}
+
+.menu-icon{font-size:22px;}
+
+.menu-dropdown{
+  position:absolute;
+  top:40px;
+  right:0;
+  width:260px;
+  background:#fff;
+  border:1px solid #f2b9a6;
+  border-radius:10px;
+  box-shadow:0 8px 18px rgba(0,0,0,.15);
+  display:none;
+  overflow:hidden;
+  z-index:999;
+}
+
+.menu-dropdown a{
+  display:block;
+  padding:10px 14px;
+  font-size:14px;
+  color:#7a3b4a;
+  text-decoration:none;
+  border-bottom:1px solid #f5d8cf;
+}
+
+.menu-dropdown a:last-child{border-bottom:none;}
+.menu-dropdown a:active{background:#fff3ee;}
+
+.menu-category{
+  padding:10px 14px;
+  font-size:14px;
+  font-weight:400;
+  color:#7a3b4a;
+  cursor:pointer;
+  border-bottom:1px solid #f5d8cf;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.cat-arrow{
+  display:inline-block;
+  transition:transform 0.25s ease;
+  font-size:12px;
+  margin-right:6px;
+}
+
+.menu-category.open .cat-arrow{transform:rotate(90deg);}
+
+.sub-menu{
+  max-height:0;
+  overflow:hidden;
+  background:#fff;
+  transition:max-height 0.3s ease, opacity 0.25s ease;
+  opacity:0;
+  border-bottom:1px solid #f5d8cf;
+}
+
+.sub-menu.open{max-height:300px;opacity:1;}
+
+.sub-menu.open::before,
+.sub-menu.open::after{
+  content:"";
+  display:block;
+  height:3px;
+  background:#d9a9b2;
+}
+
+.sub-menu a{
+  padding:10px 14px 10px 26px;
+  font-size:13px;
+  background:#fff7f4;
+  border-bottom:1px solid #f1d2c9;
+}
+
+.menu-ig{
+  display:flex !important;
+  align-items:center;
   justify-content:center;
-  padding:20px 14px;
+  gap:8px;
+  padding:4px 10px !important;
+  background:#fbf6f3;
+  font-size:12px !important;
+  color:#a44a5c !important;
+  text-decoration:none;
+  border-bottom:1px solid #f2d6dc;
+}
+
+.ig-icon{width:18px;height:18px;}
+
+.feedback-page{
+  min-height:calc(100vh - 180px);
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:24px 14px;
 }
 
 .feedback-card{
@@ -44,10 +189,7 @@ body{
   line-height:1.6;
 }
 
-.feedback-form{
-  display:grid;
-  gap:12px;
-}
+.feedback-form{display:grid;gap:12px;}
 
 .form-label{
   display:block;
@@ -70,10 +212,7 @@ body{
   background:#fff;
 }
 
-.textarea-control{
-  min-height:110px;
-  resize:vertical;
-}
+.textarea-control{min-height:110px;resize:vertical;}
 
 .input-control:focus,
 .textarea-control:focus,
@@ -101,10 +240,7 @@ body{
   cursor:pointer;
 }
 
-.feedback-submit:disabled{
-  opacity:.65;
-  cursor:not-allowed;
-}
+.feedback-submit:disabled{opacity:.65;cursor:not-allowed;}
 
 .feedback-status{
   margin-top:12px;
@@ -127,10 +263,96 @@ body{
   color:#9f3030;
   border:1px solid #f1c6c6;
 }
+
+.feedback-bottom{
+  background:#fff3ee;
+  border-top:1px solid #f1cfc4;
+}
+
+.feedback-bottom-inner{
+  padding:20px 15px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.footer-bottom{
+  margin-top:14px;
+  border-top:1px solid #efc8d2;
+  padding-top:10px;
+  text-align:center;
+}
+
+.footer-copy,
+.footer-powered,
+.footer-location{
+  font-size:11px;
+  color:#9a6b5f;
+  margin-top:4px;
+}
+
+#feedback-form-section,
+#feedback-contact{
+  scroll-margin-top:95px;
+}
 </style>
 </head>
-<body>
-  <main class="feedback-page">
+<body id="top">
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="/#top" class="brand-wrap">
+        <img src="../images/logo.png" alt="Daily Glam Store" class="logo-small">
+        <div class="brand-text">
+          <div class="brand-name">Daily Glam Store</div>
+          <div class="brand-tagline">Curated Fashion Accessories</div>
+        </div>
+      </a>
+
+      <div class="top-menu">
+        <div class="menu-btn" onclick="toggleMenu()">
+          <span class="menu-text">Menu</span>
+          <span class="menu-icon">☰</span>
+        </div>
+
+        <div class="menu-dropdown" id="menuDropdown">
+          <a href="/#top">🏠 Home</a>
+          <a href="/#footer-about">💎 About Us</a>
+
+          <div class="menu-category" onclick="toggleCategoryMenu(event)">
+            <span class="cat-arrow">▶</span>
+            🗂️ Categories
+          </div>
+          <div class="sub-menu" id="categorySubMenu">
+            <a href="/#earrings">🧿 Earrings, Jewellery & Cosmetics</a>
+            <a href="/#handbags">👜 Handbags & Purses</a>
+            <a href="/#wallets">⌚ Wallets, Belts & Watches</a>
+          </div>
+
+          <a href="/#footer-ordering">🛍️ How Ordering Works?</a>
+          <a href="/#footer-shipping">📦 Shipping & Delivery</a>
+          <a href="/#footer-returns">🔁 Returns & Refunds</a>
+
+          <div class="menu-category" onclick="toggleLegalMenu(event)">
+            <span class="cat-arrow">▶</span>
+            ⚖️ Legal & Policies
+          </div>
+          <div class="sub-menu" id="legalSubMenu">
+            <a href="/#footer-disclaimer">⚠️ Disclaimer</a>
+            <a href="/#footer-privacy">🔐 Privacy Policy</a>
+            <a href="/#footer-affiliate">💼 Affiliate Disclosure</a>
+          </div>
+
+          <a href="#feedback-form-section">📝 Feedback Form</a>
+          <a href="#feedback-contact">📞 Contact & Support</a>
+          <a href="https://www.instagram.com/daily_glam_store/" target="_blank" class="menu-ig">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="ig-icon">
+            Follow on Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="feedback-page" id="feedback-form-section">
     <section class="feedback-card">
       <h1 class="feedback-title">Share Your Feedback</h1>
       <p class="feedback-subtitle">We’d love to hear about your experience with Daily Glam Store.</p>
@@ -177,6 +399,77 @@ body{
     </section>
   </main>
 
+  <section class="feedback-bottom" id="feedback-contact">
+    <div class="feedback-bottom-inner">
+      <div style="font-size:16px;font-weight:700;color:#8f3d4f;margin-bottom:8px;">📞 Contact & Support</div>
+      <div style="font-size:13px;color:#555;line-height:1.6;">
+        For orders, support or queries, contact on
+        <a href="https://wa.me/919463638810?text=Hello%20Daily%20Glam%20Store%2C%20I%20have%20a%20query%20regarding%20a%20product%2Forder.%20Please%20help." target="_blank" style="color:#25D366;font-weight:700;text-decoration:none;">
+          WhatsApp
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width:16px;vertical-align:middle;margin-left:4px;" alt="WhatsApp">
+        </a>
+        <br>📲 <b>Fast response during business hours</b>
+      </div>
+
+      <div style="text-align:center;margin-top:20px;font-size:13px;color:#7a3b4a;font-weight:600;">🌟 Trust • Quality • Style • Consistency 🌟</div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">© <span id="currentYear"></span> <strong>Daily Glam Store</strong>. All rights reserved.</div>
+        <div class="footer-powered">In Collaboration With <strong>Deepak Cosmetic Store</strong></div>
+        <div class="footer-location">Main Bazar, Gurdaspur</div>
+        <div style="font-size:11px;color:#9a6b5f;margin-top:4px;">🌐 <a href="https://dailyglamstore.in" style="color:#9a6b5f;text-decoration:none;">www.dailyglamstore.in</a></div>
+      </div>
+    </div>
+  </section>
+
   <script src="feedback.js"></script>
+  <script>
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+    const menu = document.getElementById("menuDropdown");
+    const menuBtn = document.querySelector(".menu-btn");
+    const categorySubMenu = document.getElementById("categorySubMenu");
+    const legalSubMenu = document.getElementById("legalSubMenu");
+
+    function closeMenu() {
+      menu.style.display = "none";
+      categorySubMenu.classList.remove("open");
+      legalSubMenu.classList.remove("open");
+      document.querySelectorAll(".menu-category").forEach(item => item.classList.remove("open"));
+    }
+
+    window.toggleMenu = () => {
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    };
+
+    window.toggleCategoryMenu = (e) => {
+      e.stopPropagation();
+      categorySubMenu.classList.toggle("open");
+      e.currentTarget.classList.toggle("open");
+    };
+
+    window.toggleLegalMenu = (e) => {
+      e.stopPropagation();
+      legalSubMenu.classList.toggle("open");
+      e.currentTarget.classList.toggle("open");
+    };
+
+    document.querySelectorAll(".menu-dropdown a").forEach(link => {
+      link.addEventListener("click", () => {
+        closeMenu();
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    window.addEventListener("scroll", () => {
+      closeMenu();
+      document.getElementById("siteHeader").classList.toggle("shrink", window.scrollY > 18);
+    });
+  </script>
 </body>
 </html>
