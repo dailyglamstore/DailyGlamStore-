@@ -172,15 +172,16 @@ body{
 
 .feedback-cross-link-wrap{
   text-align:center;
-  margin:0 auto 12px;
+  margin:14px auto 4px;
 }
 
 .feedback-cross-link{
   display:inline-block;
-  font-size:15px;
+  font-size:16px;
   font-weight:700;
   color:#8f3d4f;
-  text-decoration:none;
+  text-decoration:underline;
+  text-underline-offset:2px;
   transition:color .18s ease, text-decoration-color .18s ease;
 }
 
@@ -368,10 +369,6 @@ body{
 
   <main class="feedback-page" id="feedback-form">
     <div>
-      <div class="feedback-cross-link-wrap">
-        <a class="feedback-cross-link" href="/#testimonials">Click here to go to Customer Reviews</a>
-      </div>
-
       <section class="feedback-card">
       <h1 class="feedback-title">Share Your Feedback</h1>
       <p class="feedback-subtitle">We’d love to hear about your experience with Daily Glam Store.</p>
@@ -416,6 +413,10 @@ body{
 
       <div class="feedback-status" id="feedbackStatus"></div>
       </section>
+
+      <div class="feedback-cross-link-wrap">
+        <a class="feedback-cross-link" href="/#testimonials">→ Click here to check Customer Reviews</a>
+      </div>
     </div>
   </main>
 
