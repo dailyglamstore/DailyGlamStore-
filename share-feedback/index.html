@@ -170,6 +170,27 @@ body{
   padding:24px 14px;
 }
 
+.feedback-cross-link-wrap{
+  text-align:center;
+  margin:0 auto 12px;
+}
+
+.feedback-cross-link{
+  display:inline-block;
+  font-size:15px;
+  font-weight:700;
+  color:#8f3d4f;
+  text-decoration:none;
+  transition:color .18s ease, text-decoration-color .18s ease;
+}
+
+.feedback-cross-link:hover,
+.feedback-cross-link:focus-visible{
+  color:#7a3342;
+  text-decoration:underline;
+  text-underline-offset:2px;
+}
+
 .feedback-card{
   width:100%;
   max-width:520px;
@@ -346,7 +367,12 @@ body{
   </header>
 
   <main class="feedback-page" id="feedback-form">
-    <section class="feedback-card">
+    <div>
+      <div class="feedback-cross-link-wrap">
+        <a class="feedback-cross-link" href="/#testimonials">Click here to go to Customer Reviews</a>
+      </div>
+
+      <section class="feedback-card">
       <h1 class="feedback-title">Share Your Feedback</h1>
       <p class="feedback-subtitle">We’d love to hear about your experience with Daily Glam Store.</p>
 
@@ -389,7 +415,8 @@ body{
       </form>
 
       <div class="feedback-status" id="feedbackStatus"></div>
-    </section>
+      </section>
+    </div>
   </main>
 
   <section class="feedback-bottom" id="contact">
