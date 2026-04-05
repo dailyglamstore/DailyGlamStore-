@@ -570,11 +570,45 @@ document.getElementById("seconds").textContent = s;
     renderTestimonials(approvedTestimonials);
   }
 
-loadCategory("deals", "deal-products");
-loadCategory("earrings", "earrings-products");
-loadCategory("handbags", "handbags-products");
-loadCategory("wallets", "wallets-products");
-loadTestimonials();
+function alignTestimonialsHashScroll() {
+  if (window.location.hash !== "#testimonials") return;
+
+  const target = document.getElementById("testimonials");
+  if (!target) return;
+
+  const header = document.querySelector(".site-header");
+  const headerOffset = header ? header.getBoundingClientRect().height : 0;
+  const extraGap = 12;
+  const targetTop = window.pageYOffset + target.getBoundingClientRect().top - headerOffset - extraGap;
+
+  window.scrollTo(0, Math.max(targetTop, 0));
+}
+
+function scheduleTestimonialsHashAlignment() {
+  if (window.location.hash !== "#testimonials") return;
+
+  [0, 120, 360, 900].forEach(delay => {
+    setTimeout(() => {
+      requestAnimationFrame(alignTestimonialsHashScroll);
+    }, delay);
+  });
+}
+
+const homepageLoadTasks = [
+  loadCategory("deals", "deal-products"),
+  loadCategory("earrings", "earrings-products"),
+  loadCategory("handbags", "handbags-products"),
+  loadCategory("wallets", "wallets-products"),
+  loadTestimonials()
+];
+
+Promise.allSettled(homepageLoadTasks).then(() => {
+  scheduleTestimonialsHashAlignment();
+});
+
+window.addEventListener("hashchange", scheduleTestimonialsHashAlignment);
+window.addEventListener("load", scheduleTestimonialsHashAlignment);
+scheduleTestimonialsHashAlignment();
 
 
 const backBtn = document.getElementById("backToTop");
