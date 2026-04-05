@@ -176,18 +176,34 @@ body{
 }
 
 .feedback-cross-link{
-  display:inline-block;
+  display:inline-flex;
+  align-items:baseline;
+  gap:6px;
   font-size:16px;
   font-weight:700;
   color:#8f3d4f;
+  text-decoration:none;
+  transition:color .18s ease;
+}
+
+.feedback-cross-link .arrow{
+  font-size:1.15em;
+  line-height:1;
+  text-decoration:none;
+}
+
+.feedback-cross-link .link-text{
   text-decoration:underline;
   text-underline-offset:2px;
-  transition:color .18s ease, text-decoration-color .18s ease;
 }
 
 .feedback-cross-link:hover,
 .feedback-cross-link:focus-visible{
   color:#7a3342;
+}
+
+.feedback-cross-link:hover .link-text,
+.feedback-cross-link:focus-visible .link-text{
   text-decoration:underline;
   text-underline-offset:2px;
 }
@@ -358,7 +374,6 @@ body{
 
         <div class="menu-dropdown" id="menuDropdown">
           <a href="/#top">🏠 Home</a>
-          <a href="/#categories">🗂️ Categories</a>
           <a href="/#testimonials">⭐ Customer Reviews</a>
           <a href="#feedback-form">📝 Feedback Form</a>
           <a href="#contact">📞 Contact & Support</a>
@@ -415,7 +430,7 @@ body{
       </section>
 
       <div class="feedback-cross-link-wrap">
-        <a class="feedback-cross-link" href="/#testimonials">→ Click here to check Customer Reviews</a>
+        <a class="feedback-cross-link" href="/#testimonials"><span class="arrow" aria-hidden="true">→</span><span class="link-text">Click here to check Customer Reviews</span></a>
       </div>
     </div>
   </main>
