@@ -7,12 +7,21 @@
 <link rel="icon" type="image/png" href="../images/logo.png">
 <style>
 html{
+  width:100%;
   scroll-behavior:smooth;
   scroll-padding-top:95px;
 }
 
+*,
+*::before,
+*::after{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
+  width:100%;
+  overflow-x:hidden;
   font-family:Arial,sans-serif;
   background:#faf7f6;
   color:#555;
@@ -41,12 +50,16 @@ body{
   display:flex;
   align-items:center;
   justify-content:space-between;
+  width:100%;
+  min-width:0;
 }
 
 .brand-wrap{
   display:flex;
   align-items:center;
   gap:8px;
+  min-width:0;
+  flex:1;
   text-decoration:none;
 }
 
@@ -56,9 +69,27 @@ body{
   object-fit:contain;
 }
 
-.brand-text{text-align:center;}
-.brand-name{font-size:20px;font-weight:bold;color:#b2455a;}
-.brand-tagline{font-size:10px;color:#9a6b5f;}
+.brand-text{
+  text-align:center;
+  min-width:0;
+}
+
+.brand-name{
+  font-size:20px;
+  font-weight:bold;
+  color:#b2455a;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.brand-tagline{
+  font-size:10px;
+  color:#9a6b5f;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
 
 .top-menu{position:relative;}
 
@@ -71,6 +102,7 @@ body{
   color:#8f3d4f;
   cursor:pointer;
   padding:6px 8px;
+  flex-shrink:0;
 }
 
 .menu-icon{font-size:22px;}
@@ -79,7 +111,7 @@ body{
   position:absolute;
   top:40px;
   right:0;
-  width:260px;
+  width:min(260px,calc(100vw - 20px));
   background:#fff;
   border:1px solid #f2b9a6;
   border-radius:10px;
@@ -170,6 +202,11 @@ body{
   padding:24px 14px;
 }
 
+.feedback-page > div{
+  width:100%;
+  max-width:520px;
+}
+
 .feedback-cross-link-wrap{
   text-align:center;
   margin:14px auto 4px;
@@ -210,7 +247,7 @@ body{
 
 .feedback-card{
   width:100%;
-  max-width:520px;
+  max-width:100%;
   background:#fff;
   border:1.5px solid #f1cfc4;
   border-radius:14px;
@@ -347,6 +384,32 @@ body{
 .footer-location{
   margin-top:2px;
   font-size:10px;
+}
+
+@media (max-width:480px){
+  .site-header{
+    padding-left:8px;
+    padding-right:8px;
+  }
+
+  .feedback-page{
+    padding:18px 10px;
+  }
+
+  .feedback-card{
+    padding:16px 12px;
+  }
+
+  .menu-dropdown{
+    right:0;
+    width:min(260px,calc(100vw - 16px));
+  }
+
+  .input-control,
+  .textarea-control,
+  .select-control{
+    font-size:16px;
+  }
 }
 
 #feedback-form,
