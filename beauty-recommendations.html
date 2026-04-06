@@ -243,9 +243,9 @@
     #skincare-guide,
     #haircare-guide,
     #about,
-    #how-it-works,
-    #why-recommend,
-    #disclosure,
+    #ordering,
+    #disclaimer,
+    #affiliate,
     #privacy,
     #contact {
       scroll-margin-top: 95px;
@@ -503,34 +503,26 @@
       background: #fff6f2;
       border-top: 1px solid var(--border-soft);
       border-bottom: 1px solid var(--border-soft);
-      padding: 30px 0 22px;
+      padding: 22px 0 0;
       margin-top: 8px;
     }
 
     .footer-section + .footer-section {
-      margin-top: 12px;
-    }
-
-    .footer-card {
-      background: var(--white);
-      border: 1.5px solid #f2d6cd;
-      border-radius: 12px;
-      padding: 16px 16px 14px;
-      box-shadow: 0 3px 10px rgba(178, 69, 90, 0.05);
+      margin-top: 0;
     }
 
     .footer-section h2 {
-      margin: 0 0 7px;
-      font-size: 20px;
+      margin: 0 0 8px;
+      font-size: 16px;
       line-height: 1.3;
       color: var(--brand-dark);
     }
 
     .footer-section p {
       margin: 0;
-      font-size: 14px;
-      line-height: 1.65;
-      color: #5f4f49;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #555;
     }
 
     .footer-section p + p {
@@ -539,8 +531,8 @@
 
     .footer-note {
       margin-top: 10px !important;
-      font-size: 12.5px !important;
-      color: var(--text-soft) !important;
+      font-size: 12px !important;
+      color: #666 !important;
     }
 
     .footer-contact-list {
@@ -550,9 +542,9 @@
     }
 
     .footer-contact-list li {
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.6;
-      color: #5f4f49;
+      color: #555;
       margin-bottom: 5px;
     }
 
@@ -579,8 +571,8 @@
     .footer-section ul {
       margin: 0;
       padding-left: 18px;
-      color: #5f4f49;
-      font-size: 14px;
+      color: #555;
+      font-size: 13px;
       line-height: 1.6;
     }
 
@@ -590,11 +582,11 @@
 
     .footer-intro {
       max-width: 1100px;
-      margin: 0 auto 14px;
+      margin: 0 auto 12px;
       padding: 0 16px;
       text-align: center;
-      color: var(--text-soft);
-      font-size: 14px;
+      color: #7a3b4a;
+      font-size: 13px;
       line-height: 1.55;
     }
 
@@ -603,21 +595,55 @@
     }
 
     .footer-section {
-      border-top: 1px solid var(--border-soft);
+      padding-top: 18px;
+      padding-bottom: 18px;
+      border-top: 1px solid #f5d8cf;
     }
 
     .site-footer {
-      background: #2f2623;
-      color: #f2eae7;
+      background: #fff3ee;
+      color: #7a3b4a;
       text-align: center;
-      padding: 18px 16px;
-      font-size: 13px;
+      padding: 14px 16px 16px;
+      font-size: 11px;
+      border-top: 1px solid #f1cfc4;
     }
 
     .site-footer a {
-      color: #f2eae7;
+      color: #9a6b5f;
       text-decoration: none;
       margin: 0 8px;
+    }
+
+    .footer-trust-line {
+      font-size: 13px;
+      color: #7a3b4a;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .footer-bottom-note {
+      font-size: 11px;
+      color: #9a6b5f;
+      margin-top: 6px;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: #999;
+    }
+
+    .footer-powered {
+      font-size: 11px;
+      color: #7a3b4a;
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    .footer-location {
+      font-size: 10px;
+      color: #9a6b5f;
+      margin-top: 2px;
     }
 
     @media (max-width: 768px) {
@@ -812,17 +838,17 @@
       }
 
       .footer-content-area {
-        padding: 24px 0 18px;
+        padding: 20px 0 0;
       }
 
       .footer-section h2 {
-        font-size: 19px;
+        font-size: 16px;
       }
 
       .footer-section p,
       .footer-section ul,
       .footer-contact-list li {
-        font-size: 13.5px;
+        font-size: 13px;
       }
     }
   </style>
@@ -868,8 +894,10 @@
         <a href="#skincare-guide">🧴 Skincare Guide</a>
         <a href="#haircare-guide">🪮 Haircare Guide</a>
         <a href="#about">💎 About</a>
-        <a href="#disclosure">💼 Disclosure</a>
+        <a href="#ordering">🛍️ Ordering</a>
+        <a href="#disclaimer">⚠️ Disclaimer</a>
         <a href="#privacy">🔐 Privacy</a>
+        <a href="#affiliate">💼 Affiliate</a>
         <a href="#contact">📞 Contact</a>
       </nav>
     </div>
@@ -1007,94 +1035,95 @@
     </p>
 
     <section class="footer-section" id="about">
-      <div class="footer-card">
-        <h2>About Us</h2>
-        <p>
-          Daily Glam Store shares curated beauty recommendations from selected brands and official
-          websites, helping customers compare options and choose more confidently.
-        </p>
-      </div>
+      <h2>About Us</h2>
+      <p>
+        Daily Glam Store shares curated beauty recommendations from selected brands and official
+        websites to help customers discover suitable options with more confidence.
+      </p>
+      <p>
+        We save your time by narrowing many product choices into a curated list and highlighting key
+        product details in a simple format, so shortlisting is easier without first reading very long
+        brand descriptions.
+      </p>
+      <p>
+        Before placing any order, we still recommend a quick final review on the official brand
+        website so you can confirm the latest details for your purchase.
+      </p>
     </section>
 
-    <section class="footer-section" id="how-it-works">
-      <div class="footer-card">
-        <h2>How This Page Works</h2>
-        <p>
-          Browse the recommendations on this page, review product details, and click through to the
-          official brand website for the latest pricing, discounts, and final checkout.
-        </p>
-        <p class="footer-note">
-          Final order processing, payments, delivery, and brand-specific policies are handled on the
-          respective brand websites.
-        </p>
-      </div>
+    <section class="footer-section" id="ordering">
+      <h2>How Ordering Works ?</h2>
+      <p>
+        Browse the curated recommendations on this page and review the key product details we have
+        already provided to make product selection easier.
+      </p>
+      <p>
+        When you are ready, click on <strong>“Buy on Official Website”</strong> to visit the
+        respective brand website and do a final quick check of product details before purchase.
+      </p>
+      <p>
+        Our Daily Glam Store discount is available at checkout. If the brand website is also running
+        any additional special offers, you may choose the best applicable option available there.
+      </p>
+      <p>
+        Final order placement, payment, delivery, and brand-specific policies are handled by the
+        respective brand website. If you face any issue with discount visibility, email us at
+        <a href="mailto:dmahajan152@gmail.com">dmahajan152@gmail.com</a>.
+      </p>
     </section>
 
-    <section class="footer-section" id="why-recommend">
-      <div class="footer-card">
-        <h2>Why We Recommend These Products</h2>
-        <ul>
-          <li>Selections are based on careful curation and practical beauty retail understanding.</li>
-          <li>Focus on daily-use relevance across skincare and haircare routines.</li>
-          <li>Preference for trusted brands with established official online stores.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="footer-section" id="disclosure">
-      <div class="footer-card">
-        <h2>Affiliate Disclosure</h2>
-        <p>
-          Some links on this page are affiliate links. If you buy through these links, Daily Glam
-          Store may earn a small commission at no extra cost to you.
-        </p>
-        <p class="footer-note">
-          Affiliate partnerships do not change our intent to highlight useful, relevant
-          recommendations.
-        </p>
-      </div>
+    <section class="footer-section" id="disclaimer">
+      <h2>Disclaimer</h2>
+      <p>
+        Product images and details on this page are for reference only. Final pricing, offers, stock,
+        packaging, and terms may change on official brand websites, so please verify final details
+        there before purchase.
+      </p>
     </section>
 
     <section class="footer-section" id="privacy">
-      <div class="footer-card">
-        <h2>Privacy Policy</h2>
-        <p>
-          This recommendation page does not collect your payment details. When you visit official
-          brand websites via affiliate links, those websites may use cookies or tracking parameters
-          to attribute referrals.
-        </p>
-      </div>
+      <h2>Privacy Policy</h2>
+      <p>
+        This page does not directly process payments made on affiliate brand websites. Official brand
+        websites may use their own cookies, tracking, and privacy practices, and this site may use
+        analytics to improve user experience.
+      </p>
+    </section>
+
+    <section class="footer-section" id="affiliate">
+      <h2>Affiliate Disclosure</h2>
+      <p>
+        Some links on this page are affiliate links. Daily Glam Store may earn a commission at no
+        extra cost to the customer when purchases are made through eligible links.
+      </p>
+      <p class="footer-note">
+        Our recommendations are selected carefully for usefulness and relevance, not only for
+        commission.
+      </p>
     </section>
 
     <section class="footer-section" id="contact">
-      <div class="footer-card">
-        <h2>Contact / Support</h2>
-        <ul class="footer-contact-list">
-          <li>
-            <span class="footer-label">Email:</span>
-            <a href="mailto:dmahajan152@gmail.com">dmahajan152@gmail.com</a>
-          </li>
-          <li>
-            <span class="footer-label">Support Scope:</span>
-            General queries about recommendations, links, and page content.
-          </li>
-          <li>
-            <span class="footer-label">Note:</span>
-            For final order updates, payment issues, shipping, returns, or warranty, please contact
-            the respective brand website where your purchase was completed.
-          </li>
-        </ul>
-      </div>
+      <h2>Contact &amp; Support</h2>
+      <ul class="footer-contact-list">
+        <li>
+          <span class="footer-label">Email:</span>
+          <a href="mailto:dmahajan152@gmail.com">dmahajan152@gmail.com</a>
+        </li>
+        <li>
+          For recommendation-related queries or discount-related queries, please contact us at the
+          email above.
+        </li>
+      </ul>
     </section>
   </div>
 
   <footer class="site-footer">
-    <p>© 2026 Daily Glam Store</p>
-    <p>
-      <a href="#about">About</a> |
-      <a href="#disclosure">Disclosure</a> |
-      <a href="#privacy">Privacy</a>
-    </p>
+    <div class="footer-trust-line">Curated beauty recommendations from trusted brands.</div>
+    <div class="footer-trust-line">🌟 Trust • Quality • Style • Consistency 🌟</div>
+    <div class="footer-copy">© 2026 Daily Glam Store. All rights reserved.</div>
+    <div class="footer-powered">In Collaboration With Deepak Cosmetic Store</div>
+    <div class="footer-location">Main Bazar, Gurdaspur</div>
+    <div class="footer-bottom-note">🌐 https://dailyglamstore.in/beauty-recommendations.html</div>
   </footer>
 
   <script>
