@@ -196,6 +196,10 @@
       color: var(--brand);
     }
 
+    .categories-icon {
+      color: #d4a514;
+    }
+
     .nav-dropdown {
       position: relative;
     }
@@ -516,9 +520,7 @@
     }
 
     .footer-note {
-      margin-top: 10px !important;
-      font-size: 12px !important;
-      color: #666 !important;
+      margin-top: 8px;
     }
 
     .footer-contact-list {
@@ -549,26 +551,19 @@
     }
 
     .contact-support-row {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
+      display: block;
     }
 
     .contact-support-text {
-      flex: 1 1 290px;
-      min-width: 0;
+      margin: 0;
     }
 
     .contact-support-email {
-      flex: 0 0 auto;
       font-size: 13px;
       line-height: 1.6;
       font-weight: 700;
       color: var(--brand-dark);
       text-decoration: none;
-      white-space: nowrap;
     }
 
     .contact-support-email:hover {
@@ -623,19 +618,39 @@
       padding-bottom: 16px;
     }
 
+    #contact.footer-section {
+      padding-bottom: 8px;
+    }
+
     .site-footer {
       background: #fff3ee;
       color: #7a3b4a;
       text-align: center;
       padding: 14px 16px 16px;
       font-size: 11px;
-      border-top: 1px solid #f1cfc4;
     }
 
     .site-footer a {
       color: #9a6b5f;
-      text-decoration: none;
+      text-decoration: underline;
       margin: 0 8px;
+    }
+
+    .footer-link-feedback {
+      display: inline-block;
+      border-radius: 8px;
+      padding: 2px 6px;
+      transition: background-color 0.2s ease, transform 0.15s ease, color 0.2s ease;
+    }
+
+    .footer-link-feedback:hover {
+      background: #ffe7de;
+      color: var(--brand-dark);
+    }
+
+    .footer-link-feedback:active {
+      transform: scale(0.97);
+      background: #f9d8cc;
     }
 
     .footer-trust-line {
@@ -870,12 +885,12 @@
       }
 
       .contact-support-row {
-        gap: 6px;
+        display: block;
       }
 
       .contact-support-email {
-        width: 100%;
         white-space: normal;
+        word-break: break-word;
       }
     }
   </style>
@@ -907,7 +922,7 @@
         <a href="#home">🏠 Home</a>
         <div class="nav-dropdown" id="categoriesDropdown">
           <button class="nav-dropbtn" type="button" id="categoriesBtn" aria-expanded="false">
-            <span>📂 Categories</span>
+            <span><span class="categories-icon">📂</span> Categories</span>
             <span class="menu-arrow">▼</span>
           </button>
           <div class="dropdown-content">
@@ -1064,11 +1079,6 @@
   </section>
 
   <div class="footer-content-area">
-    <p class="footer-intro">
-      <strong>Daily Glam Store Beauty Recommendations:</strong> transparent, curated product
-      suggestions with direct links to official brand websites.
-    </p>
-
     <section class="footer-section" id="about">
       <h2>💎 About Us</h2>
       <p>
@@ -1076,13 +1086,8 @@
         websites to help customers discover suitable options with more confidence.
       </p>
       <p>
-        We save your time by narrowing many product choices into a curated list and highlighting key
-        product details in a simple format, so shortlisting is easier without first reading very long
-        brand descriptions.
-      </p>
-      <p>
-        Before placing any order, we still recommend a quick final review on the official brand
-        website so you can confirm the latest details for your purchase.
+        With more than a decade of cosmetic retail experience, we focus on practical selections and
+        clear product highlights so you can shortlist confidently without spending extra time.
       </p>
     </section>
 
@@ -1090,9 +1095,8 @@
       <h2>🛍️ How Ordering Works ?</h2>
       <div class="ordering-steps">
         <p>
-          <strong>Step 1:</strong> Browse curated recommendations selected by an experienced
-          retailer with <strong>10+ years in the cosmetic field</strong>, so you can shortlist
-          suitable products quickly.
+          <strong>Step 1:</strong> Browse products from our curated list and review key product
+          details to select suitable options quickly and easily.
         </p>
         <p>
           <strong>Step 2:</strong> Click <strong>“Buy on Official Website”</strong> to visit the
@@ -1105,8 +1109,9 @@
         </p>
         <p>
           <strong>Step 4:</strong> If the <strong>Daily Glam Store discount</strong> is somehow not
-          visible, please email at
-          <a href="mailto:dmahajan152@gmail.com"><strong>dmahajan152@gmail.com</strong></a>.
+          visible, please email at <a class="contact-support-email" href="mailto:dmahajan152@gmail.com"
+            ><strong>dmahajan152@gmail.com</strong></a
+          >.
         </p>
       </div>
     </section>
@@ -1145,22 +1150,27 @@
       <h2>📞 Contact &amp; Support</h2>
       <div class="contact-support-row">
         <p class="contact-support-text">
-          For recommendation-related queries or discount-related queries, please contact us.
+          For recommendation-related queries or discount-related queries, please contact at :
+          <a class="contact-support-email" href="mailto:dmahajan152@gmail.com"
+            ><strong>dmahajan152@gmail.com</strong></a
+          >.
         </p>
-        <a class="contact-support-email" href="mailto:dmahajan152@gmail.com"
-          ><strong>dmahajan152@gmail.com</strong></a
-        >
       </div>
     </section>
   </div>
 
   <footer class="site-footer">
-    <div class="footer-trust-line">Curated beauty recommendations from trusted brands.</div>
+    <div class="footer-trust-line">Daily Glam Store - Beauty Recommendations</div>
     <div class="footer-trust-line">🌟 Trust • Quality • Style • Consistency 🌟</div>
     <div class="footer-copy">© 2026 Daily Glam Store. All rights reserved.</div>
     <div class="footer-powered">In Collaboration With Deepak Cosmetic Store</div>
     <div class="footer-location">Main Bazar, Gurdaspur</div>
-    <div class="footer-bottom-note">🌐 <a href="https://dailyglamstore.in/beauty-recommendations">www.dailyglamstore.in</a></div>
+    <div class="footer-bottom-note">
+      🌐
+      <a class="footer-link-feedback" href="https://dailyglamstore.in/beauty-recommendations.html"
+        >https://dailyglamstore.in/beauty-recommendations.html</a
+      >
+    </div>
   </footer>
 
   <script>
