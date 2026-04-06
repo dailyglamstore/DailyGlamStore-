@@ -548,6 +548,33 @@
       text-decoration: underline;
     }
 
+    .contact-support-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .contact-support-text {
+      flex: 1 1 290px;
+      min-width: 0;
+    }
+
+    .contact-support-email {
+      flex: 0 0 auto;
+      font-size: 13px;
+      line-height: 1.6;
+      font-weight: 700;
+      color: var(--brand-dark);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .contact-support-email:hover {
+      text-decoration: underline;
+    }
+
     .footer-label {
       color: var(--brand);
       font-weight: 700;
@@ -841,6 +868,15 @@
       .footer-contact-list li {
         font-size: 13px;
       }
+
+      .contact-support-row {
+        gap: 6px;
+      }
+
+      .contact-support-email {
+        width: 100%;
+        white-space: normal;
+      }
     }
   </style>
 </head>
@@ -869,9 +905,17 @@
 
       <nav class="main-nav" id="mainNav">
         <a href="#home">🏠 Home</a>
-        <a href="#top-picks">🔥 Editor’s Top Picks</a>
-        <a href="#skincare-recommendations">✨ Skincare Recommendations</a>
-        <a href="#haircare-recommendations">🪮 Haircare Recommendations</a>
+        <div class="nav-dropdown" id="categoriesDropdown">
+          <button class="nav-dropbtn" type="button" id="categoriesBtn" aria-expanded="false">
+            <span>📂 Categories</span>
+            <span class="menu-arrow">▼</span>
+          </button>
+          <div class="dropdown-content">
+            <a href="#top-picks">🔥 Editor’s Top Picks</a>
+            <a href="#skincare-recommendations">✨ Skincare Recommendations</a>
+            <a href="#haircare-recommendations">🪮 Haircare Recommendations</a>
+          </div>
+        </div>
         <a href="#skincare-guide">🧴 Skincare Guide</a>
         <a href="#haircare-guide">💆 Haircare Guide</a>
         <a href="#about">💎 About Us</a>
@@ -957,7 +1001,7 @@
 
         <div class="toggle-box">
           <div class="toggle-header" onclick="toggleDetails(this)">
-            View Details <span class="arrow">▼</span>
+            Key Product Details <span class="arrow">▼</span>
           </div>
           <div class="toggle-content">
             <ul>
@@ -1046,21 +1090,23 @@
       <h2>🛍️ How Ordering Works ?</h2>
       <div class="ordering-steps">
         <p>
-          <strong>Step 1:</strong> Browse the curated recommendations on this page and review the
-          key product details to make your shortlist faster.
+          <strong>Step 1:</strong> Browse curated recommendations selected by an experienced
+          retailer with <strong>10+ years in the cosmetic field</strong>, so you can shortlist
+          suitable products quickly.
         </p>
         <p>
           <strong>Step 2:</strong> Click <strong>“Buy on Official Website”</strong> to visit the
-          respective brand website and do a final quick check before purchase.
+          respective brand website and complete your purchase there.
         </p>
         <p>
-          <strong>Step 3:</strong> Use the <strong>Daily Glam Store discount</strong> at checkout.
-          If the brand website is also running additional offers, choose the best applicable option.
+          <strong>Step 3:</strong> During checkout, the <strong>Daily Glam Store discount</strong>
+          is auto-applied. In many cases, additional brand offers may also be available, helping
+          you get a better final price.
         </p>
         <p>
-          <strong>Step 4:</strong> Final order placement, payment, delivery, and brand-specific
-          policies are handled on the respective brand website. For discount visibility support,
-          email us at <a href="mailto:dmahajan152@gmail.com">dmahajan152@gmail.com</a>.
+          <strong>Step 4:</strong> If the <strong>Daily Glam Store discount</strong> is somehow not
+          visible, please email at
+          <a href="mailto:dmahajan152@gmail.com"><strong>dmahajan152@gmail.com</strong></a>.
         </p>
       </div>
     </section>
@@ -1097,16 +1143,14 @@
 
     <section class="footer-section" id="contact">
       <h2>📞 Contact &amp; Support</h2>
-      <ul class="footer-contact-list">
-        <li>
-          <span class="footer-label">Email:</span>
-          <a href="mailto:dmahajan152@gmail.com">dmahajan152@gmail.com</a>
-        </li>
-        <li>
-          For recommendation-related queries or discount-related queries, please contact us at the
-          email above.
-        </li>
-      </ul>
+      <div class="contact-support-row">
+        <p class="contact-support-text">
+          For recommendation-related queries or discount-related queries, please contact us.
+        </p>
+        <a class="contact-support-email" href="mailto:dmahajan152@gmail.com"
+          ><strong>dmahajan152@gmail.com</strong></a
+        >
+      </div>
     </section>
   </div>
 
