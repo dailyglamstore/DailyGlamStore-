@@ -373,25 +373,13 @@
 
     .product-media {
       position: relative;
-      border-radius: 9px;
-      padding: 4px;
+      border-radius: 10px;
+      padding: 5px;
       margin-bottom: 3px;
-      border: 1px solid #e8b7b6;
-      background: linear-gradient(145deg, #fff8f5 0%, #fff1ec 100%);
-      box-shadow: inset 0 0 0 1px rgba(178, 69, 90, 0.1);
+      border: 1px solid #d7a0ac;
+      background: linear-gradient(145deg, #fff9f6 0%, #fff1ec 100%);
+      box-shadow: inset 0 0 0 1px rgba(178, 69, 90, 0.08);
       overflow: hidden;
-    }
-
-    .product-media::before {
-      content: "";
-      position: absolute;
-      top: 5px;
-      bottom: 5px;
-      left: 5px;
-      width: 3px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, rgba(178, 69, 90, 0.7), rgba(122, 59, 74, 0.45));
-      pointer-events: none;
     }
 
     .product-img {
@@ -501,9 +489,7 @@
 
     .footer-content-area {
       background: #fff6f2;
-      border-top: 1px solid var(--border-soft);
-      border-bottom: 1px solid var(--border-soft);
-      padding: 22px 0 0;
+      padding: 24px 0 8px;
       margin-top: 8px;
     }
 
@@ -568,6 +554,17 @@
       margin-right: 4px;
     }
 
+    .ordering-steps {
+      background: #fff0ec;
+      border-left: 4px solid var(--brand);
+      border-radius: 10px;
+      padding: 12px 12px 12px 14px;
+    }
+
+    .ordering-steps p + p {
+      margin-top: 10px;
+    }
+
     .footer-section ul {
       margin: 0;
       padding-left: 18px;
@@ -595,9 +592,8 @@
     }
 
     .footer-section {
-      padding-top: 18px;
-      padding-bottom: 18px;
-      border-top: 1px solid #f5d8cf;
+      padding-top: 16px;
+      padding-bottom: 16px;
     }
 
     .site-footer {
@@ -799,11 +795,6 @@
         padding: 3px;
       }
 
-      .product-media::before {
-        left: 4px;
-        width: 2.5px;
-      }
-
       .product-img {
         margin-bottom: 2px;
       }
@@ -878,27 +869,27 @@
 
       <nav class="main-nav" id="mainNav">
         <a href="#home">🏠 Home</a>
+        <a href="#top-picks">🔥 Editor’s Top Picks</a>
+        <a href="#skincare-recommendations">✨ Skincare Recommendations</a>
+        <a href="#haircare-recommendations">🪮 Haircare Recommendations</a>
+        <a href="#skincare-guide">🧴 Skincare Guide</a>
+        <a href="#haircare-guide">💆 Haircare Guide</a>
+        <a href="#about">💎 About Us</a>
+        <a href="#ordering">🛍️ How Ordering Works ?</a>
 
-        <div class="nav-dropdown" id="categoriesDropdown">
-          <button class="nav-dropbtn" type="button" id="categoriesBtn" aria-expanded="false">
-            <span>▶ Categories</span>
+        <div class="nav-dropdown" id="legalDropdown">
+          <button class="nav-dropbtn" type="button" id="legalBtn" aria-expanded="false">
+            <span>⚖️ Legal &amp; Policies</span>
             <span class="menu-arrow">▼</span>
           </button>
           <div class="dropdown-content">
-            <a href="#top-picks">🔥 Top Picks</a>
-            <a href="#skincare-recommendations">✨ Skincare Recommendations</a>
-            <a href="#haircare-recommendations">💁‍♀️ Haircare Recommendations</a>
+            <a href="#disclaimer">⚠️ Disclaimer</a>
+            <a href="#privacy">🔐 Privacy Policy</a>
+            <a href="#affiliate">💼 Affiliate Disclosure</a>
           </div>
         </div>
 
-        <a href="#skincare-guide">🧴 Skincare Guide</a>
-        <a href="#haircare-guide">🪮 Haircare Guide</a>
-        <a href="#about">💎 About</a>
-        <a href="#ordering">🛍️ Ordering</a>
-        <a href="#disclaimer">⚠️ Disclaimer</a>
-        <a href="#privacy">🔐 Privacy</a>
-        <a href="#affiliate">💼 Affiliate</a>
-        <a href="#contact">📞 Contact</a>
+        <a href="#contact">📞 Contact &amp; Support</a>
       </nav>
     </div>
   </header>
@@ -984,7 +975,7 @@
   </section>
 
   <section class="section" id="skincare-recommendations">
-    <h2 class="section-title">Skincare Recommendations</h2>
+    <h2 class="section-title">✨ Skincare Recommendations</h2>
     <div class="section-divider"></div>
     <p class="section-intro">
       Explore selected face washes, serums, moisturisers and sunscreens for a simple skincare
@@ -996,7 +987,7 @@
   </section>
 
   <section class="section" id="haircare-recommendations">
-    <h2 class="section-title">Haircare Recommendations</h2>
+    <h2 class="section-title">🪮 Haircare Recommendations</h2>
     <div class="section-divider"></div>
     <p class="section-intro">
       Explore selected hair oils, shampoos and conditioners for healthier looking hair.
@@ -1007,7 +998,7 @@
   </section>
 
   <section class="section" id="skincare-guide">
-    <h2 class="section-title">Skincare Guide</h2>
+    <h2 class="section-title">🧴 Skincare Guide</h2>
     <div class="section-divider"></div>
     <div class="guide-box">
       <h3>Simple Daily Skincare Routine</h3>
@@ -1017,7 +1008,7 @@
   </section>
 
   <section class="section" id="haircare-guide">
-    <h2 class="section-title">Haircare Guide</h2>
+    <h2 class="section-title">💆 Haircare Guide</h2>
     <div class="section-divider"></div>
     <div class="guide-box">
       <h3>Simple Haircare Routine</h3>
@@ -1035,7 +1026,7 @@
     </p>
 
     <section class="footer-section" id="about">
-      <h2>About Us</h2>
+      <h2>💎 About Us</h2>
       <p>
         Daily Glam Store shares curated beauty recommendations from selected brands and official
         websites to help customers discover suitable options with more confidence.
@@ -1052,28 +1043,30 @@
     </section>
 
     <section class="footer-section" id="ordering">
-      <h2>How Ordering Works ?</h2>
-      <p>
-        Browse the curated recommendations on this page and review the key product details we have
-        already provided to make product selection easier.
-      </p>
-      <p>
-        When you are ready, click on <strong>“Buy on Official Website”</strong> to visit the
-        respective brand website and do a final quick check of product details before purchase.
-      </p>
-      <p>
-        Our Daily Glam Store discount is available at checkout. If the brand website is also running
-        any additional special offers, you may choose the best applicable option available there.
-      </p>
-      <p>
-        Final order placement, payment, delivery, and brand-specific policies are handled by the
-        respective brand website. If you face any issue with discount visibility, email us at
-        <a href="mailto:dmahajan152@gmail.com">dmahajan152@gmail.com</a>.
-      </p>
+      <h2>🛍️ How Ordering Works ?</h2>
+      <div class="ordering-steps">
+        <p>
+          <strong>Step 1:</strong> Browse the curated recommendations on this page and review the
+          key product details to make your shortlist faster.
+        </p>
+        <p>
+          <strong>Step 2:</strong> Click <strong>“Buy on Official Website”</strong> to visit the
+          respective brand website and do a final quick check before purchase.
+        </p>
+        <p>
+          <strong>Step 3:</strong> Use the <strong>Daily Glam Store discount</strong> at checkout.
+          If the brand website is also running additional offers, choose the best applicable option.
+        </p>
+        <p>
+          <strong>Step 4:</strong> Final order placement, payment, delivery, and brand-specific
+          policies are handled on the respective brand website. For discount visibility support,
+          email us at <a href="mailto:dmahajan152@gmail.com">dmahajan152@gmail.com</a>.
+        </p>
+      </div>
     </section>
 
     <section class="footer-section" id="disclaimer">
-      <h2>Disclaimer</h2>
+      <h2>⚠️ Disclaimer</h2>
       <p>
         Product images and details on this page are for reference only. Final pricing, offers, stock,
         packaging, and terms may change on official brand websites, so please verify final details
@@ -1082,7 +1075,7 @@
     </section>
 
     <section class="footer-section" id="privacy">
-      <h2>Privacy Policy</h2>
+      <h2>🔐 Privacy Policy</h2>
       <p>
         This page does not directly process payments made on affiliate brand websites. Official brand
         websites may use their own cookies, tracking, and privacy practices, and this site may use
@@ -1091,7 +1084,7 @@
     </section>
 
     <section class="footer-section" id="affiliate">
-      <h2>Affiliate Disclosure</h2>
+      <h2>💼 Affiliate Disclosure</h2>
       <p>
         Some links on this page are affiliate links. Daily Glam Store may earn a commission at no
         extra cost to the customer when purchases are made through eligible links.
@@ -1103,7 +1096,7 @@
     </section>
 
     <section class="footer-section" id="contact">
-      <h2>Contact &amp; Support</h2>
+      <h2>📞 Contact &amp; Support</h2>
       <ul class="footer-contact-list">
         <li>
           <span class="footer-label">Email:</span>
@@ -1123,25 +1116,27 @@
     <div class="footer-copy">© 2026 Daily Glam Store. All rights reserved.</div>
     <div class="footer-powered">In Collaboration With Deepak Cosmetic Store</div>
     <div class="footer-location">Main Bazar, Gurdaspur</div>
-    <div class="footer-bottom-note">🌐 https://dailyglamstore.in/beauty-recommendations.html</div>
+    <div class="footer-bottom-note">🌐 <a href="https://dailyglamstore.in/beauty-recommendations">www.dailyglamstore.in</a></div>
   </footer>
 
   <script>
     const menuToggle = document.getElementById("menuToggle");
     const mainNav = document.getElementById("mainNav");
-    const categoriesDropdown = document.getElementById("categoriesDropdown");
-    const categoriesBtn = document.getElementById("categoriesBtn");
     const siteHeader = document.getElementById("siteHeader");
+    const navDropdowns = Array.from(document.querySelectorAll(".nav-dropdown"));
 
-    function setCategoriesOpen(isOpen) {
-      categoriesDropdown.classList.toggle("open", isOpen);
-      categoriesBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    function setDropdownOpen(dropdown, isOpen) {
+      const button = dropdown.querySelector(".nav-dropbtn");
+      dropdown.classList.toggle("open", isOpen);
+      if (button) {
+        button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      }
     }
 
     function closeMenu() {
       mainNav.classList.remove("show");
       menuToggle.setAttribute("aria-expanded", "false");
-      setCategoriesOpen(false);
+      navDropdowns.forEach((dropdown) => setDropdownOpen(dropdown, false));
     }
 
     function toggleMenu() {
@@ -1155,14 +1150,27 @@
       toggleMenu();
     });
 
-    categoriesBtn.addEventListener("click", function (e) {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        e.stopPropagation();
-        const willOpen = !categoriesDropdown.classList.contains("open");
-        setCategoriesOpen(willOpen);
+    navDropdowns.forEach(function (dropdown) {
+      const button = dropdown.querySelector(".nav-dropbtn");
+      if (!button) {
+        return;
       }
+
+      button.addEventListener("click", function (e) {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          e.stopPropagation();
+          const willOpen = !dropdown.classList.contains("open");
+          navDropdowns.forEach((item) => {
+            if (item !== dropdown) {
+              setDropdownOpen(item, false);
+            }
+          });
+          setDropdownOpen(dropdown, willOpen);
+        }
+      });
     });
+
 
     document.addEventListener("click", function (e) {
       if (!e.target.closest(".header-inner")) {
