@@ -198,6 +198,9 @@
 
     .categories-icon {
       color: #d4a514;
+      font-size: 14px;
+      font-weight: 700;
+      margin-right: 2px;
     }
 
     .nav-dropdown {
@@ -339,10 +342,15 @@
     }
 
     .section-title {
-      text-align: center;
-      margin: 0 0 8px;
-      font-size: 24px;
+      margin: 0 0 10px;
+      padding: 11px 14px;
+      border-left: 6px solid var(--brand);
+      border-radius: 10px;
+      background: #ffe0ea;
+      font-size: 21px;
+      line-height: 1.35;
       color: var(--brand-dark);
+      text-align: left;
     }
 
     .section-intro {
@@ -359,6 +367,10 @@
       background: var(--brand);
       margin: 0 auto 16px;
       border-radius: 4px;
+    }
+
+    .section-heading-wrap {
+      margin-bottom: 8px;
     }
 
     .products {
@@ -633,7 +645,7 @@
     .site-footer a {
       color: #9a6b5f;
       text-decoration: underline;
-      margin: 0 8px;
+      margin: 0;
     }
 
     .footer-link-feedback {
@@ -664,6 +676,31 @@
       font-size: 11px;
       color: #9a6b5f;
       margin-top: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .footer-bottom-note .globe-icon {
+      line-height: 1;
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 18px;
+      width: 50px;
+      height: 50px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(178, 69, 90, 0.75);
+      color: #fff;
+      font-size: 26px;
+      font-weight: 700;
+      cursor: pointer;
+      display: none;
+      z-index: 9999;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     }
 
     .footer-copy {
@@ -799,7 +836,9 @@
       }
 
       .section-title {
-        font-size: 22px;
+        font-size: 20px;
+        padding: 10px 12px;
+        border-left-width: 5px;
       }
     }
 
@@ -823,6 +862,14 @@
 
       .hero {
         padding-top: 24px;
+      }
+
+      #backToTop {
+        width: 46px;
+        height: 46px;
+        right: 14px;
+        bottom: 16px;
+        font-size: 24px;
       }
 
       .products {
@@ -922,7 +969,7 @@
         <a href="#home">🏠 Home</a>
         <div class="nav-dropdown" id="categoriesDropdown">
           <button class="nav-dropbtn" type="button" id="categoriesBtn" aria-expanded="false">
-            <span><span class="categories-icon">📂</span> Categories</span>
+            <span><span class="categories-icon">✦</span> Categories</span>
             <span class="menu-arrow">▼</span>
           </button>
           <div class="dropdown-content">
@@ -983,7 +1030,9 @@
   </section>
 
   <section class="section" id="top-picks">
-    <h2 class="section-title">🔥 Editor’s Top Picks</h2>
+    <div class="section-heading-wrap">
+      <h2 class="section-title">🔥 Editor’s Top Picks</h2>
+    </div>
     <div class="section-divider"></div>
     <p class="section-intro">
       Carefully selected products customers often explore for daily skincare and haircare needs.
@@ -1034,7 +1083,9 @@
   </section>
 
   <section class="section" id="skincare-recommendations">
-    <h2 class="section-title">✨ Skincare Recommendations</h2>
+    <div class="section-heading-wrap">
+      <h2 class="section-title">✨ Skincare Recommendations</h2>
+    </div>
     <div class="section-divider"></div>
     <p class="section-intro">
       Explore selected face washes, serums, moisturisers and sunscreens for a simple skincare
@@ -1046,7 +1097,9 @@
   </section>
 
   <section class="section" id="haircare-recommendations">
-    <h2 class="section-title">🪮 Haircare Recommendations</h2>
+    <div class="section-heading-wrap">
+      <h2 class="section-title">🪮 Haircare Recommendations</h2>
+    </div>
     <div class="section-divider"></div>
     <p class="section-intro">
       Explore selected hair oils, shampoos and conditioners for healthier looking hair.
@@ -1057,7 +1110,9 @@
   </section>
 
   <section class="section" id="skincare-guide">
-    <h2 class="section-title">🧴 Skincare Guide</h2>
+    <div class="section-heading-wrap">
+      <h2 class="section-title">🧴 Skincare Guide</h2>
+    </div>
     <div class="section-divider"></div>
     <div class="guide-box">
       <h3>Simple Daily Skincare Routine</h3>
@@ -1067,7 +1122,9 @@
   </section>
 
   <section class="section" id="haircare-guide">
-    <h2 class="section-title">💆 Haircare Guide</h2>
+    <div class="section-heading-wrap">
+      <h2 class="section-title">💆 Haircare Guide</h2>
+    </div>
     <div class="section-divider"></div>
     <div class="guide-box">
       <h3>Simple Haircare Routine</h3>
@@ -1082,12 +1139,10 @@
     <section class="footer-section" id="about">
       <h2>💎 About Us</h2>
       <p>
-        Daily Glam Store shares curated beauty recommendations from selected brands and official
-        websites to help customers discover suitable options with more confidence.
+        Daily Glam Store shares curated beauty recommendations from selected brands and official websites to help customers discover trending and suitable product options without any hassle.
       </p>
       <p>
-        With more than a decade of cosmetic retail experience, we focus on practical selections and
-        clear product highlights so you can shortlist confidently without spending extra time.
+        Having more than a decade of cosmetic retail experience, we focus on practical selections and clear product highlights so you can shortlist confidently without spending extra time.
       </p>
     </section>
 
@@ -1095,8 +1150,7 @@
       <h2>🛍️ How Ordering Works ?</h2>
       <div class="ordering-steps">
         <p>
-          <strong>Step 1:</strong> Browse products from our curated list and review key product
-          details to select suitable options quickly and easily.
+          <strong>Step 1:</strong> Browse products from our curated list and quickly <strong>review key product details</strong> to select the best product for your skin within seconds.
         </p>
         <p>
           <strong>Step 2:</strong> Click <strong>“Buy on Official Website”</strong> to visit the
@@ -1166,18 +1220,20 @@
     <div class="footer-powered">In Collaboration With Deepak Cosmetic Store</div>
     <div class="footer-location">Main Bazar, Gurdaspur</div>
     <div class="footer-bottom-note">
-      🌐
-      <a class="footer-link-feedback" href="https://dailyglamstore.in/beauty-recommendations.html"
+      <span class="globe-icon">🌐</span><a class="footer-link-feedback" href="https://dailyglamstore.in/beauty-recommendations.html"
         >https://dailyglamstore.in/beauty-recommendations.html</a
       >
     </div>
   </footer>
+
+  <button id="backToTop" type="button" aria-label="Back to top">↑</button>
 
   <script>
     const menuToggle = document.getElementById("menuToggle");
     const mainNav = document.getElementById("mainNav");
     const siteHeader = document.getElementById("siteHeader");
     const navDropdowns = Array.from(document.querySelectorAll(".nav-dropdown"));
+    const backToTopButton = document.getElementById("backToTop");
 
     function setDropdownOpen(dropdown, isOpen) {
       const button = dropdown.querySelector(".nav-dropbtn");
@@ -1245,9 +1301,19 @@
         siteHeader.classList.remove("scrolled");
       }
 
+      if (window.scrollY > 280) {
+        backToTopButton.style.display = "block";
+      } else {
+        backToTopButton.style.display = "none";
+      }
+
       if (window.innerWidth <= 768 && mainNav.classList.contains("show")) {
         closeMenu();
       }
+    });
+
+    backToTopButton.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     function toggleDetails(element) {
