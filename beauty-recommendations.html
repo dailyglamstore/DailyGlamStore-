@@ -44,7 +44,6 @@
       --border-soft: #f1cfc4;
       --white: #ffffff;
       --shadow: 0 8px 24px rgba(178, 69, 90, 0.08);
-      --header-height: 62px;
     }
 
     .site-header {
@@ -54,30 +53,22 @@
       background: var(--bg-header);
       border-bottom: 1px solid var(--border);
       padding: 6px 10px;
-      box-shadow: 0 2px 10px rgba(178, 69, 90, 0.06);
-      transition: padding 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      transition: padding 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .site-header.scrolled {
-      padding: 4px 10px;
-      box-shadow: 0 6px 18px rgba(178, 69, 90, 0.12);
+    .site-header.shrink {
+      padding: 3px 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
     }
 
     .header-inner {
-      max-width: 1100px;
-      margin: auto;
-      min-height: var(--header-height);
-      padding: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 8px;
       position: relative;
-      transition: min-height 0.25s ease;
-    }
-
-    .site-header.scrolled .header-inner {
-      min-height: 54px;
+      max-width: 1100px;
+      margin: auto;
     }
 
     .brand {
@@ -94,11 +85,11 @@
     }
 
     .brand-logo {
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       object-fit: contain;
       flex-shrink: 0;
-      transition: width 0.25s ease, height 0.25s ease, transform 0.25s ease;
+      transition: width 0.25s ease, height 0.25s ease;
     }
 
     .brand-text {
@@ -111,7 +102,7 @@
     }
 
     .brand-name {
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 700;
       color: var(--brand);
       white-space: nowrap;
@@ -127,24 +118,9 @@
       transition: font-size 0.25s ease;
     }
 
-    .site-header.scrolled .brand-logo {
-      width: 44px;
-      height: 44px;
-      transform: scale(0.96);
-    }
-
-    .site-header.scrolled .brand-text {
-      transform: scale(0.97);
-      transform-origin: left center;
-    }
-
-    .site-header.scrolled .brand-name {
-      font-size: 19px;
-    }
-
-    .site-header.scrolled .brand-tagline {
-      font-size: 10.2px;
-    }
+    .site-header.shrink .brand-logo { width: 36px; height: 36px; }
+    .site-header.shrink .brand-name { font-size: 17px; }
+    .site-header.shrink .brand-tagline { font-size: 11px; }
 
     .menu-toggle {
       color: var(--brand-dark);
@@ -361,13 +337,7 @@
       font-size: 14px;
     }
 
-    .section-divider {
-      width: 72px;
-      height: 3px;
-      background: var(--brand);
-      margin: 0 auto 16px;
-      border-radius: 4px;
-    }
+    .section-divider { display: none; }
 
     .section-heading-wrap {
       margin-bottom: 8px;
@@ -685,7 +655,7 @@
       line-height: 1;
     }
 
-    #backToTop {
+#backToTop {
       position: fixed;
       bottom: 20px;
       right: 18px;
@@ -696,7 +666,7 @@
       background: rgba(178, 69, 90, 0.75);
       color: #fff;
       font-size: 26px;
-      font-weight: 700;
+      font-weight: bold;
       cursor: pointer;
       display: none;
       z-index: 9999;
@@ -830,11 +800,6 @@
         height: 48px;
       }
 
-      .site-header.scrolled .brand-logo {
-        width: 42px;
-        height: 42px;
-      }
-
       .section-title {
         font-size: 20px;
         padding: 10px 12px;
@@ -862,14 +827,6 @@
 
       .hero {
         padding-top: 24px;
-      }
-
-      #backToTop {
-        width: 46px;
-        height: 46px;
-        right: 14px;
-        bottom: 16px;
-        font-size: 24px;
       }
 
       .products {
@@ -974,11 +931,11 @@
           </button>
           <div class="dropdown-content">
             <a href="#top-picks">🔥 Editor’s Top Picks</a>
-            <a href="#skincare-recommendations">✨ Skincare Recommendations</a>
+            <a href="#skincare-recommendations">🌿 Skincare Recommendations</a>
             <a href="#haircare-recommendations">🪮 Haircare Recommendations</a>
           </div>
         </div>
-        <a href="#skincare-guide">🧴 Skincare Guide</a>
+        <a href="#skincare-guide">🧼 Skincare Guide</a>
         <a href="#haircare-guide">💆 Haircare Guide</a>
         <a href="#about">💎 About Us</a>
         <a href="#ordering">🛍️ How Ordering Works ?</a>
@@ -1084,7 +1041,7 @@
 
   <section class="section" id="skincare-recommendations">
     <div class="section-heading-wrap">
-      <h2 class="section-title">✨ Skincare Recommendations</h2>
+      <h2 class="section-title">🌿 Skincare Recommendations</h2>
     </div>
     <div class="section-divider"></div>
     <p class="section-intro">
@@ -1111,7 +1068,7 @@
 
   <section class="section" id="skincare-guide">
     <div class="section-heading-wrap">
-      <h2 class="section-title">🧴 Skincare Guide</h2>
+      <h2 class="section-title">🧼 Skincare Guide</h2>
     </div>
     <div class="section-divider"></div>
     <div class="guide-box">
@@ -1226,7 +1183,7 @@
     </div>
   </footer>
 
-  <button id="backToTop" type="button" aria-label="Back to top">↑</button>
+  <button id="backToTop" type="button" aria-label="Back to top">⬆</button>
 
   <script>
     const menuToggle = document.getElementById("menuToggle");
@@ -1295,13 +1252,13 @@
     });
 
     window.addEventListener("scroll", function () {
-      if (window.scrollY > 10) {
-        siteHeader.classList.add("scrolled");
+      if (window.scrollY > 18) {
+        siteHeader.classList.add("shrink");
       } else {
-        siteHeader.classList.remove("scrolled");
+        siteHeader.classList.remove("shrink");
       }
 
-      if (window.scrollY > 280) {
+      if (window.scrollY > 500) {
         backToTopButton.style.display = "block";
       } else {
         backToTopButton.style.display = "none";
