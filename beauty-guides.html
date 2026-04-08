@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Glam Store | Quick Beauty Buying Guides</title>
+  <meta
+    name="description"
+    content="Quick skincare and haircare buying guides from Daily Glam Store. Learn what to look for before you shop and explore recommended products."
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dailyglamstore.in/beauty-guides.html" />
+
+  <style>
+    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; }
+
+    :root {
+      --bg-main: #faf7f6;
+      --bg-soft: #fff7f4;
+      --bg-soft-2: #fff3ee;
+      --bg-header: #ffe0ea;
+      --brand: #b2455a;
+      --brand-dark: #7a3b4a;
+      --text-soft: #9a6b5f;
+      --border: #f1b6c6;
+      --border-soft: #f1cfc4;
+      --white: #ffffff;
+      --shadow: 0 8px 24px rgba(178, 69, 90, 0.08);
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg-main);
+      color: #4b3f3a;
+      line-height: 1.6;
+    }
+
+    a { -webkit-tap-highlight-color: transparent; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--bg-header);
+      border-bottom: 1px solid var(--border);
+      padding: 6px 10px;
+      transition: padding 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .site-header.shrink {
+      padding: 3px 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      position: relative;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .brand {
+      text-decoration: none;
+      color: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      padding: 2px 4px;
+      margin: -2px -4px;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      flex-shrink: 0;
+      transition: width 0.25s ease, height 0.25s ease;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      line-height: 1.15;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--brand);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: font-size 0.25s ease;
+    }
+
+    .brand-tagline {
+      font-size: 11px;
+      color: var(--text-soft);
+      margin-top: 2px;
+      transition: font-size 0.25s ease;
+    }
+
+    .site-header.shrink .brand-logo { width: 36px; height: 36px; }
+    .site-header.shrink .brand-name { font-size: 17px; }
+
+    .menu-toggle {
+      color: var(--brand-dark);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      background: transparent;
+      border: 0;
+      padding: 6px 8px;
+      font-family: inherit;
+      line-height: 1;
+    }
+
+    .menu-toggle .menu-icon { font-size: 22px; line-height: 1; }
+    .menu-toggle:hover { background: rgba(255, 255, 255, 0.28); }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .main-nav > a,
+    .nav-dropbtn {
+      text-decoration: none;
+      color: #4b3f3a;
+      font-size: 14px;
+      font-weight: 600;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .main-nav > a:hover,
+    .nav-dropbtn:hover { color: var(--brand); }
+
+    .nav-dropdown { position: relative; }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 24px;
+      left: 0;
+      min-width: 230px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      padding: 8px 0;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #4b3f3a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .dropdown-content a:hover {
+      background: var(--bg-soft);
+      color: var(--brand);
+    }
+
+    @media (min-width: 769px) {
+      .nav-dropdown:hover .dropdown-content { display: block; }
+    }
+
+    .hero,
+    .section,
+    #home,
+    #facewash-guide,
+    #serum-guide,
+    #sunscreen-guide,
+    #hairoil-guide,
+    #skincare-routine,
+    #haircare-routine,
+    #contact {
+      scroll-margin-top: 95px;
+    }
+
+    .hero {
+      background: var(--white);
+      text-align: center;
+      padding: 28px 16px 20px;
+      border-bottom: 1px solid #f4e1e7;
+    }
+
+    .hero-inner { max-width: 820px; margin: auto; }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.3;
+      color: var(--brand);
+    }
+
+    .hero p {
+      margin: 0 auto;
+      max-width: 720px;
+      font-size: 15px;
+      color: var(--text-soft);
+    }
+
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 12px;
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border-soft);
+      border-bottom: 1px solid var(--border-soft);
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    .trust-strip div {
+      text-align: center;
+      color: var(--brand-dark);
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 28px 16px;
+    }
+
+    .section-title {
+      margin: 0 0 12px;
+      padding: 11px 14px;
+      border-left: 6px solid var(--brand);
+      border-radius: 10px;
+      background: #ffe0ea;
+      font-size: 21px;
+      line-height: 1.35;
+      color: var(--brand-dark);
+      text-align: left;
+    }
+
+    .section-intro {
+      margin: 0 0 18px;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .guide-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+    }
+
+    .guide-card {
+      background: var(--white);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 4px 14px rgba(178, 69, 90, 0.08);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .guide-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(178, 69, 90, 0.14);
+    }
+
+    .guide-card h3 {
+      margin: 0 0 8px;
+      color: var(--brand);
+      font-size: 17px;
+      line-height: 1.3;
+    }
+
+    .guide-card ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13px;
+      color: #5a4e49;
+    }
+
+    .guide-card li + li { margin-top: 4px; }
+
+    .guide-card .read-link {
+      margin-top: 10px;
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand-dark);
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .mini-card {
+      background: var(--white);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 3px 10px rgba(178, 69, 90, 0.05);
+    }
+
+    .mini-card h4 {
+      margin: 0 0 8px;
+      color: var(--brand);
+      font-size: 15px;
+    }
+
+    .mini-card ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13px;
+    }
+
+    .tip-note {
+      margin-top: 12px;
+      background: #fff0ec;
+      border-left: 4px solid var(--brand);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: #5c514c;
+    }
+
+    .section-cta {
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      background: #ffe8ee;
+      border: 1px solid #efc2cf;
+      color: var(--brand-dark);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 999px;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .section-cta:hover {
+      background: #ffd9e4;
+      transform: translateY(-1px);
+    }
+
+    .support-box {
+      background: var(--white);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 4px 14px rgba(178, 69, 90, 0.05);
+      font-size: 14px;
+    }
+
+    .support-box a {
+      color: var(--brand-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .support-box a:hover { text-decoration: underline; }
+
+    .site-footer {
+      background: #fff3ee;
+      color: #7a3b4a;
+      text-align: center;
+      padding: 14px 16px 16px;
+      font-size: 11px;
+      margin-top: 6px;
+    }
+
+    .footer-trust-line {
+      font-size: 13px;
+      color: #7a3b4a;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .footer-copy { font-size: 11px; color: #999; }
+    .footer-powered { font-size: 11px; color: #7a3b4a; margin-top: 6px; font-weight: 500; }
+    .footer-location { font-size: 10px; color: #9a6b5f; margin-top: 2px; }
+
+    .footer-bottom-note {
+      font-size: 11px;
+      color: #9a6b5f;
+      margin-top: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .footer-link-feedback {
+      display: inline-block;
+      color: #9a6b5f;
+      text-decoration: underline;
+      border-radius: 8px;
+      padding: 2px 6px;
+      transition: background-color 0.2s ease, transform 0.15s ease, color 0.2s ease;
+    }
+
+    .footer-link-feedback:hover {
+      background: #ffe7de;
+      color: var(--brand-dark);
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 18px;
+      width: 50px;
+      height: 50px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(178, 69, 90, 0.75);
+      color: #fff;
+      font-size: 26px;
+      font-weight: bold;
+      cursor: pointer;
+      display: none;
+      z-index: 9999;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    @media (max-width: 768px) {
+      .main-nav {
+        display: none;
+        position: absolute;
+        top: calc(100% + 6px);
+        right: 8px;
+        flex-direction: column;
+        align-items: stretch;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 10px 0;
+        width: min(280px, calc(100vw - 16px));
+        box-shadow: var(--shadow);
+        gap: 0;
+        overflow: hidden;
+      }
+
+      .main-nav.show { display: flex; }
+
+      .main-nav > a {
+        display: block;
+        padding: 12px 14px;
+        border-bottom: 1px solid #f4dedf;
+      }
+
+      .nav-dropdown { width: 100%; border-bottom: 1px solid #f4dedf; }
+
+      .nav-dropbtn {
+        width: 100%;
+        text-align: left;
+        padding: 12px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--brand-dark);
+      }
+
+      .nav-dropbtn .menu-arrow { font-size: 12px; transition: transform 0.25s ease; }
+      .nav-dropdown.open .nav-dropbtn .menu-arrow { transform: rotate(180deg); }
+
+      .dropdown-content {
+        position: static;
+        display: none;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+        min-width: auto;
+        padding: 0;
+        background: var(--bg-soft);
+      }
+
+      .nav-dropdown.open .dropdown-content { display: block; }
+      .dropdown-content a {
+        padding: 11px 14px 11px 28px;
+        font-size: 13px;
+        background: var(--bg-soft);
+        border-bottom: 1px solid #f1d2c9;
+        color: var(--brand-dark);
+      }
+
+      .hero h1 { font-size: 23px; }
+      .trust-strip { grid-template-columns: repeat(2, 1fr); }
+      .section-title { font-size: 20px; padding: 10px 12px; border-left-width: 5px; }
+    }
+
+    @media (max-width: 520px) {
+      .trust-strip { grid-template-columns: 1fr; }
+      .brand-tagline { font-size: 10.8px; }
+      .guide-card-grid,
+      .mini-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="#home" class="brand">
+        <img src="images/logo.png" alt="Daily Glam Store" class="brand-logo" />
+        <span class="brand-text">
+          <span class="brand-name">Daily Glam Store</span>
+          <span class="brand-tagline">Beauty Recommendation Platform</span>
+        </span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mainNav"
+      >
+        <span class="menu-text">Menu</span>
+        <span class="menu-icon">☰</span>
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="#home">🏠 Home</a>
+        <div class="nav-dropdown" id="guidesDropdown">
+          <button class="nav-dropbtn" type="button" aria-expanded="false">
+            <span>📝 Beauty Guides</span>
+            <span class="menu-arrow">▼</span>
+          </button>
+          <div class="dropdown-content">
+            <a href="#facewash-guide">🧼 Face Wash Guide</a>
+            <a href="#serum-guide">💧 Serum Guide</a>
+            <a href="#sunscreen-guide">🧴 Sunscreen Guide</a>
+            <a href="#hairoil-guide">🪮 Hair Oil Guide</a>
+          </div>
+        </div>
+        <a href="#skincare-routine">✨ Skincare Routine</a>
+        <a href="#haircare-routine">💆 Haircare Routine</a>
+        <a href="#contact">📞 Contact &amp; Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <h1>Quick Beauty Buying Guides</h1>
+      <p>
+        Short, practical skincare and haircare guidance to help you choose smarter in minutes.
+        Built for busy shoppers who want trusted recommendations without reading long articles.
+      </p>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    <div>✔ Quick to scan</div>
+    <div>✔ Practical buying checkpoints</div>
+    <div>✔ Mobile-friendly format</div>
+  </div>
+
+  <section class="section" id="guides-overview">
+    <h2 class="section-title">Start With The Guide You Need</h2>
+    <p class="section-intro">
+      Tap a card to jump directly to that guide section.
+    </p>
+    <div class="guide-card-grid">
+      <a class="guide-card" href="#facewash-guide">
+        <h3>🧼 Face Wash Guide</h3>
+        <ul>
+          <li>Choose by skin type first.</li>
+          <li>Look for mild cleansers.</li>
+          <li>Avoid over-drying formulas.</li>
+        </ul>
+        <span class="read-link">Read Guide →</span>
+      </a>
+
+      <a class="guide-card" href="#serum-guide">
+        <h3>💧 Serum Guide</h3>
+        <ul>
+          <li>Match serum to your concern.</li>
+          <li>Use one active at a time.</li>
+          <li>Consistency beats complexity.</li>
+        </ul>
+        <span class="read-link">Read Guide →</span>
+      </a>
+
+      <a class="guide-card" href="#sunscreen-guide">
+        <h3>🧴 Sunscreen Guide</h3>
+        <ul>
+          <li>SPF 30+ for daily wear.</li>
+          <li>Pick cream or gel by feel.</li>
+          <li>Reapply when outdoors.</li>
+        </ul>
+        <span class="read-link">Read Guide →</span>
+      </a>
+
+      <a class="guide-card" href="#hairoil-guide">
+        <h3>🪮 Hair Oil Guide</h3>
+        <ul>
+          <li>Focus on scalp comfort.</li>
+          <li>Balance nourishment and weight.</li>
+          <li>Use according to hair texture.</li>
+        </ul>
+        <span class="read-link">Read Guide →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" id="facewash-guide">
+    <h2 class="section-title">🧼 Face Wash Buying Guide</h2>
+    <div class="mini-grid">
+      <div class="mini-card">
+        <h4>Best by skin type</h4>
+        <ul>
+          <li><strong>Oily:</strong> gel or foaming options.</li>
+          <li><strong>Dry:</strong> cream-based, hydrating cleansers.</li>
+          <li><strong>Sensitive:</strong> fragrance-light gentle formula.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>Ingredients to look for</h4>
+        <ul>
+          <li>Glycerin, ceramides, aloe vera.</li>
+          <li>Salicylic acid for oily/acne-prone skin.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>What to avoid</h4>
+        <ul>
+          <li>Overly harsh surfactants daily.</li>
+          <li>Strong fragrance if skin reacts easily.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip-note"><strong>Quick tip:</strong> If skin feels tight after washing, your cleanser may be too harsh.</div>
+    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended skincare products</a>
+  </section>
+
+  <section class="section" id="serum-guide">
+    <h2 class="section-title">💧 Serum Buying Guide</h2>
+    <div class="mini-grid">
+      <div class="mini-card">
+        <h4>Vitamin C / glow</h4>
+        <ul>
+          <li>Great for dullness and uneven look.</li>
+          <li>Best used in morning with sunscreen.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>Hyaluronic / hydration</h4>
+        <ul>
+          <li>Helps retain moisture.</li>
+          <li>Apply on slightly damp skin.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>Niacinamide / acne-prone skin</h4>
+        <ul>
+          <li>Useful for oil balance and marks.</li>
+          <li>Start lower strength if new to actives.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip-note"><strong>Quick tip:</strong> Pick one primary serum concern first, then stay consistent for 6–8 weeks.</div>
+    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended skincare products</a>
+  </section>
+
+  <section class="section" id="sunscreen-guide">
+    <h2 class="section-title">🧴 Sunscreen Buying Guide</h2>
+    <div class="mini-grid">
+      <div class="mini-card">
+        <h4>SPF basics</h4>
+        <ul>
+          <li>Use broad-spectrum SPF 30 or above.</li>
+          <li>Daily use matters, even on cloudy days.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>Cream vs gel</h4>
+        <ul>
+          <li><strong>Cream:</strong> better for dry skin comfort.</li>
+          <li><strong>Gel:</strong> lighter feel for oily skin.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>Why daily sunscreen matters</h4>
+        <ul>
+          <li>Helps prevent tanning and sun spots.</li>
+          <li>Supports better long-term skin appearance.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip-note"><strong>Quick tip:</strong> Reapply every 2–3 hours if staying outdoors.</div>
+    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended skincare products</a>
+  </section>
+
+  <section class="section" id="hairoil-guide">
+    <h2 class="section-title">🪮 Hair Oil Buying Guide</h2>
+    <div class="mini-grid">
+      <div class="mini-card">
+        <h4>Dry scalp / nourishment</h4>
+        <ul>
+          <li>Coconut or almond blends can help softness.</li>
+          <li>Warm oil massage boosts comfort.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>Hair fall support</h4>
+        <ul>
+          <li>Look for oils with bhringraj, onion, or amla blends.</li>
+          <li>Use consistently 2–3 times weekly.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>Lightweight vs heavy oils</h4>
+        <ul>
+          <li>Fine hair: lightweight, easy-rinse oils.</li>
+          <li>Thick/coarse hair: richer nourishment oils.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip-note"><strong>Quick tip:</strong> Overnight oiling is optional; even 1–2 hours pre-wash can work well.</div>
+    <a class="section-cta" href="beauty-recommendations.html#haircare-recommendations">👉 Explore recommended haircare products</a>
+  </section>
+
+  <section class="section" id="skincare-routine">
+    <h2 class="section-title">✨ Quick Skincare Routine</h2>
+    <div class="mini-grid">
+      <div class="mini-card">
+        <h4>Morning</h4>
+        <ul>
+          <li>Face wash</li>
+          <li>Serum</li>
+          <li>Moisturiser + sunscreen</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>Night</h4>
+        <ul>
+          <li>Face wash</li>
+          <li>Treatment serum</li>
+          <li>Moisturiser</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip-note"><strong>Routine tip:</strong> Keep your routine simple and repeatable instead of changing products too often.</div>
+  </section>
+
+  <section class="section" id="haircare-routine">
+    <h2 class="section-title">💆 Quick Haircare Routine</h2>
+    <div class="mini-grid">
+      <div class="mini-card">
+        <h4>Oiling</h4>
+        <ul>
+          <li>Apply to scalp and lengths.</li>
+          <li>Leave for 1–2 hours before wash.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>Cleansing</h4>
+        <ul>
+          <li>Use mild shampoo suited to scalp type.</li>
+          <li>Rinse thoroughly to avoid buildup.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>Conditioning</h4>
+        <ul>
+          <li>Apply to mid-lengths and ends.</li>
+          <li>Use cool-water rinse for smoothness.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip-note"><strong>Routine tip:</strong> Weekly consistency matters more than using many products at once.</div>
+  </section>
+
+  <section class="section" id="contact">
+    <h2 class="section-title">📞 Contact &amp; Support</h2>
+    <div class="support-box">
+      For recommendation-related or discount-related queries, email:
+      <a href="mailto:dmahajan152@gmail.com">dmahajan152@gmail.com</a>.
+      <br /><br />
+      Want to shop recommendations directly? Visit
+      <a href="beauty-recommendations.html">Daily Glam Store Beauty Recommendations</a>.
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-trust-line">Daily Glam Store - Beauty Recommendations</div>
+    <div class="footer-trust-line">🌟 Trust • Quality • Style • Consistency 🌟</div>
+    <div class="footer-copy">© 2026 Daily Glam Store. All rights reserved.</div>
+    <div class="footer-powered">In Collaboration With Deepak Cosmetic Store</div>
+    <div class="footer-location">Main Bazar, Gurdaspur</div>
+    <div class="footer-bottom-note">
+      <span class="globe-icon">🌐</span>
+      <a class="footer-link-feedback" href="https://dailyglamstore.in/beauty-recommendations.html">https://dailyglamstore.in/beauty-recommendations.html</a>
+    </div>
+  </footer>
+
+  <button id="backToTop" type="button" aria-label="Back to top">⬆</button>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const mainNav = document.getElementById("mainNav");
+    const siteHeader = document.getElementById("siteHeader");
+    const navDropdowns = Array.from(document.querySelectorAll(".nav-dropdown"));
+    const backToTopButton = document.getElementById("backToTop");
+
+    function setDropdownOpen(dropdown, isOpen) {
+      const button = dropdown.querySelector(".nav-dropbtn");
+      dropdown.classList.toggle("open", isOpen);
+      if (button) {
+        button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      }
+    }
+
+    function closeMenu() {
+      mainNav.classList.remove("show");
+      menuToggle.setAttribute("aria-expanded", "false");
+      navDropdowns.forEach((dropdown) => setDropdownOpen(dropdown, false));
+    }
+
+    function toggleMenu() {
+      const isOpen = mainNav.classList.contains("show");
+      mainNav.classList.toggle("show");
+      menuToggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
+    }
+
+    menuToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    navDropdowns.forEach(function (dropdown) {
+      const button = dropdown.querySelector(".nav-dropbtn");
+      if (!button) return;
+
+      button.addEventListener("click", function (e) {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          e.stopPropagation();
+          const willOpen = !dropdown.classList.contains("open");
+          navDropdowns.forEach((item) => {
+            if (item !== dropdown) setDropdownOpen(item, false);
+          });
+          setDropdownOpen(dropdown, willOpen);
+        }
+      });
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest(".header-inner")) closeMenu();
+    });
+
+    document.querySelectorAll("#mainNav a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        closeMenu();
+      });
+    });
+
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 18) siteHeader.classList.add("shrink");
+      else siteHeader.classList.remove("shrink");
+
+      if (window.scrollY > 500) backToTopButton.style.display = "block";
+      else backToTopButton.style.display = "none";
+
+      if (window.innerWidth <= 768 && mainNav.classList.contains("show")) {
+        closeMenu();
+      }
+    });
+
+    backToTopButton.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
