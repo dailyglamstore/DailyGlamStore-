@@ -223,8 +223,8 @@
     #top-picks,
     #skincare-recommendations,
     #haircare-recommendations,
-    #skincare-guide,
-    #haircare-guide,
+    #quick-skincare-routine,
+    #quick-haircare-routine,
     #about,
     #ordering,
     #disclaimer,
@@ -465,6 +465,53 @@
     .guide-box h3 {
       margin-top: 0;
       color: var(--brand);
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .mini-card {
+      background: var(--white);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 3px 10px rgba(178, 69, 90, 0.05);
+    }
+
+    .mini-card h4 {
+      margin: 0 0 8px;
+      color: var(--brand);
+      font-size: 15px;
+    }
+
+    .mini-card ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13px;
+    }
+
+    .tip-note {
+      margin-top: 12px;
+      background: #fff0ec;
+      border-left: 4px solid var(--brand);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: #5c514c;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .mini-grid > .mini-card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      width: calc((100% - 12px) / 2);
+      justify-self: center;
     }
 
     .guide-links-row {
@@ -962,8 +1009,8 @@
             <a href="#haircare-recommendations">🪮 Haircare Recommendations</a>
           </div>
         </div>
-        <a href="#skincare-guide">🧼 Skincare Guide</a>
-        <a href="#haircare-guide">💆 Haircare Guide</a>
+        <a href="#quick-skincare-routine">✨ Quick Skincare Routine</a>
+        <a href="#quick-haircare-routine">💆 Quick Haircare Routine</a>
         <a href="#about">💎 About Us</a>
         <a href="#ordering">🛍️ How Ordering Works ?</a>
 
@@ -1093,40 +1140,50 @@
     </div>
   </section>
 
-  <section class="section" id="skincare-guide">
+  <section class="section" id="quick-skincare-routine">
     <div class="section-heading-wrap">
-      <h2 class="section-title">🧼 Skincare Guide</h2>
+      <h2 class="section-title">✨ Quick Skincare Routine</h2>
     </div>
     <div class="section-divider"></div>
-    <div class="guide-box">
-      <h3>Simple Daily Skincare Routine</h3>
-      <p><strong>Morning:</strong> Face Wash → Serum → Moisturiser → Sunscreen</p>
-      <p><strong>Night:</strong> Face Wash → Serum → Moisturiser</p>
-      <p><strong>Need help choosing better products quickly?</strong> Explore our compact buying guides.</p>
-      <div class="guide-links-row">
-        <a class="guide-deep-link" href="beauty-guides.html">✨ View detailed beauty buying guides</a>
-        <a class="guide-deep-link" href="beauty-guides.html#facewash-guide">🧼 Face Wash Guide</a>
-        <a class="guide-deep-link" href="beauty-guides.html#serum-guide">💧 Serum Guide</a>
+    <div class="mini-grid">
+      <div class="mini-card">
+        <h4>Morning</h4>
+        <ul>
+          <li>Face Wash</li>
+          <li>Serum</li>
+          <li>Moisturiser</li>
+          <li>Sunscreen</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>Night</h4>
+        <ul>
+          <li>Face Wash</li>
+          <li>Serum</li>
+          <li>Moisturiser</li>
+        </ul>
       </div>
     </div>
+    <div class="tip-note"><strong>Tip:</strong> Consistency is more important than using too many products.</div>
   </section>
 
-  <section class="section" id="haircare-guide">
+  <section class="section" id="quick-haircare-routine">
     <div class="section-heading-wrap">
-      <h2 class="section-title">💆 Haircare Guide</h2>
+      <h2 class="section-title">💆 Quick Haircare Routine</h2>
     </div>
     <div class="section-divider"></div>
-    <div class="guide-box">
-      <h3>Simple Haircare Routine</h3>
-      <p>
-        Use hair oil as needed, wash with a suitable shampoo, and follow with conditioner for
-        smoother looking hair.
-      </p>
-      <div class="guide-links-row">
-        <a class="guide-deep-link" href="beauty-guides.html#hairoil-guide">🪮 Hair Oil Guide</a>
-        <a class="guide-deep-link" href="beauty-guides.html#haircare-routine">💆 Haircare Routine Tips</a>
+    <div class="mini-grid">
+      <div class="mini-card">
+        <h4>Oiling</h4>
+      </div>
+      <div class="mini-card">
+        <h4>Cleansing</h4>
+      </div>
+      <div class="mini-card">
+        <h4>Conditioning</h4>
       </div>
     </div>
+    <div class="tip-note"><strong>Routine tip:</strong> Weekly consistency matters more than using many products at once.</div>
   </section>
 
   <div class="footer-content-area">
