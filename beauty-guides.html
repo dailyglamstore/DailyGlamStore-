@@ -191,8 +191,9 @@
     .section,
     #home,
     #facewash-guide,
-    #serum-guide,
+    #faceserum-guide,
     #sunscreen-guide,
+    #moisturiser-guide,
     #hairoil-guide,
     #skincare-routine,
     #haircare-routine,
@@ -223,23 +224,6 @@
       color: var(--text-soft);
     }
 
-    .trust-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      padding: 12px;
-      background: var(--bg-soft);
-      border-top: 1px solid var(--border-soft);
-      border-bottom: 1px solid var(--border-soft);
-      font-size: 12.5px;
-      font-weight: 600;
-    }
-
-    .trust-strip div {
-      text-align: center;
-      color: var(--brand-dark);
-    }
-
     .section {
       max-width: 1100px;
       margin: auto;
@@ -266,19 +250,26 @@
 
     .guide-card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
       gap: 12px;
+      max-width: 760px;
+      margin: 0 auto;
     }
 
     .guide-card {
       background: var(--white);
       border: 1px solid var(--border-soft);
       border-radius: 12px;
-      padding: 14px;
+      padding: 14px 12px;
       box-shadow: 0 4px 14px rgba(178, 69, 90, 0.08);
       text-decoration: none;
       color: inherit;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
     .guide-card:hover {
@@ -287,32 +278,15 @@
     }
 
     .guide-card h3 {
-      margin: 0 0 8px;
-      color: var(--brand);
-      font-size: 17px;
-      line-height: 1.3;
-    }
-
-    .guide-card ul {
       margin: 0;
-      padding-left: 18px;
-      font-size: 13px;
-      color: #5a4e49;
-    }
-
-    .guide-card li + li { margin-top: 4px; }
-
-    .guide-card .read-link {
-      margin-top: 10px;
-      display: inline-block;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--brand-dark);
+      color: var(--brand);
+      font-size: 15px;
+      line-height: 1.3;
     }
 
     .mini-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
 
@@ -507,13 +481,16 @@
       }
 
       .hero h1 { font-size: 23px; }
-      .trust-strip { grid-template-columns: repeat(2, 1fr); }
       .section-title { font-size: 20px; padding: 10px 12px; border-left-width: 5px; }
+      .guide-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 520px) {
-      .trust-strip { grid-template-columns: 1fr; }
       .brand-tagline { font-size: 10.8px; }
+      .mini-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 380px) {
       .guide-card-grid,
       .mini-grid { grid-template-columns: 1fr; }
     }
@@ -551,8 +528,9 @@
           </button>
           <div class="dropdown-content">
             <a href="#facewash-guide">🧼 Face Wash Guide</a>
-            <a href="#serum-guide">💧 Serum Guide</a>
+            <a href="#faceserum-guide">💧 Face Serum Guide</a>
             <a href="#sunscreen-guide">🧴 Sunscreen Guide</a>
+            <a href="#moisturiser-guide">🧴 Moisturiser Guide</a>
             <a href="#hairoil-guide">🪮 Hair Oil Guide</a>
           </div>
         </div>
@@ -573,56 +551,22 @@
     </div>
   </section>
 
-  <div class="trust-strip">
-    <div>✔ Quick to scan</div>
-    <div>✔ Practical buying checkpoints</div>
-    <div>✔ Mobile-friendly format</div>
-  </div>
-
   <section class="section" id="guides-overview">
-    <h2 class="section-title">Start With The Guide You Need</h2>
-    <p class="section-intro">
-      Tap a card to jump directly to that guide section.
-    </p>
     <div class="guide-card-grid">
       <a class="guide-card" href="#facewash-guide">
         <h3>🧼 Face Wash Guide</h3>
-        <ul>
-          <li>Choose by skin type first.</li>
-          <li>Look for mild cleansers.</li>
-          <li>Avoid over-drying formulas.</li>
-        </ul>
-        <span class="read-link">Read Guide →</span>
       </a>
 
-      <a class="guide-card" href="#serum-guide">
-        <h3>💧 Serum Guide</h3>
-        <ul>
-          <li>Match serum to your concern.</li>
-          <li>Use one active at a time.</li>
-          <li>Consistency beats complexity.</li>
-        </ul>
-        <span class="read-link">Read Guide →</span>
+      <a class="guide-card" href="#faceserum-guide">
+        <h3>💧 Face Serum Guide</h3>
       </a>
 
       <a class="guide-card" href="#sunscreen-guide">
         <h3>🧴 Sunscreen Guide</h3>
-        <ul>
-          <li>SPF 30+ for daily wear.</li>
-          <li>Pick cream or gel by feel.</li>
-          <li>Reapply when outdoors.</li>
-        </ul>
-        <span class="read-link">Read Guide →</span>
       </a>
 
-      <a class="guide-card" href="#hairoil-guide">
-        <h3>🪮 Hair Oil Guide</h3>
-        <ul>
-          <li>Focus on scalp comfort.</li>
-          <li>Balance nourishment and weight.</li>
-          <li>Use according to hair texture.</li>
-        </ul>
-        <span class="read-link">Read Guide →</span>
+      <a class="guide-card" href="#moisturiser-guide">
+        <h3>🧴 Moisturiser Guide</h3>
       </a>
     </div>
   </section>
@@ -631,88 +575,144 @@
     <h2 class="section-title">🧼 Face Wash Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
-        <h4>Best by skin type</h4>
+        <h4>Vitamin C face wash</h4>
         <ul>
-          <li><strong>Oily:</strong> gel or foaming options.</li>
-          <li><strong>Dry:</strong> cream-based, hydrating cleansers.</li>
-          <li><strong>Sensitive:</strong> fragrance-light gentle formula.</li>
+          <li>Supports a brighter, fresher look.</li>
+          <li>Useful for dull-looking skin goals.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Ingredients to look for</h4>
+        <h4>Hyaluronic acid face wash</h4>
         <ul>
-          <li>Glycerin, ceramides, aloe vera.</li>
-          <li>Salicylic acid for oily/acne-prone skin.</li>
+          <li>Helps cleanse without a stripped feel.</li>
+          <li>Good for normal, dry, or dehydrated skin.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>What to avoid</h4>
+        <h4>Salicylic acid face wash</h4>
         <ul>
-          <li>Overly harsh surfactants daily.</li>
-          <li>Strong fragrance if skin reacts easily.</li>
+          <li>Helps clear excess oil and pore buildup.</li>
+          <li>Best for oily, acne-prone, clog-prone skin.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>Aloe vera face wash</h4>
+        <ul>
+          <li>Known for a gentle, soothing cleanse.</li>
+          <li>Often suits sensitive or easily-irritated skin.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>Rice water face wash</h4>
+        <ul>
+          <li>Usually a mild, soft-feel cleansing option.</li>
+          <li>Can suit everyday use for a smooth finish.</li>
         </ul>
       </div>
     </div>
-    <div class="tip-note"><strong>Quick tip:</strong> If skin feels tight after washing, your cleanser may be too harsh.</div>
-    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended skincare products</a>
+    <div class="tip-note"><strong>Buying tip:</strong> Choose a face wash by skin type first, then match one key ingredient to your top concern.</div>
+    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended face wash products</a>
   </section>
 
-  <section class="section" id="serum-guide">
-    <h2 class="section-title">💧 Serum Buying Guide</h2>
+  <section class="section" id="faceserum-guide">
+    <h2 class="section-title">💧 Face Serum Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
-        <h4>Vitamin C / glow</h4>
+        <h4>Vitamin C serum</h4>
         <ul>
-          <li>Great for dullness and uneven look.</li>
-          <li>Best used in morning with sunscreen.</li>
+          <li>Provides antioxidant and brightening support.</li>
+          <li>Best for dull-looking or uneven-tone concerns.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Hyaluronic / hydration</h4>
+        <h4>Hyaluronic acid serum</h4>
         <ul>
-          <li>Helps retain moisture.</li>
-          <li>Apply on slightly damp skin.</li>
+          <li>Boosts hydration and a plumper skin feel.</li>
+          <li>Great when skin feels dehydrated or tight.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Niacinamide / acne-prone skin</h4>
+        <h4>Niacinamide serum</h4>
         <ul>
-          <li>Useful for oil balance and marks.</li>
-          <li>Start lower strength if new to actives.</li>
+          <li>Supports brightness and more even-looking tone.</li>
+          <li>Often acne-prone and combination-skin friendly.</li>
         </ul>
       </div>
     </div>
-    <div class="tip-note"><strong>Quick tip:</strong> Pick one primary serum concern first, then stay consistent for 6–8 weeks.</div>
-    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended skincare products</a>
+    <div class="tip-note"><strong>Buying tip:</strong> Start with one serum for one goal, and apply consistently before adding another active.</div>
+    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended face serum products</a>
   </section>
 
   <section class="section" id="sunscreen-guide">
     <h2 class="section-title">🧴 Sunscreen Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
-        <h4>SPF basics</h4>
+        <h4>SPF 30+ broad-spectrum</h4>
         <ul>
-          <li>Use broad-spectrum SPF 30 or above.</li>
-          <li>Daily use matters, even on cloudy days.</li>
+          <li>The standard baseline for daily protection.</li>
+          <li>Suitable for all skin types every day.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Cream vs gel</h4>
+        <h4>Gel sunscreen</h4>
         <ul>
-          <li><strong>Cream:</strong> better for dry skin comfort.</li>
-          <li><strong>Gel:</strong> lighter feel for oily skin.</li>
+          <li>Usually lightweight with a quick-absorb feel.</li>
+          <li>Often preferred for oily or humid-weather use.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Why daily sunscreen matters</h4>
+        <h4>Cream sunscreen</h4>
         <ul>
-          <li>Helps prevent tanning and sun spots.</li>
-          <li>Supports better long-term skin appearance.</li>
+          <li>Richer texture with extra moisturising comfort.</li>
+          <li>Often suits normal to dry skin types.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>Mineral sunscreen</h4>
+        <ul>
+          <li>Uses mineral UV filters for sun protection.</li>
+          <li>Often preferred when skin is sensitive.</li>
         </ul>
       </div>
     </div>
-    <div class="tip-note"><strong>Quick tip:</strong> Reapply every 2–3 hours if staying outdoors.</div>
-    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended skincare products</a>
+    <div class="tip-note"><strong>Buying tip:</strong> Pick a sunscreen texture you enjoy using daily, then reapply every 2–3 hours outdoors.</div>
+    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended sunscreen products</a>
+  </section>
+
+  <section class="section" id="moisturiser-guide">
+    <h2 class="section-title">🧴 Moisturiser Buying Guide</h2>
+    <div class="mini-grid">
+      <div class="mini-card">
+        <h4>Gel moisturiser</h4>
+        <ul>
+          <li>Lightweight, fresh, non-heavy finish.</li>
+          <li>Best for oily skin or hot, humid weather.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>Lotion moisturiser</h4>
+        <ul>
+          <li>Balanced hydration with medium texture.</li>
+          <li>Good match for normal or combination skin.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>Cream moisturiser</h4>
+        <ul>
+          <li>Richer feel that seals in moisture well.</li>
+          <li>Often best for dry or flaky skin needs.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>Barrier-support moisturiser</h4>
+        <ul>
+          <li>Look for ceramides, hyaluronic acid, or dimethicone.</li>
+          <li>Helpful when skin feels dry, weak, or sensitive.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip-note"><strong>Buying tip:</strong> Choose texture by skin type and season, then use morning and night for better consistency.</div>
+    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended moisturiser products</a>
   </section>
 
   <section class="section" id="hairoil-guide">
