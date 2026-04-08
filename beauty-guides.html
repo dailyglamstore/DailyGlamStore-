@@ -195,8 +195,6 @@
     #sunscreen-guide,
     #moisturiser-guide,
     #hairoil-guide,
-    #skincare-routine,
-    #haircare-routine,
     #contact {
       scroll-margin-top: 95px;
     }
@@ -358,6 +356,64 @@
 
     .support-box a:hover { text-decoration: underline; }
 
+    .footer-section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 16px;
+    }
+
+    .footer-content-area {
+      background: #fff6f2;
+      padding: 24px 0 8px;
+      margin-top: 8px;
+    }
+
+    .footer-section h2 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      line-height: 1.3;
+      color: var(--brand-dark);
+    }
+
+    .footer-section {
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+
+    #contact.footer-section {
+      padding-bottom: 8px;
+    }
+
+    .contact-support-row {
+      display: block;
+    }
+
+    .contact-support-text {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .contact-support-email {
+      font-size: 13px;
+      line-height: 1.6;
+      font-weight: 700;
+      color: var(--brand-dark);
+      text-decoration: none;
+    }
+
+    .contact-support-email:hover {
+      text-decoration: underline;
+    }
+
+    .guide-card-grid > .guide-card:last-child:nth-child(odd),
+    .mini-grid > .mini-card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      width: calc((100% - 12px) / 2);
+      justify-self: center;
+    }
+
     .site-footer {
       background: #fff3ee;
       color: #7a3b4a;
@@ -483,6 +539,17 @@
       .hero h1 { font-size: 23px; }
       .section-title { font-size: 20px; padding: 10px 12px; border-left-width: 5px; }
       .guide-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+      .main-nav > a:last-child { border-bottom: none; }
+
+      .contact-support-row {
+        display: block;
+      }
+
+      .contact-support-email {
+        white-space: normal;
+        word-break: break-word;
+      }
     }
 
     @media (max-width: 520px) {
@@ -493,6 +560,11 @@
     @media (max-width: 380px) {
       .guide-card-grid,
       .mini-grid { grid-template-columns: 1fr; }
+
+      .guide-card-grid > .guide-card:last-child:nth-child(odd),
+      .mini-grid > .mini-card:last-child:nth-child(odd) {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -534,8 +606,6 @@
             <a href="#hairoil-guide">🪮 Hair Oil Guide</a>
           </div>
         </div>
-        <a href="#skincare-routine">✨ Skincare Routine</a>
-        <a href="#haircare-routine">💆 Haircare Routine</a>
         <a href="#contact">📞 Contact &amp; Support</a>
       </nav>
     </div>
@@ -744,67 +814,19 @@
     <a class="section-cta" href="beauty-recommendations.html#haircare-recommendations">👉 Explore recommended haircare products</a>
   </section>
 
-  <section class="section" id="skincare-routine">
-    <h2 class="section-title">✨ Quick Skincare Routine</h2>
-    <div class="mini-grid">
-      <div class="mini-card">
-        <h4>Morning</h4>
-        <ul>
-          <li>Face wash</li>
-          <li>Serum</li>
-          <li>Moisturiser + sunscreen</li>
-        </ul>
+  <div class="footer-content-area">
+    <section class="footer-section" id="contact">
+      <h2>📞 Contact &amp; Support</h2>
+      <div class="contact-support-row">
+        <p class="contact-support-text">
+          For recommendation-related queries or discount-related queries, please contact at :
+          <a class="contact-support-email" href="mailto:dmahajan152@gmail.com"
+            ><strong>dmahajan152@gmail.com</strong></a
+          >.
+        </p>
       </div>
-      <div class="mini-card">
-        <h4>Night</h4>
-        <ul>
-          <li>Face wash</li>
-          <li>Treatment serum</li>
-          <li>Moisturiser</li>
-        </ul>
-      </div>
-    </div>
-    <div class="tip-note"><strong>Routine tip:</strong> Keep your routine simple and repeatable instead of changing products too often.</div>
-  </section>
-
-  <section class="section" id="haircare-routine">
-    <h2 class="section-title">💆 Quick Haircare Routine</h2>
-    <div class="mini-grid">
-      <div class="mini-card">
-        <h4>Oiling</h4>
-        <ul>
-          <li>Apply to scalp and lengths.</li>
-          <li>Leave for 1–2 hours before wash.</li>
-        </ul>
-      </div>
-      <div class="mini-card">
-        <h4>Cleansing</h4>
-        <ul>
-          <li>Use mild shampoo suited to scalp type.</li>
-          <li>Rinse thoroughly to avoid buildup.</li>
-        </ul>
-      </div>
-      <div class="mini-card">
-        <h4>Conditioning</h4>
-        <ul>
-          <li>Apply to mid-lengths and ends.</li>
-          <li>Use cool-water rinse for smoothness.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="tip-note"><strong>Routine tip:</strong> Weekly consistency matters more than using many products at once.</div>
-  </section>
-
-  <section class="section" id="contact">
-    <h2 class="section-title">📞 Contact &amp; Support</h2>
-    <div class="support-box">
-      For recommendation-related or discount-related queries, email:
-      <a href="mailto:dmahajan152@gmail.com">dmahajan152@gmail.com</a>.
-      <br /><br />
-      Want to shop recommendations directly? Visit
-      <a href="beauty-recommendations.html">Daily Glam Store Beauty Recommendations</a>.
-    </div>
-  </section>
+    </section>
+  </div>
 
   <footer class="site-footer">
     <div class="footer-trust-line">Daily Glam Store - Beauty Recommendations</div>
