@@ -495,6 +495,23 @@
       font-size: 13px;
     }
 
+    .routine-flow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-align: center;
+      font-size: 13px;
+      color: #4b3f3a;
+    }
+
+    .routine-arrow {
+      line-height: 1;
+      font-size: 15px;
+      color: var(--text-soft);
+      font-weight: 400;
+    }
+
     .tip-note {
       margin-top: 12px;
       background: #fff0ec;
@@ -506,6 +523,10 @@
       max-width: 760px;
       margin-left: auto;
       margin-right: auto;
+    }
+
+    .tip-note .tip-body {
+      font-style: italic;
     }
 
     .mini-grid > .mini-card:last-child:nth-child(odd) {
@@ -722,11 +743,15 @@
       margin-top: 6px;
       display: inline-flex;
       align-items: center;
-      gap: 3px;
+      gap: 1px;
     }
 
     .footer-bottom-note .globe-icon {
       line-height: 1;
+    }
+
+    .footer-bottom-note .footer-link-feedback {
+      padding: 2px 3px;
     }
 
 #backToTop {
@@ -998,6 +1023,7 @@
 
       <nav class="main-nav" id="mainNav">
         <a href="#home">🏠 Home</a>
+        <a href="beauty-guides.html">📘 Beauty Guides</a>
         <div class="nav-dropdown" id="categoriesDropdown">
           <button class="nav-dropbtn" type="button" id="categoriesBtn" aria-expanded="false">
             <span><span class="categories-icon">✦</span> Categories</span>
@@ -1145,26 +1171,34 @@
       <h2 class="section-title">✨ Quick Skincare Routine</h2>
     </div>
     <div class="section-divider"></div>
+    <p class="section-intro">
+      A simple daily order to help you layer core skincare steps correctly and consistently.
+    </p>
     <div class="mini-grid">
       <div class="mini-card">
         <h4>Morning</h4>
-        <ul>
-          <li>Face Wash</li>
-          <li>Serum</li>
-          <li>Moisturiser</li>
-          <li>Sunscreen</li>
-        </ul>
+        <div class="routine-flow">
+          <span>Face Wash</span>
+          <span class="routine-arrow">↓</span>
+          <span>Serum</span>
+          <span class="routine-arrow">↓</span>
+          <span>Moisturiser</span>
+          <span class="routine-arrow">↓</span>
+          <span>Sunscreen</span>
+        </div>
       </div>
       <div class="mini-card">
         <h4>Night</h4>
-        <ul>
-          <li>Face Wash</li>
-          <li>Serum</li>
-          <li>Moisturiser</li>
-        </ul>
+        <div class="routine-flow">
+          <span>Face Wash</span>
+          <span class="routine-arrow">↓</span>
+          <span>Serum</span>
+          <span class="routine-arrow">↓</span>
+          <span>Moisturiser</span>
+        </div>
       </div>
     </div>
-    <div class="tip-note"><strong>Tip:</strong> Consistency is more important than using too many products.</div>
+    <div class="tip-note"><strong>Routine Tip:</strong> <span class="tip-body">Consistency is more important than using too many products.</span></div>
   </section>
 
   <section class="section" id="quick-haircare-routine">
@@ -1172,18 +1206,33 @@
       <h2 class="section-title">💆 Quick Haircare Routine</h2>
     </div>
     <div class="section-divider"></div>
+    <p class="section-intro">
+      A simple weekly routine to keep haircare practical, manageable, and easy to follow.
+    </p>
     <div class="mini-grid">
       <div class="mini-card">
         <h4>Oiling</h4>
+        <ul>
+          <li>Apply to scalp and lengths</li>
+          <li>Leave for 1–2 hours before wash</li>
+        </ul>
       </div>
       <div class="mini-card">
         <h4>Cleansing</h4>
+        <ul>
+          <li>Use mild shampoo suited to scalp type</li>
+          <li>Rinse thoroughly to avoid buildup</li>
+        </ul>
       </div>
       <div class="mini-card">
         <h4>Conditioning</h4>
+        <ul>
+          <li>Apply to mid-lengths and ends</li>
+          <li>Use cool-water rinse for smoothness</li>
+        </ul>
       </div>
     </div>
-    <div class="tip-note"><strong>Routine tip:</strong> Weekly consistency matters more than using many products at once.</div>
+    <div class="tip-note"><strong>Routine tip:</strong> <span class="tip-body">Weekly consistency matters more than using many products at once.</span></div>
   </section>
 
   <div class="footer-content-area">
