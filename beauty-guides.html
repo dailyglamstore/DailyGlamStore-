@@ -151,6 +151,24 @@
       font-family: inherit;
     }
 
+    .home-beauty-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      line-height: 1.2;
+    }
+
+    .home-beauty-prefix {
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .home-beauty-text {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
     .main-nav > a:hover,
     .nav-dropbtn:hover { color: var(--brand); }
 
@@ -226,6 +244,23 @@
       max-width: 1100px;
       margin: auto;
       padding: 28px 16px;
+    }
+
+    #guides-overview {
+      padding-bottom: 16px;
+    }
+
+    #facewash-guide,
+    #faceserum-guide,
+    #sunscreen-guide,
+    #moisturiser-guide,
+    #hairoil-guide {
+      padding-top: 20px;
+      padding-bottom: 18px;
+    }
+
+    #hairoil-guide {
+      padding-bottom: 10px;
     }
 
     .section-title {
@@ -318,6 +353,10 @@
       color: #5c514c;
     }
 
+    .tip-note .tip-body {
+      font-style: italic;
+    }
+
     .section-cta {
       margin-top: 12px;
       display: inline-flex;
@@ -365,7 +404,7 @@
     .footer-content-area {
       background: #fff6f2;
       padding: 24px 0 8px;
-      margin-top: 8px;
+      margin-top: 0;
     }
 
     .footer-section h2 {
@@ -381,6 +420,7 @@
     }
 
     #contact.footer-section {
+      padding-top: 10px;
       padding-bottom: 8px;
     }
 
@@ -440,7 +480,11 @@
       margin-top: 6px;
       display: inline-flex;
       align-items: center;
-      gap: 3px;
+      gap: 1px;
+    }
+
+    .footer-bottom-note .footer-link-feedback {
+      padding: 2px 3px;
     }
 
     .footer-link-feedback {
@@ -499,6 +543,14 @@
         display: block;
         padding: 12px 14px;
         border-bottom: 1px solid #f4dedf;
+      }
+
+      .home-beauty-link {
+        align-items: center;
+      }
+
+      .home-beauty-prefix {
+        min-width: 58px;
       }
 
       .nav-dropdown { width: 100%; border-bottom: 1px solid #f4dedf; }
@@ -592,7 +644,10 @@
       </button>
 
       <nav class="main-nav" id="mainNav">
-        <a href="#home">🏠 Home</a>
+        <a href="beauty-recommendations.html" class="home-beauty-link">
+          <span class="home-beauty-prefix">🏠 Home :</span>
+          <span class="home-beauty-text"><span>Beauty</span><span>Recommendations</span></span>
+        </a>
         <div class="nav-dropdown" id="guidesDropdown">
           <button class="nav-dropbtn" type="button" aria-expanded="false">
             <span>📝 Beauty Guides</span>
@@ -680,7 +735,7 @@
         </ul>
       </div>
     </div>
-    <div class="tip-note"><strong>Buying tip:</strong> Choose a face wash by skin type first, then match one key ingredient to your top concern.</div>
+    <div class="tip-note"><strong>Buying tip:</strong> <span class="tip-body">Choose a face wash by skin type first, then match one key ingredient to your top concern.</span></div>
     <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended face wash products</a>
   </section>
 
@@ -709,7 +764,7 @@
         </ul>
       </div>
     </div>
-    <div class="tip-note"><strong>Buying tip:</strong> Start with one serum for one goal, and apply consistently before adding another active.</div>
+    <div class="tip-note"><strong>Buying tip:</strong> <span class="tip-body">Start with one serum for one goal, and apply consistently before adding another active.</span></div>
     <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended face serum products</a>
   </section>
 
@@ -745,7 +800,7 @@
         </ul>
       </div>
     </div>
-    <div class="tip-note"><strong>Buying tip:</strong> Pick a sunscreen texture you enjoy using daily, then reapply every 2–3 hours outdoors.</div>
+    <div class="tip-note"><strong>Buying tip:</strong> <span class="tip-body">Pick a sunscreen texture you enjoy using daily, then reapply every 2–3 hours outdoors.</span></div>
     <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended sunscreen products</a>
   </section>
 
@@ -781,7 +836,7 @@
         </ul>
       </div>
     </div>
-    <div class="tip-note"><strong>Buying tip:</strong> Choose texture by skin type and season, then use morning and night for better consistency.</div>
+    <div class="tip-note"><strong>Buying tip:</strong> <span class="tip-body">Choose texture by skin type and season, then use morning and night for better consistency.</span></div>
     <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended moisturiser products</a>
   </section>
 
@@ -810,7 +865,7 @@
         </ul>
       </div>
     </div>
-    <div class="tip-note"><strong>Quick tip:</strong> Overnight oiling is optional; even 1–2 hours pre-wash can work well.</div>
+    <div class="tip-note"><strong>Quick tip:</strong> <span class="tip-body">Overnight oiling is optional; even 1–2 hours pre-wash can work well.</span></div>
     <a class="section-cta" href="beauty-recommendations.html#haircare-recommendations">👉 Explore recommended haircare products</a>
   </section>
 
