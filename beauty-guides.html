@@ -335,6 +335,15 @@
       margin: 0 0 8px;
       color: var(--brand);
       font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      line-height: 1.3;
+    }
+
+    .title-icon {
+      font-size: 14px;
+      line-height: 1;
     }
 
     .mini-card ul {
@@ -366,10 +375,10 @@
       background: #ffe8ee;
       border: 1px solid #efc2cf;
       color: var(--brand-dark);
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 700;
-      padding: 8px 12px;
-      border-radius: 999px;
+      padding: 11px 16px;
+      border-radius: 16px;
       transition: background-color 0.2s ease, transform 0.2s ease;
     }
 
@@ -594,6 +603,12 @@
 
       .main-nav > a:last-child { border-bottom: none; }
 
+      .section-cta {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+      }
+
       .contact-support-row {
         display: block;
       }
@@ -627,7 +642,7 @@
         <img src="images/logo.png" alt="Daily Glam Store" class="brand-logo" />
         <span class="brand-text">
           <span class="brand-name">Daily Glam Store</span>
-          <span class="brand-tagline">Beauty Recommendation Platform</span>
+          <span class="brand-tagline">Curated Beauty Recommendations</span>
         </span>
       </a>
 
@@ -700,35 +715,35 @@
     <h2 class="section-title">🧼 Face Wash Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
-        <h4>Vitamin C face wash</h4>
+        <h4><span class="title-icon">🍊</span>Vitamin C face wash</h4>
         <ul>
           <li>Supports a brighter, fresher look.</li>
           <li>Useful for dull-looking skin goals.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Hyaluronic acid face wash</h4>
+        <h4><span class="title-icon">💧</span>Hyaluronic acid face wash</h4>
         <ul>
           <li>Helps cleanse without a stripped feel.</li>
           <li>Good for normal, dry, or dehydrated skin.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Salicylic acid face wash</h4>
+        <h4><span class="title-icon">🧪</span>Salicylic acid face wash</h4>
         <ul>
           <li>Helps clear excess oil and pore buildup.</li>
           <li>Best for oily, acne-prone, clog-prone skin.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Aloe vera face wash</h4>
+        <h4><span class="title-icon">🌿</span>Aloe vera face wash</h4>
         <ul>
           <li>Known for a gentle, soothing cleanse.</li>
           <li>Often suits sensitive or easily-irritated skin.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Rice water face wash</h4>
+        <h4><span class="title-icon">🌾</span>Rice water face wash</h4>
         <ul>
           <li>Usually a mild, soft-feel cleansing option.</li>
           <li>Can suit everyday use for a smooth finish.</li>
@@ -743,21 +758,21 @@
     <h2 class="section-title">💧 Face Serum Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
-        <h4>Vitamin C serum</h4>
+        <h4><span class="title-icon">🍊</span>Vitamin C serum</h4>
         <ul>
           <li>Provides antioxidant and brightening support.</li>
           <li>Best for dull-looking or uneven-tone concerns.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Hyaluronic acid serum</h4>
+        <h4><span class="title-icon">💧</span>Hyaluronic acid serum</h4>
         <ul>
           <li>Boosts hydration and a plumper skin feel.</li>
           <li>Great when skin feels dehydrated or tight.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Niacinamide serum</h4>
+        <h4><span class="title-icon">✨</span>Niacinamide serum</h4>
         <ul>
           <li>Supports brightness and more even-looking tone.</li>
           <li>Often acne-prone and combination-skin friendly.</li>
@@ -772,28 +787,28 @@
     <h2 class="section-title">🧴 Sunscreen Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
-        <h4>SPF 30+ broad-spectrum</h4>
+        <h4><span class="title-icon">☀️</span>SPF 30+ broad-spectrum</h4>
         <ul>
           <li>The standard baseline for daily protection.</li>
           <li>Suitable for all skin types every day.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Gel sunscreen</h4>
+        <h4><span class="title-icon">💦</span>Gel sunscreen</h4>
         <ul>
           <li>Usually lightweight with a quick-absorb feel.</li>
           <li>Often preferred for oily or humid-weather use.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Cream sunscreen</h4>
+        <h4><span class="title-icon">🧴</span>Cream sunscreen</h4>
         <ul>
           <li>Richer texture with extra moisturising comfort.</li>
           <li>Often suits normal to dry skin types.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Mineral sunscreen</h4>
+        <h4><span class="title-icon">🛡️</span>Mineral sunscreen</h4>
         <ul>
           <li>Uses mineral UV filters for sun protection.</li>
           <li>Often preferred when skin is sensitive.</li>
@@ -808,28 +823,28 @@
     <h2 class="section-title">🧴 Moisturiser Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
-        <h4>Gel moisturiser</h4>
+        <h4><span class="title-icon">💦</span>Gel moisturiser</h4>
         <ul>
           <li>Lightweight, fresh, non-heavy finish.</li>
           <li>Best for oily skin or hot, humid weather.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Lotion moisturiser</h4>
+        <h4><span class="title-icon">🧴</span>Lotion moisturiser</h4>
         <ul>
           <li>Balanced hydration with medium texture.</li>
           <li>Good match for normal or combination skin.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Cream moisturiser</h4>
+        <h4><span class="title-icon">🧈</span>Cream moisturiser</h4>
         <ul>
           <li>Richer feel that seals in moisture well.</li>
           <li>Often best for dry or flaky skin needs.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Barrier-support moisturiser</h4>
+        <h4><span class="title-icon">🛡️</span>Barrier-support moisturiser</h4>
         <ul>
           <li>Look for ceramides, hyaluronic acid, or dimethicone.</li>
           <li>Helpful when skin feels dry, weak, or sensitive.</li>
@@ -844,28 +859,39 @@
     <h2 class="section-title">🪮 Hair Oil Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
-        <h4>Dry scalp / nourishment</h4>
+        <h4>🧅 Onion Oil</h4>
         <ul>
-          <li>Coconut or almond blends can help softness.</li>
-          <li>Warm oil massage boosts comfort.</li>
+          <li>Supports hair fall control routines.</li>
+          <li>Helps strengthen roots over time.</li>
+          <li>Best for weak or thinning hair concerns.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Hair fall support</h4>
+        <h4>⚫ Black Seed Oil</h4>
         <ul>
-          <li>Look for oils with bhringraj, onion, or amla blends.</li>
-          <li>Use consistently 2–3 times weekly.</li>
+          <li>Supports scalp nourishment.</li>
+          <li>Useful for dry or stressed scalp.</li>
+          <li>Good for overall hair health support.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>Lightweight vs heavy oils</h4>
+        <h4>🌿 Herbal / Bhringraj Oil</h4>
         <ul>
-          <li>Fine hair: lightweight, easy-rinse oils.</li>
-          <li>Thick/coarse hair: richer nourishment oils.</li>
+          <li>Traditional nourishment oil.</li>
+          <li>Helps dull, weak-looking hair.</li>
+          <li>Suitable for regular oiling routines.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>🥥 Coconut Oil</h4>
+        <ul>
+          <li>Deep nourishment for dry hair.</li>
+          <li>Helps reduce roughness and frizz.</li>
+          <li>Ideal for pre-wash oiling.</li>
         </ul>
       </div>
     </div>
-    <div class="tip-note"><strong>Quick tip:</strong> <span class="tip-body">Overnight oiling is optional; even 1–2 hours pre-wash can work well.</span></div>
+    <div class="tip-note"><strong>Quick tip:</strong> <span class="tip-body">Overnight oiling is optional — even 1–2 hours before wash works well.</span></div>
     <a class="section-cta" href="beauty-recommendations.html#haircare-recommendations">👉 Explore recommended haircare products</a>
   </section>
 

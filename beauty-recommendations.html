@@ -507,9 +507,60 @@
 
     .routine-arrow {
       line-height: 1;
-      font-size: 15px;
+      font-size: 16px;
       color: var(--text-soft);
       font-weight: 400;
+    }
+
+    .routine-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      padding: 10px 24px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #ffe0ea;
+      box-shadow: 0 4px 10px rgba(178, 69, 90, 0.1);
+      text-align: center;
+      border-left: 0;
+    }
+
+    .routine-intro {
+      text-align: center;
+      max-width: 640px;
+      margin: 10px auto 18px;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .routine-card {
+      text-align: center;
+    }
+
+    .routine-card h4 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .routine-flow-step {
+      font-weight: 600;
+    }
+
+    .routine-hint {
+      font-size: 12px;
+      color: var(--text-soft);
+      line-height: 1.3;
+      margin-top: -2px;
+    }
+
+    .routine-single {
+      grid-template-columns: 1fr;
+      max-width: 520px;
+    }
+
+    .routine-single > .mini-card:last-child:nth-child(odd) {
+      width: 100%;
     }
 
     .tip-note {
@@ -920,6 +971,12 @@
         font-size: 10.8px;
       }
 
+      .routine-pill {
+        width: min(100%, 360px);
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
       .brand {
         gap: 8px;
       }
@@ -1005,7 +1062,7 @@
         <img src="images/logo.png" alt="Daily Glam Store" class="brand-logo" />
         <span class="brand-text">
           <span class="brand-name">Daily Glam Store</span>
-          <span class="brand-tagline">Beauty Recommendation Platform</span>
+          <span class="brand-tagline">Curated Beauty Recommendations</span>
         </span>
       </a>
 
@@ -1168,33 +1225,31 @@
 
   <section class="section" id="quick-skincare-routine">
     <div class="section-heading-wrap">
-      <h2 class="section-title">✨ Quick Skincare Routine</h2>
+      <h2 class="section-title routine-pill">✨ Quick Skincare Routine</h2>
     </div>
     <div class="section-divider"></div>
-    <p class="section-intro">
-      A simple daily order to help you layer core skincare steps correctly and consistently.
-    </p>
+    <p class="routine-intro">A simple daily skincare flow to help you follow the right steps without confusion.</p>
     <div class="mini-grid">
-      <div class="mini-card">
+      <div class="mini-card routine-card">
         <h4>Morning</h4>
         <div class="routine-flow">
-          <span>Face Wash</span>
-          <span class="routine-arrow">↓</span>
-          <span>Serum</span>
-          <span class="routine-arrow">↓</span>
-          <span>Moisturiser</span>
-          <span class="routine-arrow">↓</span>
-          <span>Sunscreen</span>
+          <span class="routine-flow-step">Face Wash</span>
+          <span class="routine-arrow">⬇️</span>
+          <span class="routine-flow-step">Serum</span>
+          <span class="routine-arrow">⬇️</span>
+          <span class="routine-flow-step">Moisturiser</span>
+          <span class="routine-arrow">⬇️</span>
+          <span class="routine-flow-step">Sunscreen</span>
         </div>
       </div>
-      <div class="mini-card">
+      <div class="mini-card routine-card">
         <h4>Night</h4>
         <div class="routine-flow">
-          <span>Face Wash</span>
-          <span class="routine-arrow">↓</span>
-          <span>Serum</span>
-          <span class="routine-arrow">↓</span>
-          <span>Moisturiser</span>
+          <span class="routine-flow-step">Face Wash</span>
+          <span class="routine-arrow">⬇️</span>
+          <span class="routine-flow-step">Serum</span>
+          <span class="routine-arrow">⬇️</span>
+          <span class="routine-flow-step">Moisturiser</span>
         </div>
       </div>
     </div>
@@ -1203,36 +1258,25 @@
 
   <section class="section" id="quick-haircare-routine">
     <div class="section-heading-wrap">
-      <h2 class="section-title">💆 Quick Haircare Routine</h2>
+      <h2 class="section-title routine-pill">💆 Quick Haircare Routine</h2>
     </div>
     <div class="section-divider"></div>
-    <p class="section-intro">
-      A simple weekly routine to keep haircare practical, manageable, and easy to follow.
-    </p>
-    <div class="mini-grid">
-      <div class="mini-card">
-        <h4>Oiling</h4>
-        <ul>
-          <li>Apply to scalp and lengths</li>
-          <li>Leave for 1–2 hours before wash</li>
-        </ul>
-      </div>
-      <div class="mini-card">
-        <h4>Cleansing</h4>
-        <ul>
-          <li>Use mild shampoo suited to scalp type</li>
-          <li>Rinse thoroughly to avoid buildup</li>
-        </ul>
-      </div>
-      <div class="mini-card">
-        <h4>Conditioning</h4>
-        <ul>
-          <li>Apply to mid-lengths and ends</li>
-          <li>Use cool-water rinse for smoothness</li>
-        </ul>
+    <p class="routine-intro">A simple weekly routine to maintain healthy and manageable hair.</p>
+    <div class="mini-grid routine-single">
+      <div class="mini-card routine-card">
+        <div class="routine-flow">
+          <span class="routine-flow-step">Oiling</span>
+          <span class="routine-hint">Apply &amp; leave for 1–2 hours</span>
+          <span class="routine-arrow">⬇️</span>
+          <span class="routine-flow-step">Cleansing</span>
+          <span class="routine-hint">Use mild shampoo</span>
+          <span class="routine-arrow">⬇️</span>
+          <span class="routine-flow-step">Conditioning</span>
+          <span class="routine-hint">Apply on lengths only</span>
+        </div>
       </div>
     </div>
-    <div class="tip-note"><strong>Routine tip:</strong> <span class="tip-body">Weekly consistency matters more than using many products at once.</span></div>
+    <div class="tip-note"><strong>Routine Tip:</strong> <span class="tip-body">Weekly consistency matters more than using many products at once.</span></div>
   </section>
 
   <div class="footer-content-area">
