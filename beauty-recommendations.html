@@ -512,18 +512,17 @@
       font-weight: 400;
     }
 
-    .routine-pill {
+    .routine-heading-capsule {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto;
       padding: 10px 24px;
       border-radius: 999px;
-      border: 1px solid var(--border);
-      background: #ffe0ea;
-      box-shadow: 0 4px 10px rgba(178, 69, 90, 0.1);
+      border: 1.5px solid #e7b2c0;
+      background: #fff9f8;
+      box-shadow: 0 6px 14px rgba(178, 69, 90, 0.08);
       text-align: center;
-      border-left: 0;
     }
 
     .routine-intro {
@@ -536,6 +535,19 @@
 
     .routine-card {
       text-align: center;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .routine-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(178, 69, 90, 0.12);
+    }
+
+    .routine-card:active {
+      transform: scale(0.985);
+      box-shadow: 0 4px 12px rgba(178, 69, 90, 0.1);
     }
 
     .routine-card h4 {
@@ -552,6 +564,24 @@
       color: var(--text-soft);
       line-height: 1.3;
       margin-top: -2px;
+    }
+
+    .routine-guide-link {
+      margin: 10px auto 0;
+      max-width: 760px;
+      text-align: center;
+    }
+
+    .routine-guide-link a {
+      color: var(--brand-dark);
+      font-size: 13.5px;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .routine-guide-link a:hover {
+      color: var(--brand);
     }
 
     .routine-single {
@@ -971,7 +1001,7 @@
         font-size: 10.8px;
       }
 
-      .routine-pill {
+      .routine-heading-capsule {
         width: min(100%, 360px);
         padding-left: 14px;
         padding-right: 14px;
@@ -1225,7 +1255,7 @@
 
   <section class="section" id="quick-skincare-routine">
     <div class="section-heading-wrap">
-      <h2 class="section-title routine-pill">✨ Quick Skincare Routine</h2>
+      <h2 class="section-title routine-heading-capsule">✨ Quick Skincare Routine</h2>
     </div>
     <div class="section-divider"></div>
     <p class="routine-intro">A simple daily skincare flow to help you follow the right steps without confusion.</p>
@@ -1234,31 +1264,39 @@
         <h4>Morning</h4>
         <div class="routine-flow">
           <span class="routine-flow-step">Face Wash</span>
+          <span class="routine-hint">Cleanse skin gently</span>
           <span class="routine-arrow">⬇️</span>
           <span class="routine-flow-step">Serum</span>
+          <span class="routine-hint">Apply based on skin concern</span>
           <span class="routine-arrow">⬇️</span>
           <span class="routine-flow-step">Moisturiser</span>
+          <span class="routine-hint">Lock in hydration</span>
           <span class="routine-arrow">⬇️</span>
           <span class="routine-flow-step">Sunscreen</span>
+          <span class="routine-hint">Protect during daytime</span>
         </div>
       </div>
       <div class="mini-card routine-card">
         <h4>Night</h4>
         <div class="routine-flow">
           <span class="routine-flow-step">Face Wash</span>
+          <span class="routine-hint">Remove dirt and buildup</span>
           <span class="routine-arrow">⬇️</span>
           <span class="routine-flow-step">Serum</span>
+          <span class="routine-hint">Support repair and hydration</span>
           <span class="routine-arrow">⬇️</span>
           <span class="routine-flow-step">Moisturiser</span>
+          <span class="routine-hint">Seal in overnight moisture</span>
         </div>
       </div>
     </div>
     <div class="tip-note"><strong>Routine Tip:</strong> <span class="tip-body">Consistency is more important than using too many products.</span></div>
+      <div class="routine-guide-link"><a href="beauty-guides.html#skincare-buying-guides">→ Click here to explore full skincare guide</a></div>
   </section>
 
   <section class="section" id="quick-haircare-routine">
     <div class="section-heading-wrap">
-      <h2 class="section-title routine-pill">💆 Quick Haircare Routine</h2>
+      <h2 class="section-title routine-heading-capsule">💆 Quick Haircare Routine</h2>
     </div>
     <div class="section-divider"></div>
     <p class="routine-intro">A simple weekly routine to maintain healthy and manageable hair.</p>
@@ -1277,6 +1315,7 @@
       </div>
     </div>
     <div class="tip-note"><strong>Routine Tip:</strong> <span class="tip-body">Weekly consistency matters more than using many products at once.</span></div>
+    <div class="routine-guide-link"><a href="beauty-guides.html#haircare-buying-guides">→ Click here to explore full haircare guide</a></div>
   </section>
 
   <div class="footer-content-area">
