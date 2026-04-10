@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daily Glam Store | Beauty Recommendation Platform</title>
+  <title>Daily Glam Store | Curated Beauty Recommendations</title>
   <meta
     name="description"
     content="Daily Glam Store is a beauty recommendation platform featuring curated skincare and haircare picks from trusted brands through official brand websites."
@@ -517,12 +517,20 @@
       align-items: center;
       justify-content: center;
       margin: 0 auto;
-      padding: 10px 24px;
+      padding: 12px 28px;
       border-radius: 999px;
       border: 1.5px solid #e7b2c0;
       background: #fff9f8;
       box-shadow: 0 6px 14px rgba(178, 69, 90, 0.08);
       text-align: center;
+      line-height: 1.15;
+    }
+
+    .routine-heading-lines {
+      display: block;
+      font-size: 20px;
+      color: var(--brand-dark);
+      letter-spacing: 0.01em;
     }
 
     .routine-intro {
@@ -535,19 +543,24 @@
 
     .routine-card {
       text-align: center;
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
+      border: 1.5px solid var(--border-soft);
+      box-shadow: 0 6px 16px rgba(178, 69, 90, 0.09);
     }
 
-    .routine-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 18px rgba(178, 69, 90, 0.12);
+    .routine-card:hover,
+    .routine-card:focus-within {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 11px 24px rgba(178, 69, 90, 0.16);
+      border-color: #e2a8b8;
     }
 
     .routine-card:active {
-      transform: scale(0.985);
-      box-shadow: 0 4px 12px rgba(178, 69, 90, 0.1);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 13px 26px rgba(178, 69, 90, 0.2);
+      border-color: #d98ea4;
     }
 
     .routine-card h4 {
@@ -574,7 +587,7 @@
 
     .routine-guide-link a {
       color: var(--brand-dark);
-      font-size: 13.5px;
+      font-size: 16px;
       font-weight: 700;
       text-decoration: underline;
       text-underline-offset: 2px;
@@ -1255,7 +1268,7 @@
 
   <section class="section" id="quick-skincare-routine">
     <div class="section-heading-wrap">
-      <h2 class="section-title routine-heading-capsule">✨ Quick Skincare Routine</h2>
+      <h2 class="section-title routine-heading-capsule"><span class="routine-heading-lines">Quick<br>Skincare<br>Routine</span></h2>
     </div>
     <div class="section-divider"></div>
     <p class="routine-intro">A simple daily skincare flow to help you follow the right steps without confusion.</p>
@@ -1264,39 +1277,39 @@
         <h4>Morning</h4>
         <div class="routine-flow">
           <span class="routine-flow-step">Face Wash</span>
-          <span class="routine-hint">Cleanse skin gently</span>
           <span class="routine-arrow">⬇️</span>
+          <span class="routine-hint">(Removes dirt &amp; oil)</span>
           <span class="routine-flow-step">Serum</span>
-          <span class="routine-hint">Apply based on skin concern</span>
           <span class="routine-arrow">⬇️</span>
+          <span class="routine-hint">(Targets specific concerns)</span>
           <span class="routine-flow-step">Moisturiser</span>
-          <span class="routine-hint">Lock in hydration</span>
           <span class="routine-arrow">⬇️</span>
+          <span class="routine-hint">(Locks hydration)</span>
           <span class="routine-flow-step">Sunscreen</span>
-          <span class="routine-hint">Protect during daytime</span>
+          <span class="routine-hint">(Protects from UV)</span>
         </div>
       </div>
       <div class="mini-card routine-card">
         <h4>Night</h4>
         <div class="routine-flow">
           <span class="routine-flow-step">Face Wash</span>
-          <span class="routine-hint">Remove dirt and buildup</span>
           <span class="routine-arrow">⬇️</span>
+          <span class="routine-hint">(Cleans skin)</span>
           <span class="routine-flow-step">Serum</span>
-          <span class="routine-hint">Support repair and hydration</span>
           <span class="routine-arrow">⬇️</span>
+          <span class="routine-hint">(Repairs skin)</span>
           <span class="routine-flow-step">Moisturiser</span>
-          <span class="routine-hint">Seal in overnight moisture</span>
+          <span class="routine-hint">(Hydrates overnight)</span>
         </div>
       </div>
     </div>
-    <div class="tip-note"><strong>Routine Tip:</strong> <span class="tip-body">Consistency is more important than using too many products.</span></div>
-      <div class="routine-guide-link"><a href="beauty-guides.html#skincare-buying-guides">→ Click here to explore full skincare guide</a></div>
+    <div class="tip-note"><strong><em>Routine Tip:</em></strong> <span class="tip-body">Consistency is more important than using too many products.</span></div>
+      <div class="routine-guide-link"><a href="beauty-guides.html#skincare-buying-guides">👉 Click here to explore Skincare Buying Guides</a></div>
   </section>
 
   <section class="section" id="quick-haircare-routine">
     <div class="section-heading-wrap">
-      <h2 class="section-title routine-heading-capsule">💆 Quick Haircare Routine</h2>
+      <h2 class="section-title routine-heading-capsule"><span class="routine-heading-lines">Quick<br>Haircare<br>Routine</span></h2>
     </div>
     <div class="section-divider"></div>
     <p class="routine-intro">A simple weekly routine to maintain healthy and manageable hair.</p>
@@ -1304,18 +1317,18 @@
       <div class="mini-card routine-card">
         <div class="routine-flow">
           <span class="routine-flow-step">Oiling</span>
+          <span class="routine-arrow">⬇️</span>
           <span class="routine-hint">Apply &amp; leave for 1–2 hours</span>
-          <span class="routine-arrow">⬇️</span>
           <span class="routine-flow-step">Cleansing</span>
-          <span class="routine-hint">Use mild shampoo</span>
           <span class="routine-arrow">⬇️</span>
+          <span class="routine-hint">Use mild shampoo</span>
           <span class="routine-flow-step">Conditioning</span>
           <span class="routine-hint">Apply on lengths only</span>
         </div>
       </div>
     </div>
-    <div class="tip-note"><strong>Routine Tip:</strong> <span class="tip-body">Weekly consistency matters more than using many products at once.</span></div>
-    <div class="routine-guide-link"><a href="beauty-guides.html#haircare-buying-guides">→ Click here to explore full haircare guide</a></div>
+    <div class="tip-note"><strong><em>Routine Tip:</em></strong> <span class="tip-body">Weekly consistency matters more than using many products at once.</span></div>
+    <div class="routine-guide-link"><a href="beauty-guides.html#haircare-buying-guides">👉 Click here to explore Haircare Buying Guides</a></div>
   </section>
 
   <div class="footer-content-area">
