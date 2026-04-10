@@ -154,8 +154,8 @@
     .home-beauty-link {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      line-height: 1.2;
+      gap: 8px;
+      line-height: 1.15;
     }
 
     .home-beauty-prefix {
@@ -167,6 +167,7 @@
       display: inline-flex;
       flex-direction: column;
       justify-content: center;
+      align-items: flex-start;
     }
 
     .main-nav > a:hover,
@@ -249,7 +250,8 @@
     }
 
     #guides-overview {
-      padding-bottom: 16px;
+      padding-top: 20px;
+      padding-bottom: 10px;
     }
 
     #skincare-buying-guides,
@@ -259,12 +261,12 @@
     #sunscreen-guide,
     #moisturiser-guide,
     #hairoil-guide {
-      padding-top: 20px;
-      padding-bottom: 18px;
+      padding-top: 16px;
+      padding-bottom: 14px;
     }
 
     #hairoil-guide {
-      padding-bottom: 10px;
+      padding-bottom: 8px;
     }
 
     .section-title {
@@ -280,9 +282,23 @@
     }
 
     .section-intro {
-      margin: 0 0 18px;
+      margin: 0 0 14px;
       color: var(--text-soft);
       font-size: 14px;
+    }
+
+    .category-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .category-column {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .guide-card-grid {
@@ -295,13 +311,13 @@
 
     .guide-card {
       background: var(--white);
-      border: 1px solid var(--border-soft);
+      border: 1.5px solid var(--border-soft);
       border-radius: 12px;
       padding: 11px 10px;
-      box-shadow: 0 4px 14px rgba(178, 69, 90, 0.08);
+      box-shadow: 0 6px 16px rgba(178, 69, 90, 0.09);
       text-decoration: none;
       color: inherit;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
       min-height: 58px;
       display: flex;
       align-items: center;
@@ -309,9 +325,17 @@
       text-align: center;
     }
 
-    .guide-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(178, 69, 90, 0.14);
+    .guide-card:hover,
+    .guide-card:focus-within {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 11px 24px rgba(178, 69, 90, 0.16);
+      border-color: #e2a8b8;
+    }
+
+    .guide-card:active {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 13px 26px rgba(178, 69, 90, 0.2);
+      border-color: #d98ea4;
     }
 
     .guide-card h3 {
@@ -346,10 +370,24 @@
 
     .mini-card {
       background: var(--white);
-      border: 1px solid var(--border-soft);
+      border: 1.5px solid var(--border-soft);
       border-radius: 12px;
       padding: 12px;
-      box-shadow: 0 3px 10px rgba(178, 69, 90, 0.05);
+      box-shadow: 0 6px 16px rgba(178, 69, 90, 0.09);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .mini-card:hover,
+    .mini-card:focus-within {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 11px 24px rgba(178, 69, 90, 0.16);
+      border-color: #e2a8b8;
+    }
+
+    .mini-card:active {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 13px 26px rgba(178, 69, 90, 0.2);
+      border-color: #d98ea4;
     }
 
     .mini-card h4 {
@@ -391,15 +429,15 @@
       margin-top: 12px;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       text-decoration: none;
       background: #ffe8ee;
       border: 1px solid #efc2cf;
       color: var(--brand-dark);
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
-      padding: 11px 16px;
-      border-radius: 16px;
+      padding: 13px 20px;
+      border-radius: 18px;
       transition: background-color 0.2s ease, transform 0.2s ease;
     }
 
@@ -450,7 +488,7 @@
     }
 
     #contact.footer-section {
-      padding-top: 10px;
+      padding-top: 6px;
       padding-bottom: 8px;
     }
 
@@ -510,7 +548,11 @@
       margin-top: 6px;
       display: inline-flex;
       align-items: center;
-      gap: 1px;
+      gap: 0;
+    }
+
+    .footer-bottom-note .globe-icon {
+      margin-right: 1px;
     }
 
     .footer-bottom-note .footer-link-feedback {
@@ -621,6 +663,7 @@
       .hero h1 { font-size: 23px; }
       .section-title { font-size: 20px; padding: 10px 12px; border-left-width: 5px; }
       .guide-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .category-columns { grid-template-columns: 1fr; }
 
       .main-nav > a:last-child { border-bottom: none; }
 
@@ -681,7 +724,7 @@
 
       <nav class="main-nav" id="mainNav">
         <a href="beauty-recommendations.html" class="home-beauty-link">
-          <span class="home-beauty-prefix">🏠 Home :</span>
+          <span class="home-beauty-prefix">🏠 Home</span>
           <span class="home-beauty-text"><span>Beauty</span><span>Recommendations</span></span>
         </a>
         <div class="nav-dropdown" id="guidesDropdown">
@@ -690,11 +733,11 @@
             <span class="menu-arrow">▼</span>
           </button>
           <div class="dropdown-content">
-            <a href="#facewash-guide">🧼 Face Wash Guide</a>
-            <a href="#faceserum-guide">💧 Face Serum Guide</a>
-            <a href="#sunscreen-guide">🧴 Sunscreen Guide</a>
-            <a href="#moisturiser-guide">🧴 Moisturiser Guide</a>
-            <a href="#hairoil-guide">🪮 Hair Oil Guide</a>
+            <a href="#facewash-guide">🧼 Face Wash Buying Guide</a>
+            <a href="#faceserum-guide">💧 Face Serum Buying Guide</a>
+            <a href="#sunscreen-guide">🧴 Sunscreen Buying Guide</a>
+            <a href="#moisturiser-guide">🧴 Moisturiser Buying Guide</a>
+            <a href="#hairoil-guide">🪔 Hair Oil Buying Guide</a>
           </div>
         </div>
         <a href="#contact">📞 Contact &amp; Support</a>
@@ -713,37 +756,24 @@
   </section>
 
   <section class="section" id="guides-overview">
-    <div class="guide-card-grid category-nav">
-      <a class="guide-card category-card" href="#skincare-buying-guides">
-        <h3>Skincare Buying Guides</h3>
-      </a>
-
-      <a class="guide-card" href="#facewash-guide">
-        <h3>🧼 Face Wash Guide</h3>
-      </a>
-
-      <a class="guide-card" href="#faceserum-guide">
-        <h3>💧 Face Serum Guide</h3>
-      </a>
-
-      <a class="guide-card" href="#sunscreen-guide">
-        <h3>🧴 Sunscreen Guide</h3>
-      </a>
-
-      <a class="guide-card" href="#moisturiser-guide">
-        <h3>🧴 Moisturiser Guide</h3>
-      </a>
-
-      <a class="guide-card category-card" href="#haircare-buying-guides">
-        <h3>Haircare Buying Guides</h3>
-      </a>
-
-      <a class="guide-card" href="#hairoil-guide">
-        <h3>🪮 Hair Oil Guide</h3>
-      </a>
+    <div class="category-columns">
+      <div class="category-column">
+        <a class="guide-card category-card" href="#skincare-buying-guides">
+          <h3>Skincare Buying Guides</h3>
+        </a>
+        <a class="guide-card" href="#facewash-guide"><h3>🧼 Face Wash Buying Guide</h3></a>
+        <a class="guide-card" href="#faceserum-guide"><h3>💧 Face Serum Buying Guide</h3></a>
+        <a class="guide-card" href="#sunscreen-guide"><h3>🧴 Sunscreen Buying Guide</h3></a>
+        <a class="guide-card" href="#moisturiser-guide"><h3>🧴 Moisturiser Buying Guide</h3></a>
+      </div>
+      <div class="category-column">
+        <a class="guide-card category-card" href="#haircare-buying-guides">
+          <h3>Haircare Buying Guides</h3>
+        </a>
+        <a class="guide-card" href="#hairoil-guide"><h3>🪔 Hair Oil Buying Guide</h3></a>
+      </div>
     </div>
   </section>
-
 
   <section class="section" id="skincare-buying-guides">
     <h2 class="section-title">Skincare Buying Guides</h2>
@@ -753,35 +783,35 @@
     <h2 class="section-title">🧼 Face Wash Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
-        <h4><span class="title-icon">🍊</span>Vitamin C face wash</h4>
+        <h4><span class="title-icon">🧼</span>Vitamin C face wash</h4>
         <ul>
           <li>Supports a brighter, fresher look.</li>
           <li>Useful for dull-looking skin goals.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4><span class="title-icon">💧</span>Hyaluronic acid face wash</h4>
+        <h4><span class="title-icon">🧼</span>Hyaluronic acid face wash</h4>
         <ul>
           <li>Helps cleanse without a stripped feel.</li>
           <li>Good for normal, dry, or dehydrated skin.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4><span class="title-icon">🧪</span>Salicylic acid face wash</h4>
+        <h4><span class="title-icon">🧼</span>Salicylic acid face wash</h4>
         <ul>
           <li>Helps clear excess oil and pore buildup.</li>
           <li>Best for oily, acne-prone, clog-prone skin.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4><span class="title-icon">🌿</span>Aloe vera face wash</h4>
+        <h4><span class="title-icon">🧼</span>Aloe vera face wash</h4>
         <ul>
           <li>Known for a gentle, soothing cleanse.</li>
           <li>Often suits sensitive or easily-irritated skin.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4><span class="title-icon">🌾</span>Rice water face wash</h4>
+        <h4><span class="title-icon">🧼</span>Rice water face wash</h4>
         <ul>
           <li>Usually a mild, soft-feel cleansing option.</li>
           <li>Can suit everyday use for a smooth finish.</li>
@@ -796,7 +826,7 @@
     <h2 class="section-title">💧 Face Serum Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
-        <h4><span class="title-icon">🍊</span>Vitamin C serum</h4>
+        <h4><span class="title-icon">💧</span>Vitamin C serum</h4>
         <ul>
           <li>Provides antioxidant and brightening support.</li>
           <li>Best for dull-looking or uneven-tone concerns.</li>
@@ -810,7 +840,7 @@
         </ul>
       </div>
       <div class="mini-card">
-        <h4><span class="title-icon">✨</span>Niacinamide serum</h4>
+        <h4><span class="title-icon">💧</span>Niacinamide serum</h4>
         <ul>
           <li>Supports brightness and more even-looking tone.</li>
           <li>Often acne-prone and combination-skin friendly.</li>
@@ -825,14 +855,14 @@
     <h2 class="section-title">🧴 Sunscreen Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
-        <h4><span class="title-icon">☀️</span>SPF 30+ broad-spectrum</h4>
+        <h4><span class="title-icon">🧴</span>SPF 30+ broad-spectrum</h4>
         <ul>
           <li>The standard baseline for daily protection.</li>
           <li>Suitable for all skin types every day.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4><span class="title-icon">💦</span>Gel sunscreen</h4>
+        <h4><span class="title-icon">🧴</span>Gel sunscreen</h4>
         <ul>
           <li>Usually lightweight with a quick-absorb feel.</li>
           <li>Often preferred for oily or humid-weather use.</li>
@@ -846,7 +876,7 @@
         </ul>
       </div>
       <div class="mini-card">
-        <h4><span class="title-icon">🛡️</span>Mineral sunscreen</h4>
+        <h4><span class="title-icon">🧴</span>Mineral sunscreen</h4>
         <ul>
           <li>Uses mineral UV filters for sun protection.</li>
           <li>Often preferred when skin is sensitive.</li>
@@ -861,7 +891,7 @@
     <h2 class="section-title">🧴 Moisturiser Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
-        <h4><span class="title-icon">💦</span>Gel moisturiser</h4>
+        <h4><span class="title-icon">🧴</span>Gel moisturiser</h4>
         <ul>
           <li>Lightweight, fresh, non-heavy finish.</li>
           <li>Best for oily skin or hot, humid weather.</li>
@@ -875,14 +905,14 @@
         </ul>
       </div>
       <div class="mini-card">
-        <h4><span class="title-icon">🧈</span>Cream moisturiser</h4>
+        <h4><span class="title-icon">🧴</span>Cream moisturiser</h4>
         <ul>
           <li>Richer feel that seals in moisture well.</li>
           <li>Often best for dry or flaky skin needs.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4><span class="title-icon">🛡️</span>Barrier-support moisturiser</h4>
+        <h4><span class="title-icon">🧴</span>Barrier-support moisturiser</h4>
         <ul>
           <li>Look for ceramides, hyaluronic acid, or dimethicone.</li>
           <li>Helpful when skin feels dry, weak, or sensitive.</li>
@@ -899,38 +929,41 @@
   </section>
 
   <section class="section" id="hairoil-guide">
-    <h2 class="section-title">🪮 Hair Oil Buying Guide</h2>
+    <h2 class="section-title">🪔 Hair Oil Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
-        <h4>🧅 Onion Oil</h4>
+        <h4><span class="title-icon">🪔</span>Onion Oil</h4>
         <ul>
-          <li>Supports hair fall control routines.</li>
-          <li>Helps strengthen roots over time.</li>
-          <li>Best for weak or thinning hair concerns.</li>
+          <li>Helps with hair fall control.</li>
+          <li>Supports stronger looking roots.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>⚫ Black Seed Oil</h4>
+        <h4><span class="title-icon">🌿</span>Black Seed Oil</h4>
         <ul>
-          <li>Supports scalp nourishment.</li>
-          <li>Useful for dry or stressed scalp.</li>
-          <li>Good for overall hair health support.</li>
+          <li>Supports scalp health.</li>
+          <li>Useful for dry, stressed scalp.</li>
         </ul>
       </div>
       <div class="mini-card">
-        <h4>🌿 Herbal / Bhringraj Oil</h4>
+        <h4><span class="title-icon">🪔</span>Coconut Oil</h4>
         <ul>
-          <li>Traditional nourishment oil.</li>
-          <li>Helps dull, weak-looking hair.</li>
-          <li>Suitable for regular oiling routines.</li>
-        </ul>
-      </div>
-      <div class="mini-card">
-        <h4>🥥 Coconut Oil</h4>
-        <ul>
-          <li>Deep nourishment for dry hair.</li>
+          <li>Deep nourishment for dry lengths.</li>
           <li>Helps reduce roughness and frizz.</li>
-          <li>Ideal for pre-wash oiling.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4><span class="title-icon">🌿</span>Almond Oil</h4>
+        <ul>
+          <li>Supports smoothness and shine.</li>
+          <li>Helps hair feel soft and manageable.</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4><span class="title-icon">🌿</span>Herbal Oil</h4>
+        <ul>
+          <li>Supports overall strengthening.</li>
+          <li>Great for regular weekly oiling.</li>
         </ul>
       </div>
     </div>
