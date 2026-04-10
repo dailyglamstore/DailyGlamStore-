@@ -459,7 +459,12 @@
       border-radius: 12px;
       padding: 18px;
       margin-top: 18px;
-      box-shadow: 0 4px 14px rgba(178, 69, 90, 0.05);
+      box-shadow: 0 4px 12px rgba(178, 69, 90, 0.08);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .guide-box:active {
+      box-shadow: 0 7px 16px rgba(178, 69, 90, 0.12);
     }
 
     .guide-box h3 {
@@ -480,7 +485,12 @@
       border: 1px solid var(--border-soft);
       border-radius: 12px;
       padding: 12px;
-      box-shadow: 0 3px 10px rgba(178, 69, 90, 0.05);
+      box-shadow: 0 4px 12px rgba(178, 69, 90, 0.08);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .mini-card:active {
+      box-shadow: 0 8px 18px rgba(178, 69, 90, 0.13);
     }
 
     .mini-card h4 {
@@ -517,11 +527,11 @@
       align-items: center;
       justify-content: center;
       margin: 0 auto;
-      padding: 12px 28px;
+      padding: 8px 18px;
       border-radius: 999px;
       border: 1.5px solid #e7b2c0;
       background: #fff9f8;
-      box-shadow: 0 6px 14px rgba(178, 69, 90, 0.08);
+      box-shadow: 0 4px 10px rgba(178, 69, 90, 0.08);
       text-align: center;
       line-height: 1.15;
     }
@@ -547,7 +557,7 @@
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
       border: 1.5px solid var(--border-soft);
-      box-shadow: 0 6px 16px rgba(178, 69, 90, 0.09);
+      box-shadow: 0 5px 14px rgba(178, 69, 90, 0.1);
     }
 
     .routine-card:hover,
@@ -559,7 +569,7 @@
 
     .routine-card:active {
       transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 13px 26px rgba(178, 69, 90, 0.2);
+      box-shadow: 0 12px 24px rgba(178, 69, 90, 0.18);
       border-color: #d98ea4;
     }
 
@@ -586,6 +596,8 @@
     }
 
     .routine-guide-link a {
+      display: inline-block;
+      white-space: nowrap;
       color: var(--brand-dark);
       font-size: 16px;
       font-weight: 700;
@@ -895,7 +907,7 @@
         background: var(--white);
         border: 1px solid var(--border);
         border-radius: 12px;
-        padding: 10px 0;
+        padding: 10px 0 0;
         width: min(270px, calc(100vw - 16px));
         box-shadow: var(--shadow);
         gap: 0;
@@ -913,7 +925,7 @@
       }
 
       .main-nav > a:last-of-type {
-        border-bottom: 1px solid #f4dedf;
+        border-bottom: none;
       }
 
       .nav-dropdown {
@@ -1015,9 +1027,9 @@
       }
 
       .routine-heading-capsule {
-        width: min(100%, 360px);
-        padding-left: 14px;
-        padding-right: 14px;
+        max-width: 100%;
+        padding-left: 12px;
+        padding-right: 12px;
       }
 
       .brand {
@@ -1123,7 +1135,16 @@
 
       <nav class="main-nav" id="mainNav">
         <a href="#home">🏠 Home</a>
-        <a href="beauty-guides.html">📘 Beauty Guides</a>
+        <div class="nav-dropdown" id="beautyGuidesDropdown">
+          <button class="nav-dropbtn" type="button" id="beautyGuidesBtn" aria-expanded="false">
+            <span>📘 Beauty Guides</span>
+            <span class="menu-arrow">▼</span>
+          </button>
+          <div class="dropdown-content">
+            <a href="beauty-guides.html#skincare-buying-guides">✨ Skincare Buying Guides</a>
+            <a href="beauty-guides.html#haircare-buying-guides">🪔 Haircare Buying Guides</a>
+          </div>
+        </div>
         <div class="nav-dropdown" id="categoriesDropdown">
           <button class="nav-dropbtn" type="button" id="categoriesBtn" aria-expanded="false">
             <span><span class="categories-icon">✦</span> Categories</span>

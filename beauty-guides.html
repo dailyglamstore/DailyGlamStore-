@@ -160,7 +160,9 @@
 
     .home-beauty-prefix {
       white-space: nowrap;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.4em;
     }
 
     .home-beauty-text {
@@ -314,7 +316,7 @@
       border: 1.5px solid var(--border-soft);
       border-radius: 12px;
       padding: 11px 10px;
-      box-shadow: 0 6px 16px rgba(178, 69, 90, 0.09);
+      box-shadow: 0 4px 12px rgba(178, 69, 90, 0.1);
       text-decoration: none;
       color: inherit;
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -334,7 +336,7 @@
 
     .guide-card:active {
       transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 13px 26px rgba(178, 69, 90, 0.2);
+      box-shadow: 0 10px 22px rgba(178, 69, 90, 0.18);
       border-color: #d98ea4;
     }
 
@@ -354,7 +356,7 @@
       padding: 14px 12px;
       border: 1px solid var(--border);
       background: #fff0f4;
-      box-shadow: 0 6px 16px rgba(178, 69, 90, 0.12);
+      box-shadow: 0 5px 14px rgba(178, 69, 90, 0.11);
     }
 
     .guide-card.category-card h3 {
@@ -373,7 +375,7 @@
       border: 1.5px solid var(--border-soft);
       border-radius: 12px;
       padding: 12px;
-      box-shadow: 0 6px 16px rgba(178, 69, 90, 0.09);
+      box-shadow: 0 4px 12px rgba(178, 69, 90, 0.1);
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
@@ -386,7 +388,7 @@
 
     .mini-card:active {
       transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 13px 26px rgba(178, 69, 90, 0.2);
+      box-shadow: 0 10px 22px rgba(178, 69, 90, 0.18);
       border-color: #d98ea4;
     }
 
@@ -451,8 +453,13 @@
       border: 1px solid var(--border-soft);
       border-radius: 12px;
       padding: 16px;
-      box-shadow: 0 4px 14px rgba(178, 69, 90, 0.05);
+      box-shadow: 0 4px 12px rgba(178, 69, 90, 0.08);
       font-size: 14px;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .support-box:active {
+      box-shadow: 0 7px 16px rgba(178, 69, 90, 0.12);
     }
 
     .support-box a {
@@ -724,7 +731,7 @@
 
       <nav class="main-nav" id="mainNav">
         <a href="beauty-recommendations.html" class="home-beauty-link">
-          <span class="home-beauty-prefix">🏠 Home</span>
+          <span class="home-beauty-prefix">🏠 Home :</span>
           <span class="home-beauty-text"><span>Beauty</span><span>Recommendations</span></span>
         </a>
         <div class="nav-dropdown" id="guidesDropdown">
@@ -763,8 +770,8 @@
         </a>
         <a class="guide-card" href="#facewash-guide"><h3>🧼 Face Wash Buying Guide</h3></a>
         <a class="guide-card" href="#faceserum-guide"><h3>💧 Face Serum Buying Guide</h3></a>
-        <a class="guide-card" href="#sunscreen-guide"><h3>🧴 Sunscreen Buying Guide</h3></a>
         <a class="guide-card" href="#moisturiser-guide"><h3>🧴 Moisturiser Buying Guide</h3></a>
+        <a class="guide-card" href="#sunscreen-guide"><h3>🧴 Sunscreen Buying Guide</h3></a>
       </div>
       <div class="category-column">
         <a class="guide-card category-card" href="#haircare-buying-guides">
@@ -819,7 +826,7 @@
       </div>
     </div>
     <div class="tip-note"><strong>Buying tip:</strong> <span class="tip-body">Choose a face wash by skin type first, then match one key ingredient to your top concern.</span></div>
-    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended face wash products</a>
+    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Click here to explore recommended face wash products</a>
   </section>
 
   <section class="section" id="faceserum-guide">
@@ -848,7 +855,7 @@
       </div>
     </div>
     <div class="tip-note"><strong>Buying tip:</strong> <span class="tip-body">Start with one serum for one goal, and apply consistently before adding another active.</span></div>
-    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended face serum products</a>
+    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Click here to explore recommended face serum products</a>
   </section>
 
   <section class="section" id="sunscreen-guide">
@@ -884,7 +891,7 @@
       </div>
     </div>
     <div class="tip-note"><strong>Buying tip:</strong> <span class="tip-body">Pick a sunscreen texture you enjoy using daily, then reapply every 2–3 hours outdoors.</span></div>
-    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended sunscreen products</a>
+    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Click here to explore recommended sunscreen products</a>
   </section>
 
   <section class="section" id="moisturiser-guide">
@@ -920,7 +927,7 @@
       </div>
     </div>
     <div class="tip-note"><strong>Buying tip:</strong> <span class="tip-body">Choose texture by skin type and season, then use morning and night for better consistency.</span></div>
-    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Explore recommended moisturiser products</a>
+    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Click here to explore recommended moisturiser products</a>
   </section>
 
 
@@ -968,7 +975,7 @@
       </div>
     </div>
     <div class="tip-note"><strong>Quick tip:</strong> <span class="tip-body">Overnight oiling is optional — even 1–2 hours before wash works well.</span></div>
-    <a class="section-cta" href="beauty-recommendations.html#haircare-recommendations">👉 Explore recommended haircare products</a>
+    <a class="section-cta" href="beauty-recommendations.html#haircare-recommendations">👉 Click here to explore recommended haircare products</a>
   </section>
 
   <div class="footer-content-area">
