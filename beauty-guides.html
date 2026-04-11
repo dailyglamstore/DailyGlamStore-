@@ -434,16 +434,30 @@
 
     .section-cta {
       margin-top: 12px;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      max-width: 100%;
+      padding-right: 10px;
       color: var(--brand-dark);
-      font-size: 15px;
+      font-size: clamp(13.5px, 3.9vw, 16px);
       font-weight: 700;
-      text-decoration: underline;
-      text-underline-offset: 2px;
+      text-decoration: none;
       background: none;
       border: none;
-      padding: 0;
       border-radius: 0;
+    }
+
+    .section-cta .cta-arrow {
+      margin-left: -4px;
+      flex: 0 0 auto;
+    }
+
+    .section-cta .cta-text {
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
 
     .section-cta:hover {
@@ -827,7 +841,7 @@
       </div>
     </div>
     <div class="tip-note"><strong>Buying tip:</strong> <span class="tip-body">Choose a face wash by skin type first, then match one key ingredient to your top concern.</span></div>
-    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Click here to explore recommended face wash products</a>
+    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations"><span class="cta-arrow" aria-hidden="true">👉</span><span class="cta-text">Click here to explore recommended face wash products</span></a>
   </section>
 
   <section class="section" id="faceserum-guide">
@@ -856,7 +870,7 @@
       </div>
     </div>
     <div class="tip-note"><strong>Buying tip:</strong> <span class="tip-body">Start with one serum for one goal, and apply consistently before adding another active.</span></div>
-    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Click here to explore recommended face serum products</a>
+    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations"><span class="cta-arrow" aria-hidden="true">👉</span><span class="cta-text">Click here to explore recommended face serum products</span></a>
   </section>
 
   <section class="section" id="sunscreen-guide">
@@ -892,7 +906,7 @@
       </div>
     </div>
     <div class="tip-note"><strong>Buying tip:</strong> <span class="tip-body">Pick a sunscreen texture you enjoy using daily, then reapply every 2–3 hours outdoors.</span></div>
-    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Click here to explore recommended sunscreen products</a>
+    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations"><span class="cta-arrow" aria-hidden="true">👉</span><span class="cta-text">Click here to explore recommended sunscreen products</span></a>
   </section>
 
   <section class="section" id="moisturiser-guide">
@@ -928,7 +942,7 @@
       </div>
     </div>
     <div class="tip-note"><strong>Buying tip:</strong> <span class="tip-body">Choose texture by skin type and season, then use morning and night for better consistency.</span></div>
-    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations">👉 Click here to explore recommended moisturiser products</a>
+    <a class="section-cta" href="beauty-recommendations.html#skincare-recommendations"><span class="cta-arrow" aria-hidden="true">👉</span><span class="cta-text">Click here to explore recommended moisturiser products</span></a>
   </section>
 
 
@@ -976,7 +990,7 @@
       </div>
     </div>
     <div class="tip-note"><strong>Quick tip:</strong> <span class="tip-body">Overnight oiling is optional — even 1–2 hours before wash works well.</span></div>
-    <a class="section-cta" href="beauty-recommendations.html#haircare-recommendations">👉 Click here to explore recommended haircare products</a>
+    <a class="section-cta" href="beauty-recommendations.html#haircare-recommendations"><span class="cta-arrow" aria-hidden="true">👉</span><span class="cta-text">Click here to explore recommended haircare products</span></a>
   </section>
 
   <div class="footer-content-area">

@@ -528,7 +528,7 @@
       align-items: center;
       justify-content: center;
       margin: 0 auto;
-      padding: 10px 24px;
+      padding: 12px 30px;
       border-radius: 999px;
       border: 1.5px solid #e7b2c0;
       background: #fff9f8;
@@ -600,12 +600,19 @@
     .routine-guide-link a {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      white-space: normal;
+      justify-content: center;
+      gap: 6px;
+      white-space: nowrap;
       color: var(--brand-dark);
-      font-size: 16px;
+      font-size: clamp(13.5px, 3.9vw, 16px);
       font-weight: 700;
       text-decoration: none;
+      max-width: 100%;
+    }
+
+    .routine-guide-link a > span[aria-hidden="true"] {
+      margin-left: -4px;
+      flex: 0 0 auto;
     }
 
     .routine-guide-link .routine-link-text {
@@ -1036,7 +1043,7 @@
 
       .routine-heading-capsule {
         max-width: 100%;
-        padding: 9px 18px;
+        padding: 11px 22px;
       }
 
       .brand {
@@ -1332,7 +1339,7 @@
       </div>
     </div>
     <div class="tip-note"><strong><em>Routine Tip:</em></strong> <span class="tip-body">Consistency is more important than using too many products.</span></div>
-      <div class="routine-guide-link"><a href="beauty-guides.html#skincare-buying-guides"><span aria-hidden="true">👉</span><span class="routine-link-text">Click here to explore Skincare Buying Guides</span></a></div>
+      <div class="routine-guide-link"><a href="beauty-guides.html#skincare-buying-guides" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">👉</span><span class="routine-link-text">Click here to explore Skincare Buying Guides</span></a></div>
   </section>
 
   <section class="section" id="quick-haircare-routine">
@@ -1356,7 +1363,7 @@
       </div>
     </div>
     <div class="tip-note"><strong><em>Routine Tip:</em></strong> <span class="tip-body">Weekly consistency matters more than using many products at once.</span></div>
-    <div class="routine-guide-link"><a href="beauty-guides.html#haircare-buying-guides"><span aria-hidden="true">👉</span><span class="routine-link-text">Click here to explore Haircare Buying Guides</span></a></div>
+    <div class="routine-guide-link"><a href="beauty-guides.html#haircare-buying-guides" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">👉</span><span class="routine-link-text">Click here to explore Haircare Buying Guides</span></a></div>
   </section>
 
   <div class="footer-content-area">
