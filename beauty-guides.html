@@ -288,6 +288,14 @@
       text-align: left;
     }
 
+    .section-title.subcategory-title {
+      padding: 9px 12px;
+      border-left-width: 5px;
+      background: #ffe9f0;
+      font-size: 18px;
+      color: #8a4b5a;
+    }
+
     .section-intro {
       margin: 0 0 14px;
       color: var(--text-soft);
@@ -437,8 +445,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 6px;
+      flex-wrap: nowrap;
+      gap: 8px;
       max-width: 100%;
       padding-right: 10px;
       color: var(--brand-dark);
@@ -451,11 +459,13 @@
     }
 
     .section-cta .cta-arrow {
-      margin-left: -4px;
+      margin-left: 0;
       flex: 0 0 auto;
+      line-height: 1;
     }
 
     .section-cta .cta-text {
+      min-width: 0;
       text-decoration: underline;
       text-underline-offset: 2px;
     }
@@ -690,6 +700,7 @@
 
       .hero h1 { font-size: 23px; }
       .section-title { font-size: 20px; padding: 10px 12px; border-left-width: 5px; }
+      .section-title.subcategory-title { font-size: 17px; padding: 8px 11px; border-left-width: 4px; }
       .guide-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .category-columns { grid-template-columns: 1fr; }
 
@@ -802,7 +813,7 @@
   </section>
 
   <section class="section" id="facewash-guide">
-    <h2 class="section-title">🧼 Face Wash Buying Guide</h2>
+    <h2 class="section-title subcategory-title">🧼 Face Wash Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
         <h4><span class="title-icon">🧼</span>Vitamin C face wash</h4>
@@ -845,7 +856,7 @@
   </section>
 
   <section class="section" id="faceserum-guide">
-    <h2 class="section-title">💧 Face Serum Buying Guide</h2>
+    <h2 class="section-title subcategory-title">💧 Face Serum Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
         <h4><span class="title-icon">💧</span>Vitamin C serum</h4>
@@ -874,7 +885,7 @@
   </section>
 
   <section class="section" id="sunscreen-guide">
-    <h2 class="section-title">🧴 Sunscreen Buying Guide</h2>
+    <h2 class="section-title subcategory-title">🧴 Sunscreen Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
         <h4><span class="title-icon">🧴</span>SPF 30+ broad-spectrum</h4>
@@ -910,7 +921,7 @@
   </section>
 
   <section class="section" id="moisturiser-guide">
-    <h2 class="section-title">🧴 Moisturiser Buying Guide</h2>
+    <h2 class="section-title subcategory-title">🧴 Moisturiser Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
         <h4><span class="title-icon">🧴</span>Gel moisturiser</h4>
@@ -951,7 +962,7 @@
   </section>
 
   <section class="section" id="hairoil-guide">
-    <h2 class="section-title">🪔 Hair Oil Buying Guide</h2>
+    <h2 class="section-title subcategory-title">🪔 Hair Oil Buying Guide</h2>
     <div class="mini-grid">
       <div class="mini-card">
         <h4><span class="title-icon">🪔</span>Onion Oil</h4>
