@@ -314,6 +314,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      min-width: 0;
     }
 
     .guide-card-grid {
@@ -375,6 +376,11 @@
     .guide-card.category-card h3 {
       font-size: 16px;
       color: var(--brand-dark);
+    }
+
+    #guides-overview .guide-card h3 {
+      overflow-wrap: anywhere;
+      word-break: normal;
     }
 
     .mini-grid {
@@ -702,7 +708,12 @@
       .section-title { font-size: 20px; padding: 10px 12px; border-left-width: 5px; }
       .section-title.subcategory-title { font-size: 17px; padding: 8px 11px; border-left-width: 4px; }
       .guide-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .category-columns { grid-template-columns: 1fr; }
+      #guides-overview .category-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      #guides-overview .category-column { gap: 8px; }
+      #guides-overview .guide-card { min-height: 56px; padding: 10px 8px; }
+      #guides-overview .guide-card.category-card { min-height: 66px; padding: 12px 10px; }
+      #guides-overview .guide-card h3 { font-size: 13px; line-height: 1.25; }
+      #guides-overview .guide-card.category-card h3 { font-size: 14px; }
 
       .main-nav > a:last-child { border-bottom: none; }
 
