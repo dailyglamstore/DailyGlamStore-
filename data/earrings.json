@@ -106,5 +106,22 @@
     "Quick color in minutes",
     "Free Shipping"
   ]
+},
+{
+  "name": "Laddoo Gopal Poshak Cover (Set of 3)",
+  "code": "AD-DGS",
+  "mrp": 450,
+  "price": 330,
+  "images": [
+    "images/cosmetics/laddoo1-1.JPG",
+    "images/cosmetics/laddoo1-2.JPG"
+  ],
+  "details": [
+    "Beautiful poshak cover set for Laddoo Gopal",
+    "Set of 3 with attractive designs",
+    "Soft and comfortable fabric",
+    "Perfect for daily and festive use",
+    "Enhances the divine look of your idol"
+  ]
 }
 ]
