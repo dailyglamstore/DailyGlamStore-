@@ -406,6 +406,23 @@
       border-color: #d98ea4;
     }
 
+    .guide-card.guide-target-highlight {
+      border-color: #b2455a;
+      box-shadow: 0 0 0 3px rgba(178, 69, 90, 0.28), 0 12px 26px rgba(178, 69, 90, 0.22);
+      background: #ffe9f0;
+      animation: guideTargetPulse 1.4s ease-in-out 2;
+    }
+
+    @keyframes guideTargetPulse {
+      0%,
+      100% {
+        box-shadow: 0 0 0 3px rgba(178, 69, 90, 0.25), 0 12px 26px rgba(178, 69, 90, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 0 5px rgba(178, 69, 90, 0.34), 0 14px 30px rgba(178, 69, 90, 0.28);
+      }
+    }
+
     .guide-card h3 {
       margin: 0;
       color: var(--brand);
@@ -1473,6 +1490,60 @@
     window.addEventListener("resize", syncAnchorScrollOffset);
     window.addEventListener("load", syncAnchorScrollOffset);
     syncAnchorScrollOffset();
+
+
+    function highlightGuideTargetFromHash() {
+      const hashValue = (window.location.hash || "").replace(/^#/, "").trim();
+      if (!hashValue) {
+        return;
+      }
+
+      const targetMap = {
+        "beauty-guides-top": "beauty-guides-top",
+        "skincare-buying-guides": "skincare-top",
+        "haircare-buying-guides": "haircare-top",
+        "skincare-top": "skincare-top",
+        "haircare-top": "haircare-top",
+        "facewash-guide": "facewash-top",
+        "facewash-top": "facewash-top",
+        "faceserum-guide": "faceserum-top",
+        "faceserum-top": "faceserum-top",
+        "sunscreen-guide": "sunscreen-top",
+        "sunscreen-top": "sunscreen-top",
+        "moisturiser-guide": "moisturiser-top",
+        "moisturiser-top": "moisturiser-top",
+        "shampoo-guide": "shampoo-top",
+        "shampoo-top": "shampoo-top",
+        "conditioner-guide": "conditioner-top",
+        "conditioner-top": "conditioner-top",
+        "hairserum-guide": "hairserum-top",
+        "hairserum-top": "hairserum-top",
+        "hairoil-guide": "hairoil-top",
+        "hairoil-top": "hairoil-top"
+      };
+
+      const highlightId = targetMap[hashValue];
+      if (!highlightId) {
+        return;
+      }
+
+      const overview = document.getElementById("guides-overview");
+      const targetCard = document.getElementById(highlightId);
+      if (!overview || !targetCard) {
+        return;
+      }
+
+      document.querySelectorAll(".guide-card.guide-target-highlight").forEach(function (card) {
+        card.classList.remove("guide-target-highlight");
+      });
+
+      targetCard.classList.add("guide-target-highlight");
+      overview.scrollIntoView({ behavior: "auto", block: "start" });
+    }
+
+    window.addEventListener("load", function () {
+      window.setTimeout(highlightGuideTargetFromHash, 40);
+    });
 
     backToTopButton.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
