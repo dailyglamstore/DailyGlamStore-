@@ -225,6 +225,7 @@
     #haircare-recommendations,
     #quick-skincare-routine,
     #quick-haircare-routine,
+    #beauty-faqs,
     #about,
     #ordering,
     #disclaimer,
@@ -633,6 +634,108 @@
       width: 100%;
     }
 
+    .faq-section {
+      padding-top: 22px;
+      padding-bottom: 26px;
+    }
+
+    .faq-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-category {
+      background: var(--white);
+      border: 1px solid #efcfca;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(178, 69, 90, 0.08);
+      overflow: hidden;
+    }
+
+    .faq-category-title {
+      margin: 0;
+      padding: 13px 14px;
+      font-size: 16px;
+      line-height: 1.35;
+      color: var(--brand-dark);
+      background: #fff3ee;
+      border-bottom: 1px solid #f1ddd7;
+    }
+
+    .faq-list {
+      display: grid;
+    }
+
+    .faq-item + .faq-item {
+      border-top: 1px solid #f3e1dc;
+    }
+
+    .faq-question {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      text-align: left;
+      padding: 13px 14px;
+      color: #4b3f3a;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.45;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .faq-question:hover {
+      background: #fff8f6;
+    }
+
+    .faq-toggle {
+      color: var(--brand);
+      font-size: 13px;
+      line-height: 1;
+      margin-top: 3px;
+      transition: transform 0.25s ease;
+      flex: 0 0 auto;
+    }
+
+    .faq-item.open .faq-toggle {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.28s ease;
+      background: #fffdfc;
+    }
+
+    .faq-answer-inner {
+      margin: 0;
+      padding: 0 14px 14px;
+      color: #655752;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .faq-guide-link {
+      color: var(--brand);
+      font-weight: 700;
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    .faq-guide-link:hover {
+      color: var(--brand-dark);
+    }
+
     .tip-note {
       margin-top: 12px;
       background: #fff0ec;
@@ -1025,6 +1128,20 @@
         padding: 10px 12px;
         border-left-width: 5px;
       }
+
+      .faq-category-title {
+        font-size: 15px;
+        padding: 12px 13px;
+      }
+
+      .faq-question {
+        padding: 12px 13px;
+        font-size: 13.5px;
+      }
+
+      .faq-answer-inner {
+        padding: 0 13px 13px;
+      }
     }
 
     @media (max-width: 520px) {
@@ -1366,6 +1483,126 @@
     <div class="routine-guide-link"><a href="beauty-guides.html#haircare-buying-guides" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">👉</span><span class="routine-link-text">Click here to explore Haircare Buying Guides</span></a></div>
   </section>
 
+  <section class="section faq-section" id="beauty-faqs">
+    <div class="section-heading-wrap">
+      <h2 class="section-title routine-heading-capsule"><span class="routine-heading-lines">❓ Beauty FAQs</span></h2>
+    </div>
+    <div class="section-divider"></div>
+    <p class="routine-intro">
+      Quick answers to common skincare and haircare questions, with easy links to our Beauty Guides for further help.
+    </p>
+
+    <div class="faq-wrap">
+      <div class="faq-category">
+        <h3 class="faq-category-title">🌿 Skincare FAQs</h3>
+        <div class="faq-list" data-faq-group="skincare">
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">How do I choose the right skincare routine for my skin?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Start by identifying your skin type, such as oily, dry, combination, or sensitive. Then choose basic steps like face wash, serum, moisturiser, and sunscreen based on your main concern.<br>👉 Refer our <a class="faq-guide-link" href="beauty-guides.html#skincare-buying-guides">SKINCARE BUYING GUIDES</a>.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Why does my skin feel oily even after washing?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Over-washing or using harsh products can strip your skin, which may make it produce even more oil to compensate.<br>👉 Choose the right cleanser from our <a class="faq-guide-link" href="beauty-guides.html#facewash-guide">FACE WASH BUYING GUIDE</a>.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Do I really need both serum and moisturiser?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Yes. Serum helps target specific concerns, while moisturiser locks in hydration and supports the skin barrier. They work better together.<br>👉 Explore our <a class="faq-guide-link" href="beauty-guides.html#faceserum-guide">FACE SERUM BUYING GUIDE</a> and <a class="faq-guide-link" href="beauty-guides.html#moisturiser-guide">MOISTURISER BUYING GUIDE</a>.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Can I skip sunscreen if I stay indoors?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">It is better not to skip it. Indoor exposure near windows and daily light exposure can still affect skin over time.<br>👉 Check our <a class="faq-guide-link" href="beauty-guides.html#sunscreen-guide">SUNSCREEN BUYING GUIDE</a>.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">What are common skincare mistakes beginners make?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Common mistakes include over-washing, using too many products, skipping sunscreen, and changing products too often.<br>👉 Our <a class="faq-guide-link" href="beauty-guides.html#skincare-buying-guides">SKINCARE BUYING GUIDES</a> can help simplify your choices.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Why is moisturiser important even for oily skin?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Skipping moisturiser can make oily skin feel more unbalanced because dehydrated skin may still try to compensate.<br>👉 Pick the right one from our <a class="faq-guide-link" href="beauty-guides.html#moisturiser-guide">MOISTURISER BUYING GUIDE</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-category">
+        <h3 class="faq-category-title">💇 Haircare FAQs</h3>
+        <div class="faq-list" data-faq-group="haircare">
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">How do I choose the right haircare routine?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Start with your scalp type and your main hair concern, such as frizz, dryness, damage, or oiliness. Then choose shampoo, conditioner, serum, and oil accordingly.<br>👉 Refer our <a class="faq-guide-link" href="beauty-guides.html#haircare-buying-guides">HAIRCARE BUYING GUIDES</a>.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Why does my hair become oily quickly?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">This can happen due to scalp type, over-washing, or product buildup. The wrong shampoo can also make the scalp feel oilier.<br>👉 See our <a class="faq-guide-link" href="beauty-guides.html#shampoo-guide">SHAMPOO BUYING GUIDE</a>.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Do I need both conditioner and serum?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Yes. Conditioner helps during washing, while serum helps afterward with frizz control, smoothness, and shine.<br>👉 Check our <a class="faq-guide-link" href="beauty-guides.html#conditioner-guide">CONDITIONER BUYING GUIDE</a> and <a class="faq-guide-link" href="beauty-guides.html#hairserum-guide">HAIR SERUM BUYING GUIDE</a>.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Why does my hair feel dry even after conditioning?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Possible reasons include using the wrong conditioner, not applying it properly, or lacking regular nourishment in your routine.<br>👉 Explore our <a class="faq-guide-link" href="beauty-guides.html#conditioner-guide">CONDITIONER BUYING GUIDE</a>.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">How do I control frizz effectively?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">A combination of the right conditioner, serum, and occasional oiling usually works better than relying on one product alone.<br>👉 Refer our <a class="faq-guide-link" href="beauty-guides.html#haircare-buying-guides">HAIRCARE BUYING GUIDES</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-category">
+        <h3 class="faq-category-title">💡 General Beauty FAQs</h3>
+        <div class="faq-list" data-faq-group="general">
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">How long does it take to see results from skincare or haircare products?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Most products need regular use for a few weeks before visible results appear. Consistency matters more than changing products too quickly.<br>👉 For easier selection, explore our <a class="faq-guide-link" href="beauty-guides.html">BEAUTY GUIDES</a>.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Can I use multiple products together or should I keep it simple?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">It is usually better to keep your routine simple and focused. Too many products can make it harder to understand what is actually helping.<br>👉 Start simple with our <a class="faq-guide-link" href="beauty-guides.html">BEAUTY GUIDES</a>.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Does diet or lifestyle affect skin and hair?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Yes. Stress, sleep, hydration, and food habits can all affect how your skin and hair look and feel. Good products work best with good routines.<br>👉 Explore our <a class="faq-guide-link" href="beauty-guides.html">BEAUTY GUIDES</a> for quick help.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">I’m confused — where should I start?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Start with basics based on your skin or hair type, and avoid overcomplicating your routine. A simple routine is easier to follow consistently.<br>👉 Visit our <a class="faq-guide-link" href="beauty-guides.html">BEAUTY GUIDES</a> for quick and easy recommendations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="footer-content-area">
     <section class="footer-section" id="about">
       <h2>💎 About Us</h2>
@@ -1590,6 +1827,59 @@
         }
       }
     }
+
+    function isFaqCrossPageLink(link) {
+      const href = (link.getAttribute("href") || "").trim();
+      if (!href || href.startsWith("#")) {
+        return false;
+      }
+      const parsed = new URL(href, window.location.href);
+      const current = new URL(window.location.href);
+      return parsed.pathname !== current.pathname || parsed.origin !== current.origin;
+    }
+
+    document.querySelectorAll(".faq-guide-link").forEach(function (link) {
+      if (isFaqCrossPageLink(link)) {
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener noreferrer");
+      } else {
+        link.removeAttribute("target");
+        link.removeAttribute("rel");
+      }
+    });
+
+    document.querySelectorAll(".faq-list").forEach(function (faqList) {
+      const faqItems = Array.from(faqList.querySelectorAll(".faq-item"));
+      faqItems.forEach(function (faqItem) {
+        const question = faqItem.querySelector(".faq-question");
+        const answer = faqItem.querySelector(".faq-answer");
+        if (!question || !answer) {
+          return;
+        }
+
+        question.addEventListener("click", function () {
+          const shouldOpen = !faqItem.classList.contains("open");
+
+          faqItems.forEach(function (item) {
+            item.classList.remove("open");
+            const itemQuestion = item.querySelector(".faq-question");
+            const itemAnswer = item.querySelector(".faq-answer");
+            if (itemQuestion) {
+              itemQuestion.setAttribute("aria-expanded", "false");
+            }
+            if (itemAnswer) {
+              itemAnswer.style.maxHeight = "0px";
+            }
+          });
+
+          if (shouldOpen) {
+            faqItem.classList.add("open");
+            question.setAttribute("aria-expanded", "true");
+            answer.style.maxHeight = answer.scrollHeight + "px";
+          }
+        });
+      });
+    });
   </script>
 </body>
 </html>
