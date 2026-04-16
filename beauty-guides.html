@@ -318,6 +318,36 @@
       margin: 0 auto;
     }
 
+    .guides-top-nav {
+      max-width: 900px;
+      margin: 0 auto 12px;
+    }
+
+    .guides-top-button-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .guides-top-button {
+      width: min(100%, 430px);
+    }
+
+    .guides-split-arrows {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 520px;
+      margin: 4px auto 2px;
+      color: var(--brand);
+      user-select: none;
+    }
+
+    .guides-split-arrows span {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1;
+    }
+
     .category-column {
       display: flex;
       flex-direction: column;
@@ -781,6 +811,10 @@
       #guides-overview .guide-card.category-card { min-height: 66px; padding: 12px 10px; }
       #guides-overview .guide-card h3 { font-size: 13px; line-height: 1.25; }
       #guides-overview .guide-card.category-card h3 { font-size: 14px; }
+      #guides-overview .guides-top-nav { margin-bottom: 10px; }
+      #guides-overview .guides-top-button { width: min(100%, 360px); }
+      #guides-overview .guides-split-arrows { max-width: 380px; margin-top: 3px; }
+      #guides-overview .guides-split-arrows span { font-size: 20px; }
 
       .main-nav > a:last-child { border-bottom: none; }
 
@@ -867,9 +901,20 @@
   </section>
 
   <section class="section" id="guides-overview">
+    <div class="guides-top-nav">
+      <div class="guides-top-button-wrap">
+        <a class="guide-card category-card guides-top-button" id="beauty-guides-top" href="#guides-overview">
+          <h3>Beauty Guides</h3>
+        </a>
+      </div>
+      <div class="guides-split-arrows" aria-hidden="true">
+        <span>↙</span>
+        <span>↘</span>
+      </div>
+    </div>
     <div class="category-columns">
       <div class="category-column">
-        <a class="guide-card category-card" href="#skincare-buying-guides">
+        <a class="guide-card category-card" id="skincare-top" href="#skincare-buying-guides">
           <h3>Skincare Buying Guides</h3>
         </a>
         <div class="category-arrow" aria-hidden="true">⬇</div>
@@ -879,7 +924,7 @@
         <a class="guide-card" href="#moisturiser-guide"><h3>🧴 Moisturiser Buying Guide</h3></a>
       </div>
       <div class="category-column">
-        <a class="guide-card category-card" href="#haircare-buying-guides">
+        <a class="guide-card category-card" id="haircare-top" href="#haircare-buying-guides">
           <h3>Haircare Buying Guides</h3>
         </a>
         <div class="category-arrow" aria-hidden="true">⬇</div>
