@@ -27,6 +27,7 @@
       --border-soft: #f1cfc4;
       --white: #ffffff;
       --shadow: 0 8px 24px rgba(178, 69, 90, 0.08);
+      --anchor-scroll-offset: 95px;
     }
 
     body {
@@ -329,23 +330,28 @@
     }
 
     .guides-top-button {
-      width: min(100%, 430px);
+      width: min(100%, 320px);
     }
 
-    .guides-split-arrows {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      max-width: 520px;
-      margin: 4px auto 2px;
-      color: var(--brand);
-      user-select: none;
+    #beauty-guides-top,
+    #skincare-top,
+    #haircare-top {
+      scroll-margin-top: calc(var(--anchor-scroll-offset) + 6px);
     }
 
-    .guides-split-arrows span {
-      text-align: center;
-      font-size: 22px;
-      font-weight: 600;
-      line-height: 1;
+    .guides-connector {
+      width: min(100%, 520px);
+      height: 44px;
+      display: block;
+      margin: 2px auto 0;
+    }
+
+    .guides-connector path {
+      fill: none;
+      stroke: var(--brand);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .category-column {
@@ -812,9 +818,9 @@
       #guides-overview .guide-card h3 { font-size: 13px; line-height: 1.25; }
       #guides-overview .guide-card.category-card h3 { font-size: 14px; }
       #guides-overview .guides-top-nav { margin-bottom: 10px; }
-      #guides-overview .guides-top-button { width: min(100%, 360px); }
-      #guides-overview .guides-split-arrows { max-width: 380px; margin-top: 3px; }
-      #guides-overview .guides-split-arrows span { font-size: 20px; }
+      #guides-overview .guides-top-button { width: min(100%, 280px); }
+      #guides-overview .guides-connector { width: min(100%, 380px); height: 38px; margin-top: 1px; }
+      #guides-overview .guides-connector path { stroke-width: 2; }
 
       .main-nav > a:last-child { border-bottom: none; }
 
@@ -907,10 +913,15 @@
           <h3>Beauty Guides</h3>
         </a>
       </div>
-      <div class="guides-split-arrows" aria-hidden="true">
-        <span>↙</span>
-        <span>↘</span>
-      </div>
+      <svg class="guides-connector" viewBox="0 0 520 44" aria-hidden="true" focusable="false">
+        <path d="M260 4 V18" />
+        <path d="M260 18 Q260 22 256 24 L100 40" />
+        <path d="M260 18 Q260 22 264 24 L420 40" />
+        <path d="M100 40 L112 34" />
+        <path d="M100 40 L114 42" />
+        <path d="M420 40 L408 34" />
+        <path d="M420 40 L406 42" />
+      </svg>
     </div>
     <div class="category-columns">
       <div class="category-column">
@@ -1403,9 +1414,16 @@
       }
     });
 
+    function syncAnchorScrollOffset() {
+      const headerHeight = Math.ceil(siteHeader.getBoundingClientRect().height);
+      document.documentElement.style.setProperty("--anchor-scroll-offset", `${headerHeight}px`);
+    }
+
     window.addEventListener("scroll", function () {
       if (window.scrollY > 18) siteHeader.classList.add("shrink");
       else siteHeader.classList.remove("shrink");
+
+      syncAnchorScrollOffset();
 
       if (window.scrollY > 500) backToTopButton.style.display = "block";
       else backToTopButton.style.display = "none";
@@ -1414,6 +1432,10 @@
         closeMenu();
       }
     });
+
+    window.addEventListener("resize", syncAnchorScrollOffset);
+    window.addEventListener("load", syncAnchorScrollOffset);
+    syncAnchorScrollOffset();
 
     backToTopButton.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
