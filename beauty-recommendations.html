@@ -517,11 +517,40 @@
     }
 
     .routine-arrow {
-      line-height: 1;
-      font-size: 15px;
-      color: var(--brand);
-      font-weight: 500;
-      opacity: 0.75;
+      position: relative;
+      display: block;
+      width: 14px;
+      height: 20px;
+      margin: 0 auto;
+      overflow: hidden;
+      text-indent: -9999px;
+      user-select: none;
+    }
+
+    .routine-arrow::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 2px;
+      height: 13px;
+      transform: translateX(-50%);
+      border-radius: 3px;
+      background: linear-gradient(180deg, #c56a82 0%, #b2455a 100%);
+      opacity: 0.8;
+    }
+
+    .routine-arrow::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 8px;
+      width: 7px;
+      height: 7px;
+      transform: translateX(-50%) rotate(45deg);
+      border-right: 2px solid #b2455a;
+      border-bottom: 2px solid #b2455a;
+      opacity: 0.8;
     }
 
     .routine-heading-capsule {
@@ -1431,13 +1460,13 @@
         <h4>Morning</h4>
         <div class="routine-flow">
           <span class="routine-flow-step">Face Wash</span>
-          <span class="routine-arrow">↓</span>
+          <span class="routine-arrow" aria-hidden="true"></span>
           <span class="routine-hint">(Removes dirt &amp; oil)</span>
           <span class="routine-flow-step">Serum</span>
-          <span class="routine-arrow">↓</span>
+          <span class="routine-arrow" aria-hidden="true"></span>
           <span class="routine-hint">(Targets specific concerns)</span>
           <span class="routine-flow-step">Moisturiser</span>
-          <span class="routine-arrow">↓</span>
+          <span class="routine-arrow" aria-hidden="true"></span>
           <span class="routine-hint">(Locks hydration)</span>
           <span class="routine-flow-step">Sunscreen</span>
           <span class="routine-hint">(Protects from UV)</span>
@@ -1447,10 +1476,10 @@
         <h4>Night</h4>
         <div class="routine-flow">
           <span class="routine-flow-step">Face Wash</span>
-          <span class="routine-arrow">↓</span>
+          <span class="routine-arrow" aria-hidden="true"></span>
           <span class="routine-hint">(Cleans skin)</span>
           <span class="routine-flow-step">Serum</span>
-          <span class="routine-arrow">↓</span>
+          <span class="routine-arrow" aria-hidden="true"></span>
           <span class="routine-hint">(Repairs skin)</span>
           <span class="routine-flow-step">Moisturiser</span>
           <span class="routine-hint">(Hydrates overnight)</span>
@@ -1471,10 +1500,10 @@
       <div class="mini-card routine-card">
         <div class="routine-flow">
           <span class="routine-flow-step">Oiling</span>
-          <span class="routine-arrow">↓</span>
+          <span class="routine-arrow" aria-hidden="true"></span>
           <span class="routine-hint">Apply &amp; leave for 1–2 hours</span>
           <span class="routine-flow-step">Cleansing</span>
-          <span class="routine-arrow">↓</span>
+          <span class="routine-arrow" aria-hidden="true"></span>
           <span class="routine-hint">Use mild shampoo</span>
           <span class="routine-flow-step">Conditioning</span>
           <span class="routine-hint">Apply on lengths only</span>
