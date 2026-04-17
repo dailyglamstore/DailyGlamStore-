@@ -698,6 +698,22 @@
       display: grid;
     }
 
+    .faq-list.faq-extras-collapsed .faq-extra-item {
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(-4px);
+      overflow: hidden;
+      pointer-events: none;
+      border-top-width: 0;
+    }
+
+    .faq-extra-item {
+      max-height: 280px;
+      opacity: 1;
+      transform: translateY(0);
+      transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.25s ease;
+    }
+
     .faq-item + .faq-item {
       border-top: 1px solid #f3e1dc;
     }
@@ -763,6 +779,34 @@
     }
 
     .faq-guide-link:hover {
+      color: var(--brand-dark);
+    }
+
+    .faq-more-wrap {
+      padding: 8px 14px 14px;
+      display: flex;
+      justify-content: center;
+      background: var(--white);
+    }
+
+    .faq-more-toggle {
+      border: 1px solid #d78ea3;
+      background: #fff4f7;
+      color: var(--brand);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .faq-more-toggle:hover {
+      background: #ffeaf0;
+      border-color: #cc758f;
       color: var(--brand-dark);
     }
 
@@ -1564,6 +1608,9 @@
             </div>
           </div>
         </div>
+        <div class="faq-more-wrap">
+          <button class="faq-more-toggle" type="button" data-faq-toggle="skincare">+ Show more questions</button>
+        </div>
       </div>
 
       <div class="faq-category">
@@ -1606,6 +1653,9 @@
             </div>
           </div>
         </div>
+        <div class="faq-more-wrap">
+          <button class="faq-more-toggle" type="button" data-faq-toggle="haircare">+ Show more questions</button>
+        </div>
       </div>
 
       <div class="faq-category">
@@ -1635,6 +1685,9 @@
               <p class="faq-answer-inner">Start with basics based on your skin or hair type, and avoid overcomplicating your routine. A simple routine is easier to follow consistently.<br>👉 Visit our <a class="faq-guide-link" href="beauty-guides.html#beauty-guides-top" target="_blank" rel="noopener noreferrer">BEAUTY GUIDES</a> for quick and easy recommendations.</p>
             </div>
           </div>
+        </div>
+        <div class="faq-more-wrap">
+          <button class="faq-more-toggle" type="button" data-faq-toggle="general">+ Show more questions</button>
         </div>
       </div>
     </div>
@@ -1885,8 +1938,29 @@
       }
     });
 
+    const faqVisibleLimitByGroup = {
+      skincare: 3,
+      haircare: 3,
+      general: 2
+    };
+
     document.querySelectorAll(".faq-list").forEach(function (faqList) {
       const faqItems = Array.from(faqList.querySelectorAll(".faq-item"));
+      const faqGroup = faqList.getAttribute("data-faq-group");
+      const visibleLimit = faqVisibleLimitByGroup[faqGroup] || faqItems.length;
+      const hiddenFaqItems = faqItems.slice(visibleLimit);
+      const toggleButton = document.querySelector('.faq-more-toggle[data-faq-toggle="' + faqGroup + '"]');
+
+      hiddenFaqItems.forEach(function (item) {
+        item.classList.add("faq-extra-item");
+      });
+
+      if (hiddenFaqItems.length > 0) {
+        faqList.classList.add("faq-extras-collapsed");
+      } else if (toggleButton && toggleButton.parentElement) {
+        toggleButton.parentElement.style.display = "none";
+      }
+
       faqItems.forEach(function (faqItem) {
         const question = faqItem.querySelector(".faq-question");
         const answer = faqItem.querySelector(".faq-answer");
@@ -1914,8 +1988,47 @@
             question.setAttribute("aria-expanded", "true");
             answer.style.maxHeight = answer.scrollHeight + "px";
           }
+
+          hiddenFaqItems.forEach(function (item) {
+            if (!faqList.classList.contains("faq-extras-collapsed")) {
+              item.style.maxHeight = item.scrollHeight + "px";
+            }
+          });
         });
       });
+
+      if (toggleButton && hiddenFaqItems.length > 0) {
+        toggleButton.addEventListener("click", function () {
+          const isCollapsed = faqList.classList.contains("faq-extras-collapsed");
+
+          if (isCollapsed) {
+            faqList.classList.remove("faq-extras-collapsed");
+            hiddenFaqItems.forEach(function (item) {
+              item.style.maxHeight = item.scrollHeight + "px";
+            });
+            toggleButton.textContent = "– Show less";
+          } else {
+            hiddenFaqItems.forEach(function (item) {
+              item.classList.remove("open");
+              const itemQuestion = item.querySelector(".faq-question");
+              const itemAnswer = item.querySelector(".faq-answer");
+              if (itemQuestion) {
+                itemQuestion.setAttribute("aria-expanded", "false");
+              }
+              if (itemAnswer) {
+                itemAnswer.style.maxHeight = "0px";
+              }
+              item.style.maxHeight = item.scrollHeight + "px";
+              requestAnimationFrame(function () {
+                item.style.maxHeight = "0px";
+              });
+            });
+
+            faqList.classList.add("faq-extras-collapsed");
+            toggleButton.textContent = "+ Show more questions";
+          }
+        });
+      }
     });
   </script>
 </body>
