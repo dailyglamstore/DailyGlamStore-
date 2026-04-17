@@ -1415,46 +1415,7 @@
     </p>
 
     <div class="products">
-      <div class="product-card">
-        <div class="product-media">
-          <img
-            src="images/top-picks/lotus-vitamin-c-skin-brightening-day-creme.JPG"
-            alt="Lotus Vitamin C Skin Brightening Day Creme"
-            class="product-img"
-          />
-        </div>
-        <h3 class="product-title">Vitamin C Skin Brightening Day Crème</h3>
-        <div class="product-meta">Brand : Lotus Botanicals</div>
-        <div class="price-row">
-          <span>MRP: </span>
-          <span class="mrp-value">₹685</span>
-        </div>
-        <a
-          href="https://www.lotusbotanicals.com/products/vitamin-c-skin-brightening-day-creme?ref=DGS-Deepak"
-          target="_blank"
-          rel="nofollow sponsored"
-          class="price-btn"
-        >
-          Buy on Official Website
-        </a>
-        <p class="price-note">Discount auto-applied at checkout</p>
-
-        <div class="toggle-box">
-          <div class="toggle-header" onclick="toggleDetails(this)">
-            Key Product Details <span class="arrow">▼</span>
-          </div>
-          <div class="toggle-content">
-            <ul>
-              <li>Reduces dark spots & uneven skin tone</li>
-              <li>Vitamin C + Niacinamide for visible glow</li>
-              <li>Lightweight, non-greasy daily cream</li>
-              <li>Hydrates and refreshes dull skin</li>
-              <li>Ideal for daily morning routine</li>
-              <li>Best for dull and tired-looking skin</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <!-- Top picks render from data/beauty-products.js -->
     </div>
   </section>
 
@@ -1468,7 +1429,7 @@
       routine.
     </p>
     <div class="products">
-      <!-- Product cards will be added in next step -->
+      <!-- Skincare products render from data/beauty-products.js -->
     </div>
   </section>
 
@@ -1481,7 +1442,7 @@
       Explore selected hair oils, shampoos and conditioners for healthier looking hair.
     </p>
     <div class="products">
-      <!-- Product cards will be added in next step -->
+      <!-- Haircare products render from data/beauty-products.js -->
     </div>
   </section>
 
@@ -1778,6 +1739,8 @@
 
   <button id="backToTop" type="button" aria-label="Back to top">⬆</button>
 
+  <script src="data/beauty-products.js"></script>
+  <script src="beauty-main.js"></script>
   <script>
     const menuToggle = document.getElementById("menuToggle");
     const mainNav = document.getElementById("mainNav");
@@ -1880,35 +1843,6 @@
     backToTopButton.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
-
-    function toggleDetails(element) {
-      const content = element.nextElementSibling;
-      const arrow = element.querySelector(".arrow");
-
-      document.querySelectorAll(".toggle-content").forEach(function (el) {
-        if (el !== content) {
-          el.style.display = "none";
-        }
-      });
-
-      document.querySelectorAll(".arrow").forEach(function (ar) {
-        if (ar !== arrow) {
-          ar.innerHTML = "▼";
-        }
-      });
-
-      if (content.style.display === "block") {
-        content.style.display = "none";
-        if (arrow) {
-          arrow.innerHTML = "▼";
-        }
-      } else {
-        content.style.display = "block";
-        if (arrow) {
-          arrow.innerHTML = "▲";
-        }
-      }
-    }
 
     function isFaqCrossPageLink(link) {
       const href = (link.getAttribute("href") || "").trim();
