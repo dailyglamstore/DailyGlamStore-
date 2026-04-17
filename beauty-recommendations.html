@@ -1986,6 +1986,10 @@
       }
     }
 
+    function isFaqGroupExpanded(groupData) {
+      return groupData && groupData.faqList && !groupData.faqList.classList.contains("faq-extras-collapsed");
+    }
+
     function refreshActiveFaqHeight() {
       if (!activeFaqItem || !activeFaqItem.classList.contains("open")) {
         return;
@@ -2004,6 +2008,7 @@
       const visibleLimit = faqVisibleLimitByGroup[faqGroup] || faqItems.length;
       const hiddenFaqItems = faqItems.slice(visibleLimit);
       const toggleButton = document.querySelector('.faq-more-toggle[data-faq-toggle="' + faqGroup + '"]');
+      const faqCategory = faqList.closest(".faq-category");
 
       hiddenFaqItems.forEach(function (item) {
         item.classList.add("faq-extra-item");
@@ -2042,6 +2047,7 @@
       });
 
       const groupData = {
+        faqCategory: faqCategory,
         faqList: faqList,
         hiddenFaqItems: hiddenFaqItems,
         toggleButton: toggleButton
@@ -2066,6 +2072,33 @@
         });
       }
     });
+
+    if ("IntersectionObserver" in window) {
+      const faqAwayObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          const groupData = faqGroupData.find(function (data) {
+            return data.faqCategory === entry.target;
+          });
+
+          if (!groupData || !isFaqGroupExpanded(groupData)) {
+            return;
+          }
+
+          if (entry.intersectionRatio < 0.2) {
+            collapseFaqGroup(groupData);
+          }
+        });
+      }, {
+        threshold: [0, 0.2, 0.35],
+        rootMargin: "-10% 0px -10% 0px"
+      });
+
+      faqGroupData.forEach(function (groupData) {
+        if (groupData.faqCategory) {
+          faqAwayObserver.observe(groupData.faqCategory);
+        }
+      });
+    }
 
     window.addEventListener("resize", function () {
       refreshActiveFaqHeight();
