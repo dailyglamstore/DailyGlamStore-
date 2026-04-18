@@ -19,3 +19,22 @@
     }
   ];
 })();
+    {
+      id: "lotus-papaya-niacinamide-serum",
+      name: "Papaya & Niacinamide Brighten & Glow Skin Clarifying Super Serum",
+      brand: "Lotus Botanicals",
+      image: "images/beauty-images/top-picks/papaya-niacinamide-serum.JPG",
+      url: "https://www.lotusbotanicals.com/products/copy-of-papaya-niacinamide-brighten-glow-skin-clarifying-super-serum?ref=DGS-Deepak",
+      priceText: "Check on official website",
+      details: [
+        "Reduces dark spots, acne marks & pigmentation",
+        "Niacinamide (Vitamin B3) improves skin tone & controls oil",
+        "Papaya extract naturally boosts glow & removes dullness",
+        "Minimizes pores & smoothens skin texture",
+        "Lightweight, fast-absorbing & non-sticky formula",
+        "Suitable for all skin types, especially oily & acne-prone skin"
+      ]
+    }
+  ];
+})();
+
