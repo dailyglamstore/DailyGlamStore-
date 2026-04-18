@@ -16,9 +16,7 @@
         "Ideal for daily morning routine",
         "Best for dull and tired-looking skin"
       ]
-    }
-  ];
-})();
+    },
     {
       id: "lotus-papaya-niacinamide-serum",
       name: "Papaya & Niacinamide Brighten & Glow Skin Clarifying Super Serum",
@@ -37,4 +35,3 @@
     }
   ];
 })();
-
