@@ -35,7 +35,7 @@
       brand: product.brand || "",
       image: product.image || "",
       url: product.url || product.link || "#",
-      priceText: product.priceText || product.mrp || "Check on official website",
+      priceText: product.priceText || "Check on official website",
       note: product.note || "",
       details: Array.isArray(product.details) ? product.details : []
     };
@@ -54,7 +54,7 @@
       "  </div>",
       '  <h3 class="product-title">' + escapeHtml(product.name) + "</h3>",
       '  <div class="product-meta">Brand : ' + escapeHtml(product.brand) + "</div>",
-      '  <div class="price-row"><span>MRP: </span><span class="mrp-value">' + escapeHtml(product.priceText) + "</span></div>",
+      '  <div class="price-row"><span>Price : </span><span>' + escapeHtml(product.priceText) + ' + </span><span class="discount-highlight">20% OFF</span><span> with our code</span></div>',
       '  <a href="' + escapeHtml(product.url) + '" target="_blank" rel="nofollow sponsored" class="price-btn">Buy on Official Website</a>',
       '  <p class="checkout-note">Discount auto-applied at checkout</p>',
       '  <p class="price-note">' + escapeHtml(product.note) + "</p>",
