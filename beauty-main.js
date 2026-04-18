@@ -1,21 +1,21 @@
 (function () {
-  // Beauty page renderer using split category files under data/beauty/
-  // Future images should be uploaded inside images/beauty/<section>/<category>/
+  // Beauty page renderer using split category files under data/beauty-products/
+  // Future images should be uploaded inside images/beauty-images/<section>/<category>/
 
   const IMAGE_PATH_REFERENCE = {
-    topPicks: "images/beauty/top-picks/",
-    brands: "images/beauty/brands/",
+    topPicks: "images/beauty-images/top-picks/",
+    brands: "images/beauty-images/brands/",
     skincare: {
-      facewash: "images/beauty/skincare/facewash/",
-      serum: "images/beauty/skincare/serum/",
-      moisturiser: "images/beauty/skincare/moisturiser/",
-      sunscreen: "images/beauty/skincare/sunscreen/"
+      facewash: "images/beauty-images/skincare/facewash/",
+      serum: "images/beauty-images/skincare/serum/",
+      moisturiser: "images/beauty-images/skincare/moisturiser/",
+      sunscreen: "images/beauty-images/skincare/sunscreen/"
     },
     haircare: {
-      shampoo: "images/beauty/haircare/shampoo/",
-      conditioner: "images/beauty/haircare/conditioner/",
-      hairSerum: "images/beauty/haircare/hair-serum/",
-      hairOil: "images/beauty/haircare/hair-oil/"
+      shampoo: "images/beauty-images/haircare/shampoo/",
+      conditioner: "images/beauty-images/haircare/conditioner/",
+      hairSerum: "images/beauty-images/haircare/hair-serum/",
+      hairOil: "images/beauty-images/haircare/hair-oil/"
     }
   };
 

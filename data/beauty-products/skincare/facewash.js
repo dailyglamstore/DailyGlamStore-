@@ -1,11 +1,11 @@
 (function () {
-  // Skincare face wash products. Upload future images to: images/beauty/skincare/facewash/
+  // Skincare face wash products. Upload future images to: images/beauty-images/skincare/facewash/
   window.BEAUTY_SKINCARE_FACEWASH_PRODUCTS = [
     {
       id: "plum-face-wash-recommendation",
       name: "Face Wash Recommendation",
       brand: "Plum",
-      image: "images/top-picks/lotus-vitamin-c-skin-brightening-day-creme.JPG",
+      image: "images/beauty-images/top-picks/lotus-vitamin-c-skin-brightening-day-creme.JPG",
       url: "https://plumgoodness.com/",
       priceText: "Check on official website",
       details: [
