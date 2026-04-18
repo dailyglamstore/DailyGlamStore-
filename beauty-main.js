@@ -56,6 +56,7 @@
       '  <div class="product-meta">Brand : ' + escapeHtml(product.brand) + "</div>",
       '  <div class="price-row"><span>MRP: </span><span class="mrp-value">' + escapeHtml(product.priceText) + "</span></div>",
       '  <a href="' + escapeHtml(product.url) + '" target="_blank" rel="nofollow sponsored" class="price-btn">Buy on Official Website</a>',
+      '  <p class="checkout-note">Discount auto-applied at checkout</p>',
       '  <p class="price-note">' + escapeHtml(product.note) + "</p>",
       '  <div class="toggle-box">',
       '    <button class="toggle-header" type="button" aria-expanded="false">',
