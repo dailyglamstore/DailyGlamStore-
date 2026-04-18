@@ -1,11 +1,11 @@
 (function () {
-  // Top Picks products. Upload future images to: images/beauty/top-picks/
+  // Top Picks products. Upload future images to: images/beauty-images/top-picks/
   window.BEAUTY_TOP_PICKS_PRODUCTS = [
     {
       id: "lotus-vitamin-c-day-creme",
       name: "Vitamin C Skin Brightening Day Crème",
       brand: "Lotus Botanicals",
-      image: "images/top-picks/lotus-vitamin-c-skin-brightening-day-creme.JPG",
+      image: "images/beauty-images/top-picks/lotus-vitamin-c-skin-brightening-day-creme.JPG",
       url: "https://www.lotusbotanicals.com/products/vitamin-c-skin-brightening-day-creme?ref=DGS-Deepak",
       priceText: "₹685",
       details: [

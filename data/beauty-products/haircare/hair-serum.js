@@ -1,11 +1,11 @@
 (function () {
-  // Haircare serum products. Upload future images to: images/beauty/haircare/hair-serum/
+  // Haircare serum products. Upload future images to: images/beauty-images/haircare/hair-serum/
   window.BEAUTY_HAIRCARE_HAIR_SERUM_PRODUCTS = [
     {
       id: "lotus-hair-serum-recommendation",
       name: "Hair Serum Recommendation",
       brand: "Lotus Botanicals",
-      image: "images/top-picks/lotus-vitamin-c-skin-brightening-day-creme.JPG",
+      image: "images/beauty-images/top-picks/lotus-vitamin-c-skin-brightening-day-creme.JPG",
       url: "https://www.lotusbotanicals.com/",
       priceText: "Check on official website",
       details: [
