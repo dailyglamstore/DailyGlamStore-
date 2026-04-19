@@ -46,8 +46,24 @@
     return escapedPriceText.replace("20% OFF", '<span class="discount-highlight">20% OFF</span>');
   }
 
-  function createProductCard(rawProduct) {
+  function getAutoBadgeText(sectionKey, index) {
+    if (index > 1) {
+      return "";
+    }
+
+    const badgesBySection = {
+      topPicks: "Best Seller",
+      skincare: "Trending",
+      haircare: "Popular"
+    };
+
+    return badgesBySection[sectionKey] || "";
+  }
+
+  function createProductCard(rawProduct, index, sectionKey) {
     const product = normalizeProduct(rawProduct);
+    const badgeText = getAutoBadgeText(sectionKey, index);
+    const badgeHtml = badgeText ? '<span class="product-badge">' + escapeHtml(badgeText) + "</span>" : "";
     const detailsHtml = product.details.map(function (item) {
       return "<li>" + escapeHtml(item) + "</li>";
     }).join("");
@@ -55,6 +71,7 @@
     return [
       '<div class="product-card">',
       '  <div class="product-media">',
+      "    " + badgeHtml,
       '    <img src="' + escapeHtml(product.image) + '" alt="' + escapeHtml(product.name) + '" class="product-img" />',
       "  </div>",
       '  <h3 class="product-title">' + escapeHtml(product.name) + "</h3>",
@@ -73,7 +90,7 @@
     ].join("\n");
   }
 
-  function renderProducts(containerSelector, products) {
+  function renderProducts(containerSelector, products, sectionKey) {
     const container = document.querySelector(containerSelector);
     if (!container) {
       return;
@@ -84,7 +101,9 @@
       return;
     }
 
-    container.innerHTML = products.map(createProductCard).join("\n");
+    container.innerHTML = products.map(function (product, index) {
+      return createProductCard(product, index, sectionKey);
+    }).join("\n");
   }
 
   function bindDetailsToggles() {
@@ -141,9 +160,9 @@
   document.addEventListener("DOMContentLoaded", function () {
     const data = getBeautyData();
 
-    renderProducts("#top-picks .products", data.topPicks);
-    renderProducts("#skincare-recommendations .products", data.skincare);
-    renderProducts("#haircare-recommendations .products", data.haircare);
+    renderProducts("#top-picks .products", data.topPicks, "topPicks");
+    renderProducts("#skincare-recommendations .products", data.skincare, "skincare");
+    renderProducts("#haircare-recommendations .products", data.haircare, "haircare");
     bindDetailsToggles();
   });
 })();
