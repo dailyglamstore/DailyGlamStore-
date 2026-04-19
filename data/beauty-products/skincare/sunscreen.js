@@ -7,7 +7,7 @@
       brand: "Dot & Key",
       image: "images/beauty-images/top-picks/lotus-vitamin-c-skin-brightening-day-creme.JPG",
       url: "https://www.dotandkey.com/",
-      priceText: "Check on official website",
+      priceText: "₹685 + 20% OFF with our code",
       details: [
         "Use broad spectrum sunscreen in daytime",
         "Reapply as needed during long exposure",

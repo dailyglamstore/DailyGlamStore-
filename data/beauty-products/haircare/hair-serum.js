@@ -7,7 +7,7 @@
       brand: "Lotus Botanicals",
       image: "images/beauty-images/top-picks/lotus-vitamin-c-skin-brightening-day-creme.JPG",
       url: "https://www.lotusbotanicals.com/",
-      priceText: "Check on official website",
+      priceText: "₹685 + 20% OFF with our code",
       details: [
         "Apply on lengths to manage frizz",
         "Use small quantity to avoid heaviness",
