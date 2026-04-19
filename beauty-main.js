@@ -41,6 +41,11 @@
     };
   }
 
+  function formatPriceText(priceText) {
+    const escapedPriceText = escapeHtml(priceText);
+    return escapedPriceText.replace("20% OFF", '<span class="discount-highlight">20% OFF</span>');
+  }
+
   function createProductCard(rawProduct) {
     const product = normalizeProduct(rawProduct);
     const detailsHtml = product.details.map(function (item) {
@@ -54,7 +59,7 @@
       "  </div>",
       '  <h3 class="product-title">' + escapeHtml(product.name) + "</h3>",
       '  <div class="product-meta">Brand : ' + escapeHtml(product.brand) + "</div>",
-      '  <div class="price-row"><span>Price : </span><span>' + escapeHtml(product.priceText) + ' + </span><span class="discount-highlight">20% OFF</span><span> with our code</span></div>',
+      '  <div class="price-row"><span>Price : </span><span>' + formatPriceText(product.priceText) + '</span></div>',
       '  <a href="' + escapeHtml(product.url) + '" target="_blank" rel="nofollow sponsored" class="price-btn">Buy on Official Website</a>',
       '  <p class="checkout-note">Discount auto-applied at checkout</p>',
       '  <p class="price-note">' + escapeHtml(product.note) + "</p>",
