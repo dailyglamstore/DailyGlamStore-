@@ -7,7 +7,7 @@
       brand: "Mamaearth",
       image: "images/beauty-images/top-picks/lotus-vitamin-c-skin-brightening-day-creme.JPG",
       url: "https://mamaearth.in/",
-      priceText: "Check on official website",
+      priceText: "₹685 + 20% OFF with our code",
       details: [
         "Choose shampoo by scalp type",
         "Cleanse properly to reduce product buildup",

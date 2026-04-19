@@ -7,7 +7,7 @@
       brand: "Plum",
       image: "images/beauty-images/top-picks/lotus-vitamin-c-skin-brightening-day-creme.JPG",
       url: "https://plumgoodness.com/",
-      priceText: "Check on official website",
+      priceText: "₹685 + 20% OFF with our code",
       details: [
         "Use a gentle cleanser for daily routine",
         "Pick based on skin type and concern",
