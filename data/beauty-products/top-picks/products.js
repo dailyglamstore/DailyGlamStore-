@@ -7,7 +7,7 @@
       brand: "Lotus Botanicals",
       image: "images/beauty-images/top-picks/lotus-vitamin-c-skin-brightening-day-creme.JPG",
       url: "https://www.lotusbotanicals.com/products/vitamin-c-skin-brightening-day-creme?ref=DGS-Deepak",
-      priceText: "₹685",
+      priceText: "₹685 + 20% OFF with our code",
       details: [
         "Reduces dark spots & uneven skin tone",
         "Vitamin C + Niacinamide for visible glow",
