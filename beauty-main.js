@@ -107,28 +107,99 @@
   }
 
   function bindDetailsToggles() {
+    const visibilityCloseThreshold = 0.35;
+    let activeToggle = null;
+    let openCardObserver = null;
+
+    function closeDetails(button) {
+      if (!button) {
+        return;
+      }
+
+      const content = button.nextElementSibling;
+      const arrow = button.querySelector(".arrow");
+
+      if (content) {
+        content.style.display = "none";
+      }
+      if (arrow) {
+        arrow.textContent = "▼";
+      }
+      button.setAttribute("aria-expanded", "false");
+    }
+
+    function openDetails(button) {
+      if (!button) {
+        return;
+      }
+
+      const content = button.nextElementSibling;
+      const arrow = button.querySelector(".arrow");
+
+      if (content) {
+        content.style.display = "block";
+      }
+      if (arrow) {
+        arrow.textContent = "▲";
+      }
+      button.setAttribute("aria-expanded", "true");
+    }
+
+    function closeActiveDetails() {
+      if (!activeToggle) {
+        return;
+      }
+
+      closeDetails(activeToggle.button);
+
+      if (openCardObserver && activeToggle.card) {
+        openCardObserver.unobserve(activeToggle.card);
+      }
+
+      activeToggle = null;
+    }
+
+    if ("IntersectionObserver" in window) {
+      openCardObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!activeToggle || entry.target !== activeToggle.card) {
+            return;
+          }
+
+          if (entry.intersectionRatio < visibilityCloseThreshold) {
+            closeActiveDetails();
+          }
+        });
+      }, {
+        threshold: [0, visibilityCloseThreshold, 0.5, 1]
+      });
+    }
+
     document.querySelectorAll(".toggle-header").forEach(function (button) {
       button.addEventListener("click", function () {
         const content = button.nextElementSibling;
-        const arrow = button.querySelector(".arrow");
         const isOpen = content && content.style.display === "block";
 
-        document.querySelectorAll(".toggle-content").forEach(function (panel) {
-          panel.style.display = "none";
-        });
-        document.querySelectorAll(".toggle-header .arrow").forEach(function (icon) {
-          icon.textContent = "▼";
-        });
-        document.querySelectorAll(".toggle-header").forEach(function (headerBtn) {
-          headerBtn.setAttribute("aria-expanded", "false");
-        });
+        if (activeToggle && activeToggle.button !== button) {
+          closeActiveDetails();
+        }
 
-        if (!isOpen && content) {
-          content.style.display = "block";
-          if (arrow) {
-            arrow.textContent = "▲";
+        if (isOpen) {
+          closeDetails(button);
+          if (activeToggle && activeToggle.button === button) {
+            closeActiveDetails();
           }
-          button.setAttribute("aria-expanded", "true");
+          return;
+        }
+
+        openDetails(button);
+        activeToggle = {
+          button: button,
+          card: button.closest(".product-card")
+        };
+
+        if (openCardObserver && activeToggle.card) {
+          openCardObserver.observe(activeToggle.card);
         }
       });
     });
