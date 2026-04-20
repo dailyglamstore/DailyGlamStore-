@@ -877,6 +877,109 @@
       transform: translateY(-1px);
     }
 
+    .blog-trending {
+      padding-top: 30px;
+      padding-bottom: 32px;
+    }
+
+    .blog-trending-intro {
+      margin: 0 auto 16px;
+      max-width: 660px;
+      text-align: center;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .blog-slider-wrap {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      padding-bottom: 4px;
+    }
+
+    .blog-slider-track {
+      display: flex;
+      gap: 14px;
+      width: max-content;
+      min-width: 100%;
+    }
+
+    .blog-slide-card {
+      width: min(290px, calc(100vw - 46px));
+      scroll-snap-align: start;
+      background: var(--white);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(178, 69, 90, 0.08);
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .blog-slide-media {
+      position: relative;
+      border-radius: 10px;
+      border: 1px solid #d7a0ac;
+      background: linear-gradient(145deg, #fff9f6 0%, #fff1ec 100%);
+      box-shadow: inset 0 0 0 1px rgba(178, 69, 90, 0.08);
+      overflow: hidden;
+      margin-bottom: 8px;
+      min-height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #a06e63;
+      font-size: 12px;
+      text-align: center;
+      padding: 14px;
+    }
+
+    .blog-slide-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 2;
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #b2455a;
+      color: #fff;
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(58, 19, 29, 0.18);
+    }
+
+    .blog-slide-card h3 {
+      margin: 0 0 5px;
+      font-size: 17px;
+      line-height: 1.35;
+      color: #4b3f3a;
+    }
+
+    .blog-slide-card p {
+      margin: 0 0 10px;
+      font-size: 13px;
+      color: var(--text-soft);
+      flex-grow: 1;
+    }
+
+    .blog-slide-link {
+      text-decoration: none;
+      color: var(--brand);
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .blog-slide-link:hover {
+      color: var(--brand-dark);
+    }
+
     .footer-section {
       max-width: 1100px;
       margin: auto;
@@ -1232,6 +1335,10 @@
 
       .faq-answer-inner {
         padding: 0 13px 13px;
+      }
+
+      .blog-slide-card {
+        width: min(274px, calc(100vw - 38px));
       }
     }
 
@@ -1676,6 +1783,47 @@
     </div>
   </section>
 
+
+  <section class="section blog-trending" id="trending-blog">
+    <div class="section-heading-wrap">
+      <h2 class="section-title">Trending on Our Blog</h2>
+    </div>
+    <p class="blog-trending-intro">Explore simple skincare and haircare reads from our Beauty Blog.</p>
+    <div class="blog-slider-wrap" id="blogSliderWrap" aria-label="Trending blog articles" tabindex="0">
+      <div class="blog-slider-track">
+        <article class="blog-slide-card">
+          <div class="blog-slide-media" role="img" aria-label="Trending skincare article image placeholder">
+            <span class="blog-slide-badge">Trending</span>
+            Image area for skincare article
+          </div>
+          <h3>Simple Skincare Routine for Healthy &amp; Glowing Skin</h3>
+          <p>Learn the right daily order of face wash, serum, moisturiser, and sunscreen.</p>
+          <a class="blog-slide-link" href="skincare-routine.html">Read Article <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="blog-slide-card">
+          <div class="blog-slide-media" role="img" aria-label="Trending haircare article image placeholder">
+            <span class="blog-slide-badge">Trending</span>
+            Image area for haircare article
+          </div>
+          <h3>Simple Haircare Routine for Healthy Hair</h3>
+          <p>A practical guide to shampoo, conditioner, serum, and oiling for a smoother routine.</p>
+          <a class="blog-slide-link" href="#" aria-disabled="true" role="button">Coming Soon</a>
+        </article>
+
+        <article class="blog-slide-card">
+          <div class="blog-slide-media" role="img" aria-label="Trending brightening skincare article image placeholder">
+            <span class="blog-slide-badge">Trending</span>
+            Image area for brightening skincare article
+          </div>
+          <h3>Brightening &amp; Glow Skincare Basics</h3>
+          <p>Quick reading to understand glow routines, brightening products, and daily care.</p>
+          <a class="blog-slide-link" href="#" aria-disabled="true" role="button">Coming Soon</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <div class="footer-content-area">
     <section class="footer-section" id="about">
       <h2>💎 About Us</h2>
@@ -2070,6 +2218,58 @@
           faqAwayObserver.observe(groupData.faqCategory);
         }
       });
+    }
+
+
+    const blogSliderWrap = document.getElementById("blogSliderWrap");
+
+    if (blogSliderWrap) {
+      let sliderInterval = null;
+      let resumeTimer = null;
+
+      function startAutoSlide() {
+        if (sliderInterval) {
+          return;
+        }
+
+        sliderInterval = window.setInterval(function () {
+          const step = Math.max(blogSliderWrap.clientWidth * 0.82, 220);
+          const nearEnd = blogSliderWrap.scrollLeft + blogSliderWrap.clientWidth >= blogSliderWrap.scrollWidth - 6;
+
+          if (nearEnd) {
+            blogSliderWrap.scrollTo({ left: 0, behavior: "smooth" });
+          } else {
+            blogSliderWrap.scrollBy({ left: step, behavior: "smooth" });
+          }
+        }, 4600);
+      }
+
+      function stopAutoSlide() {
+        if (sliderInterval) {
+          window.clearInterval(sliderInterval);
+          sliderInterval = null;
+        }
+      }
+
+      function pauseAndResume() {
+        stopAutoSlide();
+        if (resumeTimer) {
+          window.clearTimeout(resumeTimer);
+        }
+        resumeTimer = window.setTimeout(startAutoSlide, 5200);
+      }
+
+      ["pointerdown", "touchstart", "wheel", "keydown", "mouseenter"].forEach(function (eventName) {
+        blogSliderWrap.addEventListener(eventName, pauseAndResume, { passive: true });
+      });
+
+      blogSliderWrap.addEventListener("mouseleave", function () {
+        if (!sliderInterval) {
+          startAutoSlide();
+        }
+      });
+
+      startAutoSlide();
     }
 
     window.addEventListener("resize", function () {

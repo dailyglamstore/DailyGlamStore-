@@ -318,6 +318,72 @@
       font-size: 22px;
     }
 
+    .featured-start-here {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      margin: 2px 0 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #eab8c5;
+      background: #fff3f6;
+      color: var(--brand-dark);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    #skincare-articles {
+      padding-top: 34px;
+    }
+
+    #haircare-articles {
+      padding-top: 34px;
+    }
+
+    .blog-final-cta {
+      padding-top: 34px;
+      padding-bottom: 36px;
+    }
+
+    .blog-final-cta-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+      background: var(--white);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 14px;
+      box-shadow: 0 6px 16px rgba(178, 69, 90, 0.08);
+      padding: 24px 16px;
+    }
+
+    .blog-final-cta h2 {
+      margin: 0 0 8px;
+      color: var(--brand-dark);
+      font-size: 24px;
+      line-height: 1.3;
+    }
+
+    .blog-final-cta p {
+      margin: 0 auto;
+      max-width: 620px;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .blog-final-cta-actions {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .blog-final-cta-actions .blog-btn {
+      min-width: 220px;
+    }
+
     .footer-section {
       max-width: 1100px;
       margin: auto;
@@ -528,6 +594,16 @@
       .hero h1 { font-size: 26px; }
       .featured-card .blog-media { min-height: 210px; }
       .featured-card h3 { font-size: 20px; }
+      .blog-final-cta {
+        padding-top: 30px;
+        padding-bottom: 30px;
+      }
+      .blog-final-cta h2 { font-size: 21px; }
+      .blog-final-cta-actions .blog-btn {
+        width: 100%;
+        max-width: 300px;
+        min-width: 0;
+      }
     }
 
     @media (max-width: 520px) {
@@ -596,6 +672,7 @@
           <span class="blog-label">Skincare</span>
           Image area for featured skincare article
         </div>
+        <span class="featured-start-here">Start Here</span>
         <h3>Simple Skincare Routine for Healthy &amp; Glowing Skin</h3>
         <p>Learn the right daily order of face wash, serum, moisturiser, and sunscreen, then explore matching guides and recommendations.</p>
         <a class="blog-btn" href="skincare-routine.html">Read Article</a>
@@ -630,6 +707,18 @@
         <p>A practical guide to shampoo, conditioner, serum, and oiling for a smoother routine.</p>
         <a class="blog-btn" href="#" aria-disabled="true" role="button">Coming Soon</a>
       </article>
+    </div>
+  </section>
+
+
+  <section class="section blog-final-cta" id="blog-next-step">
+    <div class="blog-final-cta-wrap">
+      <h2>Not sure what to choose?</h2>
+      <p>Simple guides and recommendations to help you pick the right products for your routine.</p>
+      <div class="blog-final-cta-actions">
+        <a class="blog-btn" href="beauty-guides.html">Explore Beauty Guides</a>
+        <a class="blog-btn" href="beauty-recommendations.html">Browse Beauty Recommendations</a>
+      </div>
     </div>
   </section>
 
