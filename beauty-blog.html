@@ -495,12 +495,20 @@
       }
 
       .main-nav {
-        width: 100%;
         display: none;
+        position: absolute;
+        top: calc(100% + 6px);
+        right: 8px;
         flex-direction: column;
         align-items: stretch;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        width: min(270px, calc(100vw - 16px));
         gap: 0;
-        padding: 4px 0 0;
+        padding: 10px 0 0;
+        overflow: hidden;
       }
 
       .main-nav.show {
@@ -508,8 +516,9 @@
       }
 
       .main-nav > a {
-        padding: 12px 10px;
-        border-bottom: 1px solid var(--border-soft);
+        display: block;
+        padding: 12px 14px;
+        border-bottom: 1px solid #f4dedf;
       }
 
       .main-nav > a:last-of-type {
@@ -519,6 +528,13 @@
       .hero h1 { font-size: 26px; }
       .featured-card .blog-media { min-height: 210px; }
       .featured-card h3 { font-size: 20px; }
+    }
+
+    @media (max-width: 520px) {
+      .main-nav {
+        width: min(268px, calc(100vw - 12px));
+        right: 6px;
+      }
     }
 
     @media (min-width: 769px) {
@@ -551,13 +567,13 @@
       </button>
 
       <nav class="main-nav" id="mainNav">
-        <a href="beauty-recommendations.html#home">
+        <a href="beauty-recommendations.html#home" target="_blank" rel="noopener noreferrer" data-close-menu-on-click="true">
           <span class="menu-home-combo">
             <span>🏠 Home : Beauty</span>
             <span>Recommendations</span>
           </span>
         </a>
-        <a href="beauty-guides.html">📘 Beauty Guides</a>
+        <a href="beauty-guides.html" target="_blank" rel="noopener noreferrer" data-close-menu-on-click="true">📘 Beauty Guides</a>
         <a href="beauty-blog.html" aria-current="page">📝 Beauty Blog</a>
         <a href="#contact">📞 Contact &amp; Support</a>
       </nav>
@@ -722,6 +738,16 @@
 
     document.querySelectorAll("#mainNav a").forEach(function (link) {
       link.addEventListener("click", function () {
+        closeMenu();
+      });
+    });
+
+    document.querySelectorAll('#mainNav a[data-close-menu-on-click="true"]').forEach(function (link) {
+      link.addEventListener("auxclick", function () {
+        closeMenu();
+      });
+
+      link.addEventListener("contextmenu", function () {
         closeMenu();
       });
     });
