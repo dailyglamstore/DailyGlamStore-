@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Glam Store | Beauty Blog</title>
+  <meta
+    name="description"
+    content="Simple skincare and haircare beauty blog articles from Daily Glam Store to help you choose the right products faster."
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dailyglamstore.in/blog/" />
+
+  <style>
+    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; }
+
+    :root {
+      --bg-main: #faf7f6;
+      --bg-soft: #fff7f4;
+      --bg-soft-2: #fff3ee;
+      --bg-header: #ffe0ea;
+      --brand: #b2455a;
+      --brand-dark: #7a3b4a;
+      --text-soft: #9a6b5f;
+      --border: #f1b6c6;
+      --border-soft: #f1cfc4;
+      --white: #ffffff;
+      --shadow: 0 8px 24px rgba(178, 69, 90, 0.08);
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg-main);
+      color: #4b3f3a;
+      line-height: 1.6;
+    }
+
+    a { -webkit-tap-highlight-color: transparent; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--bg-header);
+      border-bottom: 1px solid var(--border);
+      padding: 6px 10px;
+      transition: padding 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .site-header.shrink {
+      padding: 3px 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      position: relative;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .brand {
+      text-decoration: none;
+      color: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      padding: 2px 4px;
+      margin: -2px -4px;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      flex-shrink: 0;
+      transition: width 0.25s ease, height 0.25s ease;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      line-height: 1.15;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--brand);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: font-size 0.25s ease;
+    }
+
+    .brand-tagline {
+      font-size: 11px;
+      color: var(--text-soft);
+      margin-top: 2px;
+      transition: font-size 0.25s ease;
+    }
+
+    .site-header.shrink .brand-logo { width: 36px; height: 36px; }
+    .site-header.shrink .brand-name { font-size: 17px; }
+
+    .menu-toggle {
+      color: var(--brand-dark);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      background: transparent;
+      border: 0;
+      padding: 6px 8px;
+      font-family: inherit;
+      line-height: 1;
+      border-radius: 0;
+    }
+
+    .menu-toggle .menu-icon { font-size: 22px; line-height: 1; }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .main-nav > a {
+      text-decoration: none;
+      color: #4b3f3a;
+      font-size: 14px;
+      font-weight: 600;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .main-nav > a:hover,
+    .main-nav > a[aria-current="page"] {
+      color: var(--brand);
+    }
+
+    .hero,
+    .section,
+    .footer-section,
+    #home,
+    #featured-article,
+    #skincare-articles,
+    #haircare-articles,
+    #about,
+    #ordering,
+    #disclaimer,
+    #privacy,
+    #affiliate,
+    #contact {
+      scroll-margin-top: 95px;
+    }
+
+    .hero {
+      background: var(--white);
+      text-align: center;
+      padding: 30px 16px 24px;
+      border-bottom: 1px solid #f4e1e7;
+    }
+
+    .hero-inner {
+      max-width: 860px;
+      margin: auto;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      line-height: 1.2;
+      color: var(--brand);
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 15px;
+      color: var(--text-soft);
+    }
+
+    .hero-support {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #a97a6c;
+      font-weight: 600;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 28px 16px;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      padding: 11px 14px;
+      border-left: 6px solid var(--brand);
+      border-radius: 10px;
+      background: #ffe0ea;
+      font-size: 21px;
+      line-height: 1.35;
+      color: var(--brand-dark);
+      text-align: left;
+    }
+
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    .blog-card {
+      background: var(--white);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 4px 14px rgba(178, 69, 90, 0.08);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .blog-media {
+      position: relative;
+      border-radius: 10px;
+      border: 1px solid #d7a0ac;
+      background: linear-gradient(145deg, #fff9f6 0%, #fff1ec 100%);
+      box-shadow: inset 0 0 0 1px rgba(178, 69, 90, 0.08);
+      overflow: hidden;
+      margin-bottom: 8px;
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #a06e63;
+      font-size: 13px;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .blog-label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 2;
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #b2455a;
+      color: #fff;
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(58, 19, 29, 0.18);
+    }
+
+    .blog-card h3 {
+      margin: 0 0 4px;
+      font-size: 18px;
+      line-height: 1.35;
+      color: #4b3f3a;
+    }
+
+    .blog-card p {
+      margin: 0 0 10px;
+      font-size: 13px;
+      color: var(--text-soft);
+      flex-grow: 1;
+    }
+
+    .blog-btn {
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      background: var(--brand);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .blog-btn:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+
+    .featured-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 15px;
+    }
+
+    .featured-card .blog-media {
+      min-height: 260px;
+    }
+
+    .featured-card h3 {
+      font-size: 22px;
+    }
+
+    .featured-start-here {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      margin: 2px 0 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #eab8c5;
+      background: #fff3f6;
+      color: var(--brand-dark);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    #skincare-articles {
+      padding-top: 34px;
+    }
+
+    #haircare-articles {
+      padding-top: 34px;
+    }
+
+    .blog-final-cta {
+      padding-top: 34px;
+      padding-bottom: 36px;
+    }
+
+    .blog-final-cta-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+      background: var(--white);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 14px;
+      box-shadow: 0 6px 16px rgba(178, 69, 90, 0.08);
+      padding: 24px 16px;
+    }
+
+    .blog-final-cta h2 {
+      margin: 0 0 8px;
+      color: var(--brand-dark);
+      font-size: 24px;
+      line-height: 1.3;
+    }
+
+    .blog-final-cta p {
+      margin: 0 auto;
+      max-width: 620px;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .blog-final-cta-actions {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .blog-final-cta-actions .blog-btn {
+      min-width: 220px;
+    }
+
+    .footer-section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 16px;
+    }
+
+    .footer-content-area {
+      background: #fff6f2;
+      padding: 24px 0 8px;
+      margin-top: 8px;
+    }
+
+    .footer-section + .footer-section {
+      margin-top: 0;
+    }
+
+    .footer-section h2 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      line-height: 1.3;
+      color: var(--brand-dark);
+    }
+
+    .footer-section p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .footer-section p + p {
+      margin-top: 8px;
+    }
+
+    .footer-note {
+      margin-top: 8px;
+    }
+
+    .contact-support-row {
+      display: block;
+    }
+
+    .contact-support-text {
+      margin: 0;
+    }
+
+    .contact-support-email {
+      font-size: 13px;
+      line-height: 1.6;
+      font-weight: 700;
+      color: var(--brand-dark);
+      text-decoration: none;
+    }
+
+    .contact-support-email:hover {
+      text-decoration: underline;
+    }
+
+    .ordering-steps {
+      background: #fff0ec;
+      border-left: 4px solid var(--brand);
+      border-radius: 10px;
+      padding: 12px 12px 12px 14px;
+    }
+
+    .ordering-steps p + p {
+      margin-top: 10px;
+    }
+
+    .footer-section {
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+
+    #contact.footer-section {
+      padding-bottom: 8px;
+    }
+
+    .site-footer {
+      background: #fff3ee;
+      color: #7a3b4a;
+      text-align: center;
+      padding: 14px 16px 16px;
+      font-size: 11px;
+    }
+
+    .footer-trust-line {
+      font-size: 13px;
+      color: #7a3b4a;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .footer-copy,
+    .footer-powered,
+    .footer-location,
+    .footer-bottom-note {
+      font-size: 11px;
+      margin-top: 6px;
+    }
+
+    .footer-copy {
+      color: #999;
+    }
+
+    .footer-powered {
+      color: #7a3b4a;
+      font-weight: 500;
+    }
+
+    .footer-location {
+      font-size: 10px;
+      color: #9a6b5f;
+      margin-top: 2px;
+    }
+
+    .footer-bottom-note {
+      color: #9a6b5f;
+      display: inline-flex;
+      align-items: center;
+      gap: 1px;
+    }
+
+    .footer-bottom-note .globe-icon {
+      line-height: 1;
+    }
+
+    .footer-link-feedback {
+      color: #9a6b5f;
+      text-decoration: underline;
+      display: inline-block;
+      border-radius: 8px;
+      padding: 2px 6px;
+      transition: background-color 0.2s ease, transform 0.15s ease, color 0.2s ease;
+    }
+
+    .footer-link-feedback:hover {
+      background: #ffe7de;
+      color: var(--brand-dark);
+    }
+
+    .footer-link-feedback:active {
+      transform: scale(0.97);
+      background: #f9d8cc;
+    }
+
+    .menu-home-combo {
+      display: inline-flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 18px;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 999px;
+      background: var(--brand);
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 8px 18px rgba(122, 59, 74, 0.35);
+      z-index: 1200;
+    }
+
+    @media (max-width: 768px) {
+      .header-inner { flex-wrap: wrap; }
+
+      .menu-toggle {
+        margin-left: auto;
+      }
+
+      .main-nav {
+        display: none;
+        position: absolute;
+        top: calc(100% + 6px);
+        right: 8px;
+        flex-direction: column;
+        align-items: stretch;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        width: min(270px, calc(100vw - 16px));
+        gap: 0;
+        padding: 10px 0 0;
+        overflow: hidden;
+      }
+
+      .main-nav.show {
+        display: flex;
+      }
+
+      .main-nav > a {
+        display: block;
+        padding: 12px 14px;
+        border-bottom: 1px solid #f4dedf;
+      }
+
+      .main-nav > a:last-of-type {
+        border-bottom: none;
+      }
+
+      .hero h1 { font-size: 26px; }
+      .featured-card .blog-media { min-height: 210px; }
+      .featured-card h3 { font-size: 20px; }
+      .blog-final-cta {
+        padding-top: 30px;
+        padding-bottom: 30px;
+      }
+      .blog-final-cta h2 { font-size: 21px; }
+      .blog-final-cta-actions .blog-btn {
+        width: 100%;
+        max-width: 300px;
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .main-nav {
+        width: min(268px, calc(100vw - 12px));
+        right: 6px;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .menu-toggle { display: none; }
+      .featured-wrap { grid-template-columns: minmax(0, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="/beauty/#home" class="brand">
+        <img src="../images/logo.png" alt="Daily Glam Store" class="brand-logo" />
+        <span class="brand-text">
+          <span class="brand-name">Daily Glam Store</span>
+          <span class="brand-tagline">Curated Beauty Recommendations</span>
+        </span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mainNav"
+      >
+        <span class="menu-text">Menu</span>
+        <span class="menu-icon">☰</span>
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="/beauty/#home" target="_blank" rel="noopener noreferrer" data-close-menu-on-click="true">
+          <span class="menu-home-combo">
+            <span>🏠 Home : Beauty</span>
+            <span>Recommendations</span>
+          </span>
+        </a>
+        <a href="/guides/" target="_blank" rel="noopener noreferrer" data-close-menu-on-click="true">📘 Beauty Guides</a>
+        <a href="/blog/" aria-current="page">📝 Beauty Blog</a>
+        <a href="#contact">📞 Contact &amp; Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <h1>Beauty Blog</h1>
+      <p>Simple skincare and haircare articles to help you choose the right products faster.</p>
+      <p class="hero-support">Easy to read • Practical tips • Direct links to guides and recommendations</p>
+    </div>
+  </section>
+
+  <section class="section" id="featured-article">
+    <h2 class="section-title">Featured Article</h2>
+    <div class="featured-wrap">
+      <article class="blog-card featured-card">
+        <div class="blog-media" role="img" aria-label="Featured skincare article image placeholder">
+          <span class="blog-label">Skincare</span>
+          Image area for featured skincare article
+        </div>
+        <span class="featured-start-here">Start Here</span>
+        <h3>Simple Skincare Routine for Healthy &amp; Glowing Skin</h3>
+        <p>Learn the right daily order of face wash, serum, moisturiser, and sunscreen, then explore matching guides and recommendations.</p>
+        <a class="blog-btn" href="/skincare-routine/" target="_blank" rel="noopener noreferrer">Read Article</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="skincare-articles">
+    <h2 class="section-title">Skincare Articles</h2>
+    <div class="articles-grid">
+      <article class="blog-card">
+        <div class="blog-media" role="img" aria-label="Skincare article image placeholder">
+          <span class="blog-label">Skincare</span>
+          Image area for skincare article
+        </div>
+        <h3>Simple Skincare Routine for Healthy &amp; Glowing Skin</h3>
+        <p>A beginner-friendly guide to cleansing, serums, moisturisers, and sunscreen for a simple daily routine.</p>
+        <a class="blog-btn" href="/skincare-routine/" target="_blank" rel="noopener noreferrer">Read Article</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="haircare-articles">
+    <h2 class="section-title">Haircare Articles</h2>
+    <div class="articles-grid">
+      <article class="blog-card">
+        <div class="blog-media" role="img" aria-label="Haircare article image placeholder">
+          <span class="blog-label">Haircare</span>
+          Image area for haircare article
+        </div>
+        <h3>Simple Haircare Routine for Healthy Hair</h3>
+        <p>A practical guide to shampoo, conditioner, serum, and oiling for a smoother routine.</p>
+        <a class="blog-btn" href="/haircare-routine/" target="_blank" rel="noopener noreferrer">Read Article</a>
+      </article>
+    </div>
+  </section>
+
+
+  <section class="section blog-final-cta" id="blog-next-step">
+    <div class="blog-final-cta-wrap">
+      <h2>Not sure what to choose?</h2>
+      <p>Simple guides and recommendations to help you pick the right products for your routine.</p>
+      <div class="blog-final-cta-actions">
+        <a class="blog-btn" href="/guides/">Explore Beauty Guides</a>
+        <a class="blog-btn" href="/beauty/">Browse Beauty Recommendations</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-content-area">
+    <section class="footer-section" id="about">
+      <h2>💎 About Us</h2>
+      <p>
+        Daily Glam Store shares curated beauty recommendations from selected brands and official websites to help customers discover trending and suitable product options without any hassle.
+      </p>
+      <p>
+        Having more than a decade of cosmetic retail experience, we focus on practical selections and clear product highlights so you can shortlist confidently without spending extra time.
+      </p>
+    </section>
+
+    <section class="footer-section" id="ordering">
+      <h2>🛍️ How Ordering Works ?</h2>
+      <div class="ordering-steps">
+        <p>
+          <strong>Step 1:</strong> Browse our recommendations and guides to shortlist the best product options for your routine.
+        </p>
+        <p>
+          <strong>Step 2:</strong> Click the product link to visit the official brand website and review final details.
+        </p>
+        <p>
+          <strong>Step 3:</strong> Complete your purchase securely on the official website using available offers.
+        </p>
+      </div>
+    </section>
+
+    <section class="footer-section" id="disclaimer">
+      <h2>⚠️ Disclaimer</h2>
+      <p>
+        Article content and product references are for informational purposes only. Final pricing, offers, stock, and terms may change on official websites.
+      </p>
+    </section>
+
+    <section class="footer-section" id="privacy">
+      <h2>🔐 Privacy Policy</h2>
+      <p>
+        This page does not directly process payments. Official websites may use their own cookies, tracking, and privacy practices.
+      </p>
+    </section>
+
+    <section class="footer-section" id="affiliate">
+      <h2>💼 Affiliate Disclosure</h2>
+      <p>
+        Some links on this page are affiliate links. Daily Glam Store may earn a commission at no extra cost to the customer when purchases are made through eligible links.
+      </p>
+      <p class="footer-note">
+        Our recommendations are selected carefully for usefulness and relevance, not only for commission.
+      </p>
+    </section>
+
+    <section class="footer-section" id="contact">
+      <h2>📞 Contact &amp; Support</h2>
+      <div class="contact-support-row">
+        <p class="contact-support-text">
+          For recommendation-related queries or discount-related queries, please contact at :
+          <a class="contact-support-email" href="mailto:dmahajan152@gmail.com"><strong>dmahajan152@gmail.com</strong></a>.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-trust-line">Daily Glam Store - Beauty Recommendations</div>
+    <div class="footer-trust-line">🌟 Trust • Quality • Style • Consistency 🌟</div>
+    <div class="footer-copy">© 2026 Daily Glam Store. All rights reserved.</div>
+    <div class="footer-powered">In Collaboration With Deepak Cosmetic Store</div>
+    <div class="footer-location">Main Bazar, Gurdaspur</div>
+    <div class="footer-bottom-note">
+      <span class="globe-icon">🌐</span>
+      <a class="footer-link-feedback" href="https://dailyglamstore.in/blog/">https://dailyglamstore.in/blog/</a>
+    </div>
+  </footer>
+
+  <button id="backToTop" type="button" aria-label="Back to top">⬆</button>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const mainNav = document.getElementById("mainNav");
+    const siteHeader = document.getElementById("siteHeader");
+    const backToTopButton = document.getElementById("backToTop");
+
+    function closeMenu() {
+      mainNav.classList.remove("show");
+      menuToggle.setAttribute("aria-expanded", "false");
+    }
+
+    function toggleMenu() {
+      const isOpen = mainNav.classList.contains("show");
+      mainNav.classList.toggle("show");
+      menuToggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
+    }
+
+    menuToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest(".header-inner")) {
+        closeMenu();
+      }
+    });
+
+    document.querySelectorAll("#mainNav a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        closeMenu();
+      });
+    });
+
+    document.querySelectorAll('#mainNav a[data-close-menu-on-click="true"]').forEach(function (link) {
+      link.addEventListener("auxclick", function () {
+        closeMenu();
+      });
+
+      link.addEventListener("contextmenu", function () {
+        closeMenu();
+      });
+    });
+
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 18) {
+        siteHeader.classList.add("shrink");
+      } else {
+        siteHeader.classList.remove("shrink");
+      }
+
+      if (window.scrollY > 500) {
+        backToTopButton.style.display = "block";
+      } else {
+        backToTopButton.style.display = "none";
+      }
+
+      if (window.innerWidth <= 768 && mainNav.classList.contains("show")) {
+        closeMenu();
+      }
+    });
+
+    backToTopButton.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
