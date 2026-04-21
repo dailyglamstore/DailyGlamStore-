@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simple Skincare Routine for Healthy &amp; Glowing Skin | Daily Glam Store</title>
+  <title>Daily Glam Store | Beauty Blog</title>
   <meta
     name="description"
-    content="A beginner-friendly daily skincare routine with simple steps: face wash, serum, moisturiser, and sunscreen. Includes links to Daily Glam Store guides and recommendations."
+    content="Simple skincare and haircare beauty blog articles from Daily Glam Store to help you choose the right products faster."
   />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://dailyglamstore.in/skincare-routine/" />
+  <link rel="canonical" href="https://dailyglamstore.in/beauty-blog.html" />
 
   <style>
     html { scroll-behavior: smooth; }
@@ -22,7 +22,6 @@
       --bg-header: #ffe0ea;
       --brand: #b2455a;
       --brand-dark: #7a3b4a;
-      --text: #4b3f3a;
       --text-soft: #9a6b5f;
       --border: #f1b6c6;
       --border-soft: #f1cfc4;
@@ -34,8 +33,8 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background: var(--bg-main);
-      color: var(--text);
-      line-height: 1.65;
+      color: #4b3f3a;
+      line-height: 1.6;
     }
 
     a { -webkit-tap-highlight-color: transparent; }
@@ -92,7 +91,6 @@
       text-align: center;
       line-height: 1.15;
       min-width: 0;
-      transition: transform 0.25s ease;
     }
 
     .brand-name {
@@ -114,7 +112,6 @@
 
     .site-header.shrink .brand-logo { width: 36px; height: 36px; }
     .site-header.shrink .brand-name { font-size: 17px; }
-    .site-header.shrink .brand-tagline { font-size: 11px; }
 
     .menu-toggle {
       color: var(--brand-dark);
@@ -133,7 +130,6 @@
       border-radius: 0;
     }
 
-    .menu-toggle:hover { background: rgba(255, 255, 255, 0.28); }
     .menu-toggle .menu-icon { font-size: 22px; line-height: 1; }
 
     .main-nav {
@@ -159,175 +155,139 @@
       color: var(--brand);
     }
 
-    .menu-home-combo {
-      display: inline-flex;
-      flex-direction: column;
-      line-height: 1.15;
-    }
-
-    .article-hero,
-    .article-content,
+    .hero,
+    .section,
     .footer-section,
     #home,
+    #featured-article,
+    #skincare-articles,
+    #haircare-articles,
     #about,
     #ordering,
     #disclaimer,
-    #affiliate,
     #privacy,
+    #affiliate,
     #contact {
       scroll-margin-top: 95px;
     }
 
-    .article-hero {
+    .hero {
       background: var(--white);
       text-align: center;
-      padding: 34px 16px 22px;
+      padding: 30px 16px 24px;
       border-bottom: 1px solid #f4e1e7;
     }
 
-    .article-hero-inner {
+    .hero-inner {
       max-width: 860px;
       margin: auto;
     }
 
-    .article-label {
-      margin: 0 0 8px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      line-height: 1.2;
       color: var(--brand);
     }
 
-    .article-hero h1 {
-      margin: 0 0 12px;
-      font-size: clamp(25px, 4vw, 34px);
-      line-height: 1.28;
-      color: var(--brand);
-    }
-
-    .article-intro {
-      margin: 0 auto;
-      max-width: 700px;
+    .hero p {
+      margin: 0;
       font-size: 15px;
       color: var(--text-soft);
     }
 
-    .article-meta {
-      margin: 12px 0 0;
-      font-size: 12px;
-      color: #a27467;
-      letter-spacing: 0.2px;
-    }
-
-    .featured-image {
-      max-width: 960px;
-      margin: 18px auto 0;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border-radius: 14px;
-      border: 1px solid #dcb2bd;
-      box-shadow: var(--shadow);
-      background: linear-gradient(145deg, #fff9f6 0%, #fff1ec 100%);
-      overflow: hidden;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #9a6b5f;
+    .hero-support {
+      margin-top: 8px;
       font-size: 13px;
+      color: #a97a6c;
+      font-weight: 600;
     }
 
-    .featured-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    .section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 28px 16px;
     }
 
-    .article-content {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 30px 16px 22px;
-    }
-
-    .article-content h2 {
-      margin: 30px 0 10px;
-      font-size: 28px;
-      line-height: 1.25;
+    .section-title {
+      margin: 0 0 10px;
+      padding: 11px 14px;
+      border-left: 6px solid var(--brand);
+      border-radius: 10px;
+      background: #ffe0ea;
+      font-size: 21px;
+      line-height: 1.35;
       color: var(--brand-dark);
+      text-align: left;
     }
 
-    .article-content h2:first-child { margin-top: 0; }
-
-    .article-content p {
-      margin: 0 0 14px;
-      font-size: 16px;
-      color: #5b514c;
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
     }
 
-    .article-list {
-      margin: 0 0 14px;
-      padding-left: 22px;
-      font-size: 15px;
-      color: #5b514c;
-    }
-
-    .article-list li { margin-bottom: 7px; }
-
-    .guide-line {
-      margin: -2px 0 10px;
-      font-size: 15px;
-    }
-
-    .guide-link {
-      color: var(--brand);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 2px;
-    }
-
-    .guide-link:hover { color: var(--brand-dark); }
-
-    .routine-cta {
-      margin-top: 34px;
+    .blog-card {
       background: var(--white);
       border: 1.5px solid var(--border-soft);
-      border-radius: 14px;
-      box-shadow: 0 6px 16px rgba(178, 69, 90, 0.08);
-      padding: 24px 16px;
-      text-align: center;
-    }
-
-    .routine-cta h2 {
-      margin: 0 0 8px;
-      color: var(--brand-dark);
-      font-size: 24px;
-      line-height: 1.3;
-    }
-
-    .routine-cta p {
-      margin: 0 auto;
-      max-width: 620px;
-      color: var(--text-soft);
-      font-size: 14px;
-    }
-
-    .cta-actions {
-      margin-top: 14px;
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 4px 14px rgba(178, 69, 90, 0.08);
       display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
+      flex-direction: column;
+      height: 100%;
     }
 
-    .cta-btn {
+    .blog-media {
+      position: relative;
+      border-radius: 10px;
+      border: 1px solid #d7a0ac;
+      background: linear-gradient(145deg, #fff9f6 0%, #fff1ec 100%);
+      box-shadow: inset 0 0 0 1px rgba(178, 69, 90, 0.08);
+      overflow: hidden;
+      margin-bottom: 8px;
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #a06e63;
+      font-size: 13px;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .blog-label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 2;
       display: inline-block;
-      min-width: 220px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #b2455a;
+      color: #fff;
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(58, 19, 29, 0.18);
+    }
+
+    .blog-card h3 {
+      margin: 0 0 4px;
+      font-size: 18px;
+      line-height: 1.35;
+      color: #4b3f3a;
+    }
+
+    .blog-card p {
+      margin: 0 0 10px;
+      font-size: 13px;
+      color: var(--text-soft);
+      flex-grow: 1;
+    }
+
+    .blog-btn {
+      display: inline-block;
       text-align: center;
       text-decoration: none;
       background: var(--brand);
@@ -339,9 +299,89 @@
       transition: transform 0.2s ease, opacity 0.2s ease;
     }
 
-    .cta-btn:hover {
+    .blog-btn:hover {
       opacity: 0.95;
       transform: translateY(-1px);
+    }
+
+    .featured-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 15px;
+    }
+
+    .featured-card .blog-media {
+      min-height: 260px;
+    }
+
+    .featured-card h3 {
+      font-size: 22px;
+    }
+
+    .featured-start-here {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      margin: 2px 0 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #eab8c5;
+      background: #fff3f6;
+      color: var(--brand-dark);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    #skincare-articles {
+      padding-top: 34px;
+    }
+
+    #haircare-articles {
+      padding-top: 34px;
+    }
+
+    .blog-final-cta {
+      padding-top: 34px;
+      padding-bottom: 36px;
+    }
+
+    .blog-final-cta-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+      background: var(--white);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 14px;
+      box-shadow: 0 6px 16px rgba(178, 69, 90, 0.08);
+      padding: 24px 16px;
+    }
+
+    .blog-final-cta h2 {
+      margin: 0 0 8px;
+      color: var(--brand-dark);
+      font-size: 24px;
+      line-height: 1.3;
+    }
+
+    .blog-final-cta p {
+      margin: 0 auto;
+      max-width: 620px;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .blog-final-cta-actions {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .blog-final-cta-actions .blog-btn {
+      min-width: 220px;
     }
 
     .footer-section {
@@ -490,6 +530,12 @@
       background: #f9d8cc;
     }
 
+    .menu-home-combo {
+      display: inline-flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
     #backToTop {
       position: fixed;
       bottom: 20px;
@@ -545,12 +591,15 @@
         border-bottom: none;
       }
 
-      .article-hero h1 { font-size: 26px; }
-      .article-content { padding-top: 24px; }
-      .article-content h2 { font-size: 23px; }
-      .routine-cta h2 { font-size: 21px; }
-
-      .cta-btn {
+      .hero h1 { font-size: 26px; }
+      .featured-card .blog-media { min-height: 210px; }
+      .featured-card h3 { font-size: 20px; }
+      .blog-final-cta {
+        padding-top: 30px;
+        padding-bottom: 30px;
+      }
+      .blog-final-cta h2 { font-size: 21px; }
+      .blog-final-cta-actions .blog-btn {
         width: 100%;
         max-width: 300px;
         min-width: 0;
@@ -566,14 +615,15 @@
 
     @media (min-width: 769px) {
       .menu-toggle { display: none; }
+      .featured-wrap { grid-template-columns: minmax(0, 1fr); }
     }
   </style>
 </head>
 <body>
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
-      <a href="/beauty/#home" class="brand">
-        <img src="../images/logo.png" alt="Daily Glam Store" class="brand-logo" />
+      <a href="/beauty-recommendations.html#home" class="brand">
+        <img src="images/logo.png" alt="Daily Glam Store" class="brand-logo" />
         <span class="brand-text">
           <span class="brand-name">Daily Glam Store</span>
           <span class="brand-tagline">Curated Beauty Recommendations</span>
@@ -593,95 +643,84 @@
       </button>
 
       <nav class="main-nav" id="mainNav">
-        <a href="/beauty/#home" target="_blank" rel="noopener noreferrer" data-close-menu-on-click="true">
+        <a href="/beauty-recommendations.html#home" target="_blank" rel="noopener noreferrer" data-close-menu-on-click="true">
           <span class="menu-home-combo">
             <span>🏠 Home : Beauty</span>
             <span>Recommendations</span>
           </span>
         </a>
-        <a href="/guides/" target="_blank" rel="noopener noreferrer" data-close-menu-on-click="true">📘 Beauty Guides</a>
-        <a href="/blog/" target="_blank" rel="noopener noreferrer" data-close-menu-on-click="true" aria-current="page">📝 Beauty Blog</a>
+        <a href="/beauty-guides.html" target="_blank" rel="noopener noreferrer" data-close-menu-on-click="true">📘 Beauty Guides</a>
+        <a href="/beauty-blog.html" aria-current="page">📝 Beauty Blog</a>
         <a href="#contact">📞 Contact &amp; Support</a>
       </nav>
     </div>
   </header>
 
-  <section class="article-hero" id="home">
-    <div class="article-hero-inner">
-      <p class="article-label">Skincare</p>
-      <h1>Simple Skincare Routine for Healthy &amp; Glowing Skin</h1>
-      <p class="article-intro">A simple daily routine can help keep your skin clean, balanced, and glowing. This guide explains the basic skincare steps in the right order, along with quick links to guides and recommendations.</p>
-      <p class="article-meta">Beginner-friendly • Easy to follow • Daily routine</p>
-      <figure class="featured-image">
-        <img
-          src="../images/beauty-images/blog/skincare-routine-banner.jpg"
-          alt="Simple skincare routine featured article banner"
-          loading="lazy"
-          onerror="this.style.display='none'"
-        />
-      </figure>
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <h1>Beauty Blog</h1>
+      <p>Simple skincare and haircare articles to help you choose the right products faster.</p>
+      <p class="hero-support">Easy to read • Practical tips • Direct links to guides and recommendations</p>
     </div>
   </section>
 
-  <main class="article-content" aria-label="Skincare article content">
-    <article>
-      <h2>Why a Simple Skincare Routine Matters</h2>
-      <p>A simple skincare routine is easier to follow consistently and gives your skin the basic support it needs every day. Instead of using too many products at once, it is better to focus on the right steps in the right order.</p>
-
-      <h2>Step 1: Start with a Face Wash</h2>
-      <p>Face wash helps remove dirt, oil, sweat, and daily buildup from the skin. Cleansing twice a day can help your skin feel fresh and ready for the next products in your routine.</p>
-      <ul class="article-list">
-        <li>Morning and night cleansing works best for most people</li>
-        <li>Choose based on skin type and main concern</li>
-        <li>Avoid harsh over-washing</li>
-      </ul>
-      <p class="guide-line">👉 Explore our <a class="guide-link" href="/guides/#facewash-guide" target="_blank" rel="noopener noreferrer">Face Wash Buying Guide</a></p>
-
-      <h2>Step 2: Apply a Face Serum</h2>
-      <p>A serum helps target specific concerns such as dullness, uneven tone, oiliness, or dehydration. The right serum can add focused support without making your routine too complicated.</p>
-      <ul class="article-list">
-        <li>Vitamin C is often chosen for glow and brightness</li>
-        <li>Niacinamide is helpful for oil control and marks</li>
-        <li>Use one serum at a time for a simpler routine</li>
-      </ul>
-      <p class="guide-line">👉 Explore our <a class="guide-link" href="/guides/#faceserum-guide" target="_blank" rel="noopener noreferrer">Face Serum Buying Guide</a></p>
-
-      <h2>Step 3: Lock in Moisture</h2>
-      <p>Moisturiser helps keep skin hydrated and supports the skin barrier. Even oily skin usually needs moisture, but the right texture matters.</p>
-      <ul class="article-list">
-        <li>Gel textures often feel lighter on oily skin</li>
-        <li>Richer formulas work better for dry skin</li>
-        <li>Use morning and night for better consistency</li>
-      </ul>
-      <p class="guide-line">👉 Explore our <a class="guide-link" href="/guides/#moisturiser-guide" target="_blank" rel="noopener noreferrer">Moisturiser Buying Guide</a></p>
-
-      <h2>Step 4: Protect with Sunscreen</h2>
-      <p>Sunscreen is one of the most important daytime skincare steps. It helps protect skin from tanning, daily sun exposure, and long-term visible damage.</p>
-      <ul class="article-list">
-        <li>Use sunscreen every morning</li>
-        <li>Choose texture by skin type</li>
-        <li>Reapply when spending long time outdoors</li>
-      </ul>
-      <p class="guide-line">👉 Explore our <a class="guide-link" href="/guides/#sunscreen-guide" target="_blank" rel="noopener noreferrer">Sunscreen Buying Guide</a></p>
-
-      <h2>Common Skincare Mistakes to Avoid</h2>
-      <ul class="article-list">
-        <li>Using too many products at once</li>
-        <li>Skipping moisturiser because skin feels oily</li>
-        <li>Ignoring sunscreen in daytime</li>
-        <li>Changing products too quickly</li>
-      </ul>
-
-      <section class="routine-cta" id="article-next-step">
-        <h2>Ready to build your routine?</h2>
-        <p>Explore quick guides for easier decisions or browse our curated skincare recommendations.</p>
-        <div class="cta-actions">
-          <a class="cta-btn" href="/guides/" target="_blank" rel="noopener noreferrer">Explore Beauty Guides</a>
-          <a class="cta-btn" href="/beauty/#skincare-recommendations" target="_blank" rel="noopener noreferrer">Browse Skincare Recommendations</a>
+  <section class="section" id="featured-article">
+    <h2 class="section-title">Featured Article</h2>
+    <div class="featured-wrap">
+      <article class="blog-card featured-card">
+        <div class="blog-media" role="img" aria-label="Featured skincare article image placeholder">
+          <span class="blog-label">Skincare</span>
+          Image area for featured skincare article
         </div>
-      </section>
-    </article>
-  </main>
+        <span class="featured-start-here">Start Here</span>
+        <h3>Simple Skincare Routine for Healthy &amp; Glowing Skin</h3>
+        <p>Learn the right daily order of face wash, serum, moisturiser, and sunscreen, then explore matching guides and recommendations.</p>
+        <a class="blog-btn" href="/skincare-routine.html" target="_blank" rel="noopener noreferrer">Read Article</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="skincare-articles">
+    <h2 class="section-title">Skincare Articles</h2>
+    <div class="articles-grid">
+      <article class="blog-card">
+        <div class="blog-media" role="img" aria-label="Skincare article image placeholder">
+          <span class="blog-label">Skincare</span>
+          Image area for skincare article
+        </div>
+        <h3>Simple Skincare Routine for Healthy &amp; Glowing Skin</h3>
+        <p>A beginner-friendly guide to cleansing, serums, moisturisers, and sunscreen for a simple daily routine.</p>
+        <a class="blog-btn" href="/skincare-routine.html" target="_blank" rel="noopener noreferrer">Read Article</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="haircare-articles">
+    <h2 class="section-title">Haircare Articles</h2>
+    <div class="articles-grid">
+      <article class="blog-card">
+        <div class="blog-media" role="img" aria-label="Haircare article image placeholder">
+          <span class="blog-label">Haircare</span>
+          Image area for haircare article
+        </div>
+        <h3>Simple Haircare Routine for Healthy Hair</h3>
+        <p>A practical guide to shampoo, conditioner, serum, and oiling for a smoother routine.</p>
+        <a class="blog-btn" href="/haircare-routine.html" target="_blank" rel="noopener noreferrer">Read Article</a>
+      </article>
+    </div>
+  </section>
+
+
+  <section class="section blog-final-cta" id="blog-next-step">
+    <div class="blog-final-cta-wrap">
+      <h2>Not sure what to choose?</h2>
+      <p>Simple guides and recommendations to help you pick the right products for your routine.</p>
+      <div class="blog-final-cta-actions">
+        <a class="blog-btn" href="/beauty-guides.html">Explore Beauty Guides</a>
+        <a class="blog-btn" href="/beauty-recommendations.html">Browse Beauty Recommendations</a>
+      </div>
+    </div>
+  </section>
 
   <div class="footer-content-area">
     <section class="footer-section" id="about">
@@ -697,9 +736,15 @@
     <section class="footer-section" id="ordering">
       <h2>🛍️ How Ordering Works ?</h2>
       <div class="ordering-steps">
-        <p><strong>Step 1:</strong> Browse our recommendations and guides to shortlist the best product options for your routine.</p>
-        <p><strong>Step 2:</strong> Click the product link to visit the official brand website and review final details.</p>
-        <p><strong>Step 3:</strong> Complete your purchase securely on the official website using available offers.</p>
+        <p>
+          <strong>Step 1:</strong> Browse our recommendations and guides to shortlist the best product options for your routine.
+        </p>
+        <p>
+          <strong>Step 2:</strong> Click the product link to visit the official brand website and review final details.
+        </p>
+        <p>
+          <strong>Step 3:</strong> Complete your purchase securely on the official website using available offers.
+        </p>
       </div>
     </section>
 
@@ -746,7 +791,7 @@
     <div class="footer-location">Main Bazar, Gurdaspur</div>
     <div class="footer-bottom-note">
       <span class="globe-icon">🌐</span>
-      <a class="footer-link-feedback" href="https://dailyglamstore.in/skincare-routine/">https://dailyglamstore.in/skincare-routine/</a>
+      <a class="footer-link-feedback" href="https://dailyglamstore.in/beauty-blog.html">https://dailyglamstore.in/beauty-blog.html</a>
     </div>
   </footer>
 
