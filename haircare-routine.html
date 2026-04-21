@@ -607,80 +607,11 @@
   </header>
 
   <section class="article-hero" id="home">
-    <div class="article-hero-inner">
-      <p class="article-label">Haircare</p>
-      <h1>Simple Haircare Routine for Healthy Hair</h1>
-      <p class="article-intro">A simple haircare routine can help keep hair cleaner, smoother, and easier to manage. This guide explains the basic steps in the right order, along with quick links to guides and recommendations.</p>
-      <p class="article-meta">Beginner-friendly • Easy to follow • Daily routine</p>
-      <figure class="featured-image">
-        <img
-          src="images/beauty-images/blog/haircare-routine-banner.jpg"
-          alt="Simple haircare routine featured article banner"
-          loading="lazy"
-          onerror="this.style.display='none'"
-        />
-      </figure>
-    </div>
+    <div class="article-hero-inner" id="articleHeroContent"></div>
   </section>
 
   <main class="article-content" aria-label="Haircare article content">
-    <article>
-      <h2>Why a Simple Haircare Routine Matters</h2>
-      <p>A simple haircare routine is easier to follow consistently and can help keep hair cleaner, softer, and better managed over time. Instead of using too many products, it is often better to focus on the basic steps that suit your hair type and concerns.</p>
-
-      <h2>Step 1: Start with the Right Shampoo</h2>
-      <p>Shampoo helps remove scalp buildup, oil, sweat, and product residue. Choosing the right shampoo can make a big difference in how your hair feels after washing.</p>
-      <ul class="article-list">
-        <li>Use a shampoo based on scalp and hair need</li>
-        <li>Avoid over-washing if hair feels dry</li>
-        <li>Choose gentle cleansing for regular use</li>
-      </ul>
-      <p class="guide-line">👉 Explore our <a class="guide-link" href="/beauty-guides.html#shampoo-guide" target="_blank" rel="noopener noreferrer">SHAMPOO BUYING GUIDE</a></p>
-
-      <h2>Step 2: Follow with a Conditioner</h2>
-      <p>Conditioner helps soften hair, reduce roughness, and improve manageability. It is especially useful after shampooing because it helps hair feel smoother and less dry.</p>
-      <ul class="article-list">
-        <li>Use mainly on lengths and ends</li>
-        <li>Choose by dryness, damage, or frizz level</li>
-        <li>Do not overload the scalp with conditioner</li>
-      </ul>
-      <p class="guide-line">👉 Explore our <a class="guide-link" href="/beauty-guides.html#conditioner-guide" target="_blank" rel="noopener noreferrer">CONDITIONER BUYING GUIDE</a></p>
-
-      <h2>Step 3: Use a Hair Serum When Needed</h2>
-      <p>Hair serum can help reduce frizz, improve shine, and make hair easier to manage. It works best as a finishing or post-wash step, especially on the lengths.</p>
-      <ul class="article-list">
-        <li>Use a small amount only</li>
-        <li>Apply mainly on mid-lengths and ends</li>
-        <li>Helpful for frizz and dull-looking hair</li>
-      </ul>
-      <p class="guide-line">👉 Explore our <a class="guide-link" href="/beauty-guides.html#hairserum-guide" target="_blank" rel="noopener noreferrer">HAIR SERUM BUYING GUIDE</a></p>
-
-      <h2>Step 4: Add Hair Oil to Weekly Care</h2>
-      <p>Hair oil can support scalp nourishment and help hair feel softer before washing. For many people, oiling works best as a pre-wash step once or twice a week.</p>
-      <ul class="article-list">
-        <li>Use before shampoo for easier care</li>
-        <li>Choose based on scalp and hair concern</li>
-        <li>Do not over-oil if scalp gets greasy quickly</li>
-      </ul>
-      <p class="guide-line">👉 Explore our <a class="guide-link" href="/beauty-guides.html#hairoil-guide" target="_blank" rel="noopener noreferrer">HAIR OIL BUYING GUIDE</a></p>
-
-      <h2>Common Haircare Mistakes to Avoid</h2>
-      <ul class="article-list">
-        <li>Using too many products at once</li>
-        <li>Skipping conditioner after shampoo</li>
-        <li>Applying too much serum</li>
-        <li>Over-oiling or over-washing</li>
-      </ul>
-
-      <section class="routine-cta" id="article-next-step">
-        <h2>Ready to build your routine?</h2>
-        <p>Explore quick guides for easier decisions or browse our curated haircare recommendations.</p>
-        <div class="cta-actions">
-          <a class="cta-btn" href="/beauty-guides.html" target="_blank" rel="noopener noreferrer">Explore Beauty Guides</a>
-          <a class="cta-btn" href="/beauty-recommendations.html#haircare-recommendations" target="_blank" rel="noopener noreferrer">Browse Haircare Recommendations</a>
-        </div>
-      </section>
-    </article>
+    <article id="articleContent"></article>
   </main>
 
   <div class="footer-content-area">
@@ -751,6 +682,16 @@
   </footer>
 
   <button id="backToTop" type="button" aria-label="Back to top">⬆</button>
+
+  <script>
+    window.ARTICLE_PAGE_CONFIG = {
+      source: "HAIRCARE_ARTICLES",
+      key: "haircare-routine",
+      ariaLabel: "Haircare article content"
+    };
+  </script>
+  <script src="haircare-articles.js"></script>
+  <script src="article-main.js"></script>
 
   <script>
     const menuToggle = document.getElementById("menuToggle");

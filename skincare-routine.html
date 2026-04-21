@@ -607,80 +607,11 @@
   </header>
 
   <section class="article-hero" id="home">
-    <div class="article-hero-inner">
-      <p class="article-label">Skincare</p>
-      <h1>Simple Skincare Routine for Healthy &amp; Glowing Skin</h1>
-      <p class="article-intro">A simple daily routine can help keep your skin clean, balanced, and glowing. This guide explains the basic skincare steps in the right order, along with quick links to guides and recommendations.</p>
-      <p class="article-meta">Beginner-friendly • Easy to follow • Daily routine</p>
-      <figure class="featured-image">
-        <img
-          src="images/beauty-images/blog/skincare-routine-banner.jpg"
-          alt="Simple skincare routine featured article banner"
-          loading="lazy"
-          onerror="this.style.display='none'"
-        />
-      </figure>
-    </div>
+    <div class="article-hero-inner" id="articleHeroContent"></div>
   </section>
 
   <main class="article-content" aria-label="Skincare article content">
-    <article>
-      <h2>Why a Simple Skincare Routine Matters</h2>
-      <p>A simple skincare routine is easier to follow consistently and gives your skin the basic support it needs every day. Instead of using too many products at once, it is better to focus on the right steps in the right order.</p>
-
-      <h2>Step 1: Start with a Face Wash</h2>
-      <p>Face wash helps remove dirt, oil, sweat, and daily buildup from the skin. Cleansing twice a day can help your skin feel fresh and ready for the next products in your routine.</p>
-      <ul class="article-list">
-        <li>Morning and night cleansing works best for most people</li>
-        <li>Choose based on skin type and main concern</li>
-        <li>Avoid harsh over-washing</li>
-      </ul>
-      <p class="guide-line">👉 Explore our <a class="guide-link" href="/beauty-guides.html#facewash-guide" target="_blank" rel="noopener noreferrer">Face Wash Buying Guide</a></p>
-
-      <h2>Step 2: Apply a Face Serum</h2>
-      <p>A serum helps target specific concerns such as dullness, uneven tone, oiliness, or dehydration. The right serum can add focused support without making your routine too complicated.</p>
-      <ul class="article-list">
-        <li>Vitamin C is often chosen for glow and brightness</li>
-        <li>Niacinamide is helpful for oil control and marks</li>
-        <li>Use one serum at a time for a simpler routine</li>
-      </ul>
-      <p class="guide-line">👉 Explore our <a class="guide-link" href="/beauty-guides.html#faceserum-guide" target="_blank" rel="noopener noreferrer">Face Serum Buying Guide</a></p>
-
-      <h2>Step 3: Lock in Moisture</h2>
-      <p>Moisturiser helps keep skin hydrated and supports the skin barrier. Even oily skin usually needs moisture, but the right texture matters.</p>
-      <ul class="article-list">
-        <li>Gel textures often feel lighter on oily skin</li>
-        <li>Richer formulas work better for dry skin</li>
-        <li>Use morning and night for better consistency</li>
-      </ul>
-      <p class="guide-line">👉 Explore our <a class="guide-link" href="/beauty-guides.html#moisturiser-guide" target="_blank" rel="noopener noreferrer">Moisturiser Buying Guide</a></p>
-
-      <h2>Step 4: Protect with Sunscreen</h2>
-      <p>Sunscreen is one of the most important daytime skincare steps. It helps protect skin from tanning, daily sun exposure, and long-term visible damage.</p>
-      <ul class="article-list">
-        <li>Use sunscreen every morning</li>
-        <li>Choose texture by skin type</li>
-        <li>Reapply when spending long time outdoors</li>
-      </ul>
-      <p class="guide-line">👉 Explore our <a class="guide-link" href="/beauty-guides.html#sunscreen-guide" target="_blank" rel="noopener noreferrer">Sunscreen Buying Guide</a></p>
-
-      <h2>Common Skincare Mistakes to Avoid</h2>
-      <ul class="article-list">
-        <li>Using too many products at once</li>
-        <li>Skipping moisturiser because skin feels oily</li>
-        <li>Ignoring sunscreen in daytime</li>
-        <li>Changing products too quickly</li>
-      </ul>
-
-      <section class="routine-cta" id="article-next-step">
-        <h2>Ready to build your routine?</h2>
-        <p>Explore quick guides for easier decisions or browse our curated skincare recommendations.</p>
-        <div class="cta-actions">
-          <a class="cta-btn" href="/beauty-guides.html" target="_blank" rel="noopener noreferrer">Explore Beauty Guides</a>
-          <a class="cta-btn" href="/beauty-recommendations.html#skincare-recommendations" target="_blank" rel="noopener noreferrer">Browse Skincare Recommendations</a>
-        </div>
-      </section>
-    </article>
+    <article id="articleContent"></article>
   </main>
 
   <div class="footer-content-area">
@@ -751,6 +682,16 @@
   </footer>
 
   <button id="backToTop" type="button" aria-label="Back to top">⬆</button>
+
+  <script>
+    window.ARTICLE_PAGE_CONFIG = {
+      source: "SKINCARE_ARTICLES",
+      key: "skincare-routine",
+      ariaLabel: "Skincare article content"
+    };
+  </script>
+  <script src="skincare-articles.js"></script>
+  <script src="article-main.js"></script>
 
   <script>
     const menuToggle = document.getElementById("menuToggle");
