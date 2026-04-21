@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Skincare Routine for Healthy &amp; Glowing Skin | Daily Glam Store</title>
+  <meta
+    name="description"
+    content="A beginner-friendly daily skincare routine with simple steps: face wash, serum, moisturiser, and sunscreen. Includes links to Daily Glam Store guides and recommendations."
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dailyglamstore.in/skincare-routine.html" />
+
+  <style>
+    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; }
+
+    :root {
+      --bg-main: #faf7f6;
+      --bg-soft: #fff7f4;
+      --bg-soft-2: #fff3ee;
+      --bg-header: #ffe0ea;
+      --brand: #b2455a;
+      --brand-dark: #7a3b4a;
+      --text: #4b3f3a;
+      --text-soft: #9a6b5f;
+      --border: #f1b6c6;
+      --border-soft: #f1cfc4;
+      --white: #ffffff;
+      --shadow: 0 8px 24px rgba(178, 69, 90, 0.08);
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg-main);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a { -webkit-tap-highlight-color: transparent; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--bg-header);
+      border-bottom: 1px solid var(--border);
+      padding: 6px 10px;
+      transition: padding 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .site-header.shrink {
+      padding: 3px 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      position: relative;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .brand {
+      text-decoration: none;
+      color: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      padding: 2px 4px;
+      margin: -2px -4px;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      flex-shrink: 0;
+      transition: width 0.25s ease, height 0.25s ease;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      line-height: 1.15;
+      min-width: 0;
+      transition: transform 0.25s ease;
+    }
+
+    .brand-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--brand);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: font-size 0.25s ease;
+    }
+
+    .brand-tagline {
+      font-size: 11px;
+      color: var(--text-soft);
+      margin-top: 2px;
+      transition: font-size 0.25s ease;
+    }
+
+    .site-header.shrink .brand-logo { width: 36px; height: 36px; }
+    .site-header.shrink .brand-name { font-size: 17px; }
+    .site-header.shrink .brand-tagline { font-size: 11px; }
+
+    .menu-toggle {
+      color: var(--brand-dark);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      background: transparent;
+      border: 0;
+      padding: 6px 8px;
+      font-family: inherit;
+      line-height: 1;
+      border-radius: 0;
+    }
+
+    .menu-toggle:hover { background: rgba(255, 255, 255, 0.28); }
+    .menu-toggle .menu-icon { font-size: 22px; line-height: 1; }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .main-nav > a {
+      text-decoration: none;
+      color: #4b3f3a;
+      font-size: 14px;
+      font-weight: 600;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .main-nav > a:hover,
+    .main-nav > a[aria-current="page"] {
+      color: var(--brand);
+    }
+
+    .menu-home-combo {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .article-hero,
+    .section,
+    .footer-section,
+    #home,
+    #about,
+    #ordering,
+    #disclaimer,
+    #affiliate,
+    #privacy,
+    #contact {
+      scroll-margin-top: 95px;
+    }
+
+    .article-hero {
+      background: var(--white);
+      text-align: center;
+      padding: 34px 16px 22px;
+      border-bottom: 1px solid #f4e1e7;
+    }
+
+    .article-hero-inner {
+      max-width: 780px;
+      margin: auto;
+    }
+
+    .article-label {
+      margin: 0 0 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--brand);
+    }
+
+    .article-hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(25px, 4vw, 34px);
+      line-height: 1.28;
+      color: var(--brand);
+    }
+
+    .article-intro {
+      margin: 0 auto;
+      max-width: 700px;
+      font-size: 15px;
+      color: var(--text-soft);
+    }
+
+    .article-meta {
+      margin: 12px 0 0;
+      font-size: 12px;
+      color: #a27467;
+      letter-spacing: 0.2px;
+    }
+
+    .article-main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 26px 16px 12px;
+    }
+
+    .article-block {
+      background: var(--white);
+      border: 1px solid var(--border-soft);
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(178, 69, 90, 0.08);
+      padding: 22px 18px;
+      margin-bottom: 16px;
+    }
+
+    .article-block h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      line-height: 1.35;
+      color: var(--brand-dark);
+    }
+
+    .article-block p {
+      margin: 0;
+      font-size: 15px;
+      color: #5c514c;
+    }
+
+    .step-list {
+      margin: 12px 0 0;
+      padding-left: 19px;
+      color: #5c514c;
+      font-size: 14px;
+    }
+
+    .step-list li { margin-bottom: 6px; }
+
+    .guide-line {
+      margin: 12px 0 0;
+      font-size: 14px;
+    }
+
+    .guide-link {
+      color: var(--brand);
+      font-weight: 700;
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    .guide-link:hover { color: var(--brand-dark); }
+
+    .mistake-list {
+      margin: 0;
+      padding-left: 19px;
+      font-size: 14px;
+      color: #5c514c;
+    }
+
+    .mistake-list li { margin-bottom: 6px; }
+
+    .routine-cta {
+      background: linear-gradient(160deg, #fff8f6 0%, #fff0f4 100%);
+      border: 1px solid #edc2cf;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 26px 18px;
+      margin: 8px 0 20px;
+      text-align: center;
+    }
+
+    .routine-cta h2 {
+      margin: 0 0 10px;
+      color: var(--brand-dark);
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    .routine-cta p {
+      margin: 0 auto 16px;
+      max-width: 620px;
+      color: var(--text-soft);
+      font-size: 15px;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .cta-btn {
+      text-decoration: none;
+      background: var(--brand);
+      color: #fff;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .cta-btn:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+
+    .cta-btn.secondary {
+      background: #fce4ec;
+      color: var(--brand-dark);
+      border: 1px solid #efbcc9;
+    }
+
+    .footer-content-area {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 16px 28px;
+    }
+
+    .footer-section {
+      background: var(--white);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(178, 69, 90, 0.08);
+    }
+
+    .footer-section h2 {
+      margin: 0 0 9px;
+      color: var(--brand-dark);
+      font-size: 20px;
+    }
+
+    .footer-section p {
+      margin: 0 0 10px;
+      color: #5c514c;
+      font-size: 14px;
+    }
+
+    .footer-section p:last-child { margin-bottom: 0; }
+
+    .contact-support-email {
+      color: var(--brand);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .contact-support-email:hover { text-decoration: underline; }
+
+    .site-footer {
+      background: #4b3f3a;
+      color: #f4eeeb;
+      text-align: center;
+      padding: 24px 16px 22px;
+    }
+
+    .footer-trust-line {
+      font-size: 14px;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .footer-copy,
+    .footer-powered,
+    .footer-location {
+      font-size: 12.5px;
+      margin-top: 4px;
+      color: #e6d8d2;
+    }
+
+    .footer-bottom-note {
+      margin-top: 10px;
+      font-size: 12px;
+    }
+
+    .footer-link-feedback {
+      color: #ffe3ec;
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .footer-link-feedback:hover { text-decoration: underline; }
+
+    #backToTop {
+      position: fixed;
+      right: 14px;
+      bottom: 18px;
+      border: 0;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      display: none;
+      cursor: pointer;
+      background: var(--brand);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(122, 59, 74, 0.25);
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    @media (max-width: 980px) {
+      .header-inner {
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .menu-toggle { display: inline-flex; }
+
+      .main-nav {
+        display: none;
+        width: 100%;
+        margin-top: 8px;
+        padding: 10px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: #fff6fa;
+        box-shadow: 0 6px 16px rgba(178, 69, 90, 0.12);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .main-nav.show { display: flex; }
+
+      .main-nav > a {
+        width: 100%;
+        padding-bottom: 9px;
+        border-bottom: 1px solid #f3d7df;
+      }
+
+      .main-nav > a:last-of-type {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .menu-home-combo {
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 1.2;
+      }
+    }
+
+    @media (min-width: 981px) {
+      .menu-toggle { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .article-main { padding-top: 20px; }
+      .article-block { padding: 18px 14px; }
+      .article-block h2 { font-size: 20px; }
+      .routine-cta h2 { font-size: 23px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="beauty-recommendations.html#home" class="brand">
+        <img src="images/logo.png" alt="Daily Glam Store" class="brand-logo" />
+        <span class="brand-text">
+          <span class="brand-name">Daily Glam Store</span>
+          <span class="brand-tagline">Curated Beauty Recommendations</span>
+        </span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mainNav"
+      >
+        <span class="menu-text">Menu</span>
+        <span class="menu-icon">☰</span>
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="beauty-recommendations.html#home" target="_blank" rel="noopener noreferrer" data-close-menu-on-click="true">
+          <span class="menu-home-combo">
+            <span>🏠 Home : Beauty</span>
+            <span>Recommendations</span>
+          </span>
+        </a>
+        <a href="beauty-guides.html" target="_blank" rel="noopener noreferrer" data-close-menu-on-click="true">📘 Beauty Guides</a>
+        <a href="beauty-blog.html" aria-current="page">📝 Beauty Blog</a>
+        <a href="#contact">📞 Contact &amp; Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="article-hero" id="home">
+    <div class="article-hero-inner">
+      <p class="article-label">Skincare</p>
+      <h1>Simple Skincare Routine for Healthy &amp; Glowing Skin</h1>
+      <p class="article-intro">A simple daily routine can help keep your skin clean, balanced, and glowing. This guide explains the basic skincare steps in the right order, along with quick links to guides and recommendations.</p>
+      <p class="article-meta">Beginner-friendly • Easy to follow • Daily routine</p>
+    </div>
+  </section>
+
+  <main class="article-main" aria-label="Skincare article content">
+    <section class="article-block">
+      <h2>Why a Simple Skincare Routine Matters</h2>
+      <p>A simple skincare routine is easier to follow consistently and gives your skin the basic support it needs every day. Instead of using too many products at once, it is better to focus on the right steps in the right order.</p>
+    </section>
+
+    <section class="article-block">
+      <h2>Step 1: Start with a Face Wash</h2>
+      <p>Face wash helps remove dirt, oil, sweat, and daily buildup from the skin. Cleansing twice a day can help your skin feel fresh and ready for the next products in your routine.</p>
+      <ul class="step-list">
+        <li>Morning and night cleansing works best for most people</li>
+        <li>Choose based on skin type and main concern</li>
+        <li>Avoid harsh over-washing</li>
+      </ul>
+      <p class="guide-line">👉 Explore our <a class="guide-link" href="beauty-guides.html#facewash-guide" target="_blank" rel="noopener noreferrer">Face Wash Buying Guide</a></p>
+    </section>
+
+    <section class="article-block">
+      <h2>Step 2: Apply a Face Serum</h2>
+      <p>A serum helps target specific concerns such as dullness, uneven tone, oiliness, or dehydration. The right serum can add focused support without making your routine too complicated.</p>
+      <ul class="step-list">
+        <li>Vitamin C is often chosen for glow and brightness</li>
+        <li>Niacinamide is helpful for oil control and marks</li>
+        <li>Use one serum at a time for a simpler routine</li>
+      </ul>
+      <p class="guide-line">👉 Explore our <a class="guide-link" href="beauty-guides.html#faceserum-guide" target="_blank" rel="noopener noreferrer">Face Serum Buying Guide</a></p>
+    </section>
+
+    <section class="article-block">
+      <h2>Step 3: Lock in Moisture</h2>
+      <p>Moisturiser helps keep skin hydrated and supports the skin barrier. Even oily skin usually needs moisture, but the right texture matters.</p>
+      <ul class="step-list">
+        <li>Gel textures often feel lighter on oily skin</li>
+        <li>Richer formulas work better for dry skin</li>
+        <li>Use morning and night for better consistency</li>
+      </ul>
+      <p class="guide-line">👉 Explore our <a class="guide-link" href="beauty-guides.html#moisturiser-guide" target="_blank" rel="noopener noreferrer">Moisturiser Buying Guide</a></p>
+    </section>
+
+    <section class="article-block">
+      <h2>Step 4: Protect with Sunscreen</h2>
+      <p>Sunscreen is one of the most important daytime skincare steps. It helps protect skin from tanning, daily sun exposure, and long-term visible damage.</p>
+      <ul class="step-list">
+        <li>Use sunscreen every morning</li>
+        <li>Choose texture by skin type</li>
+        <li>Reapply when spending long time outdoors</li>
+      </ul>
+      <p class="guide-line">👉 Explore our <a class="guide-link" href="beauty-guides.html#sunscreen-guide" target="_blank" rel="noopener noreferrer">Sunscreen Buying Guide</a></p>
+    </section>
+
+    <section class="article-block">
+      <h2>Common Skincare Mistakes to Avoid</h2>
+      <ul class="mistake-list">
+        <li>Using too many products at once</li>
+        <li>Skipping moisturiser because skin feels oily</li>
+        <li>Ignoring sunscreen in daytime</li>
+        <li>Changing products too quickly</li>
+      </ul>
+    </section>
+
+    <section class="routine-cta" id="article-next-step">
+      <h2>Ready to build your routine?</h2>
+      <p>Explore quick guides for easier decisions or browse our curated skincare recommendations.</p>
+      <div class="cta-actions">
+        <a class="cta-btn secondary" href="beauty-guides.html">Explore Beauty Guides</a>
+        <a class="cta-btn" href="beauty-recommendations.html#skincare-recommendations">Browse Skincare Recommendations</a>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer-content-area">
+    <section class="footer-section" id="about">
+      <h2>💎 About Us</h2>
+      <p>
+        Daily Glam Store shares curated beauty recommendations from selected brands and official websites to help customers discover trending and suitable product options without any hassle.
+      </p>
+      <p>
+        Having more than a decade of cosmetic retail experience, we focus on practical selections and clear product highlights so you can shortlist confidently without spending extra time.
+      </p>
+    </section>
+
+    <section class="footer-section" id="ordering">
+      <h2>🛍️ How Ordering Works ?</h2>
+      <p><strong>Step 1:</strong> Browse our recommendations and guides to shortlist the best product options for your routine.</p>
+      <p><strong>Step 2:</strong> Click the product link to visit the official brand website and review final details.</p>
+      <p><strong>Step 3:</strong> Complete your purchase securely on the official website using available offers.</p>
+    </section>
+
+    <section class="footer-section" id="disclaimer">
+      <h2>⚠️ Disclaimer</h2>
+      <p>Article content and product references are for informational purposes only. Final pricing, offers, stock, and terms may change on official websites.</p>
+    </section>
+
+    <section class="footer-section" id="privacy">
+      <h2>🔐 Privacy Policy</h2>
+      <p>This page does not directly process payments. Official websites may use their own cookies, tracking, and privacy practices.</p>
+    </section>
+
+    <section class="footer-section" id="affiliate">
+      <h2>💼 Affiliate Disclosure</h2>
+      <p>Some links on this page are affiliate links. Daily Glam Store may earn a commission at no extra cost to the customer when purchases are made through eligible links.</p>
+      <p>Our recommendations are selected carefully for usefulness and relevance, not only for commission.</p>
+    </section>
+
+    <section class="footer-section" id="contact">
+      <h2>📞 Contact &amp; Support</h2>
+      <p>
+        For recommendation-related queries or discount-related queries, please contact at :
+        <a class="contact-support-email" href="mailto:dmahajan152@gmail.com"><strong>dmahajan152@gmail.com</strong></a>.
+      </p>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-trust-line">Daily Glam Store - Beauty Recommendations</div>
+    <div class="footer-trust-line">🌟 Trust • Quality • Style • Consistency 🌟</div>
+    <div class="footer-copy">© 2026 Daily Glam Store. All rights reserved.</div>
+    <div class="footer-powered">In Collaboration With Deepak Cosmetic Store</div>
+    <div class="footer-location">Main Bazar, Gurdaspur</div>
+    <div class="footer-bottom-note">
+      <span class="globe-icon">🌐</span>
+      <a class="footer-link-feedback" href="https://dailyglamstore.in/skincare-routine.html">https://dailyglamstore.in/skincare-routine.html</a>
+    </div>
+  </footer>
+
+  <button id="backToTop" type="button" aria-label="Back to top">⬆</button>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const mainNav = document.getElementById("mainNav");
+    const siteHeader = document.getElementById("siteHeader");
+    const backToTopButton = document.getElementById("backToTop");
+
+    function closeMenu() {
+      mainNav.classList.remove("show");
+      menuToggle.setAttribute("aria-expanded", "false");
+    }
+
+    function toggleMenu() {
+      const isOpen = mainNav.classList.contains("show");
+      mainNav.classList.toggle("show");
+      menuToggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
+    }
+
+    menuToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest(".header-inner")) {
+        closeMenu();
+      }
+    });
+
+    document.querySelectorAll("#mainNav a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        closeMenu();
+      });
+    });
+
+    document.querySelectorAll('#mainNav a[data-close-menu-on-click="true"]').forEach(function (link) {
+      link.addEventListener("auxclick", function () {
+        closeMenu();
+      });
+
+      link.addEventListener("contextmenu", function () {
+        closeMenu();
+      });
+    });
+
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 18) {
+        siteHeader.classList.add("shrink");
+      } else {
+        siteHeader.classList.remove("shrink");
+      }
+
+      if (window.scrollY > 500) {
+        backToTopButton.style.display = "block";
+      } else {
+        backToTopButton.style.display = "none";
+      }
+
+      if (window.innerWidth <= 980 && mainNav.classList.contains("show")) {
+        closeMenu();
+      }
+    });
+
+    backToTopButton.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
