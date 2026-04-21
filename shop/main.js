@@ -1,5 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  function resolveAssetPath(path) {
+    if (typeof path !== "string") return path;
+    if (/^(?:https?:)?\/\//.test(path) || path.startsWith("/")) return path;
+    if (path.startsWith("images/")) return `../${path}`;
+    return path;
+  }
+
   const menu = document.getElementById("menuDropdown");
   const menuBtn = document.querySelector(".menu-btn");
   const categorySubMenu = document.getElementById("categorySubMenu");
@@ -61,7 +68,7 @@ if (legalSubMenu) legalSubMenu.classList.remove("open");
         <div class="slider">
           <div class="slides">
             ${p.images.map((img, i) => 
-  `<img src="${img}" ${i === 0 ? "" : 'loading="lazy"'}>`
+  `<img src="${resolveAssetPath(img)}" ${i === 0 ? "" : 'loading="lazy"'}>`
 ).join("")}
           </div>
           <div class="image-counter"></div>
@@ -342,7 +349,7 @@ document.getElementById("seconds").textContent = s;
 
   async function loadCategory(category, containerId) {
   try {
-    const res = await fetch(`data/${category}.json`);
+    const res = await fetch(`../data/${category}.json`);
     const products = await res.json();
     renderProducts(products, containerId);
     initControlledSliders();
@@ -541,7 +548,7 @@ document.getElementById("seconds").textContent = s;
   }
 
   async function loadTestimonials() {
-    const localFallback = "data/testimonials.json";
+    const localFallback = "../data/testimonials.json";
     const csvEndpoint = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQKCr35cDOhCG0FTf-l5W8AhjjaPU5cvKdXwOVD2s840rtkANRHRYw-OZOFEpJOl01TUizdc9WglJyS/pub?output=csv";
 
     let testimonialRows = [];
