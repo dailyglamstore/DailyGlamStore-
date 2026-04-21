@@ -2227,6 +2227,11 @@
       let sliderInterval = null;
       let resumeTimer = null;
 
+      function resetBlogSliderToStart() {
+        blogSliderWrap.scrollTo({ left: 0, behavior: "auto" });
+        blogSliderWrap.scrollLeft = 0;
+      }
+
       function startAutoSlide() {
         if (sliderInterval) {
           return;
@@ -2269,7 +2274,9 @@
         }
       });
 
-      startAutoSlide();
+      resetBlogSliderToStart();
+      window.requestAnimationFrame(resetBlogSliderToStart);
+      window.setTimeout(startAutoSlide, 400);
     }
 
     window.addEventListener("resize", function () {
