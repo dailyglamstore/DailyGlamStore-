@@ -9,12 +9,12 @@
   url: "https://www.lotusbotanicals.com/products/ginger-root-dandruff-control-shampoo?ref=DGS-Deepak",
   priceText: "₹450 + 20% OFF with our code",
   details: [
-    "Helps control dandruff, flakes and scalp itchiness",
-    "Ginger Root & Tea Tree Oil help fight dandruff-causing buildup",
-    "Gently cleanses scalp without stripping natural oils",
-    "Ideal for regular use in anti-dandruff haircare routine",
-    "Leaves scalp refreshed and hair healthier-looking",
-    "Best for itchy, flaky and dandruff-prone scalp"
+    "Controls dandruff & scalp itchiness",
+    "Ginger & Tea Tree fight buildup",
+    "Gently cleanses without drying scalp",
+    "Ideal for regular anti-dandruff use",
+    "Leaves scalp fresh & healthy",
+    "Best for itchy, flaky scalp"
   ]
 }
   ];
