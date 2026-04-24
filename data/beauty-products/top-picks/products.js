@@ -32,6 +32,43 @@
     "Lightweight, fast-absorbing formula",
     "Best for oily & acne-prone skin"
   ]
-}
+},
+(function () {
+  // Top Picks SKINCARE KIT products. Upload future images to: images/beauty-images/top-picks/
+  window.BEAUTY_TOP_PICKS_PRODUCTS = [
+    
+    {
+      id: "lotus-vitamin-c-facial-kit",
+      name: "Vitamin C Skin Brightening Facial Kit",
+      brand: "Lotus Botanicals",
+      image: "images/beauty-images/top-picks/lotus-vitamin-c-facial-kit.JPG",
+      url: "https://www.lotusbotanicals.com/products/vitamin-c-skin-brightening-facial-kit?ref=DGS-Deepak",
+      priceText: "₹995 + 20% OFF with our code",
+      details: [
+        "Instant glow & skin brightening facial",
+        "Vitamin C reduces dark spots",
+        "Deep cleanses, exfoliates & nourishes skin",
+        "Easy at-home facial routine",
+        "Leaves skin soft, radiant & refreshed",
+        "Best for dull & uneven skin"
+      ]
+    },
+
+    {
+      id: "lotus-supercharge-skincare-kit",
+      name: "Supercharge Skincare Essentials Kit",
+      brand: "Lotus Botanicals",
+      image: "images/beauty-images/top-picks/lotus-supercharge-skincare-kit.JPG",
+      url: "https://www.lotusbotanicals.com/products/supercharge-skincare-essentials-kit?ref=DGS-Deepak",
+      priceText: "₹1295 + 20% OFF with our code",
+      details: [
+        "Complete daily skincare routine kit",
+        "Targets dullness, spots & uneven tone",
+        "Includes cleanser, serum & moisturiser",
+        "Hydrates, brightens & protects skin",
+        "Improves overall skin texture & glow",
+        "Best for all skin types"
+      ]
+    }
   ];
 })();
