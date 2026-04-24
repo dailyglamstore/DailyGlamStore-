@@ -22,7 +22,7 @@
       name: "Papaya & Niacinamide Brighten & Glow Skin Clarifying Super Serum",
       brand: "Lotus Botanicals",
       image: "images/beauty-images/top-picks/papaya-niacinamide-serum.JPG",
-      url: "https://www.lotusbotanicals.com/products/papaya-niacinamide-brighten-glow-skin-clarifying-super-serum?ref=DGS-Deepak",
+      url: "https://www.lotusbotanicals.com/products/copy-of-papaya-niacinamide-brighten-glow-skin-clarifying-super-serum?ref=DGS-Deepak",
       priceText: "₹685 + 20% OFF with our code",
       details: [
         "Reduces dark spots & acne marks",
