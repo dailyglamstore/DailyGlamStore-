@@ -1,6 +1,6 @@
 (function () {
   // Top Picks products. Upload future images to: images/beauty-images/top-picks/
-  window.BEAUTY_TOP_PICKS_PRODUCTS = [
+  window.BEAUTY_TOP_PICKS = [
     {
       id: "lotus-vitamin-c-day-creme",
       name: "Vitamin C Skin Brightening Day Crème",
