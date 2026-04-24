@@ -33,10 +33,6 @@
     "Best for oily & acne-prone skin"
   ]
 },
-(function () {
-  // Top Picks SKINCARE KIT products. Upload future images to: images/beauty-images/top-picks/
-  window.BEAUTY_TOP_PICKS_PRODUCTS = [
-    
     {
       id: "lotus-vitamin-c-facial-kit",
       name: "Vitamin C Skin Brightening Facial Kit",
@@ -53,7 +49,6 @@
         "Best for dull & uneven skin"
       ]
     },
-
     {
       id: "lotus-supercharge-skincare-kit",
       name: "Supercharge Skincare Essentials Kit",
