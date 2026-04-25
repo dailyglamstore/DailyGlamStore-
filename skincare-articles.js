@@ -7,8 +7,8 @@ window.SKINCARE_ARTICLES = {
       "A simple daily routine can help keep your skin clean, balanced, and glowing. This guide explains the basic skincare steps in the right order, along with quick links to guides and recommendations.",
     metaLine: "Beginner-friendly • Easy to follow • Daily routine",
     image: {
-      src: "images/beauty-images/blog/skincare-routine-banner.jpg",
-      alt: "Simple skincare routine featured article banner"
+      src: "images/beauty-images/blog/simple-skincare-routine-healthy-glowing-skin.JPG",
+      alt: "Simple skincare routine for healthy and glowing skin"
     },
     sections: [
       {
