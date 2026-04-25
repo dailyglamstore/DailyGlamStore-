@@ -935,6 +935,13 @@
       text-align: center;
       padding: 14px;
     }
+    
+    .blog-img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     border-radius: 10px;
+    }
 
     .blog-slide-badge {
       position: absolute;
@@ -1666,9 +1673,13 @@
         </article>
 
         <article class="blog-slide-card">
-          <div class="blog-slide-media" role="img" aria-label="Trending haircare article image placeholder">
-            <span class="blog-slide-badge">Trending</span>
-            Image area for haircare article
+          <div class="blog-slide-media">
+           <span class="blog-slide-badge">Trending</span>
+           <img 
+            src="images/beauty-images/blog/simple-skincare-routine-healthy-glowing-skin.JPG" 
+            alt="Simple Skincare Routine for Healthy & Glowing Skin"
+            class="blog-img"
+           >
           </div>
           <h3>Simple Haircare Routine for Healthy Hair</h3>
           <p>A practical guide to shampoo, conditioner, serum, and oiling for a smoother routine.</p>
