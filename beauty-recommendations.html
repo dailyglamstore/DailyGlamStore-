@@ -991,7 +991,20 @@
       margin-bottom: 8px;
       aspect-ratio: 16 / 9;
       padding: 0;
-}
+    }
+    
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+    
+    .blog-card {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
 
     .footer-section {
       max-width: 1100px;
