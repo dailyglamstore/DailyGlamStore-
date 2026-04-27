@@ -1,6 +1,8 @@
 window.HAIRCARE_ARTICLES = {
   "haircare-routine": {
     key: "haircare-routine",
+    url: "/haircare-routine.html",
+    
     category: "Haircare",
     title: "Simple Haircare Routine for Healthy Hair",
     intro:
