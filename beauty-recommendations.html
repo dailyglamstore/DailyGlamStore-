@@ -2231,6 +2231,11 @@
       });
     }
 
+const ALL_BLOG_ARTICLES = [
+  ...Object.values(window.SKINCARE_ARTICLES || {}),
+  ...Object.values(window.HAIRCARE_ARTICLES || {})
+];
+
 const blogSliderWrap = document.getElementById("blogSliderWrap");
 
 if (blogSliderWrap) {
