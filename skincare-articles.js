@@ -1,6 +1,8 @@
 window.SKINCARE_ARTICLES = {
   "skincare-routine": {
     key: "skincare-routine",
+    url: "/skincare-routine.html",
+    
     category: "Skincare",
     title: "Simple Skincare Routine for Healthy & Glowing Skin",
     intro:
