@@ -830,6 +830,62 @@
     backToTopButton.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
+    
+    const skincareArticles = Object.values(window.SKINCARE_ARTICLES || {});
+const haircareArticles = Object.values(window.HAIRCARE_ARTICLES || {});
+const allArticles = [...skincareArticles, ...haircareArticles];
+
+const featuredContainer = document.getElementById("featuredArticle");
+
+if (featuredContainer && allArticles.length) {
+  const article = allArticles[0];
+
+  featuredContainer.innerHTML = `
+    <article class="blog-card featured-card">
+      <div class="blog-media">
+        <span class="blog-label">${article.category || "Beauty"}</span>
+        <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
+      </div>
+      <span class="featured-start-here">Start Here</span>
+      <h3>${article.title}</h3>
+      <p>${article.intro || ""}</p>
+      <a class="blog-btn" href="${article.url}" target="_blank">Read Article</a>
+    </article>
+  `;
+}
+
+const skincareList = document.getElementById("skincareList");
+
+if (skincareList && skincareArticles.length) {
+  skincareList.innerHTML = skincareArticles.map(article => `
+    <article class="blog-card">
+      <div class="blog-media">
+        <span class="blog-label">Skincare</span>
+        <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
+      </div>
+      <h3>${article.title}</h3>
+      <p>${article.intro || ""}</p>
+      <a class="blog-btn" href="${article.url}" target="_blank">Read Article</a>
+    </article>
+  `).join("");
+}
+
+const haircareList = document.getElementById("haircareList");
+
+if (haircareList && haircareArticles.length) {
+  haircareList.innerHTML = haircareArticles.map(article => `
+    <article class="blog-card">
+      <div class="blog-media">
+        <span class="blog-label">Haircare</span>
+        <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
+      </div>
+      <h3>${article.title}</h3>
+      <p>${article.intro || ""}</p>
+      <a class="blog-btn" href="${article.url}" target="_blank">Read Article</a>
+    </article>
+  `).join("");
+}
+
   </script>
 </body>
 </html>
