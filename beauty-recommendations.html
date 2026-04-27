@@ -2279,6 +2279,25 @@ if (blogSliderWrap) {
 
   blogObserver.observe(blogSliderWrap);
 
+const blogTrack = document.getElementById("blogSliderTrack");
+
+if (blogTrack && ALL_BLOG_ARTICLES.length) {
+  blogTrack.innerHTML = ALL_BLOG_ARTICLES.slice(0, 5).map(article => {
+    return `
+      <a href="${article.url}" class="blog-slide">
+        <div class="blog-slide-media">
+          <span class="blog-slide-badge">Trending</span>
+          <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
+        </div>
+        <div class="blog-slide-content">
+          <h3>${article.title}</h3>
+          <p>${article.intro || ""}</p>
+        </div>
+      </a>
+    `;
+  }).join("");
+}
+
   resetBlogSliderToStart();
   window.requestAnimationFrame(resetBlogSliderToStart);
 }
