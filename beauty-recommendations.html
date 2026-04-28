@@ -2301,17 +2301,31 @@ const blogTrack = document.getElementById("blogSliderTrack");
 
 if (blogTrack && ALL_BLOG_ARTICLES.length) {
   blogTrack.innerHTML = ALL_BLOG_ARTICLES.slice(0, 5).map(article => {
+    
+    const shortIntro = article.intro
+      ? article.intro.length > 90
+        ? article.intro.slice(0, 90) + "..."
+        : article.intro
+      : "";
+
     return `
       <a href="${article.url}" target="_blank" rel="noopener noreferrer" class="blog-slide-card">
-        <div class="blog-slide-media">
+        
+        <div class="blog-slide-card-inner">
           <span class="blog-slide-badge">Trending</span>
-          <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
+
+          <div class="blog-slide-media">
+            <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
+          </div>
         </div>
+
         <h3>${article.title}</h3>
-        <p>${(article.intro || "").slice(0, 90)}...</p>
+        <p>${shortIntro}</p>
+
         <span class="blog-slide-link">
           Read Article <span aria-hidden="true">→</span>
         </span>
+
       </a>
     `;
   }).join("");
