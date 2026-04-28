@@ -927,25 +927,23 @@
       overflow: hidden;
       margin-bottom: 8px;
       aspect-ratio: 16 / 9;
-      padding: 0;
+      padding-top: 6px;
     }
 
     .blog-slide-badge {
       position: absolute;
-      top: 10px;
-      right: 10px;
-      left: auto;
-      z-index: 2;
-      display: inline-block;
+      top: 8px;
+      left: 8px;
+      z-index: 3;
       padding: 4px 10px;
       border-radius: 999px;
-      background: #b2455a;
+      background: rgba(178, 69, 90, 0.9);
+      backdrop-filter: blur(4px);
       color: #fff;
       font-size: 11px;
-      line-height: 1;
       font-weight: 700;
       box-shadow: 0 2px 8px rgba(58, 19, 29, 0.18);
-     }
+    }
 
     .blog-slide-card h3 {
       margin: 0 0 5px;
@@ -996,9 +994,10 @@
     
     .blog-img {
       width: 100%;
-     height: 100%;
-     object-fit: cover;
-     display: block;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
     }
 
     .footer-section {
