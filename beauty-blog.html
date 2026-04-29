@@ -829,13 +829,13 @@
     
 function getBadgeHTML(article) {
   if (article.badge === "featured") {
-    return `<span class="blog-badge featured">⭐ Featured</span>`;
+    return `<span class="blog-badge">⭐ Featured</span>`;
   }
   if (article.badge === "new") {
-    return `<span class="blog-badge new">🆕 New</span>`;
+    return `<span class="blog-badge">New</span>`;
   }
   if (article.badge === "popular") {
-    return `<span class="blog-badge popular">🔥 Popular</span>`;
+    return `<span class="blog-badge">Popular</span>`;
   }
   return "";
 }
@@ -847,18 +847,21 @@ const allArticles = [...skincareArticles, ...haircareArticles]
   .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
 
 const featuredContainer = document.getElementById("featuredArticle");
-
 const featuredArticle = allArticles.find(a => a.badge === "featured");
 
 if (featuredContainer && featuredArticle) {
   featuredContainer.innerHTML = `
     <article class="blog-card featured-card">
+      
+      ${getBadgeHTML(featuredArticle)}
+
       <div class="blog-media">
-        ${getBadgeHTML(featuredArticle)}
         <img src="${featuredArticle.image.src}" alt="${featuredArticle.image.alt}" class="blog-img">
       </div>
+
       <h3>${featuredArticle.title}</h3>
-      <p>${featuredArticle.intro || ""}</p>
+      <p>${(featuredArticle.intro || "").slice(0, 110)}...</p>
+
       <a class="blog-btn" href="${featuredArticle.url}" target="_blank" rel="noopener noreferrer">
         Read Article
       </a>
@@ -874,12 +877,16 @@ const sortedSkincare = skincareArticles
 if (skincareList && sortedSkincare.length) {
   skincareList.innerHTML = sortedSkincare.map(article => `
     <article class="blog-card">
+      
+      ${getBadgeHTML(article)}
+
       <div class="blog-media">
-        ${getBadgeHTML(article)}
         <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
       </div>
+
       <h3>${article.title}</h3>
       <p>${(article.intro || "").slice(0, 100)}...</p>
+
       <a class="blog-btn" href="${article.url}" target="_blank" rel="noopener noreferrer">
         Read Article
       </a>
@@ -895,12 +902,16 @@ const sortedHaircare = haircareArticles
 if (haircareList && sortedHaircare.length) {
   haircareList.innerHTML = sortedHaircare.map(article => `
     <article class="blog-card">
+      
+      ${getBadgeHTML(article)}
+
       <div class="blog-media">
-        ${getBadgeHTML(article)}
         <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
       </div>
+
       <h3>${article.title}</h3>
       <p>${(article.intro || "").slice(0, 100)}...</p>
+
       <a class="blog-btn" href="${article.url}" target="_blank" rel="noopener noreferrer">
         Read Article
       </a>
