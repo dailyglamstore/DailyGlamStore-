@@ -2,16 +2,22 @@ window.SKINCARE_ARTICLES = {
   "skincare-routine": {
     key: "skincare-routine",
     url: "/skincare-routine.html",
-    
+
     category: "Skincare",
+
+    badge: "featured",
+    date: "2026-04-29",
+
     title: "Simple Skincare Routine for Healthy & Glowing Skin",
     intro:
       "A simple daily routine can help keep your skin clean, balanced, and glowing. This guide explains the basic skincare steps in the right order, along with quick links to guides and recommendations.",
     metaLine: "Beginner-friendly • Easy to follow • Daily routine",
+
     image: {
       src: "images/beauty-images/blog/simple-skincare-routine-healthy-glowing-skin.JPG",
       alt: "Simple skincare routine for healthy and glowing skin"
     },
+
     sections: [
       {
         heading: "Why a Simple Skincare Routine Matters",
@@ -85,9 +91,11 @@ window.SKINCARE_ARTICLES = {
         ]
       }
     ],
+
     ctaTitle: "Ready to build your routine?",
     ctaText:
       "Explore quick guides for easier decisions or browse our curated skincare recommendations.",
+
     ctaButtons: [
       {
         text: "Explore Beauty Guides",
