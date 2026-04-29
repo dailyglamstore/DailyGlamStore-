@@ -4,14 +4,20 @@ window.HAIRCARE_ARTICLES = {
     url: "/haircare-routine.html",
     
     category: "Haircare",
+
+    badge: "new",            
+    date: "2026-04-29",
+
     title: "Simple Haircare Routine for Healthy Hair",
     intro:
       "A simple haircare routine can help keep hair cleaner, smoother, and easier to manage. This guide explains the basic steps in the right order, along with quick links to guides and recommendations.",
     metaLine: "Beginner-friendly • Easy to follow • Daily routine",
+
     image: {
       src: "images/beauty-images/blog/haircare-routine-banner.jpg",
       alt: "Simple haircare routine featured article banner"
     },
+
     sections: [
       {
         heading: "Why a Simple Haircare Routine Matters",
@@ -85,9 +91,11 @@ window.HAIRCARE_ARTICLES = {
         ]
       }
     ],
+
     ctaTitle: "Ready to build your routine?",
     ctaText:
       "Explore quick guides for easier decisions or browse our curated haircare recommendations.",
+
     ctaButtons: [
       {
         text: "Explore Beauty Guides",
