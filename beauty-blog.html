@@ -867,7 +867,6 @@ if (skincareList && skincareArticles.length) {
   skincareList.innerHTML = skincareArticles.map(article => `
     <article class="blog-card">
       <div class="blog-media">
-        <span class="blog-label">Skincare</span>
         <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
       </div>
       <h3>${article.title}</h3>
@@ -883,7 +882,6 @@ if (haircareList && haircareArticles.length) {
   haircareList.innerHTML = haircareArticles.map(article => `
     <article class="blog-card">
       <div class="blog-media">
-        <span class="blog-label">Haircare</span>
         <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
       </div>
       <h3>${article.title}</h3>
