@@ -258,7 +258,6 @@
       display: block;
     }
     
-
     .blog-label {
       position: absolute;
       top: 10px;
@@ -357,6 +356,30 @@
 
     .blog-final-cta-actions .blog-btn {
       min-width: 220px;
+    }
+    
+    .blog-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      z-index: 3;
+      padding: 4px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 999px;
+      color: #fff;
+    }
+
+    .blog-badge.featured {
+      background: #b2455a;
+    }
+
+    .blog-badge.new {
+      background: #2e7d32;
+    }
+
+    .blog-badge.popular {
+      background: #ff6f00;
     }
 
     .footer-section {
@@ -804,40 +827,83 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
     
-    const skincareArticles = Object.values(window.SKINCARE_ARTICLES || {});
+function getBadgeHTML(article) {
+  if (article.badge === "featured") {
+    return `<span class="blog-badge featured">⭐ Featured</span>`;
+  }
+  if (article.badge === "new") {
+    return `<span class="blog-badge new">🆕 New</span>`;
+  }
+  if (article.badge === "popular") {
+    return `<span class="blog-badge popular">🔥 Popular</span>`;
+  }
+  return "";
+}
+
+const skincareArticles = Object.values(window.SKINCARE_ARTICLES || {});
 const haircareArticles = Object.values(window.HAIRCARE_ARTICLES || {});
-const allArticles = [...skincareArticles, ...haircareArticles];
+
+const allArticles = [...skincareArticles, ...haircareArticles]
+  .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+
+const featuredContainer = document.getElementById("featuredArticle");
+
+const featuredArticle = allArticles.find(a => a.badge === "featured");
+
+if (featuredContainer && featuredArticle) {
+  featuredContainer.innerHTML = `
+    <article class="blog-card featured-card">
+      <div class="blog-media">
+        ${getBadgeHTML(featuredArticle)}
+        <img src="${featuredArticle.image.src}" alt="${featuredArticle.image.alt}" class="blog-img">
+      </div>
+      <h3>${featuredArticle.title}</h3>
+      <p>${featuredArticle.intro || ""}</p>
+      <a class="blog-btn" href="${featuredArticle.url}" target="_blank" rel="noopener noreferrer">
+        Read Article
+      </a>
+    </article>
+  `;
+}
 
 const skincareList = document.getElementById("skincareList");
 
-if (skincareList && skincareArticles.length) {
-  skincareList.innerHTML = skincareArticles.map(article => `
+const sortedSkincare = skincareArticles
+  .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+
+if (skincareList && sortedSkincare.length) {
+  skincareList.innerHTML = sortedSkincare.map(article => `
     <article class="blog-card">
       <div class="blog-media">
+        ${getBadgeHTML(article)}
         <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
       </div>
       <h3>${article.title}</h3>
-      <p>${article.intro || ""}</p>
-      <a class="blog-btn" href="${article.url}" target="_blank">Read Article</a>
+      <p>${(article.intro || "").slice(0, 100)}...</p>
+      <a class="blog-btn" href="${article.url}" target="_blank" rel="noopener noreferrer">
+        Read Article
+      </a>
     </article>
   `).join("");
 }
 
 const haircareList = document.getElementById("haircareList");
 
-if (haircareList && haircareArticles.length) {
-  haircareList.innerHTML = haircareArticles.map(article => `
+const sortedHaircare = haircareArticles
+  .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+
+if (haircareList && sortedHaircare.length) {
+  haircareList.innerHTML = sortedHaircare.map(article => `
     <article class="blog-card">
       <div class="blog-media">
+        ${getBadgeHTML(article)}
         <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
       </div>
       <h3>${article.title}</h3>
-      <p>${article.intro || ""}</p>
-      <a class="blog-btn" href="${article.url}" target="_blank">Read Article</a>
+      <p>${(article.intro || "").slice(0, 100)}...</p>
+      <a class="blog-btn" href="${article.url}" target="_blank" rel="noopener noreferrer">
+        Read Article
+      </a>
     </article>
   `).join("");
 }
-
-  </script>
-</body>
-</html>
