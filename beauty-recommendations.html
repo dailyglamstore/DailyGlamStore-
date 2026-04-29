@@ -2306,32 +2306,36 @@ if (blogSliderWrap) {
 const blogTrack = document.getElementById("blogSliderTrack");
 
 if (blogTrack && ALL_BLOG_ARTICLES.length) {
-  blogTrack.innerHTML = ALL_BLOG_ARTICLES.slice(0, 5).map(article => {
+
+  const sortedArticles = [...ALL_BLOG_ARTICLES].sort((a, b) => {
     
-    const shortIntro = article.intro
-      ? article.intro.length > 90
-        ? article.intro.slice(0, 90) + "..."
-        : article.intro
-      : "";
+    if (a.badge === "featured") return -1;
+    if (b.badge === "featured") return 1;
+
+    return new Date(b.date || 0) - new Date(a.date || 0);
+  });
+
+  blogTrack.innerHTML = sortedArticles.slice(0, 5).map(article => {
+
+    let badgeHTML = "";
+
+    if (article.badge === "featured") {
+      badgeHTML = `<span class="blog-slide-badge">⭐ Featured</span>`;
+    } else if (article.badge === "new") {
+      badgeHTML = `<span class="blog-slide-badge">🆕 New</span>`;
+    }
 
     return `
       <a href="${article.url}" target="_blank" rel="noopener noreferrer" class="blog-slide-card">
-        
-        <div class="blog-slide-card-inner">
-          <span class="blog-slide-badge">Trending</span>
-
-          <div class="blog-slide-media">
-            <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
-          </div>
+        <div class="blog-slide-media">
+          ${badgeHTML}
+          <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
         </div>
-
         <h3>${article.title}</h3>
-        <p>${shortIntro}</p>
-
+        <p>${(article.intro || "").slice(0, 90)}...</p>
         <span class="blog-slide-link">
           Read Article <span aria-hidden="true">→</span>
         </span>
-
       </a>
     `;
   }).join("");
