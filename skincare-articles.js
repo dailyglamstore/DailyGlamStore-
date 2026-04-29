@@ -6,7 +6,7 @@ window.SKINCARE_ARTICLES = {
     category: "Skincare",
 
     badge: "featured",
-    date: "2026-04-29",
+    date: "2026-04-29T18:30:00",
 
     title: "Simple Skincare Routine for Healthy & Glowing Skin",
     intro:
