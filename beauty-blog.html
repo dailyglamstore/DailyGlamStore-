@@ -836,6 +836,8 @@
 
 <script>
 
+<script>
+
 function getBadgeHTML(article) {
   if (article.badge === "featured") {
     return `<span class="blog-badge featured">⭐ Featured</span>`;
@@ -849,14 +851,37 @@ function getBadgeHTML(article) {
   return "";
 }
 
+function safeDate(d) {
+  return d ? new Date(d).getTime() : 0;
+}
+
+function safeImage(article) {
+  return article.image && article.image.src
+    ? article.image.src
+    : "images/placeholder.jpg";
+}
+
+function safeAlt(article) {
+  return article.image && article.image.alt
+    ? article.image.alt
+    : article.title || "Blog image";
+}
+
+function safeText(text, length) {
+  if (!text) return "";
+  return text.length > length ? text.slice(0, length) + "..." : text;
+}
+
 const skincareArticles = Object.values(window.SKINCARE_ARTICLES || {});
 const haircareArticles = Object.values(window.HAIRCARE_ARTICLES || {});
 
 const allArticles = [...skincareArticles, ...haircareArticles]
   .sort((a, b) => {
+
     if (a.badge === "featured") return -1;
     if (b.badge === "featured") return 1;
-    return new Date(b.date || 0) - new Date(a.date || 0);
+
+    return safeDate(b.date) - safeDate(a.date);
   });
 
 const featuredContainer = document.getElementById("featuredArticle");
@@ -870,11 +895,11 @@ if (featuredContainer && featuredArticle) {
       ${getBadgeHTML(featuredArticle)}
 
       <div class="blog-media">
-        <img src="${featuredArticle.image.src}" alt="${featuredArticle.image.alt}" class="blog-img">
+        <img src="${safeImage(featuredArticle)}" alt="${safeAlt(featuredArticle)}" class="blog-img">
       </div>
 
-      <h3>${featuredArticle.title}</h3>
-      <p>${(featuredArticle.intro || "").slice(0, 120)}...</p>
+      <h3>${featuredArticle.title || ""}</h3>
+      <p>${safeText(featuredArticle.intro, 120)}</p>
 
       <a class="blog-btn" href="${featuredArticle.url}" target="_blank" rel="noopener noreferrer">
         Read Article
@@ -885,8 +910,8 @@ if (featuredContainer && featuredArticle) {
 
 const skincareList = document.getElementById("skincareList");
 
-const sortedSkincare = skincareArticles
-  .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+const sortedSkincare = [...skincareArticles]
+  .sort((a, b) => safeDate(b.date) - safeDate(a.date));
 
 if (skincareList && sortedSkincare.length) {
   skincareList.innerHTML = sortedSkincare.map(article => `
@@ -895,11 +920,11 @@ if (skincareList && sortedSkincare.length) {
       ${getBadgeHTML(article)}
 
       <div class="blog-media">
-        <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
+        <img src="${safeImage(article)}" alt="${safeAlt(article)}" class="blog-img">
       </div>
 
-      <h3>${article.title}</h3>
-      <p>${(article.intro || "").slice(0, 100)}...</p>
+      <h3>${article.title || ""}</h3>
+      <p>${safeText(article.intro, 100)}</p>
 
       <a class="blog-btn" href="${article.url}" target="_blank" rel="noopener noreferrer">
         Read Article
@@ -910,8 +935,8 @@ if (skincareList && sortedSkincare.length) {
 
 const haircareList = document.getElementById("haircareList");
 
-const sortedHaircare = haircareArticles
-  .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+const sortedHaircare = [...haircareArticles]
+  .sort((a, b) => safeDate(b.date) - safeDate(a.date));
 
 if (haircareList && sortedHaircare.length) {
   haircareList.innerHTML = sortedHaircare.map(article => `
@@ -920,11 +945,11 @@ if (haircareList && sortedHaircare.length) {
       ${getBadgeHTML(article)}
 
       <div class="blog-media">
-        <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
+        <img src="${safeImage(article)}" alt="${safeAlt(article)}" class="blog-img">
       </div>
 
-      <h3>${article.title}</h3>
-      <p>${(article.intro || "").slice(0, 100)}...</p>
+      <h3>${article.title || ""}</h3>
+      <p>${safeText(article.intro, 100)}</p>
 
       <a class="blog-btn" href="${article.url}" target="_blank" rel="noopener noreferrer">
         Read Article
@@ -932,6 +957,8 @@ if (haircareList && sortedHaircare.length) {
     </article>
   `).join("");
 }
+
+</script>
 
   </script>
 </body>
