@@ -2322,17 +2322,21 @@ if (blogTrack && ALL_BLOG_ARTICLES.length) {
     if (article.badge === "featured") {
       badgeHTML = `<span class="blog-slide-badge">⭐ Featured</span>`;
     } else if (article.badge === "new") {
-      badgeHTML = `<span class="blog-slide-badge">🆕 New</span>`;
+      badgeHTML = `<span class="blog-slide-badge">New</span>`;
     }
 
     return `
       <a href="${article.url}" target="_blank" rel="noopener noreferrer" class="blog-slide-card">
+        
+        ${badgeHTML}
+
         <div class="blog-slide-media">
-          ${badgeHTML}
           <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
         </div>
+
         <h3>${article.title}</h3>
         <p>${(article.intro || "").slice(0, 90)}...</p>
+
         <span class="blog-slide-link">
           Read Article <span aria-hidden="true">→</span>
         </span>
