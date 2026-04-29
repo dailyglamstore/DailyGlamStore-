@@ -308,35 +308,6 @@
       transform: translateY(-1px);
     }
 
-    .featured-wrap {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 15px;
-    }
-
-    .featured-card .blog-media {
-      min-height: 260px;
-    }
-
-    .featured-card h3 {
-      font-size: 22px;
-    }
-
-    .featured-start-here {
-      display: inline-flex;
-      align-items: center;
-      width: fit-content;
-      margin: 2px 0 8px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid #eab8c5;
-      background: #fff3f6;
-      color: var(--brand-dark);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-
     #skincare-articles {
       padding-top: 34px;
     }
@@ -668,11 +639,6 @@
     </div>
   </section>
 
- <section class="section" id="featured-article">
-  <h2 class="section-title">Featured Article</h2>
-  <div class="featured-wrap" id="featuredArticle"></div>
-</section>
-
 <section class="section" id="skincare-articles">
   <h2 class="section-title">Skincare Articles</h2>
   <div class="articles-grid" id="skincareList"></div>
@@ -841,24 +807,6 @@
     const skincareArticles = Object.values(window.SKINCARE_ARTICLES || {});
 const haircareArticles = Object.values(window.HAIRCARE_ARTICLES || {});
 const allArticles = [...skincareArticles, ...haircareArticles];
-
-const featuredContainer = document.getElementById("featuredArticle");
-
-if (featuredContainer && allArticles.length) {
-  const article = allArticles[0];
-
-  featuredContainer.innerHTML = `
-    <article class="blog-card featured-card">
-      <div class="blog-media">
-        <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
-      </div>
-      <span class="featured-start-here">Start Here</span>
-      <h3>${article.title}</h3>
-      <p>${article.intro || ""}</p>
-      <a class="blog-btn" href="${article.url}" target="_blank">Read Article</a>
-    </article>
-  `;
-}
 
 const skincareList = document.getElementById("skincareList");
 
