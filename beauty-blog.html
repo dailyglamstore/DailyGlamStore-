@@ -834,15 +834,17 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
+<script>
+
 function getBadgeHTML(article) {
   if (article.badge === "featured") {
-    return `<span class="blog-badge">⭐ Featured</span>`;
+    return `<span class="blog-badge featured">⭐ Featured</span>`;
   }
   if (article.badge === "new") {
-    return `<span class="blog-badge">New</span>`;
+    return `<span class="blog-badge new">🆕 New</span>`;
   }
   if (article.badge === "popular") {
-    return `<span class="blog-badge">Popular</span>`;
+    return `<span class="blog-badge popular">🔥 Popular</span>`;
   }
   return "";
 }
@@ -851,9 +853,14 @@ const skincareArticles = Object.values(window.SKINCARE_ARTICLES || {});
 const haircareArticles = Object.values(window.HAIRCARE_ARTICLES || {});
 
 const allArticles = [...skincareArticles, ...haircareArticles]
-  .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+  .sort((a, b) => {
+    if (a.badge === "featured") return -1;
+    if (b.badge === "featured") return 1;
+    return new Date(b.date || 0) - new Date(a.date || 0);
+  });
 
 const featuredContainer = document.getElementById("featuredArticle");
+
 const featuredArticle = allArticles.find(a => a.badge === "featured");
 
 if (featuredContainer && featuredArticle) {
@@ -867,7 +874,7 @@ if (featuredContainer && featuredArticle) {
       </div>
 
       <h3>${featuredArticle.title}</h3>
-      <p>${(featuredArticle.intro || "").slice(0, 110)}...</p>
+      <p>${(featuredArticle.intro || "").slice(0, 120)}...</p>
 
       <a class="blog-btn" href="${featuredArticle.url}" target="_blank" rel="noopener noreferrer">
         Read Article
