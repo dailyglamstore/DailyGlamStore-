@@ -6,7 +6,7 @@ window.HAIRCARE_ARTICLES = {
     category: "Haircare",
 
     badge: "new",            
-    date: "2026-04-29T18:45:00",
+    date: "2026-04-30T17:40:00",
 
     title: "Simple Haircare Routine for Healthy Hair",
     intro:
@@ -14,8 +14,8 @@ window.HAIRCARE_ARTICLES = {
     metaLine: "Beginner-friendly • Easy to follow • Daily routine",
 
     image: {
-      src: "images/beauty-images/blog/haircare-routine-banner.jpg",
-      alt: "Simple haircare routine featured article banner"
+      src: "images/beauty-images/blog/simple-haircare-routine-healthy-hair.JPG",
+      alt: "Simple haircare routine for healthy hair with shampoo conditioner serum and oil steps"
     },
 
     sections: [
