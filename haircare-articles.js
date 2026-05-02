@@ -35,7 +35,7 @@ window.HAIRCARE_ARTICLES = {
           "Avoid over-washing if hair feels dry",
           "Choose gentle cleansing for regular use"
         ],
-        guideLinkText: "SHAMPOO BUYING GUIDE",
+        guideLinkText: "Shampoo Buying Guide",
         guideLinkHref: "/beauty-guides.html#shampoo-guide",
         guideLinkNewTab: true
       },
@@ -49,7 +49,7 @@ window.HAIRCARE_ARTICLES = {
           "Choose by dryness, damage, or frizz level",
           "Do not overload the scalp with conditioner"
         ],
-        guideLinkText: "CONDITIONER BUYING GUIDE",
+        guideLinkText: "Conditioner Buying Guide",
         guideLinkHref: "/beauty-guides.html#conditioner-guide",
         guideLinkNewTab: true
       },
@@ -63,7 +63,7 @@ window.HAIRCARE_ARTICLES = {
           "Apply mainly on mid-lengths and ends",
           "Helpful for frizz and dull-looking hair"
         ],
-        guideLinkText: "HAIR SERUM BUYING GUIDE",
+        guideLinkText: "Hair Serum Buying Guide",
         guideLinkHref: "/beauty-guides.html#hairserum-guide",
         guideLinkNewTab: true
       },
@@ -77,7 +77,7 @@ window.HAIRCARE_ARTICLES = {
           "Choose based on scalp and hair concern",
           "Do not over-oil if scalp gets greasy quickly"
         ],
-        guideLinkText: "HAIR OIL BUYING GUIDE",
+        guideLinkText: "Hair Oil Buying Guide",
         guideLinkHref: "/beauty-guides.html#hairoil-guide",
         guideLinkNewTab: true
       },
