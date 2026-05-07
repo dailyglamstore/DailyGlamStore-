@@ -250,15 +250,21 @@
 
     renderProducts("#top-picks .products", data.topPicks, "topPicks");
     
-    renderProducts("#facewash-products", window.BEAUTY_SKINCARE_FACEWASH_PRODUCTS || [], "skincare");
-    renderProducts("#serum-products", window.BEAUTY_SKINCARE_SERUM_PRODUCTS || [], "skincare");
-    renderProducts("#moisturiser-products", window.BEAUTY_SKINCARE_MOISTURISER_PRODUCTS || [], "skincare");
-    renderProducts("#sunscreen-products", window.BEAUTY_SKINCARE_SUNSCREEN_PRODUCTS || [], "skincare");
+    renderProducts("#facewash-products + .products", window.BEAUTY_SKINCARE_FACEWASH_PRODUCTS || [], "skincare");
 
-    renderProducts("#shampoo-products", window.BEAUTY_HAIRCARE_SHAMPOO_PRODUCTS || [], "haircare");
-    renderProducts("#conditioner-products", window.BEAUTY_HAIRCARE_CONDITIONER_PRODUCTS || [], "haircare");
-    renderProducts("#hairserum-products", window.BEAUTY_HAIRCARE_HAIR_SERUM_PRODUCTS || [], "haircare");
-    renderProducts("#hairoil-products", window.BEAUTY_HAIRCARE_HAIR_OIL_PRODUCTS || [], "haircare");
+    renderProducts("#serum-products + .products", window.BEAUTY_SKINCARE_SERUM_PRODUCTS || [], "skincare");
+
+    renderProducts("#sunscreen-products + .products", window.BEAUTY_SKINCARE_SUNSCREEN_PRODUCTS || [], "skincare");
+
+    renderProducts("#moisturiser-products + .products", window.BEAUTY_SKINCARE_MOISTURISER_PRODUCTS || [], "skincare");
+
+    renderProducts("#shampoo-products + .products", window.BEAUTY_HAIRCARE_SHAMPOO_PRODUCTS || [], "haircare");
+
+    renderProducts("#conditioner-products + .products", window.BEAUTY_HAIRCARE_CONDITIONER_PRODUCTS || [], "haircare");
+
+    renderProducts("#hairserum-products + .products", window.BEAUTY_HAIRCARE_HAIR_SERUM_PRODUCTS || [], "haircare");
+
+    renderProducts("#hairoil-products + .products", window.BEAUTY_HAIRCARE_HAIR_OIL_PRODUCTS || [], "haircare");
     
     bindDetailsToggles();
   });
