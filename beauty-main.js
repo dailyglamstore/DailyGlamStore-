@@ -268,21 +268,19 @@
     
     bindDetailsToggles();
 
-window.addEventListener("load", function () {
+const activeTarget = document.querySelector(".subcategory-heading:target");
 
-  setTimeout(function () {
+if (activeTarget) {
 
-    if (window.location.hash) {
-      history.replaceState(
-        null,
-        null,
-        window.location.pathname + window.location.search
-      );
-    }
+  function removeHighlightOnScroll() {
+    activeTarget.classList.add("target-fade");
 
-  }, 2500);
+    window.removeEventListener("scroll", removeHighlightOnScroll);
+  }
 
-});
+  window.addEventListener("scroll", removeHighlightOnScroll, { passive: true });
+
+}
 
   });
 })();
