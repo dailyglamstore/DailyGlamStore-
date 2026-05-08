@@ -644,38 +644,38 @@
     }
 
     .section-cta {
-      margin-top: 12px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: nowrap;
-      gap: 8px;
-      max-width: 100%;
-      padding-right: 10px;
-      color: var(--brand-dark);
-      font-size: clamp(13.5px, 3.9vw, 16px);
-      font-weight: 700;
-      text-decoration: none;
-      background: none;
-      border: none;
-      border-radius: 0;
-    }
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow-x: auto;
+  padding-right: 10px;
+  color: var(--brand-dark);
+  font-size: clamp(13px, 3.5vw, 16px);
+  font-weight: 700;
+  text-decoration: none;
+  background: none;
+  border: none;
+  border-radius: 0;
+}
 
-    .section-cta .cta-arrow {
-      margin-left: 0;
-      flex: 0 0 auto;
-      line-height: 1;
-    }
+.section-cta .cta-arrow {
+  flex-shrink: 0;
+  line-height: 1;
+}
 
-    .section-cta .cta-text {
-      min-width: 0;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
+.section-cta .cta-text {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+}
 
-    .section-cta:hover {
-      color: var(--brand);
-    }
+.section-cta:hover {
+  color: var(--brand);
+}
 
     .support-box {
       background: var(--white);
