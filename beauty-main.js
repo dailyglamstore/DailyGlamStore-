@@ -268,19 +268,24 @@
     
     bindDetailsToggles();
 
-const activeTarget = document.querySelector(".subcategory-heading:target");
+const targetHeading = document.querySelector(".subcategory-heading:target");
 
-if (activeTarget) {
+if (targetHeading) {
 
-  function removeHighlightOnScroll() {
-    activeTarget.classList.add("target-fade");
+  let hasScrolled = false;
 
-    window.removeEventListener("scroll", removeHighlightOnScroll);
-  }
+  window.addEventListener("scroll", function () {
 
-  window.addEventListener("scroll", removeHighlightOnScroll, { passive: true });
+    if (hasScrolled) {
+      return;
+    }
+
+    hasScrolled = true;
+
+    targetHeading.classList.add("remove-target-highlight");
+
+  }, { passive: true });
 
 }
-
   });
 })();
