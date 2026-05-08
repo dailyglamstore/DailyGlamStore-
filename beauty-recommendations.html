@@ -1541,15 +1541,32 @@
 }
 
 .subcategory-heading:target {
-  background: #ffe8ee;
-  color: #b23a48;
-  border-left: 5px solid #ff6b81;
+  background: #ffe6ec;
+  color: #a52d45;
+  border-left: 5px solid #ff4d6d;
 
   box-shadow:
-    0 0 0 3px rgba(255, 107, 129, 0.18),
-    0 10px 22px rgba(255, 107, 129, 0.16);
+    0 0 0 4px rgba(255, 77, 109, 0.24),
+    0 12px 28px rgba(255, 77, 109, 0.20);
+
+  animation: subcategoryPulse 1.6s ease-in-out 2;
 }
 
+@keyframes subcategoryPulse {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 4px rgba(255, 77, 109, 0.22),
+      0 12px 26px rgba(255, 77, 109, 0.18);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 7px rgba(255, 77, 109, 0.34),
+      0 16px 34px rgba(255, 77, 109, 0.28);
+  }
+}
 }
     }
   </style>
