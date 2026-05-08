@@ -267,11 +267,22 @@
     renderProducts("#hairoil-products + .products", window.BEAUTY_HAIRCARE_HAIR_OIL_PRODUCTS || [], "haircare");
     
     bindDetailsToggles();
-    
-    setTimeout(function () {
+
+window.addEventListener("load", function () {
+
+  setTimeout(function () {
+
     if (window.location.hash) {
-      history.replaceState(null, null, window.location.pathname + window.location.search);
+      history.replaceState(
+        null,
+        null,
+        window.location.pathname + window.location.search
+      );
     }
+
   }, 2500);
+
+});
+
   });
 })();
