@@ -17,9 +17,11 @@
   <meta name="keywords" content="beauty recommendations, skincare routine, haircare routine, best face wash, best shampoo, serum guide" />
   
   <style>
+  
     html {
-      scroll-behavior: smooth;
-    }
+  scroll-behavior: smooth;
+  scroll-padding-top: 95px;
+}
 
     * {
       box-sizing: border-box;
@@ -2502,6 +2504,35 @@ window.addEventListener("resize", function () {
 });
 
   </script>
+  
+<script>
+window.addEventListener("load", () => {
+
+  if (!window.location.hash) return;
+
+  const scrollToHash = () => {
+    const target = document.querySelector(window.location.hash);
+
+    if (!target) return;
+
+    const headerOffset = 95;
+
+    const elementPosition =
+      target.getBoundingClientRect().top + window.pageYOffset;
+
+    const offsetPosition = elementPosition - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth"
+    });
+  };
+
+  // Wait for products + images + layout to fully render
+  setTimeout(scrollToHash, 350);
+
+});
+</script>
   
   <script type="application/ld+json">
 {
