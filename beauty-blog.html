@@ -256,7 +256,36 @@
       position: relative;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease,
+        background-color 0.22s ease;
     }
+    
+    .blog-card.clicked {
+  transform: translateY(-2px) scale(1.015);
+
+  background: #fff7fa;
+
+  border-color: #d98ea4;
+
+  box-shadow:
+    0 0 0 3px rgba(201, 90, 123, 0.08),
+    0 10px 22px rgba(201, 90, 123, 0.16);
+}
+
+.blog-card.in-view {
+  transform: translateY(-2px) scale(1.01);
+
+  background: #fff9fb;
+
+  border-color: #e3a7b7;
+
+  box-shadow:
+    0 0 0 3px rgba(201, 90, 123, 0.08),
+    0 10px 22px rgba(201, 90, 123, 0.14);
+}
 
     .blog-media {
       position: relative;
@@ -1008,6 +1037,50 @@ document.addEventListener("click", function (e) {
     window.open(link.href, "_blank");
   }
 
+});
+
+document.querySelectorAll(".blog-card").forEach((card) => {
+
+  card.addEventListener("click", () => {
+
+    card.classList.remove("clicked");
+
+    void card.offsetWidth;
+
+    card.classList.add("clicked");
+
+    setTimeout(() => {
+      card.classList.remove("clicked");
+    }, 320);
+
+  });
+
+});
+
+const blogCards = document.querySelectorAll(".blog-card");
+
+const blogObserver = new IntersectionObserver((entries) => {
+
+  entries.forEach((entry) => {
+
+    if (entry.isIntersecting) {
+
+      entry.target.classList.add("in-view");
+
+      setTimeout(() => {
+        entry.target.classList.remove("in-view");
+      }, 700);
+
+    }
+
+  });
+
+}, {
+  threshold: 0.95
+});
+
+blogCards.forEach((card) => {
+  blogObserver.observe(card);
 });
 
   </script>
