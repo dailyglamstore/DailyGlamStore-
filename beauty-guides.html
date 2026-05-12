@@ -558,7 +558,11 @@
       border-radius: 12px;
       padding: 12px;
       box-shadow: 0 4px 12px rgba(178, 69, 90, 0.1);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease,
+        background-color 0.22s ease;
     }
 
     .mini-card:hover,
@@ -573,6 +577,30 @@
       box-shadow: 0 10px 22px rgba(178, 69, 90, 0.18);
       border-color: #d98ea4;
     }
+    
+    .mini-card.clicked {
+  transform: translateY(-2px) scale(1.015);
+
+  background: #fff7fa;
+
+  border-color: #d98ea4;
+
+  box-shadow:
+    0 0 0 3px rgba(201, 90, 123, 0.08),
+    0 10px 22px rgba(201, 90, 123, 0.16);
+}
+
+.mini-card.in-view {
+  transform: translateY(-2px) scale(1.01);
+
+  background: #fff9fb;
+
+  border-color: #e3a7b7;
+
+  box-shadow:
+    0 0 0 3px rgba(201, 90, 123, 0.08),
+    0 10px 22px rgba(201, 90, 123, 0.14);
+}
 
     .mini-card h4 {
       margin: 0 0 8px;
@@ -1676,9 +1704,49 @@
   
 });
 
+document.querySelectorAll(".mini-card").forEach((card) => {
 
-    
-    
+  card.addEventListener("click", () => {
+
+    card.classList.remove("clicked");
+
+    void card.offsetWidth;
+
+    card.classList.add("clicked");
+
+    setTimeout(() => {
+      card.classList.remove("clicked");
+    }, 320);
+
+  });
+
+});
+
+const miniCards = document.querySelectorAll(".mini-card");
+
+const miniObserver = new IntersectionObserver((entries) => {
+
+  entries.forEach((entry) => {
+
+    if (entry.isIntersecting) {
+
+      entry.target.classList.add("in-view");
+
+      setTimeout(() => {
+        entry.target.classList.remove("in-view");
+      }, 700);
+
+    }
+
+  });
+
+}, {
+  threshold: 0.95
+});
+
+miniCards.forEach((card) => {
+  miniObserver.observe(card);
+});
     
   </script>
 </body>
