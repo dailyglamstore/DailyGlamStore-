@@ -1015,50 +1015,6 @@ document.addEventListener("click", function (e) {
 
 });
 
-document.querySelectorAll(".blog-card").forEach((card) => {
-
-  card.addEventListener("click", () => {
-
-    card.classList.remove("clicked");
-
-    void card.offsetWidth;
-
-    card.classList.add("clicked");
-
-    setTimeout(() => {
-      card.classList.remove("clicked");
-    }, 320);
-
-  });
-
-});
-
-const blogCards = document.querySelectorAll(".blog-card");
-
-const blogObserver = new IntersectionObserver((entries) => {
-
-  entries.forEach((entry) => {
-
-    if (entry.isIntersecting) {
-
-      entry.target.classList.add("in-view");
-
-      setTimeout(() => {
-        entry.target.classList.remove("in-view");
-      }, 700);
-
-    }
-
-  });
-
-}, {
-  threshold: 0.95
-});
-
-blogCards.forEach((card) => {
-  blogObserver.observe(card);
-});
-
   </script>
 </body>
 </html>
