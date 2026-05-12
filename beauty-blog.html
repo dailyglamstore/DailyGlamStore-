@@ -254,6 +254,8 @@
       flex-direction: column;
       height: auto;
       position: relative;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .blog-media {
@@ -989,6 +991,22 @@ document.querySelectorAll(".section-title").forEach((heading) => {
     }, 350);
 
   });
+
+});
+
+document.addEventListener("click", function (e) {
+
+  const card = e.target.closest(".blog-card");
+
+  if (!card) return;
+
+  if (e.target.closest(".blog-btn")) return;
+
+  const link = card.querySelector(".blog-btn");
+
+  if (link && link.href) {
+    window.open(link.href, "_blank");
+  }
 
 });
 
