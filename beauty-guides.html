@@ -448,6 +448,30 @@
       justify-content: center;
       text-align: center;
     }
+    
+    .guide-card.clicked {
+  transform: translateY(-2px) scale(1.015);
+
+  background: #fff7fa;
+
+  border-color: #d98ea4;
+
+  box-shadow:
+    0 0 0 3px rgba(201, 90, 123, 0.08),
+    0 10px 24px rgba(201, 90, 123, 0.16);
+}
+
+.guide-card.in-view {
+  transform: translateY(-2px) scale(1.01);
+
+  background: #fff9fb;
+
+  border-color: #e3a7b7;
+
+  box-shadow:
+    0 0 0 3px rgba(201, 90, 123, 0.08),
+    0 10px 22px rgba(201, 90, 123, 0.14);
+}
 
     .guide-card:hover,
     .guide-card:focus-within {
@@ -1746,6 +1770,50 @@ const miniObserver = new IntersectionObserver((entries) => {
 
 miniCards.forEach((card) => {
   miniObserver.observe(card);
+});
+
+document.querySelectorAll(".guide-card").forEach((card) => {
+
+  card.addEventListener("click", () => {
+
+    card.classList.remove("clicked");
+
+    void card.offsetWidth;
+
+    card.classList.add("clicked");
+
+    setTimeout(() => {
+      card.classList.remove("clicked");
+    }, 320);
+
+  });
+
+});
+
+const guideCards = document.querySelectorAll(".guide-card");
+
+const guideObserver = new IntersectionObserver((entries) => {
+
+  entries.forEach((entry) => {
+
+    if (entry.isIntersecting) {
+
+      entry.target.classList.add("in-view");
+
+      setTimeout(() => {
+        entry.target.classList.remove("in-view");
+      }, 700);
+
+    }
+
+  });
+
+}, {
+  threshold: 0.95
+});
+
+guideCards.forEach((card) => {
+  guideObserver.observe(card);
 });
     
   </script>
