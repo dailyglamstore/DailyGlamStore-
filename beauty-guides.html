@@ -656,8 +656,36 @@
       font-size: 13px;
       color: #5c514c;
       box-shadow: 0 4px 12px rgba(178, 69, 90, 0.1);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease,
+        background-color 0.22s ease;
     }
+
+.tip-note.clicked {
+  transform: translateY(-1px) scale(1.01);
+
+  background: #fffaf7;
+
+  border-color: #efc5b8;
+
+  box-shadow:
+    0 0 0 3px rgba(230, 170, 145, 0.10),
+    0 8px 18px rgba(230, 170, 145, 0.14);
+}
+
+.tip-note.in-view {
+  transform: translateY(-1px);
+
+  background: #fffdfb;
+
+  border-color: #f1d2c7;
+
+  box-shadow:
+    0 0 0 3px rgba(230, 170, 145, 0.08),
+    0 7px 16px rgba(230, 170, 145, 0.12);
+}
 
     .tip-note:hover,
     .tip-note:focus-within {
@@ -1814,6 +1842,50 @@ const guideObserver = new IntersectionObserver((entries) => {
 
 guideCards.forEach((card) => {
   guideObserver.observe(card);
+});
+
+document.querySelectorAll(".tip-note").forEach((card) => {
+
+  card.addEventListener("click", () => {
+
+    card.classList.remove("clicked");
+
+    void card.offsetWidth;
+
+    card.classList.add("clicked");
+
+    setTimeout(() => {
+      card.classList.remove("clicked");
+    }, 320);
+
+  });
+
+});
+
+const tipCards = document.querySelectorAll(".tip-note");
+
+const tipObserver = new IntersectionObserver((entries) => {
+
+  entries.forEach((entry) => {
+
+    if (entry.isIntersecting) {
+
+      entry.target.classList.add("in-view");
+
+      setTimeout(() => {
+        entry.target.classList.remove("in-view");
+      }, 700);
+
+    }
+
+  });
+
+}, {
+  threshold: 0.95
+});
+
+tipCards.forEach((card) => {
+  tipObserver.observe(card);
 });
     
   </script>
