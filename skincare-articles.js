@@ -104,7 +104,7 @@ window.SKINCARE_ARTICLES = {
       },
       {
         text: "Browse Skincare Recommendations",
-        href: "/beauty-recommendations.html#skincare-recommendations",
+        href: "/#skincare-recommendations",
         newTab: true
       }
     ]
