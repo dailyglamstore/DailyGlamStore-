@@ -104,7 +104,7 @@ window.HAIRCARE_ARTICLES = {
       },
       {
         text: "Browse Haircare Recommendations",
-        href: "/beauty-recommendations.html#haircare-recommendations",
+        href: "/#haircare-recommendations",
         newTab: true
       }
     ]
