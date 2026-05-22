@@ -869,68 +869,75 @@
       justify-self: center;
     }
     
-    .blog-promo-card {
-  max-width: 680px;
-  margin: 40px auto;
+   .blog-promo-card {
+  max-width: 760px;
+  margin: 32px auto;
   background: #fff;
   border: 1.5px solid #f1cfc4;
-  border-radius: 22px;
-  padding: 28px 20px;
+  border-radius: 14px;
+  padding: 24px 16px;
   text-align: center;
   box-shadow: 0 6px 16px rgba(178, 69, 90, 0.08);
+
+  width: calc(100% - 32px);
 }
 
 .blog-promo-card h2 {
-  margin: 0 0 14px;
-  font-size: 34px;
+  margin: 0 0 8px;
   color: #7a3b4a;
+  font-size: 24px;
+  line-height: 1.3;
 }
 
 .blog-promo-card p {
   max-width: 620px;
-  margin: 0 auto 22px;
+  margin: 0 auto;
   color: #9a6b5f;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
 .blog-promo-buttons {
+  margin-top: 14px;
   display: flex;
-  flex-direction: column;
-  gap: 14px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .promo-btn {
-  display: block;
+  display: inline-block;
   text-decoration: none;
   background: #b2455a;
   color: #fff;
-  padding: 16px;
-  border-radius: 14px;
-  font-size: 20px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
   font-weight: 700;
+  min-width: 220px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .promo-btn:hover {
   opacity: 0.95;
+  transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {
-  .blog-promo-card {
-    margin: 32px 16px;
-    padding: 24px 18px;
-  }
-
   .blog-promo-card h2 {
-    font-size: 24px;
+    font-size: 21px;
   }
 
   .blog-promo-card p {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .promo-btn {
-    font-size: 18px;
+    width: 100%;
+    max-width: 300px;
+    min-width: 0;
+    font-size: 13px;
   }
 }
 
