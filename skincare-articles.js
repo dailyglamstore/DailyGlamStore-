@@ -14,7 +14,7 @@ window.SKINCARE_ARTICLES = {
     metaLine: "Beginner-friendly • Easy to follow • Daily routine",
 
     image: {
-      src: "images/beauty-images/blog/simple-skincare-routine-healthy-glowing-skin.JPG",
+      src: "/images/beauty-images/blog/simple-skincare-routine-healthy-glowing-skin.JPG",
       alt: "Simple skincare routine for healthy and glowing skin"
     },
 
