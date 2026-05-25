@@ -14,7 +14,7 @@ window.HAIRCARE_ARTICLES = {
     metaLine: "Beginner-friendly • Easy to follow • Daily routine",
 
     image: {
-      src: "images/beauty-images/blog/simple-haircare-routine-healthy-hair.JPG",
+      src: "/images/beauty-images/blog/simple-haircare-routine-healthy-hair.JPG",
       alt: "Simple haircare routine for healthy hair with shampoo conditioner serum and oil steps"
     },
 
