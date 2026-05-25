@@ -108,110 +108,111 @@ window.SKINCARE_ARTICLES = {
         newTab: true
       }
     ]
-  }
-  
-  "how-to-choose-face-wash": {
-  key: "how-to-choose-face-wash",
-  url: "/how-to-choose-face-wash.html",
-
-  category: "Skincare",
-
-  badge: "",
-  date: "2026-05-25T18:30:00",
-
-  title: "How to Choose the Right Face Wash for Your Skin Type",
-
-  intro:
-    "Choosing the right face wash depends on your skin type and concerns. This beginner-friendly guide explains how to select a cleanser for oily, dry, combination, and sensitive skin.",
-
-  metaLine:
-    "Beginner-friendly • Skin type guide • Easy skincare tips",
-
-  image: {
-    src: "images/beauty-images/blog/how-to-choose-face-wash.JPG",
-    alt: "How to choose the right face wash for your skin type"
   },
 
-  sections: [
-    {
-      heading: "Why Choosing the Right Face Wash Matters",
-      paragraphs: [
-        "Face wash is one of the most important skincare basics because it helps remove dirt, oil, sweat, and daily buildup. But using the wrong cleanser can leave skin feeling too dry, oily, or irritated."
-      ]
+  "how-to-choose-face-wash": {
+    key: "how-to-choose-face-wash",
+    url: "/articles/how-to-choose-face-wash.html",
+
+    category: "Skincare",
+
+    badge: "",
+    date: "2026-05-25T18:30:00",
+
+    title: "How to Choose the Right Face Wash for Your Skin Type",
+
+    intro:
+      "Choosing the right face wash depends on your skin type and concerns. This beginner-friendly guide explains how to select a cleanser for oily, dry, combination, and sensitive skin.",
+
+    metaLine:
+      "Beginner-friendly • Skin type guide • Easy skincare tips",
+
+    image: {
+      src: "/images/beauty-images/blog/simple-skincare-routine-healthy-glowing-skin.JPG",
+      alt: "How to choose the right face wash for your skin type"
     },
 
-    {
-      heading: "Face Wash for Oily Skin",
-      paragraphs: [
-        "If your skin becomes shiny quickly or feels greasy, choose a face wash that helps remove excess oil without over-drying."
-      ],
-      bullets: [
-        "Look for ingredients like salicylic acid or niacinamide",
-        "Foaming cleansers often work well",
-        "Avoid overly harsh products that make skin feel tight"
-      ]
-    },
+    sections: [
+      {
+        heading: "Why Choosing the Right Face Wash Matters",
+        paragraphs: [
+          "Face wash is one of the most important skincare basics because it helps remove dirt, oil, sweat, and daily buildup. But using the wrong cleanser can leave skin feeling too dry, oily, or irritated."
+        ]
+      },
 
-    {
-      heading: "Face Wash for Dry Skin",
-      paragraphs: [
-        "Dry skin often feels rough, flaky, or tight after washing. A gentle hydrating cleanser usually works better."
-      ],
-      bullets: [
-        "Look for hydrating ingredients",
-        "Cream-based cleansers may feel gentler",
-        "Avoid strong stripping formulas"
-      ]
-    },
+      {
+        heading: "Face Wash for Oily Skin",
+        paragraphs: [
+          "If your skin becomes shiny quickly or feels greasy, choose a face wash that helps remove excess oil without over-drying."
+        ],
+        bullets: [
+          "Look for ingredients like salicylic acid or niacinamide",
+          "Foaming cleansers often work well",
+          "Avoid overly harsh products that make skin feel tight"
+        ]
+      },
 
-    {
-      heading: "Face Wash for Combination Skin",
-      paragraphs: [
-        "Combination skin may feel oily in some areas and dry in others. A balanced cleanser usually works best."
-      ],
-      bullets: [
-        "Choose gentle everyday cleansers",
-        "Avoid products that feel too harsh",
-        "Focus on balance rather than extreme oil removal"
-      ]
-    },
+      {
+        heading: "Face Wash for Dry Skin",
+        paragraphs: [
+          "Dry skin often feels rough, flaky, or tight after washing. A gentle hydrating cleanser usually works better."
+        ],
+        bullets: [
+          "Look for hydrating ingredients",
+          "Cream-based cleansers may feel gentler",
+          "Avoid strong stripping formulas"
+        ]
+      },
 
-    {
-      heading: "Trending Ingredients People Search For",
-      paragraphs: [
-        "Many skincare users today search for ingredients after watching influencer skincare videos. Ingredients like niacinamide and salicylic acid are commonly discussed for oily skin, while hydrating ingredients are preferred for dryness."
-      ],
-      bullets: [
-        "Niacinamide → commonly chosen for oil control and marks",
-        "Salicylic Acid → often discussed for oily and acne-prone skin",
-        "Hydrating cleansers → preferred for dry skin"
-      ]
-    },
+      {
+        heading: "Face Wash for Combination Skin",
+        paragraphs: [
+          "Combination skin may feel oily in some areas and dry in others. A balanced cleanser usually works best."
+        ],
+        bullets: [
+          "Choose gentle everyday cleansers",
+          "Avoid products that feel too harsh",
+          "Focus on balance rather than extreme oil removal"
+        ]
+      },
 
-    {
-      heading: "Common Face Wash Mistakes to Avoid",
-      bullets: [
-        "Over-washing the face",
-        "Using strong cleansers too often",
-        "Changing products too quickly",
-        "Choosing products only because they are trending"
-      ]
-    }
-  ],
+      {
+        heading: "Trending Ingredients People Search For",
+        paragraphs: [
+          "Many skincare users today search for ingredients after watching influencer skincare videos. Ingredients like niacinamide and salicylic acid are commonly discussed for oily skin, while hydrating ingredients are preferred for dryness."
+        ],
+        bullets: [
+          "Niacinamide → commonly chosen for oil control and marks",
+          "Salicylic Acid → often discussed for oily and acne-prone skin",
+          "Hydrating cleansers → preferred for dry skin"
+        ]
+      },
 
-  ctaTitle: "Need help building your skincare routine?",
+      {
+        heading: "Common Face Wash Mistakes to Avoid",
+        bullets: [
+          "Over-washing the face",
+          "Using strong cleansers too often",
+          "Changing products too quickly",
+          "Choosing products only because they are trending"
+        ]
+      }
+    ],
 
-  ctaText:
-    "Explore skincare guides or browse our beauty recommendations to build a simple routine.",
+    ctaTitle: "Need help building your skincare routine?",
 
-  ctaButtons: [
-    {
-      text: "Explore Beauty Guides",
-      href: "/beauty-guides.html"
-    },
-    {
-      text: "Browse Skincare Recommendations",
-      href: "/#skincare-recommendations"
-    }
-  ]
+    ctaText:
+      "Explore skincare guides or browse our beauty recommendations to build a simple routine.",
+
+    ctaButtons: [
+      {
+        text: "Explore Beauty Guides",
+        href: "/beauty-guides.html"
+      },
+      {
+        text: "Browse Skincare Recommendations",
+        href: "/#skincare-recommendations"
+      }
+    ]
+  }
 };
