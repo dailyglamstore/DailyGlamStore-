@@ -1,17 +1,26 @@
 window.SKINCARE_ARTICLES = {
-  "skincare-routine": {
-    key: "skincare-routine",
-    url: "/skincare-routine.html",
+ "skincare-routine": {
+  key: "skincare-routine",
+  url: "/skincare-routine.html",
 
-    category: "Skincare",
+  category: "Skincare",
 
-    badge: "featured",
-    date: "2026-04-29T18:30:00",
+  badge: "featured",
+  date: "2026-04-29T18:30:00",
 
-    title: "Simple Skincare Routine for Healthy & Glowing Skin",
-    intro:
-      "A simple daily routine can help keep your skin clean, balanced, and glowing. This guide explains the basic skincare steps in the right order, along with quick links to guides and recommendations.",
-    metaLine: "Beginner-friendly • Easy to follow • Daily routine",
+  title: "Simple Skincare Routine for Healthy & Glowing Skin",
+
+  seoTitle:
+    "Simple Skincare Routine for Healthy & Glowing Skin | Daily Glam Store",
+
+  intro:
+    "A simple daily routine can help keep your skin clean, balanced, and glowing.",
+
+  seoDescription:
+    "Learn an easy skincare routine with face wash, serum, moisturiser and sunscreen steps for healthy glowing skin.",
+
+  metaLine:
+    "Beginner-friendly • Easy to follow • Daily routine",
 
     image: {
       src: "images/beauty-images/blog/simple-skincare-routine-healthy-glowing-skin.JPG",
