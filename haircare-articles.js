@@ -2,16 +2,25 @@ window.HAIRCARE_ARTICLES = {
   "haircare-routine": {
     key: "haircare-routine",
     url: "/haircare-routine.html",
-    
+
     category: "Haircare",
 
-    badge: "new",            
+    badge: "new",
     date: "2026-04-30T17:40:00",
 
     title: "Simple Haircare Routine for Healthy Hair",
+
+    seoTitle:
+      "Simple Haircare Routine for Healthy Hair | Daily Glam Store",
+
     intro:
-      "A simple haircare routine can help keep hair cleaner, smoother, and easier to manage. This guide explains the basic steps in the right order, along with quick links to guides and recommendations.",
-    metaLine: "Beginner-friendly • Easy to follow • Daily routine",
+      "A simple haircare routine can help keep hair cleaner, smoother, and easier to manage.",
+
+    seoDescription:
+      "Learn an easy haircare routine with shampoo, conditioner, hair serum and hair oil steps for healthy manageable hair.",
+
+    metaLine:
+      "Beginner-friendly • Easy to follow • Daily routine",
 
     image: {
       src: "images/beauty-images/blog/simple-haircare-routine-healthy-hair.JPG",
@@ -93,6 +102,7 @@ window.HAIRCARE_ARTICLES = {
     ],
 
     ctaTitle: "Ready to build your routine?",
+
     ctaText:
       "Explore quick guides for easier decisions or browse our curated haircare recommendations.",
 
