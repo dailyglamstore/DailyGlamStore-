@@ -259,4 +259,4 @@ window.SKINCARE_ARTICLES = {
     }
   ]
 }
-}
+};
