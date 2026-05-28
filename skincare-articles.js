@@ -260,4 +260,4 @@ window.SKINCARE_ARTICLES = {
     }
   ]
 }
-  };
+};
