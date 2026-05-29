@@ -24,7 +24,8 @@
 
   var heroNode = document.getElementById("articleHeroContent");
   var articleNode = document.getElementById("articleContent");
-  var contentContainer = document.querySelector(".article-content");
+  var contentContainer =
+  document.getElementById("articleContentWrapper");
 
   if (!heroNode || !articleNode) {
     return;
