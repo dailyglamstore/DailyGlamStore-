@@ -161,7 +161,7 @@ window.SKINCARE_ARTICLES = {
 
     {
       heading:
-        "How to Identify Your Skin Type",
+        "How to Identify Your Skin Type?",
       paragraphs: [
         "Before choosing a face wash, it helps to understand your skin type. Skin needs can vary depending on oiliness, dryness, sensitivity, or breakouts."
       ],
