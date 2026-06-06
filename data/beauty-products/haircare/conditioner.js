@@ -7,7 +7,7 @@
   brand: "Lotus Botanicals",
   image: "images/beauty-images/haircare/conditioner/lotus-red-onion-conditioner.JPG",
   url: "https://www.lotusbotanicals.com/products/red-onion-nutritive-hair-conditioner?ref=DGS-Deepak",
-  priceText: "₹395 + 20% OFF with our code",
+  priceText: "₹395 | Offers Available",
   details: [
     "Reduces hair fall & strengthens roots",
     "Red Onion extract boosts growth & scalp health",
