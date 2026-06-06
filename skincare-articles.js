@@ -153,7 +153,7 @@ window.SKINCARE_ARTICLES = {
   sections: [
     {
       heading:
-        "Why Choosing the Right Face Wash Matters",
+        "Why Choosing the Right Face Wash Matters?",
       paragraphs: [
         "Face wash is usually the first step in a skincare routine. A cleanser that suits your skin type can help remove dirt, sweat, oil, and daily buildup without making skin feel too dry or uncomfortable. Choosing the wrong face wash may leave skin feeling tight, oily, or irritated."
       ]
