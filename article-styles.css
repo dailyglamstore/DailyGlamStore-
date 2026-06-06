@@ -553,3 +553,37 @@ html { scroll-behavior: smooth; }
     @media (min-width: 769px) {
       .menu-toggle { display: none; }
     }
+    
+    .related-articles {
+  margin-top: 34px;
+  padding: 22px 18px;
+  background: var(--white);
+  border: 1.5px solid var(--border-soft);
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(178, 69, 90, 0.08);
+}
+
+.related-articles h2 {
+  margin: 0 0 12px;
+  color: var(--brand-dark);
+  font-size: 24px;
+}
+
+.related-articles-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.related-articles-list li {
+  margin-bottom: 10px;
+}
+
+.related-articles-list a {
+  color: var(--brand);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.related-articles-list a:hover {
+  color: var(--brand-dark);
+}
