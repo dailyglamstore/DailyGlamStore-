@@ -7,7 +7,7 @@
       brand: "Lotus Botanicals",
       image: "images/beauty-images/top-picks/lotus-vitamin-c-skin-brightening-day-creme.JPG",
       url: "https://www.lotusbotanicals.com/products/vitamin-c-skin-brightening-day-creme?ref=DGS-Deepak",
-      priceText: "₹685 + 20% OFF with our code",
+      priceText: "₹685 | Offers Available",
       details: [
         "Reduces dark spots & uneven skin tone",
         "Vitamin C + Niacinamide for visible glow",
@@ -23,7 +23,7 @@
       brand: "Lotus Botanicals",
       image: "images/beauty-images/top-picks/papaya-niacinamide-serum.JPG",
       url: "https://www.lotusbotanicals.com/products/copy-of-papaya-niacinamide-brighten-glow-skin-clarifying-super-serum?ref=DGS-Deepak",
-      priceText: "₹685 + 20% OFF with our code",
+      priceText: "₹685 | Offers Available",
       details: [
         "Reduces dark spots & acne marks",
         "Niacinamide improves tone & controls oil",
@@ -39,7 +39,7 @@
       brand: "Lotus Botanicals",
       image: "images/beauty-images/top-picks/lotus-vitamin-c-facial-kit.JPG",
       url: "https://www.lotusbotanicals.com/products/vitamin-c-skin-brightening-facial-kit?ref=DGS-Deepak",
-      priceText: "₹995 + 20% OFF with our code",
+      priceText: "₹995 | Offers Available",
       details: [
         "Instant glow & skin brightening facial",
         "Vitamin C reduces dark spots",
@@ -55,7 +55,7 @@
       brand: "Lotus Botanicals",
       image: "images/beauty-images/top-picks/lotus-supercharge-skincare-kit.JPG",
       url: "https://www.lotusbotanicals.com/products/supercharge-skincare-essentials-kit?ref=DGS-Deepak",
-      priceText: "₹1295 + 20% OFF with our code",
+      priceText: "₹1295 | Offers Available",
       details: [
         "Complete daily skincare routine kit",
         "Targets dullness, spots & uneven tone",
