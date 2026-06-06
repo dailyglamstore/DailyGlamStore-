@@ -7,7 +7,7 @@
   brand: "Lotus Botanicals",
   image: "images/beauty-images/haircare/shampoo/lotus-ginger-root-dandruff-control-shampoo.JPG",
   url: "https://www.lotusbotanicals.com/products/ginger-root-dandruff-control-shampoo?ref=DGS-Deepak",
-  priceText: "₹450 + 20% OFF with our code",
+  priceText: "₹450 | Offers Available",
   details: [
     "Controls dandruff & scalp itchiness",
     "Ginger & Tea Tree fight buildup",
