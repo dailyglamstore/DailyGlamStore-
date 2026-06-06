@@ -7,7 +7,7 @@
       brand: "Lotus Botanicals",
       image: "images/beauty-images/skincare/serum/lotus-vitamin-c-serum.JPG",
       url: "https://www.lotusbotanicals.com/products/vitamin-c-skin-brightening-face-serum?ref=DGS-Deepak",
-      priceText: "₹845 + 20% OFF with our code",
+      priceText: "₹845 | Offers Available",
       details: [
         "Brightens dull skin & boosts glow",
         "Vitamin C fades dark spots",
