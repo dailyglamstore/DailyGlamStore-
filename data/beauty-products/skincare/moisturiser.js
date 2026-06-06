@@ -7,7 +7,7 @@
   brand: "Lotus Botanicals",
   image: "images/beauty-images/skincare/moisturiser/lotus-vitamin-c-moisturiser.JPG",
   url: "https://www.lotusbotanicals.com/products/vitamin-c-skin-brightening-face-moisturiser?ref=DGS-Deepak",
-  priceText: "₹595 + 20% OFF with our code",
+  priceText: "₹595 | Offers Available",
   details: [
     "Brightens skin & boosts natural glow",
     "Vitamin C reduces dark spots",
