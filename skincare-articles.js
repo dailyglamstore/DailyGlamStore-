@@ -100,6 +100,13 @@ window.SKINCARE_ARTICLES = {
         ]
       }
     ],
+    
+relatedArticle: {
+  text:
+    "Read also: How to Choose the Right Face Wash",
+  href:
+    "/how-to-choose-face-wash.html"
+},
 
     ctaTitle: "Ready to build your routine?",
     ctaText:
@@ -236,6 +243,13 @@ window.SKINCARE_ARTICLES = {
       ]
     }
   ],
+  
+relatedArticle: {
+  text:
+    "Read also: Simple Skincare Routine",
+  href:
+    "/skincare-routine.html"
+},
 
   ctaTitle:
     "Build a Simple Skincare Routine",
