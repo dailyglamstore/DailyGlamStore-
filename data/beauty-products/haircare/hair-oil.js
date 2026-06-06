@@ -7,7 +7,7 @@
   brand: "Lotus Botanicals",
   image: "images/beauty-images/haircare/hair-oil/lotus-red-onion-hair-fall-control-hair-oil.JPG",
   url: "https://www.lotusbotanicals.com/products/red-onion-hair-fall-control-hair-oil?ref=DGS-Deepak",
-  priceText: "₹595 + 20% OFF with our code",
+  priceText: "₹595 | Offers Available",
   details: [
     "Helps reduce hair fall",
     "Red Onion supports stronger roots",
