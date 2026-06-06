@@ -129,7 +129,7 @@ window.SKINCARE_ARTICLES = {
   date: "2026-05-25T18:30:00",
 
   title:
-    "How to Choose the Right Face Wash for Your Skin Type",
+    "How to Choose the Right Face Wash for Your Skin Type?",
 
   seoTitle:
     "How to Choose the Right Face Wash for Your Skin Type | Daily Glam Store",
