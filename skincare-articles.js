@@ -101,12 +101,14 @@ window.SKINCARE_ARTICLES = {
       }
     ],
     
-relatedArticle: {
-  text:
-    "Read also: How to Choose the Right Face Wash",
-  href:
-    "/how-to-choose-face-wash.html"
-},
+relatedArticles: [
+  {
+    title:
+      "How to Choose the Right Face Wash for Your Skin Type?",
+    href:
+      "/how-to-choose-face-wash.html"
+  }
+],
 
     ctaTitle: "Ready to build your routine?",
     ctaText:
@@ -244,12 +246,14 @@ relatedArticle: {
     }
   ],
   
-relatedArticle: {
-  text:
-    "Read also: Simple Skincare Routine",
-  href:
-    "/skincare-routine.html"
-},
+relatedArticles: [
+  {
+    title:
+      "Simple Skincare Routine for Healthy & Glowing Skin",
+    href:
+      "/skincare-routine.html"
+  }
+],
 
   ctaTitle:
     "Build a Simple Skincare Routine",
