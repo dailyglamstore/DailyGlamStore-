@@ -7,7 +7,7 @@
   brand: "Lotus Botanicals",
   image: "images/beauty-images/skincare/facewash/lotus-ubtan-de-tan-radiance-face-wash.JPG",
   url: "https://www.lotusbotanicals.com/products/copy-of-ubtan-de-tan-radiance-face-wash?ref=DGS-Deepak",
-  priceText: "₹295 + 20% OFF with our code",
+  priceText: "₹295 | Offers Available",
   details: [
     "Helps remove tan & dullness",
     "Ubtan glow care for fresh skin",
