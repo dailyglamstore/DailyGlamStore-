@@ -19,7 +19,7 @@
 },
 {
   id: "bebodywise-lightest-mineral-sunscreen-spf50",
-  name: "Lightest Mineral Sunscreen SPF 50+",
+  name: "Niacinamide Lightest Mineral Sunscreen SPF 50+",
   brand: "Be Bodywise",
   image: "images/beauty-images/skincare/sunscreen/be-bodywise-lightest-mineral-sunscreen-spf50.JPG",
   url: "https://track.vcommission.com/t/MTI5Njk1XzEzMDQ0/?source=DGS_Home_SPF50&url=https://bebodywise.com/product/lightest-mineral-sunscreen-spf50?widgetSourceId=HOME-category-product-grid_1",
