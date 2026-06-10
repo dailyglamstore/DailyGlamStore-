@@ -16,6 +16,22 @@
     "Non-greasy with radiant finish",
     "Best for all skin types, dull/tanned skin"
   ]
+},
+{
+  id: "bebodywise-lightest-mineral-sunscreen-spf50",
+  name: "Lightest Mineral Sunscreen SPF 50+",
+  brand: "Be Bodywise",
+  image: "images/beauty-images/skincare/sunscreen/be-bodywise-lightest-mineral-sunscreen-spf50.JPG",
+  url: "https://track.vcommission.com/t/MTI5Njk1XzEzMDQ0/?source=DGS_Home_SPF50&url=https://bebodywise.com/product/lightest-mineral-sunscreen-spf50?widgetSourceId=HOME-category-product-grid_1",
+    priceText: "₹899 | Offers Available",
+  details: [
+    "100% Mineral SPF 50+ with UVA/UVB protection",
+    "Zinc Oxide + Titanium Dioxide sun filters",
+    "Ultra-light, non-greasy & minimal white cast",
+    "Niacinamide + Ceramides support skin barrier",
+    "Safe for sensitive, acne-prone & pregnant women",
+    "Fragrance-free with pollution defense technology"
+  ]
 }
 ];
 })();
