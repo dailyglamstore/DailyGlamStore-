@@ -18,6 +18,22 @@
       ]
     },
     {
+  id: "bebodywise-advanced-hair-growth-serum",
+  name: "Advanced Hair Growth Serum",
+  brand: "Be Bodywise",
+  image: "images/beauty-images/top-picks/bebodywise-advanced-hair-growth-serum.JPG",
+  url: "https://bebodywise.com/product/hair-growth-serum-roll-on?ref=DGS-Deepak",
+  priceText: "₹599 | Offers Available",
+  details: [
+    "Helps reduce hair fall & thinning",
+    "Redensyl + Rosemary for hair growth",
+    "Strengthens roots & improves scalp health",
+    "Easy roll-on scalp application, daily use",
+    "Healthier, fuller-looking hair",
+    "Best for hair fall & thinning hair"
+  ]
+},
+    {
       id: "lotus-papaya-niacinamide-serum",
       name: "Papaya & Niacinamide Brighten & Glow Skin Clarifying Super Serum",
       brand: "Lotus Botanicals",
