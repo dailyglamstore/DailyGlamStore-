@@ -22,7 +22,7 @@
   name: "Advanced Hair Growth Serum",
   brand: "Be Bodywise",
   image: "images/beauty-images/top-picks/bebodywise-advanced-hair-growth-serum.JPG",
-  url: "https://bebodywise.com/product/hair-growth-serum-roll-on?ref=DGS-Deepak",
+  url: "https://track.vcommission.com/t/MTI5Njk1XzEzMDQ0/?p1=bebodywise-advanced-hair-growth-serum&source=DGS-Home-Top-Picks&url=https://bebodywise.com/product/hair-growth-serum-roll-on",
   priceText: "₹599 | Offers Available",
   details: [
     "Helps reduce hair fall & thinning",
