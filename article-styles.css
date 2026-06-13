@@ -589,3 +589,39 @@ html { scroll-behavior: smooth; }
 .related-articles-list a:hover {
   text-decoration: underline;
 }
+
+.table-of-contents {
+  background: #fffaf8;
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  padding: 14px 18px;
+  margin: 0 0 28px;
+}
+
+.table-of-contents h2 {
+  margin: 0 0 12px;
+  font-size: 22px;
+}
+
+.toc-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.toc-list li {
+  margin-bottom: 8px;
+}
+
+.toc-list li:last-child {
+  margin-bottom: 0;
+}
+
+.toc-list a {
+  color: var(--brand);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.toc-list a:hover {
+  text-decoration: underline;
+}
