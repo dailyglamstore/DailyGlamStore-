@@ -75,84 +75,117 @@
     "</figure>"
   ].join("\n");
 
-  var sectionMarkup =
-    (article.sections || [])
-      .map(function (section) {
-        var sectionParts = [];
+  var tocItems = [];
+
+var sectionMarkup =
+  (article.sections || [])
+    .map(function (
+      section,
+      index
+    ) {
+      var sectionParts = [];
+
+      var headingId =
+        "section-" + index;
+
+      tocItems.push(
+        '<li><a href="#' +
+          headingId +
+          '">' +
+          escapeHtml(
+            section.heading
+          ) +
+          "</a></li>"
+      );
+
+      sectionParts.push(
+        '<h2 id="' +
+          headingId +
+          '">' +
+          escapeHtml(
+            section.heading
+          ) +
+          "</h2>"
+      );
+
+      (
+        section.paragraphs || []
+      ).forEach(function (
+        paragraph
+      ) {
+        sectionParts.push(
+          "<p>" +
+            escapeHtml(
+              paragraph
+            ) +
+            "</p>"
+        );
+      });
+
+      if (
+        section.bullets &&
+        section.bullets.length
+      ) {
+        sectionParts.push(
+          '<ul class="article-list">'
+        );
+
+        section.bullets.forEach(
+          function (bullet) {
+            sectionParts.push(
+              "<li>" +
+                escapeHtml(
+                  bullet
+                ) +
+                "</li>"
+            );
+          }
+        );
 
         sectionParts.push(
-          "<h2>" +
+          "</ul>"
+        );
+      }
+
+      if (
+        section.guideLinkText &&
+        section.guideLinkHref
+      ) {
+        sectionParts.push(
+          '<p class="guide-line">👉 Explore our <a class="guide-link" href="' +
             escapeHtml(
-              section.heading
+              section.guideLinkHref
             ) +
-            "</h2>"
+            '"' +
+            buildTargetAttributes(
+              section.guideLinkNewTab
+            ) +
+            ">" +
+            escapeHtml(
+              section.guideLinkText
+            ) +
+            "</a></p>"
         );
+      }
 
-        (
-          section.paragraphs || []
-        ).forEach(function (
-          paragraph
-        ) {
-          sectionParts.push(
-            "<p>" +
-              escapeHtml(
-                paragraph
-              ) +
-              "</p>"
-          );
-        });
+      return sectionParts.join(
+        "\n"
+      );
+    })
+    .join("\n\n");
 
-        if (
-          section.bullets &&
-          section.bullets.length
-        ) {
-          sectionParts.push(
-            '<ul class="article-list">'
-          );
-
-          section.bullets.forEach(
-            function (bullet) {
-              sectionParts.push(
-                "<li>" +
-                  escapeHtml(
-                    bullet
-                  ) +
-                  "</li>"
-              );
-            }
-          );
-
-          sectionParts.push(
-            "</ul>"
-          );
-        }
-
-        if (
-          section.guideLinkText &&
-          section.guideLinkHref
-        ) {
-          sectionParts.push(
-            '<p class="guide-line">👉 Explore our <a class="guide-link" href="' +
-              escapeHtml(
-                section.guideLinkHref
-              ) +
-              '"' +
-              buildTargetAttributes(
-                section.guideLinkNewTab
-              ) +
-              ">" +
-              escapeHtml(
-                section.guideLinkText
-              ) +
-              "</a></p>"
-          );
-        }
-
-        return sectionParts.join(
-          "\n"
-        );
-      })
-      .join("\n\n");
+var tocMarkup =
+  article.showTableOfContents &&
+  tocItems.length
+    ? [
+        '<section class="table-of-contents">',
+        "<h2>Quick Navigation</h2>",
+        '<ul class="toc-list">',
+        tocItems.join("\n"),
+        "</ul>",
+        "</section>"
+      ].join("\n")
+    : "";
 
   var relatedArticlesMarkup =
     article.relatedArticles &&
