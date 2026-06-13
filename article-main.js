@@ -242,7 +242,9 @@ var tocMarkup =
       .join("\n");
 
   articleNode.innerHTML = [
-    sectionMarkup,
+  tocMarkup,
+
+  sectionMarkup,
 
     relatedArticlesMarkup,
 
