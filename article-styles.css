@@ -242,6 +242,7 @@ html { scroll-behavior: smooth; }
       font-size: 28px;
       line-height: 1.25;
       color: var(--brand-dark);
+      scroll-margin-top: 95px;
     }
 
     .article-content h2:first-child { margin-top: 0; }
