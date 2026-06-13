@@ -277,5 +277,91 @@ relatedArticles: [
       newTab: true
     }
   ]
+},
+
+"lotus-vs-bodywise-sunscreen": {
+  key: "lotus-vs-bodywise-sunscreen",
+
+  url:
+    "/lotus-vs-bodywise-sunscreen.html",
+
+  category: "Skincare",
+
+  showTableOfContents: true,
+
+  badge: "featured",
+
+  date: "2026-06-13T18:30:00",
+
+  title:
+    "Lotus Sunscreen vs Be Bodywise Sunscreen: Which SPF 50 Mineral Sunscreen Is Better?",
+
+  seoTitle:
+    "Lotus Sunscreen vs Be Bodywise Sunscreen | SPF 50 Comparison",
+
+  intro:
+    "Confused between Lotus SPF 50 mineral sunscreen and Be Bodywise Lightest Mineral Sunscreen SPF 50? Here is a simple comparison of texture, ingredients, finish, and suitability.",
+
+  seoDescription:
+    "Compare Lotus SPF 50 mineral sunscreen vs Be Bodywise Lightest Mineral Sunscreen SPF 50 with differences in texture, ingredients, skin type suitability, and finish.",
+
+  metaLine:
+    "Mineral sunscreen • SPF 50 comparison • Beginner-friendly",
+
+  image: {
+    src:
+      "images/beauty-images/blog/lotus-vs-bodywise-sunscreen.JPG",
+
+    alt:
+      "Lotus sunscreen vs Be Bodywise sunscreen comparison"
+  },
+
+  sections: [
+    {
+      heading:
+        "Lotus Sunscreen vs Be Bodywise Sunscreen",
+      paragraphs: [
+        "Choosing the right mineral sunscreen can feel confusing when both options claim SPF 50 protection. Lotus and Be Bodywise are popular skincare brands, but their sunscreen texture, finish, and skin suitability may feel different depending on your needs."
+      ]
+    }
+  ],
+
+  relatedArticles: [
+    {
+      title:
+        "Simple Skincare Routine for Healthy & Glowing Skin",
+
+      href:
+        "/skincare-routine.html"
+    }
+  ],
+
+  ctaTitle:
+    "Explore More Skincare Guides",
+
+  ctaText:
+    "Browse skincare guides and sunscreen recommendations to choose products more confidently.",
+
+  ctaButtons: [
+    {
+      text:
+        "Explore Beauty Guides",
+
+      href:
+        "/beauty-guides.html",
+
+      newTab: true
+    },
+
+    {
+      text:
+        "Browse Skincare Recommendations",
+
+      href:
+        "/#skincare-recommendations",
+
+      newTab: true
+    }
+  ]
 }
 };
