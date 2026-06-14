@@ -315,6 +315,46 @@ relatedArticles: [
     alt:
       "Lotus sunscreen vs Be Bodywise sunscreen comparison"
   },
+  
+  comparisonTable: {
+  headers: [
+    "Feature",
+    "Lotus Sunscreen",
+    "Be Bodywise Sunscreen"
+  ],
+
+  rows: [
+    [
+      "SPF Protection",
+      "SPF 50 PA+++",
+      "SPF 50+"
+    ],
+
+    [
+      "Type",
+      "Mineral sunscreen",
+      "Mineral sunscreen"
+    ],
+
+    [
+      "Finish",
+      "Glow finish",
+      "Lightweight natural finish"
+    ],
+
+    [
+      "Best For",
+      "Glow and de-tan focus",
+      "Lightweight daily use"
+    ],
+
+    [
+      "Texture",
+      "Slightly creamier",
+      "Lightweight texture"
+    ]
+  ]
+},
 
   sections: [
     {
