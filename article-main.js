@@ -76,67 +76,6 @@
   ].join("\n");
 
   var tocItems = [];
-  
-var comparisonTableMarkup = "";
-
-if (
-  article.comparisonTable &&
-  article.comparisonTable.headers &&
-  article.comparisonTable.rows
-) {
-  comparisonTableMarkup = [
-    '<section class="comparison-table-section">',
-    '  <h2>' +
-      escapeHtml(
-        article.comparisonTable.title ||
-        "Quick Comparison"
-      ) +
-      '</h2>',
-
-    '  <div class="comparison-table-wrapper">',
-    '    <table class="comparison-table">',
-
-    '      <thead>',
-    '        <tr>',
-
-    article.comparisonTable.headers
-      .map(function(header) {
-        return (
-          '<th>' +
-          escapeHtml(header) +
-          '</th>'
-        );
-      })
-      .join("\n"),
-
-    '        </tr>',
-    '      </thead>',
-
-    '      <tbody>',
-
-    article.comparisonTable.rows
-      .map(function(row) {
-        return (
-          '<tr>' +
-          row.map(function(cell) {
-            return (
-              '<td>' +
-              escapeHtml(cell) +
-              '</td>'
-            );
-          }).join("") +
-          '</tr>'
-        );
-      })
-      .join("\n"),
-
-    '      </tbody>',
-
-    '    </table>',
-    '  </div>',
-    '</section>'
-  ].join("\n");
-}
 
 var sectionMarkup =
   (article.sections || [])
