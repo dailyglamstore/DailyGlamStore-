@@ -279,129 +279,171 @@ relatedArticles: [
   ]
 },
 
-"lotus-vs-bodywise-sunscreen": {
-  key: "lotus-vs-bodywise-sunscreen",
+“lotus-vs-bodywise-sunscreen”: {
+key: “lotus-vs-bodywise-sunscreen”,
+url: “/lotus-vs-bodywise-sunscreen.html”,
+category: “Skincare”,
+showTableOfContents: true,
+badge: “featured”,
+date: “2026-06-14T19:12:00”,
+title:
+“Lotus SPF 50 vs Be Bodywise SPF 50: Which Mineral Sunscreen Is Better?”,
+seoTitle:
+“Lotus SPF 50 vs Be Bodywise SPF 50: Which Mineral Sunscreen Is Better? | Daily Glam Store”,
+intro:
+“Choosing the right mineral sunscreen can feel confusing when both products promise SPF 50 protection. Lotus Botanicals and Be Bodywise are both popular skincare brands, but their sunscreen texture, finish, ingredients, and skin suitability can feel quite different depending on what you need.”,
+seoDescription:
+“Compare Lotus SPF 50 vs Be Bodywise SPF 50 mineral sunscreen for texture, finish, skin type, white cast, ingredients, and daily comfort.”,
+metaLine:
+“Detailed comparison • Mineral sunscreen guide • SPF 50 comparison”,
+showTableOfContents: true,
+image: {
+src:
+“images/beauty-images/blog/lotus-vs-bodywise-sunscreen.JPG”,
+alt:
+“Lotus SPF 50 sunscreen vs Be Bodywise SPF 50 mineral sunscreen comparison”
+},
+comparisonTable: {
+title:
+“Quick Comparison: Lotus vs Be Bodywise SPF 50”,
+headers: [
+  "Feature",
+  "Lotus SPF 50",
+  "Be Bodywise SPF 50"
+],
 
-  url:
-    "/lotus-vs-bodywise-sunscreen.html",
+rows: [
+  [
+    "Texture",
+    "Creamy and slightly nourishing",
+    "Lighter and more fluid feel"
+  ],
+  [
+    "Finish",
+    "Healthy glow finish",
+    "More natural matte finish"
+  ],
+  [
+    "Best For",
+    "Glow-focused daily use",
+    "Lightweight everyday protection"
+  ],
+  [
+    "Skin Type",
+    "Normal to dry skin",
+    "Oily, combination, and sensitive skin"
+  ],
+  [
+    "Mineral Sunscreen",
+    "Yes",
+    "Yes"
+  ],
+  [
+    "White Cast",
+    "Can vary depending on blending",
+    "Usually lighter feeling after blending"
+  ],
+  [
+    "Daily Comfort",
+    "Comfortable for nourished feel",
+    "Good for lightweight wear"
+  ],
+  [
+    "Good Pick If",
+    "You prefer glow and skincare feel",
+    "You prefer lightweight mineral sunscreen"
+  ]
+]
+},
+sections: [
+{
+heading:
+“Lotus SPF 50 vs Be Bodywise SPF 50: What Makes Them Different?”,
+ paragraphs: [
+    "At first glance, both sunscreens may seem quite similar because they are mineral sunscreen options with SPF 50 protection. However, their experience on the skin can feel different once you start using them regularly.",
 
-  category: "Skincare",
+    "Lotus Botanicals Carrot & Niacinamide Glow and De-Tan Mineral Sunscreen focuses more on glow, nourishment, and skincare benefits alongside sun protection. On the other hand, Be Bodywise Lightest Mineral Sunscreen positions itself more toward lightweight daily wear and a comfortable mineral sunscreen experience.",
 
-  showTableOfContents: true,
-
-  badge: "featured",
-
-  date: "2026-06-13T18:30:00",
-
-  title:
-    "Lotus Sunscreen vs Be Bodywise Sunscreen: Which SPF 50 Mineral Sunscreen Is Better?",
-
-  seoTitle:
-    "Lotus Sunscreen vs Be Bodywise Sunscreen | SPF 50 Comparison",
-
-  intro:
-    "Confused between Lotus SPF 50 mineral sunscreen and Be Bodywise Lightest Mineral Sunscreen SPF 50? Here is a simple comparison of texture, ingredients, finish, and suitability.",
-
-  seoDescription:
-    "Compare Lotus SPF 50 mineral sunscreen vs Be Bodywise Lightest Mineral Sunscreen SPF 50 with differences in texture, ingredients, skin type suitability, and finish.",
-
-  metaLine:
-    "Mineral sunscreen • SPF 50 comparison • Beginner-friendly",
-
-  image: {
-    src:
-      "images/beauty-images/blog/lotus-vs-bodywise-sunscreen.JPG",
-
-    alt:
-      "Lotus sunscreen vs Be Bodywise sunscreen comparison"
-  },
-  
-  comparisonTable: {
-  headers: [
-    "Feature",
-    "Lotus Sunscreen",
-    "Be Bodywise Sunscreen"
-  ],
-
-  rows: [
-    [
-      "SPF Protection",
-      "SPF 50 PA+++",
-      "SPF 50+"
-    ],
-
-    [
-      "Type",
-      "Mineral sunscreen",
-      "Mineral sunscreen"
-    ],
-
-    [
-      "Finish",
-      "Glow finish",
-      "Lightweight natural finish"
-    ],
-
-    [
-      "Best For",
-      "Glow and de-tan focus",
-      "Lightweight daily use"
-    ],
-
-    [
-      "Texture",
-      "Slightly creamier",
-      "Lightweight texture"
-    ]
-  ]
+    "This means the better option often depends less on the SPF number and more on your skin type, texture preference, and how you want sunscreen to feel during everyday use."
+  ]
 },
 
-  sections: [
-    {
-      heading:
-        "Lotus Sunscreen vs Be Bodywise Sunscreen",
-      paragraphs: [
-        "Choosing the right mineral sunscreen can feel confusing when both options claim SPF 50 protection. Lotus and Be Bodywise are popular skincare brands, but their sunscreen texture, finish, and skin suitability may feel different depending on your needs."
-      ]
-    }
-  ],
+{
+  heading:
+    "Texture and Finish: Which One Feels Better on Skin?",
 
-  relatedArticles: [
-    {
-      title:
-        "Simple Skincare Routine for Healthy & Glowing Skin",
+  paragraphs: [
+    "Texture is often one of the biggest deciding factors when choosing a sunscreen. A sunscreen may have excellent protection, but if it feels uncomfortable, many people stop using it regularly.",
 
-      href:
-        "/skincare-routine.html"
-    }
-  ],
+    "Lotus SPF 50 sunscreen feels slightly creamier and more skincare-focused during application. Because of ingredients like niacinamide and carrot extracts, it may feel more nourishing on skin and can leave behind a healthy glow finish.",
 
-  ctaTitle:
-    "Explore More Skincare Guides",
+    "Be Bodywise SPF 50, as the name suggests, focuses more on feeling lightweight. Many people looking for mineral sunscreen prefer lighter textures because traditional mineral sunscreens can sometimes feel heavy or leave noticeable residue.",
 
-  ctaText:
-    "Browse skincare guides and sunscreen recommendations to choose products more confidently.",
+    "If you generally enjoy a moisturised or glowing finish, Lotus may feel more satisfying. If you dislike heavy-feeling sunscreen and want something lighter for daily use, Be Bodywise may feel more comfortable."
+  ],
 
-  ctaButtons: [
-    {
-      text:
-        "Explore Beauty Guides",
+  bullets: [
+    "Choose Lotus for a more nourished and glow-focused feel",
+    "Choose Be Bodywise if lightweight texture matters more",
+    "Daily comfort often matters more than trendy ingredients"
+  ]
+},
 
-      href:
-        "/beauty-guides.html",
+{
+  heading:
+    "Which Skin Type Is Each Sunscreen Better For?",
 
-      newTab: true
-    },
+  paragraphs: [
+    "Skin type can make a big difference in how a sunscreen performs. The same sunscreen may feel amazing for one person and uncomfortable for another.",
 
-    {
-      text:
-        "Browse Skincare Recommendations",
+    "Lotus SPF 50 may feel more suitable for people with normal, slightly dry, or combination skin that prefers hydration and glow. People who enjoy skincare products with a nourished finish may appreciate the texture more.",
 
-      href:
-        "/#skincare-recommendations",
+    "Be Bodywise SPF 50 may appeal more to oily, acne-prone, combination, or sensitive skin users who prefer lighter products and do not enjoy thick sunscreen textures during daytime."
+  ],
 
-      newTab: true
-    }
-  ]
+  bullets: [
+    "Normal to dry skin may prefer Lotus",
+    "Oily or combination skin may prefer Be Bodywise",
+    "Texture preference matters just as much as skin type"
+  ]
+},
+
+relatedArticles: [
+    {
+      title:
+        "Simple Skincare Routine for Healthy & Glowing Skin",
+
+      href:
+        "/skincare-routine.html"
+    }
+  ],
+
+  ctaTitle:
+    "Explore More Skincare Guides",
+
+  ctaText:
+    "Browse skincare guides and sunscreen recommendations to choose products more confidently.",
+
+  ctaButtons: [
+    {
+      text:
+        "Explore Beauty Guides",
+
+      href:
+        "/beauty-guides.html",
+
+      newTab: true
+    },
+
+    {
+      text:
+        "Browse Skincare Recommendations",
+
+      href:
+        "/#skincare-recommendations",
+
+      newTab: true
+    }
+  ]
 }
 };
