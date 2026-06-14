@@ -305,6 +305,8 @@ var tocMarkup =
   articleNode.innerHTML = [
   tocMarkup,
 
+  comparisonTableMarkup,
+
   sectionMarkup,
 
     relatedArticlesMarkup,
