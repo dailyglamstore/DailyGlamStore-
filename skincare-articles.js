@@ -292,7 +292,7 @@ relatedArticles: [
     "featured",
 
   date:
-    "2026-06-14T18:30:00",
+    "2026-06-14T21:38:00",
 
   title:
     "Lotus SPF 50 vs Be Bodywise SPF 50: Which Mineral Sunscreen Is Better?",
