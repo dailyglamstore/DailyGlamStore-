@@ -625,3 +625,52 @@ html { scroll-behavior: smooth; }
 .toc-list a:hover {
   text-decoration: underline;
 }
+
+.comparison-table-wrapper {
+  margin: 24px 0 30px;
+  overflow-x: auto;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fffaf8;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 14px 12px;
+  text-align: left;
+  border-bottom: 1px solid #f2ddd6;
+  font-size: 15px;
+  color: #5b514c;
+}
+
+.comparison-table th {
+  background: #fff1ec;
+  color: var(--brand-dark);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-table td:first-child {
+  font-weight: 700;
+  color: var(--brand-dark);
+  width: 34%;
+}
+
+@media (max-width: 768px) {
+  .comparison-table th,
+  .comparison-table td {
+    padding: 12px 10px;
+    font-size: 14px;
+  }
+}
