@@ -67,10 +67,10 @@
     '<figure class="featured-image">',
 
     '  <img src="' +
-      escapeHtml(article.image.src) +
-      '" alt="' +
-      escapeHtml(article.image.alt) +
-      '" loading="lazy" onerror="this.style.display=\'none\'" />',
+  escapeHtml(article.image.src) +
+  '" alt="' +
+  escapeHtml(article.image.alt) +
+  '" onerror="this.style.display=\'none\'" />',
 
     "</figure>"
   ].join("\n");
