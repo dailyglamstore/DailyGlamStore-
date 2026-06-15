@@ -160,14 +160,80 @@ var sectionMarkup =
       );
 
       sectionParts.push(
-        '<h2 id="' +
-          headingId +
-          '">' +
-          escapeHtml(
-            section.heading
-          ) +
-          "</h2>"
+  '<h2 id="' +
+    headingId +
+    '">' +
+    escapeHtml(
+      section.heading
+    ) +
+    "</h2>"
+);
+
+if (
+  section.images &&
+  section.images.length
+) {
+  section.images.forEach(
+    function(image) {
+      sectionParts.push(
+        '<figure class="article-section-image">' +
+
+        '<img src="' +
+          escapeHtml(image.src) +
+          '" alt="' +
+          escapeHtml(image.alt) +
+          '" loading="lazy" onerror="this.style.display=\'none\'" />' +
+
+        "</figure>"
       );
+    }
+  );
+}
+
+if (
+  section.recommendationBox &&
+  section.recommendationBox.href
+) {
+  sectionParts.push(
+    '<div class="recommendation-box">' +
+
+    '<p class="recommendation-label">' +
+      escapeHtml(
+        section.recommendationBox.label ||
+        "Recommended Product"
+      ) +
+    "</p>" +
+
+    (
+      section.recommendationBox.productName
+        ? '<p class="recommendation-product">' +
+            escapeHtml(
+              section.recommendationBox.productName
+            ) +
+          "</p>"
+        : ""
+    ) +
+
+    '<a class="recommendation-btn" href="' +
+      escapeHtml(
+        section.recommendationBox.href
+      ) +
+      '"' +
+      buildTargetAttributes(
+        section.recommendationBox.newTab
+      ) +
+    ">" +
+
+    escapeHtml(
+      section.recommendationBox.text ||
+      "Check Price & Available Offers"
+    ) +
+
+    "</a>" +
+
+    "</div>"
+  );
+}
 
       (
         section.paragraphs || []
