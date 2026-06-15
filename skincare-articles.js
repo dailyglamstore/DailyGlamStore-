@@ -374,40 +374,95 @@ relatedArticles: [
     },
 
     {
-      heading:
-        "Lotus SPF 50 Mineral Sunscreen: What You Should Know?",
+  heading:
+    "Lotus SPF 50 Mineral Sunscreen: What You Should Know?",
 
-      paragraphs: [
-        "Lotus Botanicals Carrot & Niacinamide Glow and De-Tan Mineral Sunscreen SPF 50 is positioned as a glow-focused sunscreen with skincare-inspired ingredients. The product is commonly discussed for people who want daily sun protection while also maintaining a healthy-looking finish on the skin.",
+  images: [
+    {
+      src:
+        "images/beauty-images/blog/lotus-spf50-review.JPG",
 
-        "Its formula may feel more comfortable for people who enjoy a slightly nourishing sunscreen texture instead of an ultra-light gel-like feel. Since it focuses on glow and skin comfort, some users may prefer it when their skin feels dry or dull."
-      ],
+      alt:
+        "Lotus SPF 50 Mineral Sunscreen Review"
+    }
+  ],
 
-      bullets: [
-        "SPF 50 protection for daily use",
-        "Glow-focused positioning",
-        "Often preferred by people who like moisturising textures",
-        "Can suit normal to dry skin preferences"
-      ]
-    },
+  recommendationBox: {
+    label:
+      "Recommended for Normal to Dry Skin",
+
+    productName:
+      "Lotus SPF 50 Mineral Sunscreen",
+
+    text:
+      "Check Price & Available Offers",
+
+    href:
+      "YOUR_LOTUS_TRACKING_LINK",
+
+    newTab:
+      true
+  },
+
+  paragraphs: [
+    "Lotus Botanicals Carrot & Niacinamide Glow and De-Tan Mineral Sunscreen SPF 50 is positioned as a glow-focused sunscreen with skincare-inspired ingredients. The product is commonly discussed for people who want daily sun protection while also maintaining a healthy-looking finish on the skin.",
+
+    "Its formula may feel more comfortable for people who enjoy a slightly nourishing sunscreen texture instead of an ultra-light gel-like feel. Since it focuses on glow and skin comfort, some users may prefer it when their skin feels dry or dull."
+  ],
+
+  bullets: [
+    "SPF 50 protection for daily use",
+    "Glow-focused positioning",
+    "Often preferred by people who like moisturising textures",
+    "Can suit normal to dry skin preferences"
+  ]
+},
     
     {
-      heading:
-        "Be Bodywise SPF 50 Mineral Sunscreen: What You Should Know?",
+  heading:
+    "Be Bodywise SPF 50 Mineral Sunscreen: What You Should Know?",
 
-      paragraphs: [
-        "Be Bodywise Lightest Mineral Sunscreen SPF 50 is positioned more toward lightweight everyday wear. As the name suggests, the product focuses on feeling lighter on the skin, which is one reason many people with oily or combination skin become interested in it.",
+  images: [
+    {
+      src:
+        "images/beauty-images/blog/bodywise-spf50-review.JPG",
 
-        "People who dislike heavy or sticky sunscreens often look for lightweight options for daily office, college, or routine wear. Because of this, Be Bodywise may feel easier for people who want mineral sunscreen protection without feeling too heavy during long days."
-      ],
+      alt:
+        "Be Bodywise SPF 50 Mineral Sunscreen Review"
+    }
+  ],
 
-      bullets: [
-        "SPF 50 mineral protection",
-        "Designed with a lightweight feel in mind",
-        "Often discussed for oily or combination skin",
-        "Suitable for simple daily use routines"
-      ]
-    },
+  recommendationBox: {
+    label:
+      "Recommended for Oily & Combination Skin",
+
+    productName:
+      "Be Bodywise SPF 50 Mineral Sunscreen",
+
+    text:
+      "Check Price & Available Offers",
+
+    href:
+      "YOUR_BODYWISE_TRACKING_LINK",
+
+    newTab:
+      true
+  },
+
+  paragraphs: [
+    "Be Bodywise Lightest Mineral Sunscreen SPF 50 is positioned more toward lightweight everyday wear. As the name suggests, the product focuses on feeling lighter on the skin, which is one reason many people with oily or combination skin become interested in it.",
+
+    "People who dislike heavy or sticky sunscreens often look for lightweight options for daily office, college, or routine wear. Because of this, Be Bodywise may feel easier for people who want mineral sunscreen protection without feeling too heavy during long days."
+  ],
+
+  bullets: [
+    "SPF 50 mineral protection",
+    "Designed with a lightweight feel in mind",
+    "Often discussed for oily or combination skin",
+    "Suitable for simple daily use routines"
+  ]
+},
+
         {
       heading:
         "Texture & Finish: Which One Feels Better on Skin?",
