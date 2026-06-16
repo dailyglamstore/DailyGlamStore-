@@ -526,11 +526,8 @@ relatedArticles: [
   
   productRecommendations: [
   {
-    title:
-      "Lotus SPF 50 Sunscreen",
-
     buttonText:
-      "Click Here to Buy",
+      "Buy Lotus SPF 50 Sunscreen",
 
     href:
       "PASTE_YOUR_LOTUS_TRACKING_LINK_HERE",
@@ -540,11 +537,8 @@ relatedArticles: [
   },
 
   {
-    title:
-      "Be Bodywise SPF 50 Sunscreen",
-
     buttonText:
-      "Click Here to Buy",
+      "Buy Be Bodywise SPF 50 Sunscreen",
 
     href:
       "PASTE_YOUR_BODYWISE_TRACKING_LINK_HERE",
