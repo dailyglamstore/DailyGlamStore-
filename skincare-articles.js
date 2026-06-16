@@ -392,6 +392,14 @@ relatedArticles: [
 
     "Its formula may feel more comfortable for people who enjoy a slightly nourishing sunscreen texture instead of an ultra-light gel-like feel. Since it focuses on glow and skin comfort, some users may prefer it when their skin feels dry or dull. If this sounds suitable for your skin needs, you can check the latest price and available offers for Lotus SPF 50 sunscreen here."
   ],
+  
+  inlineLinks: [
+  {
+    text: "here.",
+    href: "PASTE_YOUR_LOTUS_TRACKING_LINK_HERE",
+    newTab: true
+  }
+],
 
   bullets: [
     "SPF 50 protection for daily use",
@@ -420,6 +428,14 @@ relatedArticles: [
 
     "People who dislike heavy or sticky sunscreens often look for lightweight options for daily office, college, or routine wear. Because of this, Be Bodywise may feel easier for people who want mineral sunscreen protection without feeling too heavy during long days. If you prefer lightweight mineral sunscreens, you can explore the latest price and available offers for Be Bodywise SPF 50 here."
   ],
+  
+  inlineLinks: [
+  {
+    text: "here.",
+    href: "PASTE_YOUR_BODYWISE_TRACKING_LINK_HERE",
+    newTab: true
+  }
+],
 
   bullets: [
     "SPF 50 mineral protection",
