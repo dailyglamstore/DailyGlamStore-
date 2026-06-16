@@ -205,11 +205,31 @@ if (
       });
 
       if (
-        section.bullets &&
-        section.bullets.length
-      )
-      
-      if (
+  section.bullets &&
+  section.bullets.length
+) {
+  sectionParts.push(
+    '<ul class="article-list">'
+  );
+
+  section.bullets.forEach(
+    function (bullet) {
+      sectionParts.push(
+        "<li>" +
+          escapeHtml(
+            bullet
+          ) +
+          "</li>"
+      );
+    }
+  );
+
+  sectionParts.push(
+    "</ul>"
+  );
+}
+
+if (
   section.recommendationBox &&
   section.recommendationBox.href
 ) {
@@ -246,27 +266,6 @@ if (
     "</div>"
   );
 }
-      {
-        sectionParts.push(
-          '<ul class="article-list">'
-        );
-
-        section.bullets.forEach(
-          function (bullet) {
-            sectionParts.push(
-              "<li>" +
-                escapeHtml(
-                  bullet
-                ) +
-                "</li>"
-            );
-          }
-        );
-
-        sectionParts.push(
-          "</ul>"
-        );
-      }
 
       if (
         section.guideLinkText &&
