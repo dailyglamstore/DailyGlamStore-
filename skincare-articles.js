@@ -524,29 +524,34 @@ relatedArticles: [
     }
   ],
   
-  productRecommendations: [
-  {
-    buttonText:
-      "Buy Lotus SPF 50 Sunscreen",
+  productRecommendations: {
+  title:
+    "Ready to choose your sunscreen?",
 
-    href:
-      "PASTE_YOUR_LOTUS_TRACKING_LINK_HERE",
+  items: [
+    {
+      title:
+        "Buy Lotus SPF 50 Sunscreen",
 
-    newTab:
-      true
-  },
+      href:
+        "YOUR_LOTUS_TRACKING_LINK",
 
-  {
-    buttonText:
-      "Buy Be Bodywise SPF 50 Sunscreen",
+      newTab:
+        true
+    },
 
-    href:
-      "PASTE_YOUR_BODYWISE_TRACKING_LINK_HERE",
+    {
+      title:
+        "Buy Be Bodywise SPF 50 Sunscreen",
 
-    newTab:
-      true
-  }
-],
+      href:
+        "YOUR_BODYWISE_TRACKING_LINK",
+
+      newTab:
+        true
+    }
+  ]
+},
 
   relatedArticles: [
     {
