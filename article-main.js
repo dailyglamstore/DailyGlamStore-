@@ -190,51 +190,6 @@ if (
   );
 }
 
-if (
-  section.recommendationBox &&
-  section.recommendationBox.href
-) {
-  sectionParts.push(
-    '<div class="recommendation-box">' +
-
-    '<p class="recommendation-label">' +
-      escapeHtml(
-        section.recommendationBox.label ||
-        "Recommended Product"
-      ) +
-    "</p>" +
-
-    (
-      section.recommendationBox.productName
-        ? '<p class="recommendation-product">' +
-            escapeHtml(
-              section.recommendationBox.productName
-            ) +
-          "</p>"
-        : ""
-    ) +
-
-    '<a class="recommendation-btn" href="' +
-      escapeHtml(
-        section.recommendationBox.href
-      ) +
-      '"' +
-      buildTargetAttributes(
-        section.recommendationBox.newTab
-      ) +
-    ">" +
-
-    escapeHtml(
-      section.recommendationBox.text ||
-      "Check Price & Available Offers"
-    ) +
-
-    "</a>" +
-
-    "</div>"
-  );
-}
-
       (
         section.paragraphs || []
       ).forEach(function (
