@@ -195,13 +195,37 @@ if (
       ).forEach(function (
         paragraph
       ) {
-        sectionParts.push(
-          "<p>" +
-            escapeHtml(
-              paragraph
+        var formattedParagraph =
+  escapeHtml(paragraph);
+
+if (
+  section.inlineLinks &&
+  section.inlineLinks.length
+) {
+  section.inlineLinks.forEach(
+    function(link) {
+      formattedParagraph =
+        formattedParagraph.replace(
+          escapeHtml(link.text),
+          '<a class="inline-product-link" href="' +
+            escapeHtml(link.href) +
+            '"' +
+            buildTargetAttributes(
+              link.newTab
             ) +
-            "</p>"
+            ">" +
+            escapeHtml(link.text) +
+            "</a>"
         );
+    }
+  );
+}
+
+sectionParts.push(
+  "<p>" +
+    formattedParagraph +
+    "</p>"
+);
       });
 
       if (
