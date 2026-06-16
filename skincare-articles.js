@@ -387,23 +387,6 @@ relatedArticles: [
     }
   ],
 
-  recommendationBox: {
-    label:
-      "Recommended for Normal to Dry Skin",
-
-    productName:
-      "Lotus SPF 50 Mineral Sunscreen",
-
-    text:
-      "Check Price & Available Offers",
-
-    href:
-      "YOUR_LOTUS_TRACKING_LINK",
-
-    newTab:
-      true
-  },
-
   paragraphs: [
     "Lotus Botanicals Carrot & Niacinamide Glow and De-Tan Mineral Sunscreen SPF 50 is positioned as a glow-focused sunscreen with skincare-inspired ingredients. The product is commonly discussed for people who want daily sun protection while also maintaining a healthy-looking finish on the skin.",
 
@@ -431,23 +414,6 @@ relatedArticles: [
         "Be Bodywise SPF 50 Mineral Sunscreen Review"
     }
   ],
-
-  recommendationBox: {
-    label:
-      "Recommended for Oily & Combination Skin",
-
-    productName:
-      "Be Bodywise SPF 50 Mineral Sunscreen",
-
-    text:
-      "Check Price & Available Offers",
-
-    href:
-      "YOUR_BODYWISE_TRACKING_LINK",
-
-    newTab:
-      true
-  },
 
   paragraphs: [
     "Be Bodywise Lightest Mineral Sunscreen SPF 50 is positioned more toward lightweight everyday wear. As the name suggests, the product focuses on feeling lighter on the skin, which is one reason many people with oily or combination skin become interested in it.",
