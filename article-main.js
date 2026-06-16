@@ -441,7 +441,9 @@ var productRecommendationsMarkup =
 
   sectionMarkup,
 
-    relatedArticlesMarkup,
+productRecommendationsMarkup,
+
+relatedArticlesMarkup,
 
     '<section class="routine-cta" id="article-next-step">',
 
