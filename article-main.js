@@ -331,6 +331,55 @@ var tocMarkup =
       ].join("\n")
     : "";
 
+var productRecommendationsMarkup =
+  article.productRecommendations &&
+  article.productRecommendations.length
+    ? [
+        '<section class="final-product-recommendations">',
+
+        '<h2>Made Your Choice?</h2>',
+
+        '<div class="final-product-grid">',
+
+        article.productRecommendations
+          .map(function(product) {
+            return (
+              '<div class="final-product-card">' +
+
+              '<p class="final-product-title">' +
+                escapeHtml(
+                  product.title
+                ) +
+              "</p>" +
+
+              '<a class="final-product-btn" href="' +
+                escapeHtml(
+                  product.href
+                ) +
+                '"' +
+                buildTargetAttributes(
+                  product.newTab
+                ) +
+              ">" +
+
+              escapeHtml(
+                product.buttonText ||
+                "Click Here to Buy"
+              ) +
+
+              "</a>" +
+
+              "</div>"
+            );
+          })
+          .join("\n"),
+
+        "</div>",
+
+        "</section>"
+      ].join("\n")
+    : "";
+
   var relatedArticlesMarkup =
     article.relatedArticles &&
     article.relatedArticles.length
