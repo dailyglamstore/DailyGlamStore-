@@ -207,7 +207,46 @@ if (
       if (
         section.bullets &&
         section.bullets.length
-      ) {
+      )
+      
+      if (
+  section.recommendationBox &&
+  section.recommendationBox.href
+) {
+  sectionParts.push(
+    '<div class="recommendation-box">' +
+
+    (
+      section.recommendationBox.productName
+        ? '<p class="recommendation-product">' +
+            escapeHtml(
+              section.recommendationBox.productName
+            ) +
+          "</p>"
+        : ""
+    ) +
+
+    '<a class="recommendation-btn" href="' +
+      escapeHtml(
+        section.recommendationBox.href
+      ) +
+      '"' +
+      buildTargetAttributes(
+        section.recommendationBox.newTab
+      ) +
+    ">" +
+
+    escapeHtml(
+      section.recommendationBox.text ||
+      "Check Price & Offers"
+    ) +
+
+    "</a>" +
+
+    "</div>"
+  );
+}
+      {
         sectionParts.push(
           '<ul class="article-list">'
         );
