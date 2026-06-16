@@ -779,9 +779,10 @@ border-radius: 18px;
 .final-product-recommendations {
   margin: 24px 0 18px;
   padding: 12px 14px;
-  border-radius: 14px;
-  background: #fff8f4;
-  border: 1px solid rgba(209, 107, 61, 0.1);
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
   text-align: center;
 }
 
