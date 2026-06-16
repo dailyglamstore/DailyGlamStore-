@@ -523,6 +523,36 @@ relatedArticles: [
       ]
     }
   ],
+  
+  productRecommendations: [
+  {
+    title:
+      "Lotus SPF 50 Sunscreen",
+
+    buttonText:
+      "Click Here to Buy",
+
+    href:
+      "PASTE_YOUR_LOTUS_TRACKING_LINK_HERE",
+
+    newTab:
+      true
+  },
+
+  {
+    title:
+      "Be Bodywise SPF 50 Sunscreen",
+
+    buttonText:
+      "Click Here to Buy",
+
+    href:
+      "PASTE_YOUR_BODYWISE_TRACKING_LINK_HERE",
+
+    newTab:
+      true
+  }
+],
 
   relatedArticles: [
     {
