@@ -333,25 +333,23 @@ var tocMarkup =
 
 var productRecommendationsMarkup =
   article.productRecommendations &&
-  article.productRecommendations.length
+  article.productRecommendations.items &&
+  article.productRecommendations.items.length
     ? [
         '<section class="final-product-recommendations">',
 
-        '<h2>Made Your Choice?</h2>',
+        '<h2>' +
+          escapeHtml(
+            article.productRecommendations.title ||
+            "Made Your Choice?"
+          ) +
+        '</h2>',
 
         '<div class="final-product-grid">',
 
-        article.productRecommendations
+        article.productRecommendations.items
           .map(function(product) {
             return (
-              '<div class="final-product-card">' +
-
-              '<p class="final-product-title">' +
-                escapeHtml(
-                  product.title
-                ) +
-              "</p>" +
-
               '<a class="final-product-btn" href="' +
                 escapeHtml(
                   product.href
@@ -363,13 +361,10 @@ var productRecommendationsMarkup =
               ">" +
 
               escapeHtml(
-                product.buttonText ||
-                "Click Here to Buy"
+                product.title
               ) +
 
-              "</a>" +
-
-              "</div>"
+              "</a>"
             );
           })
           .join("\n"),
