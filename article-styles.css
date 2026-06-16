@@ -555,16 +555,17 @@ html { scroll-behavior: smooth; }
       .menu-toggle { display: none; }
     }
     
-   .related-articles {
-  background: #fffaf8;
-  border: 1px solid var(--border-soft);
-  border-radius: 16px;
-  padding: 14px 18px;
-  margin: 28px 0;
+   ..related-articles {
+  margin: 22px 0 18px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
 }
 
 .related-articles h2 {
-  margin: 0 0 12px;
+  margin: 0 0 10px;
+  font-size: 1.15rem;
 }
 
 .related-articles-list {
@@ -573,7 +574,7 @@ html { scroll-behavior: smooth; }
 }
 
 .related-articles-list li {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .related-articles-list li:last-child {
@@ -584,10 +585,12 @@ html { scroll-behavior: smooth; }
   color: var(--brand);
   text-decoration: none;
   font-weight: 600;
+  transition: opacity 0.2s ease;
 }
 
 .related-articles-list a:hover {
   text-decoration: underline;
+  opacity: 0.85;
 }
 
 .table-of-contents {
