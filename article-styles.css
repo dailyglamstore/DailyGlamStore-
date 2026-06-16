@@ -755,3 +755,20 @@ border-radius: 18px;
     padding: 11px 16px;
   }
 }
+
+.inline-product-link {
+  color: #d16b3d;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(209, 107, 61, 0.25);
+  transition: all 0.2s ease;
+}
+
+.inline-product-link:hover {
+  color: #b8572d;
+  border-bottom-color: rgba(184, 87, 45, 0.5);
+}
+
+.inline-product-link:active {
+  opacity: 0.8;
+}
