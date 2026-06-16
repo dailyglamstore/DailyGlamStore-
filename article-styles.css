@@ -793,16 +793,16 @@ border-radius: 18px;
 .final-product-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   justify-content: center;
 }
 
 .final-product-card {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 10px 12px;
-  border: 1px solid rgba(0,0,0,0.05);
-  min-width: 180px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  min-width: unset;
 }
 
 .final-product-title {
@@ -815,12 +815,12 @@ border-radius: 18px;
 
 .final-product-btn {
   display: inline-block;
-  padding: 7px 14px;
+  padding: 8px 15px;
   border-radius: 999px;
   background: #d16b3d;
   color: #fff;
   text-decoration: none;
-  font-size: 0.84rem;
+  font-size: 0.83rem;
   font-weight: 600;
 }
 
