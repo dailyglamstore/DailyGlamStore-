@@ -555,7 +555,7 @@ html { scroll-behavior: smooth; }
       .menu-toggle { display: none; }
     }
     
-   ..related-articles {
+   .related-articles {
   margin: 22px 0 18px;
   padding: 0;
   background: transparent;
