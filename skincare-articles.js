@@ -398,7 +398,7 @@ relatedArticles: [
   inlineLinks: [
   {
     text: "here.",
-    href: "PASTE_YOUR_LOTUS_TRACKING_LINK_HERE",
+    href: "https://www.lotusbotanicals.com/products/carrot-niacinamide-glow-and-de-tan-mineral-sunscreen-spf-50-pa?ref=DGS-Deepak",
     newTab: true
   }
 ],
