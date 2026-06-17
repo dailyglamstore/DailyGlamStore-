@@ -512,7 +512,7 @@ relatedArticles: [
         "Final Verdict: Lotus SPF 50 or Be Bodywise SPF 50?",
 
       paragraphs: [
-        "Both sunscreens can be good options depending on what you personally expect from a mineral sunscreen. Instead of asking which sunscreen is universally better, it may help to ask which one feels better for your skin type and routine.",
+        "In this Lotus sunscreen vs Be Bodywise sunscreen comparison, both products offer SPF 50 mineral sun protection but cater to slightly different preferences. The better option depends more on your skin type and preferred finish than on brand popularity alone.",
 
         "Lotus SPF 50 may suit people who prefer a glow-focused sunscreen experience and slightly more nourishing feel. Be Bodywise SPF 50 may feel more suitable for people who prioritise lightweight daily comfort, especially oily or combination skin users.",
 
