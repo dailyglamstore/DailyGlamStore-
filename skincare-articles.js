@@ -501,7 +501,7 @@ relatedArticles: [
       paragraphs: [
         "Daily comfort matters because sunscreen only works properly when used consistently. A sunscreen that feels uncomfortable often gets skipped after a few days.",
 
-        "If your priority is a lightweight everyday sunscreen that feels simple during office, college, or regular outdoor movement, Be Bodywise may feel easier for many users.",
+        "If your priority is a lightweight everyday sunscreen that feels simple during office, college, or regular outdoor movement, Be Bodywise may feel easier for many users. This is one reason it is frequently considered a mineral sunscreen for oily skin.",
 
         "If your preference is more toward glow, comfort, and a slightly nourishing finish, Lotus may feel more enjoyable during regular use."
       ]
