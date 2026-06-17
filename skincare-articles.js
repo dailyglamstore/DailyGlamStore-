@@ -458,7 +458,7 @@ relatedArticles: [
 
         "Lotus SPF 50 sunscreen may feel slightly more nourishing and glow-focused depending on your skin type and personal preference. Some people enjoy this type of finish because it can make skin feel more comfortable, especially during dry weather or when skin feels dehydrated.",
 
-        "Be Bodywise SPF 50, on the other hand, is designed around a lighter feel. This may make it more appealing to users who dislike heavier textures or want something that feels easier during humid weather."
+        "Be Bodywise SPF 50, on the other hand, is designed around a lighter feel. This may make it more appealing to users who dislike heavier textures or want something that feels easier during humid weather. Many users searching for the best mineral sunscreen SPF 50 often compare these differences before making a decision."
       ],
 
       bullets: [
