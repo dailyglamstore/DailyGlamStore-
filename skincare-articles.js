@@ -314,7 +314,7 @@ relatedArticles: [
 
   image: {
     src:
-      "images/beauty-images/blog/lotus-vs-bodywise-sunscreen.jpg",
+      "images/beauty-images/blog/lotus-vs-bodywise-sunscreen.JPG",
 
     alt:
       "Lotus SPF 50 sunscreen vs Be Bodywise SPF 50 sunscreen comparison"
