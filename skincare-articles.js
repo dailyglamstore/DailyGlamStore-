@@ -375,7 +375,7 @@ relatedArticles: [
 
     {
   heading:
-    "Lotus SPF 50 Mineral Sunscreen: What You Should Know?",
+    "Lotus SPF 50 Sunscreen Review: What You Should Know?",
 
   images: [
     {
@@ -413,7 +413,7 @@ relatedArticles: [
     
     {
   heading:
-    "Be Bodywise SPF 50 Mineral Sunscreen: What You Should Know?",
+    "Be Bodywise SPF 50 Sunscreen Review: What You Should Know?",
 
   images: [
     {
