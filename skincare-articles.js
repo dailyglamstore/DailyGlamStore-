@@ -436,7 +436,7 @@ relatedArticles: [
   inlineLinks: [
   {
     text: "here.",
-    href: "PASTE_YOUR_BODYWISE_TRACKING_LINK_HERE",
+    href: "https://bebodywise.com/product/lightest-mineral-sunscreen-spf50",
     newTab: true
   }
 ],
