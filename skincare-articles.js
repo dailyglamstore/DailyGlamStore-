@@ -473,7 +473,7 @@ relatedArticles: [
         "Which Sunscreen May Suit Oily Skin Better?",
 
       paragraphs: [
-        "People with oily skin often prefer products that feel lightweight and comfortable throughout the day. If you are searching for a mineral sunscreen for oily skin, texture often becomes one of the most important deciding factors. Heavy sunscreens sometimes feel uncomfortable, especially in humid weather."
+        "People with oily skin often prefer products that feel lightweight and comfortable throughout the day. If you are searching for a mineral sunscreen for oily skin, texture often becomes one of the most important deciding factors. Heavy sunscreens sometimes feel uncomfortable, especially in humid weather.",
 
         "Because Be Bodywise focuses on a lighter mineral sunscreen experience, many oily or combination skin users may find it easier for regular daytime wear. However, individual experience can still vary depending on skincare layering and personal preference.",
 
