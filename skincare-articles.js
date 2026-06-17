@@ -538,7 +538,7 @@ relatedArticles: [
         "Buy Lotus SPF 50 Sunscreen",
 
       href:
-        "YOUR_LOTUS_TRACKING_LINK",
+"https://www.lotusbotanicals.com/products/carrot-niacinamide-glow-and-de-tan-mineral-sunscreen-spf-50-pa?ref=DGS-Deepak",
 
       newTab:
         true
