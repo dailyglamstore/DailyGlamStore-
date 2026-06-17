@@ -549,7 +549,7 @@ relatedArticles: [
         "Buy Be Bodywise SPF 50 Sunscreen",
 
       href:
-        "YOUR_BODYWISE_TRACKING_LINK",
+"https://bebodywise.com/product/lightest-mineral-sunscreen-spf50",
 
       newTab:
         true
