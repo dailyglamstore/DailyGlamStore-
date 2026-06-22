@@ -395,14 +395,6 @@ relatedArticles: [
      "Overall, this Lotus SPF 50 sunscreen review suggests that the product may appeal more to users who enjoy a healthy-looking glow and a slightly nourishing sunscreen texture."
   ],
   
-  inlineLinks: [
-  {
-    text: "here.",
-    href: "https://www.lotusbotanicals.com/products/carrot-niacinamide-glow-and-de-tan-mineral-sunscreen-spf-50-pa?ref=DGS-Deepak",
-    newTab: true
-  }
-],
-
   bullets: [
     "SPF 50 protection for daily use",
     "Glow-focused positioning",
@@ -433,14 +425,6 @@ relatedArticles: [
     "Based on this Be Bodywise SPF 50 sunscreen review, the sunscreen may be a practical choice for users who prefer lightweight daily sun protection."
   ],
   
-  inlineLinks: [
-  {
-    text: "here.",
-    href: "https://bebodywise.com/product/lightest-mineral-sunscreen-spf50",
-    newTab: true
-  }
-],
-
   bullets: [
     "SPF 50 mineral protection",
     "Designed with a lightweight feel in mind",
