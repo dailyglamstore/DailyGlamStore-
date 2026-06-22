@@ -21,6 +21,12 @@
   if (!article) {
     return;
   }
+  
+  if (article.linkPlan) {
+  article.linkPlan.forEach(function(link) {
+    link._used = false;
+  });
+}
 
   var heroNode =
     document.getElementById("articleHeroContent");
