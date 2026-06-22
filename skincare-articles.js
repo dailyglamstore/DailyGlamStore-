@@ -304,10 +304,39 @@ relatedArticles: [
     "Choosing the right mineral sunscreen can feel confusing when both options promise the same SPF 50 protection. In this Lotus sunscreen vs Be Bodywise sunscreen comparison, we compare texture, finish, skin type suitability, and daily wear comfort to help you decide which sunscreen may suit your routine better.",
 
   seoDescription:
-    "Compare Lotus SPF 50 sunscreen vs Be Bodywise SPF 50 sunscreen for texture, finish, skin type suitability, ingredients, and daily use.",
+  "Compare Lotus SPF 50 sunscreen vs Be Bodywise SPF 50 sunscreen for texture, finish, skin type suitability, ingredients, and daily use.",
 
-  metaLine:
-    "Detailed comparison • SPF 50 mineral sunscreen • Beginner-friendly",
+linkPlan: [
+  {
+    anchor:
+      "check the latest price and available offers for Lotus SPF 50 sunscreen",
+    href:
+      "https://www.lotusbotanicals.com/products/carrot-niacinamide-glow-and-de-tan-mineral-sunscreen-spf-50-pa?ref=DGS-Deepak",
+    newTab:
+      true
+  },
+
+  {
+    anchor:
+      "explore the latest price and available offers for Be Bodywise SPF 50 sunscreen",
+    href:
+      "https://bebodywise.com/product/lightest-mineral-sunscreen-spf50",
+    newTab:
+      true
+  },
+
+  {
+    anchor:
+      "simple skincare routine",
+    href:
+      "/skincare-routine.html",
+    newTab:
+      false
+  }
+],
+
+metaLine:
+  "Detailed comparison • SPF 50 mineral sunscreen • Beginner-friendly",
 
   showTableOfContents:
     true,
