@@ -308,7 +308,7 @@ relatedArticles: [
 
 linkPlan: [
   {
-    anchor:
+    anchorText:
       "check the latest price and available offers for Lotus SPF 50 sunscreen",
     href:
       "https://www.lotusbotanicals.com/products/carrot-niacinamide-glow-and-de-tan-mineral-sunscreen-spf-50-pa?ref=DGS-Deepak",
@@ -317,7 +317,7 @@ linkPlan: [
   },
 
   {
-    anchor:
+    anchorText:
       "explore the latest price and available offers for Be Bodywise SPF 50 sunscreen",
     href:
       "https://bebodywise.com/product/lightest-mineral-sunscreen-spf50",
@@ -326,7 +326,7 @@ linkPlan: [
   },
 
   {
-    anchor:
+    anchorText:
       "simple skincare routine",
     href:
       "/skincare-routine.html",
