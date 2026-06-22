@@ -449,7 +449,7 @@ metaLine:
   paragraphs: [
     "In this Be Bodywise SPF 50 sunscreen review, the product is positioned more toward lightweight everyday wear. As the name suggests, the sunscreen focuses on feeling lighter on the skin, which is one reason many people with oily or combination skin become interested in it.",
 
-    "People who dislike heavy or sticky sunscreens often look for lightweight options for daily office, college, or routine wear. Because of this, Be Bodywise may feel easier for people who want mineral sunscreen protection without feeling too heavy during long days. If you prefer lightweight mineral sunscreens, you can explore the latest price and available offers for Be Bodywise SPF 50 sunscreen here.",
+    "People who dislike heavy or sticky sunscreens often look for lightweight options for daily office, college, or routine wear. Because of this, Be Bodywise may feel easier for people who want mineral sunscreen protection without feeling too heavy during long days. If you prefer lightweight mineral sunscreens, you can explore the latest price and available offers for Be Bodywise SPF 50 sunscreen before making the decision.",
     
     "Based on this Be Bodywise SPF 50 sunscreen review, the sunscreen may be a practical choice for users who prefer lightweight daily sun protection."
   ],
