@@ -199,24 +199,51 @@ if (
   escapeHtml(paragraph);
 
 if (
-  section.inlineLinks &&
-  section.inlineLinks.length
+  article.linkPlan &&
+  article.linkPlan.length
 ) {
-  section.inlineLinks.forEach(
+  article.linkPlan.forEach(
     function(link) {
-      formattedParagraph =
-        formattedParagraph.replace(
-          escapeHtml(link.text),
-          '<a class="inline-product-link" href="' +
-            escapeHtml(link.href) +
-            '"' +
-            buildTargetAttributes(
-              link.newTab
-            ) +
-            ">" +
-            escapeHtml(link.text) +
-            "</a>"
-        );
+
+      if (
+        link.anchorText &&
+        link.href &&
+        !link._used
+      ) {
+
+        var escapedAnchor =
+          escapeHtml(
+            link.anchorText
+          );
+
+        if (
+          formattedParagraph.indexOf(
+            escapedAnchor
+          ) !== -1
+        ) {
+
+          formattedParagraph =
+            formattedParagraph.replace(
+              escapedAnchor,
+
+              '<a class="inline-product-link" href="' +
+                escapeHtml(
+                  link.href
+                ) +
+                '"' +
+                buildTargetAttributes(
+                  link.newTab
+                ) +
+              ">" +
+
+              escapedAnchor +
+
+              "</a>"
+            );
+
+          link._used = true;
+        }
+      }
     }
   );
 }
