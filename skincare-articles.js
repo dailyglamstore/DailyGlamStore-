@@ -591,37 +591,44 @@ metaLine:
   faq: [
   {
     question:
-      "Is Lotus SPF 50 sunscreen better for dry skin?",
+      "Which sunscreen is better for oily skin: Lotus SPF 50 or Be Bodywise SPF 50?",
     answer:
-      "Lotus SPF 50 sunscreen may suit normal to dry skin users better if they prefer a slightly nourishing and glow-focused sunscreen texture for daily wear."
+      "Be Bodywise SPF 50 may feel like the better pick for many oily or combination skin users because it is positioned as a lighter mineral sunscreen for everyday wear. Lotus SPF 50 can still work for oily skin, but people who do not enjoy slightly more glow-focused finishes may prefer Be Bodywise for regular daytime comfort."
   },
 
   {
     question:
-      "Is Be Bodywise SPF 50 sunscreen good for oily skin?",
+      "Which sunscreen is better for dry skin: Lotus SPF 50 or Be Bodywise SPF 50?",
     answer:
-      "Be Bodywise SPF 50 sunscreen may feel more suitable for oily or combination skin users because it is positioned as a lighter mineral sunscreen for everyday wear."
+      "Lotus SPF 50 may feel more comfortable for people with normal to dry skin if they prefer a slightly nourishing and glow-focused sunscreen finish. Be Bodywise can still work for dry skin, but some users may prefer layering a moisturiser underneath if they want extra comfort."
   },
 
   {
     question:
-      "Which sunscreen feels lighter on the skin: Lotus or Be Bodywise?",
+      "Which sunscreen feels lighter on the skin: Lotus SPF 50 or Be Bodywise SPF 50?",
     answer:
-      "In this comparison, Be Bodywise SPF 50 is positioned as the lighter-feeling option, while Lotus SPF 50 may feel slightly more nourishing and glow-focused."
+      "Be Bodywise SPF 50 is positioned more toward lightweight everyday wear, so it may feel lighter for many users. Lotus SPF 50 is more likely to appeal to people who prefer a glow-focused sunscreen that feels a bit more nourishing on the skin."
   },
 
   {
     question:
-      "Can I use Lotus SPF 50 sunscreen every day?",
+      "Is Be Bodywise SPF 50 sunscreen good for daily use?",
     answer:
-      "Yes, Lotus SPF 50 sunscreen is presented as a daily-use mineral sunscreen. It may suit people who want SPF 50 protection along with a more comfortable and glow-focused finish."
+      "Be Bodywise SPF 50 may be a practical daily-use sunscreen for people who want mineral sun protection in a lightweight format. It may especially appeal to users who prefer simpler office, college, or everyday wear sunscreens that do not feel too heavy."
   },
 
   {
     question:
-      "Which sunscreen may be better for humid weather?",
+      "Can Lotus SPF 50 sunscreen be used every day?",
     answer:
-      "If you prefer a lighter feel in humid weather, Be Bodywise SPF 50 may feel easier for daily wear. Lotus may appeal more to users who prefer a slightly more nourishing finish."
+      "Yes, Lotus SPF 50 sunscreen is designed as a daily-use sunscreen and may suit people who enjoy a glow-focused mineral sunscreen finish. As with any sunscreen, comfort, skin type, and regular reapplication matter more than choosing a product only because it is trending."
+  },
+
+  {
+    question:
+      "Which sunscreen is better for daily wear: Lotus SPF 50 or Be Bodywise SPF 50?",
+    answer:
+      "The better daily-wear sunscreen depends on the finish you enjoy using consistently. Lotus SPF 50 may suit people who like a more glow-focused feel, while Be Bodywise SPF 50 may suit users who want a lighter-feeling mineral sunscreen for everyday daytime use."
   }
 ],
 
