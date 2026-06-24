@@ -438,6 +438,32 @@ var productRecommendationsMarkup =
           "</section>"
         ].join("\n")
       : "";
+      
+      var faqMarkup =
+  article.faq &&
+  article.faq.length
+    ? [
+        '<section class="article-faq">',
+        "  <h2>Frequently Asked Questions</h2>",
+
+        article.faq
+          .map(function(item) {
+            return [
+              '<div class="faq-item">',
+              '  <h3 class="faq-question">' +
+                escapeHtml(item.question) +
+                "</h3>",
+              '  <p class="faq-answer">' +
+                escapeHtml(item.answer) +
+                "</p>",
+              "</div>"
+            ].join("\n");
+          })
+          .join("\n"),
+
+        "</section>"
+      ].join("\n")
+    : "";
 
   var ctaButtons =
     (article.ctaButtons || [])
