@@ -495,12 +495,14 @@ var productRecommendationsMarkup =
 
   sectionMarkup,
 
-productRecommendationsMarkup,
+  productRecommendationsMarkup,
 
-relatedArticlesMarkup,
+  relatedArticlesMarkup,
 
-    '<section class="routine-cta" id="article-next-step">',
+  faqMarkup,
 
+  '<section class="routine-cta" id="article-next-step">',
+  
     "  <h2>" +
       escapeHtml(
         article.ctaTitle
