@@ -258,7 +258,7 @@
     "</section>"
   ].join("\n");
 
-  // THE PREFERRED SMOOTH STABLE ALIGNMENT ENGINE
+  // FLUID NATIVE AND ANCHOR SNAPPING FINALE
   if (article.faq && article.faq.length) {
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
@@ -278,30 +278,25 @@
           if (targetSection) {
             var headerOffset = window.innerWidth <= 768 ? 115 : 135;
             
-            // Initial smooth jump target estimation
+            // Execute ONE single clean smooth scroll command. No mid-air timers to cause limping.
             var targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
             window.scrollTo({
               top: targetPosition,
               behavior: "smooth"
             });
 
-            // Steady pacing engine - perfectly guides the scroll without teleporting
-            var checkCount = 0;
-            var adjustInterval = setInterval(function() {
-              var currentTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+            // Wait exactly 800ms for the native browser animation to gracefully land at the bottom
+            setTimeout(function() {
+              var finalCalculatedTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
               
-              if (Math.abs(window.pageYOffset - currentTop) > 3) {
+              // Clean final precision snap if dynamic layouts altered heights during the fall
+              if (Math.abs(window.pageYOffset - finalCalculatedTop) > 2) {
                 window.scrollTo({
-                  top: currentTop,
+                  top: finalCalculatedTop,
                   behavior: "smooth"
                 });
               }
-              
-              checkCount++;
-              if (checkCount > 18) { 
-                clearInterval(adjustInterval);
-              }
-            }, 45); // Optimally timed to feel smooth while catching all image shifts perfectly
+            }, 800);
           }
         });
       }
