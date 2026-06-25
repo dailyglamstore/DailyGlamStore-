@@ -351,156 +351,143 @@ if (
     })
     .join("\n\n");
 
-var tocMarkup =
+  var tocMarkup =
   article.showTableOfContents &&
-  tocItems.length
+  tocitems.length
     ? [
         '<section class="table-of-contents">',
         "<h2>Quick Navigation</h2>",
         '<ul class="toc-list">',
-        tocItems.join("\n"),
+        tocitems.join("\n"),
+        article.faq && article.faq.length ? '<li><a href="#article-faq-section">Frequently Asked Questions</a></li>' : "",
         "</ul>",
         "</section>"
       ].join("\n")
     : "";
 
-var productRecommendationsMarkup =
+  var productRecommendationsMarkup =
   article.productRecommendations &&
   article.productRecommendations.items &&
   article.productRecommendations.items.length
     ? [
         '<section class="final-product-recommendations">',
-
         '<h2>' +
-          escapeHtml(
-            article.productRecommendations.title ||
-            "Made Your Choice?"
-          ) +
+        escapeHtml(
+          article.productRecommendations.title ||
+          "Made Your Choice?"
+        )+
         '</h2>',
-
         '<div class="final-product-grid">',
-
         article.productRecommendations.items
-          .map(function(product) {
-            return (
-              '<a class="final-product-btn" href="' +
-                escapeHtml(
-                  product.href
-                ) +
-                '"' +
-                buildTargetAttributes(
-                  product.newTab
-                ) +
-              ">" +
-
-              escapeHtml(
-                product.title
-              ) +
-
-              "</a>"
-            );
-          })
-          .join("\n"),
-
+        .map(function(product) {
+          return (
+            '<a class="final-product-btn" href="' +
+            escapeHtml(
+              product.href
+            )+
+            '"' +
+            buildTargetAttributes(
+              product.newTab
+            )+
+            ">" +
+            escapeHtml(
+              product.title
+            )+
+            "</a>"
+          );
+        })
+        .join("\n"),
         "</div>",
-
         "</section>"
       ].join("\n")
     : "";
 
   var relatedArticlesMarkup =
-    article.relatedArticles &&
-    article.relatedArticles.length
-      ? [
-          '<section class="related-articles">',
-          "  <h2>Related Articles</h2>",
-          '  <ul class="related-articles-list">',
+  article.relatedArticles &&
+  article.relatedArticles.length
+    ? [
+        '<section class="related-articles">',
+        " <h2>Related Articles</h2>",
+        ' <ul class="related-articles-list">',
+        article.relatedArticles
+        .map(function (
+          related
+        ) {
+          return (
+            '<li><a href="' +
+            escapeHtml(
+              related.href
+            )+
+            '">' +
+            escapeHtml(
+              related.title
+            )+
+            "</a></li>"
+          );
+        })
+        .join("\n"),
+        "</ul>",
+        "</section>"
+      ].join("\n")
+    :"";
 
-          article.relatedArticles
-            .map(function (
-              related
-            ) {
-              return (
-                '<li><a href="' +
-                escapeHtml(
-                  related.href
-                ) +
-                '">' +
-                escapeHtml(
-                  related.title
-                ) +
-                "</a></li>"
-              );
-            })
-            .join("\n"),
-
-          "  </ul>",
-          "</section>"
-        ].join("\n")
-      : "";
-      
-      var faqMarkup =
+  var faqMarkup =
   article.faq &&
   article.faq.length
     ? [
-        '<section class="article-faq faq-section">',
-        '  <div class="section-heading-wrap">',
-        '    <h2 class="section-title routine-heading-capsule"><span class="routine-heading-lines">❓ Frequently Asked Questions</span></h2>',
-        "  </div>",
-        '  <div class="section-divider"></div>',
-        '  <div class="faq-wrap">',
-        '    <div class="faq-category">',
-        '      <div class="faq-list" data-faq-group="article-faq">',
-
+        '<section class="article-faq faq-section" id="article-faq-section">',
+        ' <div class="section-heading-wrap">',
+        '   <h2 class="section-title routine-heading-capsule"><span class="routine-heading-lines">Frequently Asked\nQuestions</span></h2>',
+        ' </div>',
+        ' <div class="faq-wrap">',
+        '   <div class="faq-category">',
+        '     <div class="faq-list" data-faq-group="article-faq">',
         article.faq
-          .map(function(item) {
-            return [
-              '<div class="faq-item">',
-              '  <button class="faq-question" type="button" aria-expanded="false">',
-              '    <span>' + escapeHtml(item.question) + '</span>',
-              '    <span class="faq-toggle">▼</span>',
-              '  </button>',
-              '  <div class="faq-answer">',
-              '    <p class="faq-answer-inner">' +
-                    escapeHtml(item.answer) +
-              '</p>',
-              '  </div>',
-              '</div>'
-            ].join("\n");
-          })
-          .join("\n"),
-
-        '      </div>',
-        '    </div>',
-        '  </div>',
+        .map(function(item) {
+          return [
+            '<div class="faq-item">',
+            '  <button class="faq-question" type="button" aria-expanded="false">',
+            '    <span>' + escapeHtml(item.question) + '</span>',
+            '    <span class="faq-toggle">▼</span>',
+            '  </button>',
+            '  <div class="faq-answer">',
+            '    <p class="faq-answer-inner">' + escapeHtml(item.answer) + '</p>',
+            '  </div>',
+            '</div>'
+          ].join("\n");
+        })
+        .join("\n"),
+        '     </div>',
+        '   </div>',
+        ' </div>',
         '</section>'
       ].join("\n")
     : "";
 
   var ctaButtons =
-    (article.ctaButtons || [])
-      .map(function (
-        button
-      ) {
-        return (
-          '<a class="cta-btn" href="' +
-          escapeHtml(
-            button.href
-          ) +
-          '"' +
-          buildTargetAttributes(
-            button.newTab
-          ) +
-          ">" +
-          escapeHtml(
-            button.text
-          ) +
-          "</a>"
-        );
-      })
-      .join("\n");
+  (article.ctaButtons || [])
+  .map(function (
+    button
+  ) {
+    return (
+      '<a class="cta-btn" href="' +
+      escapeHtml(
+        button.href
+      )+
+      '" ' +
+      buildTargetAttributes(
+        button.newTab
+      )+
+      ">" +
+      escapeHtml(
+        button.text
+      )+
+      "</a>"
+    );
+  })
+  .join("\n");
 
-    articleNode.innerHTML = [
+  articleNode.innerHTML = [
     tocMarkup,
     comparisonTableMarkup,
     sectionMarkup,
@@ -508,15 +495,15 @@ var productRecommendationsMarkup =
     relatedArticlesMarkup,
     faqMarkup,
     '<section class="routine-cta" id="article-next-step">',
-    "  <h2>" + escapeHtml(article.ctaTitle) + "</h2>",
-    "  <p>" + escapeHtml(article.ctaText) + "</p>",
-    '  <div class="cta-actions">',
+    " <h2>" + escapeHtml(article.ctaTitle) + "</h2>",
+    " <p>" + escapeHtml(article.ctaText) + "</p>",
+    ' <div class="cta-actions">',
     ctaButtons,
-    "  </div>",
+    " </div>",
     "</section>"
   ].join("\n");
-  
-    var faqQuestions = document.querySelectorAll(".faq-question");
+
+  var faqQuestions = document.querySelectorAll(".faq-question");
   
   faqQuestions.forEach(function (button) {
     button.addEventListener("click", function () {
@@ -551,3 +538,4 @@ var productRecommendationsMarkup =
   });
 
 })();
+          
