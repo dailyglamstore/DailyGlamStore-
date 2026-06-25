@@ -258,7 +258,7 @@
     "</section>"
   ].join("\n");
 
-      if (article.faq && article.faq.length) {
+        if (article.faq && article.faq.length) {
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
       var faqLi = document.createElement("li");
@@ -271,9 +271,9 @@
           e.preventDefault();
           var targetSection = document.getElementById("article-faq-section");
           if (targetSection) {
-            var offset = 140; 
-            var elementPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
-            var offsetPosition = elementPosition - offset;
+            var headerOffset = 135;
+            var elementPosition = targetSection.getBoundingClientRect().top;
+            var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
             window.scrollTo({
               top: offsetPosition,
