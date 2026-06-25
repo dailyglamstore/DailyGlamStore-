@@ -500,43 +500,20 @@ var productRecommendationsMarkup =
       })
       .join("\n");
 
-  articleNode.innerHTML = [
-  tocMarkup,
-
-  comparisonTableMarkup,
-
-  sectionMarkup,
-
-  productRecommendationsMarkup,
-
-  relatedArticlesMarkup,
-
-  faqMarkup,
-
-  '<section class="routine-cta" id="article-next-step">',
-  
-    "  <h2>" +
-      escapeHtml(
-        article.ctaTitle
-      ) +
-      "</h2>",
-
-    "  <p>" +
-      escapeHtml(
-        article.ctaText
-      ) +
-      "</p>",
-
+    articleNode.innerHTML = [
+    tocMarkup,
+    comparisonTableMarkup,
+    sectionMarkup,
+    productRecommendationsMarkup,
+    relatedArticlesMarkup,
+    faqMarkup,
+    '<section class="routine-cta" id="article-next-step">',
+    "  <h2>" + escapeHtml(article.ctaTitle) + "</h2>",
+    "  <p>" + escapeHtml(article.ctaText) + "</p>",
     '  <div class="cta-actions">',
-
     ctaButtons,
-
     "  </div>",
-
     "</section>"
   ].join("\n");
-  
-  articleNode.innerHTML = [
-  ...
-].join("\n");
+
 })();
