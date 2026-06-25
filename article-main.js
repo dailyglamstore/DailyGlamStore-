@@ -158,11 +158,6 @@
     })
     .join("\n\n");
 
-  // PERFECT NATIVE CONTEXT JUMP: FAQ link appended natively into your layout structure list
-  if (article.faq && article.faq.length) {
-    tocitems.push('<li><a href="#article-faq-section">Frequently Asked Questions</a></li>');
-  }
-
   var tocMarkup = article.showTableOfContents && tocitems.length
     ? [
         '<section class="table-of-contents">',
@@ -208,10 +203,9 @@
       ].join("\n")
     : "";
 
-  // Fixed Structural layout target with scroll overhead margins embedded natively
   var faqMarkup = article.faq && article.faq.length
     ? [
-        '<section class="article-faq faq-section" id="article-faq-section" style="scroll-margin-top: 135px !important;">',
+        '<section class="article-faq faq-section" id="article-faq-section">',
         ' <div class="section-heading-wrap">',
         '   <h2 class="section-title routine-heading-capsule"><span class="routine-heading-lines">Frequently Asked\nQuestions</span></h2>',
         ' </div>',
@@ -263,6 +257,58 @@
     " </div>",
     "</section>"
   ].join("\n");
+
+  // DECISIVE REAL-TIME LAYOUT ADJUSTER SCRIPT
+  if (article.faq && article.faq.length) {
+    var tocList = document.querySelector(".toc-list");
+    if (tocList) {
+      var faqLi = document.createElement("li");
+      // Uses a custom interactive element to bypass native global scroll conflicts and underline behavior
+      faqLi.innerHTML = '<span id="toc-faq-trigger" style="color:var(--brand); cursor:pointer; text-decoration:none; display:block; width:100%; -webkit-tap-highlight-color:transparent;">Frequently Asked Questions</span>';
+      tocList.appendChild(faqLi);
+      
+      var faqTrigger = document.getElementById("toc-faq-trigger");
+      if (faqTrigger) {
+        faqTrigger.addEventListener("mouseenter", function() { faqTrigger.style.textDecoration = "underline"; });
+        faqTrigger.addEventListener("mouseleave", function() { faqTrigger.style.textDecoration = "none"; });
+
+        faqTrigger.addEventListener("click", function(e) {
+          e.preventDefault();
+          
+          var targetSection = document.getElementById("article-faq-section");
+          if (targetSection) {
+            var headerOffset = window.innerWidth <= 768 ? 115 : 135;
+            
+            // Step 1: Smoothly navigate to the best current approximation position
+            var targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: "smooth"
+            });
+
+            // Step 2: Track rendering shifts in real time as the browser paints
+            var checkCount = 0;
+            var adjustInterval = setInterval(function() {
+              var currentTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+              
+              // If layout expanded, smoothly slide the target view inline
+              if (Math.abs(window.pageYOffset - currentTop) > 4) {
+                window.scrollTo({
+                  top: currentTop,
+                  behavior: "smooth"
+                });
+              }
+              
+              checkCount++;
+              if (checkCount > 15) { 
+                clearInterval(adjustInterval);
+              }
+            }, 60); // Loops during scroll window execution to guarantee pixel alignment
+          }
+        });
+      }
+    }
+  }
 
   var faqQuestions = document.querySelectorAll(".faq-question");
   faqQuestions.forEach(function (button) {
