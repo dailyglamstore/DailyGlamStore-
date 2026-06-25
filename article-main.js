@@ -258,7 +258,7 @@
     "</section>"
   ].join("\n");
 
-  // FLUID NATIVE AND ANCHOR SNAPPING FINALE
+  // SEAMLESS SINGLE-GLIDE SCROLLING ENGINE
   if (article.faq && article.faq.length) {
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
@@ -278,25 +278,44 @@
           if (targetSection) {
             var headerOffset = window.innerWidth <= 768 ? 115 : 135;
             
-            // Execute ONE single clean smooth scroll command. No mid-air timers to cause limping.
+            // Step 1: Fire the initial smooth scroll towards the layout estimation
             var targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
             window.scrollTo({
               top: targetPosition,
               behavior: "smooth"
             });
 
-            // Wait exactly 800ms for the native browser animation to gracefully land at the bottom
-            setTimeout(function() {
-              var finalCalculatedTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+            // Step 2: Continuous fluid calculation tracking that triggers *during* the transition deceleration curves
+            var isScrolling = true;
+            var scrollTimeout;
+            
+            function continuousPrecisionUpdate() {
+              if (!isScrolling) return;
               
-              // Clean final precision snap if dynamic layouts altered heights during the fall
-              if (Math.abs(window.pageYOffset - finalCalculatedTop) > 2) {
+              var dynamicTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+              
+              // If image expansions happen during runtime descent, fluidly correct target inline
+              if (Math.abs(window.pageYOffset - dynamicTop) > 2) {
                 window.scrollTo({
-                  top: finalCalculatedTop,
+                  top: dynamicTop,
                   behavior: "smooth"
                 });
               }
-            }, 800);
+              
+              clearTimeout(scrollTimeout);
+              scrollTimeout = setTimeout(function() {
+                isScrolling = false;
+                window.removeEventListener("scroll", continuousPrecisionUpdate);
+                
+                // Final safety verification check when movement completely stops
+                var finalTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+                if (Math.abs(window.pageYOffset - finalTop) > 1) {
+                  window.scrollTo({ top: finalTop, behavior: "smooth" });
+                }
+              }, 40); // Listens closely to the animation tail end, eliminating the midway stop entirely
+            }
+
+            window.addEventListener("scroll", continuousPrecisionUpdate, { passive: true });
           }
         });
       }
