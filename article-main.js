@@ -515,5 +515,34 @@ var productRecommendationsMarkup =
     "  </div>",
     "</section>"
   ].join("\n");
+  
+  var faqQuestions = document.querySelectorAll(".faq-question");
+  
+  faqQuestions.forEach(function (button) {
+    button.addEventListener("click", function () {
+      var answerDiv = button.nextElementSibling;
+      var isExpanded = button.getAttribute("aria-expanded") === "true";
+      
+      faqQuestions.forEach(function (otherButton) {
+        if (otherButton !== button) {
+          otherButton.setAttribute("aria-expanded", "false");
+          otherButton.classList.remove("is-active");
+          if (otherButton.nextElementSibling) {
+            otherButton.nextElementSibling.style.display = "none";
+          }
+        }
+      });
+      
+      if (isExpanded) {
+        button.setAttribute("aria-expanded", "false");
+        button.classList.remove("is-active");
+        if (answerDiv) answerDiv.style.display = "none";
+      } else {
+        button.setAttribute("aria-expanded", "true");
+        button.classList.add("is-active");
+        if (answerDiv) answerDiv.style.display = "block";
+      }
+    });
+  });
 
 })();
