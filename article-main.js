@@ -258,7 +258,7 @@
     "</section>"
   ].join("\n");
 
-        if (article.faq && article.faq.length) {
+          if (article.faq && article.faq.length) {
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
       var faqLi = document.createElement("li");
@@ -268,18 +268,24 @@
       var faqTrigger = document.getElementById("toc-faq-trigger");
       if (faqTrigger) {
         faqTrigger.addEventListener("click", function(e) {
-          e.preventDefault();
-          var targetSection = document.getElementById("article-faq-section");
-          if (targetSection) {
-            var headerOffset = 135;
-            var elementPosition = targetSection.getBoundingClientRect().top;
-            var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          e.preventDefault(); // Stop native clash immediately
+          
+          // Force layout calculation pass after frame paints
+          requestAnimationFrame(function() {
+            setTimeout(function() {
+              var targetSection = document.getElementById("article-faq-section");
+              if (targetSection) {
+                var headerOffset = 145; // Accounts perfectly for sticky header overlays
+                var elementPosition = targetSection.getBoundingClientRect().top;
+                var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: "smooth"
-            });
-          }
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: "smooth"
+                });
+              }
+            }, 50); // Small buffer to let dynamic elements adjust true pixel sizes
+          });
         });
       }
     }
