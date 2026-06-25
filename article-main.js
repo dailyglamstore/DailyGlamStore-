@@ -523,8 +523,18 @@ var productRecommendationsMarkup =
       var answerDiv = button.nextElementSibling;
       var isExpanded = button.getAttribute("aria-expanded") === "true";
       
+      if (isExpanded) {
+        button.setAttribute("aria-expanded", "false");
+        button.classList.remove("is-active");
+        if (answerDiv) answerDiv.style.display = "none";
+        return;
+      }
+
+      var anyOtherOpen = false;
+
       faqQuestions.forEach(function (otherButton) {
-        if (otherButton !== button) {
+        if (otherButton !== button && otherButton.getAttribute("aria-expanded") === "true") {
+          anyOtherOpen = true;
           otherButton.setAttribute("aria-expanded", "false");
           otherButton.classList.remove("is-active");
           if (otherButton.nextElementSibling) {
@@ -533,11 +543,14 @@ var productRecommendationsMarkup =
         }
       });
       
-      if (isExpanded) {
-        button.setAttribute("aria-expanded", "false");
-        button.classList.remove("is-active");
-        if (answerDiv) answerDiv.style.display = "none";
+      if (anyOtherOpen) {
+        setTimeout(function() {
+          button.setAttribute("aria-expanded", "true");
+          button.classList.add("is-active");
+          if (answerDiv) answerDiv.style.display = "block";
+        }, 200);
       } else {
+        
         button.setAttribute("aria-expanded", "true");
         button.classList.add("is-active");
         if (answerDiv) answerDiv.style.display = "block";
