@@ -841,10 +841,6 @@ border-radius: 18px;
   }
 }
 
-/* ==========================================================================
-   HOMEPAGE MATCHED ACCORDION: FAQ BLOCK FIX
-   ========================================================================== */
-
 .faq-section {
     padding-top: 22px !important;
     padding-bottom: 26px !important;
@@ -852,7 +848,6 @@ border-radius: 18px;
     display: block !important;
 }
 
-/* Made full width to match text layout and remove left/right empty whitespace */
 .routine-heading-capsule {
     display: block !important;
     width: 100% !important;
@@ -933,12 +928,10 @@ border-radius: 18px;
     flex: 0 0 auto !important;
 }
 
-/* Rotates arrow cleanly when expanded */
 .faq-question.is-active .faq-toggle {
     transform: rotate(180deg) !important;
 }
 
-/* Dynamic display controlled interactively by the revised JS engine */
 .faq-answer {
     display: none;
     background: #fffdfc !important;
@@ -953,7 +946,6 @@ border-radius: 18px;
     line-height: 1.65 !important;
 }
 
-/* Isolated Mobile Scopes */
 @media (max-width: 768px) {
     .routine-heading-capsule {
         padding: 10px 14px !important;
