@@ -443,25 +443,37 @@ var productRecommendationsMarkup =
   article.faq &&
   article.faq.length
     ? [
-        '<section class="article-faq">',
-        "  <h2>Frequently Asked Questions</h2>",
+        '<section class="article-faq faq-section">',
+        '  <div class="section-heading-wrap">',
+        '    <h2 class="section-title routine-heading-capsule"><span class="routine-heading-lines">❓ Frequently Asked Questions</span></h2>',
+        "  </div>",
+        '  <div class="section-divider"></div>',
+        '  <div class="faq-wrap">',
+        '    <div class="faq-category">',
+        '      <div class="faq-list" data-faq-group="article-faq">',
 
         article.faq
           .map(function(item) {
             return [
               '<div class="faq-item">',
-              '  <h3 class="faq-question">' +
-                escapeHtml(item.question) +
-                "</h3>",
-              '  <p class="faq-answer">' +
-                escapeHtml(item.answer) +
-                "</p>",
-              "</div>"
+              '  <button class="faq-question" type="button" aria-expanded="false">',
+              '    <span>' + escapeHtml(item.question) + '</span>',
+              '    <span class="faq-toggle">▼</span>',
+              '  </button>',
+              '  <div class="faq-answer">',
+              '    <p class="faq-answer-inner">' +
+                    escapeHtml(item.answer) +
+              '</p>',
+              '  </div>',
+              '</div>'
             ].join("\n");
           })
           .join("\n"),
 
-        "</section>"
+        '      </div>',
+        '    </div>',
+        '  </div>',
+        '</section>'
       ].join("\n")
     : "";
 
