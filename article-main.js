@@ -258,27 +258,27 @@
     "</section>"
   ].join("\n");
 
-  // Isolated Custom Injection to keep original headings safe
+  // EXPERT OVERRIDE METHOD: Using custom neutral elements to prevent global script conflicts
   if (article.faq && article.faq.length) {
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
       var faqLi = document.createElement("li");
-      faqLi.innerHTML = '<a href="#article-faq-section" id="toc-faq-trigger" style="-webkit-tap-highlight-color:transparent;">Frequently Asked Questions</a>';
+      // Styled exactly like other TOC links but uses an isolated clickable target
+      faqLi.innerHTML = '<span id="toc-faq-trigger" style="color:var(--brand); cursor:pointer; text-decoration:none; -webkit-tap-highlight-color:transparent; display:block; width:100%;">Frequently Asked Questions</span>';
       tocList.appendChild(faqLi);
       
       var faqTrigger = document.getElementById("toc-faq-trigger");
       if (faqTrigger) {
+        // Simple hover style matcher logic
+        faqTrigger.addEventListener("mouseenter", function() { faqTrigger.style.textDecoration = "underline"; });
+        faqTrigger.addEventListener("mouseleave", function() { faqTrigger.style.textDecoration = "none"; });
+
         faqTrigger.addEventListener("click", function(e) {
           e.preventDefault();
-          e.stopPropagation();
-
+          
           var targetSection = document.getElementById("article-faq-section");
           if (targetSection) {
-            // Temporary block native html scroll-behavior overrides to clear double-clicks 
-            var previousScrollBehavior = document.documentElement.style.scrollBehavior;
-            document.documentElement.style.scrollBehavior = "auto";
-
-            // Header offset matching structural layout positioning comfort values
+            // Read runtime coordinate positions dynamically
             var headerOffset = window.innerWidth <= 768 ? 115 : 135;
             var elementPosition = targetSection.getBoundingClientRect().top;
             var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -287,11 +287,6 @@
               top: offsetPosition,
               behavior: "smooth"
             });
-
-            // Restore initial stylesheet parameters safely after the jump settles
-            setTimeout(function() {
-              document.documentElement.style.scrollBehavior = previousScrollBehavior;
-            }, 800);
           }
         });
       }
