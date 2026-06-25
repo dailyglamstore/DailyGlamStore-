@@ -158,6 +158,11 @@
     })
     .join("\n\n");
 
+  // NATIVE FIX: FAQ link added directly into the master Quick Navigation list array right here
+  if (article.faq && article.faq.length) {
+    tocitems.push('<li><a href="#article-faq-section">Frequently Asked Questions</a></li>');
+  }
+
   var tocMarkup = article.showTableOfContents && tocitems.length
     ? [
         '<section class="table-of-contents">',
@@ -257,39 +262,6 @@
     " </div>",
     "</section>"
   ].join("\n");
-
-          if (article.faq && article.faq.length) {
-    var tocList = document.querySelector(".toc-list");
-    if (tocList) {
-      var faqLi = document.createElement("li");
-      faqLi.innerHTML = '<a href="#article-faq-section" id="toc-faq-trigger">Frequently Asked Questions</a>';
-      tocList.appendChild(faqLi);
-      
-      var faqTrigger = document.getElementById("toc-faq-trigger");
-      if (faqTrigger) {
-        faqTrigger.addEventListener("click", function(e) {
-          e.preventDefault(); // Stop native clash immediately
-          
-          // Force layout calculation pass after frame paints
-          requestAnimationFrame(function() {
-            setTimeout(function() {
-              var targetSection = document.getElementById("article-faq-section");
-              if (targetSection) {
-                var headerOffset = 145; // Accounts perfectly for sticky header overlays
-                var elementPosition = targetSection.getBoundingClientRect().top;
-                var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: "smooth"
-                });
-              }
-            }, 50); // Small buffer to let dynamic elements adjust true pixel sizes
-          });
-        });
-      }
-    }
-  }
 
   var faqQuestions = document.querySelectorAll(".faq-question");
   faqQuestions.forEach(function (button) {
