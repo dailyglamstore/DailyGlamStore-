@@ -158,11 +158,6 @@
     })
     .join("\n\n");
 
-  // NATIVE FIX: FAQ link added directly into the master Quick Navigation list array right here
-  if (article.faq && article.faq.length) {
-    tocitems.push('<li><a href="#article-faq-section">Frequently Asked Questions</a></li>');
-  }
-
   var tocMarkup = article.showTableOfContents && tocitems.length
     ? [
         '<section class="table-of-contents">',
@@ -262,6 +257,46 @@
     " </div>",
     "</section>"
   ].join("\n");
+
+  // Isolated Custom Injection to keep original headings safe
+  if (article.faq && article.faq.length) {
+    var tocList = document.querySelector(".toc-list");
+    if (tocList) {
+      var faqLi = document.createElement("li");
+      faqLi.innerHTML = '<a href="#article-faq-section" id="toc-faq-trigger" style="-webkit-tap-highlight-color:transparent;">Frequently Asked Questions</a>';
+      tocList.appendChild(faqLi);
+      
+      var faqTrigger = document.getElementById("toc-faq-trigger");
+      if (faqTrigger) {
+        faqTrigger.addEventListener("click", function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          var targetSection = document.getElementById("article-faq-section");
+          if (targetSection) {
+            // Temporary block native html scroll-behavior overrides to clear double-clicks 
+            var previousScrollBehavior = document.documentElement.style.scrollBehavior;
+            document.documentElement.style.scrollBehavior = "auto";
+
+            // Header offset matching structural layout positioning comfort values
+            var headerOffset = window.innerWidth <= 768 ? 115 : 135;
+            var elementPosition = targetSection.getBoundingClientRect().top;
+            var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth"
+            });
+
+            // Restore initial stylesheet parameters safely after the jump settles
+            setTimeout(function() {
+              document.documentElement.style.scrollBehavior = previousScrollBehavior;
+            }, 800);
+          }
+        });
+      }
+    }
+  }
 
   var faqQuestions = document.querySelectorAll(".faq-question");
   faqQuestions.forEach(function (button) {
