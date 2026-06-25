@@ -158,6 +158,11 @@
     })
     .join("\n\n");
 
+  // PERFECT NATIVE CONTEXT JUMP: FAQ link appended natively into your layout structure list
+  if (article.faq && article.faq.length) {
+    tocitems.push('<li><a href="#article-faq-section">Frequently Asked Questions</a></li>');
+  }
+
   var tocMarkup = article.showTableOfContents && tocitems.length
     ? [
         '<section class="table-of-contents">',
@@ -203,9 +208,10 @@
       ].join("\n")
     : "";
 
+  // Fixed Structural layout target with scroll overhead margins embedded natively
   var faqMarkup = article.faq && article.faq.length
     ? [
-        '<section class="article-faq faq-section" id="article-faq-section">',
+        '<section class="article-faq faq-section" id="article-faq-section" style="scroll-margin-top: 135px !important;">',
         ' <div class="section-heading-wrap">',
         '   <h2 class="section-title routine-heading-capsule"><span class="routine-heading-lines">Frequently Asked\nQuestions</span></h2>',
         ' </div>',
@@ -257,41 +263,6 @@
     " </div>",
     "</section>"
   ].join("\n");
-
-  // EXPERT OVERRIDE METHOD: Using custom neutral elements to prevent global script conflicts
-  if (article.faq && article.faq.length) {
-    var tocList = document.querySelector(".toc-list");
-    if (tocList) {
-      var faqLi = document.createElement("li");
-      // Styled exactly like other TOC links but uses an isolated clickable target
-      faqLi.innerHTML = '<span id="toc-faq-trigger" style="color:var(--brand); cursor:pointer; text-decoration:none; -webkit-tap-highlight-color:transparent; display:block; width:100%;">Frequently Asked Questions</span>';
-      tocList.appendChild(faqLi);
-      
-      var faqTrigger = document.getElementById("toc-faq-trigger");
-      if (faqTrigger) {
-        // Simple hover style matcher logic
-        faqTrigger.addEventListener("mouseenter", function() { faqTrigger.style.textDecoration = "underline"; });
-        faqTrigger.addEventListener("mouseleave", function() { faqTrigger.style.textDecoration = "none"; });
-
-        faqTrigger.addEventListener("click", function(e) {
-          e.preventDefault();
-          
-          var targetSection = document.getElementById("article-faq-section");
-          if (targetSection) {
-            // Read runtime coordinate positions dynamically
-            var headerOffset = window.innerWidth <= 768 ? 115 : 135;
-            var elementPosition = targetSection.getBoundingClientRect().top;
-            var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: "smooth"
-            });
-          }
-        });
-      }
-    }
-  }
 
   var faqQuestions = document.querySelectorAll(".faq-question");
   faqQuestions.forEach(function (button) {
