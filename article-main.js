@@ -516,44 +516,36 @@ var productRecommendationsMarkup =
     "</section>"
   ].join("\n");
   
-  var faqQuestions = document.querySelectorAll(".faq-question");
+    var faqQuestions = document.querySelectorAll(".faq-question");
   
   faqQuestions.forEach(function (button) {
     button.addEventListener("click", function () {
       var answerDiv = button.nextElementSibling;
       var isExpanded = button.getAttribute("aria-expanded") === "true";
       
-      if (isExpanded) {
-        button.setAttribute("aria-expanded", "false");
-        button.classList.remove("is-active");
-        if (answerDiv) answerDiv.style.display = "none";
-        return;
-      }
-
-      var anyOtherOpen = false;
-
       faqQuestions.forEach(function (otherButton) {
-        if (otherButton !== button && otherButton.getAttribute("aria-expanded") === "true") {
-          anyOtherOpen = true;
+        if (otherButton !== button) {
           otherButton.setAttribute("aria-expanded", "false");
           otherButton.classList.remove("is-active");
-          if (otherButton.nextElementSibling) {
-            otherButton.nextElementSibling.style.display = "none";
+          var otherAnswer = otherButton.nextElementSibling;
+          if (otherAnswer) {
+            otherAnswer.style.maxHeight = null;
           }
         }
       });
       
-      if (anyOtherOpen) {
-        setTimeout(function() {
-          button.setAttribute("aria-expanded", "true");
-          button.classList.add("is-active");
-          if (answerDiv) answerDiv.style.display = "block";
-        }, 200);
+      if (isExpanded) {
+        button.setAttribute("aria-expanded", "false");
+        button.classList.remove("is-active");
+        if (answerDiv) {
+          answerDiv.style.maxHeight = null;
+        }
       } else {
-        
         button.setAttribute("aria-expanded", "true");
         button.classList.add("is-active");
-        if (answerDiv) answerDiv.style.display = "block";
+        if (answerDiv) {
+          answerDiv.style.maxHeight = answerDiv.scrollHeight + "px";
+        }
       }
     });
   });
