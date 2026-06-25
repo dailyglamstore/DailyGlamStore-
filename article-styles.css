@@ -850,17 +850,18 @@ border-radius: 18px;
 
 .routine-heading-capsule {
     display: flex !important;
-    width: 100% !important; /* Spans full container layout width */
+    width: 100% !important;
     align-items: center;
-    justify-content: center; /* Keeps text centered inside the box */
+    justify-content: center;
     margin: 0 0 16px 0 !important;
-    padding: 12px 24px !important;
-    border-radius: 999px !important; /* Kept original pill styling rounding */
+    padding: 20px 24px !important;
+    border-radius: 50% / 50px !important;
     border: 1.5px solid #e7b2c0 !important;
     background: #fff9f8 !important;
     box-shadow: 0 4px 10px rgba(178, 69, 90, 0.08) !important;
     text-align: center !important;
     line-height: 1.3 !important;
+    box-sizing: border-box !important;
 }
 
 .routine-heading-lines {
@@ -869,6 +870,7 @@ border-radius: 18px;
     font-weight: 700 !important;
     color: var(--brand-dark) !important;
     letter-spacing: 0.01em;
+    white-space: pre-line !important;
 }
 
 .section-divider {
@@ -935,8 +937,13 @@ border-radius: 18px;
 }
 
 .faq-answer {
-    display: none;
+    max-height: 0;
+    overflow: hidden;
     background: #fffdfc !important;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.faq-question.is-active + .faq-answer {
     border-top: 1px solid #f3e1dc !important;
 }
 
@@ -950,8 +957,8 @@ border-radius: 18px;
 
 @media (max-width: 768px) {
     .routine-heading-capsule {
-        padding: 10px 16px !important;
-        border-radius: 20px !important; /* Tweaked slightly on mobile for multi-line display comfort */
+        padding: 16px 20px !important;
+        border-radius: 50% / 40px !important;
     }
     .routine-heading-lines {
         font-size: 16px !important;
