@@ -258,7 +258,7 @@
     "</section>"
   ].join("\n");
 
-  // SEAMLESS SINGLE-GLIDE SCROLLING ENGINE
+  // RESTORED STABLE RYTHMIC ENGINE WITH IN-FLIGHT GAP CLOSURE
   if (article.faq && article.faq.length) {
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
@@ -278,44 +278,30 @@
           if (targetSection) {
             var headerOffset = window.innerWidth <= 768 ? 115 : 135;
             
-            // Step 1: Fire the initial smooth scroll towards the layout estimation
+            // Initial smooth anchor launch
             var targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
             window.scrollTo({
               top: targetPosition,
               behavior: "smooth"
             });
 
-            // Step 2: Continuous fluid calculation tracking that triggers *during* the transition deceleration curves
-            var isScrolling = true;
-            var scrollTimeout;
-            
-            function continuousPrecisionUpdate() {
-              if (!isScrolling) return;
+            // Smooth rhythmic pacing loops - updates in-flight to prevent the midway CTA stop entirely
+            var checkCount = 0;
+            var adjustInterval = setInterval(function() {
+              var currentTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
               
-              var dynamicTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-              
-              // If image expansions happen during runtime descent, fluidly correct target inline
-              if (Math.abs(window.pageYOffset - dynamicTop) > 2) {
+              if (Math.abs(window.pageYOffset - currentTop) > 3) {
                 window.scrollTo({
-                  top: dynamicTop,
+                  top: currentTop,
                   behavior: "smooth"
                 });
               }
               
-              clearTimeout(scrollTimeout);
-              scrollTimeout = setTimeout(function() {
-                isScrolling = false;
-                window.removeEventListener("scroll", continuousPrecisionUpdate);
-                
-                // Final safety verification check when movement completely stops
-                var finalTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-                if (Math.abs(window.pageYOffset - finalTop) > 1) {
-                  window.scrollTo({ top: finalTop, behavior: "smooth" });
-                }
-              }, 40); // Listens closely to the animation tail end, eliminating the midway stop entirely
-            }
-
-            window.addEventListener("scroll", continuousPrecisionUpdate, { passive: true });
+              checkCount++;
+              if (checkCount > 24) { // Stays alive through the deceleration curve to ensure perfect pixel lock
+                clearInterval(adjustInterval);
+              }
+            }, 35); // Optimized speed interval to keep movement continuous and fluid
           }
         });
       }
