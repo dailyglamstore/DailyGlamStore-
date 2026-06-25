@@ -431,7 +431,7 @@ if (
       ].join("\n")
     :"";
 
-  var faqMarkup =
+    var faqMarkup =
   article.faq &&
   article.faq.length
     ? [
@@ -503,6 +503,15 @@ if (
     "</section>"
   ].join("\n");
 
+  if (article.faq && article.faq.length) {
+    var tocList = document.querySelector(".toc-list");
+    if (tocList) {
+      var faqLi = document.createElement("li");
+      faqLi.innerHTML = '<a href="#article-faq-section">Frequently Asked Questions</a>';
+      tocList.appendChild(faqLi);
+    }
+  }
+
   var faqQuestions = document.querySelectorAll(".faq-question");
   
   faqQuestions.forEach(function (button) {
@@ -538,4 +547,3 @@ if (
   });
 
 })();
-          
