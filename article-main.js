@@ -535,4 +535,8 @@ var productRecommendationsMarkup =
 
     "</section>"
   ].join("\n");
+  
+  articleNode.innerHTML = [
+  ...
+].join("\n");
 })();
