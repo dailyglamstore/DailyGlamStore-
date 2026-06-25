@@ -258,7 +258,7 @@
     "</section>"
   ].join("\n");
 
-  // RESTORED STABLE RYTHMIC ENGINE WITH IN-FLIGHT GAP CLOSURE
+  // YOUR FAVORITE SMOOTH STEADY PACING ENGINE RESTORED
   if (article.faq && article.faq.length) {
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
@@ -278,14 +278,14 @@
           if (targetSection) {
             var headerOffset = window.innerWidth <= 768 ? 115 : 135;
             
-            // Initial smooth anchor launch
+            // Clean, beautifully paced smooth descent initial launch
             var targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
             window.scrollTo({
               top: targetPosition,
               behavior: "smooth"
             });
 
-            // Smooth rhythmic pacing loops - updates in-flight to prevent the midway CTA stop entirely
+            // Smooth rhythmic pacing clock - tracks and updates heights to secure perfect destination arrival
             var checkCount = 0;
             var adjustInterval = setInterval(function() {
               var currentTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
@@ -298,10 +298,10 @@
               }
               
               checkCount++;
-              if (checkCount > 24) { // Stays alive through the deceleration curve to ensure perfect pixel lock
+              if (checkCount > 25) { 
                 clearInterval(adjustInterval);
               }
-            }, 35); // Optimized speed interval to keep movement continuous and fluid
+            }, 60); // Restored to the perfect 60ms cadence for that beautiful slow scrolling rhythm
           }
         });
       }
