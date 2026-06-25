@@ -258,7 +258,7 @@
     "</section>"
   ].join("\n");
 
-  // HIGH-SPEED REAL-TIME LAYOUT SNAPPING ENGINE
+  // THE PREFERRED SMOOTH STABLE ALIGNMENT ENGINE
   if (article.faq && article.faq.length) {
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
@@ -285,26 +285,23 @@
               behavior: "smooth"
             });
 
-            // Replaces the slow timer with high-speed rendering frames to snap positions immediately
-            var startTime = performance.now();
-            function trackAndSnap(currentTime) {
-              var elapsedTime = currentTime - startTime;
+            // Steady pacing engine - perfectly guides the scroll without teleporting
+            var checkCount = 0;
+            var adjustInterval = setInterval(function() {
               var currentTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
               
-              // If dynamic elements push the section away, smoothly adjust position immediately
-              if (Math.abs(window.pageYOffset - currentTop) > 2) {
+              if (Math.abs(window.pageYOffset - currentTop) > 3) {
                 window.scrollTo({
                   top: currentTop,
                   behavior: "smooth"
                 });
               }
               
-              // Run continuously for 1.2 seconds while components render and settle
-              if (elapsedTime < 1200) {
-                requestAnimationFrame(trackAndSnap);
+              checkCount++;
+              if (checkCount > 18) { 
+                clearInterval(adjustInterval);
               }
-            }
-            requestAnimationFrame(trackAndSnap);
+            }, 45); // Optimally timed to feel smooth while catching all image shifts perfectly
           }
         });
       }
