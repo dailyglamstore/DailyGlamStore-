@@ -258,12 +258,11 @@
     "</section>"
   ].join("\n");
 
-  // DECISIVE REAL-TIME LAYOUT ADJUSTER SCRIPT
+  // HIGH-SPEED REAL-TIME LAYOUT SNAPPING ENGINE
   if (article.faq && article.faq.length) {
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
       var faqLi = document.createElement("li");
-      // Uses a custom interactive element to bypass native global scroll conflicts and underline behavior
       faqLi.innerHTML = '<span id="toc-faq-trigger" style="color:var(--brand); cursor:pointer; text-decoration:none; display:block; width:100%; -webkit-tap-highlight-color:transparent;">Frequently Asked Questions</span>';
       tocList.appendChild(faqLi);
       
@@ -279,31 +278,33 @@
           if (targetSection) {
             var headerOffset = window.innerWidth <= 768 ? 115 : 135;
             
-            // Step 1: Smoothly navigate to the best current approximation position
+            // Initial smooth jump target estimation
             var targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
             window.scrollTo({
               top: targetPosition,
               behavior: "smooth"
             });
 
-            // Step 2: Track rendering shifts in real time as the browser paints
-            var checkCount = 0;
-            var adjustInterval = setInterval(function() {
+            // Replaces the slow timer with high-speed rendering frames to snap positions immediately
+            var startTime = performance.now();
+            function trackAndSnap(currentTime) {
+              var elapsedTime = currentTime - startTime;
               var currentTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
               
-              // If layout expanded, smoothly slide the target view inline
-              if (Math.abs(window.pageYOffset - currentTop) > 4) {
+              // If dynamic elements push the section away, smoothly adjust position immediately
+              if (Math.abs(window.pageYOffset - currentTop) > 2) {
                 window.scrollTo({
                   top: currentTop,
                   behavior: "smooth"
                 });
               }
               
-              checkCount++;
-              if (checkCount > 15) { 
-                clearInterval(adjustInterval);
+              // Run continuously for 1.2 seconds while components render and settle
+              if (elapsedTime < 1200) {
+                requestAnimationFrame(trackAndSnap);
               }
-            }, 60); // Loops during scroll window execution to guarantee pixel alignment
+            }
+            requestAnimationFrame(trackAndSnap);
           }
         });
       }
