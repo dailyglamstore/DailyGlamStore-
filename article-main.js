@@ -258,12 +258,33 @@
     "</section>"
   ].join("\n");
 
-  if (article.faq && article.faq.length) {
+    if (article.faq && article.faq.length) {
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
       var faqLi = document.createElement("li");
-      faqLi.innerHTML = '<a href="#article-faq-section">Frequently Asked Questions</a>';
+      faqLi.innerHTML = '<a href="#article-faq-section" id="toc-faq-trigger">Frequently Asked Questions</a>';
       tocList.appendChild(faqLi);
+      
+      // Fix dynamic layout shifts on fresh page loads using an absolute position calculator
+      var faqTrigger = document.getElementById("toc-faq-trigger");
+      if (faqTrigger) {
+        faqTrigger.addEventListener("click", function(e) {
+          e.preventDefault();
+          var targetSection = document.getElementById("article-faq-section");
+          if (targetSection) {
+            var offset = 110; // Extra alignment padding comfort window
+            var bodyRect = document.body.getBoundingClientRect().top;
+            var elementRect = targetSection.getBoundingClientRect().top;
+            var elementPosition = elementRect - bodyRect;
+            var offsetPosition = elementPosition - offset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth"
+            });
+          }
+        });
+      }
     }
   }
 
