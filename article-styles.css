@@ -939,10 +939,10 @@ border-radius: 18px;
 }
 
 .faq-answer {
-    max-height: 0 !important; 
-    overflow: hidden !important;
-    background: #fffdfc !important;
-    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  max-height: 0;
+  overflow: hidden;
+  background: #fffdfc;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .faq-answer-inner {
