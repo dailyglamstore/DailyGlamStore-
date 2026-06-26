@@ -311,7 +311,7 @@
     }
   }
 
-  var faqQuestions = document.querySelectorAll(".faq-question");
+    var faqQuestions = document.querySelectorAll(".faq-question");
   faqQuestions.forEach(function (button) {
     button.addEventListener("click", function () {
       var answerDiv = button.nextElementSibling;
@@ -323,7 +323,7 @@
           otherButton.classList.remove("is-active");
           var otherAnswer = otherButton.nextElementSibling;
           if (otherAnswer) {
-            otherAnswer.style.maxHeight = null;
+            otherAnswer.style.maxHeight = "0px"; // Set to 0px explicitly
           }
         }
       });
@@ -332,13 +332,16 @@
         button.setAttribute("aria-expanded", "false");
         button.classList.remove("is-active");
         if (answerDiv) {
-          answerDiv.style.maxHeight = null;
+          answerDiv.style.maxHeight = "0px"; // Set to 0px explicitly
         }
       } else {
         button.setAttribute("aria-expanded", "true");
         button.classList.add("is-active");
         if (answerDiv) {
-          answerDiv.style.maxHeight = answerDiv.scrollHeight + "px";
+          // Using the precise element scrollHeight prevents padding bloating
+          var innerContent = answerDiv.querySelector(".faq-answer-inner");
+          var targetHeight = innerContent ? innerContent.scrollHeight : answerDiv.scrollHeight;
+          answerDiv.style.maxHeight = targetHeight + "px";
         }
       }
     });
