@@ -242,6 +242,7 @@
     })
     .join("\n");
 
+  // CORRECTED STRUCTURAL ORDER: Text Body -> Recommendations -> Related -> FAQ -> Final CTA -> Runway Spacer
   articleNode.innerHTML = [
     tocMarkup,
     comparisonTableMarkup,
@@ -255,40 +256,38 @@
     ' <div class="cta-actions">',
     ctaButtons,
     " </div>",
-    "</section>"
+    "</section>",
+    '<div id="article-bottom-runway" style="height: 65vh; width: 100%; pointer-events: none; visibility: hidden;"></div>'
   ].join("\n");
 
-  // HYBRID SYSTEM: NATIVE INSTANT ACCELERATION WITH AIR-DROP CORRECTION
+  // HIGH-SPEED NATIVE MATCHING ACCELERATION TRIGGER
   if (article.faq && article.faq.length) {
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
       var faqLi = document.createElement("li");
-      // Implemented a true standard matching anchor anchor tag with explicit href pointing to the section ID
       faqLi.innerHTML = '<a href="#article-faq-section" id="toc-faq-trigger" style="color:var(--brand); text-decoration:none; display:block; width:100%; -webkit-tap-highlight-color:transparent;">Frequently Asked Questions</a>';
       tocList.appendChild(faqLi);
       
       var faqTrigger = document.getElementById("toc-faq-trigger");
       if (faqTrigger) {
-        // Keeps style overrides clean to avoid permanent global tracking underlines
         faqTrigger.addEventListener("mouseenter", function() { faqTrigger.style.textDecoration = "underline"; });
         faqTrigger.addEventListener("mouseleave", function() { faqTrigger.style.textDecoration = "none"; });
 
         faqTrigger.addEventListener("click", function(e) {
-          // We intercept the native snap just enough to smoothly override coordinates over the fixed headers
           e.preventDefault();
           
           var targetSection = document.getElementById("article-faq-section");
           if (targetSection) {
             var headerOffset = window.innerWidth <= 768 ? 115 : 135;
             
-            // Fires an instant, native hardware-accelerated top-speed smooth flight to the destination
+            // Native fluid sweep down the page
             var initialPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
             window.scrollTo({
               top: initialPosition,
               behavior: "smooth"
             });
 
-            // Invisible landing calibration check to catch shifts without hurting flight speed
+            // Instant alignment capture handles dynamic expansions seamlessly
             var arrivalScrollTimeout;
             function precisionLandingCheck() {
               clearTimeout(arrivalScrollTimeout);
@@ -302,7 +301,7 @@
                     behavior: "smooth"
                   });
                 }
-              }, 45); // Adjusts instantly the split second landing velocity drops to zero
+              }, 45);
             }
 
             window.addEventListener("scroll", precisionLandingCheck, { passive: true });
