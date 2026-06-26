@@ -242,7 +242,6 @@
     })
     .join("\n");
 
-  // CORRECTED STRUCTURAL ORDER: Text Body -> Recommendations -> Related -> FAQ -> Final CTA -> Runway Spacer
   articleNode.innerHTML = [
     tocMarkup,
     comparisonTableMarkup,
@@ -256,16 +255,16 @@
     ' <div class="cta-actions">',
     ctaButtons,
     " </div>",
-    "</section>",
-    '<div id="article-bottom-runway" style="height: 65vh; width: 100%; pointer-events: none; visibility: hidden;"></div>'
+    "</section>"
   ].join("\n");
 
-  // HIGH-SPEED NATIVE MATCHING ACCELERATION TRIGGER
+  // DECISIVE REAL-TIME LAYOUT ADJUSTER SCRIPT
   if (article.faq && article.faq.length) {
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
       var faqLi = document.createElement("li");
-      faqLi.innerHTML = '<a href="#article-faq-section" id="toc-faq-trigger" style="color:var(--brand); text-decoration:none; display:block; width:100%; -webkit-tap-highlight-color:transparent;">Frequently Asked Questions</a>';
+      // Uses a custom interactive element to bypass native global scroll conflicts and underline behavior
+      faqLi.innerHTML = '<span id="toc-faq-trigger" style="color:var(--brand); cursor:pointer; text-decoration:none; display:block; width:100%; -webkit-tap-highlight-color:transparent;">Frequently Asked Questions</span>';
       tocList.appendChild(faqLi);
       
       var faqTrigger = document.getElementById("toc-faq-trigger");
@@ -280,31 +279,31 @@
           if (targetSection) {
             var headerOffset = window.innerWidth <= 768 ? 115 : 135;
             
-            // Native fluid sweep down the page
-            var initialPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+            // Step 1: Smoothly navigate to the best current approximation position
+            var targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
             window.scrollTo({
-              top: initialPosition,
+              top: targetPosition,
               behavior: "smooth"
             });
 
-            // Instant alignment capture handles dynamic expansions seamlessly
-            var arrivalScrollTimeout;
-            function precisionLandingCheck() {
-              clearTimeout(arrivalScrollTimeout);
-              arrivalScrollTimeout = setTimeout(function() {
-                window.removeEventListener("scroll", precisionLandingCheck);
-                
-                var postLoadDestination = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-                if (Math.abs(window.pageYOffset - postLoadDestination) > 2) {
-                  window.scrollTo({
-                    top: postLoadDestination,
-                    behavior: "smooth"
-                  });
-                }
-              }, 45);
-            }
-
-            window.addEventListener("scroll", precisionLandingCheck, { passive: true });
+            // Step 2: Track rendering shifts in real time as the browser paints
+            var checkCount = 0;
+            var adjustInterval = setInterval(function() {
+              var currentTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+              
+              // If layout expanded, smoothly slide the target view inline
+              if (Math.abs(window.pageYOffset - currentTop) > 4) {
+                window.scrollTo({
+                  top: currentTop,
+                  behavior: "smooth"
+                });
+              }
+              
+              checkCount++;
+              if (checkCount > 15) { 
+                clearInterval(adjustInterval);
+              }
+            }, 60); // Loops during scroll window execution to guarantee pixel alignment
           }
         });
       }
