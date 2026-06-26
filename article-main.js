@@ -258,51 +258,54 @@
     "</section>"
   ].join("\n");
 
-  // EXPERT HIGH-SPEED NATIVE MATCHING TRIGGER
+  // HYBRID SYSTEM: NATIVE INSTANT ACCELERATION WITH AIR-DROP CORRECTION
   if (article.faq && article.faq.length) {
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
       var faqLi = document.createElement("li");
-      faqLi.innerHTML = '<span id="toc-faq-trigger" style="color:var(--brand); cursor:pointer; text-decoration:none; display:block; width:100%; -webkit-tap-highlight-color:transparent;">Frequently Asked Questions</span>';
+      // Implemented a true standard matching anchor anchor tag with explicit href pointing to the section ID
+      faqLi.innerHTML = '<a href="#article-faq-section" id="toc-faq-trigger" style="color:var(--brand); text-decoration:none; display:block; width:100%; -webkit-tap-highlight-color:transparent;">Frequently Asked Questions</a>';
       tocList.appendChild(faqLi);
       
       var faqTrigger = document.getElementById("toc-faq-trigger");
       if (faqTrigger) {
+        // Keeps style overrides clean to avoid permanent global tracking underlines
         faqTrigger.addEventListener("mouseenter", function() { faqTrigger.style.textDecoration = "underline"; });
         faqTrigger.addEventListener("mouseleave", function() { faqTrigger.style.textDecoration = "none"; });
 
         faqTrigger.addEventListener("click", function(e) {
+          // We intercept the native snap just enough to smoothly override coordinates over the fixed headers
           e.preventDefault();
           
           var targetSection = document.getElementById("article-faq-section");
           if (targetSection) {
             var headerOffset = window.innerWidth <= 768 ? 115 : 135;
             
-            // Step 1: Let the browser execute its native, hardware-accelerated top-speed smooth flight
+            // Fires an instant, native hardware-accelerated top-speed smooth flight to the destination
             var initialPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
             window.scrollTo({
               top: initialPosition,
               behavior: "smooth"
             });
 
-            // Step 2: Instantly track landing to clean up any displacement caused by lazy image expansions
-            var scrollEndDebounce;
-            function instantPrecisionArrivalCheck() {
-              clearTimeout(scrollEndDebounce);
-              scrollEndDebounce = setTimeout(function() {
-                window.removeEventListener("scroll", instantPrecisionArrivalCheck);
+            // Invisible landing calibration check to catch shifts without hurting flight speed
+            var arrivalScrollTimeout;
+            function precisionLandingCheck() {
+              clearTimeout(arrivalScrollTimeout);
+              arrivalScrollTimeout = setTimeout(function() {
+                window.removeEventListener("scroll", precisionLandingCheck);
                 
-                var exactFinalDestination = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-                if (Math.abs(window.pageYOffset - exactFinalDestination) > 2) {
+                var postLoadDestination = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+                if (Math.abs(window.pageYOffset - postLoadDestination) > 2) {
                   window.scrollTo({
-                    top: exactFinalDestination,
+                    top: postLoadDestination,
                     behavior: "smooth"
                   });
                 }
-              }, 45); // Snaps instantly the microsecond browser velocity zeroes out
+              }, 45); // Adjusts instantly the split second landing velocity drops to zero
             }
 
-            window.addEventListener("scroll", instantPrecisionArrivalCheck, { passive: true });
+            window.addEventListener("scroll", precisionLandingCheck, { passive: true });
           }
         });
       }
