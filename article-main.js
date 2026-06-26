@@ -242,7 +242,6 @@
     })
     .join("\n");
 
-  // CORRECTED STRUCTURAL ORDER: Text Body -> Recommendations -> Related -> FAQ -> Final CTA -> Runway Spacer
   articleNode.innerHTML = [
     tocMarkup,
     comparisonTableMarkup,
@@ -256,16 +255,15 @@
     ' <div class="cta-actions">',
     ctaButtons,
     " </div>",
-    "</section>",
-    '<div id="article-bottom-runway" style="height: 65vh; width: 100%; pointer-events: none; visibility: hidden;"></div>'
+    "</section>"
   ].join("\n");
 
-  // HIGH-SPEED NATIVE MATCHING ACCELERATION TRIGGER
+  // YOUR FAVORITE SMOOTH STEADY PACING ENGINE RESTORED
   if (article.faq && article.faq.length) {
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
       var faqLi = document.createElement("li");
-      faqLi.innerHTML = '<a href="#article-faq-section" id="toc-faq-trigger" style="color:var(--brand); text-decoration:none; display:block; width:100%; -webkit-tap-highlight-color:transparent;">Frequently Asked Questions</a>';
+      faqLi.innerHTML = '<span id="toc-faq-trigger" style="color:var(--brand); cursor:pointer; text-decoration:none; display:block; width:100%; -webkit-tap-highlight-color:transparent;">Frequently Asked Questions</span>';
       tocList.appendChild(faqLi);
       
       var faqTrigger = document.getElementById("toc-faq-trigger");
@@ -280,38 +278,37 @@
           if (targetSection) {
             var headerOffset = window.innerWidth <= 768 ? 115 : 135;
             
-            // Native fluid sweep down the page
-            var initialPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+            // Clean, beautifully paced smooth descent initial launch
+            var targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
             window.scrollTo({
-              top: initialPosition,
+              top: targetPosition,
               behavior: "smooth"
             });
 
-            // Instant alignment capture handles dynamic expansions seamlessly
-            var arrivalScrollTimeout;
-            function precisionLandingCheck() {
-              clearTimeout(arrivalScrollTimeout);
-              arrivalScrollTimeout = setTimeout(function() {
-                window.removeEventListener("scroll", precisionLandingCheck);
-                
-                var postLoadDestination = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-                if (Math.abs(window.pageYOffset - postLoadDestination) > 2) {
-                  window.scrollTo({
-                    top: postLoadDestination,
-                    behavior: "smooth"
-                  });
-                }
-              }, 45);
-            }
-
-            window.addEventListener("scroll", precisionLandingCheck, { passive: true });
+            // Smooth rhythmic pacing clock - tracks and updates heights to secure perfect destination arrival
+            var checkCount = 0;
+            var adjustInterval = setInterval(function() {
+              var currentTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+              
+              if (Math.abs(window.pageYOffset - currentTop) > 3) {
+                window.scrollTo({
+                  top: currentTop,
+                  behavior: "smooth"
+                });
+              }
+              
+              checkCount++;
+              if (checkCount > 25) { 
+                clearInterval(adjustInterval);
+              }
+            }, 60); // Restored to the perfect 60ms cadence for that beautiful slow scrolling rhythm
           }
         });
       }
     }
   }
 
-    var faqQuestions = document.querySelectorAll(".faq-question");
+  var faqQuestions = document.querySelectorAll(".faq-question");
   faqQuestions.forEach(function (button) {
     button.addEventListener("click", function () {
       var answerDiv = button.nextElementSibling;
@@ -323,7 +320,7 @@
           otherButton.classList.remove("is-active");
           var otherAnswer = otherButton.nextElementSibling;
           if (otherAnswer) {
-            otherAnswer.style.maxHeight = "0px"; // Set to 0px explicitly
+            otherAnswer.style.maxHeight = null;
           }
         }
       });
@@ -332,16 +329,13 @@
         button.setAttribute("aria-expanded", "false");
         button.classList.remove("is-active");
         if (answerDiv) {
-          answerDiv.style.maxHeight = "0px"; // Set to 0px explicitly
+          answerDiv.style.maxHeight = null;
         }
       } else {
         button.setAttribute("aria-expanded", "true");
         button.classList.add("is-active");
         if (answerDiv) {
-          // Using the precise element scrollHeight prevents padding bloating
-          var innerContent = answerDiv.querySelector(".faq-answer-inner");
-          var targetHeight = innerContent ? innerContent.scrollHeight : answerDiv.scrollHeight;
-          answerDiv.style.maxHeight = targetHeight + "px";
+          answerDiv.style.maxHeight = answerDiv.scrollHeight + "px";
         }
       }
     });
