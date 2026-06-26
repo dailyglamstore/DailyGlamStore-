@@ -242,7 +242,6 @@
     })
     .join("\n");
 
-  // CORRECTED STRUCTURAL ORDER: Text Body -> Recommendations -> Related -> FAQ -> Final CTA -> Runway Spacer
   articleNode.innerHTML = [
     tocMarkup,
     comparisonTableMarkup,
@@ -256,58 +255,16 @@
     ' <div class="cta-actions">',
     ctaButtons,
     " </div>",
-    "</section>",
-    '<div id="article-bottom-runway" style="height: 65vh; width: 100%; pointer-events: none; visibility: hidden;"></div>'
+    "</section>"
   ].join("\n");
 
-  // HIGH-SPEED NATIVE MATCHING ACCELERATION TRIGGER
+  // PURE NATIVE INTEGRATION: No custom scroll scripts, no double-click stop bugs
   if (article.faq && article.faq.length) {
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
       var faqLi = document.createElement("li");
-      faqLi.innerHTML = '<a href="#article-faq-section" id="toc-faq-trigger" style="color:var(--brand); text-decoration:none; display:block; width:100%; -webkit-tap-highlight-color:transparent;">Frequently Asked Questions</a>';
+      faqLi.innerHTML = '<a href="#article-faq-section" id="toc-faq-trigger" style="color:var(--brand); display:block; width:100%;">Frequently Asked Questions</a>';
       tocList.appendChild(faqLi);
-      
-      var faqTrigger = document.getElementById("toc-faq-trigger");
-      if (faqTrigger) {
-        faqTrigger.addEventListener("mouseenter", function() { faqTrigger.style.textDecoration = "underline"; });
-        faqTrigger.addEventListener("mouseleave", function() { faqTrigger.style.textDecoration = "none"; });
-
-        faqTrigger.addEventListener("click", function(e) {
-          e.preventDefault();
-          
-          var targetSection = document.getElementById("article-faq-section");
-          if (targetSection) {
-            var headerOffset = window.innerWidth <= 768 ? 115 : 135;
-            
-            // Native fluid sweep down the page
-            var initialPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-            window.scrollTo({
-              top: initialPosition,
-              behavior: "smooth"
-            });
-
-            // Instant alignment capture handles dynamic expansions seamlessly
-            var arrivalScrollTimeout;
-            function precisionLandingCheck() {
-              clearTimeout(arrivalScrollTimeout);
-              arrivalScrollTimeout = setTimeout(function() {
-                window.removeEventListener("scroll", precisionLandingCheck);
-                
-                var postLoadDestination = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-                if (Math.abs(window.pageYOffset - postLoadDestination) > 2) {
-                  window.scrollTo({
-                    top: postLoadDestination,
-                    behavior: "smooth"
-                  });
-                }
-              }, 45);
-            }
-
-            window.addEventListener("scroll", precisionLandingCheck, { passive: true });
-          }
-        });
-      }
     }
   }
 
