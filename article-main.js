@@ -258,7 +258,7 @@
     "</section>"
   ].join("\n");
 
-  // YOUR FAVORITE SMOOTH STEADY PACING ENGINE RESTORED
+  // EXPERT HIGH-SPEED NATIVE MATCHING TRIGGER
   if (article.faq && article.faq.length) {
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
@@ -278,30 +278,31 @@
           if (targetSection) {
             var headerOffset = window.innerWidth <= 768 ? 115 : 135;
             
-            // Clean, beautifully paced smooth descent initial launch
-            var targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+            // Step 1: Let the browser execute its native, hardware-accelerated top-speed smooth flight
+            var initialPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
             window.scrollTo({
-              top: targetPosition,
+              top: initialPosition,
               behavior: "smooth"
             });
 
-            // Smooth rhythmic pacing clock - tracks and updates heights to secure perfect destination arrival
-            var checkCount = 0;
-            var adjustInterval = setInterval(function() {
-              var currentTop = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-              
-              if (Math.abs(window.pageYOffset - currentTop) > 3) {
-                window.scrollTo({
-                  top: currentTop,
-                  behavior: "smooth"
-                });
-              }
-              
-              checkCount++;
-              if (checkCount > 25) { 
-                clearInterval(adjustInterval);
-              }
-            }, 60); // Restored to the perfect 60ms cadence for that beautiful slow scrolling rhythm
+            // Step 2: Instantly track landing to clean up any displacement caused by lazy image expansions
+            var scrollEndDebounce;
+            function instantPrecisionArrivalCheck() {
+              clearTimeout(scrollEndDebounce);
+              scrollEndDebounce = setTimeout(function() {
+                window.removeEventListener("scroll", instantPrecisionArrivalCheck);
+                
+                var exactFinalDestination = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+                if (Math.abs(window.pageYOffset - exactFinalDestination) > 2) {
+                  window.scrollTo({
+                    top: exactFinalDestination,
+                    behavior: "smooth"
+                  });
+                }
+              }, 45); // Snaps instantly the microsecond browser velocity zeroes out
+            }
+
+            window.addEventListener("scroll", instantPrecisionArrivalCheck, { passive: true });
           }
         });
       }
