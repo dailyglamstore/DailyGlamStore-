@@ -109,9 +109,9 @@ if (article.faq && article.faq.length) {
 }
 
   var script = document.createElement("script");
-  script.type = "application/ld+json";
-  script.text =
-    JSON.stringify(schema);
+script.type = "application/ld+json";
+script.text =
+  JSON.stringify(schemas);
 
-  document.head.appendChild(script);
+document.head.appendChild(script);
 })();
