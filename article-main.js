@@ -58,17 +58,43 @@
 
   var publishedDate = formatDate(article.date);
   var modifiedDate = formatDate(article.dateModified || article.date);
+  
+  var displayAuthor = "";
+
+if (article.author && article.author.length) {
+  var personAuthor = article.author.find(function(author) {
+    return author.enabled && author.type === "Person";
+  });
+
+  var orgAuthor = article.author.find(function(author) {
+    return author.enabled && author.type === "Organization";
+  });
+
+  if (personAuthor) {
+    displayAuthor = personAuthor.name;
+  } else if (orgAuthor) {
+    displayAuthor = orgAuthor.name;
+  }
+}
 
   var dateMarkup =
-    '<div class="article-dates">' +
-      '<div>📅 <strong>Published:</strong> ' + publishedDate + '</div>' +
-      (
-        article.dateModified &&
-        article.dateModified !== article.date
-          ? '<div>✏️ <strong>Last Updated:</strong> ' + modifiedDate + '</div>'
-          : ''
-      ) +
-    '</div>';
+  '<div class="article-dates">' +
+    '<div>📅 <strong>Published:</strong> ' + publishedDate + '</div>' +
+
+    (
+      article.dateModified &&
+      article.dateModified !== article.date
+        ? '<div>✏️ <strong>Last Updated:</strong> ' + modifiedDate + '</div>'
+        : ''
+    ) +
+
+    (
+      displayAuthor
+        ? '<div>✍️ <strong>By:</strong> ' + escapeHtml(displayAuthor) + '</div>'
+        : ''
+    ) +
+
+  '</div>';
 
   return dateMarkup;
 })(),
