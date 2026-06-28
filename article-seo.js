@@ -71,23 +71,42 @@
   setMeta("twitter:description", description);
   setMeta("twitter:image", image);
 
-  var schema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: article.title,
-    description: description,
-    image: image,
-    datePublished: article.date,
-    mainEntityOfPage: fullUrl,
-    publisher: {
-      "@type": "Organization",
-      name: "Daily Glam Store",
-      logo: {
-        "@type": "ImageObject",
-        url: siteUrl + "/images/logo.png"
-      }
+  var authorSchema = (article.author || [
+  {
+    enabled: true,
+    type: "Organization",
+    name: "Daily Glam Store"
+  }
+])
+  .filter(function(author) {
+    return author.enabled !== false;
+  })
+  .map(function(author) {
+    return {
+      "@type": author.type,
+      "name": author.name
+    };
+  });
+
+var schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: article.title,
+  description: description,
+  image: image,
+  datePublished: article.date,
+  dateModified: article.dateModified || article.date,
+  mainEntityOfPage: fullUrl,
+  author: authorSchema,
+  publisher: {
+    "@type": "Organization",
+    name: "Daily Glam Store",
+    logo: {
+      "@type": "ImageObject",
+      url: siteUrl + "/images/logo.png"
     }
-  };
+  }
+};
   
   var schemas = [schema];
 
