@@ -88,6 +88,25 @@
       }
     }
   };
+  
+  var schemas = [schema];
+
+if (article.faq && article.faq.length) {
+  schemas.push({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": article.faq.map(function(item) {
+      return {
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer
+        }
+      };
+    })
+  });
+}
 
   var script = document.createElement("script");
   script.type = "application/ld+json";
