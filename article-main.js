@@ -42,6 +42,37 @@
     '<p class="article-label">' + escapeHtml(article.category) + "</p>",
     "<h1>" + escapeHtml(article.title) + "</h1>",
     '<p class="article-intro">' + escapeHtml(article.intro) + "</p>",
+    
+    (function () {
+  function formatDate(dateString) {
+    if (!dateString) return "";
+
+    var date = new Date(dateString);
+
+    return date.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric"
+    });
+  }
+
+  var publishedDate = formatDate(article.date);
+  var modifiedDate = formatDate(article.dateModified || article.date);
+
+  var dateMarkup =
+    '<div class="article-dates">' +
+      '<div>📅 <strong>Published:</strong> ' + publishedDate + '</div>' +
+      (
+        article.dateModified &&
+        article.dateModified !== article.date
+          ? '<div>✏️ <strong>Last Updated:</strong> ' + modifiedDate + '</div>'
+          : ''
+      ) +
+    '</div>';
+
+  return dateMarkup;
+})(),
+
     '<p class="article-meta">' + escapeHtml(article.metaLine) + "</p>",
     '<figure class="featured-image">',
     ' <img src="' + escapeHtml(article.image.src) + '" alt="' + escapeHtml(article.image.alt) + '" onerror="this.style.display=\'none\'" />',
