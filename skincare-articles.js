@@ -292,7 +292,23 @@ relatedArticles: [
     "featured",
 
   date:
-    "2026-06-14T21:38:00",
+  "2026-06-14T21:38:00",
+
+dateModified:
+  "2026-06-14T21:38:00",
+
+author: [
+  {
+    enabled: true,
+    type: "Organization",
+    name: "Daily Glam Store"
+  },
+  {
+    enabled: false,
+    type: "Person",
+    name: "Deepak Mahajan"
+  }
+],
 
   title:
     "Lotus Sunscreen vs Be Bodywise Sunscreen: Which SPF 50 Mineral Sunscreen Is Better?",
