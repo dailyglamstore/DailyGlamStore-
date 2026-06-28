@@ -199,6 +199,19 @@ html { scroll-behavior: smooth; }
       color: var(--text-soft);
     }
 
+.article-dates {
+  margin: 16px 0 12px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #6b6b6b;
+  line-height: 1.6;
+}
+
+.article-dates strong {
+  color: #444;
+  font-weight: 600;
+}
+
     .article-meta {
       margin: 12px 0 0;
       font-size: 12px;
