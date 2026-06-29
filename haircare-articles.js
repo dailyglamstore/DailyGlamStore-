@@ -6,7 +6,7 @@ window.HAIRCARE_ARTICLES = {
     category: "Haircare",
 
     badge: "new",
-    date: "2026-04-30T17:40:00",
+    date: "2026-04-30T17:40:00+05:30",
 
     title: "Simple Haircare Routine for Healthy Hair",
 
