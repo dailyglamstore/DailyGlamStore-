@@ -108,6 +108,31 @@ var schema = {
     }
   }
 };
+
+var breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: siteUrl + "/"
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Beauty Blog",
+      item: siteUrl + "/beauty-blog.html"
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: article.title,
+      item: fullUrl
+    }
+  ]
+};
   
   var schemas = [schema];
 
