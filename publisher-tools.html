@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Glam Store Publisher</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+      margin: 0;
+      padding: 16px;
+    }
+
+    .card {
+      background: #1c1c1c;
+      padding: 14px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .status-good { color: #00e676; }
+    .status-ok { color: #ffeb3b; }
+    .status-bad { color: #ff5252; }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn {
+      background: #2b6cff;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #444;
+      color: white;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>📄 Daily Glam Store Publisher</h1>
+
+<div class="card">
+  <div id="health">Website Health: Loading...</div>
+  <div id="articles">Articles: -</div>
+  <div id="scan">Last Scan: -</div>
+</div>
+
+<div class="card">
+  <h3>Website Overview</h3>
+  <div id="overview"></div>
+</div>
+
+<div class="card">
+  <h3>SEO Health</h3>
+  <pre id="seo"></pre>
+</div>
+
+<div class="card">
+  <button class="btn" onclick="generateSitemap()">Generate Sitemap</button>
+  <button class="btn-secondary" onclick="copySitemap()">Copy Sitemap</button>
+</div>
+
+<pre id="output"></pre>
+
+<script src="/skincare-articles.js"></script>
+<script src="/haircare-articles.js"></script>
+
+<script>
+let allArticles = [];
+
+function loadArticles() {
+  let skincare = Object.values(window.SKINCARE_ARTICLES || {});
+  let haircare = Object.values(window.HAIRCARE_ARTICLES || {});
+
+  allArticles = [...skincare, ...haircare];
+
+  document.getElementById("articles").innerText =
+    "Articles: " + allArticles.length;
+}
+</script>
+
+function runSEOCheck() {
+  let missingFAQ = 0;
+  let missingAuthor = 0;
+  let missingRelated = 0;
+  let missingDateModified = 0;
+  let duplicates = 0;
+
+  let urls = new Set();
+
+  allArticles.forEach(a => {
+    if (!a.faq || !a.faq.length) missingFAQ++;
+    if (!a.author) missingAuthor++;
+    if (!a.relatedArticles || !a.relatedArticles.length) missingRelated++;
+    if (!a.dateModified) missingDateModified++;
+
+    if (urls.has(a.url)) duplicates++;
+    urls.add(a.url);
+  });
+
+  document.getElementById("seo").innerText =
+`Missing FAQ: ${missingFAQ}
+Missing Author: ${missingAuthor}
+Missing dateModified: ${missingDateModified}
+Missing Related: ${missingRelated}
+Duplicate URLs: ${duplicates}`;
+}
+
+function buildOverview() {
+  let skincare = allArticles.filter(a => a.category === "Skincare").length;
+  let haircare = allArticles.filter(a => a.category === "Haircare").length;
+  let comparison = allArticles.filter(a => (a.url || "").includes("vs")).length;
+
+  document.getElementById("overview").innerText =
+`Total Articles: ${allArticles.length}
+Skincare: ${skincare}
+Haircare: ${haircare}
+Comparison: ${comparison}`;
+}
+
+function updateHealth() {
+  let seo = document.getElementById("seo").innerText;
+
+  let issues = seo.match(/: [1-9][0-9]*/g);
+  let totalIssues = issues ? issues.length : 0;
+
+  let health = "🟢 Excellent";
+
+  if (totalIssues >= 1 && totalIssues <= 3) health = "🟡 Good";
+  else if (totalIssues <= 6) health = "🟠 Needs Attention";
+  else if (totalIssues > 6) health = "🔴 Errors Found";
+
+  document.getElementById("health").innerText =
+    "Website Health: " + health;
+}
+
+function generateSitemap() {
+  let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+
+  allArticles.forEach(a => {
+    xml += `
+<url>
+  <loc>https://dailyglamstore.in${a.url}</loc>
+</url>`;
+  });
+
+  xml += `\n</urlset>`;
+
+  document.getElementById("output").innerText = xml;
+}
+
+function copySitemap() {
+  navigator.clipboard.writeText(document.getElementById("output").innerText);
+  alert("Sitemap copied!");
+}
+
+loadArticles();
+runSEOCheck();
+buildOverview();
+updateHealth();
