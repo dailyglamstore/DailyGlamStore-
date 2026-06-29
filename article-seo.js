@@ -83,9 +83,10 @@
   })
   .map(function(author) {
     return {
-      "@type": author.type,
-      "name": author.name
-    };
+  "@type": author.type,
+  name: author.name,
+  url: author.url
+};
   });
 
 var schema = {
