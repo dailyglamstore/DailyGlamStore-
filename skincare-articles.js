@@ -297,14 +297,16 @@ relatedArticles: [
 
 author: [
   {
-    enabled: true,
-    type: "Organization",
-    name: "Daily Glam Store"
-  },
-  {
     enabled: false,
     type: "Person",
-    name: "Deepak Mahajan"
+    name: "Deepak Mahajan",
+    url: "https://dailyglamstore.in/"
+  },
+  {
+    enabled: true,
+    type: "Organization",
+    name: "Daily Glam Store",
+    url: "https://dailyglamstore.in/"
   }
 ],
 
