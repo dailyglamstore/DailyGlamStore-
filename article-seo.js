@@ -134,7 +134,10 @@ var breadcrumbSchema = {
   ]
 };
   
-  var schemas = [schema];
+  var schemas = [
+  schema,
+  breadcrumbSchema
+];
 
 if (article.faq && article.faq.length) {
   schemas.push({
