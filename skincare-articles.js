@@ -6,7 +6,7 @@ window.SKINCARE_ARTICLES = {
   category: "Skincare",
 
   badge: "featured",
-  date: "2026-04-29T18:30:00",
+  date: "2026-04-29T18:30:00+05:30",
 
   title: "Simple Skincare Routine for Healthy & Glowing Skin",
 
@@ -135,7 +135,7 @@ relatedArticles: [
   category: "Skincare",
 
   badge: "featured",
-  date: "2026-05-25T18:30:00",
+  date: "2026-05-25T18:30:00+05:30",
 
   title:
     "How to Choose the Right Face Wash for Your Skin Type?",
