@@ -586,6 +586,26 @@ metaLine:
   ]
 },
 
+alternativeProducts: {
+  title: "Explore Similar Products",
+
+  items: [
+    {
+      title: "WishCare Invisible Gel Sunscreen SPF 50",
+      href: "YOUR_AFFILIATE_LINK",
+      affiliate: true,
+      newTab: true
+    },
+
+    {
+      title: "Gush Beauty Sunscreen",
+      href: "YOUR_AFFILIATE_LINK",
+      affiliate: true,
+      newTab: true
+    }
+  ]
+},
+
   relatedArticles: [
     {
       title:
