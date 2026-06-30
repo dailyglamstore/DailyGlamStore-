@@ -342,12 +342,15 @@ var alternativeProductsMarkup =
     .join("\n");
 
   articleNode.innerHTML = [
+
     tocMarkup,
     comparisonTableMarkup,
     sectionMarkup,
     productRecommendationsMarkup,
+    alternativeProductsMarkup,
     relatedArticlesMarkup,
     faqMarkup,
+    
     '<section class="routine-cta" id="article-next-step">',
     " <h2>" + escapeHtml(article.ctaTitle) + "</h2>",
     " <p>" + escapeHtml(article.ctaText) + "</p>",
