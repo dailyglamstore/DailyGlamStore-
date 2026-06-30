@@ -100,7 +100,7 @@
     }
 
     .status-value {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 600;
     }
 
@@ -114,25 +114,51 @@
       font-size: 13px;
     }
 
-    .warnings-list li {
-      padding: 8px 12px;
-      margin-bottom: 6px;
+    .warnings-list > li {
+      padding: 10px 14px;
+      margin-bottom: 8px;
       border-radius: var(--radius);
-      background-color: #fff8ec;
-      border-left: 4px solid var(--warning);
-      color: #744210;
+      background-color: #f6f8fa;
+      border-left: 4px solid var(--border-color);
     }
 
-    .warnings-list li.success-placeholder {
+    .warnings-list > li.log-pass {
       background-color: #dafbe1;
       border-left-color: var(--success);
       color: #115322;
+      font-weight: 500;
+    }
+
+    .warnings-list > li.log-warn {
+      background-color: #fff8ec;
+      border-left-color: var(--warning);
+      color: #744210;
+    }
+
+    .warnings-list > li.log-fail {
+      background-color: #ffebe9;
+      border-left-color: var(--error);
+      color: #8c1a1e;
+    }
+
+    .warning-nested-list {
+      list-style: none;
+      margin-top: 6px;
+      padding-left: 12px;
+      border-left: 1px dashed rgba(0, 0, 0, 0.1);
+    }
+
+    .warning-nested-list li {
+      margin-top: 4px;
+      color: var(--text-main);
+      font-family: monospace;
     }
 
     .actions-row {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     button {
@@ -165,6 +191,27 @@
 
     .btn-secondary:hover {
       background-color: #eaeef2;
+    }
+
+    .toast-message {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--success);
+      display: none;
+    }
+
+    .sitemap-summary-box {
+      margin-top: 12px;
+      padding: 10px 12px;
+      background-color: #f6f8fa;
+      border: 1px dashed var(--border-color);
+      border-radius: var(--radius);
+      font-size: 13px;
+      display: none;
+    }
+
+    .sitemap-summary-box p {
+      margin-bottom: 2px;
     }
 
     textarea.sitemap-output {
@@ -222,9 +269,9 @@
     </div>
 
     <div class="card">
-      <div class="card-header">Website Status</div>
+      <div class="card-header">Website Status & Content Statistics</div>
       <div class="card-body">
-        <div class="status-grid">
+        <div class="status-grid" style="margin-bottom: 16px;">
           <div class="status-item">
             <span class="status-label">Skincare</span>
             <span class="status-value" id="skincareCount">0</span>
@@ -234,8 +281,26 @@
             <span class="status-value" id="haircareCount">0</span>
           </div>
           <div class="status-item">
-            <span class="status-label">Comparison Articles</span>
+            <span class="status-label">Comparisons</span>
             <span class="status-value" id="comparisonCount">0</span>
+          </div>
+          <div class="status-item">
+            <span class="status-label">Avg Word Count</span>
+            <span class="status-value" id="avgWordCount">0</span>
+          </div>
+        </div>
+        <div style="font-size: 13px; border-top: 1px solid var(--border-color); padding-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div>
+            <p><strong style="color: var(--text-muted);">Newest Article:</strong></p>
+            <p id="newestArticleInfo">--</p>
+          </div>
+          <div>
+            <p><strong style="color: var(--text-muted);">Oldest Article:</strong></p>
+            <p id="oldestArticleInfo">--</p>
+          </div>
+          <div style="grid-column: span 2; margin-top: 4px;">
+            <p><span style="color: var(--text-muted); font-weight: bold;">Published This Month:</span> <span id="publishedThisMonthCount" style="font-weight: 600;">0</span></p>
+            <p><span style="color: var(--text-muted); font-weight: bold;">Longest Article:</span> <span id="longestArticleInfo">--</span></p>
           </div>
         </div>
       </div>
@@ -245,7 +310,7 @@
       <div class="card-header">SEO Health Log</div>
       <div class="card-body">
         <ul class="warnings-list" id="seoWarningsLog">
-          <li>Running active code checks...</li>
+          <li>Running active diagnostic evaluations...</li>
         </ul>
       </div>
     </div>
@@ -256,6 +321,11 @@
         <div class="actions-row">
           <button type="button" class="btn-primary" id="btnGenerateSitemap">Generate Sitemap</button>
           <button type="button" class="btn-secondary" id="btnCopySitemap">Copy Sitemap</button>
+          <span class="toast-message" id="copyToast">✅ Sitemap copied successfully.</span>
+        </div>
+        <div class="sitemap-summary-box" id="sitemapSummary">
+          <p><strong>Generated:</strong> <span id="sitemapUrlCount">0 URLs</span></p>
+          <p><strong>Last Generated:</strong> <span id="sitemapGenDate">--</span></p>
         </div>
         <textarea id="sitemapContainer" class="sitemap-output" readonly placeholder="Click 'Generate Sitemap' to dump the XML mapping context here..."></textarea>
       </div>
