@@ -322,6 +322,12 @@ author: [
   seoDescription:
   "Compare Lotus SPF 50 sunscreen vs Be Bodywise SPF 50 sunscreen for texture, finish, skin type suitability, ingredients, and daily use.",
 
+// Link Types:
+// affiliateProduct = Product/brand links (affiliate or non-affiliate)
+// internalArticle = Another Daily Glam Store article
+// page = Homepage, Beauty Blog, Beauty Guides, Shop, etc.
+// externalReference = Wikipedia, research papers, official sources
+
 linkPlan: [
 
   {
