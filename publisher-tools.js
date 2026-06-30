@@ -6,20 +6,45 @@
   var skincareArticlesList = [];
   var haircareArticlesList = [];
   var comparisonArticlesCount = 0;
-  var seenUrls = {};
-  var duplicateUrlsCount = 0;
-  var validationLogsList = [];
+  var articleUrlsMap = {};
+  var uniqueArticleKeys = {};
+  
+  var diagnosticCategories = {
+    seoTitle: { label: "SEO Titles", items: [], status: "pass", isFailType: false },
+    seoDescription: { label: "SEO Descriptions", items: [], status: "pass", isFailType: false },
+    faq: { label: "Missing FAQ", items: [], status: "pass", isFailType: false },
+    relatedArticles: { label: "Related Articles", items: [], status: "pass", isFailType: false },
+    author: { label: "Authors", items: [], status: "pass", isFailType: false },
+    dateModified: { label: "Missing dateModified", items: [], status: "pass", isFailType: false },
+    duplicateUrls: { label: "Duplicate URLs", items: [], status: "pass", isFailType: true },
+    duplicateKeys: { label: "Duplicate Keys", items: [], status: "pass", isFailType: true },
+    image: { label: "Images", items: [], status: "pass", isFailType: false },
+    intro: { label: "Intro", items: [], status: "pass", isFailType: false },
+    emptySections: { label: "Empty Sections", items: [], status: "pass", isFailType: false },
+    brokenLinks: { label: "Broken Internal Links", items: [], status: "pass", isFailType: false },
+    comparisonValidation: { label: "Comparison Article Validation", items: [], status: "pass", isFailType: false }
+  };
 
-  function initTimestamp() {
+  var totalIssueDeductions = 0;
+
+  function initLiveTimestamp() {
     var scanDateNode = document.getElementById("scanDate");
     if (scanDateNode) {
-      var currentDate = new Date("2026-06-29T22:02:50+05:30");
+      var currentDate = new Date();
       scanDateNode.textContent = currentDate.toLocaleDateString("en-GB", {
         day: "numeric",
         month: "short",
         year: "numeric"
       });
     }
+  }
+
+  function getFormattedToday() {
+    var today = new Date();
+    var yyyy = today.getFullYear();
+    var mm = String(today.getMonth() + 1).padStart(2, "0");
+    var dd = String(today.getDate()).padStart(2, "0");
+    return yyyy + "-" + mm + "-" + dd;
   }
 
   function gatherSourceObjects() {
@@ -31,6 +56,11 @@
       if (item && typeof item === "object") {
         skincareArticlesList.push(item);
         allArticles.push(item);
+        
+        if (!uniqueArticleKeys[key]) {
+          uniqueArticleKeys[key] = [];
+        }
+        uniqueArticleKeys[key].push(item.title || key);
       }
     });
 
@@ -39,20 +69,146 @@
       if (item && typeof item === "object") {
         haircareArticlesList.push(item);
         allArticles.push(item);
+        
+        if (!uniqueArticleKeys[key]) {
+          uniqueArticleKeys[key] = [];
+        }
+        uniqueArticleKeys[key].push(item.title || key);
       }
     });
   }
 
-  function auditWebsiteEcosystem() {
-    allArticles.forEach(function (article) {
-      var titleIdentifier = article.title || article.key || "Unnamed Article";
+  function countWordsInContent(article) {
+    var contentString = "";
+    
+    if (article.intro) contentString += " " + article.intro;
+    if (article.title) contentString += " " + article.title;
+    
+    if (article.sections && Array.isArray(article.sections)) {
+      article.sections.forEach(function (sec) {
+        if (sec.heading) contentString += " " + sec.heading;
+        if (sec.paragraphs && Array.isArray(sec.paragraphs)) {
+          contentString += " " + sec.paragraphs.join(" ");
+        }
+        if (sec.bullets && Array.isArray(sec.bullets)) {
+          contentString += " " + sec.bullets.join(" ");
+        }
+      });
+    }
+    
+    if (article.faq && Array.isArray(article.faq)) {
+      article.faq.forEach(function (f) {
+        if (f.question) contentString += " " + f.question;
+        if (f.answer) contentString += " " + f.answer;
+      });
+    }
+    
+    if (article.comparisonTable && article.comparisonTable.rows && Array.isArray(article.comparisonTable.rows)) {
+      article.comparisonTable.rows.forEach(function (row) {
+        if (row.features && Array.isArray(row.features)) {
+          contentString += " " + row.features.join(" ");
+        }
+      });
+    }
+    
+    var cleanWords = contentString.trim().split(/\s+/);
+    return contentString.trim() === "" ? 0 : cleanWords.length;
+  }
 
-      if (article.comparisonTable && article.comparisonTable.rows && article.comparisonTable.rows.length) {
-        comparisonArticlesCount++;
+  function processContentStatistics() {
+    if (allArticles.length === 0) return;
+
+    var totalWords = 0;
+    var maxWords = -1;
+    var longestTitle = "--";
+    
+    var baseDate = new Date();
+    var currentYear = baseDate.getFullYear();
+    var currentMonth = baseDate.getMonth();
+    var itemsPublishedThisMonth = 0;
+
+    var validDatedArticles = [];
+
+    allArticles.forEach(function (art) {
+      var wCount = countWordsInContent(art);
+      totalWords += wCount;
+      if (wCount > maxWords) {
+        maxWords = wCount;
+        longestTitle = art.title || art.key;
+      }
+
+      if (art.date) {
+        var dObj = new Date(art.date);
+        if (!isNaN(dObj.getTime())) {
+          validDatedArticles.push({ title: art.title || art.key, date: dObj });
+          if (dObj.getFullYear() === currentYear && dObj.getMonth() === currentMonth) {
+            itemsPublishedThisMonth++;
+          }
+        }
+      }
+    });
+
+    document.getElementById("avgWordCount").textContent = Math.round(totalWords / allArticles.length);
+    document.getElementById("publishedThisMonthCount").textContent = itemsPublishedThisMonth;
+    document.getElementById("longestArticleInfo").textContent = longestTitle + " (" + maxWords + " words)";
+
+    if (validDatedArticles.length > 0) {
+      validDatedArticles.sort(function (a, b) { return b.date - a.date; });
+      
+      var options = { day: "numeric", month: "short", year: "numeric" };
+      var newest = validDatedArticles[0];
+      var oldest = validDatedArticles[validDatedArticles.length - 1];
+
+      document.getElementById("newestArticleInfo").textContent = newest.title + " — " + newest.date.toLocaleDateString("en-GB", options);
+      document.getElementById("oldestArticleInfo").textContent = oldest.title + " — " + oldest.date.toLocaleDateString("en-GB", options);
+    }
+  }
+
+  function runCategorizedAudit() {
+    Object.keys(uniqueArticleKeys).forEach(function (key) {
+      if (uniqueArticleKeys[key].length > 1) {
+        totalIssueDeductions++;
+        diagnosticCategories.duplicateKeys.items.push("Key '" + key + "' is repeated across multiple definitions");
+      }
+    });
+
+    allArticles.forEach(function (article) {
+      var displayTitle = article.title || article.key || "Unnamed Article";
+
+      if (article.url) {
+        var cleanPath = String(article.url).trim().toLowerCase();
+        if (!articleUrlsMap[cleanPath]) {
+          articleUrlsMap[cleanPath] = [];
+        }
+        articleUrlsMap[cleanPath].push(displayTitle);
+      }
+
+      if (!article.seoTitle || String(article.seoTitle).trim() === "") {
+        totalIssueDeductions++;
+        diagnosticCategories.seoTitle.items.push(displayTitle);
+      }
+      if (!article.seoDescription || String(article.seoDescription).trim() === "") {
+        totalIssueDeductions++;
+        diagnosticCategories.seoDescription.items.push(displayTitle);
+      }
+      if (!article.intro || String(article.intro).trim() === "") {
+        totalIssueDeductions++;
+        diagnosticCategories.intro.items.push(displayTitle);
+      }
+      
+      var trackingImageSource = (article.image && article.image.src) || article.src;
+      if (!trackingImageSource || String(trackingImageSource).trim() === "") {
+        totalIssueDeductions++;
+        diagnosticCategories.image.items.push(displayTitle);
       }
 
       if (!article.faq || !Array.isArray(article.faq) || article.faq.length === 0) {
-        validationLogsList.push("Warning: Missing FAQ array or items in article: \"" + titleIdentifier + "\"");
+        totalIssueDeductions++;
+        diagnosticCategories.faq.items.push(displayTitle);
+      }
+      if (!article.relatedArticles || !Array.isArray(article.relatedArticles) || article.relatedArticles.length === 0) {
+        totalIssueDeductions++;
+        diagnosticCategories.relatedArticles.items.push(displayTitle);
       }
 
       var hasValidAuthor = false;
@@ -62,41 +218,76 @@
         });
       }
       if (!hasValidAuthor) {
-        validationLogsList.push("Warning: Missing enabled Author assignment in article: \"" + titleIdentifier + "\"");
+        totalIssueDeductions++;
+        diagnosticCategories.author.items.push(displayTitle);
       }
 
       if (!article.dateModified) {
-        validationLogsList.push("Warning: Missing explicit 'dateModified' tracking field in article: \"" + titleIdentifier + "\"");
+        totalIssueDeductions++;
+        diagnosticCategories.dateModified.items.push(displayTitle);
       }
 
-      if (!article.relatedArticles || !Array.isArray(article.relatedArticles) || article.relatedArticles.length === 0) {
-        validationLogsList.push("Warning: Missing Related Articles reference listings in: \"" + titleIdentifier + "\"");
-      }
-
-      if (!article.url) {
-        validationLogsList.push("Warning: Missing Canonical URL tracking target field inside object structure: \"" + titleIdentifier + "\"");
+      if (article.sections && Array.isArray(article.sections)) {
+        var emptyFound = article.sections.some(function (sec) {
+          var hasHeading = sec.heading && String(sec.heading).trim() !== "";
+          var hasParagraphs = sec.paragraphs && sec.paragraphs.length > 0 && String(sec.paragraphs[0]).trim() !== "";
+          var hasBullets = sec.bullets && sec.bullets.length > 0 && String(sec.bullets[0]).trim() !== "";
+          return !hasHeading && !hasParagraphs && !hasBullets;
+        });
+        if (emptyFound) {
+          totalIssueDeductions++;
+          diagnosticCategories.emptySections.items.push(displayTitle);
+        }
       } else {
-        var cleanUrl = String(article.url).trim().toLowerCase();
-        if (seenUrls[cleanUrl]) {
-          seenUrls[cleanUrl]++;
-          duplicateUrlsCount++;
-          validationLogsList.push("Error: Duplicate URL path context detected: '" + article.url + "' assigned to: \"" + titleIdentifier + "\"");
-        } else {
-          seenUrls[cleanUrl] = 1;
+        totalIssueDeductions++;
+        diagnosticCategories.emptySections.items.push(displayTitle);
+      }
+
+      if (article.comparisonTable) {
+        comparisonArticlesCount++;
+        var hasFaq = article.faq && Array.isArray(article.faq) && article.faq.length > 0;
+        var hasCompRows = article.comparisonTable.rows && Array.isArray(article.comparisonTable.rows) && article.comparisonTable.rows.length > 0;
+        var hasRecommendations = article.productRecommendations && Array.isArray(article.productRecommendations) && article.productRecommendations.length > 0;
+        
+        if (!hasFaq || !hasCompRows || !hasRecommendations) {
+          totalIssueDeductions++;
+          var detailsMissing = [];
+          if (!hasFaq) detailsMissing.push("FAQ missing");
+          if (!hasCompRows) detailsMissing.push("comparisonTable empty");
+          if (!hasRecommendations) detailsMissing.push("productRecommendations missing");
+          diagnosticCategories.comparisonValidation.items.push(displayTitle + " (Missing: " + detailsMissing.join(", ") + ")");
         }
       }
+    });
 
-      if (!article.seoTitle || String(article.seoTitle).trim() === "") {
-        validationLogsList.push("Warning: Missing optimized SEO Title variant template setting in: \"" + titleIdentifier + "\"");
+    Object.keys(articleUrlsMap).forEach(function (urlPath) {
+      if (articleUrlsMap[urlPath].length > 1) {
+        totalIssueDeductions += (articleUrlsMap[urlPath].length - 1);
+        diagnosticCategories.duplicateUrls.items.push("Path '" + urlPath + "' linked in: " + articleUrlsMap[urlPath].join(" & "));
       }
+    });
 
-      if (!article.seoDescription || String(article.seoDescription).trim() === "") {
-        validationLogsList.push("Warning: Missing optimized SEO Description metadata field configuration in: \"" + titleIdentifier + "\"");
+    allArticles.forEach(function (article) {
+      var displayTitle = article.title || article.key || "Unnamed Article";
+      if (article.relatedArticles && Array.isArray(article.relatedArticles)) {
+        article.relatedArticles.forEach(function (rel) {
+          if (rel && rel.href) {
+            var targetHref = String(rel.href).trim().toLowerCase();
+            if (!articleUrlsMap[targetHref]) {
+              totalIssueDeductions++;
+              diagnosticCategories.brokenLinks.items.push(displayTitle + " → " + rel.href + " (Target article not found)");
+            }
+          }
+        });
       }
+    });
 
-      var targetImageSource = (article.image && article.image.src) || article.src;
-      if (!targetImageSource || String(targetImageSource).trim() === "") {
-        validationLogsList.push("Warning: Missing primary asset image configuration block for article: \"" + titleIdentifier + "\"");
+    Object.keys(diagnosticCategories).forEach(function (catKey) {
+      var cat = diagnosticCategories[catKey];
+      if (cat.items.length > 0) {
+        cat.status = cat.isFailType ? "fail" : "warn";
+      } else {
+        cat.status = "pass";
       }
     });
   }
@@ -107,10 +298,8 @@
     document.getElementById("haircareCount").textContent = haircareArticlesList.length;
     document.getElementById("comparisonCount").textContent = comparisonArticlesCount;
 
-    var computedScore = 100 - (validationLogsList.length * DEDUCTION_PER_WARNING);
-    if (computedScore < 0) {
-      computedScore = 0;
-    }
+    var computedScore = 100 - (totalIssueDeductions * DEDUCTION_PER_WARNING);
+    if (computedScore < 0) computedScore = 0;
     document.getElementById("seoScoreValue").textContent = computedScore + "/100";
 
     var healthStatusNode = document.getElementById("healthStatus");
@@ -126,25 +315,38 @@
       healthStatusNode.textContent = "🟡 Needs Attention";
       healthStatusNode.classList.add("health-attention");
     } else {
-      healthStatusNode.textContent = "🔴 Errors Detected";
+      healthStatusNode.textContent = "🔴 Errors Found";
       healthStatusNode.classList.add("health-error");
     }
 
     var warningsLogContainer = document.getElementById("seoWarningsLog");
     warningsLogContainer.innerHTML = "";
 
-    if (validationLogsList.length === 0) {
-      var perfectionPlaceholder = document.createElement("li");
-      perfectionPlaceholder.className = "success-placeholder";
-      perfectionPlaceholder.textContent = "Excellent! Your entire article matrix passes validation checks with clean scores.";
-      warningsLogContainer.appendChild(perfectionPlaceholder);
-    } else {
-      validationLogsList.forEach(function (warningMessage) {
-        var logRowItem = document.createElement("li");
-        logRowItem.textContent = warningMessage;
-        warningsLogContainer.appendChild(logRowItem);
-      });
-    }
+    Object.keys(diagnosticCategories).forEach(function (catKey) {
+      var cat = diagnosticCategories[catKey];
+      var listRowItem = document.createElement("li");
+      
+      if (cat.status === "pass") {
+        listRowItem.className = "log-pass";
+        listRowItem.textContent = "✅ " + cat.label;
+      } else {
+        listRowItem.className = cat.status === "warn" ? "log-warn" : "log-fail";
+        var prefixSign = cat.status === "warn" ? "⚠ " : "❌ ";
+        var itemsCounterText = cat.isFailType ? "" : " (" + cat.items.length + ")";
+        listRowItem.textContent = prefixSign + cat.label + itemsCounterText;
+        
+        var nestedUl = document.createElement("ul");
+        nestedUl.className = "warning-nested-list";
+        cat.items.forEach(function (nestedText) {
+          var nestedLi = document.createElement("li");
+          nestedLi.textContent = "• " + nestedText;
+          nestedUl.appendChild(nestedLi);
+        });
+        listRowItem.appendChild(nestedUl);
+      }
+      
+      warningsLogContainer.appendChild(listRowItem);
+    });
   }
 
   function manufactureSitemapContent() {
@@ -152,11 +354,11 @@
     xmlOutputRows.push('<?xml version="1.0" encoding="UTF-8"?>');
     xmlOutputRows.push('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 
-    var executionFormattedDate = "2026-06-29";
+    var currentFormattedToday = getFormattedToday();
 
     var baselineStaticPages = [
       { route: "/", priority: "1.0", frequency: "daily" },
-      { route: "/beauty-blog.html", priority: "0.8", frequency: "weekly" },
+      { route: "/beauty-blog.html", priority: "0.9", frequency: "weekly" },
       { route: "/beauty-guides.html", priority: "0.8", frequency: "weekly" },
       { route: "/shop.html", priority: "0.8", frequency: "monthly" }
     ];
@@ -164,7 +366,7 @@
     baselineStaticPages.forEach(function (page) {
       xmlOutputRows.push("  <url>");
       xmlOutputRows.push("    <loc>" + BASE_URL + page.route + "</loc>");
-      xmlOutputRows.push("    <lastmod>" + executionFormattedDate + "</lastmod>");
+      xmlOutputRows.push("    <lastmod>" + currentFormattedToday + "</lastmod>");
       xmlOutputRows.push("    <changefreq>" + page.frequency + "</changefreq>");
       xmlOutputRows.push("    <priority>" + page.priority + "</priority>");
       xmlOutputRows.push("  </url>");
@@ -177,32 +379,42 @@
           formattedUrlSegment = "/" + formattedUrlSegment;
         }
 
-        var itemLastModifiedDate = article.dateModified || article.date || executionFormattedDate;
-        if (itemLastModifiedDate.indexOf("T") !== -1) {
-          itemLastModifiedDate = itemLastModifiedDate.split("T")[0];
+        var determinedPriority = "0.8";
+        if (article.comparisonTable) {
+          determinedPriority = "0.9";
         }
 
         xmlOutputRows.push("  <url>");
         xmlOutputRows.push("    <loc>" + BASE_URL + formattedUrlSegment + "</loc>");
-        xmlOutputRows.push("    <lastmod>" + itemLastModifiedDate + "</lastmod>");
+        xmlOutputRows.push("    <lastmod>" + currentFormattedToday + "</lastmod>");
         xmlOutputRows.push("    <changefreq>monthly</changefreq>");
-        xmlOutputRows.push("    <priority>0.8</priority>");
+        xmlOutputRows.push("    <priority>" + determinedPriority + "</priority>");
         xmlOutputRows.push("  </url>");
       }
     });
 
     xmlOutputRows.push("</urlset>");
     
+    var totalUrlElementsCalculated = baselineStaticPages.length + allArticles.filter(function(a){return a.url;}).length;
+    
     var outputTextarea = document.getElementById("sitemapContainer");
     if (outputTextarea) {
       outputTextarea.value = xmlOutputRows.join("\n");
     }
+
+    var liveDateObject = new Date();
+    document.getElementById("sitemapUrlCount").textContent = totalUrlElementsCalculated + " URLs";
+    document.getElementById("sitemapGenDate").textContent = liveDateObject.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric"
+    });
+    document.getElementById("sitemapSummary").style.display = "block";
   }
 
   function handleClipboardCopyAction() {
     var sitemapTextarea = document.getElementById("sitemapContainer");
     if (!sitemapTextarea || sitemapTextarea.value.trim() === "") {
-      alert("Please generate the sitemap profile engine content before executing a copy task.");
       return;
     }
 
@@ -212,12 +424,16 @@
     try {
       var secureCopyActionStatus = document.execCommand("copy");
       if (secureCopyActionStatus) {
-        alert("Success! Sitemap XML documentation copied perfectly to device clipboard.");
-      } else {
-        alert("Clipboard command processing failed. Please select and duplicate manually.");
+        var toastBox = document.getElementById("copyToast");
+        if (toastBox) {
+          toastBox.style.display = "inline";
+          setTimeout(function () {
+            toastBox.style.display = "none";
+          }, 2000);
+        }
       }
     } catch (err) {
-      alert("Your system configuration profile blocks automated selection duplicates.");
+      // Graceful fallback for environments restrictions
     }
   }
 
@@ -234,9 +450,10 @@
   }
 
   function runEnginePipeline() {
-    initTimestamp();
+    initLiveTimestamp();
     gatherSourceObjects();
-    auditWebsiteEcosystem();
+    processContentStatistics();
+    runCategorizedAudit();
     paintInterfaceOutputs();
     attachControlListeners();
   }
