@@ -243,6 +243,48 @@ if (article.author && article.author.length) {
       ].join("\n")
     : "";
 
+var alternativeProductsMarkup =
+  article.alternativeProducts &&
+  article.alternativeProducts.items &&
+  article.alternativeProducts.items.length
+    ? [
+        '<section class="alternative-products">',
+        '<h2>' +
+          escapeHtml(
+            article.alternativeProducts.title ||
+              "Explore Similar Products"
+          ) +
+        "</h2>",
+
+        '<div class="alternative-products-grid">',
+
+        article.alternativeProducts.items
+          .map(function(product) {
+
+            return (
+              '<a class="alternative-product-btn" href="' +
+              escapeHtml(product.href) +
+              '"' +
+              buildTargetAttributes(product.newTab) +
+              ">" +
+
+              escapeHtml(product.title) +
+
+              (product.affiliate
+                ? ' <span class="affiliate-tag">Affiliate</span>'
+                : "") +
+
+              "</a>"
+            );
+
+          })
+          .join("\n"),
+
+        "</div>",
+        "</section>"
+      ].join("\n")
+    : "";
+
   var relatedArticlesMarkup = article.relatedArticles && article.relatedArticles.length
     ? [
         '<section class="related-articles">',
