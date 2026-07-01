@@ -800,8 +800,9 @@ border-radius: 18px;
 }
 
 .final-product-recommendations h2 {
-  margin: 0 0 14px;
-  font-size: 1.12rem;
+  margin-bottom: 22px;
+  text-align: center;
+  font-size: 1.35rem;
 }
 
 .final-product-grid {
