@@ -24,7 +24,7 @@
     emptySections: { label: "Empty Sections", items: [], status: "pass", isFailType: false },
     brokenLinks: { label: "Broken Internal Links", items: [], status: "pass", isFailType: false },
     comparisonValidation: { label: "Comparison Article Validation", items: [], status: "pass", isFailType: false },
-    // New Extended Validations
+    // Extended Validations
     missingLinkPlan: { label: "Missing linkPlan Array", items: [], status: "pass", isFailType: false },
     missingRecommendations: { label: "Missing productRecommendations", items: [], status: "pass", isFailType: false },
     missingAlternativeProducts: { label: "Missing alternativeProducts", items: [], status: "pass", isFailType: false },
@@ -35,13 +35,14 @@
 
   var totalIssueDeductions = 0;
 
-  // Trackers for new statistics metrics
+  // Trackers for statistics metrics (Updated mapping references)
   var statTotals = {
     affiliateLinks: 0,
+    nonAffiliateProducts: 0, // Separate metric counter
     internalLinks: 0,
     pageLinks: 0,
     externalReferences: 0,
-    altProductBoxes: 0,
+    altProductLinks: 0,      // Renamed tracking slot
     recButtons: 0
   };
 
@@ -182,13 +183,25 @@
     }
   }
 
+  // Verification helper for core affiliate settings (Rule 1)
+  function validateAffiliateProperty(item, locationContext, displayTitle) {
+    if (!item.hasOwnProperty("affiliate")) {
+      totalIssueDeductions++;
+      diagnosticCategories.invalidAffiliateProps.items.push(displayTitle + " → " + locationContext + " is missing the 'affiliate' property");
+    } else if (typeof item.affiliate !== "boolean") {
+      totalIssueDeductions++;
+      diagnosticCategories.invalidAffiliateProps.items.push(displayTitle + " → " + locationContext + " has a non-boolean affiliate property value");
+    }
+  }
+
   function runCategorizedAudit() {
-    // Reset structural link stats
+    // Reset metrics tracker sets
     statTotals.affiliateLinks = 0;
+    statTotals.nonAffiliateProducts = 0;
     statTotals.internalLinks = 0;
     statTotals.pageLinks = 0;
     statTotals.externalReferences = 0;
-    statTotals.altProductBoxes = 0;
+    statTotals.altProductLinks = 0;
     statTotals.recButtons = 0;
 
     Object.keys(uniqueArticleKeys).forEach(function (key) {
@@ -198,7 +211,7 @@
       }
     });
 
-    // Step 1: Map all valid production URLs across arrays for broken-link matching engine loops
+    // Step 1: Map URLs across arrays for broken-link matching loops
     allArticles.forEach(function (article) {
       var displayTitle = article.title || article.key || "Unnamed Article";
       if (article.url) {
@@ -210,7 +223,7 @@
       }
     });
 
-    // Step 2: Main loop running checks and tracking statistical totals
+    // Step 2: Main data parsing matrix engine run loops
     allArticles.forEach(function (article) {
       var displayTitle = article.title || article.key || "Unnamed Article";
       var completenessPoints = 0;
@@ -280,27 +293,25 @@
 
       if (article.comparisonTable) { completenessPoints++; }
 
-      // Core Link Aggregate Parsers
       var extractedLinks = [];
+      var trueAffiliateCountForThisArticle = 0;
 
-      // A. linkPlan Analysis
+      // A. linkPlan Processing
       if (article.linkPlan && Array.isArray(article.linkPlan)) {
         completenessPoints++;
         article.linkPlan.forEach(function (linkItem) {
           if (linkItem && typeof linkItem === "object") {
             extractedLinks.push(linkItem);
             
-            // Validate presence of type
             if (!linkItem.type || String(linkItem.type).trim() === "") {
               totalIssueDeductions++;
               var textAnchor = linkItem.anchorText || "Unknown text link";
               diagnosticCategories.missingLinkTypes.items.push(displayTitle + " → " + textAnchor + " missing type");
             } else {
-              // Rule Validation per Link type specification
               var typeStr = String(linkItem.type).trim();
-              if (typeStr === "affiliateProduct" && linkItem.affiliate !== true) {
-                totalIssueDeductions++;
-                diagnosticCategories.invalidAffiliateProps.items.push(displayTitle + " (Affiliate product link missing affiliate:true)");
+              if (typeStr === "affiliateProduct") {
+                validateAffiliateProperty(linkItem, "linkPlan link element", displayTitle);
+                if (linkItem.affiliate === true) trueAffiliateCountForThisArticle++;
               }
               if (typeStr === "externalReference" && linkItem.newTab !== true) {
                 totalIssueDeductions++;
@@ -322,8 +333,7 @@
         diagnosticCategories.missingLinkPlan.items.push(displayTitle);
       }
 
-      // B. productRecommendations Analysis (Reads items array)
-      var totalAffiliateInComp = 0;
+      // B. productRecommendations Processing
       if (article.productRecommendations && article.productRecommendations.items && Array.isArray(article.productRecommendations.items)) {
         completenessPoints++;
         article.productRecommendations.items.forEach(function (recItem) {
@@ -332,11 +342,8 @@
             extractedLinks.push(recItem);
             
             if (recItem.type === "affiliateProduct") {
-              totalAffiliateInComp++;
-              if (recItem.affiliate !== true) {
-                totalIssueDeductions++;
-                diagnosticCategories.invalidAffiliateProps.items.push(displayTitle + " → Recommendation item missing affiliate:true");
-              }
+              validateAffiliateProperty(recItem, "productRecommendations item", displayTitle);
+              if (recItem.affiliate === true) trueAffiliateCountForThisArticle++;
             }
           }
         });
@@ -345,22 +352,20 @@
         diagnosticCategories.missingRecommendations.items.push(displayTitle);
       }
 
-      // C. alternativeProducts Analysis (Reads items array)
+      // C. alternativeProducts Processing (Fix Rule 3: Count inner items configuration array)
       if (article.alternativeProducts && article.alternativeProducts.items && Array.isArray(article.alternativeProducts.items)) {
         completenessPoints++;
-        if (article.alternativeProducts.items.length > 0) {
-          statTotals.altProductBoxes++;
-        }
+        
+        // Sum total array records directly
+        statTotals.altProductLinks += article.alternativeProducts.items.length;
+
         article.alternativeProducts.items.forEach(function (altItem) {
           if (altItem && typeof altItem === "object") {
             extractedLinks.push(altItem);
             
             if (altItem.type === "affiliateProduct") {
-              totalAffiliateInComp++;
-              if (altItem.affiliate !== true) {
-                totalIssueDeductions++;
-                diagnosticCategories.invalidAffiliateProps.items.push(displayTitle + " → Alternative product item missing affiliate:true");
-              }
+              validateAffiliateProperty(altItem, "alternativeProducts item", displayTitle);
+              if (altItem.affiliate === true) trueAffiliateCountForThisArticle++;
             }
           }
         });
@@ -373,9 +378,15 @@
         }
       }
 
-      // Populate Global Metrics from Compiled Links array
+      // Populate Global Metrics from Compiled Links array (Fix Rule 2: true filter split checking)
       extractedLinks.forEach(function (lnk) {
-        if (lnk.type === "affiliateProduct") statTotals.affiliateLinks++;
+        if (lnk.type === "affiliateProduct") {
+          if (lnk.affiliate === true) {
+            statTotals.affiliateLinks++;
+          } else if (lnk.affiliate === false) {
+            statTotals.nonAffiliateProducts++;
+          }
+        }
         if (lnk.type === "internalArticle") statTotals.internalLinks++;
         if (lnk.type === "page") statTotals.pageLinks++;
         if (lnk.type === "externalReference") statTotals.externalReferences++;
@@ -389,7 +400,9 @@
         var hasRecommendations = article.productRecommendations && article.productRecommendations.items && Array.isArray(article.productRecommendations.items) && article.productRecommendations.items.length > 0;
         var hasAltProducts = article.alternativeProducts && article.alternativeProducts.items && Array.isArray(article.alternativeProducts.items) && article.alternativeProducts.items.length > 0;
         var hasLPlan = article.linkPlan && Array.isArray(article.linkPlan) && article.linkPlan.length > 0;
-        var meetsMinAffiliate = totalAffiliateInComp >= 2;
+        
+        // Compliance verification benchmark based strictly on true elements
+        var meetsMinAffiliate = trueAffiliateCountForThisArticle >= 2;
         
         if (!hasFaq || !hasCompRows || !hasRecommendations || !hasAltProducts || !hasLPlan || !meetsMinAffiliate) {
           totalIssueDeductions++;
@@ -399,12 +412,11 @@
           if (!hasRecommendations) detailsMissing.push("productRecommendations missing");
           if (!hasAltProducts) detailsMissing.push("alternativeProducts missing");
           if (!hasLPlan) detailsMissing.push("linkPlan missing");
-          if (!meetsMinAffiliate) detailsMissing.push("less than two affiliate products");
+          if (!meetsMinAffiliate) detailsMissing.push("less than two true affiliate links configured");
           diagnosticCategories.comparisonValidation.items.push(displayTitle + " (Missing: " + detailsMissing.join(", ") + ")");
         }
       }
 
-      // Store completion percentage safely for audit engines
       article._completenessScore = Math.round((completenessPoints / completenessTotalPossible) * 100);
     });
 
@@ -416,11 +428,10 @@
       }
     });
 
-    // Step 4: Run Extended Broken Internal Link Auditing pipeline
+    // Step 4: Run Broken Internal Link Auditing pipeline
     allArticles.forEach(function (article) {
       var displayTitle = article.title || article.key || "Unnamed Article";
       
-      // Related Links check
       if (article.relatedArticles && Array.isArray(article.relatedArticles)) {
         article.relatedArticles.forEach(function (rel) {
           if (rel && rel.href) {
@@ -433,7 +444,6 @@
         });
       }
 
-      // linkPlan check
       if (article.linkPlan && Array.isArray(article.linkPlan)) {
         article.linkPlan.forEach(function (lnk) {
           if (lnk && lnk.type === "internalArticle" && lnk.href) {
@@ -447,7 +457,7 @@
       }
     });
 
-    // Step 5: Assign evaluation statuses across diagnostic categories mapping matrices
+    // Step 5: Assign statuses
     Object.keys(diagnosticCategories).forEach(function (catKey) {
       var cat = diagnosticCategories[catKey];
       if (cat.items.length > 0) {
@@ -469,17 +479,29 @@
     if (computedScore < 0) computedScore = 0;
     document.getElementById("seoScoreValue").textContent = computedScore + "/100";
 
-    // Set Live Link Statistics metrics
+    // Dynamic verification mappings target interface update (Fix Rule 2 & 3)
     document.getElementById("totalAffiliateLinks").textContent = statTotals.affiliateLinks;
     document.getElementById("totalInternalLinks").textContent = statTotals.internalLinks;
     document.getElementById("totalPageLinks").textContent = statTotals.pageLinks;
     document.getElementById("totalExternalReferences").textContent = statTotals.externalReferences;
-    document.getElementById("totalAlternativeBoxes").textContent = statTotals.altProductBoxes;
+    
+    // Target element renamed interface text fields safely via conditional validation
+    var altTargetNode = document.getElementById("totalAlternativeBoxes") || document.getElementById("totalAlternativeProducts");
+    if (altTargetNode) {
+      altTargetNode.textContent = statTotals.altProductLinks;
+    }
+    
+    // If your DOM interface markup contains nonAffiliate link labels, append them dynamically:
+    var nonAffiliateLabelNode = document.getElementById("totalNonAffiliateProducts");
+    if (nonAffiliateLabelNode) {
+      nonAffiliateLabelNode.textContent = statTotals.nonAffiliateProducts;
+    }
+
     document.getElementById("totalRecButtons").textContent = statTotals.recButtons;
     document.getElementById("avgInternalLinks").textContent = totalArticleCount > 0 ? (statTotals.internalLinks / totalArticleCount).toFixed(2) : "0";
 
-    // Build Affiliate Insights percentage metrics
-    var sumOfAllLinks = statTotals.affiliateLinks + statTotals.internalLinks + statTotals.externalReferences + statTotals.pageLinks;
+    // Build Insights percentage metrics relative to exact structural link aggregations
+    var sumOfAllLinks = statTotals.affiliateLinks + statTotals.nonAffiliateProducts + statTotals.internalLinks + statTotals.externalReferences + statTotals.pageLinks;
     if (sumOfAllLinks > 0) {
       document.getElementById("pctAffiliateLinks").textContent = Math.round((statTotals.affiliateLinks / sumOfAllLinks) * 100) + "%";
       document.getElementById("pctInternalLinks").textContent = Math.round((statTotals.internalLinks / sumOfAllLinks) * 100) + "%";
@@ -548,7 +570,6 @@
       warningsLogContainer.appendChild(listRowItem);
     });
 
-    // Calculate metrics for Top Summary Section
     var healthyArticlesCount = 0;
     var needsAttentionArticlesCount = 0;
     allArticles.forEach(function(art) {
@@ -559,7 +580,7 @@
       }
     });
 
-    // Populate Top Summary Section DOM targets
+    // Populate Top Summary metrics (Fix rules tracking updates)
     document.getElementById("summaryArticles").textContent = totalArticleCount;
     document.getElementById("summaryAffiliate").textContent = statTotals.affiliateLinks;
     document.getElementById("summaryInternal").textContent = statTotals.internalLinks;
@@ -654,7 +675,7 @@
         }
       }
     } catch (err) {
-      // Graceful fallback for environments restrictions
+      // Graceful fallback
     }
   }
 
