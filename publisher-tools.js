@@ -9,7 +9,7 @@
   var articleUrlsMap = {};
   var uniqueArticleKeys = {};
   
-  // Extended diagnostic categories block matching your structural changes
+  // Diagnostic configurations mapping
   var diagnosticCategories = {
     seoTitle: { label: "SEO Titles", items: [], status: "pass", isFailType: false },
     seoDescription: { label: "SEO Descriptions", items: [], status: "pass", isFailType: false },
@@ -22,9 +22,8 @@
     image: { label: "Images", items: [], status: "pass", isFailType: false },
     intro: { label: "Intro", items: [], status: "pass", isFailType: false },
     emptySections: { label: "Empty Sections", items: [], status: "pass", isFailType: false },
-    brokenLinks: { label: "Broken Internal Links", items: [], status: "pass", isFailType: false },
+    brokenLinks: { label: "Broken Internal Links (Audited Arrays Only)", items: [], status: "pass", isFailType: false },
     comparisonValidation: { label: "Comparison Article Validation", items: [], status: "pass", isFailType: false },
-    // Extended Validations
     missingLinkPlan: { label: "Missing linkPlan Array", items: [], status: "pass", isFailType: false },
     missingRecommendations: { label: "Missing productRecommendations", items: [], status: "pass", isFailType: false },
     missingAlternativeProducts: { label: "Missing alternativeProducts", items: [], status: "pass", isFailType: false },
@@ -35,14 +34,14 @@
 
   var totalIssueDeductions = 0;
 
-  // Trackers for statistics metrics (Updated mapping references)
+  // Trackers for exact metrics mapping pipelines
   var statTotals = {
     affiliateLinks: 0,
-    nonAffiliateProducts: 0, // Separate metric counter
+    nonAffiliateProducts: 0,
     internalLinks: 0,
     pageLinks: 0,
     externalReferences: 0,
-    altProductLinks: 0,      // Renamed tracking slot
+    altProductLinks: 0,
     recButtons: 0
   };
 
@@ -75,10 +74,7 @@
       if (item && typeof item === "object") {
         skincareArticlesList.push(item);
         allArticles.push(item);
-        
-        if (!uniqueArticleKeys[key]) {
-          uniqueArticleKeys[key] = [];
-        }
+        if (!uniqueArticleKeys[key]) uniqueArticleKeys[key] = [];
         uniqueArticleKeys[key].push(item.title || key);
       }
     });
@@ -88,10 +84,7 @@
       if (item && typeof item === "object") {
         haircareArticlesList.push(item);
         allArticles.push(item);
-        
-        if (!uniqueArticleKeys[key]) {
-          uniqueArticleKeys[key] = [];
-        }
+        if (!uniqueArticleKeys[key]) uniqueArticleKeys[key] = [];
         uniqueArticleKeys[key].push(item.title || key);
       }
     });
@@ -99,19 +92,14 @@
 
   function countWordsInContent(article) {
     var contentString = "";
-    
     if (article.intro) contentString += " " + article.intro;
     if (article.title) contentString += " " + article.title;
     
     if (article.sections && Array.isArray(article.sections)) {
       article.sections.forEach(function (sec) {
         if (sec.heading) contentString += " " + sec.heading;
-        if (sec.paragraphs && Array.isArray(sec.paragraphs)) {
-          contentString += " " + sec.paragraphs.join(" ");
-        }
-        if (sec.bullets && Array.isArray(sec.bullets)) {
-          contentString += " " + sec.bullets.join(" ");
-        }
+        if (sec.paragraphs && Array.isArray(sec.paragraphs)) contentString += " " + sec.paragraphs.join(" ");
+        if (sec.bullets && Array.isArray(sec.bullets)) contentString += " " + sec.bullets.join(" ");
       });
     }
     
@@ -124,9 +112,7 @@
     
     if (article.comparisonTable && article.comparisonTable.rows && Array.isArray(article.comparisonTable.rows)) {
       article.comparisonTable.rows.forEach(function (row) {
-        if (row.features && Array.isArray(row.features)) {
-          contentString += " " + row.features.join(" ");
-        }
+        if (row.features && Array.isArray(row.features)) contentString += " " + row.features.join(" ");
       });
     }
     
@@ -140,12 +126,10 @@
     var totalWords = 0;
     var maxWords = -1;
     var longestTitle = "--";
-    
     var baseDate = new Date();
     var currentYear = baseDate.getFullYear();
     var currentMonth = baseDate.getMonth();
     var itemsPublishedThisMonth = 0;
-
     var validDatedArticles = [];
 
     allArticles.forEach(function (art) {
@@ -173,17 +157,13 @@
 
     if (validDatedArticles.length > 0) {
       validDatedArticles.sort(function (a, b) { return b.date - a.date; });
-      
       var options = { day: "numeric", month: "short", year: "numeric" };
-      var newest = validDatedArticles[0];
-      var oldest = validDatedArticles[validDatedArticles.length - 1];
-
-      document.getElementById("newestArticleInfo").textContent = newest.title + " — " + newest.date.toLocaleDateString("en-GB", options);
-      document.getElementById("oldestArticleInfo").textContent = oldest.title + " — " + oldest.date.toLocaleDateString("en-GB", options);
+      document.getElementById("newestArticleInfo").textContent = validDatedArticles[0].title + " — " + validDatedArticles[0].date.toLocaleDateString("en-GB", options);
+      document.getElementById("oldestArticleInfo").textContent = validDatedArticles[validDatedArticles.length - 1].title + " — " + validDatedArticles[validDatedArticles.length - 1].date.toLocaleDateString("en-GB", options);
     }
   }
 
-  // Verification helper for core affiliate settings (Rule 1)
+  // Verification checking helper for affiliate properties configuration settings
   function validateAffiliateProperty(item, locationContext, displayTitle) {
     if (!item.hasOwnProperty("affiliate")) {
       totalIssueDeductions++;
@@ -194,8 +174,12 @@
     }
   }
 
+  // Check if an article uses the new architecture layout structures
+  function isUsingNewArchitecture(article) {
+    return !!(article.linkPlan || article.productRecommendations || article.alternativeProducts);
+  }
+
   function runCategorizedAudit() {
-    // Reset metrics tracker sets
     statTotals.affiliateLinks = 0;
     statTotals.nonAffiliateProducts = 0;
     statTotals.internalLinks = 0;
@@ -211,25 +195,24 @@
       }
     });
 
-    // Step 1: Map URLs across arrays for broken-link matching loops
+    // Step 1: Map all valid production URLs
     allArticles.forEach(function (article) {
       var displayTitle = article.title || article.key || "Unnamed Article";
       if (article.url) {
         var cleanPath = String(article.url).trim().toLowerCase();
-        if (!articleUrlsMap[cleanPath]) {
-          articleUrlsMap[cleanPath] = [];
-        }
+        if (!articleUrlsMap[cleanPath]) articleUrlsMap[cleanPath] = [];
         articleUrlsMap[cleanPath].push(displayTitle);
       }
     });
 
-    // Step 2: Main data parsing matrix engine run loops
+    // Step 2: Main metrics processing loop
     allArticles.forEach(function (article) {
       var displayTitle = article.title || article.key || "Unnamed Article";
       var completenessPoints = 0;
       var completenessTotalPossible = 12;
+      var isNewArch = isUsingNewArchitecture(article);
 
-      // Base Metadata Valids
+      // Base Metadata Validations
       if (article.seoTitle && String(article.seoTitle).trim() !== "") { completenessPoints++; } else {
         totalIssueDeductions++;
         diagnosticCategories.seoTitle.items.push(displayTitle);
@@ -276,10 +259,9 @@
 
       if (article.sections && Array.isArray(article.sections)) {
         var emptyFound = article.sections.some(function (sec) {
-          var hasHeading = sec.heading && String(sec.heading).trim() !== "";
-          var hasParagraphs = sec.paragraphs && sec.paragraphs.length > 0 && String(sec.paragraphs[0]).trim() !== "";
-          var hasBullets = sec.bullets && sec.bullets.length > 0 && String(sec.bullets[0]).trim() !== "";
-          return !hasHeading && !hasParagraphs && !hasBullets;
+          return !(sec.heading && String(sec.heading).trim() !== "") && 
+                 !(sec.paragraphs && sec.paragraphs.length > 0 && String(sec.paragraphs[0]).trim() !== "") && 
+                 !(sec.bullets && sec.bullets.length > 0 && String(sec.bullets[0]).trim() !== "");
         });
         if (!emptyFound && article.sections.length > 0) { completenessPoints++; }
         if (emptyFound) {
@@ -291,12 +273,12 @@
         diagnosticCategories.emptySections.items.push(displayTitle);
       }
 
-      if (article.comparisonTable) { completenessPoints++; }
+      if (article.comparisonTable) completenessPoints++;
 
       var extractedLinks = [];
       var trueAffiliateCountForThisArticle = 0;
 
-      // A. linkPlan Processing
+      // A. linkPlan processing block
       if (article.linkPlan && Array.isArray(article.linkPlan)) {
         completenessPoints++;
         article.linkPlan.forEach(function (linkItem) {
@@ -305,12 +287,11 @@
             
             if (!linkItem.type || String(linkItem.type).trim() === "") {
               totalIssueDeductions++;
-              var textAnchor = linkItem.anchorText || "Unknown text link";
-              diagnosticCategories.missingLinkTypes.items.push(displayTitle + " → " + textAnchor + " missing type");
+              diagnosticCategories.missingLinkTypes.items.push(displayTitle + " → " + (linkItem.anchorText || "Unknown text link") + " missing type");
             } else {
               var typeStr = String(linkItem.type).trim();
               if (typeStr === "affiliateProduct") {
-                validateAffiliateProperty(linkItem, "linkPlan link element", displayTitle);
+                validateAffiliateProperty(linkItem, "linkPlan item", displayTitle);
                 if (linkItem.affiliate === true) trueAffiliateCountForThisArticle++;
               }
               if (typeStr === "externalReference" && linkItem.newTab !== true) {
@@ -328,48 +309,44 @@
             }
           }
         });
-      } else {
+      } else if (isNewArch) {
         totalIssueDeductions++;
         diagnosticCategories.missingLinkPlan.items.push(displayTitle);
       }
 
-      // B. productRecommendations Processing
+      // B. productRecommendations processing block
       if (article.productRecommendations && article.productRecommendations.items && Array.isArray(article.productRecommendations.items)) {
         completenessPoints++;
         article.productRecommendations.items.forEach(function (recItem) {
           if (recItem && typeof recItem === "object") {
             statTotals.recButtons++;
             extractedLinks.push(recItem);
-            
             if (recItem.type === "affiliateProduct") {
               validateAffiliateProperty(recItem, "productRecommendations item", displayTitle);
               if (recItem.affiliate === true) trueAffiliateCountForThisArticle++;
             }
           }
         });
-      } else {
+      } else if (isNewArch) {
         totalIssueDeductions++;
         diagnosticCategories.missingRecommendations.items.push(displayTitle);
       }
 
-      // C. alternativeProducts Processing (Fix Rule 3: Count inner items configuration array)
+      // C. alternativeProducts processing block
       if (article.alternativeProducts && article.alternativeProducts.items && Array.isArray(article.alternativeProducts.items)) {
         completenessPoints++;
-        
-        // Sum total array records directly
         statTotals.altProductLinks += article.alternativeProducts.items.length;
 
         article.alternativeProducts.items.forEach(function (altItem) {
           if (altItem && typeof altItem === "object") {
             extractedLinks.push(altItem);
-            
             if (altItem.type === "affiliateProduct") {
               validateAffiliateProperty(altItem, "alternativeProducts item", displayTitle);
               if (altItem.affiliate === true) trueAffiliateCountForThisArticle++;
             }
           }
         });
-      } else {
+      } else if (isNewArch) {
         if (article.comparisonTable) {
           totalIssueDeductions++;
           diagnosticCategories.missingAlternativeProducts.items.push(displayTitle + " (Comparison missing alternativeProducts)");
@@ -378,14 +355,11 @@
         }
       }
 
-      // Populate Global Metrics from Compiled Links array (Fix Rule 2: true filter split checking)
+      // Aggregate global statistics metrics from verified target arrays only
       extractedLinks.forEach(function (lnk) {
         if (lnk.type === "affiliateProduct") {
-          if (lnk.affiliate === true) {
-            statTotals.affiliateLinks++;
-          } else if (lnk.affiliate === false) {
-            statTotals.nonAffiliateProducts++;
-          }
+          if (lnk.affiliate === true) statTotals.affiliateLinks++;
+          if (lnk.affiliate === false) statTotals.nonAffiliateProducts++;
         }
         if (lnk.type === "internalArticle") statTotals.internalLinks++;
         if (lnk.type === "page") statTotals.pageLinks++;
@@ -400,8 +374,6 @@
         var hasRecommendations = article.productRecommendations && article.productRecommendations.items && Array.isArray(article.productRecommendations.items) && article.productRecommendations.items.length > 0;
         var hasAltProducts = article.alternativeProducts && article.alternativeProducts.items && Array.isArray(article.alternativeProducts.items) && article.alternativeProducts.items.length > 0;
         var hasLPlan = article.linkPlan && Array.isArray(article.linkPlan) && article.linkPlan.length > 0;
-        
-        // Compliance verification benchmark based strictly on true elements
         var meetsMinAffiliate = trueAffiliateCountForThisArticle >= 2;
         
         if (!hasFaq || !hasCompRows || !hasRecommendations || !hasAltProducts || !hasLPlan || !meetsMinAffiliate) {
@@ -412,7 +384,7 @@
           if (!hasRecommendations) detailsMissing.push("productRecommendations missing");
           if (!hasAltProducts) detailsMissing.push("alternativeProducts missing");
           if (!hasLPlan) detailsMissing.push("linkPlan missing");
-          if (!meetsMinAffiliate) detailsMissing.push("less than two true affiliate links configured");
+          if (!meetsMinAffiliate) detailsMissing.push("less than two true affiliate product links");
           diagnosticCategories.comparisonValidation.items.push(displayTitle + " (Missing: " + detailsMissing.join(", ") + ")");
         }
       }
@@ -420,7 +392,7 @@
       article._completenessScore = Math.round((completenessPoints / completenessTotalPossible) * 100);
     });
 
-    // Step 3: Handle Duplicate Path collisions across structural mappings
+    // Step 3: Handle Duplicate URL collisions
     Object.keys(articleUrlsMap).forEach(function (urlPath) {
       if (articleUrlsMap[urlPath].length > 1) {
         totalIssueDeductions += (articleUrlsMap[urlPath].length - 1);
@@ -428,36 +400,23 @@
       }
     });
 
-    // Step 4: Run Broken Internal Link Auditing pipeline
+    // Step 4: Run Link Health Engine Checker on verified targets arrays only (Excludes relatedArticles)
     allArticles.forEach(function (article) {
       var displayTitle = article.title || article.key || "Unnamed Article";
-      
-      if (article.relatedArticles && Array.isArray(article.relatedArticles)) {
-        article.relatedArticles.forEach(function (rel) {
-          if (rel && rel.href) {
-            var targetHref = String(rel.href).trim().toLowerCase();
-            if (!articleUrlsMap[targetHref]) {
-              totalIssueDeductions++;
-              diagnosticCategories.brokenLinks.items.push("Broken Internal Link: " + displayTitle + " → " + rel.href);
-            }
-          }
-        });
-      }
-
       if (article.linkPlan && Array.isArray(article.linkPlan)) {
         article.linkPlan.forEach(function (lnk) {
           if (lnk && lnk.type === "internalArticle" && lnk.href) {
             var targetInternalHref = String(lnk.href).trim().toLowerCase();
             if (!articleUrlsMap[targetInternalHref]) {
               totalIssueDeductions++;
-              diagnosticCategories.brokenLinks.items.push("Broken Internal Link: " + displayTitle + " → " + lnk.href + " (Target article not found)");
+              diagnosticCategories.brokenLinks.items.push("Broken Internal Link: " + displayTitle + " → " + lnk.href);
             }
           }
         });
       }
     });
 
-    // Step 5: Assign statuses
+    // Step 5: Assign execution status results matrix
     Object.keys(diagnosticCategories).forEach(function (catKey) {
       var cat = diagnosticCategories[catKey];
       if (cat.items.length > 0) {
@@ -479,36 +438,30 @@
     if (computedScore < 0) computedScore = 0;
     document.getElementById("seoScoreValue").textContent = computedScore + "/100";
 
-    // Dynamic verification mappings target interface update (Fix Rule 2 & 3)
+    // Set metrics dashboard UI outputs safely 
     document.getElementById("totalAffiliateLinks").textContent = statTotals.affiliateLinks;
+    document.getElementById("totalNonAffiliateProducts").textContent = statTotals.nonAffiliateProducts;
     document.getElementById("totalInternalLinks").textContent = statTotals.internalLinks;
     document.getElementById("totalPageLinks").textContent = statTotals.pageLinks;
     document.getElementById("totalExternalReferences").textContent = statTotals.externalReferences;
     
-    // Target element renamed interface text fields safely via conditional validation
-    var altTargetNode = document.getElementById("totalAlternativeBoxes") || document.getElementById("totalAlternativeProducts");
-    if (altTargetNode) {
-      altTargetNode.textContent = statTotals.altProductLinks;
-    }
-    
-    // If your DOM interface markup contains nonAffiliate link labels, append them dynamically:
-    var nonAffiliateLabelNode = document.getElementById("totalNonAffiliateProducts");
-    if (nonAffiliateLabelNode) {
-      nonAffiliateLabelNode.textContent = statTotals.nonAffiliateProducts;
-    }
+    var altTargetNode = document.getElementById("totalAlternativeProducts") || document.getElementById("totalAlternativeBoxes");
+    if (altTargetNode) altTargetNode.textContent = statTotals.altProductLinks;
 
     document.getElementById("totalRecButtons").textContent = statTotals.recButtons;
     document.getElementById("avgInternalLinks").textContent = totalArticleCount > 0 ? (statTotals.internalLinks / totalArticleCount).toFixed(2) : "0";
 
-    // Build Insights percentage metrics relative to exact structural link aggregations
+    // Build Exact Product Link Distribution Percentage outputs
     var sumOfAllLinks = statTotals.affiliateLinks + statTotals.nonAffiliateProducts + statTotals.internalLinks + statTotals.externalReferences + statTotals.pageLinks;
     if (sumOfAllLinks > 0) {
       document.getElementById("pctAffiliateLinks").textContent = Math.round((statTotals.affiliateLinks / sumOfAllLinks) * 100) + "%";
+      document.getElementById("pctNonAffiliateLinks").textContent = Math.round((statTotals.nonAffiliateProducts / sumOfAllLinks) * 100) + "%";
       document.getElementById("pctInternalLinks").textContent = Math.round((statTotals.internalLinks / sumOfAllLinks) * 100) + "%";
       document.getElementById("pctExternalReferences").textContent = Math.round((statTotals.externalReferences / sumOfAllLinks) * 100) + "%";
       document.getElementById("pctPageLinks").textContent = Math.round((statTotals.pageLinks / sumOfAllLinks) * 100) + "%";
     } else {
       document.getElementById("pctAffiliateLinks").textContent = "0%";
+      document.getElementById("pctNonAffiliateLinks").textContent = "0%";
       document.getElementById("pctInternalLinks").textContent = "0%";
       document.getElementById("pctExternalReferences").textContent = "0%";
       document.getElementById("pctPageLinks").textContent = "0%";
@@ -531,7 +484,7 @@
       healthStatusNode.classList.add("health-error");
     }
 
-    // Render diagnostic output log lists
+    // Render diagnostic log lists
     var warningsLogContainer = document.getElementById("seoWarningsLog");
     warningsLogContainer.innerHTML = "";
 
@@ -566,7 +519,6 @@
         });
         listRowItem.appendChild(nestedUl);
       }
-      
       warningsLogContainer.appendChild(listRowItem);
     });
 
@@ -580,7 +532,7 @@
       }
     });
 
-    // Populate Top Summary metrics (Fix rules tracking updates)
+    // Populate Top level Summary card metrics slots
     document.getElementById("summaryArticles").textContent = totalArticleCount;
     document.getElementById("summaryAffiliate").textContent = statTotals.affiliateLinks;
     document.getElementById("summaryInternal").textContent = statTotals.internalLinks;
@@ -617,14 +569,10 @@
     allArticles.forEach(function (article) {
       if (article.url) {
         var formattedUrlSegment = String(article.url).trim();
-        if (formattedUrlSegment.charAt(0) !== "/") {
-          formattedUrlSegment = "/" + formattedUrlSegment;
-        }
+        if (formattedUrlSegment.charAt(0) !== "/") formattedUrlSegment = "/" + formattedUrlSegment;
 
         var determinedPriority = "0.8";
-        if (article.comparisonTable) {
-          determinedPriority = "0.9";
-        }
+        if (article.comparisonTable) determinedPriority = "0.9";
 
         xmlOutputRows.push("  <url>");
         xmlOutputRows.push("    <loc>" + BASE_URL + formattedUrlSegment + "</loc>");
@@ -638,11 +586,8 @@
     xmlOutputRows.push("</urlset>");
     
     var totalUrlElementsCalculated = baselineStaticPages.length + allArticles.filter(function(a){return a.url;}).length;
-    
     var outputTextarea = document.getElementById("sitemapContainer");
-    if (outputTextarea) {
-      outputTextarea.value = xmlOutputRows.join("\n");
-    }
+    if (outputTextarea) outputTextarea.value = xmlOutputRows.join("\n");
 
     var liveDateObject = new Date();
     document.getElementById("sitemapUrlCount").textContent = totalUrlElementsCalculated + " URLs";
@@ -656,9 +601,7 @@
 
   function handleClipboardCopyAction() {
     var sitemapTextarea = document.getElementById("sitemapContainer");
-    if (!sitemapTextarea || sitemapTextarea.value.trim() === "") {
-      return;
-    }
+    if (!sitemapTextarea || sitemapTextarea.value.trim() === "") return;
 
     sitemapTextarea.select();
     sitemapTextarea.setSelectionRange(0, 99999);
@@ -669,26 +612,17 @@
         var toastBox = document.getElementById("copyToast");
         if (toastBox) {
           toastBox.style.display = "inline";
-          setTimeout(function () {
-            toastBox.style.display = "none";
-          }, 2000);
+          setTimeout(function () { toastBox.style.display = "none"; }, 2000);
         }
       }
-    } catch (err) {
-      // Graceful fallback
-    }
+    } catch (err) {}
   }
 
   function attachControlListeners() {
     var generateBtn = document.getElementById("btnGenerateSitemap");
     var copyBtn = document.getElementById("btnCopySitemap");
-
-    if (generateBtn) {
-      generateBtn.addEventListener("click", manufactureSitemapContent);
-    }
-    if (copyBtn) {
-      copyBtn.addEventListener("click", handleClipboardCopyAction);
-    }
+    if (generateBtn) generateBtn.addEventListener("click", manufactureSitemapContent);
+    if (copyBtn) copyBtn.addEventListener("click", handleClipboardCopyAction);
   }
 
   function runEnginePipeline() {
