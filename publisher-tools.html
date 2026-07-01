@@ -257,7 +257,7 @@
             <span class="status-value" id="summaryAffiliate">0</span>
           </div>
           <div class="status-item">
-            <span class="status-label">Internal Links</span>
+            <span class="status-label">LinkPlan Internal Links</span>
             <span class="status-value" id="summaryInternal">0</span>
           </div>
           <div class="status-item">
@@ -338,7 +338,11 @@
               <span class="status-value" id="totalAffiliateLinks">0</span>
             </div>
             <div class="status-item">
-              <span class="status-label">Total Internal Links</span>
+              <span class="status-label">Total Non-Affiliate Product Links</span>
+              <span class="status-value" id="totalNonAffiliateProducts">0</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">LinkPlan Internal Links</span>
               <span class="status-value" id="totalInternalLinks">0</span>
             </div>
             <div class="status-item">
@@ -350,29 +354,33 @@
               <span class="status-value" id="totalExternalReferences">0</span>
             </div>
             <div class="status-item">
-              <span class="status-label">Alternative Boxes</span>
-              <span class="status-value" id="totalAlternativeBoxes">0</span>
+              <span class="status-label">Alternative Product Links</span>
+              <span class="status-value" id="totalAlternativeProducts">0</span>
             </div>
             <div class="status-item">
-              <span class="status-label">Recommendation Buttons</span>
+              <span class="status-label">Product Recommendation Links</span>
               <span class="status-value" id="totalRecButtons">0</span>
             </div>
-            <div class="status-item" style="grid-column: span 2;">
-              <span class="status-label">Avg Internal Links / Article</span>
+            <div class="status-item" style="grid-column: span 1;">
+              <span class="status-label">Avg LinkPlan Internal Links / Article</span>
               <span class="status-value" id="avgInternalLinks">0</span>
             </div>
           </div>
         </div>
 
         <div style="border-top: 1px solid var(--border-color); padding-top: 12px; margin-bottom: 16px;">
-          <p style="font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">Affiliate Insights (% of total links)</p>
-          <div class="status-grid">
+          <p style="font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">Product Link Distribution</p>
+          <div class="status-grid" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));">
             <div class="status-item">
-              <span class="status-label">Affiliate Links</span>
+              <span class="status-label">Affiliate Product Links</span>
               <span class="status-value" id="pctAffiliateLinks">0%</span>
             </div>
             <div class="status-item">
-              <span class="status-label">Internal Links</span>
+              <span class="status-label">Non-Affiliate Product Links</span>
+              <span class="status-value" id="pctNonAffiliateLinks">0%</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">LinkPlan Internal Links</span>
               <span class="status-value" id="pctInternalLinks">0%</span>
             </div>
             <div class="status-item">
@@ -380,7 +388,7 @@
               <span class="status-value" id="pctExternalReferences">0%</span>
             </div>
             <div class="status-item">
-              <span class="status-label">Pages</span>
+              <span class="status-label">Page Links</span>
               <span class="status-value" id="pctPageLinks">0%</span>
             </div>
           </div>
