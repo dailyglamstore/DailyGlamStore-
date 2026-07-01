@@ -598,6 +598,12 @@ metaLine:
       href:
 "https://www.lotusbotanicals.com/products/carrot-niacinamide-glow-and-de-tan-mineral-sunscreen-spf-50-pa?ref=DGS-Deepak",
 
+      type:
+        "affiliateProduct",
+
+      affiliate:
+        true,
+
       newTab:
         true
     },
@@ -609,6 +615,12 @@ metaLine:
       href:
 "https://bebodywise.com/product/lightest-mineral-sunscreen-spf50",
 
+      type:
+        "affiliateProduct",
+
+      affiliate:
+        false,
+
       newTab:
         true
     }
@@ -616,21 +628,42 @@ metaLine:
 },
 
 alternativeProducts: {
-  title: "Explore Similar Products",
+  title:
+    "Explore Similar Products",
 
   items: [
     {
-      title: "WishCare Invisible Gel Sunscreen SPF 50",
-      href: "YOUR_AFFILIATE_LINK",
-      affiliate: true,
-      newTab: true
+      title:
+        "WishCare Invisible Gel Sunscreen SPF 50",
+
+      href:
+        "YOUR_AFFILIATE_LINK",
+
+      type:
+        "affiliateProduct",
+
+      affiliate:
+        true,
+
+      newTab:
+        true
     },
 
     {
-      title: "Gush Beauty Sunscreen",
-      href: "YOUR_AFFILIATE_LINK",
-      affiliate: true,
-      newTab: true
+      title:
+        "Gush Beauty Sunscreen",
+
+      href:
+        "YOUR_AFFILIATE_LINK",
+
+      type:
+        "affiliateProduct",
+
+      affiliate:
+        true,
+
+      newTab:
+        true
     }
   ]
 },
