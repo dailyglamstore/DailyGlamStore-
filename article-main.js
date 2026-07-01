@@ -260,24 +260,24 @@ var alternativeProductsMarkup =
 
         article.alternativeProducts.items
           .map(function(product) {
+  return (
+    '<a class="alternative-product-btn" href="' +
+    escapeHtml(product.href) +
+    '"' +
+    buildTargetAttributes(product.newTab) +
+    ">" +
 
-            return (
-              '<a class="alternative-product-btn" href="' +
-              escapeHtml(product.href) +
-              '"' +
-              buildTargetAttributes(product.newTab) +
-              ">" +
+    escapeHtml(product.title) +
 
-              escapeHtml(product.title) +
+    (
+      product.type === "affiliateProduct"
+        ? ' <span class="product-arrow">➜</span>'
+        : ""
+    ) +
 
-              (product.affiliate
-                ? ' <span class="affiliate-tag">Affiliate</span>'
-                : "") +
-
-              "</a>"
-            );
-
-          })
+    "</a>"
+  );
+})
           .join("\n"),
 
         "</div>",
