@@ -593,7 +593,7 @@ metaLine:
   items: [
     {
       title:
-        "Buy Lotus SPF 50 Sunscreen",
+        "🛍 Buy Lotus SPF 50 Sunscreen",
 
       href:
 "https://www.lotusbotanicals.com/products/carrot-niacinamide-glow-and-de-tan-mineral-sunscreen-spf-50-pa?ref=DGS-Deepak",
@@ -610,7 +610,7 @@ metaLine:
 
     {
       title:
-        "Buy Be Bodywise SPF 50 Sunscreen",
+        "🛍 Buy Be Bodywise SPF 50 Sunscreen",
 
       href:
 "https://bebodywise.com/product/lightest-mineral-sunscreen-spf50",
