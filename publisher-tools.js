@@ -26,8 +26,8 @@
     comparisonValidation: { label: "Comparison Article Validation", items: [], status: "pass", isFailType: false },
     // New Extended Validations
     missingLinkPlan: { label: "Missing linkPlan Array", items: [], status: "pass", isFailType: false },
-    missingRecommendations: { label: "Missing productRecommendations Array", items: [], status: "pass", isFailType: false },
-    missingAlternativeProducts: { label: "Missing alternativeProducts Array", items: [], status: "pass", isFailType: false },
+    missingRecommendations: { label: "Missing productRecommendations", items: [], status: "pass", isFailType: false },
+    missingAlternativeProducts: { label: "Missing alternativeProducts", items: [], status: "pass", isFailType: false },
     missingLinkTypes: { label: "Missing Link Types", items: [], status: "pass", isFailType: false },
     invalidAffiliateProps: { label: "Invalid Affiliate Link Settings", items: [], status: "pass", isFailType: false },
     invalidTargetTabs: { label: "Invalid Target Tab (_blank / same-tab) Directives", items: [], status: "pass", isFailType: false }
@@ -322,16 +322,21 @@
         diagnosticCategories.missingLinkPlan.items.push(displayTitle);
       }
 
-      // B. productRecommendations Analysis
+      // B. productRecommendations Analysis (Reads items array)
       var totalAffiliateInComp = 0;
-      if (article.productRecommendations && Array.isArray(article.productRecommendations)) {
+      if (article.productRecommendations && article.productRecommendations.items && Array.isArray(article.productRecommendations.items)) {
         completenessPoints++;
-        article.productRecommendations.forEach(function (recItem) {
+        article.productRecommendations.items.forEach(function (recItem) {
           if (recItem && typeof recItem === "object") {
             statTotals.recButtons++;
             extractedLinks.push(recItem);
+            
             if (recItem.type === "affiliateProduct") {
               totalAffiliateInComp++;
+              if (recItem.affiliate !== true) {
+                totalIssueDeductions++;
+                diagnosticCategories.invalidAffiliateProps.items.push(displayTitle + " → Recommendation item missing affiliate:true");
+              }
             }
           }
         });
@@ -340,22 +345,26 @@
         diagnosticCategories.missingRecommendations.items.push(displayTitle);
       }
 
-      // C. alternativeProducts Analysis
-      if (article.alternativeProducts && Array.isArray(article.alternativeProducts)) {
+      // C. alternativeProducts Analysis (Reads items array)
+      if (article.alternativeProducts && article.alternativeProducts.items && Array.isArray(article.alternativeProducts.items)) {
         completenessPoints++;
-        if (article.alternativeProducts.length > 0) {
+        if (article.alternativeProducts.items.length > 0) {
           statTotals.altProductBoxes++;
         }
-        article.alternativeProducts.forEach(function (altItem) {
+        article.alternativeProducts.items.forEach(function (altItem) {
           if (altItem && typeof altItem === "object") {
             extractedLinks.push(altItem);
+            
             if (altItem.type === "affiliateProduct") {
               totalAffiliateInComp++;
+              if (altItem.affiliate !== true) {
+                totalIssueDeductions++;
+                diagnosticCategories.invalidAffiliateProps.items.push(displayTitle + " → Alternative product item missing affiliate:true");
+              }
             }
           }
         });
       } else {
-        // Warning triggers globally or selectively depending on template layout context
         if (article.comparisonTable) {
           totalIssueDeductions++;
           diagnosticCategories.missingAlternativeProducts.items.push(displayTitle + " (Comparison missing alternativeProducts)");
@@ -377,8 +386,8 @@
         comparisonArticlesCount++;
         var hasFaq = article.faq && Array.isArray(article.faq) && article.faq.length > 0;
         var hasCompRows = article.comparisonTable.rows && Array.isArray(article.comparisonTable.rows) && article.comparisonTable.rows.length > 0;
-        var hasRecommendations = article.productRecommendations && Array.isArray(article.productRecommendations) && article.productRecommendations.length > 0;
-        var hasAltProducts = article.alternativeProducts && Array.isArray(article.alternativeProducts) && article.alternativeProducts.length > 0;
+        var hasRecommendations = article.productRecommendations && article.productRecommendations.items && Array.isArray(article.productRecommendations.items) && article.productRecommendations.items.length > 0;
+        var hasAltProducts = article.alternativeProducts && article.alternativeProducts.items && Array.isArray(article.alternativeProducts.items) && article.alternativeProducts.items.length > 0;
         var hasLPlan = article.linkPlan && Array.isArray(article.linkPlan) && article.linkPlan.length > 0;
         var meetsMinAffiliate = totalAffiliateInComp >= 2;
         
