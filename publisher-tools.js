@@ -45,7 +45,7 @@
     recButtons: 0
   };
 
-  // Improvement #2: Read previous history from storage prior to saving the current instance run
+  // Bug Fix 1: Read previous historical timestamp from localStorage and display immediately
   function initLiveTimestamp() {
     var scanDateNode = document.getElementById("scanDate");
     if (scanDateNode) {
@@ -58,16 +58,24 @@
     }
   }
 
-  // Improvement #2: Isolated write callback invoked at pipeline termination 
+  // Bug Fix 1: Formats date-time stamp to match requested criteria: 2 Jul 2026 • 4:05 PM
   function commitCurrentScanTimestamp() {
     try {
       var currentDate = new Date();
-      var formattedCurrentDate = currentDate.toLocaleDateString("en-GB", {
+      var formattedDate = currentDate.toLocaleDateString("en-GB", {
         day: "numeric",
         month: "short",
         year: "numeric"
       });
-      localStorage.setItem("publisherLastScan", formattedCurrentDate);
+      
+      var formattedTime = currentDate.toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true
+      });
+      
+      var fullTimestampString = formattedDate + " • " + formattedTime;
+      localStorage.setItem("publisherLastScan", fullTimestampString);
     } catch (e) {}
   }
 
@@ -489,7 +497,6 @@
     var calculatedWarningsCount = 0;
     var calculatedBrokenCount = 0;
     
-    // Improvement #3: Cache container for warning list generation strings
     var activeWarnCategoryNames = [];
 
     Object.keys(diagnosticCategories).forEach(function (catKey) {
@@ -505,7 +512,6 @@
         var itemsCounterText = cat.isFailType ? "" : " (" + cat.items.length + ")";
         listRowItem.textContent = prefixSign + cat.label + itemsCounterText;
         
-        // Track unique status: "warn" categories exclusively for UI mapping summary
         if (cat.status === "warn") {
           activeWarnCategoryNames.push(catKey);
         }
@@ -529,12 +535,9 @@
     });
 
     var healthyArticlesCount = 0;
-    var needsAttentionArticlesCount = 0;
     allArticles.forEach(function(art) {
       if ((art._completenessScore || 0) >= 85) {
         healthyArticlesCount++;
-      } else {
-        needsAttentionArticlesCount++;
       }
     });
 
@@ -545,15 +548,15 @@
     document.getElementById("summaryBrokenLinks").textContent = calculatedBrokenCount;
     document.getElementById("summaryWarnings").textContent = calculatedWarningsCount;
     document.getElementById("summaryHealthy").textContent = healthyArticlesCount;
-    document.getElementById("summaryNeedsAttention").textContent = needsAttentionArticlesCount;
 
-    // Improvement #3: Render context categories cleanly inside summary sub-slot
+    // Bug Fix 2: Synchronize "Needs Attention" counter to match the warning categories array length
+    document.getElementById("summaryNeedsAttention").textContent = activeWarnCategoryNames.length;
+
     var needsAttentionSubSlot = document.getElementById("summaryNeedsAttentionCategories");
     if (needsAttentionSubSlot) {
       needsAttentionSubSlot.innerHTML = "";
       activeWarnCategoryNames.forEach(function (keyName) {
         var badge = document.createElement("div");
-        // Convert internal key mapping names back to standard structural labels cleanly
         var displayLabel = keyName;
         if (keyName === "seoTitle") displayLabel = "SEO Title";
         if (keyName === "seoDescription") displayLabel = "SEO Description";
@@ -662,13 +665,13 @@
   }
 
   function runEnginePipeline() {
-    initLiveTimestamp(); // Reads history value from localStorage first
+    initLiveTimestamp(); // Reads old historical value from localStorage first
     gatherSourceObjects();
     processContentStatistics();
     runCategorizedAudit();
     paintInterfaceOutputs();
     attachControlListeners();
-    commitCurrentScanTimestamp(); // Saves the current execution data timestamp for next boot instance
+    commitCurrentScanTimestamp(); // Saves the current execution date/time stamp *last* so it's ready for the next visit
   }
 
   if (document.readyState === "loading") {
