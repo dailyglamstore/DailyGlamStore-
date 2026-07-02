@@ -45,16 +45,30 @@
     recButtons: 0
   };
 
+  // Improvement #2: Read previous history from storage prior to saving the current instance run
   function initLiveTimestamp() {
     var scanDateNode = document.getElementById("scanDate");
     if (scanDateNode) {
+      var historicalScanValue = localStorage.getItem("publisherLastScan");
+      if (historicalScanValue) {
+        scanDateNode.textContent = historicalScanValue;
+      } else {
+        scanDateNode.textContent = "First Scan";
+      }
+    }
+  }
+
+  // Improvement #2: Isolated write callback invoked at pipeline termination 
+  function commitCurrentScanTimestamp() {
+    try {
       var currentDate = new Date();
-      scanDateNode.textContent = currentDate.toLocaleDateString("en-GB", {
+      var formattedCurrentDate = currentDate.toLocaleDateString("en-GB", {
         day: "numeric",
         month: "short",
         year: "numeric"
       });
-    }
+      localStorage.setItem("publisherLastScan", formattedCurrentDate);
+    } catch (e) {}
   }
 
   function getFormattedToday() {
@@ -163,7 +177,6 @@
     }
   }
 
-  // Verification checking helper for affiliate properties configuration settings
   function validateAffiliateProperty(item, locationContext, displayTitle) {
     if (!item.hasOwnProperty("affiliate")) {
       totalIssueDeductions++;
@@ -174,7 +187,6 @@
     }
   }
 
-  // Check if an article uses the new architecture layout structures
   function isUsingNewArchitecture(article) {
     return !!(article.linkPlan || article.productRecommendations || article.alternativeProducts);
   }
@@ -195,7 +207,6 @@
       }
     });
 
-    // Step 1: Map all valid production URLs
     allArticles.forEach(function (article) {
       var displayTitle = article.title || article.key || "Unnamed Article";
       if (article.url) {
@@ -205,14 +216,12 @@
       }
     });
 
-    // Step 2: Main metrics processing loop
     allArticles.forEach(function (article) {
       var displayTitle = article.title || article.key || "Unnamed Article";
       var completenessPoints = 0;
       var completenessTotalPossible = 12;
       var isNewArch = isUsingNewArchitecture(article);
 
-      // Base Metadata Validations
       if (article.seoTitle && String(article.seoTitle).trim() !== "") { completenessPoints++; } else {
         totalIssueDeductions++;
         diagnosticCategories.seoTitle.items.push(displayTitle);
@@ -278,7 +287,6 @@
       var extractedLinks = [];
       var trueAffiliateCountForThisArticle = 0;
 
-      // A. linkPlan processing block
       if (article.linkPlan && Array.isArray(article.linkPlan)) {
         completenessPoints++;
         article.linkPlan.forEach(function (linkItem) {
@@ -314,7 +322,6 @@
         diagnosticCategories.missingLinkPlan.items.push(displayTitle);
       }
 
-      // B. productRecommendations processing block
       if (article.productRecommendations && article.productRecommendations.items && Array.isArray(article.productRecommendations.items)) {
         completenessPoints++;
         article.productRecommendations.items.forEach(function (recItem) {
@@ -332,7 +339,6 @@
         diagnosticCategories.missingRecommendations.items.push(displayTitle);
       }
 
-      // C. alternativeProducts processing block
       if (article.alternativeProducts && article.alternativeProducts.items && Array.isArray(article.alternativeProducts.items)) {
         completenessPoints++;
         statTotals.altProductLinks += article.alternativeProducts.items.length;
@@ -355,7 +361,6 @@
         }
       }
 
-      // Aggregate global statistics metrics from verified target arrays only
       extractedLinks.forEach(function (lnk) {
         if (lnk.type === "affiliateProduct") {
           if (lnk.affiliate === true) statTotals.affiliateLinks++;
@@ -366,7 +371,6 @@
         if (lnk.type === "externalReference") statTotals.externalReferences++;
       });
 
-      // D. Deep Comparison Article Logic Override
       if (article.comparisonTable) {
         comparisonArticlesCount++;
         var hasFaq = article.faq && Array.isArray(article.faq) && article.faq.length > 0;
@@ -392,7 +396,6 @@
       article._completenessScore = Math.round((completenessPoints / completenessTotalPossible) * 100);
     });
 
-    // Step 3: Handle Duplicate URL collisions
     Object.keys(articleUrlsMap).forEach(function (urlPath) {
       if (articleUrlsMap[urlPath].length > 1) {
         totalIssueDeductions += (articleUrlsMap[urlPath].length - 1);
@@ -400,7 +403,6 @@
       }
     });
 
-    // Step 4: Run Link Health Engine Checker on verified targets arrays only (Excludes relatedArticles)
     allArticles.forEach(function (article) {
       var displayTitle = article.title || article.key || "Unnamed Article";
       if (article.linkPlan && Array.isArray(article.linkPlan)) {
@@ -416,7 +418,6 @@
       }
     });
 
-    // Step 5: Assign execution status results matrix
     Object.keys(diagnosticCategories).forEach(function (catKey) {
       var cat = diagnosticCategories[catKey];
       if (cat.items.length > 0) {
@@ -438,7 +439,6 @@
     if (computedScore < 0) computedScore = 0;
     document.getElementById("seoScoreValue").textContent = computedScore + "/100";
 
-    // Set metrics dashboard UI outputs safely 
     document.getElementById("totalAffiliateLinks").textContent = statTotals.affiliateLinks;
     document.getElementById("totalNonAffiliateProducts").textContent = statTotals.nonAffiliateProducts;
     document.getElementById("totalInternalLinks").textContent = statTotals.internalLinks;
@@ -451,7 +451,6 @@
     document.getElementById("totalRecButtons").textContent = statTotals.recButtons;
     document.getElementById("avgInternalLinks").textContent = totalArticleCount > 0 ? (statTotals.internalLinks / totalArticleCount).toFixed(2) : "0";
 
-    // Build Exact Product Link Distribution Percentage outputs
     var sumOfAllLinks = statTotals.affiliateLinks + statTotals.nonAffiliateProducts + statTotals.internalLinks + statTotals.externalReferences + statTotals.pageLinks;
     if (sumOfAllLinks > 0) {
       document.getElementById("pctAffiliateLinks").textContent = Math.round((statTotals.affiliateLinks / sumOfAllLinks) * 100) + "%";
@@ -484,12 +483,14 @@
       healthStatusNode.classList.add("health-error");
     }
 
-    // Render diagnostic log lists
     var warningsLogContainer = document.getElementById("seoWarningsLog");
     warningsLogContainer.innerHTML = "";
 
     var calculatedWarningsCount = 0;
     var calculatedBrokenCount = 0;
+    
+    // Improvement #3: Cache container for warning list generation strings
+    var activeWarnCategoryNames = [];
 
     Object.keys(diagnosticCategories).forEach(function (catKey) {
       var cat = diagnosticCategories[catKey];
@@ -504,6 +505,11 @@
         var itemsCounterText = cat.isFailType ? "" : " (" + cat.items.length + ")";
         listRowItem.textContent = prefixSign + cat.label + itemsCounterText;
         
+        // Track unique status: "warn" categories exclusively for UI mapping summary
+        if (cat.status === "warn") {
+          activeWarnCategoryNames.push(catKey);
+        }
+
         var nestedUl = document.createElement("ul");
         nestedUl.className = "warning-nested-list";
         cat.items.forEach(function (nestedText) {
@@ -532,7 +538,6 @@
       }
     });
 
-    // Populate Top level Summary card metrics slots
     document.getElementById("summaryArticles").textContent = totalArticleCount;
     document.getElementById("summaryAffiliate").textContent = statTotals.affiliateLinks;
     document.getElementById("summaryInternal").textContent = statTotals.internalLinks;
@@ -541,6 +546,37 @@
     document.getElementById("summaryWarnings").textContent = calculatedWarningsCount;
     document.getElementById("summaryHealthy").textContent = healthyArticlesCount;
     document.getElementById("summaryNeedsAttention").textContent = needsAttentionArticlesCount;
+
+    // Improvement #3: Render context categories cleanly inside summary sub-slot
+    var needsAttentionSubSlot = document.getElementById("summaryNeedsAttentionCategories");
+    if (needsAttentionSubSlot) {
+      needsAttentionSubSlot.innerHTML = "";
+      activeWarnCategoryNames.forEach(function (keyName) {
+        var badge = document.createElement("div");
+        // Convert internal key mapping names back to standard structural labels cleanly
+        var displayLabel = keyName;
+        if (keyName === "seoTitle") displayLabel = "SEO Title";
+        if (keyName === "seoDescription") displayLabel = "SEO Description";
+        if (keyName === "faq") displayLabel = "FAQ";
+        if (keyName === "relatedArticles") displayLabel = "Related Articles";
+        if (keyName === "author") displayLabel = "Authors";
+        if (keyName === "dateModified") displayLabel = "dateModified";
+        if (keyName === "image") displayLabel = "Images";
+        if (keyName === "intro") displayLabel = "Intro";
+        if (keyName === "emptySections") displayLabel = "Empty Sections";
+        if (keyName === "brokenLinks") displayLabel = "Broken Links";
+        if (keyName === "comparisonValidation") displayLabel = "Comparison Validation";
+        if (keyName === "missingLinkPlan") displayLabel = "LinkPlan Missing";
+        if (keyName === "missingRecommendations") displayLabel = "Recommendations Missing";
+        if (keyName === "missingAlternativeProducts") displayLabel = "Alternative Products Missing";
+        if (keyName === "missingLinkTypes") displayLabel = "Missing Link Types";
+        if (keyName === "invalidAffiliateProps") displayLabel = "Invalid Affiliate Settings";
+        if (keyName === "invalidTargetTabs") displayLabel = "Invalid Target Directives";
+        
+        badge.textContent = displayLabel;
+        needsAttentionSubSlot.appendChild(badge);
+      });
+    }
   }
 
   function manufactureSitemapContent() {
@@ -626,12 +662,13 @@
   }
 
   function runEnginePipeline() {
-    initLiveTimestamp();
+    initLiveTimestamp(); // Reads history value from localStorage first
     gatherSourceObjects();
     processContentStatistics();
     runCategorizedAudit();
     paintInterfaceOutputs();
     attachControlListeners();
+    commitCurrentScanTimestamp(); // Saves the current execution data timestamp for next boot instance
   }
 
   if (document.readyState === "loading") {
