@@ -654,18 +654,38 @@
     } catch (err) {}
   }
 
-  // New Feature: Safely builds, sanitizes, and initiates a direct binary file stream download for Healthy Articles 
   function exportHealthyArticlesCsv() {
     var csvRows = [];
     
-    // Write CSV header structure
+    // Fix 3: Sub-routine to convert variable date contexts into "14 Jun 2026 • 9:38 PM"
+    function formatCsvDate(rawDateString) {
+      if (!rawDateString || String(rawDateString).trim() === "") return "";
+      var parsedDate = new Date(rawDateString);
+      if (isNaN(parsedDate.getTime())) return rawDateString;
+
+      var baseFormattedDate = parsedDate.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+      });
+
+      // Include time details matching current system styles if explicit granular info exists
+      if (String(rawDateString).indexOf("T") !== -1 || String(rawDateString).indexOf(":") !== -1) {
+        var baseFormattedTime = parsedDate.toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true
+        });
+        return baseFormattedDate + " • " + baseFormattedTime;
+      }
+      return baseFormattedDate;
+    }
+
     csvRows.push("Title,URL,Category,Health Score,Published Date,Last Modified,Word Count");
 
     allArticles.forEach(function (article) {
-      // Reuse existing health logic threshold directly
       if ((article._completenessScore || 0) >= 85) {
         
-        // Escape content titles to safely format for cells
         var cleanTitle = (article.title || article.key || "").replace(/"/g, '""');
         if (cleanTitle.indexOf(",") !== -1 || cleanTitle.indexOf('"') !== -1 || cleanTitle.indexOf("\n") !== -1) {
           cleanTitle = '"' + cleanTitle + '"';
@@ -673,7 +693,6 @@
 
         var relativeUrl = article.url || "";
         
-        // Determine article source category cleanly
         var category = "Skincare";
         if (article.comparisonTable) {
           category = "Comparison";
@@ -687,12 +706,18 @@
           }
         }
 
-        var healthScore = article._completenessScore || 0;
-        var publishedDate = article.date || "";
-        var lastModified = article.dateModified || "";
+        // Fix 2: Capped exported health value score string array assignments to 100 max
+        var healthScore = Math.min(article._completenessScore || 0, 100);
         
-        // Reuse your existing word count engine calculation
+        // Fix 3: Passed raw values through human-readable output filters
+        var publishedDate = formatCsvDate(article.date || "");
+        var lastModified = formatCsvDate(article.dateModified || "");
+        
         var wordCount = countWordsInContent(article);
+
+        // Explicitly wrap modified date properties in quotes to avoid breaking comma cells
+        if (publishedDate.indexOf(",") !== -1) publishedDate = '"' + publishedDate + '"';
+        if (lastModified.indexOf(",") !== -1) lastModified = '"' + lastModified + '"';
 
         csvRows.push([cleanTitle, relativeUrl, category, healthScore, publishedDate, lastModified, wordCount].join(","));
       }
@@ -702,7 +727,6 @@
     var blobObject = new Blob([csvStringContent], { type: "text/csv;charset=utf-8;" });
     var downloadLink = document.createElement("a");
     
-    // Generate filename dynamically using today's formatted data
     var todayStamp = getFormattedToday(); 
     downloadLink.download = "healthy-articles-" + todayStamp + ".csv";
     
