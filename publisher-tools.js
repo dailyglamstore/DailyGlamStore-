@@ -45,7 +45,6 @@
     recButtons: 0
   };
 
-  // Bug Fix 1: Read previous historical timestamp from localStorage and display immediately
   function initLiveTimestamp() {
     var scanDateNode = document.getElementById("scanDate");
     if (scanDateNode) {
@@ -58,7 +57,6 @@
     }
   }
 
-  // Bug Fix 1: Formats date-time stamp to match requested criteria: 2 Jul 2026 • 4:05 PM
   function commitCurrentScanTimestamp() {
     try {
       var currentDate = new Date();
@@ -549,7 +547,6 @@
     document.getElementById("summaryWarnings").textContent = calculatedWarningsCount;
     document.getElementById("summaryHealthy").textContent = healthyArticlesCount;
 
-    // Bug Fix 2: Synchronize "Needs Attention" counter to match the warning categories array length
     document.getElementById("summaryNeedsAttention").textContent = activeWarnCategoryNames.length;
 
     var needsAttentionSubSlot = document.getElementById("summaryNeedsAttentionCategories");
@@ -657,21 +654,83 @@
     } catch (err) {}
   }
 
+  // New Feature: Safely builds, sanitizes, and initiates a direct binary file stream download for Healthy Articles 
+  function exportHealthyArticlesCsv() {
+    var csvRows = [];
+    
+    // Write CSV header structure
+    csvRows.push("Title,URL,Category,Health Score,Published Date,Last Modified,Word Count");
+
+    allArticles.forEach(function (article) {
+      // Reuse existing health logic threshold directly
+      if ((article._completenessScore || 0) >= 85) {
+        
+        // Escape content titles to safely format for cells
+        var cleanTitle = (article.title || article.key || "").replace(/"/g, '""');
+        if (cleanTitle.indexOf(",") !== -1 || cleanTitle.indexOf('"') !== -1 || cleanTitle.indexOf("\n") !== -1) {
+          cleanTitle = '"' + cleanTitle + '"';
+        }
+
+        var relativeUrl = article.url || "";
+        
+        // Determine article source category cleanly
+        var category = "Skincare";
+        if (article.comparisonTable) {
+          category = "Comparison";
+        } else {
+          var articleKey = article.key || "";
+          var isHaircare = haircareArticlesList.some(function (h) {
+            return h.key === articleKey || (h.url && h.url === article.url);
+          });
+          if (isHaircare) {
+            category = "Haircare";
+          }
+        }
+
+        var healthScore = article._completenessScore || 0;
+        var publishedDate = article.date || "";
+        var lastModified = article.dateModified || "";
+        
+        // Reuse your existing word count engine calculation
+        var wordCount = countWordsInContent(article);
+
+        csvRows.push([cleanTitle, relativeUrl, category, healthScore, publishedDate, lastModified, wordCount].join(","));
+      }
+    });
+
+    var csvStringContent = csvRows.join("\n");
+    var blobObject = new Blob([csvStringContent], { type: "text/csv;charset=utf-8;" });
+    var downloadLink = document.createElement("a");
+    
+    // Generate filename dynamically using today's formatted data
+    var todayStamp = getFormattedToday(); 
+    downloadLink.download = "healthy-articles-" + todayStamp + ".csv";
+    
+    downloadLink.href = URL.createObjectURL(blobObject);
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  }
+
   function attachControlListeners() {
     var generateBtn = document.getElementById("btnGenerateSitemap");
     var copyBtn = document.getElementById("btnCopySitemap");
+    var exportCsvBtn = document.getElementById("btnExportCsv");
+    
     if (generateBtn) generateBtn.addEventListener("click", manufactureSitemapContent);
     if (copyBtn) copyBtn.addEventListener("click", handleClipboardCopyAction);
+    if (exportCsvBtn) exportCsvBtn.addEventListener("click", exportHealthyArticlesCsv);
   }
 
   function runEnginePipeline() {
-    initLiveTimestamp(); // Reads old historical value from localStorage first
+    initLiveTimestamp(); 
     gatherSourceObjects();
     processContentStatistics();
     runCategorizedAudit();
     paintInterfaceOutputs();
     attachControlListeners();
-    commitCurrentScanTimestamp(); // Saves the current execution date/time stamp *last* so it's ready for the next visit
+    commitCurrentScanTimestamp(); 
   }
 
   if (document.readyState === "loading") {
