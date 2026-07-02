@@ -260,7 +260,6 @@
       <h1>📄 Daily Glam Store Publisher</h1>
     </header>
 
-    <!-- Layout Swap Improvement #1: Website Health placed first -->
     <div class="card">
       <div class="card-header">Website Health</div>
       <div class="card-body">
@@ -285,7 +284,6 @@
       </div>
     </div>
 
-    <!-- Layout Swap Improvement #1: Today's Scan Summary placed second -->
     <div class="card" style="border-left: 4px solid var(--brand);">
       <div class="card-header">Today's Scan Summary</div>
       <div class="card-body">
@@ -318,7 +316,6 @@
             <span class="status-label">Healthy</span>
             <span class="status-value" id="summaryHealthy" style="color: var(--success);">0</span>
           </div>
-          <!-- Improvement #3: Appended structural sub-slot for category breakdown listing -->
           <div class="status-item">
             <span class="status-label">Needs Attention</span>
             <span class="status-value" id="summaryNeedsAttention" style="color: var(--warning); margin-bottom: 2px;">0</span>
@@ -446,6 +443,7 @@
         <div class="actions-row">
           <button type="button" class="btn-primary" id="btnGenerateSitemap">Generate Sitemap</button>
           <button type="button" class="btn-secondary" id="btnCopySitemap">Copy Sitemap</button>
+          <button type="button" class="btn-secondary" id="btnExportCsv">Export Healthy Articles CSV</button>
           <span class="toast-message" id="copyToast">✅ Sitemap copied successfully.</span>
         </div>
         <div class="sitemap-summary-box" id="sitemapSummary">
