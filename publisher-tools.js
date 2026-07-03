@@ -9,28 +9,28 @@ var uniqueArticleKeys = {};
 
 // Independent structural diagnostic schemas
 var seoCategories = {
-seoTitle: { label: "SEO Titles", items: [], status: "pass" },
-seoDescription: { label: "SEO Descriptions", items: [], status: "pass" },
-intro: { label: "Intro Placement", items: [], status: "pass" },
-image: { label: "Images", items: [], status: "pass" },
-faq: { label: "Missing FAQ Configurations", items: [], status: "pass" },
-author: { label: "Authors Verification", items: [], status: "pass" },
-dateModified: { label: "Missing dateModified Timestamps", items: [], status: "pass" },
-emptySections: { label: "Empty Content Sections", items: [], status: "pass" },
-minLength: { label: "Minimum Content Length Check Failures", items: [], status: "pass" },
-brokenLinks: { label: "Broken Internal Links", items: [], status: "pass" },
-duplicateUrls: { label: "Duplicate URLs Across Manifests", items: [], status: "pass" },
-duplicateKeys: { label: "Duplicate Keys Across Inventories", items: [], status: "pass" }
+seoTitle: { label: "SEO Titles", items: [], status: "pass", slug: "SEO Title" },
+seoDescription: { label: "SEO Descriptions", items: [], status: "pass", slug: "SEO Description" },
+intro: { label: "Intro Placement", items: [], status: "pass", slug: "Intro" },
+image: { label: "Images", items: [], status: "pass", slug: "Featured Image" },
+faq: { label: "Missing FAQ Configurations", items: [], status: "pass", slug: "FAQ" },
+author: { label: "Authors Verification", items: [], status: "pass", slug: "Author" },
+dateModified: { label: "Missing dateModified Timestamps", items: [], status: "pass", slug: "dateModified" },
+emptySections: { label: "Empty Content Sections", items: [], status: "pass", slug: "Empty Sections" },
+minLength: { label: "Minimum Content Length Check Failures", items: [], status: "pass", slug: "Word Count" },
+brokenLinks: { label: "Broken Internal Links", items: [], status: "pass", slug: "Broken Internal Links" },
+duplicateUrls: { label: "Duplicate URLs Across Manifests", items: [], status: "pass", slug: "Duplicate URLs" },
+duplicateKeys: { label: "Duplicate Keys Across Inventories", items: [], status: "pass", slug: "Duplicate Keys" }
 };
 
 var archCategories = {
-missingLinkPlan: { label: "Missing linkPlan Array", items: [], status: "pass" },
-missingRecommendations: { label: "Missing productRecommendations", items: [], status: "pass" },
-missingAlternativeProducts: { label: "Missing alternativeProducts Layouts", items: [], status: "pass" },
-missingLinkTypes: { label: "Missing Link Types", items: [], status: "pass" },
-invalidAffiliateProps: { label: "Invalid Affiliate Link Settings", items: [], status: "pass" },
-invalidTargetTabs: { label: "Invalid Target Tab (_blank / same-tab) Directives", items: [], status: "pass" },
-comparisonValidation: { label: "Comparison Article Validation Errors", items: [], status: "pass" }
+missingLinkPlan: { label: "Missing linkPlan Array", items: [], status: "pass", slug: "linkPlan" },
+missingRecommendations: { label: "Missing productRecommendations", items: [], status: "pass", slug: "productRecommendations" },
+missingAlternativeProducts: { label: "Missing alternativeProducts Layouts", items: [], status: "pass", slug: "alternativeProducts" },
+missingLinkTypes: { label: "Missing Link Types", items: [], status: "pass", slug: "Missing Link Types" },
+invalidAffiliateProps: { label: "Invalid Affiliate Link Settings", items: [], status: "pass", slug: "Invalid Affiliate Props" },
+invalidTargetTabs: { label: "Invalid Target Tab (_blank / same-tab) Directives", items: [], status: "pass", slug: "Invalid Target Tabs" },
+comparisonValidation: { label: "Comparison Article Validation Errors", items: [], status: "pass", slug: "Comparison Validation" }
 };
 
 // Technical site-level variables
@@ -170,12 +170,16 @@ document.getElementById("oldestArticleInfo").textContent = validDatedArticles[va
 }
 }
 
-function validateAffiliateProperty(item, locationContext, displayTitle) {
+function validateAffiliateProperty(item, locationContext, displayTitle, article) {
 if (!item.hasOwnProperty("affiliate")) {
 archCategories.invalidAffiliateProps.items.push(displayTitle + " -> " + locationContext + " is missing the 'affiliate' property");
+if (!article._missingArch) article._missingArch = [];
+if (article._missingArch.indexOf("Invalid Affiliate Props") === -1) article._missingArch.push("Invalid Affiliate Props");
 return false;
 } else if (typeof item.affiliate !== "boolean") {
 archCategories.invalidAffiliateProps.items.push(displayTitle + " -> " + locationContext + " has a non-boolean affiliate value");
+if (!article._missingArch) article._missingArch = [];
+if (article._missingArch.indexOf("Invalid Affiliate Props") === -1) article._missingArch.push("Invalid Affiliate Props");
 return false;
 }
 return true;
@@ -213,6 +217,8 @@ seoCategories.duplicateKeys.items.push("Inventory Key '" + key + "' repeated acr
 // Build accurate route verification array mapping
 allArticles.forEach(function (article) {
 var displayTitle = article.title || article.key || "Unnamed Article";
+article._missingSeo = [];
+article._missingArch = [];
 if (article.url) {
 var cleanPath = String(article.url).trim().toLowerCase();
 if (!articleUrlsMap[cleanPath]) articleUrlsMap[cleanPath] = [];
@@ -237,15 +243,15 @@ var wordCount = countWordsInContent(article);
 
 // ---------------- LAYER 1: ARTICLE SEO SCORE ----------------
 var seoEarnedPoints = 0;
-var seoTotalPossible = 9; // 9 total factors (Internal broken links are technical Layer 3 checks)
+var seoTotalPossible = 9; // 9 total factors
 
-if (article.seoTitle && String(article.seoTitle).trim() !== "") seoEarnedPoints++; else seoCategories.seoTitle.items.push(displayTitle);
-if (article.seoDescription && String(article.seoDescription).trim() !== "") seoEarnedPoints++; else seoCategories.seoDescription.items.push(displayTitle);
-if (article.intro && String(article.intro).trim() !== "") seoEarnedPoints++; else seoCategories.intro.items.push(displayTitle);
+if (article.seoTitle && String(article.seoTitle).trim() !== "") seoEarnedPoints++; else { seoCategories.seoTitle.items.push(displayTitle); article._missingSeo.push("SEO Title"); }
+if (article.seoDescription && String(article.seoDescription).trim() !== "") seoEarnedPoints++; else { seoCategories.seoDescription.items.push(displayTitle); article._missingSeo.push("SEO Description"); }
+if (article.intro && String(article.intro).trim() !== "") seoEarnedPoints++; else { seoCategories.intro.items.push(displayTitle); article._missingSeo.push("Intro"); }
 var trackingImageSource = (article.image && article.image.src) || article.src;
-if (trackingImageSource && String(trackingImageSource).trim() !== "") seoEarnedPoints++; else seoCategories.image.items.push(displayTitle);
-if (article.faq && Array.isArray(article.faq) && article.faq.length > 0) seoEarnedPoints++; else seoCategories.faq.items.push(displayTitle);
-if (article.dateModified) seoEarnedPoints++; else seoCategories.dateModified.items.push(displayTitle);
+if (trackingImageSource && String(trackingImageSource).trim() !== "") seoEarnedPoints++; else { seoCategories.image.items.push(displayTitle); article._missingSeo.push("Featured Image"); }
+if (article.faq && Array.isArray(article.faq) && article.faq.length > 0) seoEarnedPoints++; else { seoCategories.faq.items.push(displayTitle); article._missingSeo.push("FAQ"); }
+if (article.dateModified) seoEarnedPoints++; else { seoCategories.dateModified.items.push(displayTitle); article._missingSeo.push("dateModified"); }
 
 var hasValidAuthor = false;
 if (article.author && Array.isArray(article.author)) {
@@ -253,7 +259,7 @@ hasValidAuthor = article.author.some(function (auth) {
 return auth && auth.enabled === true && (auth.type === "Person" || auth.type === "Organization");
 });
 }
-if (hasValidAuthor) seoEarnedPoints++; else seoCategories.author.items.push(displayTitle);
+if (hasValidAuthor) seoEarnedPoints++; else { seoCategories.author.items.push(displayTitle); article._missingSeo.push("Author"); }
 
 var emptySectionFound = false;
 if (article.sections && Array.isArray(article.sections) && article.sections.length > 0) {
@@ -265,7 +271,7 @@ return !(sec.heading && String(sec.heading).trim() !== "") &&
 } else {
 emptySectionFound = true;
 }
-if (!emptySectionFound) seoEarnedPoints++; else seoCategories.emptySections.items.push(displayTitle);
+if (!emptySectionFound) seoEarnedPoints++; else { seoCategories.emptySections.items.push(displayTitle); article._missingSeo.push("Empty Sections"); }
 
 // Word Count Evaluation Threshold Layer
 var requiredLength = isComparison ? 1200 : 700;
@@ -273,12 +279,13 @@ if (wordCount >= requiredLength) {
 seoEarnedPoints++;
 } else {
 seoCategories.minLength.items.push(displayTitle + " (" + wordCount + " / " + requiredLength + " words)");
+article._missingSeo.push("Word Count");
 }
 
 // Compute individual decoupled record output out of 100
 article._seoScore = Math.round((seoEarnedPoints / seoTotalPossible) * 100);
 
-// Global Technical Issue 3 Loop: Broken Links (Tracked via SEO warnings but processed in Layer 3 deductions)
+// Global Technical Issue 3 Loop: Broken Links
 if (article.linkPlan && Array.isArray(article.linkPlan)) {
 article.linkPlan.forEach(function (lnk) {
 if (lnk && lnk.type === "internalArticle" && lnk.href) {
@@ -314,23 +321,27 @@ if (linkItem && typeof linkItem === "object") {
 extractedLinks.push(linkItem);
 if (!linkItem.type || String(linkItem.type).trim() === "") {
 archCategories.missingLinkTypes.items.push(displayTitle + " -> Missing explicit link type designation");
+if (article._missingArch.indexOf("Missing Link Types") === -1) article._missingArch.push("Missing Link Types");
 } else {
 var typeStr = String(linkItem.type).trim();
 if (typeStr === "affiliateProduct") {
-validateAffiliateProperty(linkItem, "linkPlan framework block", displayTitle);
+validateAffiliateProperty(linkItem, "linkPlan framework block", displayTitle, article);
 if (linkItem.affiliate === true) trueAffiliateCountForThisArticle++;
 }
 if (typeStr === "externalReference" && linkItem.newTab !== true) {
 archCategories.invalidTargetTabs.items.push(displayTitle + " (External reference must target a new tab window)");
+if (article._missingArch.indexOf("Invalid Target Tabs") === -1) article._missingArch.push("Invalid Target Tabs");
 }
 if ((typeStr === "page" || typeStr === "internalArticle") && linkItem.newTab === true) {
-archCategories.invalidTargetTabs.items.push(displayTitle + " (Internal standard requires same-tab for: " + typeStr + ")");
+archCategories.invalidTargetTabs.push ? null : archCategories.invalidTargetTabs.items.push(displayTitle + " (Internal standard requires same-tab for: " + typeStr + ")");
+if (article._missingArch.indexOf("Invalid Target Tabs") === -1) article._missingArch.push("Invalid Target Tabs");
 }
 }
 }
 });
 } else if (isNewArch) {
 archCategories.missingLinkPlan.items.push(displayTitle);
+article._missingArch.push("linkPlan");
 }
 
 if (article.productRecommendations && article.productRecommendations.items && Array.isArray(article.productRecommendations.items)) {
@@ -340,13 +351,14 @@ if (recItem && typeof recItem === "object") {
 statTotals.recButtons++;
 extractedLinks.push(recItem);
 if (recItem.type === "affiliateProduct") {
-validateAffiliateProperty(recItem, "productRecommendations node", displayTitle);
+validateAffiliateProperty(recItem, "productRecommendations node", displayTitle, article);
 if (recItem.affiliate === true) trueAffiliateCountForThisArticle++;
 }
 }
 });
 } else if (isNewArch) {
 archCategories.missingRecommendations.items.push(displayTitle);
+article._missingArch.push("productRecommendations");
 }
 
 if (isComparison) {
@@ -361,13 +373,14 @@ article.alternativeProducts.items.forEach(function (altItem) {
 if (altItem && typeof altItem === "object") {
 extractedLinks.push(altItem);
 if (altItem.type === "affiliateProduct") {
-validateAffiliateProperty(altItem, "alternativeProducts grid entry", displayTitle);
+validateAffiliateProperty(altItem, "alternativeProducts grid entry", displayTitle, article);
 if (altItem.affiliate === true) trueAffiliateCountForThisArticle++;
 }
 }
 });
 } else {
 archCategories.missingAlternativeProducts.items.push(displayTitle + " (Layout catalog is missing alternativeProducts array)");
+article._missingArch.push("alternativeProducts");
 }
 
 var meetsMinAffiliate = trueAffiliateCountForThisArticle >= 2;
@@ -387,6 +400,7 @@ if (!hasAltProducts) detailsMissing.push("alternativeProducts cluster array miss
 if (!hasLPlan) detailsMissing.push("linkPlan matrix missing");
 if (!meetsMinAffiliate) detailsMissing.push("contains less than two true verified affiliate product targets");
 archCategories.comparisonValidation.items.push(displayTitle + " -> " + detailsMissing.join(", "));
+article._missingArch.push("Comparison Validation");
 }
 }
 
@@ -442,6 +456,12 @@ document.getElementById("skincareCount").textContent = skincareArticlesList.leng
 document.getElementById("haircareCount").textContent = haircareArticlesList.length;
 document.getElementById("comparisonCount").textContent = comparisonArticlesCount;
 document.getElementById("avgSeoScore").textContent = averageArticleSeoScore + " / 100";
+
+// Expose Technical SEO Deductions metric securely
+var techDeductionsNode = document.getElementById("techDeductionsValue");
+if (techDeductionsNode) {
+techDeductionsNode.textContent = totalTechnicalDeductionPoints === 0 ? "0" : "−" + totalTechnicalDeductionPoints;
+}
 
 document.getElementById("totalAffiliateLinks").textContent = statTotals.affiliateLinks;
 document.getElementById("totalNonAffiliateProducts").textContent = statTotals.nonAffiliateProducts;
@@ -517,20 +537,18 @@ explanationArea.style.display = "none";
 // --- RENDER SECTION A: SEO HEALTH WARNINGS LOG ---
 var seoWarningsLogContainer = document.getElementById("seoWarningsLog");
 seoWarningsLogContainer.innerHTML = "";
-var seoPassedCount = 0;
-var seoNeedsAttentionCount = 0;
+var seoFailedCategoriesCount = 0;
 
 Object.keys(seoCategories).forEach(function (catKey) {
 var cat = seoCategories[catKey];
 var listRowItem = document.createElement("li");
 if (cat.status === "pass") {
-seoPassedCount++;
 listRowItem.className = "log-pass";
 listRowItem.textContent = "✔ " + cat.label;
 } else {
-seoNeedsAttentionCount += cat.items.length;
+seoFailedCategoriesCount++;
 listRowItem.className = "log-warn";
-listRowItem.textContent = "⚠ " + cat.label + " (" + cat.items.length + ")";
+listRowItem.textContent = "⚠ " + cat.label + " (" + cat.items.length + " articles)";
 var nestedUI = document.createElement("ul");
 nestedUI.className = "warning-nested-list";
 cat.items.forEach(function (nestedText) {
@@ -542,27 +560,25 @@ listRowItem.appendChild(nestedUI);
 }
 seoWarningsLogContainer.appendChild(listRowItem);
 });
-document.getElementById("seoLogSummary").textContent = "Passed: " + seoPassedCount + " / 12 | Needs Attention: " + seoNeedsAttentionCount;
+document.getElementById("seoLogSummary").textContent = "Passed: " + (12 - seoFailedCategoriesCount) + " / 12 | Needs Attention: " + seoFailedCategoriesCount;
 
 // --- RENDER SECTION B: ARTICLE ARCHITECTURE LOG ---
 var archWarningsLogContainer = document.getElementById("archWarningsLog");
 archWarningsLogContainer.innerHTML = "";
-var archPassedCount = 0;
-var archNeedsAttentionCount = 0;
+var archFailedCategoriesCount = 0;
 var activeArchWarnKeys = [];
 
 Object.keys(archCategories).forEach(function (catKey) {
 var cat = archCategories[catKey];
 var listRowItem = document.createElement("li");
 if (cat.status === "pass") {
-archPassedCount++;
 listRowItem.className = "log-pass";
 listRowItem.textContent = "✔ " + cat.label;
 } else {
-archNeedsAttentionCount += cat.items.length;
+archFailedCategoriesCount++;
 activeArchWarnKeys.push(catKey);
 listRowItem.className = "log-warn";
-listRowItem.textContent = "⚠ " + cat.label + " (" + cat.items.length + ")";
+listRowItem.textContent = "⚠ " + cat.label + " (" + cat.items.length + " articles)";
 var nestedUI = document.createElement("ul");
 nestedUI.className = "warning-nested-list";
 cat.items.forEach(function (nestedText) {
@@ -574,7 +590,7 @@ listRowItem.appendChild(nestedUI);
 }
 archWarningsLogContainer.appendChild(listRowItem);
 });
-document.getElementById("archLogSummary").textContent = "Passed: " + archPassedCount + " / 7 | Needs Attention: " + archNeedsAttentionCount;
+document.getElementById("archLogSummary").textContent = "Passed: " + (7 - archFailedCategoriesCount) + " / 7 | Needs Attention: " + archFailedCategoriesCount;
 
 // Today's Scan Summary mapping updates
 document.getElementById("summaryArticles").textContent = totalArticleCount;
@@ -582,9 +598,9 @@ document.getElementById("summaryAffiliate").textContent = statTotals.affiliateLi
 document.getElementById("summaryInternal").textContent = statTotals.internalLinks;
 document.getElementById("summarySeoScore").textContent = websiteSeoScore + "/100";
 document.getElementById("summaryBrokenLinks").textContent = brokenInternalLinksCount;
-document.getElementById("summaryWarnings").textContent = (seoNeedsAttentionCount + archNeedsAttentionCount);
+document.getElementById("summaryWarnings").textContent = (seoFailedCategoriesCount + archFailedCategoriesCount);
 document.getElementById("summaryHealthy").textContent = fullyOptimizedCount + " / " + totalArticleCount;
-document.getElementById("summaryNeedsAttention").textContent = archNeedsAttentionCount;
+document.getElementById("summaryNeedsAttention").textContent = seoFailedCategoriesCount;
 
 var needsAttentionSubSlot = document.getElementById("summaryNeedsAttentionCategories");
 if (needsAttentionSubSlot) {
@@ -685,7 +701,7 @@ return baseFormattedDate + " " + baseFormattedTime;
 return baseFormattedDate;
 }
 
-csvRows.push("Title, URL, Category, SEO Score, Article Completion, Published Date, Last Modified, Word Count, Status");
+csvRows.push("Title, URL, Category, SEO Score, Article Completion, Published Date, Last Modified, Word Count, Status, Missing SEO Factors, Missing Architecture Factors");
 
 allArticles.forEach(function (article) {
 var cleanTitle = (article.title || article.key || "").replace(/"/g, '""');
@@ -704,16 +720,29 @@ return h.key === articleKey || (h.url && h.url === article.url);
 if (isHaircare) category = "Haircare";
 }
 var healthScore = article._seoScore || 0;
-var completionScore = (article._completenessScore || 0) + "%";
+var completionPct = article._completenessScore || 0;
+var completionScoreText = completionPct + "%";
 var publishedDate = formatCsvDate(article.date || "");
 var lastModified = formatCsvDate(article.dateModified || "");
 var wordCount = countWordsInContent(article);
-var operationalStatus = (article._completenessScore || 0) >= 85 ? "Fully Optimized" : "Needs Attention";
 
+// Enhanced 3-tier Status Logic Evaluation
+var operationalStatus = "Needs Attention";
+if (completionPct >= 85) {
+operationalStatus = "Fully Optimized";
+} else if (completionPct >= 60) {
+operationalStatus = "Good Progress";
+}
+
+var missingSeoString = (article._missingSeo && article._missingSeo.length > 0) ? article._missingSeo.join(", ") : "None";
+var missingArchString = (article._missingArch && article._missingArch.length > 0) ? article._missingArch.join(", ") : "None";
+
+if (missingSeoString.indexOf(",") !== -1) missingSeoString = '"' + missingSeoString + '"';
+if (missingArchString.indexOf(",") !== -1) missingArchString = '"' + missingArchString + '"';
 if (publishedDate.indexOf(",") !== -1) publishedDate = '"' + publishedDate + '"';
 if (lastModified.indexOf(",") !== -1) lastModified = '"' + lastModified + '"';
 
-csvRows.push([cleanTitle, relativeUrl, category, healthScore, completionScore, publishedDate, lastModified, wordCount, operationalStatus].join(","));
+csvRows.push([cleanTitle, relativeUrl, category, healthScore, completionScoreText, publishedDate, lastModified, wordCount, operationalStatus, missingSeoString, missingArchString].join(","));
 });
 
 var csvStringContent = csvRows.join("\n");
