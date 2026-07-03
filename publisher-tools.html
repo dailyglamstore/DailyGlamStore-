@@ -1,544 +1,559 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daily Glam Store — Publisher Tool Dashboard</title>
-  <style>
-    :root {
-      --bg-main: #f6f8fa;
-      --bg-card: #ffffff;
-      --border-color: #d0d7de;
-      --text-main: #24292f;
-      --text-muted: #57606a;
-      --brand: #0969da;
-      --brand-hover: #0550ae;
-      --success: #1a7f37;
-      --warning: #9a6700;
-      --error: #cf222e;
-      --shadow: 0 1px 3px rgba(31,35,40,0.12);
-      --radius: 6px;
-      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: var(--font);
-      background-color: var(--bg-main);
-      color: var(--text-main);
-      line-height: 1.5;
-      padding: 16px;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    header {
-      margin-bottom: 24px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    header h1 {
-      font-size: 20px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .card {
-      background-color: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      margin-bottom: 16px;
-      overflow: hidden;
-    }
-
-    .card-header {
-      padding: 12px 16px;
-      background-color: #f6f8fa;
-      border-bottom: 1px solid var(--border-color);
-      font-weight: 600;
-      font-size: 14px;
-    }
-
-    .card-body {
-      padding: 16px;
-    }
-
-    .status-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    @media (min-width: 576px) {
-      .status-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-    .status-item {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .status-label {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .status-value {
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    .health-excellent { color: var(--success); }
-    .health-good { color: var(--brand); }
-    .health-attention { color: var(--warning); }
-    .health-error { color: var(--error); }
-
-    .warnings-list {
-      list-style: none;
-      font-size: 13px;
-    }
-
-    .warnings-list > li {
-      padding: 10px 14px;
-      margin-bottom: 8px;
-      border-radius: var(--radius);
-      background-color: #f6f8fa;
-      border-left: 4px solid var(--border-color);
-    }
-
-    .warnings-list > li.log-pass {
-      background-color: #dafbe1;
-      border-left-color: var(--success);
-      color: #115322;
-      font-weight: 500;
-    }
-
-    .warnings-list > li.log-warn {
-      background-color: #fff8ec;
-      border-left-color: var(--warning);
-      color: #744210;
-    }
-
-    .warnings-list > li.log-fail {
-      background-color: #ffebe9;
-      border-left-color: var(--error);
-      color: #8c1a1e;
-    }
-
-    .warning-nested-list {
-      list-style: none;
-      margin-top: 6px;
-      padding-left: 12px;
-      border-left: 1px dashed rgba(0, 0, 0, 0.1);
-    }
-
-    .warning-nested-list li {
-      margin-top: 4px;
-      color: var(--text-main);
-      font-family: monospace;
-    }
-
-    .actions-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    button {
-      font-family: var(--font);
-      font-size: 14px;
-      font-weight: 500;
-      padding: 6px 16px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(27,31,36,0.15);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: background-color 0.1s ease;
-    }
-
-    .btn-primary {
-      background-color: var(--brand);
-      color: #ffffff;
-    }
-
-    .btn-primary:hover {
-      background-color: var(--brand-hover);
-    }
-
-    .btn-secondary {
-      background-color: #f6f8fa;
-      color: var(--text-main);
-    }
-
-    .btn-secondary:hover {
-      background-color: #eaeef2;
-    }
-
-    .toast-message {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--success);
-      display: none;
-    }
-
-    .sitemap-summary-box {
-      margin-top: 12px;
-      padding: 10px 12px;
-      background-color: #f6f8fa;
-      border: 1px dashed var(--border-color);
-      border-radius: var(--radius);
-      font-size: 13px;
-      display: none;
-    }
-
-    .sitemap-summary-box p {
-      margin-bottom: 2px;
-    }
-
-    textarea.sitemap-output {
-      width: 100%;
-      height: 220px;
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-      font-size: 12px;
-      background-color: #f6f8fa;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 12px;
-      resize: vertical;
-      margin-top: 12px;
-    }
-
-    .needs-attention-categories {
-      margin-top: 6px;
-      font-size: 11px;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
-    
-    .needs-attention-categories div {
-      padding: 2px 4px;
-      background: #fff8ec;
-      border-radius: 3px;
-      margin-bottom: 3px;
-      border-left: 2px solid var(--warning);
-      font-weight: 500;
-    }
-
-    /* Reference Standards Styles */
-    .standards-container {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-    @media (min-width: 576px) {
-      .standards-container {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    .standards-column h4 {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-main);
-      margin-bottom: 8px;
-      padding-bottom: 4px;
-      border-bottom: 1px solid var(--border-color);
-    }
-    .standards-list-info {
-      list-style: none;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-    .standards-list-info li {
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .standards-list-info li span {
-      color: var(--success);
-      font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 32px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border-color);
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Glam Store Publisher Tool Dashboard</title>
+    <style>
+        :root {
+            --bg-main: #f6f8fa;
+            --bg-card: #ffffff;
+            --border-color: #d0d7de;
+            --text-main: #24292f;
+            --text-muted: #57606a;
+            --brand: #0969da;
+            --brand-hover: #0550ae;
+            --success: #1a7f37;
+            --warning: #9a6700;
+            --error: #cf222e;
+            --shadow: 0 1px 3px rgba(31,35,40,0.12);
+            --radius: 6px;
+            --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: var(--font);
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        header {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        header h1 {
+            font-size: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+        .card-header {
+            padding: 12px 16px;
+            background-color: #f6f8fa;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .card-body {
+            padding: 16px;
+        }
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        @media (min-width: 576px) {
+            .status-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .status-grid.health-metrics-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .status-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .status-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .status-value {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .health-excellent { color: var(--success); }
+        .health-good { color: var(--brand); }
+        .health-attention { color: var(--warning); }
+        .health-error { color: var(--error); }
+        
+        .audit-summary-bar {
+            padding: 8px 12px;
+            background-color: #f1f3f5;
+            border-radius: var(--radius);
+            margin-bottom: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            gap: 16px;
+        }
+        .audit-summary-bar span strong {
+            font-weight: 600;
+        }
+        
+        .warnings-list {
+            list-style: none;
+            font-size: 13px;
+        }
+        .warnings-list > li {
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            border-radius: var(--radius);
+            background-color: #f6f8fa;
+            border-left: 4px solid var(--border-color);
+        }
+        .warnings-list > li.log-pass {
+            background-color: #dafbe1;
+            border-left-color: var(--success);
+            color: #115322;
+            font-weight: 500;
+        }
+        .warnings-list > li.log-warn {
+            background-color: #fff8ec;
+            border-left-color: var(--warning);
+            color: #744210;
+        }
+        .warnings-list > li.log-fail {
+            background-color: #ffebe9;
+            border-left-color: var(--error);
+            color: #8c1a1e;
+        }
+        .warning-nested-list {
+            list-style: none;
+            margin-top: 6px;
+            padding-left: 12px;
+            border-left: 1px dashed rgba(0, 0, 0, 0.1);
+        }
+        .warning-nested-list li {
+            margin-top: 4px;
+            color: var(--text-main);
+            font-family: monospace;
+        }
+        .actions-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        button {
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 16px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(27,31,36,0.15);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.1s ease;
+        }
+        .btn-primary {
+            background-color: var(--brand);
+            color: #ffffff;
+        }
+        .btn-primary:hover {
+            background-color: var(--brand-hover);
+        }
+        .btn-secondary {
+            background-color: #f6f8fa;
+            color: var(--text-main);
+        }
+        .btn-secondary:hover {
+            background-color: #eaeef2;
+        }
+        .toast-message {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--success);
+            display: none;
+        }
+        .sitemap-summary-box {
+            margin-top: 12px;
+            padding: 10px 12px;
+            background-color: #f6f8fa;
+            border: 1px dashed var(--border-color);
+            border-radius: var(--radius);
+            font-size: 13px;
+            display: none;
+        }
+        .sitemap-summary-box p {
+            margin-bottom: 2px;
+        }
+        textarea.sitemap-output {
+            width: 100%;
+            height: 220px;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 12px;
+            background-color: #f6f8fa;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 12px;
+            resize: vertical;
+            margin-top: 12px;
+        }
+        .needs-attention-categories {
+            margin-top: 6px;
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        .needs-attention-categories div {
+            padding: 2px 4px;
+            background: #fff8ec;
+            border-radius: 3px;
+            margin-bottom: 3px;
+            border-left: 2px solid var(--warning);
+            font-weight: 500;
+        }
+        .standards-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        @media (min-width: 576px) {
+            .standards-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .standards-column h4 {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .standards-list-info {
+            list-style: none;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .standards-list-info li {
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .standards-list-info li span {
+            color: var(--success);
+            font-weight: bold;
+        }
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 32px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
 </head>
 <body>
-
-  <div class="container">
+<div class="container">
     <header>
-      <h1>📄 Daily Glam Store Publisher</h1>
+        <h1>Daily Glam Store Publisher</h1>
     </header>
-
+    
+    <!-- WEBSITE HEALTH CARD -->
     <div class="card">
-      <div class="card-header">Website Health</div>
-      <div class="card-body">
-        <div class="status-grid">
-          <div class="status-item">
-            <span class="status-label">Overall Status</span>
-            <span class="status-value" id="healthStatus">⏳ Initializing...</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">SEO Score</span>
-            <span class="status-value" id="seoScoreValue">--</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Total Articles</span>
-            <span class="status-value" id="totalCount">0</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Last Scan</span>
-            <span class="status-value" id="scanDate" style="font-size: 13px; white-space: nowrap;">--</span>
-          </div>
+        <div class="card-header">Website Health</div>
+        <div class="card-body">
+            <div class="status-grid health-metrics-grid">
+                <div class="status-item">
+                    <span class="status-label">SEO Score</span>
+                    <span class="status-value" id="seoScoreValue">--/100</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Fully Optimized Articles</span>
+                    <span class="status-value" id="fullyOptimizedRatio">0 / 0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Average Article Completion</span>
+                    <span class="status-value" id="avgArticleCompletion">0%</span>
+                </div>
+            </div>
+            <div class="status-grid" style="margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 12px;">
+                <div class="status-item">
+                    <span class="status-label">Overall Status</span>
+                    <span class="status-value" id="healthStatus">Initializing...</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Total Articles</span>
+                    <span class="status-value" id="totalCount">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Last Scan</span>
+                    <span class="status-value" id="scanDate" style="font-size: 13px; white-space: nowrap;">--</span>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
+    <!-- TODAY'S SCAN SUMMARY -->
     <div class="card" style="border-left: 4px solid var(--brand);">
-      <div class="card-header">Today's Scan Summary</div>
-      <div class="card-body">
-        <div class="status-grid" style="grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
-          <div class="status-item">
-            <span class="status-label">Articles</span>
-            <span class="status-value" id="summaryArticles">0</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Affiliate Links</span>
-            <span class="status-value" id="summaryAffiliate">0</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">LinkPlan Internal Links</span>
-            <span class="status-value" id="summaryInternal">0</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">SEO Score</span>
-            <span class="status-value" id="summarySeoScore">0/100</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Broken Links</span>
-            <span class="status-value" id="summaryBrokenLinks" style="color: var(--error);">0</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Warnings</span>
-            <span class="status-value" id="summaryWarnings" style="color: var(--warning);">0</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Healthy Articles</span>
-            <span class="status-value" id="summaryHealthy" style="color: var(--success);">0</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Needs Attention</span>
-            <span class="status-value" id="summaryNeedsAttention" style="color: var(--warning); margin-bottom: 2px;">0</span>
-            <div class="needs-attention-categories" id="summaryNeedsAttentionCategories"></div>
-          </div>
+        <div class="card-header">Today's Scan Summary</div>
+        <div class="card-body">
+            <div class="status-grid" style="grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
+                <div class="status-item">
+                    <span class="status-label">Articles</span>
+                    <span class="status-value" id="summaryArticles">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Affiliate Links</span>
+                    <span class="status-value" id="summaryAffiliate">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">LinkPlan Internal Links</span>
+                    <span class="status-value" id="summaryInternal">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">SEO Score</span>
+                    <span class="status-value" id="summarySeoScore">0/100</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Broken Links</span>
+                    <span class="status-value" id="summaryBrokenLinks" style="color: var(--error);">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Warnings</span>
+                    <span class="status-value" id="summaryWarnings" style="color: var(--warning);">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Healthy Articles</span>
+                    <span class="status-value" id="summaryHealthy" style="color: var(--success);">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Needs Attention</span>
+                    <span class="status-value" id="summaryNeedsAttention" style="color: var(--warning); margin-bottom: 2px;">0</span>
+                    <div class="needs-attention-categories" id="summaryNeedsAttentionCategories"></div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
+    <!-- HEALTHY ARTICLE STANDARDS -->
     <div class="card">
-      <div class="card-header">Healthy Article Standards</div>
-      <div class="card-body">
-        <div class="standards-container">
-          <div class="standards-column">
-            <h4>Standard Articles (11 Parameters)</h4>
-            <ul class="standards-list-info">
-              <li><span>✔</span> SEO Title</li>
-              <li><span>✔</span> SEO Description</li>
-              <li><span>✔</span> Intro</li>
-              <li><span>✔</span> Image</li>
-              <li><span>✔</span> FAQ</li>
-              <li><span>✔</span> Related Articles</li>
-              <li><span>✔</span> Author</li>
-              <li><span>✔</span> dateModified</li>
-              <li><span>✔</span> No Empty Sections</li>
-              <li><span>✔</span> linkPlan</li>
-              <li><span>✔</span> productRecommendations</li>
+        <div class="card-header">Healthy Article Standards</div>
+        <div class="card-body">
+            <div class="standards-container">
+                <div class="standards-column">
+                    <h4>Standard Articles (11 Parameters)</h4>
+                    <ul class="standards-list-info">
+                        <li><span>✓</span> SEO Title</li>
+                        <li><span>✓</span> SEO Description</li>
+                        <li><span>✓</span> Intro</li>
+                        <li><span>✓</span> Image</li>
+                        <li><span>✓</span> FAQ</li>
+                        <li><span>✓</span> Related Articles</li>
+                        <li><span>✓</span> Author</li>
+                        <li><span>✓</span> dateModified</li>
+                        <li><span>✓</span> No Empty Sections</li>
+                        <li><span>✓</span> linkPlan</li>
+                        <li><span>✓</span> productRecommendations</li>
+                    </ul>
+                </div>
+                <div class="standards-column">
+                    <h4>Comparison Articles (14 Parameters)</h4>
+                    <ul class="standards-list-info">
+                        <li><span>✓</span> SEO Title</li>
+                        <li><span>✓</span> SEO Description</li>
+                        <li><span>✓</span> Intro</li>
+                        <li><span>✓</span> Image</li>
+                        <li><span>✓</span> FAQ</li>
+                        <li><span>✓</span> Related Articles</li>
+                        <li><span>✓</span> Author</li>
+                        <li><span>✓</span> dateModified</li>
+                        <li><span>✓</span> No Empty Sections</li>
+                        <li><span>✓</span> linkPlan</li>
+                        <li><span>✓</span> productRecommendations</li>
+                        <li><span>✓</span> alternativeProducts</li>
+                        <li><span>✓</span> comparisonTable</li>
+                        <li><span>✓</span> Minimum 2 affiliate:true product links</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT STATISTICS -->
+    <div class="card">
+        <div class="card-header">Website Status & Content Statistics</div>
+        <div class="card-body">
+            <div class="status-grid" style="margin-bottom: 16px;">
+                <div class="status-item">
+                    <span class="status-label">Skincare</span>
+                    <span class="status-value" id="skincareCount">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Haircare</span>
+                    <span class="status-value" id="haircareCount">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Comparisons</span>
+                    <span class="status-value" id="comparisonCount">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Avg Word Count</span>
+                    <span class="status-value" id="avgWordCount">0</span>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid var(--border-color); padding-top: 12px; margin-bottom: 16px;">
+                <p style="font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">Extended Link Metrics</p>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <span class="status-label">Total Affiliate Links</span>
+                        <span class="status-value" id="totalAffiliateLinks">0</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Total Non-Affiliate Product Links</span>
+                        <span class="status-value" id="totalNonAffiliateProducts">0</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">LinkPlan Internal Links</span>
+                        <span class="status-value" id="totalInternalLinks">0</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Total Page Links</span>
+                        <span class="status-value" id="totalPageLinks">0</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Total External References</span>
+                        <span class="status-value" id="totalExternalReferences">0</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Alternative Product Links</span>
+                        <span class="status-value" id="totalAlternativeProducts">0</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Product Recommendation Links</span>
+                        <span class="status-value" id="totalRecButtons">0</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Avg LinkPlan Internal Links / Article</span>
+                        <span class="status-value" id="avgInternalLinks">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="border-top: 1px solid var(--border-color); padding-top: 12px; margin-bottom: 16px;">
+                <p style="font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">Product Link Distribution</p>
+                <div class="status-grid" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));">
+                    <div class="status-item">
+                        <span class="status-label">Affiliate Product Links</span>
+                        <span class="status-value" id="pctAffiliateLinks">0%</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Non-Affiliate Product Links</span>
+                        <span class="status-value" id="pctNonAffiliateLinks">0%</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">LinkPlan Internal Links</span>
+                        <span class="status-value" id="pctInternalLinks">0%</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">External References</span>
+                        <span class="status-value" id="pctExternalReferences">0%</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Page Links</span>
+                        <span class="status-value" id="pctPageLinks">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="font-size: 13px; border-top: 1px solid var(--border-color); padding-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div>
+                    <p><strong style="color: var(--text-muted);">Newest Article:</strong></p>
+                    <p id="newestArticleInfo">--</p>
+                </div>
+                <div>
+                    <p><strong style="color: var(--text-muted);">Oldest Article:</strong></p>
+                    <p id="oldestArticleInfo">--</p>
+                </div>
+                <div style="grid-column: span 2; margin-top: 4px;">
+                    <p><span style="color: var(--text-muted); font-weight: bold;">Published This Month:</span> <span id="publishedThisMonthCount" style="font-weight: 600;">0</span></p>
+                    <p><span style="color: var(--text-muted); font-weight: bold;">Longest Article:</span> <span id="longestArticleInfo">--</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION A: SEO HEALTH WARNINGS -->
+    <div class="card">
+        <div class="card-header">SEO Health Warnings</div>
+        <div class="card-body">
+            <div class="audit-summary-bar" id="seoAuditSummaryBar">
+                <span>Passed: <strong id="seoPassedCount">0</strong> / 11</span>
+                <span>Needs Attention: <strong id="seoFailedCount" style="color: var(--warning);">0</strong></span>
+            </div>
+            <ul class="warnings-list" id="seoWarningsLog">
+                <li>Running active diagnostic evaluations...</li>
             </ul>
-          </div>
-          <div class="standards-column">
-            <h4>Comparison Articles (14 Parameters)</h4>
-            <ul class="standards-list-info">
-              <li><span>✔</span> SEO Title</li>
-              <li><span>✔</span> SEO Description</li>
-              <li><span>✔</span> Intro</li>
-              <li><span>✔</span> Image</li>
-              <li><span>✔</span> FAQ</li>
-              <li><span>✔</span> Related Articles</li>
-              <li><span>✔</span> Author</li>
-              <li><span>✔</span> dateModified</li>
-              <li><span>✔</span> No Empty Sections</li>
-              <li><span>✔</span> linkPlan</li>
-              <li><span>✔</span> productRecommendations</li>
-              <li><span>✔</span> alternativeProducts</li>
-              <li><span>✔</span> comparisonTable</li>
-              <li><span>✔</span> Minimum 2 affiliate:true product links</li>
+        </div>
+    </div>
+
+    <!-- SECTION B: ARTICLE ARCHITECTURE WARNINGS -->
+    <div class="card">
+        <div class="card-header">Article Architecture Warnings</div>
+        <div class="card-body">
+            <div class="audit-summary-bar" id="archAuditSummaryBar">
+                <span>Passed: <strong id="archPassedCount">0</strong> / 8</span>
+                <span>Needs Attention: <strong id="archFailedCount" style="color: var(--warning);">0</strong></span>
+            </div>
+            <ul class="warnings-list" id="archWarningsLog">
+                <li>Running active standard evaluations...</li>
             </ul>
-          </div>
         </div>
-      </div>
     </div>
 
+    <!-- AUTOMATED ENGINES -->
     <div class="card">
-      <div class="card-header">Website Status & Content Statistics</div>
-      <div class="card-body">
-        <div class="status-grid" style="margin-bottom: 16px;">
-          <div class="status-item">
-            <span class="status-label">Skincare</span>
-            <span class="status-value" id="skincareCount">0</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Haircare</span>
-            <span class="status-value" id="haircareCount">0</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Comparisons</span>
-            <span class="status-value" id="comparisonCount">0</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Avg Word Count</span>
-            <span class="status-value" id="avgWordCount">0</span>
-          </div>
+        <div class="card-header">Publishing Automated Engines</div>
+        <div class="card-body">
+            <div class="actions-row">
+                <button type="button" class="btn-primary" id="btnGenerateSitemap">Generate Sitemap</button>
+                <button type="button" class="btn-secondary" id="btnCopySitemap">Copy Sitemap</button>
+                <button type="button" class="btn-secondary" id="btnExportCsv">Export Articles CSV</button>
+                <span class="toast-message" id="copyToast">Sitemap copied successfully.</span>
+            </div>
+            <div class="sitemap-summary-box" id="sitemapSummary">
+                <p><strong>Generated:</strong> <span id="sitemapUrlCount">0 URLs</span></p>
+                <p><strong>Last Generated:</strong> <span id="sitemapGenDate">--</span></p>
+            </div>
+            <textarea id="sitemapContainer" class="sitemap-output" readonly placeholder="Click 'Generate Sitemap' to dump the XML mapping context here..."></textarea>
         </div>
-
-        <div style="border-top: 1px solid var(--border-color); padding-top: 12px; margin-bottom: 16px;">
-          <p style="font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">Extended Link Metrics</p>
-          <div class="status-grid">
-            <div class="status-item">
-              <span class="status-label">Total Affiliate Links</span>
-              <span class="status-value" id="totalAffiliateLinks">0</span>
-            </div>
-            <div class="status-item">
-              <span class="status-label">Total Non-Affiliate Product Links</span>
-              <span class="status-value" id="totalNonAffiliateProducts">0</span>
-            </div>
-            <div class="status-item">
-              <span class="status-label">LinkPlan Internal Links</span>
-              <span class="status-value" id="totalInternalLinks">0</span>
-            </div>
-            <div class="status-item">
-              <span class="status-label">Total Page Links</span>
-              <span class="status-value" id="totalPageLinks">0</span>
-            </div>
-            <div class="status-item">
-              <span class="status-label">Total External References</span>
-              <span class="status-value" id="totalExternalReferences">0</span>
-            </div>
-            <div class="status-item">
-              <span class="status-label">Alternative Product Links</span>
-              <span class="status-value" id="totalAlternativeProducts">0</span>
-            </div>
-            <div class="status-item">
-              <span class="status-label">Product Recommendation Links</span>
-              <span class="status-value" id="totalRecButtons">0</span>
-            </div>
-            <div class="status-item" style="grid-column: span 1;">
-              <span class="status-label">Avg LinkPlan Internal Links / Article</span>
-              <span class="status-value" id="avgInternalLinks">0</span>
-            </div>
-          </div>
-        </div>
-
-        <div style="border-top: 1px solid var(--border-color); padding-top: 12px; margin-bottom: 16px;">
-          <p style="font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">Product Link Distribution</p>
-          <div class="status-grid" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));">
-            <div class="status-item">
-              <span class="status-label">Affiliate Product Links</span>
-              <span class="status-value" id="pctAffiliateLinks">0%</span>
-            </div>
-            <div class="status-item">
-              <span class="status-label">Non-Affiliate Product Links</span>
-              <span class="status-value" id="pctNonAffiliateLinks">0%</span>
-            </div>
-            <div class="status-item">
-              <span class="status-label">LinkPlan Internal Links</span>
-              <span class="status-value" id="pctInternalLinks">0%</span>
-            </div>
-            <div class="status-item">
-              <span class="status-label">External References</span>
-              <span class="status-value" id="pctExternalReferences">0%</span>
-            </div>
-            <div class="status-item">
-              <span class="status-label">Page Links</span>
-              <span class="status-value" id="pctPageLinks">0%</span>
-            </div>
-          </div>
-        </div>
-
-        <div style="font-size: 13px; border-top: 1px solid var(--border-color); padding-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-          <div>
-            <p><strong style="color: var(--text-muted);">Newest Article:</strong></p>
-            <p id="newestArticleInfo">--</p>
-          </div>
-          <div>
-            <p><strong style="color: var(--text-muted);">Oldest Article:</strong></p>
-            <p id="oldestArticleInfo">--</p>
-          </div>
-          <div style="grid-column: span 2; margin-top: 4px;">
-            <p><span style="color: var(--text-muted); font-weight: bold;">Published This Month:</span> <span id="publishedThisMonthCount" style="font-weight: 600;">0</span></p>
-            <p><span style="color: var(--text-muted); font-weight: bold;">Longest Article:</span> <span id="longestArticleInfo">--</span></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">SEO Health Log</div>
-      <div class="card-body">
-        <ul class="warnings-list" id="seoWarningsLog">
-          <li>Running active diagnostic evaluations...</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">Publishing Automated Engines</div>
-      <div class="card-body">
-        <div class="actions-row">
-          <button type="button" class="btn-primary" id="btnGenerateSitemap">Generate Sitemap</button>
-          <button type="button" class="btn-secondary" id="btnCopySitemap">Copy Sitemap</button>
-          <button type="button" class="btn-secondary" id="btnExportCsv">Export Healthy Articles CSV</button>
-          <span class="toast-message" id="copyToast">✅ Sitemap copied successfully.</span>
-        </div>
-        <div class="sitemap-summary-box" id="sitemapSummary">
-          <p><strong>Generated:</strong> <span id="sitemapUrlCount">0 URLs</span></p>
-          <p><strong>Last Generated:</strong> <span id="sitemapGenDate">--</span></p>
-        </div>
-        <textarea id="sitemapContainer" class="sitemap-output" readonly placeholder="Click 'Generate Sitemap' to dump the XML mapping context here..."></textarea>
-      </div>
     </div>
 
     <footer>
-      <p>&copy; 2026 Daily Glam Store • Internal Operational Asset</p>
+        <p>&copy; 2026 Daily Glam Store Internal Operational Asset</p>
     </footer>
-  </div>
+</div>
 
-  <script src="skincare-articles.js"></script>
-  <script src="haircare-articles.js"></script>
-  <script src="publisher-tools.js"></script>
+<script src="skincare-articles.js"></script>
+<script src="haircare-articles.js"></script>
+<script src="publisher-tools.js"></script>
 </body>
 </html>
