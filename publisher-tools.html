@@ -243,6 +243,41 @@
       font-weight: 500;
     }
 
+    /* Reference Standards Styles */
+    .standards-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 576px) {
+      .standards-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .standards-column h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .standards-list-info {
+      list-style: none;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .standards-list-info li {
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .standards-list-info li span {
+      color: var(--success);
+      font-weight: bold;
+    }
+
     footer {
       text-align: center;
       font-size: 12px;
@@ -320,6 +355,49 @@
             <span class="status-label">Needs Attention</span>
             <span class="status-value" id="summaryNeedsAttention" style="color: var(--warning); margin-bottom: 2px;">0</span>
             <div class="needs-attention-categories" id="summaryNeedsAttentionCategories"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">Healthy Article Standards</div>
+      <div class="card-body">
+        <div class="standards-container">
+          <div class="standards-column">
+            <h4>Standard Articles (11 Parameters)</h4>
+            <ul class="standards-list-info">
+              <li><span>✔</span> SEO Title</li>
+              <li><span>✔</span> SEO Description</li>
+              <li><span>✔</span> Intro</li>
+              <li><span>✔</span> Image</li>
+              <li><span>✔</span> FAQ</li>
+              <li><span>✔</span> Related Articles</li>
+              <li><span>✔</span> Author</li>
+              <li><span>✔</span> dateModified</li>
+              <li><span>✔</span> No Empty Sections</li>
+              <li><span>✔</span> linkPlan</li>
+              <li><span>✔</span> productRecommendations</li>
+            </ul>
+          </div>
+          <div class="standards-column">
+            <h4>Comparison Articles (14 Parameters)</h4>
+            <ul class="standards-list-info">
+              <li><span>✔</span> SEO Title</li>
+              <li><span>✔</span> SEO Description</li>
+              <li><span>✔</span> Intro</li>
+              <li><span>✔</span> Image</li>
+              <li><span>✔</span> FAQ</li>
+              <li><span>✔</span> Related Articles</li>
+              <li><span>✔</span> Author</li>
+              <li><span>✔</span> dateModified</li>
+              <li><span>✔</span> No Empty Sections</li>
+              <li><span>✔</span> linkPlan</li>
+              <li><span>✔</span> productRecommendations</li>
+              <li><span>✔</span> alternativeProducts</li>
+              <li><span>✔</span> comparisonTable</li>
+              <li><span>✔</span> Minimum 2 affiliate:true product links</li>
+            </ul>
           </div>
         </div>
       </div>
