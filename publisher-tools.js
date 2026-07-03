@@ -225,7 +225,13 @@
     allArticles.forEach(function (article) {
       var displayTitle = article.title || article.key || "Unnamed Article";
       var completenessPoints = 0;
-      var completenessTotalPossible = 12;
+      
+      // Feature 1 & 2: Dynamic Denominator assignments based on layout presence rules
+      var completenessTotalPossible = 11;
+      if (article.comparisonTable) {
+        completenessTotalPossible = 14;
+      }
+
       var isNewArch = isUsingNewArchitecture(article);
 
       if (article.seoTitle && String(article.seoTitle).trim() !== "") { completenessPoints++; } else {
@@ -288,8 +294,6 @@
         diagnosticCategories.emptySections.items.push(displayTitle);
       }
 
-      if (article.comparisonTable) completenessPoints++;
-
       var extractedLinks = [];
       var trueAffiliateCountForThisArticle = 0;
 
@@ -346,7 +350,8 @@
       }
 
       if (article.alternativeProducts && article.alternativeProducts.items && Array.isArray(article.alternativeProducts.items)) {
-        completenessPoints++;
+        // Increment completeness points only if evaluated inside a comparison architecture context
+        if (article.comparisonTable) completenessPoints++;
         statTotals.altProductLinks += article.alternativeProducts.items.length;
 
         article.alternativeProducts.items.forEach(function (altItem) {
@@ -379,12 +384,20 @@
 
       if (article.comparisonTable) {
         comparisonArticlesCount++;
+        if (article.comparisonTable.rows && Array.isArray(article.comparisonTable.rows) && article.comparisonTable.rows.length > 0) {
+          completenessPoints++; 
+        }
+
         var hasFaq = article.faq && Array.isArray(article.faq) && article.faq.length > 0;
         var hasCompRows = article.comparisonTable.rows && Array.isArray(article.comparisonTable.rows) && article.comparisonTable.rows.length > 0;
         var hasRecommendations = article.productRecommendations && article.productRecommendations.items && Array.isArray(article.productRecommendations.items) && article.productRecommendations.items.length > 0;
         var hasAltProducts = article.alternativeProducts && article.alternativeProducts.items && Array.isArray(article.alternativeProducts.items) && article.alternativeProducts.items.length > 0;
         var hasLPlan = article.linkPlan && Array.isArray(article.linkPlan) && article.linkPlan.length > 0;
+        
         var meetsMinAffiliate = trueAffiliateCountForThisArticle >= 2;
+        if (meetsMinAffiliate) {
+          completenessPoints++;
+        }
         
         if (!hasFaq || !hasCompRows || !hasRecommendations || !hasAltProducts || !hasLPlan || !meetsMinAffiliate) {
           totalIssueDeductions++;
@@ -399,7 +412,8 @@
         }
       }
 
-      article._completenessScore = Math.round((completenessPoints / completenessTotalPossible) * 100);
+      // Feature 3: Dynamic Health Score calculation safely capped at 100% max
+      article._completenessScore = Math.min(Math.round((completenessPoints / completenessTotalPossible) * 100), 100);
     });
 
     Object.keys(articleUrlsMap).forEach(function (urlPath) {
@@ -657,7 +671,6 @@
   function exportHealthyArticlesCsv() {
     var csvRows = [];
     
-    // Fix 3: Sub-routine to convert variable date contexts into "14 Jun 2026 • 9:38 PM"
     function formatCsvDate(rawDateString) {
       if (!rawDateString || String(rawDateString).trim() === "") return "";
       var parsedDate = new Date(rawDateString);
@@ -669,7 +682,6 @@
         year: "numeric"
       });
 
-      // Include time details matching current system styles if explicit granular info exists
       if (String(rawDateString).indexOf("T") !== -1 || String(rawDateString).indexOf(":") !== -1) {
         var baseFormattedTime = parsedDate.toLocaleTimeString("en-US", {
           hour: "numeric",
@@ -706,16 +718,13 @@
           }
         }
 
-        // Fix 2: Capped exported health value score string array assignments to 100 max
         var healthScore = Math.min(article._completenessScore || 0, 100);
         
-        // Fix 3: Passed raw values through human-readable output filters
         var publishedDate = formatCsvDate(article.date || "");
         var lastModified = formatCsvDate(article.dateModified || "");
         
         var wordCount = countWordsInContent(article);
 
-        // Explicitly wrap modified date properties in quotes to avoid breaking comma cells
         if (publishedDate.indexOf(",") !== -1) publishedDate = '"' + publishedDate + '"';
         if (lastModified.indexOf(",") !== -1) lastModified = '"' + lastModified + '"';
 
