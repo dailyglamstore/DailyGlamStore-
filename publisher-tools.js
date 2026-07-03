@@ -38,6 +38,7 @@ var totalTechnicalDeductionPoints = 0;
 var duplicateUrlCount = 0;
 var duplicateKeyCount = 0;
 var brokenInternalLinksCount = 0;
+var totalArticlesAffectedBySeoWarnings = 0;
 
 var statTotals = {
 affiliateLinks: 0,
@@ -201,6 +202,7 @@ comparisonArticlesCount = 0;
 duplicateUrlCount = 0;
 duplicateKeyCount = 0;
 brokenInternalLinksCount = 0;
+totalArticlesAffectedBySeoWarnings = 0;
 articleUrlsMap = {};
 
 Object.keys(seoCategories).forEach(function(k){ seoCategories[k].items = []; });
@@ -285,6 +287,11 @@ article._missingSeo.push("Word Count");
 // Compute individual decoupled record output out of 100
 article._seoScore = Math.round((seoEarnedPoints / seoTotalPossible) * 100);
 
+// Tracking of Affected Articles count safely
+if (article._missingSeo.length > 0) {
+totalArticlesAffectedBySeoWarnings++;
+}
+
 // Global Technical Issue 3 Loop: Broken Links
 if (article.linkPlan && Array.isArray(article.linkPlan)) {
 article.linkPlan.forEach(function (lnk) {
@@ -333,7 +340,7 @@ archCategories.invalidTargetTabs.items.push(displayTitle + " (External reference
 if (article._missingArch.indexOf("Invalid Target Tabs") === -1) article._missingArch.push("Invalid Target Tabs");
 }
 if ((typeStr === "page" || typeStr === "internalArticle") && linkItem.newTab === true) {
-archCategories.invalidTargetTabs.push ? null : archCategories.invalidTargetTabs.items.push(displayTitle + " (Internal standard requires same-tab for: " + typeStr + ")");
+archCategories.invalidTargetTabs.items.push(displayTitle + " (Internal standard requires same-tab for: " + typeStr + ")");
 if (article._missingArch.indexOf("Invalid Target Tabs") === -1) article._missingArch.push("Invalid Target Tabs");
 }
 }
@@ -534,7 +541,7 @@ explanationArea.style.display = "block";
 explanationArea.style.display = "none";
 }
 
-// --- RENDER SECTION A: SEO HEALTH WARNINGS LOG ---
+// --- RENDER SECTION A: SEO HEALTH AUDIT ---
 var seoWarningsLogContainer = document.getElementById("seoWarningsLog");
 seoWarningsLogContainer.innerHTML = "";
 var seoFailedCategoriesCount = 0;
@@ -562,7 +569,7 @@ seoWarningsLogContainer.appendChild(listRowItem);
 });
 document.getElementById("seoLogSummary").textContent = "Passed: " + (12 - seoFailedCategoriesCount) + " / 12 | Needs Attention: " + seoFailedCategoriesCount;
 
-// --- RENDER SECTION B: ARTICLE ARCHITECTURE LOG ---
+// --- RENDER SECTION B: ARTICLE ARCHITECTURE AUDIT ---
 var archWarningsLogContainer = document.getElementById("archWarningsLog");
 archWarningsLogContainer.innerHTML = "";
 var archFailedCategoriesCount = 0;
@@ -592,15 +599,18 @@ archWarningsLogContainer.appendChild(listRowItem);
 });
 document.getElementById("archLogSummary").textContent = "Passed: " + (7 - archFailedCategoriesCount) + " / 7 | Needs Attention: " + archFailedCategoriesCount;
 
-// Today's Scan Summary mapping updates
+// --- DYNAMICALLY SYNCHRONIZED SCAN SUMMARY MATRIX ---
 document.getElementById("summaryArticles").textContent = totalArticleCount;
 document.getElementById("summaryAffiliate").textContent = statTotals.affiliateLinks;
 document.getElementById("summaryInternal").textContent = statTotals.internalLinks;
 document.getElementById("summarySeoScore").textContent = websiteSeoScore + "/100";
 document.getElementById("summaryBrokenLinks").textContent = brokenInternalLinksCount;
-document.getElementById("summaryWarnings").textContent = (seoFailedCategoriesCount + archFailedCategoriesCount);
 document.getElementById("summaryHealthy").textContent = fullyOptimizedCount + " / " + totalArticleCount;
-document.getElementById("summaryNeedsAttention").textContent = seoFailedCategoriesCount;
+
+// Core synchronized counter rules
+document.getElementById("summarySeoWarningCategories").textContent = seoFailedCategoriesCount;
+document.getElementById("summaryAffectedArticles").textContent = totalArticlesAffectedBySeoWarnings + " / " + totalArticleCount;
+document.getElementById("summaryArchWarningCategories").textContent = archFailedCategoriesCount;
 
 var needsAttentionSubSlot = document.getElementById("summaryNeedsAttentionCategories");
 if (needsAttentionSubSlot) {
@@ -726,7 +736,6 @@ var publishedDate = formatCsvDate(article.date || "");
 var lastModified = formatCsvDate(article.dateModified || "");
 var wordCount = countWordsInContent(article);
 
-// Enhanced 3-tier Status Logic Evaluation
 var operationalStatus = "Needs Attention";
 if (completionPct >= 85) {
 operationalStatus = "Fully Optimized";
