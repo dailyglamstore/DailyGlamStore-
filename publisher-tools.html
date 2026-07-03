@@ -322,7 +322,7 @@ border-top: 1px solid var(--border-color);
 <div class="card" style="border-left: 4px solid var(--brand);">
 <div class="card-header">Today's Scan Summary</div>
 <div class="card-body">
-<div class="status-grid" style="grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));">
+<div class="status-grid" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));">
 <div class="status-item">
 <span class="status-label">Articles</span>
 <span class="status-value" id="summaryArticles">0</span>
@@ -344,17 +344,21 @@ border-top: 1px solid var(--border-color);
 <span class="status-value" id="summaryBrokenLinks" style="color: var(--error);">0</span>
 </div>
 <div class="status-item">
-<span class="status-label">Warnings</span>
-<span class="status-value" id="summaryWarnings" style="color: var(--warning);">0</span>
+<span class="status-label">SEO Warning Categories</span>
+<span class="status-value" id="summarySeoWarningCategories" style="color: var(--warning);">0</span>
 </div>
 <div class="status-item">
-<span class="status-label">Healthy Articles</span>
-<span class="status-value" id="summaryHealthy" style="color: var(--success);">0</span>
+<span class="status-label">Affected Articles</span>
+<span class="status-value" id="summaryAffectedArticles">0</span>
 </div>
 <div class="status-item">
-<span class="status-label">Needs Attention</span>
-<span class="status-value" id="summaryNeedsAttention" style="color: var(--warning); margin-bottom: 2px;">0</span>
+<span class="status-label">Architecture Warning Categories</span>
+<span class="status-value" id="summaryArchWarningCategories" style="color: var(--warning); margin-bottom: 2px;">0</span>
 <div class="needs-attention-categories" id="summaryNeedsAttentionCategories"></div>
+</div>
+<div class="status-item">
+<span class="status-label">Fully Optimized Articles</span>
+<span class="status-value" id="summaryHealthy" style="color: var(--success);">0</span>
 </div>
 </div>
 </div>
@@ -504,7 +508,7 @@ border-top: 1px solid var(--border-color);
 </div>
 <div class="container-split-logs" style="display: grid; grid-template-columns: 1fr; gap: 16px;">
 <div class="card">
-<div class="card-header">SEO Health Log</div>
+<div class="card-header">SEO Health Audit</div>
 <div class="card-body">
 <div class="warning-summary-badge" id="seoLogSummary">Passed: 0/12 | Needs Attention: 0</div>
 <ul class="warnings-list" id="seoWarningsLog">
@@ -513,7 +517,7 @@ border-top: 1px solid var(--border-color);
 </div>
 </div>
 <div class="card">
-<div class="card-header">Article Architecture Log</div>
+<div class="card-header">Article Architecture Audit</div>
 <div class="card-body">
 <div class="warning-summary-badge" id="archLogSummary">Passed: 0/7 | Needs Attention: 0</div>
 <ul class="warnings-list" id="archWarningsLog">
