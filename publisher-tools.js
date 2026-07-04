@@ -453,7 +453,7 @@ var websiteSeoScore = Math.max(0, averageArticleSeoScore - totalTechnicalDeducti
 var globalAvgCompletion = totalArticleCount > 0 ? Math.round(totalCompletionSum / totalArticleCount) : 0;
 var fullyOptimizedRatio = totalArticleCount > 0 ? (fullyOptimizedCount / totalArticleCount) : 0;
 
-// Render outputs to elements
+// Render outputs to primary modules
 document.getElementById("totalCount").textContent = totalArticleCount;
 document.getElementById("seoScoreValue").textContent = websiteSeoScore + " / 100";
 document.getElementById("fullyOptimizedCount").textContent = fullyOptimizedCount + " / " + totalArticleCount;
@@ -464,7 +464,6 @@ document.getElementById("haircareCount").textContent = haircareArticlesList.leng
 document.getElementById("comparisonCount").textContent = comparisonArticlesCount;
 document.getElementById("avgSeoScore").textContent = averageArticleSeoScore + " / 100";
 
-// Expose Technical SEO Deductions metric securely
 var techDeductionsNode = document.getElementById("techDeductionsValue");
 if (techDeductionsNode) {
 techDeductionsNode.textContent = totalTechnicalDeductionPoints === 0 ? "0" : "−" + totalTechnicalDeductionPoints;
@@ -512,7 +511,6 @@ calculatedStatus = "Critical";
 statusColorClass = "health-error";
 }
 
-// Evaluate fallback safeguards
 if (fullyOptimizedRatio < 0.50 && calculatedStatus !== "Critical") {
 calculatedStatus = "Needs Attention";
 statusColorClass = "health-attention";
@@ -546,6 +544,9 @@ var seoWarningsLogContainer = document.getElementById("seoWarningsLog");
 seoWarningsLogContainer.innerHTML = "";
 var seoFailedCategoriesCount = 0;
 
+// Array to collect unique affected items from the active list
+var uniqueAffectedSeoArticles = [];
+
 Object.keys(seoCategories).forEach(function (catKey) {
 var cat = seoCategories[catKey];
 var listRowItem = document.createElement("li");
@@ -562,6 +563,12 @@ cat.items.forEach(function (nestedText) {
 var nestedLi = document.createElement("li");
 nestedLi.textContent = "• " + nestedText;
 nestedUI.appendChild(nestedLi);
+
+// Isolate base article identifier cleanly from metrics strings
+var cleanArtName = nestedText.split(" (")[0].trim();
+if (uniqueAffectedSeoArticles.indexOf(cleanArtName) === -1) {
+uniqueAffectedSeoArticles.push(cleanArtName);
+}
 });
 listRowItem.appendChild(nestedUI);
 }
@@ -599,18 +606,18 @@ archWarningsLogContainer.appendChild(listRowItem);
 });
 document.getElementById("archLogSummary").textContent = "Passed: " + (7 - archFailedCategoriesCount) + " / 7 | Needs Attention: " + archFailedCategoriesCount;
 
-// --- DYNAMICALLY SYNCHRONIZED SCAN SUMMARY MATRIX ---
+// --- PRESENTATION LAYER LINK: TODAY'S SCAN SUMMARY ---
 document.getElementById("summaryArticles").textContent = totalArticleCount;
 document.getElementById("summaryAffiliate").textContent = statTotals.affiliateLinks;
 document.getElementById("summaryInternal").textContent = statTotals.internalLinks;
 document.getElementById("summarySeoScore").textContent = websiteSeoScore + "/100";
 document.getElementById("summaryBrokenLinks").textContent = brokenInternalLinksCount;
-document.getElementById("summaryHealthy").textContent = fullyOptimizedCount + " / " + totalArticleCount;
 
-// Core synchronized counter rules
+// Read direct from calculations above to guarantee exact data sync
 document.getElementById("summarySeoWarningCategories").textContent = seoFailedCategoriesCount;
-document.getElementById("summaryAffectedArticles").textContent = totalArticlesAffectedBySeoWarnings + " / " + totalArticleCount;
+document.getElementById("summaryAffectedArticles").textContent = uniqueAffectedSeoArticles.length + " / " + totalArticleCount;
 document.getElementById("summaryArchWarningCategories").textContent = archFailedCategoriesCount;
+document.getElementById("summaryHealthy").textContent = fullyOptimizedCount + " / " + totalArticleCount;
 
 var needsAttentionSubSlot = document.getElementById("summaryNeedsAttentionCategories");
 if (needsAttentionSubSlot) {
