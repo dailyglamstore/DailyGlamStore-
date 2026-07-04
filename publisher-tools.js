@@ -564,7 +564,6 @@ var nestedLi = document.createElement("li");
 nestedLi.textContent = "• " + nestedText;
 nestedUI.appendChild(nestedLi);
 
-// Isolate base article identifier cleanly from metrics strings
 var cleanArtName = nestedText.split(" (")[0].trim();
 if (uniqueAffectedSeoArticles.indexOf(cleanArtName) === -1) {
 uniqueAffectedSeoArticles.push(cleanArtName);
@@ -576,35 +575,154 @@ seoWarningsLogContainer.appendChild(listRowItem);
 });
 document.getElementById("seoLogSummary").textContent = "Passed: " + (12 - seoFailedCategoriesCount) + " / 12 | Needs Attention: " + seoFailedCategoriesCount;
 
-// --- RENDER SECTION B: ARTICLE ARCHITECTURE AUDIT ---
+// --- RENDER SECTION B: ARTICLE ARCHITECTURE AUDIT (REDESIGNED TO PARAMETER COVERAGE) ---
 var archWarningsLogContainer = document.getElementById("archWarningsLog");
 archWarningsLogContainer.innerHTML = "";
+
+var standardArticles = allArticles.filter(function (a) { return !a.comparisonTable; });
+var comparisonArticles = allArticles.filter(function (a) { return !!a.comparisonTable; });
+
+var stdCount = standardArticles.length;
+var compCount = comparisonArticles.length;
+
+// Coverage collectors matching validation checks precisely
+var stdCovered = { seoTitle: 0, seoDescription: 0, intro: 0, image: 0, faq: 0, dateModified: 0, author: 0, emptySections: 0, relatedArticles: 0, linkPlan: 0, productRecommendations: 0 };
+var compCovered = { seoTitle: 0, seoDescription: 0, intro: 0, image: 0, faq: 0, dateModified: 0, author: 0, emptySections: 0, relatedArticles: 0, linkPlan: 0, productRecommendations: 0, alternativeProducts: 0, comparisonTable: 0, minAffiliate: 0 };
+
+allArticles.forEach(function (article) {
+var isComp = !!article.comparisonTable;
+var hasSeoTitle = !!(article.seoTitle && String(article.seoTitle).trim() !== "");
+var hasSeoDesc = !!(article.seoDescription && String(article.seoDescription).trim() !== "");
+var hasIntro = !!(article.intro && String(article.intro).trim() !== "");
+var trackingImageSource = (article.image && article.image.src) || article.src;
+var hasImage = !!(trackingImageSource && String(trackingImageSource).trim() !== "");
+var hasFaq = !!(article.faq && Array.isArray(article.faq) && article.faq.length > 0);
+var hasDateModified = !!article.dateModified;
+
+var hasValidAuthor = false;
+if (article.author && Array.isArray(article.author)) {
+hasValidAuthor = article.author.some(function (auth) {
+return auth && auth.enabled === true && (auth.type === "Person" || auth.type === "Organization");
+});
+}
+
+var emptySectionFound = false;
+if (article.sections && Array.isArray(article.sections) && article.sections.length > 0) {
+emptySectionFound = article.sections.some(function (sec) {
+return !(sec.heading && String(sec.heading).trim() !== "") &&
+!(sec.paragraphs && sec.paragraphs.length > 0 && String(sec.paragraphs[0]).trim() !== "") &&
+!(sec.bullets && sec.bullets.length > 0 && String(sec.bullets[0]).trim() !== "");
+});
+} else {
+emptySectionFound = true;
+}
+var hasNoEmptySections = !emptySectionFound;
+var hasRelated = !!(article.relatedArticles && Array.isArray(article.relatedArticles) && article.relatedArticles.length > 0);
+var hasLinkPlan = !!(article.linkPlan && Array.isArray(article.linkPlan));
+var hasRecommendations = !!(article.productRecommendations && article.productRecommendations.items && Array.isArray(article.productRecommendations.items));
+
+if (!isComp) {
+if (hasSeoTitle) stdCovered.seoTitle++;
+if (hasSeoDesc) stdCovered.seoDescription++;
+if (hasIntro) stdCovered.intro++;
+if (hasImage) stdCovered.image++;
+if (hasFaq) stdCovered.faq++;
+if (hasDateModified) stdCovered.dateModified++;
+if (hasValidAuthor) stdCovered.author++;
+if (hasNoEmptySections) stdCovered.emptySections++;
+if (hasRelated) stdCovered.relatedArticles++;
+if (hasLinkPlan) stdCovered.linkPlan++;
+if (hasRecommendations) stdCovered.productRecommendations++;
+} else {
+// Comparison Articles inherit ALL Standard requirements
+if (hasSeoTitle) compCovered.seoTitle++;
+if (hasSeoDesc) compCovered.seoDescription++;
+if (hasIntro) compCovered.intro++;
+if (hasImage) compCovered.image++;
+if (hasFaq) compCovered.faq++;
+if (hasDateModified) compCovered.dateModified++;
+if (hasValidAuthor) compCovered.author++;
+if (hasNoEmptySections) compCovered.emptySections++;
+if (hasRelated) compCovered.relatedArticles++;
+if (hasLinkPlan) compCovered.linkPlan++;
+if (hasRecommendations) compCovered.productRecommendations++;
+
+var hasAltProducts = !!(article.alternativeProducts && article.alternativeProducts.items && Array.isArray(article.alternativeProducts.items));
+var hasCompRows = !!(article.comparisonTable.rows && Array.isArray(article.comparisonTable.rows) && article.comparisonTable.rows.length > 0);
+
+var trueAffiliateCountForThisArticle = 0;
+if (article.linkPlan && Array.isArray(article.linkPlan)) {
+article.linkPlan.forEach(function (lnk) { if (lnk && lnk.type === "affiliateProduct" && lnk.affiliate === true) trueAffiliateCountForThisArticle++; });
+}
+if (article.productRecommendations && article.productRecommendations.items && Array.isArray(article.productRecommendations.items)) {
+article.productRecommendations.items.forEach(function (recItem) { if (recItem && recItem.type === "affiliateProduct" && recItem.affiliate === true) trueAffiliateCountForThisArticle++; });
+}
+if (article.alternativeProducts && article.alternativeProducts.items && Array.isArray(article.alternativeProducts.items)) {
+article.alternativeProducts.items.forEach(function (altItem) { if (altItem && altItem.type === "affiliateProduct" && altItem.affiliate === true) trueAffiliateCountForThisArticle++; });
+}
+var meetsMinAffiliate = trueAffiliateCountForThisArticle >= 2;
+
+if (hasAltProducts) compCovered.alternativeProducts++;
+if (hasCompRows) compCovered.comparisonTable++;
+if (meetsMinAffiliate) compCovered.minAffiliate++;
+}
+});
+
 var archFailedCategoriesCount = 0;
 var activeArchWarnKeys = [];
 
-Object.keys(archCategories).forEach(function (catKey) {
-var cat = archCategories[catKey];
-var listRowItem = document.createElement("li");
-if (cat.status === "pass") {
-listRowItem.className = "log-pass";
-listRowItem.textContent = "✔ " + cat.label;
-} else {
-archFailedCategoriesCount++;
-activeArchWarnKeys.push(catKey);
-listRowItem.className = "log-warn";
-listRowItem.textContent = "⚠ " + cat.label + " (" + cat.items.length + " articles)";
-var nestedUI = document.createElement("ul");
-nestedUI.className = "warning-nested-list";
-cat.items.forEach(function (nestedText) {
-var nestedLi = document.createElement("li");
-nestedLi.textContent = "• " + nestedText;
-nestedUI.appendChild(nestedLi);
+var stdParams = [
+{ key: "seoTitle", label: "SEO Title" },
+{ key: "seoDescription", label: "SEO Description" },
+{ key: "intro", label: "Intro Placement" },
+{ key: "image", label: "Featured Image" },
+{ key: "faq", label: "FAQ Block" },
+{ key: "dateModified", label: "dateModified" },
+{ key: "author", label: "Enabled Schema Author" },
+{ key: "emptySections", label: "No Empty Sections" },
+{ key: "relatedArticles", label: "Related Articles" },
+{ key: "linkPlan", label: "linkPlan Framework" },
+{ key: "productRecommendations", label: "productRecommendations" }
+];
+
+var compParams = stdParams.concat([
+{ key: "alternativeProducts", label: "alternativeProducts" },
+{ key: "comparisonTable", label: "comparisonTable" },
+{ key: "minAffiliate", label: "Minimum two affiliate:true links" }
+]);
+
+stdParams.forEach(function (p) { if (stdCovered[p.key] < stdCount) { archFailedCategoriesCount++; activeArchWarnKeys.push(p.key); } });
+compParams.slice(11).forEach(function (p) { if (compCovered[p.key] < compCount) { archFailedCategoriesCount++; activeArchWarnKeys.push(p.key); } });
+
+// UI Output Generation for Standard section
+var stdHeader = document.createElement("li");
+stdHeader.innerHTML = "<strong>STANDARD ARTICLES (Total: " + stdCount + ")</strong>";
+stdHeader.className = "log-header";
+archWarningsLogContainer.appendChild(stdHeader);
+
+stdParams.forEach(function (p) {
+var li = document.createElement("li");
+var passed = stdCovered[p.key] === stdCount;
+li.className = passed ? "log-pass" : "log-warn";
+li.textContent = (passed ? "✔ " : "⚠ ") + p.label + " (" + stdCovered[p.key] + " / " + stdCount + ")";
+archWarningsLogContainer.appendChild(li);
 });
-listRowItem.appendChild(nestedUI);
-}
-archWarningsLogContainer.appendChild(listRowItem);
+
+// UI Output Generation for Comparison section
+var compHeader = document.createElement("li");
+compHeader.innerHTML = "<br><strong>COMPARISON ARTICLES (Total: " + compCount + ")</strong>";
+compHeader.className = "log-header";
+archWarningsLogContainer.appendChild(compHeader);
+
+compParams.forEach(function (p) {
+var li = document.createElement("li");
+var passed = compCovered[p.key] === compCount;
+li.className = passed ? "log-pass" : "log-warn";
+li.textContent = (passed ? "✔ " : "⚠ ") + (p.key === "minAffiliate" ? "Minimum two affiliate:true links" : p.label) + " (" + compCovered[p.key] + " / " + compCount + ")";
+archWarningsLogContainer.appendChild(li);
 });
-document.getElementById("archLogSummary").textContent = "Passed: " + (7 - archFailedCategoriesCount) + " / 7 | Needs Attention: " + archFailedCategoriesCount;
+
+document.getElementById("archLogSummary").textContent = "Passed: " + (compParams.length - archFailedCategoriesCount) + " / " + compParams.length + " | Needs Attention: " + archFailedCategoriesCount;
 
 // --- PRESENTATION LAYER LINK: TODAY'S SCAN SUMMARY ---
 document.getElementById("summaryArticles").textContent = totalArticleCount;
@@ -613,7 +731,6 @@ document.getElementById("summaryInternal").textContent = statTotals.internalLink
 document.getElementById("summarySeoScore").textContent = websiteSeoScore + "/100";
 document.getElementById("summaryBrokenLinks").textContent = brokenInternalLinksCount;
 
-// Read direct from calculations above to guarantee exact data sync
 document.getElementById("summarySeoWarningCategories").textContent = seoFailedCategoriesCount;
 document.getElementById("summaryAffectedArticles").textContent = uniqueAffectedSeoArticles.length + " / " + totalArticleCount;
 document.getElementById("summaryArchWarningCategories").textContent = archFailedCategoriesCount;
@@ -625,13 +742,11 @@ needsAttentionSubSlot.innerHTML = "";
 activeArchWarnKeys.forEach(function (keyName) {
 var badge = document.createElement("div");
 var displayLabel = keyName;
-if (keyName === "missingLinkPlan") displayLabel = "LinkPlan Missing";
-if (keyName === "missingRecommendations") displayLabel = "Recommendations Missing";
-if (keyName === "missingAlternativeProducts") displayLabel = "Alternative Products Missing";
-if (keyName === "missingLinkTypes") displayLabel = "Missing Link Types";
-if (keyName === "invalidAffiliateProps") displayLabel = "Invalid Affiliate Settings";
-if (keyName === "invalidTargetTabs") displayLabel = "Invalid Target Directives";
-if (keyName === "comparisonValidation") displayLabel = "Comparison Validation";
+if (keyName === "linkPlan") displayLabel = "LinkPlan Missing";
+if (keyName === "productRecommendations") displayLabel = "Recommendations Missing";
+if (keyName === "alternativeProducts") displayLabel = "Alternative Products Missing";
+if (keyName === "comparisonTable") displayLabel = "Comparison Table Missing";
+if (keyName === "minAffiliate") displayLabel = "Insufficient Affiliate Links";
 badge.textContent = displayLabel;
 needsAttentionSubSlot.appendChild(badge);
 });
