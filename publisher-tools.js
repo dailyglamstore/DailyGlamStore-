@@ -174,13 +174,9 @@ document.getElementById("oldestArticleInfo").textContent = validDatedArticles[va
 function validateAffiliateProperty(item, locationContext, displayTitle, article) {
 if (!item.hasOwnProperty("affiliate")) {
 archCategories.invalidAffiliateProps.items.push(displayTitle + " -> " + locationContext + " is missing the 'affiliate' property");
-if (!article._missingArch) article._missingArch = [];
-if (article._missingArch.indexOf("Invalid Affiliate Props") === -1) article._missingArch.push("Invalid Affiliate Props");
 return false;
 } else if (typeof item.affiliate !== "boolean") {
 archCategories.invalidAffiliateProps.items.push(displayTitle + " -> " + locationContext + " has a non-boolean affiliate value");
-if (!article._missingArch) article._missingArch = [];
-if (article._missingArch.indexOf("Invalid Affiliate Props") === -1) article._missingArch.push("Invalid Affiliate Props");
 return false;
 }
 return true;
@@ -243,11 +239,11 @@ var isNewArch = isUsingNewArchitecture(article);
 var isComparison = !!article.comparisonTable;
 var wordCount = countWordsInContent(article);
 
-// ---------------- LAYER 1: ARTICLE SEO SCORE ----------------
+// ---------------- LAYER 1: ARTICLE SEO SCORE & FACTORS ----------------
 var seoEarnedPoints = 0;
 var seoTotalPossible = 9; // 9 total factors
 
-if (article.seoTitle && String(article.seoTitle).trim() !== "") seoEarnedPoints++; else { seoCategories.seoTitle.items.push(displayTitle); article._missingSeo.push("SEO Title"); }
+if (article.seoTitle && String(article.seoTitle).trim() !== "") seoEarnedPoints++; else { seoCategories.seoTitle.items.push(displayTitle); article._missingSeo.push("FAQ"); }
 if (article.seoDescription && String(article.seoDescription).trim() !== "") seoEarnedPoints++; else { seoCategories.seoDescription.items.push(displayTitle); article._missingSeo.push("SEO Description"); }
 if (article.intro && String(article.intro).trim() !== "") seoEarnedPoints++; else { seoCategories.intro.items.push(displayTitle); article._missingSeo.push("Intro"); }
 var trackingImageSource = (article.image && article.image.src) || article.src;
@@ -281,7 +277,25 @@ if (wordCount >= requiredLength) {
 seoEarnedPoints++;
 } else {
 seoCategories.minLength.items.push(displayTitle + " (" + wordCount + " / " + requiredLength + " words)");
-article._missingSeo.push("Word Count");
+article._missingSeo.push("Minimum Content Length");
+}
+
+// Global Technical Issue 3 Loop: Broken Links
+var hasBrokenLinks = false;
+if (article.linkPlan && Array.isArray(article.linkPlan)) {
+article.linkPlan.forEach(function (lnk) {
+if (lnk && lnk.type === "internalArticle" && lnk.href) {
+var targetInternalHref = String(lnk.href).trim().toLowerCase();
+if (!articleUrlsMap[targetInternalHref]) {
+brokenInternalLinksCount++;
+hasBrokenLinks = true;
+seoCategories.brokenLinks.items.push("Broken link target detected: " + displayTitle + " -> " + lnk.href);
+}
+}
+});
+}
+if (hasBrokenLinks) {
+article._missingSeo.push("Broken Internal Links");
 }
 
 // Compute individual decoupled record output out of 100
@@ -292,20 +306,7 @@ if (article._missingSeo.length > 0) {
 totalArticlesAffectedBySeoWarnings++;
 }
 
-// Global Technical Issue 3 Loop: Broken Links
-if (article.linkPlan && Array.isArray(article.linkPlan)) {
-article.linkPlan.forEach(function (lnk) {
-if (lnk && lnk.type === "internalArticle" && lnk.href) {
-var targetInternalHref = String(lnk.href).trim().toLowerCase();
-if (!articleUrlsMap[targetInternalHref]) {
-brokenInternalLinksCount++;
-seoCategories.brokenLinks.items.push("Broken link target detected: " + displayTitle + " -> " + lnk.href);
-}
-}
-});
-}
-
-// ---------------- LAYOUT TRACK: ARTICLE COMPLETION ----------------
+// ---------------- LAYOUT TRACK: ARTICLE COMPLETION & GENUINE ARCHITECTURE FACTORS ----------------
 var archEarnedPoints = 0;
 var archTotalPossible = isComparison ? 14 : 11;
 var trueAffiliateCountForThisArticle = 0;
@@ -318,7 +319,12 @@ if (article.faq && Array.isArray(article.faq) && article.faq.length > 0) archEar
 if (article.dateModified) archEarnedPoints++;
 if (hasValidAuthor) archEarnedPoints++;
 if (!emptySectionFound) archEarnedPoints++;
-if (article.relatedArticles && Array.isArray(article.relatedArticles) && article.relatedArticles.length > 0) archEarnedPoints++;
+
+if (article.relatedArticles && Array.isArray(article.relatedArticles) && article.relatedArticles.length > 0) {
+archEarnedPoints++;
+} else {
+article._missingArch.push("Related Articles");
+}
 
 var extractedLinks = [];
 if (article.linkPlan && Array.isArray(article.linkPlan)) {
@@ -328,7 +334,6 @@ if (linkItem && typeof linkItem === "object") {
 extractedLinks.push(linkItem);
 if (!linkItem.type || String(linkItem.type).trim() === "") {
 archCategories.missingLinkTypes.items.push(displayTitle + " -> Missing explicit link type designation");
-if (article._missingArch.indexOf("Missing Link Types") === -1) article._missingArch.push("Missing Link Types");
 } else {
 var typeStr = String(linkItem.type).trim();
 if (typeStr === "affiliateProduct") {
@@ -337,18 +342,16 @@ if (linkItem.affiliate === true) trueAffiliateCountForThisArticle++;
 }
 if (typeStr === "externalReference" && linkItem.newTab !== true) {
 archCategories.invalidTargetTabs.items.push(displayTitle + " (External reference must target a new tab window)");
-if (article._missingArch.indexOf("Invalid Target Tabs") === -1) article._missingArch.push("Invalid Target Tabs");
 }
 if ((typeStr === "page" || typeStr === "internalArticle") && linkItem.newTab === true) {
 archCategories.invalidTargetTabs.items.push(displayTitle + " (Internal standard requires same-tab for: " + typeStr + ")");
-if (article._missingArch.indexOf("Invalid Target Tabs") === -1) article._missingArch.push("Invalid Target Tabs");
 }
 }
 }
 });
-} else if (isNewArch) {
-archCategories.missingLinkPlan.items.push(displayTitle);
+} else {
 article._missingArch.push("linkPlan");
+if (isNewArch) archCategories.missingLinkPlan.items.push(displayTitle);
 }
 
 if (article.productRecommendations && article.productRecommendations.items && Array.isArray(article.productRecommendations.items)) {
@@ -363,15 +366,19 @@ if (recItem.affiliate === true) trueAffiliateCountForThisArticle++;
 }
 }
 });
-} else if (isNewArch) {
-archCategories.missingRecommendations.items.push(displayTitle);
+} else {
 article._missingArch.push("productRecommendations");
+if (isNewArch) archCategories.missingRecommendations.items.push(displayTitle);
 }
 
 if (isComparison) {
 comparisonArticlesCount++;
-var hasCompRows = article.comparisonTable.rows && Array.isArray(article.comparisonTable.rows) && article.comparisonTable.rows.length > 0;
-if (hasCompRows) archEarnedPoints++;
+var hasCompRows = article.comparisonTable && article.comparisonTable.rows && Array.isArray(article.comparisonTable.rows) && article.comparisonTable.rows.length > 0;
+if (hasCompRows) {
+archEarnedPoints++;
+} else {
+article._missingArch.push("comparisonTable");
+}
 
 if (article.alternativeProducts && article.alternativeProducts.items && Array.isArray(article.alternativeProducts.items)) {
 archEarnedPoints++;
@@ -386,12 +393,16 @@ if (altItem.affiliate === true) trueAffiliateCountForThisArticle++;
 }
 });
 } else {
-archCategories.missingAlternativeProducts.items.push(displayTitle + " (Layout catalog is missing alternativeProducts array)");
 article._missingArch.push("alternativeProducts");
+archCategories.missingAlternativeProducts.items.push(displayTitle + " (Layout catalog is missing alternativeProducts array)");
 }
 
 var meetsMinAffiliate = trueAffiliateCountForThisArticle >= 2;
-if (meetsMinAffiliate) archEarnedPoints++;
+if (meetsMinAffiliate) {
+archEarnedPoints++;
+} else {
+article._missingArch.push("Minimum two affiliate:true links");
+}
 
 var hasFaq = article.faq && Array.isArray(article.faq) && article.faq.length > 0;
 var hasRecommendations = article.productRecommendations && article.productRecommendations.items && Array.isArray(article.productRecommendations.items) && article.productRecommendations.items.length > 0;
@@ -407,7 +418,6 @@ if (!hasAltProducts) detailsMissing.push("alternativeProducts cluster array miss
 if (!hasLPlan) detailsMissing.push("linkPlan matrix missing");
 if (!meetsMinAffiliate) detailsMissing.push("contains less than two true verified affiliate product targets");
 archCategories.comparisonValidation.items.push(displayTitle + " -> " + detailsMissing.join(", "));
-article._missingArch.push("Comparison Validation");
 }
 }
 
@@ -543,8 +553,6 @@ explanationArea.style.display = "none";
 var seoWarningsLogContainer = document.getElementById("seoWarningsLog");
 seoWarningsLogContainer.innerHTML = "";
 var seoFailedCategoriesCount = 0;
-
-// Array to collect unique affected items from the active list
 var uniqueAffectedSeoArticles = [];
 
 Object.keys(seoCategories).forEach(function (catKey) {
@@ -575,7 +583,7 @@ seoWarningsLogContainer.appendChild(listRowItem);
 });
 document.getElementById("seoLogSummary").textContent = "Passed: " + (12 - seoFailedCategoriesCount) + " / 12 | Needs Attention: " + seoFailedCategoriesCount;
 
-// --- RENDER SECTION B: ARTICLE ARCHITECTURE AUDIT (REDESIGNED TO PARAMETER COVERAGE) ---
+// --- RENDER SECTION B: ARTICLE ARCHITECTURE AUDIT (PARAMETER COVERAGE GRID) ---
 var archWarningsLogContainer = document.getElementById("archWarningsLog");
 archWarningsLogContainer.innerHTML = "";
 
@@ -634,7 +642,6 @@ if (hasRelated) stdCovered.relatedArticles++;
 if (hasLinkPlan) stdCovered.linkPlan++;
 if (hasRecommendations) stdCovered.productRecommendations++;
 } else {
-// Comparison Articles inherit ALL Standard requirements
 if (hasSeoTitle) compCovered.seoTitle++;
 if (hasSeoDesc) compCovered.seoDescription++;
 if (hasIntro) compCovered.intro++;
@@ -648,7 +655,7 @@ if (hasLinkPlan) compCovered.linkPlan++;
 if (hasRecommendations) compCovered.productRecommendations++;
 
 var hasAltProducts = !!(article.alternativeProducts && article.alternativeProducts.items && Array.isArray(article.alternativeProducts.items));
-var hasCompRows = !!(article.comparisonTable.rows && Array.isArray(article.comparisonTable.rows) && article.comparisonTable.rows.length > 0);
+var hasCompRows = !!(article.comparisonTable && article.comparisonTable.rows && Array.isArray(article.comparisonTable.rows) && article.comparisonTable.rows.length > 0);
 
 var trueAffiliateCountForThisArticle = 0;
 if (article.linkPlan && Array.isArray(article.linkPlan)) {
@@ -668,9 +675,7 @@ if (meetsMinAffiliate) compCovered.minAffiliate++;
 }
 });
 
-var archFailedCategoriesCount = 0;
-var activeArchWarnKeys = [];
-
+// Configure display matrices parameters
 var stdParams = [
 { key: "seoTitle", label: "SEO Title" },
 { key: "seoDescription", label: "SEO Description" },
@@ -691,10 +696,19 @@ var compParams = stdParams.concat([
 { key: "minAffiliate", label: "Minimum two affiliate:true links" }
 ]);
 
-stdParams.forEach(function (p) { if (stdCovered[p.key] < stdCount) { archFailedCategoriesCount++; activeArchWarnKeys.push(p.key); } });
-compParams.slice(11).forEach(function (p) { if (compCovered[p.key] < compCount) { archFailedCategoriesCount++; activeArchWarnKeys.push(p.key); } });
+// Calculate Explicit Requirements Counters
+var totalArchitectureRequirements = stdParams.length + compParams.length;
+var failedArchitectureRequirementsCount = 0;
 
-// UI Output Generation for Standard section
+stdParams.forEach(function (p) { if (stdCovered[p.key] < stdCount) failedArchitectureRequirementsCount++; });
+compParams.forEach(function (p) { if (compCovered[p.key] < compCount) failedArchitectureRequirementsCount++; });
+
+var passedArchitectureRequirementsCount = totalArchitectureRequirements - failedArchitectureRequirementsCount;
+
+// Refine Article Architecture Audit summary line explicitly with requirements wording
+document.getElementById("archLogSummary").textContent = "Passed: " + passedArchitectureRequirementsCount + " / " + totalArchitectureRequirements + " Requirements | Needs Attention: " + failedArchitectureRequirementsCount + " Requirements";
+
+// UI Output Generation for Standard section matrix
 var stdHeader = document.createElement("li");
 stdHeader.innerHTML = "<strong>STANDARD ARTICLES (Total: " + stdCount + ")</strong>";
 stdHeader.className = "log-header";
@@ -708,7 +722,7 @@ li.textContent = (passed ? "✔ " : "⚠ ") + p.label + " (" + stdCovered[p.key]
 archWarningsLogContainer.appendChild(li);
 });
 
-// UI Output Generation for Comparison section
+// UI Output Generation for Comparison section matrix
 var compHeader = document.createElement("li");
 compHeader.innerHTML = "<br><strong>COMPARISON ARTICLES (Total: " + compCount + ")</strong>";
 compHeader.className = "log-header";
@@ -718,13 +732,39 @@ compParams.forEach(function (p) {
 var li = document.createElement("li");
 var passed = compCovered[p.key] === compCount;
 li.className = passed ? "log-pass" : "log-warn";
-li.textContent = (passed ? "✔ " : "⚠ ") + (p.key === "minAffiliate" ? "Minimum two affiliate:true links" : p.label) + " (" + compCovered[p.key] + " / " + compCount + ")";
+li.textContent = (passed ? "✔ " : "⚠ ") + p.label + " (" + compCovered[p.key] + " / " + compCount + ")";
 archWarningsLogContainer.appendChild(li);
 });
 
-document.getElementById("archLogSummary").textContent = "Passed: " + (compParams.length - archFailedCategoriesCount) + " / " + compParams.length + " | Needs Attention: " + archFailedCategoriesCount;
+// --- RENDER REFINED ARCHITECTURE WARNING CATEGORIES (TODAY'S SCAN SUMMARY) ---
+var activeArchWarnKeys = [];
+var archWarningCategoriesCount = 0;
 
-// --- PRESENTATION LAYER LINK: TODAY'S SCAN SUMMARY ---
+// Track ONLY actual, pure publishing-standard missing items across the site
+var globalArchitectureParameters = [
+{ key: "relatedArticles", label: "Related Articles" },
+{ key: "linkPlan", label: "linkPlan Framework" },
+{ key: "productRecommendations", label: "productRecommendations" },
+{ key: "alternativeProducts", label: "alternativeProducts" },
+{ key: "comparisonTable", label: "comparisonTable" },
+{ key: "minAffiliate", label: "Minimum two affiliate:true links" }
+];
+
+globalArchitectureParameters.forEach(function (param) {
+var isFailing = false;
+if (param.key === "alternativeProducts" || param.key === "comparisonTable" || param.key === "minAffiliate") {
+if (compCount > 0 && compCovered[param.key] < compCount) isFailing = true;
+} else {
+if ((stdCount > 0 && stdCovered[param.key] < stdCount) || (compCount > 0 && compCovered[param.key] < compCount)) {
+isFailing = true;
+}
+}
+if (isFailing) {
+archWarningCategoriesCount++;
+activeArchWarnKeys.push(param.key);
+}
+});
+
 document.getElementById("summaryArticles").textContent = totalArticleCount;
 document.getElementById("summaryAffiliate").textContent = statTotals.affiliateLinks;
 document.getElementById("summaryInternal").textContent = statTotals.internalLinks;
@@ -733,7 +773,7 @@ document.getElementById("summaryBrokenLinks").textContent = brokenInternalLinksC
 
 document.getElementById("summarySeoWarningCategories").textContent = seoFailedCategoriesCount;
 document.getElementById("summaryAffectedArticles").textContent = uniqueAffectedSeoArticles.length + " / " + totalArticleCount;
-document.getElementById("summaryArchWarningCategories").textContent = archFailedCategoriesCount;
+document.getElementById("summaryArchWarningCategories").textContent = archWarningCategoriesCount;
 document.getElementById("summaryHealthy").textContent = fullyOptimizedCount + " / " + totalArticleCount;
 
 var needsAttentionSubSlot = document.getElementById("summaryNeedsAttentionCategories");
@@ -747,6 +787,7 @@ if (keyName === "productRecommendations") displayLabel = "Recommendations Missin
 if (keyName === "alternativeProducts") displayLabel = "Alternative Products Missing";
 if (keyName === "comparisonTable") displayLabel = "Comparison Table Missing";
 if (keyName === "minAffiliate") displayLabel = "Insufficient Affiliate Links";
+if (keyName === "relatedArticles") displayLabel = "Related Articles Missing";
 badge.textContent = displayLabel;
 needsAttentionSubSlot.appendChild(badge);
 });
@@ -865,6 +906,7 @@ operationalStatus = "Fully Optimized";
 operationalStatus = "Good Progress";
 }
 
+// Ensure columns display absolutely segregated strings matching dashboard conditions
 var missingSeoString = (article._missingSeo && article._missingSeo.length > 0) ? article._missingSeo.join(", ") : "None";
 var missingArchString = (article._missingArch && article._missingArch.length > 0) ? article._missingArch.join(", ") : "None";
 
