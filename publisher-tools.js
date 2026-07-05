@@ -519,10 +519,8 @@ var compCount = allArticles.filter(function (a) { return !!a.comparisonTable; })
 // Loop over all active requirements schemas to mark warning states and build precise summary labels
 Object.keys(archCategories).forEach(function (k) {
 var cat = archCategories[k];
-// Match validation status exactly based on whether the specific category contains active failures
 if (cat.items.length > 0) {
 cat.status = "warn";
-// Only add structural architectural requirements to the high-level dashboard metrics list
 if (k === "relatedArticles" || k === "linkPlan" || k === "productRecommendations" || k === "alternativeProducts" || k === "comparisonTable" || k === "minAffiliate") {
 var labelText = (k === "linkPlan") ? "LinkPlan Framework" : ((k === "alternativeProducts") ? "alternativeProducts Layouts" : cat.label);
 if (failedArchNamesList.indexOf(labelText) === -1) {
@@ -639,7 +637,7 @@ explanationArea.style.display = "block";
 explanationArea.style.display = "none";
 }
 
-// --- RENDER PANELS LAYER 1: SEO HEALTH AUDIT PANEL ---
+// --- RENDER PANELS LAYER 1: SEO HEALTH AUDIT PANEL (MATCHED ALIGNMENT) ---
 var seoWarningsLogContainer = document.getElementById("seoWarningsLog");
 seoWarningsLogContainer.innerHTML = "";
 var passedSeoCount = 0;
@@ -666,9 +664,15 @@ listRowItem.appendChild(nestedUI);
 seoWarningsLogContainer.appendChild(listRowItem);
 });
 var totalSeoCategoriesCount = Object.keys(seoCategories).length;
-document.getElementById("seoLogSummary").textContent = "Passed: " + passedSeoCount + " / " + totalSeoCategoriesCount + " | Needs Attention: " + failedSeoNamesList.length;
 
-// --- RENDER PANELS LAYER 2: ARTICLE ARCHITECTURE AUDIT PANEL (WITH NESTED PROBLEMS REVEALED) ---
+// Updated display text alignment for SEO Health Audit
+var seoLogSummaryNode = document.getElementById("seoLogSummary");
+if (seoLogSummaryNode) {
+seoLogSummaryNode.innerHTML = "Passed: " + passedSeoCount + " / " + totalSeoCategoriesCount + " Requirements Covered<br>" +
+"Needs Attention: " + failedSeoNamesList.length;
+}
+
+// --- RENDER PANELS LAYER 2: ARTICLE ARCHITECTURE AUDIT PANEL (WITH NESTED REVEALS) ---
 var archWarningsLogContainer = document.getElementById("archWarningsLog");
 archWarningsLogContainer.innerHTML = "";
 
@@ -681,15 +685,17 @@ stdParams.forEach(function (p) { if (stdCovered[p.key] === stdCount) stdPassedRe
 var compPassedRequirementsCount = 0;
 compParams.forEach(function (p) { if (compCovered[p.key] === compCount) compPassedRequirementsCount++; });
 
-// Realign headers beautifully to template standards
+// Clear parent abstract text node out of the way
 var archLogSummaryNode = document.getElementById("archLogSummary");
 if (archLogSummaryNode) {
-archLogSummaryNode.innerHTML = "Standard Template &nbsp;•&nbsp; " + stdPassedRequirementsCount + "/11 Requirements Covered<br>" +
-"Comparison Template &nbsp;•&nbsp; " + compPassedRequirementsCount + "/14 Requirements Covered";
+archLogSummaryNode.innerHTML = "";
 }
 
+// Render dynamic layouts explicitly matching requested layout rules
 var stdHeader = document.createElement("li");
-stdHeader.innerHTML = "<strong>STANDARD ARTICLES (Total: " + stdCount + ")</strong>";
+stdHeader.innerHTML = "<strong>STANDARD ARTICLES (Total: " + stdCount + ")</strong><br>" +
+"<span style='font-size:1em; color:inherit;'>Standard Template &nbsp;•&nbsp; " + stdPassedRequirementsCount + "/11 Requirements Covered</span><br>" +
+"<span style='font-size:1em; font-weight:normal;'>Needs Attention: " + (11 - stdPassedRequirementsCount) + "</span>";
 stdHeader.className = "log-header";
 archWarningsLogContainer.appendChild(stdHeader);
 
@@ -698,12 +704,10 @@ var li = document.createElement("li");
 var passed = stdCovered[p.key] === stdCount;
 li.className = passed ? "log-pass" : "log-warn";
 li.textContent = (passed ? "✔ " : "⚠ ") + p.label + " (" + stdCovered[p.key] + " / " + stdCount + ")";
-// Print exact problem definitions inline matching the SEO structural style
 if (!passed && archCategories[p.key] && archCategories[p.key].items.length > 0) {
 var nestedUI = document.createElement("ul");
 nestedUI.className = "warning-nested-list";
 archCategories[p.key].items.forEach(function (nestedText) {
-// Only display standard articles that are actually missing this parameter
 var isStandardArticle = skincareArticlesList.concat(haircareArticlesList).some(function(sa) { return (sa.title || sa.key) === nestedText.split(" ->")[0]; });
 if (isStandardArticle) {
 var nestedLi = document.createElement("li");
@@ -717,7 +721,9 @@ archWarningsLogContainer.appendChild(li);
 });
 
 var compHeader = document.createElement("li");
-compHeader.innerHTML = "<br><strong>COMPARISON ARTICLES (Total: " + compCount + ")</strong>";
+compHeader.innerHTML = "<br><strong>COMPARISON ARTICLES (Total: " + compCount + ")</strong><br>" +
+"<span style='font-size:1em; color:inherit;'>Comparison Template &nbsp;•&nbsp; " + compPassedRequirementsCount + "/14 Requirements Covered</span><br>" +
+"<span style='font-size:1em; font-weight:normal;'>Needs Attention: " + (14 - compPassedRequirementsCount) + "</span>";
 compHeader.className = "log-header";
 archWarningsLogContainer.appendChild(compHeader);
 
@@ -726,7 +732,6 @@ var li = document.createElement("li");
 var passed = compCovered[p.key] === compCount;
 li.className = passed ? "log-pass" : "log-warn";
 li.textContent = (passed ? "✔ " : "⚠ ") + p.label + " (" + compCovered[p.key] + " / " + compCount + ")";
-// Print exact problem definitions inline matching the SEO structural style
 if (!passed && archCategories[p.key] && archCategories[p.key].items.length > 0) {
 var nestedUI = document.createElement("ul");
 nestedUI.className = "warning-nested-list";
@@ -740,7 +745,7 @@ if (nestedUI.children.length > 0) li.appendChild(nestedUI);
 archWarningsLogContainer.appendChild(li);
 });
 
-// --- CONSUMPTION LAYER: TODAY'S SCAN SUMMARY PANEL (PURE Presentation Mirror) ---
+// --- CONSUMPTION LAYER: TODAY'S SCAN SUMMARY PANEL (MATCHED STYLING) ---
 document.getElementById("summaryArticles").textContent = totalArticleCount;
 document.getElementById("summaryAffiliate").textContent = statTotals.affiliateLinks;
 document.getElementById("summaryInternal").textContent = statTotals.internalLinks;
@@ -749,7 +754,7 @@ document.getElementById("summaryBrokenLinks").textContent = brokenInternalLinksC
 document.getElementById("summaryHealthy").textContent = fullyOptimizedCount + " / " + totalArticleCount;
 document.getElementById("summaryAffectedArticles").textContent = totalArticlesAffectedBySeoWarnings + " / " + totalArticleCount;
 
-// 1. Render SEO Warning Category layout format precisely as required
+// Align SEO warnings with badge wrapper elements to match Architecture design
 var seoCountNode = document.getElementById("summarySeoWarningCategories");
 if (seoCountNode) {
 seoCountNode.textContent = failedSeoNamesList.length + " Categories";
@@ -758,19 +763,20 @@ var seoNeedsAttentionSlot = document.getElementById("summaryNeedsAttentionSeoCat
 if (!seoNeedsAttentionSlot && seoCountNode && seoCountNode.parentNode) {
 seoNeedsAttentionSlot = document.createElement("div");
 seoNeedsAttentionSlot.id = "summaryNeedsAttentionSeoCategories";
-seoNeedsAttentionSlot.className = "summary-nested-badges-list";
+seoNeedsAttentionSlot.className = "summary-nested-badges-list"; // Synced layout classes
 seoCountNode.parentNode.appendChild(seoNeedsAttentionSlot);
 }
 if (seoNeedsAttentionSlot) {
 seoNeedsAttentionSlot.innerHTML = "";
 failedSeoNamesList.forEach(function (name) {
 var badge = document.createElement("div");
+badge.style.fontSize = "1em"; // Enforce identical text sizing
 badge.textContent = "• " + name;
 seoNeedsAttentionSlot.appendChild(badge);
 });
 }
 
-// 2. Render Architecture Warning Category layout format precisely as required
+// Render Architecture Warning Categories list cleanly
 var archCountNode = document.getElementById("summaryArchWarningCategories");
 if (archCountNode) {
 archCountNode.textContent = failedArchNamesList.length + " Categories";
@@ -780,11 +786,13 @@ if (archNeedsAttentionSlot) {
 archNeedsAttentionSlot.innerHTML = "";
 if (failedArchNamesList.length === 0) {
 var noneText = document.createElement("div");
+noneText.style.fontSize = "1em";
 noneText.textContent = "• None";
 archNeedsAttentionSlot.appendChild(noneText);
 } else {
 failedArchNamesList.forEach(function (name) {
 var badge = document.createElement("div");
+badge.style.fontSize = "1em"; // Enforce identical text sizing
 badge.textContent = "• " + name;
 archNeedsAttentionSlot.appendChild(badge);
 });
@@ -904,7 +912,6 @@ operationalStatus = "Fully Optimized";
 operationalStatus = "Good Progress";
 }
 
-// Passively output the pre-calculated, attached arrays directly to columns safely
 var missingSeoString = (article._missingSeo && article._missingSeo.length > 0) ? article._missingSeo.join(", ") : "None";
 var missingArchString = (article._missingArch && article._missingArch.length > 0) ? article._missingArch.join(", ") : "None";
 
