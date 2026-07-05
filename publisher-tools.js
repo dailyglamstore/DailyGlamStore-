@@ -754,50 +754,51 @@ document.getElementById("summaryBrokenLinks").textContent = brokenInternalLinksC
 document.getElementById("summaryHealthy").textContent = fullyOptimizedCount + " / " + totalArticleCount;
 document.getElementById("summaryAffectedArticles").textContent = totalArticlesAffectedBySeoWarnings + " / " + totalArticleCount;
 
-// Align SEO warnings with badge wrapper elements to match Architecture design
+// --- FIXED: SEO Warnings now use the exact same highlighted badge design container as Architecture ---
 var seoCountNode = document.getElementById("summarySeoWarningCategories");
 if (seoCountNode) {
-seoCountNode.textContent = failedSeoNamesList.length + " Categories";
+    seoCountNode.textContent = failedSeoNamesList.length + " Categories";
 }
 var seoNeedsAttentionSlot = document.getElementById("summaryNeedsAttentionSeoCategories");
 if (!seoNeedsAttentionSlot && seoCountNode && seoCountNode.parentNode) {
-seoNeedsAttentionSlot = document.createElement("div");
-seoNeedsAttentionSlot.id = "summaryNeedsAttentionSeoCategories";
-seoNeedsAttentionSlot.className = "summary-nested-badges-list"; // Synced layout classes
-seoCountNode.parentNode.appendChild(seoNeedsAttentionSlot);
+    seoNeedsAttentionSlot = document.createElement("div");
+    seoNeedsAttentionSlot.id = "summaryNeedsAttentionSeoCategories";
+    // Using the exact same container class responsible for the shaded badge background design
+    seoNeedsAttentionSlot.className = "summary-nested-badges-list"; 
+    seoCountNode.parentNode.appendChild(seoNeedsAttentionSlot);
 }
 if (seoNeedsAttentionSlot) {
-seoNeedsAttentionSlot.innerHTML = "";
-failedSeoNamesList.forEach(function (name) {
-var badge = document.createElement("div");
-badge.style.fontSize = "1em"; // Enforce identical text sizing
-badge.textContent = "• " + name;
-seoNeedsAttentionSlot.appendChild(badge);
-});
+    seoNeedsAttentionSlot.innerHTML = "";
+    failedSeoNamesList.forEach(function (name) {
+        // Creates individual badge divs instead of standard text bullets
+        var badge = document.createElement("div");
+        badge.style.fontSize = "1em"; // Matches the text size exactly
+        badge.textContent = "• " + name;
+        seoNeedsAttentionSlot.appendChild(badge);
+    });
 }
 
-// Render Architecture Warning Categories list cleanly
+// --- Architecture Warning Categories (Maintained exact badge loop) ---
 var archCountNode = document.getElementById("summaryArchWarningCategories");
 if (archCountNode) {
-archCountNode.textContent = failedArchNamesList.length + " Categories";
+    archCountNode.textContent = failedArchNamesList.length + " Categories";
 }
 var archNeedsAttentionSlot = document.getElementById("summaryNeedsAttentionCategories");
 if (archNeedsAttentionSlot) {
-archNeedsAttentionSlot.innerHTML = "";
-if (failedArchNamesList.length === 0) {
-var noneText = document.createElement("div");
-noneText.style.fontSize = "1em";
-noneText.textContent = "• None";
-archNeedsAttentionSlot.appendChild(noneText);
-} else {
-failedArchNamesList.forEach(function (name) {
-var badge = document.createElement("div");
-badge.style.fontSize = "1em"; // Enforce identical text sizing
-badge.textContent = "• " + name;
-archNeedsAttentionSlot.appendChild(badge);
-});
-}
-}
+    archNeedsAttentionSlot.innerHTML = "";
+    if (failedArchNamesList.length === 0) {
+        var noneText = document.createElement("div");
+        noneText.style.fontSize = "1em";
+        noneText.textContent = "• None";
+        archNeedsAttentionSlot.appendChild(noneText);
+    } else {
+        failedArchNamesList.forEach(function (name) {
+            var badge = document.createElement("div");
+            badge.style.fontSize = "1em"; 
+            badge.textContent = "• " + name;
+            archNeedsAttentionSlot.appendChild(badge);
+        });
+    }
 }
 
 function manufactureSitemapContent() {
