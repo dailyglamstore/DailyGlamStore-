@@ -672,7 +672,7 @@ seoLogSummaryNode.innerHTML = "Passed: " + passedSeoCount + " / " + totalSeoCate
 "Needs Attention: " + failedSeoNamesList.length;
 }
 
-// --- RENDER PANELS LAYER 2: ARTICLE ARCHITECTURE AUDIT PANEL (WITH NESTED REVEALS) ---
+// --- RENDER PANELS LAYER 2: ARTICLE ARCHITECTURE AUDIT PANEL ---
 var archWarningsLogContainer = document.getElementById("archWarningsLog");
 archWarningsLogContainer.innerHTML = "";
 
@@ -685,13 +685,12 @@ stdParams.forEach(function (p) { if (stdCovered[p.key] === stdCount) stdPassedRe
 var compPassedRequirementsCount = 0;
 compParams.forEach(function (p) { if (compCovered[p.key] === compCount) compPassedRequirementsCount++; });
 
-// Clear parent abstract text node out of the way
 var archLogSummaryNode = document.getElementById("archLogSummary");
 if (archLogSummaryNode) {
 archLogSummaryNode.innerHTML = "";
 }
 
-// Render dynamic layouts explicitly matching requested layout rules
+// Render dynamic layouts matching design updates
 var stdHeader = document.createElement("li");
 stdHeader.innerHTML = "<strong>STANDARD ARTICLES (Total: " + stdCount + ")</strong><br>" +
 "<span style='font-size:1em; color:inherit;'>Standard Template &nbsp;•&nbsp; " + stdPassedRequirementsCount + "/11 Requirements Covered</span><br>" +
@@ -745,7 +744,7 @@ if (nestedUI.children.length > 0) li.appendChild(nestedUI);
 archWarningsLogContainer.appendChild(li);
 });
 
-// --- CONSUMPTION LAYER: TODAY'S SCAN SUMMARY PANEL (MATCHED STYLING) ---
+// --- CONSUMPTION LAYER: TODAY'S SCAN SUMMARY PANEL (MATCHED BADGES LOGIC) ---
 document.getElementById("summaryArticles").textContent = totalArticleCount;
 document.getElementById("summaryAffiliate").textContent = statTotals.affiliateLinks;
 document.getElementById("summaryInternal").textContent = statTotals.internalLinks;
@@ -754,51 +753,50 @@ document.getElementById("summaryBrokenLinks").textContent = brokenInternalLinksC
 document.getElementById("summaryHealthy").textContent = fullyOptimizedCount + " / " + totalArticleCount;
 document.getElementById("summaryAffectedArticles").textContent = totalArticlesAffectedBySeoWarnings + " / " + totalArticleCount;
 
-// --- FIXED: SEO Warnings now use the exact same highlighted badge design container as Architecture ---
+// SEO Warnings now use identical container badge styling
 var seoCountNode = document.getElementById("summarySeoWarningCategories");
 if (seoCountNode) {
-    seoCountNode.textContent = failedSeoNamesList.length + " Categories";
+seoCountNode.textContent = failedSeoNamesList.length + " Categories";
 }
 var seoNeedsAttentionSlot = document.getElementById("summaryNeedsAttentionSeoCategories");
 if (!seoNeedsAttentionSlot && seoCountNode && seoCountNode.parentNode) {
-    seoNeedsAttentionSlot = document.createElement("div");
-    seoNeedsAttentionSlot.id = "summaryNeedsAttentionSeoCategories";
-    // Using the exact same container class responsible for the shaded badge background design
-    seoNeedsAttentionSlot.className = "summary-nested-badges-list"; 
-    seoCountNode.parentNode.appendChild(seoNeedsAttentionSlot);
+seoNeedsAttentionSlot = document.createElement("div");
+seoNeedsAttentionSlot.id = "summaryNeedsAttentionSeoCategories";
+seoNeedsAttentionSlot.className = "summary-nested-badges-list"; 
+seoCountNode.parentNode.appendChild(seoNeedsAttentionSlot);
 }
 if (seoNeedsAttentionSlot) {
-    seoNeedsAttentionSlot.innerHTML = "";
-    failedSeoNamesList.forEach(function (name) {
-        // Creates individual badge divs instead of standard text bullets
-        var badge = document.createElement("div");
-        badge.style.fontSize = "1em"; // Matches the text size exactly
-        badge.textContent = "• " + name;
-        seoNeedsAttentionSlot.appendChild(badge);
-    });
+seoNeedsAttentionSlot.innerHTML = "";
+failedSeoNamesList.forEach(function (name) {
+var badge = document.createElement("div");
+badge.style.fontSize = "1em"; 
+badge.textContent = "• " + name;
+seoNeedsAttentionSlot.appendChild(badge);
+});
 }
 
-// --- Architecture Warning Categories (Maintained exact badge loop) ---
+// Architecture Warning Categories Badge Loop
 var archCountNode = document.getElementById("summaryArchWarningCategories");
 if (archCountNode) {
-    archCountNode.textContent = failedArchNamesList.length + " Categories";
+archCountNode.textContent = failedArchNamesList.length + " Categories";
 }
 var archNeedsAttentionSlot = document.getElementById("summaryNeedsAttentionCategories");
 if (archNeedsAttentionSlot) {
-    archNeedsAttentionSlot.innerHTML = "";
-    if (failedArchNamesList.length === 0) {
-        var noneText = document.createElement("div");
-        noneText.style.fontSize = "1em";
-        noneText.textContent = "• None";
-        archNeedsAttentionSlot.appendChild(noneText);
-    } else {
-        failedArchNamesList.forEach(function (name) {
-            var badge = document.createElement("div");
-            badge.style.fontSize = "1em"; 
-            badge.textContent = "• " + name;
-            archNeedsAttentionSlot.appendChild(badge);
-        });
-    }
+archNeedsAttentionSlot.innerHTML = "";
+if (failedArchNamesList.length === 0) {
+var noneText = document.createElement("div");
+noneText.style.fontSize = "1em";
+noneText.textContent = "• None";
+archNeedsAttentionSlot.appendChild(noneText);
+} else {
+failedArchNamesList.forEach(function (name) {
+var badge = document.createElement("div");
+badge.style.fontSize = "1em"; 
+badge.textContent = "• " + name;
+archNeedsAttentionSlot.appendChild(badge);
+});
+}
+}
 }
 
 function manufactureSitemapContent() {
@@ -949,7 +947,7 @@ function runEnginePipeline() {
 initLiveTimestamp();
 gatherSourceObjects();
 processContentStatistics();
-runCategorizedAudit(); // Runs exactly once
+runCategorizedAudit(); 
 paintInterfaceOutputs();
 attachControlListeners();
 commitCurrentScanTimestamp();
