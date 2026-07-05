@@ -25,9 +25,11 @@ duplicateKeys: { label: "Duplicate Keys Across Inventories", items: [], status: 
 
 var archCategories = {
 relatedArticles: { label: "Related Articles", items: [], status: "pass" },
-linkPlan: { label: "LinkPlan", items: [], status: "pass" },
-productRecommendations: { label: "Product Recommendations", items: [], status: "pass" },
+linkPlan: { label: "LinkPlan Framework", items: [], status: "pass" },
+productRecommendations: { label: "productRecommendations", items: [], status: "pass" },
 alternativeProducts: { label: "alternativeProducts Layouts", items: [], status: "pass" },
+comparisonTable: { label: "comparisonTable", items: [], status: "pass" },
+minAffiliate: { label: "Minimum two affiliate:true links", items: [], status: "pass" },
 missingLinkTypes: { label: "Missing Link Types", items: [], status: "pass" },
 invalidAffiliateProps: { label: "Invalid Affiliate Link Settings", items: [], status: "pass" },
 invalidTargetTabs: { label: "Invalid Target Tab Directives", items: [], status: "pass" },
@@ -45,12 +47,12 @@ var stdParams = [
 { key: "author", label: "Author" },
 { key: "emptySections", label: "No Empty Sections" },
 { key: "relatedArticles", label: "Related Articles" },
-{ key: "linkPlan", label: "LinkPlan" },
-{ key: "productRecommendations", label: "Product Recommendations" }
+{ key: "linkPlan", label: "LinkPlan Framework" },
+{ key: "productRecommendations", label: "productRecommendations" }
 ];
 
 var compParams = stdParams.concat([
-{ key: "alternativeProducts", label: "alternativeProducts" },
+{ key: "alternativeProducts", label: "alternativeProducts Layouts" },
 { key: "comparisonTable", label: "comparisonTable" },
 { key: "minAffiliate", label: "Minimum two affiliate:true links" }
 ]);
@@ -58,7 +60,7 @@ var compParams = stdParams.concat([
 var stdCovered = { seoTitle: 0, seoDescription: 0, intro: 0, image: 0, faq: 0, dateModified: 0, author: 0, emptySections: 0, relatedArticles: 0, linkPlan: 0, productRecommendations: 0 };
 var compCovered = { seoTitle: 0, seoDescription: 0, intro: 0, image: 0, faq: 0, dateModified: 0, author: 0, emptySections: 0, relatedArticles: 0, linkPlan: 0, productRecommendations: 0, alternativeProducts: 0, comparisonTable: 0, minAffiliate: 0 };
 
-// Dynamic output data caches to feed the reporting layer
+// Dynamic lists to feed Today's Scan Summary passively
 var failedSeoNamesList = [];
 var failedArchNamesList = [];
 
@@ -200,9 +202,9 @@ document.getElementById("oldestArticleInfo").textContent = validDatedArticles[va
 }
 }
 
-function validateAffiliateProperty(item, locationContext, displayTitle, article) {
+function validateAffiliateProperty(item, locationContext, displayTitle) {
 if (!item.hasOwnProperty("affiliate")) {
-archCategories.invalidAffiliateProps.items.push(displayTitle + " -> " + locationContext + " is missing the 'affiliate' property");
+archCategories.invalidAffiliateProps.items.push(displayTitle + " -> " + locationContext + " is missing 'affiliate' property");
 return false;
 } else if (typeof item.affiliate !== "boolean") {
 archCategories.invalidAffiliateProps.items.push(displayTitle + " -> " + locationContext + " has a non-boolean affiliate value");
@@ -216,7 +218,7 @@ return !!(article.linkPlan || article.productRecommendations || article.alternat
 }
 
 function runCategorizedAudit() {
-// Reset local stat tracking state
+// Reset local stat metrics
 statTotals.affiliateLinks = 0;
 statTotals.nonAffiliateProducts = 0;
 statTotals.internalLinks = 0;
@@ -235,10 +237,10 @@ failedArchNamesList = [];
 
 Object.keys(stdCovered).forEach(function(k) { stdCovered[k] = 0; });
 Object.keys(compCovered).forEach(function(k) { compCovered[k] = 0; });
-Object.keys(seoCategories).forEach(function(k){ seoCategories[k].items = []; });
-Object.keys(archCategories).forEach(function(k){ archCategories[k].items = []; });
+Object.keys(seoCategories).forEach(function(k){ seoCategories[k].items = []; seoCategories[k].status = "pass"; });
+Object.keys(archCategories).forEach(function(k){ archCategories[k].items = []; archCategories[k].status = "pass"; });
 
-// Global Technical Issue 1: Duplicate Keys
+// Technical Check 1: Duplicate Keys
 Object.keys(uniqueArticleKeys).forEach(function (key) {
 if (uniqueArticleKeys[key].length > 1) {
 duplicateKeyCount += (uniqueArticleKeys[key].length - 1);
@@ -246,7 +248,7 @@ seoCategories.duplicateKeys.items.push("Inventory Key '" + key + "' repeated acr
 }
 });
 
-// Build accurate route verification array mapping
+// Warm up track arrays attached directly to baseline data
 allArticles.forEach(function (article) {
 var displayTitle = article.title || article.key || "Unnamed Article";
 article._missingSeo = [];
@@ -258,7 +260,7 @@ articleUrlsMap[cleanPath].push(displayTitle);
 }
 });
 
-// Global Technical Issue 2: Duplicate URLs
+// Technical Check 2: Duplicate URLs
 Object.keys(articleUrlsMap).forEach(function (urlPath) {
 if (articleUrlsMap[urlPath].length > 1) {
 duplicateUrlCount += (articleUrlsMap[urlPath].length - 1);
@@ -266,7 +268,7 @@ seoCategories.duplicateUrls.items.push("Path Target '" + urlPath + "' repeated i
 }
 });
 
-// Primary loop for Single Pass dynamic validation and parameter calculations
+// Primary validation loop
 allArticles.forEach(function (article) {
 var displayTitle = article.title || article.key || "Unnamed Article";
 var isNewArch = isUsingNewArchitecture(article);
@@ -303,7 +305,7 @@ var hasRelated = !!(article.relatedArticles && Array.isArray(article.relatedArti
 var hasLinkPlan = !!(article.linkPlan && Array.isArray(article.linkPlan));
 var hasRecommendations = !!(article.productRecommendations && article.productRecommendations.items && Array.isArray(article.productRecommendations.items));
 
-// ---------------- LAYER 1: SEO HEALTH AUDIT ENGINE ----------------
+// ---------------- LAYER 1: SEO AUDIT ENGINE ----------------
 var seoEarnedPoints = 0;
 var seoTotalPossible = 9;
 
@@ -332,7 +334,7 @@ var targetInternalHref = String(lnk.href).trim().toLowerCase();
 if (!articleUrlsMap[targetInternalHref]) {
 brokenInternalLinksCount++;
 hasBrokenLinks = true;
-seoCategories.brokenLinks.items.push("Broken link target detected: " + displayTitle + " -> " + lnk.href);
+seoCategories.brokenLinks.items.push("Broken link target: " + displayTitle + " -> " + lnk.href);
 }
 }
 });
@@ -364,7 +366,7 @@ if (hasRelated) {
 archEarnedPoints++;
 } else {
 article._missingArch.push("Related Articles");
-if (isNewArch) archCategories.relatedArticles.items.push(displayTitle);
+archCategories.relatedArticles.items.push(displayTitle);
 }
 
 var extractedLinks = [];
@@ -378,7 +380,7 @@ archCategories.missingLinkTypes.items.push(displayTitle + " -> Missing explicit 
 } else {
 var typeStr = String(linkItem.type).trim();
 if (typeStr === "affiliateProduct") {
-validateAffiliateProperty(linkItem, "linkPlan framework block", displayTitle, article);
+validateAffiliateProperty(linkItem, "linkPlan framework block", displayTitle);
 if (linkItem.affiliate === true) trueAffiliateCountForThisArticle++;
 }
 if (typeStr === "externalReference" && linkItem.newTab !== true) {
@@ -391,8 +393,8 @@ archCategories.invalidTargetTabs.items.push(displayTitle + " (Internal standard 
 }
 });
 } else {
-article._missingArch.push("LinkPlan");
-if (isNewArch) archCategories.linkPlan.items.push(displayTitle);
+article._missingArch.push("LinkPlan Framework");
+archCategories.linkPlan.items.push(displayTitle);
 }
 
 if (article.productRecommendations && article.productRecommendations.items && Array.isArray(article.productRecommendations.items)) {
@@ -402,17 +404,17 @@ if (recItem && typeof recItem === "object") {
 statTotals.recButtons++;
 extractedLinks.push(recItem);
 if (recItem.type === "affiliateProduct") {
-validateAffiliateProperty(recItem, "productRecommendations node", displayTitle, article);
+validateAffiliateProperty(recItem, "productRecommendations node", displayTitle);
 if (recItem.affiliate === true) trueAffiliateCountForThisArticle++;
 }
 }
 });
 } else {
-article._missingArch.push("Product Recommendations");
-if (isNewArch) archCategories.productRecommendations.items.push(displayTitle);
+article._missingArch.push("productRecommendations");
+archCategories.productRecommendations.items.push(displayTitle);
 }
 
-// Map Tally counters exactly for the Architecture Requirements Coverage values
+// Map Tally counters exactly for the Architecture Matrix counts
 if (!isComp) {
 if (hasSeoTitle) stdCovered.seoTitle++;
 if (hasSeoDesc) stdCovered.seoDescription++;
@@ -447,6 +449,7 @@ archEarnedPoints++;
 compCovered.comparisonTable++;
 } else {
 article._missingArch.push("comparisonTable");
+archCategories.comparisonTable.items.push(displayTitle);
 }
 
 if (hasAltProducts) {
@@ -457,7 +460,7 @@ article.alternativeProducts.items.forEach(function (altItem) {
 if (altItem && typeof altItem === "object") {
 extractedLinks.push(altItem);
 if (altItem.type === "affiliateProduct") {
-validateAffiliateProperty(altItem, "alternativeProducts grid entry", displayTitle, article);
+validateAffiliateProperty(altItem, "alternativeProducts grid entry", displayTitle);
 if (altItem.affiliate === true) trueAffiliateCountForThisArticle++;
 }
 }
@@ -473,16 +476,17 @@ archEarnedPoints++;
 compCovered.minAffiliate++;
 } else {
 article._missingArch.push("Minimum two affiliate:true links");
+archCategories.minAffiliate.items.push(displayTitle + " (" + trueAffiliateCountForThisArticle + " verified)");
 }
 
 if (!hasFaq || !hasCompRows || !hasRecommendations || !hasAltProducts || !hasLinkPlan || !meetsMinAffiliate) {
 var detailsMissing = [];
-if (!hasFaq) detailsMissing.push("FAQ missing");
+if (!hasFaq) detailsMissing.push("FAQ structural block missing");
 if (!hasCompRows) detailsMissing.push("comparisonTable empty");
 if (!hasRecommendations) detailsMissing.push("productRecommendations empty");
 if (!hasAltProducts) detailsMissing.push("alternativeProducts empty");
 if (!hasLinkPlan) detailsMissing.push("linkPlan missing");
-if (!meetsMinAffiliate) detailsMissing.push("less than 2 verified affiliate links");
+if (!meetsMinAffiliate) detailsMissing.push("contains less than two affiliate links");
 archCategories.comparisonValidation.items.push(displayTitle + " -> " + detailsMissing.join(", "));
 }
 }
@@ -500,38 +504,30 @@ if (lnk.type === "externalReference") statTotals.externalReferences++;
 article._completenessScore = Math.min(Math.round((archEarnedPoints / archTotalPossible) * 100), 100);
 });
 
-// Post Pass State Consolidation (Set status values and compute dynamic failed names lists)
+// Consolidate Category warnings and synchronize names list mapping for Today's Scan Summary
 Object.keys(seoCategories).forEach(function (k) {
 var cat = seoCategories[k];
 if (cat.items.length > 0) {
 cat.status = "warn";
 failedSeoNamesList.push(cat.label);
-} else {
-cat.status = "pass";
-}
-});
-
-Object.keys(archCategories).forEach(function (k) {
-var cat = archCategories[k];
-if (cat.items.length > 0) {
-cat.status = "warn";
-} else {
-cat.status = "pass";
 }
 });
 
 var stdCount = allArticles.filter(function (a) { return !a.comparisonTable; }).length;
 var compCount = allArticles.filter(function (a) { return !!a.comparisonTable; }).length;
 
-stdParams.forEach(function (p) {
-if (stdCovered[p.key] < stdCount) {
-failedArchNamesList.push(p.label);
+// Loop over all active requirements schemas to mark warning states and build precise summary labels
+Object.keys(archCategories).forEach(function (k) {
+var cat = archCategories[k];
+// Match validation status exactly based on whether the specific category contains active failures
+if (cat.items.length > 0) {
+cat.status = "warn";
+// Only add structural architectural requirements to the high-level dashboard metrics list
+if (k === "relatedArticles" || k === "linkPlan" || k === "productRecommendations" || k === "alternativeProducts" || k === "comparisonTable" || k === "minAffiliate") {
+var labelText = (k === "linkPlan") ? "LinkPlan Framework" : ((k === "alternativeProducts") ? "alternativeProducts Layouts" : cat.label);
+if (failedArchNamesList.indexOf(labelText) === -1) {
+failedArchNamesList.push(labelText);
 }
-});
-compParams.forEach(function (p) {
-if (compCovered[p.key] < compCount) {
-if (failedArchNamesList.indexOf(p.label) === -1) {
-failedArchNamesList.push(p.label);
 }
 }
 });
@@ -672,7 +668,7 @@ seoWarningsLogContainer.appendChild(listRowItem);
 var totalSeoCategoriesCount = Object.keys(seoCategories).length;
 document.getElementById("seoLogSummary").textContent = "Passed: " + passedSeoCount + " / " + totalSeoCategoriesCount + " | Needs Attention: " + failedSeoNamesList.length;
 
-// --- RENDER PANELS LAYER 2: ARTICLE ARCHITECTURE AUDIT PANEL (REALIGNED SYSTEM HEADERS)[span_7](start_span)[span_7](end_span) ---
+// --- RENDER PANELS LAYER 2: ARTICLE ARCHITECTURE AUDIT PANEL (WITH NESTED PROBLEMS REVEALED) ---
 var archWarningsLogContainer = document.getElementById("archWarningsLog");
 archWarningsLogContainer.innerHTML = "";
 
@@ -685,11 +681,11 @@ stdParams.forEach(function (p) { if (stdCovered[p.key] === stdCount) stdPassedRe
 var compPassedRequirementsCount = 0;
 compParams.forEach(function (p) { if (compCovered[p.key] === compCount) compPassedRequirementsCount++; });
 
-// Realign the presentation block to cleanly split by Template standards[span_8](start_span)[span_8](end_span)
+// Realign headers beautifully to template standards
 var archLogSummaryNode = document.getElementById("archLogSummary");
 if (archLogSummaryNode) {
 archLogSummaryNode.innerHTML = "Standard Template &nbsp;•&nbsp; " + stdPassedRequirementsCount + "/11 Requirements Covered<br>" +
-"Comparison Template &nbsp;•&nbsp; " + compPassedRequirementsCount + "/14 Requirements Covered";[span_9](start_span)[span_9](end_span)
+"Comparison Template &nbsp;•&nbsp; " + compPassedRequirementsCount + "/14 Requirements Covered";
 }
 
 var stdHeader = document.createElement("li");
@@ -702,6 +698,21 @@ var li = document.createElement("li");
 var passed = stdCovered[p.key] === stdCount;
 li.className = passed ? "log-pass" : "log-warn";
 li.textContent = (passed ? "✔ " : "⚠ ") + p.label + " (" + stdCovered[p.key] + " / " + stdCount + ")";
+// Print exact problem definitions inline matching the SEO structural style
+if (!passed && archCategories[p.key] && archCategories[p.key].items.length > 0) {
+var nestedUI = document.createElement("ul");
+nestedUI.className = "warning-nested-list";
+archCategories[p.key].items.forEach(function (nestedText) {
+// Only display standard articles that are actually missing this parameter
+var isStandardArticle = skincareArticlesList.concat(haircareArticlesList).some(function(sa) { return (sa.title || sa.key) === nestedText.split(" ->")[0]; });
+if (isStandardArticle) {
+var nestedLi = document.createElement("li");
+nestedLi.textContent = "• " + nestedText;
+nestedUI.appendChild(nestedLi);
+}
+});
+if (nestedUI.children.length > 0) li.appendChild(nestedUI);
+}
 archWarningsLogContainer.appendChild(li);
 });
 
@@ -715,10 +726,21 @@ var li = document.createElement("li");
 var passed = compCovered[p.key] === compCount;
 li.className = passed ? "log-pass" : "log-warn";
 li.textContent = (passed ? "✔ " : "⚠ ") + p.label + " (" + compCovered[p.key] + " / " + compCount + ")";
+// Print exact problem definitions inline matching the SEO structural style
+if (!passed && archCategories[p.key] && archCategories[p.key].items.length > 0) {
+var nestedUI = document.createElement("ul");
+nestedUI.className = "warning-nested-list";
+archCategories[p.key].items.forEach(function (nestedText) {
+var nestedLi = document.createElement("li");
+nestedLi.textContent = "• " + nestedText;
+nestedUI.appendChild(nestedLi);
+});
+if (nestedUI.children.length > 0) li.appendChild(nestedUI);
+}
 archWarningsLogContainer.appendChild(li);
 });
 
-// --- CONSUMPTION LAYER: TODAY'S SCAN SUMMARY PANEL (PURE presentation mirror)[span_10](start_span)[span_10](end_span) ---
+// --- CONSUMPTION LAYER: TODAY'S SCAN SUMMARY PANEL (PURE Presentation Mirror) ---
 document.getElementById("summaryArticles").textContent = totalArticleCount;
 document.getElementById("summaryAffiliate").textContent = statTotals.affiliateLinks;
 document.getElementById("summaryInternal").textContent = statTotals.internalLinks;
@@ -727,10 +749,10 @@ document.getElementById("summaryBrokenLinks").textContent = brokenInternalLinksC
 document.getElementById("summaryHealthy").textContent = fullyOptimizedCount + " / " + totalArticleCount;
 document.getElementById("summaryAffectedArticles").textContent = totalArticlesAffectedBySeoWarnings + " / " + totalArticleCount;
 
-// 1. Render SEO Warning Category layout format precisely as required[span_11](start_span)[span_11](end_span)
+// 1. Render SEO Warning Category layout format precisely as required
 var seoCountNode = document.getElementById("summarySeoWarningCategories");
 if (seoCountNode) {
-seoCountNode.textContent = failedSeoNamesList.length + " Categories";[span_12](start_span)[span_12](end_span)
+seoCountNode.textContent = failedSeoNamesList.length + " Categories";
 }
 var seoNeedsAttentionSlot = document.getElementById("summaryNeedsAttentionSeoCategories");
 if (!seoNeedsAttentionSlot && seoCountNode && seoCountNode.parentNode) {
@@ -743,15 +765,15 @@ if (seoNeedsAttentionSlot) {
 seoNeedsAttentionSlot.innerHTML = "";
 failedSeoNamesList.forEach(function (name) {
 var badge = document.createElement("div");
-badge.textContent = "• " + name;[span_13](start_span)[span_13](end_span)
+badge.textContent = "• " + name;
 seoNeedsAttentionSlot.appendChild(badge);
 });
 }
 
-// 2. Render Architecture Warning Category layout format precisely as required[span_14](start_span)[span_14](end_span)
+// 2. Render Architecture Warning Category layout format precisely as required
 var archCountNode = document.getElementById("summaryArchWarningCategories");
 if (archCountNode) {
-archCountNode.textContent = failedArchNamesList.length + " Categories";[span_15](start_span)[span_15](end_span)
+archCountNode.textContent = failedArchNamesList.length + " Categories";
 }
 var archNeedsAttentionSlot = document.getElementById("summaryNeedsAttentionCategories");
 if (archNeedsAttentionSlot) {
@@ -763,7 +785,7 @@ archNeedsAttentionSlot.appendChild(noneText);
 } else {
 failedArchNamesList.forEach(function (name) {
 var badge = document.createElement("div");
-badge.textContent = "• " + name;[span_16](start_span)[span_16](end_span)
+badge.textContent = "• " + name;
 archNeedsAttentionSlot.appendChild(badge);
 });
 }
@@ -882,9 +904,9 @@ operationalStatus = "Fully Optimized";
 operationalStatus = "Good Progress";
 }
 
-// Passively output the exact finalized values already calculated and attached to the article[span_17](start_span)[span_17](end_span)
-var missingSeoString = (article._missingSeo && article._missingSeo.length > 0) ? article._missingSeo.join(", ") : "None";[span_18](start_span)[span_18](end_span)
-var missingArchString = (article._missingArch && article._missingArch.length > 0) ? article._missingArch.join(", ") : "None";[span_19](start_span)[span_19](end_span)
+// Passively output the pre-calculated, attached arrays directly to columns safely
+var missingSeoString = (article._missingSeo && article._missingSeo.length > 0) ? article._missingSeo.join(", ") : "None";
+var missingArchString = (article._missingArch && article._missingArch.length > 0) ? article._missingArch.join(", ") : "None";
 
 if (missingSeoString.indexOf(",") !== -1) missingSeoString = '"' + missingSeoString + '"';
 if (missingArchString.indexOf(",") !== -1) missingArchString = '"' + missingArchString + '"';
