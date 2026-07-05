@@ -744,7 +744,7 @@ if (nestedUI.children.length > 0) li.appendChild(nestedUI);
 archWarningsLogContainer.appendChild(li);
 });
 
-// --- CONSUMPTION LAYER: TODAY'S SCAN SUMMARY PANEL (PERFECT VISUAL SYNCHRONIZATION) ---
+// // --- CONSUMPTION LAYER: TODAY'S SCAN SUMMARY PANEL (MATCHED STYLING) ---
 document.getElementById("summaryArticles").textContent = totalArticleCount;
 document.getElementById("summaryAffiliate").textContent = statTotals.affiliateLinks;
 document.getElementById("summaryInternal").textContent = statTotals.internalLinks;
@@ -753,7 +753,29 @@ document.getElementById("summaryBrokenLinks").textContent = brokenInternalLinksC
 document.getElementById("summaryHealthy").textContent = fullyOptimizedCount + " / " + totalArticleCount;
 document.getElementById("summaryAffectedArticles").textContent = totalArticlesAffectedBySeoWarnings + " / " + totalArticleCount;
 
-// 1. Render the Architecture Warning Categories first (to establish the visual baseline)
+// SEO Warning Categories Badges
+var seoCountNode = document.getElementById("summarySeoWarningCategories");
+if (seoCountNode) {
+    seoCountNode.textContent = failedSeoNamesList.length + " Categories";
+}
+var seoNeedsAttentionSlot = document.getElementById("summaryNeedsAttentionSeoCategories");
+if (!seoNeedsAttentionSlot && seoCountNode && seoCountNode.parentNode) {
+    seoNeedsAttentionSlot = document.createElement("div");
+    seoNeedsAttentionSlot.id = "summaryNeedsAttentionSeoCategories";
+    seoCountNode.parentNode.appendChild(seoNeedsAttentionSlot);
+}
+if (seoNeedsAttentionSlot) {
+    seoNeedsAttentionSlot.innerHTML = "";
+    failedSeoNamesList.forEach(function (name) {
+        var badge = document.createElement("div");
+        badge.className = "summary-nested-badges-list";
+        badge.style.fontSize = "1em"; 
+        badge.textContent = "• " + name;
+        seoNeedsAttentionSlot.appendChild(badge);
+    });
+}
+
+// Architecture Warning Categories Badges
 var archCountNode = document.getElementById("summaryArchWarningCategories");
 if (archCountNode) {
     archCountNode.textContent = failedArchNamesList.length + " Categories";
@@ -763,69 +785,19 @@ if (archNeedsAttentionSlot) {
     archNeedsAttentionSlot.innerHTML = "";
     if (failedArchNamesList.length === 0) {
         var noneText = document.createElement("div");
+        noneText.className = "summary-nested-badges-list";
         noneText.style.fontSize = "1em";
         noneText.textContent = "• None";
         archNeedsAttentionSlot.appendChild(noneText);
     } else {
         failedArchNamesList.forEach(function (name) {
             var badge = document.createElement("div");
+            badge.className = "summary-nested-badges-list";
             badge.style.fontSize = "1em"; 
             badge.textContent = "• " + name;
             archNeedsAttentionSlot.appendChild(badge);
         });
     }
-}
-
-// 2. Render the SEO Warning Categories and dynamically clone the Architecture design blueprint
-var seoCountNode = document.getElementById("summarySeoWarningCategories");
-if (seoCountNode) {
-    seoCountNode.textContent = failedSeoNamesList.length + " Categories";
-}
-var seoNeedsAttentionSlot = document.getElementById("summaryNeedsAttentionSeoCategories");
-if (!seoNeedsAttentionSlot && seoCountNode && seoCountNode.parentNode) {
-    seoNeedsAttentionSlot = document.createElement("div");
-    seoNeedsAttentionSlot.id = "summaryNeedsAttentionSeoCategories";
-    seoNeedsAttentionSlot.className = "summary-nested-badges-list"; 
-    seoCountNode.parentNode.appendChild(seoNeedsAttentionSlot);
-}
-
-if (seoNeedsAttentionSlot) {
-    seoNeedsAttentionSlot.innerHTML = "";
-    
-    // Find an active architecture badge to copy its exact styles/classes
-    var sampleArchBadge = archNeedsAttentionSlot ? archNeedsAttentionSlot.querySelector("div") : null;
-    
-    failedSeoNamesList.forEach(function (name) {
-        var badge = document.createElement("div");
-        badge.style.fontSize = "1em"; 
-        badge.textContent = "• " + name;
-        
-        // Dynamic Alignment: If the theme styles architecture badges via explicit classes, copy them over
-        if (sampleArchBadge && sampleArchBadge.className) {
-            badge.className = sampleArchBadge.className;
-        }
-        
-        // Stylesheet Fallback: If the theme styles them via ID hierarchy, manually apply the card highlights
-        if (sampleArchBadge) {
-            var computed = window.getComputedStyle(sampleArchBadge);
-            badge.style.background = computed.backgroundColor || computed.background;
-            badge.style.border = computed.border;
-            badge.style.borderLeft = computed.borderLeft;
-            badge.style.padding = computed.padding;
-            badge.style.borderRadius = computed.borderRadius;
-            badge.style.margin = computed.margin;
-            badge.style.color = computed.color;
-            badge.style.display = computed.display || "block";
-        } else {
-            // Safe Baseline Styles (in case architecture list is completely empty during this scan)
-            badge.style.display = "block";
-            badge.style.margin = "4px 0";
-            badge.style.padding = "6px 12px";
-            badge.style.fontSize = "1em";
-        }
-        
-        seoNeedsAttentionSlot.appendChild(badge);
-    });
 }
 }
 
