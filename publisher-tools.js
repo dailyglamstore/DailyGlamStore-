@@ -501,6 +501,62 @@ var totalRawDeductions = (duplicateUrlCount * 2) + (duplicateKeyCount * 2) + (br
 totalTechnicalDeductionPoints = Math.min(totalRawDeductions, 10);
 }
 
+// Lightweight Scoped Interface Layer to publish finalized engine results safely
+function buildFinalizedAuditOutputs() {
+var seoFailedNames = [];
+var seoTotal = Object.keys(seoCategories).length;
+var seoFailedCount = 0;
+var uniqueAffectedSeoArticles = [];
+
+Object.keys(seoCategories).forEach(function (key) {
+var cat = seoCategories[key];
+if (cat.status === "warn") {
+seoFailedCount++;
+seoFailedNames.push(cat.slug || cat.label);
+cat.items.forEach(function (nestedText) {
+var cleanArtName = nestedText.split(" (")[0].trim();
+if (uniqueAffectedSeoArticles.indexOf(cleanArtName) === -1) {
+uniqueAffectedSeoArticles.push(cleanArtName);
+}
+});
+}
+});
+
+var standardArticles = allArticles.filter(function (a) { return !a.comparisonTable; });
+var comparisonArticles = allArticles.filter(function (a) { return !!a.comparisonTable; });
+var stdCount = standardArticles.length;
+var compCount = comparisonArticles.length;
+
+var stdFailedNames = [];
+stdParams.forEach(function (param) {
+if (stdCovered[param.key] < stdCount) {
+stdFailedNames.push(param.label);
+}
+});
+
+var compFailedNames = [];
+compParams.forEach(function (param) {
+if (compCovered[param.key] < compCount) {
+compFailedNames.push(param.label);
+}
+});
+
+return {
+seo: {
+totalCategories: seoTotal,
+passedCategories: seoTotal - seoFailedCount,
+failedCategoriesCount: seoFailedCount,
+failedCategoryNames: seoFailedNames,
+affectedArticlesCount: uniqueAffectedSeoArticles.length
+},
+architecture: {
+standardSummary: { totalRequirements: stdParams.length, covered: stdParams.length - stdFailedNames.length, failedCount: stdFailedNames.length, names: stdFailedNames },
+comparisonSummary: { totalRequirements: compParams.length, covered: compParams.length - compFailedNames.length, failedCount: compFailedNames.length, names: compFailedNames },
+failedCategoriesCount: stdFailedNames.length + compFailedNames.length
+}
+};
+}
+
 function paintInterfaceOutputs() {
 var totalArticleCount = allArticles.length;
 var totalSeoSum = 0;
@@ -604,11 +660,12 @@ explanationArea.style.display = "block";
 explanationArea.style.display = "none";
 }
 
-// --- RENDER SECTION A: SEO HEALTH AUDIT ---
+// Generate the lightweight finalized output snapshot to distribute safely across the downstream presentation layers
+var currentAuditResultsSnapshot = buildFinalizedAuditOutputs();
+
+// --- RENDER PANELS LAYER 1: SEO HEALTH AUDIT ---
 var seoWarningsLogContainer = document.getElementById("seoWarningsLog");
 seoWarningsLogContainer.innerHTML = "";
-var seoFailedCategoriesCount = 0;
-var uniqueAffectedSeoArticles = [];
 
 Object.keys(seoCategories).forEach(function (catKey) {
 var cat = seoCategories[catKey];
@@ -617,7 +674,6 @@ if (cat.status === "pass") {
 listRowItem.className = "log-pass";
 listRowItem.textContent = "✔ " + cat.label;
 } else {
-seoFailedCategoriesCount++;
 listRowItem.className = "log-warn";
 listRowItem.textContent = "⚠ " + cat.label + " (" + cat.items.length + " articles)";
 var nestedUI = document.createElement("ul");
@@ -626,37 +682,24 @@ cat.items.forEach(function (nestedText) {
 var nestedLi = document.createElement("li");
 nestedLi.textContent = "• " + nestedText;
 nestedUI.appendChild(nestedLi);
-
-var cleanArtName = nestedText.split(" (")[0].trim();
-if (uniqueAffectedSeoArticles.indexOf(cleanArtName) === -1) {
-uniqueAffectedSeoArticles.push(cleanArtName);
-}
 });
 listRowItem.appendChild(nestedUI);
 }
 seoWarningsLogContainer.appendChild(listRowItem);
 });
-document.getElementById("seoLogSummary").textContent = "Passed: " + (12 - seoFailedCategoriesCount) + " / 12 | Needs Attention: " + seoFailedCategoriesCount;
+document.getElementById("seoLogSummary").textContent = "Passed: " + currentAuditResultsSnapshot.seo.passedCategories + " / " + currentAuditResultsSnapshot.seo.totalCategories + " | Needs Attention: " + currentAuditResultsSnapshot.seo.failedCategoriesCount;
 
-// --- RENDER SECTION B: ARTICLE ARCHITECTURE AUDIT (TABLES GENERATION) ---
+// --- RENDER PANELS LAYER 2: ARTICLE ARCHITECTURE AUDIT (TABLES GENERATION) ---
 var archWarningsLogContainer = document.getElementById("archWarningsLog");
 archWarningsLogContainer.innerHTML = "";
 
-var standardArticles = allArticles.filter(function (a) { return !a.comparisonTable; });
-var comparisonArticles = allArticles.filter(function (a) { return !!a.comparisonTable; });
+var totalArchitectureRequirements = currentAuditResultsSnapshot.architecture.standardSummary.totalRequirements + currentAuditResultsSnapshot.architecture.comparisonSummary.totalRequirements;
+var passedArchitectureRequirementsCount = totalArchitectureRequirements - currentAuditResultsSnapshot.architecture.failedCategoriesCount;
 
-var stdCount = standardArticles.length;
-var compCount = comparisonArticles.length;
+document.getElementById("archLogSummary").textContent = "Passed: " + passedArchitectureRequirementsCount + " / " + totalArchitectureRequirements + " Requirements | Needs Attention: " + currentAuditResultsSnapshot.architecture.failedCategoriesCount + " Requirements";
 
-var totalArchitectureRequirements = stdParams.length + compParams.length;
-var failedArchitectureRequirementsCount = 0;
-
-stdParams.forEach(function (p) { if (stdCovered[p.key] < stdCount) failedArchitectureRequirementsCount++; });
-compParams.forEach(function (p) { if (compCovered[p.key] < compCount) failedArchitectureRequirementsCount++; });
-
-var passedArchitectureRequirementsCount = totalArchitectureRequirements - failedArchitectureRequirementsCount;
-
-document.getElementById("archLogSummary").textContent = "Passed: " + passedArchitectureRequirementsCount + " / " + totalArchitectureRequirements + " Requirements | Needs Attention: " + failedArchitectureRequirementsCount + " Requirements";
+var stdCount = allArticles.filter(function (a) { return !a.comparisonTable; }).length;
+var compCount = allArticles.filter(function (a) { return !!a.comparisonTable; }).length;
 
 var stdHeader = document.createElement("li");
 stdHeader.innerHTML = "<strong>STANDARD ARTICLES (Total: " + stdCount + ")</strong>";
@@ -684,46 +727,78 @@ li.textContent = (passed ? "✔ " : "⚠ ") + p.label + " (" + compCovered[p.key
 archWarningsLogContainer.appendChild(li);
 });
 
-// --- REFINED PASSTHROUGH: TODAY'S SCAN SUMMARY ARCHITECTURE FLAGS ---
-var archWarningCategoriesCount = 0;
-var needsAttentionSubSlot = document.getElementById("summaryNeedsAttentionCategories");
-if (needsAttentionSubSlot) {
-needsAttentionSubSlot.innerHTML = "";
-}
-
-// Today's Scan Summary loops directly through the active finished grid rows to output exact failures
-stdParams.forEach(function (param) {
-if (stdCovered[param.key] < stdCount) {
-archWarningCategoriesCount++;
-if (needsAttentionSubSlot) {
-var badge = document.createElement("div");
-badge.textContent = param.label;
-needsAttentionSubSlot.appendChild(badge);
-}
-}
-});
-
-compParams.forEach(function (param) {
-if (compCovered[param.key] < compCount) {
-archWarningCategoriesCount++;
-if (needsAttentionSubSlot) {
-var badge = document.createElement("div");
-badge.textContent = param.label;
-needsAttentionSubSlot.appendChild(badge);
-}
-}
-});
-
+// --- CONSUMPTION LAYER: TODAY'S SCAN SUMMARY PANEL (PURE presentation mirror) ---
 document.getElementById("summaryArticles").textContent = totalArticleCount;
 document.getElementById("summaryAffiliate").textContent = statTotals.affiliateLinks;
 document.getElementById("summaryInternal").textContent = statTotals.internalLinks;
 document.getElementById("summarySeoScore").textContent = websiteSeoScore + "/100";
 document.getElementById("summaryBrokenLinks").textContent = brokenInternalLinksCount;
-
-document.getElementById("summarySeoWarningCategories").textContent = seoFailedCategoriesCount;
-document.getElementById("summaryAffectedArticles").textContent = uniqueAffectedSeoArticles.length + " / " + totalArticleCount;
-document.getElementById("summaryArchWarningCategories").textContent = archWarningCategoriesCount;
 document.getElementById("summaryHealthy").textContent = fullyOptimizedCount + " / " + totalArticleCount;
+document.getElementById("summaryAffectedArticles").textContent = currentAuditResultsSnapshot.seo.affectedArticlesCount + " / " + totalArticleCount;
+
+// 1. Render SEO Warning Count and Dynamic Category Badges
+document.getElementById("summarySeoWarningCategories").textContent = currentAuditResultsSnapshot.seo.failedCategoriesCount;
+var seoNeedsAttentionSlot = document.getElementById("summaryNeedsAttentionSeoCategories");
+if (!seoNeedsAttentionSlot) {
+// Gracefully fallback or append if container node doesn't explicitly pre-exist inside dashboard template
+var seoCountNode = document.getElementById("summarySeoWarningCategories");
+if (seoCountNode && seoCountNode.parentNode) {
+seoNeedsAttentionSlot = document.createElement("div");
+seoNeedsAttentionSlot.id = "summaryNeedsAttentionSeoCategories";
+seoNeedsAttentionSlot.className = "summary-nested-badges-list";
+seoCountNode.parentNode.appendChild(seoNeedsAttentionSlot);
+}
+}
+if (seoNeedsAttentionSlot) {
+seoNeedsAttentionSlot.innerHTML = "";
+currentAuditResultsSnapshot.seo.failedCategoryNames.forEach(function (name) {
+var badge = document.createElement("div");
+badge.textContent = "• " + name;
+seoNeedsAttentionSlot.appendChild(badge);
+});
+}
+
+// 2. Render Architecture Warnings Summary split elegantly into dynamic sets
+var archCountContainer = document.getElementById("summaryArchWarningCategories");
+if (archCountContainer) {
+archCountContainer.innerHTML = "Standard: " + currentAuditResultsSnapshot.architecture.standardSummary.failedCount + " &nbsp;|&nbsp; Comparison: " + currentAuditResultsSnapshot.architecture.comparisonSummary.failedCount;
+}
+
+var archNeedsAttentionSlot = document.getElementById("summaryNeedsAttentionCategories");
+if (archNeedsAttentionSlot) {
+archNeedsAttentionSlot.innerHTML = "";
+
+
+var stdSubHeader = document.createElement("strong");
+stdSubHeader.textContent = "Standard Template";
+archNeedsAttentionSlot.appendChild(stdSubHeader);
+if (currentAuditResultsSnapshot.architecture.standardSummary.names.length === 0) {
+var noneText = document.createElement("div");
+noneText.textContent = "• None";
+archNeedsAttentionSlot.appendChild(noneText);
+} else {
+currentAuditResultsSnapshot.architecture.standardSummary.names.forEach(function (name) {
+var badge = document.createElement("div");
+badge.textContent = "• " + name;
+archNeedsAttentionSlot.appendChild(badge);
+});
+}
+
+var compSubHeader = document.createElement("strong");
+compSubHeader.innerHTML = "<br>Comparison Template";
+archNeedsAttentionSlot.appendChild(compSubHeader);
+if (currentAuditResultsSnapshot.architecture.comparisonSummary.names.length === 0) {
+var noneText = document.createElement("div");
+noneText.textContent = "• None";
+archNeedsAttentionSlot.appendChild(noneText);
+} else {
+currentAuditResultsSnapshot.architecture.comparisonSummary.names.forEach(function (name) {
+var badge = document.createElement("div");
+badge.textContent = "• " + name;
+archNeedsAttentionSlot.appendChild(badge);
+});
+}
+}
 }
 
 function manufactureSitemapContent() {
@@ -838,7 +913,7 @@ operationalStatus = "Fully Optimized";
 operationalStatus = "Good Progress";
 }
 
-// CSV reads the exact per-article output strings from the execution arrays directly
+// CSV reads directly from the finalized execution results arrays bound to individual records
 var missingSeoString = (article._missingSeo && article._missingSeo.length > 0) ? article._missingSeo.join(", ") : "None";
 var missingArchString = (article._missingArch && article._missingArch.length > 0) ? article._missingArch.join(", ") : "None";
 
