@@ -2708,17 +2708,12 @@ document.addEventListener("DOMContentLoaded", function () {
        (ignores the ▼ toggle span)
     ---------------------------------------------- */
 
-    let question = "";
-
-    questionButton.childNodes.forEach(function (node) {
-
-      if (node.nodeType === Node.TEXT_NODE) {
-        question += node.textContent;
-      }
-
-    });
-
-    question = question.replace(/\s+/g, " ").trim();
+    const question = Array.from(questionButton.childNodes)
+  .filter(node => node.nodeType === Node.TEXT_NODE)
+  .map(node => node.textContent)
+  .join(" ")
+  .replace(/\s+/g, " ")
+  .trim();
 
     /* ---------------------------------------------
        Extract clean answer text
