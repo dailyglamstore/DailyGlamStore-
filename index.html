@@ -2285,26 +2285,6 @@ respective owners and are used for informational, review, and recommendation pur
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    function isFaqCrossPageLink(link) {
-      const href = (link.getAttribute("href") || "").trim();
-      if (!href || href.startsWith("#")) {
-        return false;
-      }
-      const parsed = new URL(href, window.location.href);
-      const current = new URL(window.location.href);
-      return parsed.pathname !== current.pathname || parsed.origin !== current.origin;
-    }
-
-    document.querySelectorAll(".faq-guide-link").forEach(function (link) {
-      if (isFaqCrossPageLink(link)) {
-        link.setAttribute("target", "_blank");
-        link.setAttribute("rel", "noopener noreferrer");
-      } else {
-        link.removeAttribute("target");
-        link.removeAttribute("rel");
-      }
-    });
-
     const faqVisibleLimitByGroup = {
       skincare: 3,
       haircare: 3,
