@@ -2675,6 +2675,101 @@ routineCards.forEach((card) => {
   observer.observe(card);
 });
 </script>
+
+<script>
+/* ===========================================================
+   Daily Glam Store
+   Automatic FAQPage JSON-LD Generator
+
+   Workflow:
+   • Edit FAQs only in HTML.
+   • Add or remove FAQs freely.
+   • JSON-LD updates automatically.
+   • No manual FAQ schema maintenance required.
+=========================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const faqItems = document.querySelectorAll(".faq-item");
+
+  if (!faqItems.length) return;
+
+  const mainEntity = [];
+
+  faqItems.forEach(function (item) {
+
+    const questionButton = item.querySelector(".faq-question");
+    const answerElement = item.querySelector(".faq-answer-inner");
+
+    if (!questionButton || !answerElement) return;
+
+    /* ---------------------------------------------
+       Extract clean question text
+       (ignores the ▼ toggle span)
+    ---------------------------------------------- */
+
+    let question = "";
+
+    questionButton.childNodes.forEach(function (node) {
+
+      if (node.nodeType === Node.TEXT_NODE) {
+        question += node.textContent;
+      }
+
+    });
+
+    question = question.replace(/\s+/g, " ").trim();
+
+    /* ---------------------------------------------
+       Extract clean answer text
+    ---------------------------------------------- */
+
+    let answer = answerElement.textContent
+      .replace(/\s+/g, " ")
+      .trim();
+
+    if (!question || !answer) return;
+
+    mainEntity.push({
+
+      "@type": "Question",
+
+      "name": question,
+
+      "acceptedAnswer": {
+
+        "@type": "Answer",
+
+        "text": answer
+
+      }
+
+    });
+
+  });
+
+  if (!mainEntity.length) return;
+
+  const faqSchema = {
+
+    "@context": "https://schema.org",
+
+    "@type": "FAQPage",
+
+    "mainEntity": mainEntity
+
+  };
+
+  const schemaScript = document.createElement("script");
+
+  schemaScript.type = "application/ld+json";
+
+  schemaScript.textContent = JSON.stringify(faqSchema);
+
+  document.head.appendChild(schemaScript);
+
+});
+</script>
   
   <script type="application/ld+json">
 {
