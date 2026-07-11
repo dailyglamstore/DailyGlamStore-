@@ -205,11 +205,17 @@ if (article.author && article.author.length) {
         );
       }
 
-      if (section.guideLinkText && section.guideLinkHref) {
-        sectionParts.push(
-          '<p class="guide-line"> Explore our <a class="guide-link" href="' + escapeHtml(section.guideLinkHref) + '"' + buildTargetAttributes(section.guideLinkNewTab) + ">" + escapeHtml(section.guideLinkText) + "</a></p>"
-        );
-      }
+      if (section.relatedLinkText && section.relatedLinkHref) {
+  sectionParts.push(
+    '<p class="guide-line">Learn more in our <a class="guide-link" href="' +
+    escapeHtml(section.relatedLinkHref) +
+    '"' +
+    buildTargetAttributes(section.relatedLinkNewTab) +
+    ">" +
+    escapeHtml(section.relatedLinkText) +
+    "</a>.</p>"
+  );
+}
 
       return sectionParts.join("\n");
     })
