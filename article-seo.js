@@ -14,7 +14,7 @@
   var description =
     article.seoDescription ||
     article.intro ||
-    "Beauty recommendations and guides.";
+    "Beauty recommendations, articles and practical beauty advice.";
 
   var image =
     article.image && article.image.src
