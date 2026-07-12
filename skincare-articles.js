@@ -734,20 +734,9 @@ alternativeProducts: {
     "Looking for More Skincare Help?",
 
   ctaText:
-    "Explore skincare guides or browse curated skincare recommendations to make choosing products easier.",
+    "Explore our curated skincare recommendations to make choosing products easier.",
 
   ctaButtons: [
-    {
-      text:
-        "Explore Beauty Guides",
-
-      href:
-        "/beauty-guides.html",
-
-      newTab:
-        true
-    },
-
     {
       text:
         "Browse Skincare Recommendations",
