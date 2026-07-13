@@ -189,7 +189,7 @@ sections: [
 
   paragraphs: [
     "A daily skincare routine doesn't need to be complicated to deliver good results. Understanding your skin type, following the correct morning and night skincare routine, and choosing suitable products are the foundations of healthy-looking skin.",
-“At Daily Glam Store, we believe consistency is more important than complexity. Rather than encouraging people to buy more products, our goal is to help you build a routine that suits your skin type and that you can comfortably follow every day.”
+"At Daily Glam Store, we believe consistency is more important than complexity. Rather than encouraging people to buy more products, our goal is to help you build a routine that suits your skin type and that you can comfortably follow every day.",
     "Start with the essentials, stay consistent, and gradually build your routine as your skin's needs become clearer. A simple routine that you can follow every day will always be more valuable than a complicated routine that's difficult to maintain."
   ]
 },
