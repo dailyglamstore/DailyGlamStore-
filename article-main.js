@@ -204,6 +204,44 @@ if (article.author && article.author.length) {
           "</div>"
         );
       }
+      
+      if (
+  section.infoBox &&
+  section.infoBox.text &&
+  section.infoBox.text.trim()
+) {
+
+  var defaultTitles = {
+    tip: "Quick Tip",
+    warning: "Common Mistake",
+    note: "Good to Know",
+    expert: "Daily Glam Store Insight"
+  };
+
+  var boxType = section.infoBox.type || "note";
+
+  var boxTitle =
+    section.infoBox.title &&
+    section.infoBox.title.trim()
+      ? section.infoBox.title
+      : (defaultTitles[boxType] || "Good to Know");
+
+  sectionParts.push(
+    '<div class="article-info-box info-' +
+      escapeHtml(boxType) +
+      '">' +
+
+      '<div class="info-box-title">' +
+      escapeHtml(boxTitle) +
+      '</div>' +
+
+      '<p class="info-box-text">' +
+      escapeHtml(section.infoBox.text) +
+      '</p>' +
+
+    '</div>'
+  );
+}
 
       if (section.relatedLinkText && section.relatedLinkHref) {
   sectionParts.push(
