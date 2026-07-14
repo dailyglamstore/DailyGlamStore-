@@ -40,7 +40,7 @@ linkPlan: [
 ],
 
 metaLine:
-  "Beginner-friendly skincare guide • Morning & Night Routine • Updated for 2026",
+  "Beginner-friendly skincare guide • Morning & Night Routine • Simple Everyday Steps",
 
 image: {
   src: "images/beauty-images/blog/simple-skincare-routine-healthy-glowing-skin.JPG",
