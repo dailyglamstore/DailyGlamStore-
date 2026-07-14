@@ -221,16 +221,26 @@ if (article.author && article.author.length) {
     })
     .join("\n\n");
 
-  var tocMarkup = article.showTableOfContents && tocitems.length
-    ? [
-        '<section class="table-of-contents">',
-        "<h2>Quick Navigation</h2>",
-        '<ul class="toc-list">',
-        tocitems.join("\n"),
-        "</ul>",
-        "</section>"
-      ].join("\n")
-    : "";
+  var shouldShowTOC =
+  article.showTableOfContents === true ||
+  (
+    article.showTableOfContents !== false &&
+    (
+      !!article.comparisonTable ||
+      tocitems.length >= 7
+    )
+  );
+
+var tocMarkup = shouldShowTOC && tocitems.length
+  ? [
+      '<section class="table-of-contents">',
+      "<h2>Quick Navigation</h2>",
+      '<ul class="toc-list">',
+      tocitems.join("\n"),
+      "</ul>",
+      "</section>"
+    ].join("\n")
+  : "";
 
   var productRecommendationsMarkup = article.productRecommendations && article.productRecommendations.items && article.productRecommendations.items.length
     ? [
