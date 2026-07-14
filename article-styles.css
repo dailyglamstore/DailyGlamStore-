@@ -292,6 +292,57 @@ html { scroll-behavior: smooth; }
 
     .guide-link:hover { color: var(--brand-dark); }
 
+    .article-info-box{
+  margin:28px 0;
+  padding:18px 20px;
+  border-left:5px solid var(--brand);
+  border-radius:12px;
+  background:#fafafa;
+}
+
+.info-box-title{
+  font-size:1rem;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+.info-box-text{
+  margin:0;
+  line-height:1.75;
+}
+
+.info-tip{
+  border-left-color:#2e7d32;
+}
+
+.info-tip .info-box-title::before{
+  content:"💡 ";
+}
+
+.info-warning{
+  border-left-color:#e67e22;
+}
+
+.info-warning .info-box-title::before{
+  content:"⚠️ ";
+}
+
+.info-note{
+  border-left-color:#1976d2;
+}
+
+.info-note .info-box-title::before{
+  content:"📝 ";
+}
+
+.info-expert{
+  border-left-color:var(--brand);
+}
+
+.info-expert .info-box-title::before{
+  content:"✨ ";
+}
+
     .routine-cta {
       margin-top: 34px;
       background: var(--white);
