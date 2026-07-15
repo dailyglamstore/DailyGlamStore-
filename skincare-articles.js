@@ -58,7 +58,7 @@ sections: [
     "A basic skincare routine usually includes cleansing, moisturising, and protecting your skin with sunscreen during the day. Depending on your skin concerns, products such as serums can also be added to target issues like dryness, pigmentation, acne, or dullness.",
 
     "The goal isn't to achieve perfect skin overnight. Healthy skin develops through regular care, patience, and using products that suit your individual skin type."
-  ]
+  ],
 
 infoBox: {
   type: "warning",
