@@ -89,10 +89,28 @@ sections: [
   ],
 
   infoBox: {
-    type: "expert",
-    title: "",
-    text: "Through years of recommending skincare products, we've found that people usually get better long-term results when they first understand their skin type instead of choosing products simply because they're trending."
-  },
+  type: "tip",
+  title: "",
+  text: "Using a simple routine consistently is usually more effective than frequently changing skincare products."
+},
+
+infoBox: {
+  type: "note",
+  title: "",
+  text: "Everyone's skin is different. Introduce new products one at a time so you can easily identify what works best for your skin."
+},
+
+infoBox: {
+  type: "warning",
+  title: "",
+  text: "Avoid using too many active ingredients together unless you understand how they work. Overusing products may irritate your skin."
+},
+
+infoBox: {
+  type: "expert",
+  title: "",
+  text: "Through years of recommending skincare products, we've found that people usually get better long-term results when they first understand their skin type instead of choosing products simply because they're trending."
+},
 
   bullets: [
     "Oily Skin – Produces excess oil and may be more prone to clogged pores.",
