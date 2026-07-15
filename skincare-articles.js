@@ -140,7 +140,14 @@ infoBox: {
     "Step 3: Apply a moisturiser to keep your skin hydrated and support its natural protective barrier. Even oily skin benefits from a lightweight moisturiser because hydration and oil production are not the same thing.",
 
     "Step 4: Finish your morning routine with a broad-spectrum sunscreen. Daily sunscreen helps protect your skin from UV exposure, supports long-term skin health, and is one of the most important steps in any daytime skincare routine."
-  ]
+  ],
+
+infoBox: {
+  type: "warning",
+  title: "",
+  text: "Through years of recommending skincare products, we've found that people usually get better long-term results when they first understand their skin type instead of choosing products simply because they're trending."
+}
+
 },
 
 {
