@@ -58,13 +58,7 @@ sections: [
     "A basic skincare routine usually includes cleansing, moisturising, and protecting your skin with sunscreen during the day. Depending on your skin concerns, products such as serums can also be added to target issues like dryness, pigmentation, acne, or dullness.",
 
     "The goal isn't to achieve perfect skin overnight. Healthy skin develops through regular care, patience, and using products that suit your individual skin type."
-  ],
-
-infoBox: {
-  type: "tip",
-  title: "",
-  text: "Using a simple routine consistently is usually more effective than frequently changing skincare products."
-},
+  ]
 
 },
 
@@ -76,12 +70,6 @@ infoBox: {
 
     "A consistent routine also allows skincare products to work more effectively. Using the right products in the correct order can improve hydration, reduce excess oil, and support healthier-looking skin over time."
   ],
-
-infoBox: {
-  type: "note",
-  title: "",
-  text: "Everyone's skin is different. Introduce new products one at a time so you can easily identify what works best for your skin."
-},
 
   bullets: [
     "Removes dirt, oil, and daily impurities.",
@@ -99,13 +87,7 @@ infoBox: {
     "Before building a daily skincare routine, it's important to understand your skin type. Products that work well for one person may not be suitable for another, which is why choosing products based on your skin's needs is more effective than following trends.",
 
     "If you're unsure about your skin type, start with a simple routine and observe how your skin feels after cleansing and moisturising. Over time, you'll better understand which products work best for you."
-  ],
-
-infoBox: {
-  type: "expert",
-  title: "",
-  text: "Through years of recommending skincare products, we've found that people usually get better long-term results when they first understand their skin type instead of choosing products simply because they're trending."
-},
+  ]
 
   bullets: [
     "Oily Skin – Produces excess oil and may be more prone to clogged pores.",
@@ -123,12 +105,6 @@ infoBox: {
 
     "For most beginners, a daily skincare routine doesn't need many products. Following the correct sequence consistently is far more important than having a large collection of products."
   ],
-
-infoBox: {
-  type: "warning",
-  title: "",
-  text: "Avoid using too many active ingredients together unless you understand how they work. Overusing products may irritate your skin."
-},
 
   bullets: [
     "Morning: Face Wash → Serum (Optional) → Moisturiser → Sunscreen",
