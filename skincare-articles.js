@@ -59,6 +59,13 @@ sections: [
 
     "The goal isn't to achieve perfect skin overnight. Healthy skin develops through regular care, patience, and using products that suit your individual skin type."
   ]
+
+infoBox: {
+  type: "tip",
+  title: "",
+  text: "Using a simple routine consistently is usually more effective than frequently changing skincare products."
+},
+
 },
 
 {
@@ -69,6 +76,12 @@ sections: [
 
     "A consistent routine also allows skincare products to work more effectively. Using the right products in the correct order can improve hydration, reduce excess oil, and support healthier-looking skin over time."
   ],
+
+infoBox: {
+  type: "note",
+  title: "",
+  text: "Everyone's skin is different. Introduce new products one at a time so you can easily identify what works best for your skin."
+},
 
   bullets: [
     "Removes dirt, oil, and daily impurities.",
@@ -87,24 +100,6 @@ sections: [
 
     "If you're unsure about your skin type, start with a simple routine and observe how your skin feels after cleansing and moisturising. Over time, you'll better understand which products work best for you."
   ],
-
-  infoBox: {
-  type: "tip",
-  title: "",
-  text: "Using a simple routine consistently is usually more effective than frequently changing skincare products."
-},
-
-infoBox: {
-  type: "note",
-  title: "",
-  text: "Everyone's skin is different. Introduce new products one at a time so you can easily identify what works best for your skin."
-},
-
-infoBox: {
-  type: "warning",
-  title: "",
-  text: "Avoid using too many active ingredients together unless you understand how they work. Overusing products may irritate your skin."
-},
 
 infoBox: {
   type: "expert",
@@ -128,6 +123,12 @@ infoBox: {
 
     "For most beginners, a daily skincare routine doesn't need many products. Following the correct sequence consistently is far more important than having a large collection of products."
   ],
+
+infoBox: {
+  type: "warning",
+  title: "",
+  text: "Avoid using too many active ingredients together unless you understand how they work. Overusing products may irritate your skin."
+},
 
   bullets: [
     "Morning: Face Wash → Serum (Optional) → Moisturiser → Sunscreen",
