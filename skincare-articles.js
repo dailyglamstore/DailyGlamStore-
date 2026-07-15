@@ -143,7 +143,7 @@ infoBox: {
   ],
 
 infoBox: {
-  type: "warning",
+  type: "note",
   title: "",
   text: "Through years of recommending skincare products, we've found that people usually get better long-term results when they first understand their skin type instead of choosing products simply because they're trending."
 }
