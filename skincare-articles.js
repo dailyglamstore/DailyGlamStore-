@@ -59,7 +59,6 @@ sections: [
 
     "The goal isn't to achieve perfect skin overnight. Healthy skin develops through regular care, patience, and using products that suit your individual skin type."
   ]
-
 },
 
 {
@@ -87,7 +86,13 @@ sections: [
     "Before building a daily skincare routine, it's important to understand your skin type. Products that work well for one person may not be suitable for another, which is why choosing products based on your skin's needs is more effective than following trends.",
 
     "If you're unsure about your skin type, start with a simple routine and observe how your skin feels after cleansing and moisturising. Over time, you'll better understand which products work best for you."
-  ]
+  ],
+
+  infoBox: {
+    type: "expert",
+    title: "",
+    text: "Through years of recommending skincare products, we've found that people usually get better long-term results when they first understand their skin type instead of choosing products simply because they're trending."
+  },
 
   bullets: [
     "Oily Skin – Produces excess oil and may be more prone to clogged pores.",
