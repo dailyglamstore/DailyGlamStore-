@@ -70,6 +70,12 @@ sections: [
     "A consistent routine also allows skincare products to work more effectively. Using the right products in the correct order can improve hydration, reduce excess oil, and support healthier-looking skin over time."
   ],
 
+infoBox: {
+  type: "tip",
+  title: "",
+  text: "Through years of recommending skincare products, we've found that people usually get better long-term results when they first understand their skin type instead of choosing products simply because they're trending."
+},
+
   bullets: [
     "Removes dirt, oil, and daily impurities.",
     "Helps maintain your skin's natural moisture barrier.",
