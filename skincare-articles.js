@@ -59,6 +59,12 @@ sections: [
 
     "The goal isn't to achieve perfect skin overnight. Healthy skin develops through regular care, patience, and using products that suit your individual skin type."
   ]
+
+infoBox: {
+  type: "tip",
+  title: "",
+  text: "Through years of recommending skincare products, we've found that people usually get better long-term results when they first understand their skin type instead of choosing products simply because they're trending."
+},
 },
 
 {
