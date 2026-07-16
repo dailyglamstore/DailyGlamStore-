@@ -313,12 +313,12 @@ html { scroll-behavior: smooth; }
 }
 
 .info-tip{
-  background:#F0FFF4;
-  border-left-color:#22C55E;
+  border-left-color:#5aa9e6;
+  background:#eef8ff;
 }
 
 .info-tip .info-box-title{
-  color:#166534;
+  color:#2f7fb8;
 }
 
 .info-tip .info-box-title::before{
