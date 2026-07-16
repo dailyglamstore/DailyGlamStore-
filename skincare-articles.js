@@ -614,7 +614,13 @@ metaLine:
         "The truth is, there is no single sunscreen that works perfectly for everyone. A sunscreen that feels amazing for dry skin may feel heavy on oily skin. Similarly, a lightweight sunscreen loved by oily skin users may not feel moisturising enough for someone with dry skin.",
 
         "Instead of choosing only based on brand popularity, it usually helps to compare texture, finish, comfort, and suitability for your skin type before making a decision."
-      ]
+      ],
+      
+      infoBox: {
+  type: "note",
+  title: "Before You Decide",
+  text: "Both sunscreens offer SPF 50 mineral protection, but the better choice depends on your skin type, finish preference, and budget—not just the SPF number."
+}
     },
 
     {
