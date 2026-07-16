@@ -699,7 +699,13 @@ metaLine:
         "Choose Lotus if you enjoy a slightly nourishing finish",
         "Choose Be Bodywise if you prefer lightweight feel",
         "Skin type and weather can affect experience"
-      ]
+      ],
+      
+      infoBox: {
+  type: "expert",
+  title: "Daily Glam Store Recommendation",
+  text: "If you're unsure which sunscreen to buy, choose the one that best matches your skin type and the finish you prefer. A sunscreen you enjoy wearing every day is far more valuable than one with better specifications that you rarely use."
+}
     },
 
     {
