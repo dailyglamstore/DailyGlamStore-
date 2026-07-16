@@ -312,8 +312,6 @@ html { scroll-behavior: smooth; }
   line-height:1.75;
 }
 
-/* Tip */
-
 .info-tip{
   background:#F0FFF4;
   border-left-color:#22C55E;
@@ -326,8 +324,6 @@ html { scroll-behavior: smooth; }
 .info-tip .info-box-title::before{
   content:"💡 ";
 }
-
-/* Warning */
 
 .info-warning{
   background:#FFF7ED;
@@ -342,30 +338,26 @@ html { scroll-behavior: smooth; }
   content:"⚠️ ";
 }
 
-/* Note */
-
 .info-note{
-  background:#EFF6FF;
-  border-left-color:#3B82F6;
+  border-left-color:#d88aa2;
+  background:#fff4f8;
 }
 
 .info-note .info-box-title{
-  color:#1D4ED8;
+  color:var(--brand);
 }
 
 .info-note .info-box-title::before{
   content:"📝 ";
 }
 
-/* Expert */
-
 .info-expert{
-  background:#F5F3FF;
-  border-left-color:#8B5CF6;
+  border-left-color:var(--brand);
+  background:#fff1f5;
 }
 
 .info-expert .info-box-title{
-  color:#6D28D9;
+  color:var(--brand);
 }
 
 .info-expert .info-box-title::before{
