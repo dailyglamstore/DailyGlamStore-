@@ -751,6 +751,16 @@ metaLine:
       heading:
         "Final Verdict: Lotus SPF 50 or Be Bodywise SPF 50?",
 
+infoBox: {
+
+    type: "tip",
+
+    title: "Quick Tip",
+
+    text: "Whichever sunscreen you choose, apply a generous amount and reapply every 2–3 hours when you're outdoors. Consistent sunscreen use matters much more than switching between products."
+
+  },
+  
       paragraphs: [
         "In this Lotus sunscreen vs Be Bodywise sunscreen comparison, both products offer SPF 50 mineral sun protection but cater to slightly different preferences. The better option depends more on your skin type and preferred finish than on brand popularity alone.",
 
