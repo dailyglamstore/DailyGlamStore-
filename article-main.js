@@ -261,6 +261,16 @@ if (article.author && article.author.length) {
       sectionParts.push(
         '<h2 id="' + headingId + '">' + escapeHtml(section.heading) + "</h2>"
       );
+      
+      if (section.blocks && section.blocks.length) {
+
+section.blocks.forEach(function(block) {
+sectionParts.push(renderBlock(block));
+});
+
+return sectionParts.join("\n");
+
+}
 
       if (section.images && section.images.length) {
         section.images.forEach(function(image) {
