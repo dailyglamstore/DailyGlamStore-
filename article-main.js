@@ -48,6 +48,35 @@ return "<li>" + escapeHtml(item) + "</li>";
 "</ul>"
 ].join("\n");
 
+case "infoBox":
+
+var defaultTitles = {
+tip: "Quick Tip",
+warning: "Common Mistake",
+note: "Good to Know",
+expert: "Daily Glam Store Insight"
+};
+
+var boxType = block.boxType || "note";
+
+var boxTitle =
+block.title && block.title.trim()
+? block.title
+: (defaultTitles[boxType] || "Good to Know");
+
+return (
+'<div class="article-info-box info-' +
+escapeHtml(boxType) +
+'">' +
+'<div class="info-box-title">' +
+escapeHtml(boxTitle) +
+'</div>' +
+'<p class="info-box-text">' +
+escapeHtml(block.text) +
+'</p>' +
+'</div>'
+);
+
 default:
 
 return "";
