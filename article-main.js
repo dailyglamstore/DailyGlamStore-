@@ -36,6 +36,18 @@ escapeHtml(block.alt) +
 "</figure>"
 );
 
+case "bullets":
+
+return [
+'<ul class="article-list">',
+(block.items || [])
+.map(function(item) {
+return "<li>" + escapeHtml(item) + "</li>";
+})
+.join("\n"),
+"</ul>"
+].join("\n");
+
 default:
 
 return "";
