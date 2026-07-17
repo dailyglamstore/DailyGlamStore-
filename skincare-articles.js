@@ -162,15 +162,50 @@ heading: "Morning Skincare Routine",
 blocks: [
 
 {
+type: "subHeading",
+text: "Step 1: Cleanse Your Face"
+},
+
+{
 type: "paragraph",
 text: [
-"Step 1: Cleanse your face with a gentle face wash to remove excess oil, sweat, and impurities that build up overnight. Choose a cleanser that matches your skin type instead of using harsh products that may strip your skin. If you're unsure which cleanser to buy, read our guide on how to choose the right face wash to find the best option for your skin type.",
+"Cleanse your face with a gentle face wash to remove excess oil, sweat, and impurities that build up overnight. Choose a cleanser that matches your skin type instead of using harsh products that may strip your skin. If you're unsure which cleanser to buy, read our guide on how to choose the right face wash to find the best option for your skin type."
+]
+},
 
-"Step 2: Apply a serum if you want to target a specific concern such as dullness, pigmentation, dehydration, or uneven skin tone. While optional for beginners, the right serum can complement your routine over time.",
+{
+type: "subHeading",
+text: "Step 2: Apply a Serum"
+},
 
-"Step 3: Apply a moisturiser to keep your skin hydrated and support its natural protective barrier. Even oily skin benefits from a lightweight moisturiser because hydration and oil production are not the same thing.",
+{
+type: "paragraph",
+text: [
+"Apply a serum if you want to target a specific concern such as dullness, pigmentation, dehydration, or uneven skin tone. While optional for beginners, the right serum can complement your routine over time."
+]
+},
 
-"Step 4: Finish your morning routine with a broad-spectrum sunscreen. Daily sunscreen helps protect your skin from UV exposure, supports long-term skin health, and is one of the most important steps in any daytime skincare routine."
+{
+type: "subHeading",
+text: "Step 3: Apply a Moisturiser"
+},
+
+{
+type: "paragraph",
+text: [
+"Apply a moisturiser to keep your skin hydrated and support its natural protective barrier. Even oily skin benefits from a lightweight moisturiser because hydration and oil production are not the same thing."
+]
+},
+
+{
+type: "subHeading",
+text: "Step 4: Apply Sunscreen"
+},
+
+{
+type: "paragraph",
+text: [
+"Finish your morning routine with a broad-spectrum sunscreen. Daily sunscreen helps protect your skin from UV exposure, supports long-term skin health, and is one of the most important steps in any daytime skincare routine."
 ]
 }
 
