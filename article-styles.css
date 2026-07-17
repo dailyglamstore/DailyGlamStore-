@@ -261,7 +261,7 @@ html { scroll-behavior: smooth; }
     .article-content h2:first-child { margin-top: 0; }
 
 .article-sub-heading {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--primary-color);
   margin: 1.4rem 0 0.6rem;
