@@ -47,6 +47,13 @@ return "<p>" + escapeHtml(text) + "</p>";
 })
 .join("\n");
 
+case "subHeading":
+    return (
+        '<h3 class="article-sub-heading">' +
+        escapeHtml(block.text) +
+        "</h3>"
+    );
+
 case "image":
 
 return (
