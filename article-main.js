@@ -281,10 +281,6 @@ if (article.author && article.author.length) {
         '<li><a href="#' + headingId + '">' + escapeHtml(section.heading) + "</a></li>"
       );
 
-      sectionParts.push(
-        '<h2 id="' + headingId + '">' + escapeHtml(section.heading) + "</h2>"
-      );
-      
       if (section.blocks && section.blocks.length) {
 
 section.blocks.forEach(function(block) {
@@ -294,6 +290,10 @@ sectionParts.push(renderBlock(block));
 return sectionParts.join("\n");
 
 }
+
+sectionParts.push(
+'<h2 id="' + headingId + '">' + escapeHtml(section.heading) + "</h2>"
+);
 
       if (section.images && section.images.length) {
         section.images.forEach(function(image) {
