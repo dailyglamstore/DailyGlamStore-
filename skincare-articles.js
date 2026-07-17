@@ -286,7 +286,8 @@ text: [
 
 ]
 }
-]
+
+],
 
 productRecommendations: {
   title: "Recommended Products for This Routine",
