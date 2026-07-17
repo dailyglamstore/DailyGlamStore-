@@ -260,6 +260,13 @@ html { scroll-behavior: smooth; }
 
     .article-content h2:first-child { margin-top: 0; }
 
+.article-sub-heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 1.4rem 0 0.6rem;
+}
+
     .article-content p {
       margin: 0 0 14px;
       font-size: 16px;
