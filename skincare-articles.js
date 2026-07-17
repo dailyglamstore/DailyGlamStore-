@@ -70,44 +70,65 @@ text: [
 },
 
 {
-  heading: "Why Is a Daily Skincare Routine Important?",
+heading: "Why Is a Daily Skincare Routine Important?",
 
-  paragraphs: [
-    "Your skin is exposed to dirt, oil, sweat, pollution, sunlight, and environmental stress every day. Following a daily skincare routine helps remove impurities, maintain your skin barrier, and keep your skin feeling comfortable throughout the day.",
+blocks: [
 
-    "A consistent routine also allows skincare products to work more effectively. Using the right products in the correct order can improve hydration, reduce excess oil, and support healthier-looking skin over time."
-  ],
+{
+type: "paragraph",
+text: [
+"Your skin is exposed to dirt, oil, sweat, pollution, sunlight, and environmental stress every day. Following a daily skincare routine helps remove impurities, maintain your skin barrier, and keep your skin feeling comfortable throughout the day.",
 
-  bullets: [
-    "Removes dirt, oil, and daily impurities.",
-    "Helps maintain your skin's natural moisture barrier.",
-    "Keeps skin hydrated and balanced.",
-    "Supports healthier-looking skin with consistent care.",
-    "Protects your skin from daily environmental damage."
-  ]
+"A consistent routine also allows skincare products to work more effectively. Using the right products in the correct order can improve hydration, reduce excess oil, and support healthier-looking skin over time."
+]
 },
 
 {
-  heading: "Know Your Skin Type Before Choosing Products",
+type: "bullets",
+items: [
+"Removes dirt, oil, and daily impurities.",
+"Helps maintain your skin's natural moisture barrier.",
+"Keeps skin hydrated and balanced.",
+"Supports healthier-looking skin with consistent care.",
+"Protects your skin from daily environmental damage."
+]
+}
 
-  paragraphs: [
-    "Before building a daily skincare routine, it's important to understand your skin type. Products that work well for one person may not be suitable for another, which is why choosing products based on your skin's needs is more effective than following trends.",
+]
+},
 
-    "If you're unsure about your skin type, start with a simple routine and observe how your skin feels after cleansing and moisturising. Over time, you'll better understand which products work best for you."
-  ],
+{
+heading: "Know Your Skin Type Before Choosing Products",
 
-  infoBox: {
-    type: "expert",
-    title: "",
-    text: "Through years of recommending skincare products, we've found that people usually get better long-term results when they first understand their skin type instead of choosing products simply because they're trending."
-  },
+blocks: [
 
-  bullets: [
-    "Oily Skin – Produces excess oil and may be more prone to clogged pores.",
-    "Dry Skin – Often feels tight, rough, or flaky due to a lack of moisture.",
-    "Combination Skin – Has both oily and dry areas, commonly with an oily T-zone.",
-    "Sensitive Skin – May react easily to certain ingredients or environmental factors."
-  ]
+{
+type: "paragraph",
+text: [
+"Before building a daily skincare routine, it's important to understand your skin type. Products that work well for one person may not be suitable for another, which is why choosing products based on your skin's needs is more effective than following trends.",
+
+"If you're unsure about your skin type, start with a simple routine and observe how your skin feels after cleansing and moisturising. Over time, you'll better understand which products work best for you."
+]
+},
+
+{
+type: "infoBox",
+boxType: "expert",
+title: "",
+text: "Through years of recommending skincare products, we've found that people usually get better long-term results when they first understand their skin type instead of choosing products simply because they're trending."
+},
+
+{
+type: "bullets",
+items: [
+"Oily Skin – Produces excess oil and may be more prone to clogged pores.",
+"Dry Skin – Often feels tight, rough, or flaky due to a lack of moisture.",
+"Combination Skin – Has both oily and dry areas, commonly with an oily T-zone.",
+"Sensitive Skin – May react easily to certain ingredients or environmental factors."
+]
+}
+
+]
 },
 
 {
