@@ -50,15 +50,23 @@ image: {
 sections: [
 
 {
-  heading: "What Is a Daily Skincare Routine?",
+heading: "What Is a Daily Skincare Routine?",
 
-  paragraphs: [
-    "A daily skincare routine is a simple sequence of steps followed every morning and night to help keep your skin clean, healthy, and protected. Instead of using many products at once, a good routine focuses on choosing the right products for your skin type and using them consistently.",
+blocks: [
 
-    "A basic skincare routine usually includes cleansing, moisturising, and protecting your skin with sunscreen during the day. Depending on your skin concerns, products such as serums can also be added to target issues like dryness, pigmentation, acne, or dullness.",
+{
+type: "paragraph",
+text: [
+"A daily skincare routine is a simple sequence of steps followed every morning and night to help keep your skin clean, healthy, and protected. Instead of using many products at once, a good routine focuses on choosing the right products for your skin type and using them consistently.",
 
-    "The goal isn't to achieve perfect skin overnight. Healthy skin develops through regular care, patience, and using products that suit your individual skin type."
-  ]
+"A basic skincare routine usually includes cleansing, moisturising, and protecting your skin with sunscreen during the day. Depending on your skin concerns, products such as serums can also be added to target issues like dryness, pigmentation, acne, or dullness.",
+
+"The goal isn't to achieve perfect skin overnight. Healthy skin develops through regular care, patience, and using products that suit your individual skin type."
+]
+}
+
+]
+
 },
 
 {
