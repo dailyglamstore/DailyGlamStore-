@@ -12,6 +12,24 @@
     return openNewTab ? ' target="_blank" rel="noopener noreferrer"' : "";
   }
 
+function renderBlock(block) {
+
+if (!block || !block.type) {
+return "";
+}
+
+switch (block.type) {
+
+case "paragraph":
+return "<p>" + escapeHtml(block.text) + "</p>";
+
+default:
+return "";
+
+}
+
+}
+
   var config = window.ARTICLE_PAGE_CONFIG || {};
   var source = window[config.source];
   var article = source && source[config.key];
