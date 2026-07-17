@@ -50,9 +50,12 @@ image: {
 sections: [
 
 {
-heading: "What Is a Daily Skincare Routine?",
-
 blocks: [
+
+{
+type: "heading",
+text: "What Is a Daily Skincare Routine?"
+},
 
 {
 type: "paragraph",
@@ -66,7 +69,6 @@ text: [
 }
 
 ]
-
 },
 
 {
