@@ -132,44 +132,68 @@ items: [
 },
 
 {
-  heading: "The Correct Order to Apply Skincare Products",
+heading: "The Correct Order to Apply Skincare Products",
 
-  paragraphs: [
-    "Applying skincare products in the correct order helps each product work more effectively. A simple rule is to apply lighter products before heavier ones, allowing each step to prepare your skin for the next.",
+blocks: [
 
-    "For most beginners, a daily skincare routine doesn't need many products. Following the correct sequence consistently is far more important than having a large collection of products."
-  ],
+{
+type: "paragraph",
+text: [
+"Applying skincare products in the correct order helps each product work more effectively. A simple rule is to apply lighter products before heavier ones, allowing each step to prepare your skin for the next.",
 
-  bullets: [
-    "Morning: Face Wash → Serum (Optional) → Moisturiser → Sunscreen",
-    "Night: Face Wash → Treatment Serum (Optional) → Moisturiser"
-  ]
+"For most beginners, a daily skincare routine doesn't need many products. Following the correct sequence consistently is far more important than having a large collection of products."
+]
 },
 
 {
-  heading: "Morning Skincare Routine",
+type: "bullets",
+items: [
+"Morning: Face Wash → Serum (Optional) → Moisturiser → Sunscreen",
+"Night: Face Wash → Treatment Serum (Optional) → Moisturiser"
+]
+}
 
-  paragraphs: [
-    "Step 1: Cleanse your face with a gentle face wash to remove excess oil, sweat, and impurities that build up overnight. Choose a cleanser that matches your skin type instead of using harsh products that may strip your skin. If you're unsure which cleanser to buy, read our guide on how to choose the right face wash to find the best option for your skin type.",
-
-    "Step 2: Apply a serum if you want to target a specific concern such as dullness, pigmentation, dehydration, or uneven skin tone. While optional for beginners, the right serum can complement your routine over time.",
-
-    "Step 3: Apply a moisturiser to keep your skin hydrated and support its natural protective barrier. Even oily skin benefits from a lightweight moisturiser because hydration and oil production are not the same thing.",
-
-    "Step 4: Finish your morning routine with a broad-spectrum sunscreen. Daily sunscreen helps protect your skin from UV exposure, supports long-term skin health, and is one of the most important steps in any daytime skincare routine."
-  ]
+]
 },
 
 {
-  heading: "Night Skincare Routine",
+heading: "Morning Skincare Routine",
 
-  paragraphs: [
-    "Night is the ideal time to remove dirt, sunscreen, makeup, and pollution that have accumulated throughout the day. Cleansing before bed also prepares your skin for the products that follow.",
+blocks: [
 
-    "After cleansing, you may apply a treatment serum if your skincare routine includes ingredients that target concerns such as acne, pigmentation, or uneven texture. Beginners can comfortably skip this step until they become familiar with the basics.",
+{
+type: "paragraph",
+text: [
+"Step 1: Cleanse your face with a gentle face wash to remove excess oil, sweat, and impurities that build up overnight. Choose a cleanser that matches your skin type instead of using harsh products that may strip your skin. If you're unsure which cleanser to buy, read our guide on how to choose the right face wash to find the best option for your skin type.",
 
-    "Finish with a moisturiser to help maintain hydration while you sleep. A consistent night skincare routine supports your skin's natural recovery process and helps you wake up with skin that feels comfortable and refreshed."
-  ]
+"Step 2: Apply a serum if you want to target a specific concern such as dullness, pigmentation, dehydration, or uneven skin tone. While optional for beginners, the right serum can complement your routine over time.",
+
+"Step 3: Apply a moisturiser to keep your skin hydrated and support its natural protective barrier. Even oily skin benefits from a lightweight moisturiser because hydration and oil production are not the same thing.",
+
+"Step 4: Finish your morning routine with a broad-spectrum sunscreen. Daily sunscreen helps protect your skin from UV exposure, supports long-term skin health, and is one of the most important steps in any daytime skincare routine."
+]
+}
+
+]
+},
+
+{
+heading: "Night Skincare Routine",
+
+blocks: [
+
+{
+type: "paragraph",
+text: [
+"Night is the ideal time to remove dirt, sunscreen, makeup, and pollution that have accumulated throughout the day. Cleansing before bed also prepares your skin for the products that follow.",
+
+"After cleansing, you may apply a treatment serum if your skincare routine includes ingredients that target concerns such as acne, pigmentation, or uneven texture. Beginners can comfortably skip this step until they become familiar with the basics.",
+
+"Finish with a moisturiser to help maintain hydration while you sleep. A consistent night skincare routine supports your skin's natural recovery process and helps you wake up with skin that feels comfortable and refreshed."
+]
+}
+
+]
 },
 
 {
