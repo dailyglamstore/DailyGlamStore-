@@ -21,9 +21,23 @@ return "";
 switch (block.type) {
 
 case "paragraph":
+
 return "<p>" + escapeHtml(block.text) + "</p>";
 
+case "image":
+
+return (
+'<figure class="article-section-image">' +
+'<img src="' +
+escapeHtml(block.src) +
+'" alt="' +
+escapeHtml(block.alt) +
+'" loading="lazy" onerror="this.style.display=\'none\'" />' +
+"</figure>"
+);
+
 default:
+
 return "";
 
 }
