@@ -19,21 +19,6 @@ return "";
 }
 
 switch (block.type) {
-  
-case "heading":
-
-var level = block.level || 2;
-
-return (
-"<h" +
-level +
-(block.id ? ' id="' + escapeHtml(block.id) + '"' : "") +
-">" +
-escapeHtml(block.text) +
-"</h" +
-level +
-">"
-);
 
 case "paragraph":
 
