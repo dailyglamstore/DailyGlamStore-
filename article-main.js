@@ -77,6 +77,37 @@ escapeHtml(block.text) +
 '</div>'
 );
 
+case "recommendationBox":
+
+return (
+'<div class="recommendation-box">' +
+(block.productName
+? '<p class="recommendation-product">' +
+escapeHtml(block.productName) +
+"</p>"
+: "") +
+'<a class="recommendation-btn" href="' +
+escapeHtml(block.href) +
+'"' +
+buildTargetAttributes(block.newTab) +
+">" +
+escapeHtml(block.text || "Check Price & Offers") +
+"</a>" +
+"</div>"
+);
+
+case "relatedLink":
+
+return (
+'<p class="guide-line">Learn more in our <a class="guide-link" href="' +
+escapeHtml(block.href) +
+'"' +
+buildTargetAttributes(block.newTab) +
+">" +
+escapeHtml(block.text) +
+"</a>.</p>"
+);
+
 default:
 
 return "";
