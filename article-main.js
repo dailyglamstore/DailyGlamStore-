@@ -22,7 +22,15 @@ switch (block.type) {
 
 case "paragraph":
 
-return "<p>" + escapeHtml(block.text) + "</p>";
+var paragraphs = Array.isArray(block.text)
+? block.text
+: [block.text];
+
+return paragraphs
+.map(function(text) {
+return "<p>" + escapeHtml(text) + "</p>";
+})
+.join("\n");
 
 case "image":
 
