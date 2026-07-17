@@ -286,7 +286,6 @@ text: [
 
 ]
 }
-
 ]
 
 productRecommendations: {
