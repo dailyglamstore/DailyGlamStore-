@@ -197,60 +197,97 @@ text: [
 },
 
 {
-  heading: "A Simple Skincare Routine for Beginners",
+heading: "A Simple Skincare Routine for Beginners",
 
-  paragraphs: [
-    "If you're just starting your skincare journey, there's no need to buy multiple products at once. A simple daily skincare routine is easier to follow consistently and gives your skin time to adjust before adding new products.",
+blocks: [
 
-    "Once you become comfortable with the basics, you can gradually introduce products such as serums or treatments based on your skin concerns. Building your routine step by step is usually more effective than changing everything at once."
-  ],
+{
+type: "paragraph",
+text: [
+"If you're just starting your skincare journey, there's no need to buy multiple products at once. A simple daily skincare routine is easier to follow consistently and gives your skin time to adjust before adding new products.",
 
-  bullets: [
-    "Morning: Face Wash → Moisturiser → Sunscreen",
-    "Night: Face Wash → Moisturiser",
-    "Introduce only one new product at a time.",
-    "Use each product consistently for a few weeks before deciding whether it suits your skin."
-  ]
+"Once you become comfortable with the basics, you can gradually introduce products such as serums or treatments based on your skin concerns. Building your routine step by step is usually more effective than changing everything at once."
+]
 },
 
 {
-  heading: "Common Skincare Mistakes to Avoid",
+type: "bullets",
+items: [
+"Morning: Face Wash → Moisturiser → Sunscreen",
+"Night: Face Wash → Moisturiser",
+"Introduce only one new product at a time.",
+"Use each product consistently for a few weeks before deciding whether it suits your skin."
+]
+}
 
-  paragraphs: [
-    "Many people believe that using more skincare products automatically leads to better results. In reality, a simple routine followed consistently is often more beneficial than a complicated routine that changes every week.",
-
-    "Avoid making frequent product changes unless necessary. Giving your skin time to adapt makes it easier to understand which products are actually helping."
-  ],
-
-  bullets: [
-    "Skipping sunscreen during the daytime.",
-    "Over-washing your face with harsh cleansers.",
-    "Using products that don't suit your skin type.",
-    "Trying too many new products at the same time.",
-    "Expecting visible results after only a few days."
-  ]
+]
 },
 
 {
-  heading: "How Long Does a Skincare Routine Take to Show Results?",
+heading: "Common Skincare Mistakes to Avoid",
 
-  paragraphs: [
-    "Healthy skin develops through consistency rather than quick fixes. While some products may improve hydration almost immediately, concerns such as uneven skin tone, pigmentation, or acne usually take several weeks of regular use before noticeable improvements appear.",
+blocks: [
 
-    "The most important habit is following your daily skincare routine consistently. Sticking to a routine that suits your skin type is far more effective than constantly switching between trending products."
-  ]
+{
+type: "paragraph",
+text: [
+"Many people believe that using more skincare products automatically leads to better results. In reality, a simple routine followed consistently is often more beneficial than a complicated routine that changes every week.",
+
+"Avoid making frequent product changes unless necessary. Giving your skin time to adapt makes it easier to understand which products are actually helping."
+]
 },
 
 {
-  heading: "Final Thoughts",
+type: "bullets",
+items: [
+"Skipping sunscreen during the daytime.",
+"Over-washing your face with harsh cleansers.",
+"Using products that don't suit your skin type.",
+"Trying too many new products at the same time.",
+"Expecting visible results after only a few days."
+]
+}
 
-  paragraphs: [
-    "A daily skincare routine doesn't need to be complicated to deliver good results. Understanding your skin type, following the correct morning and night skincare routine, and choosing suitable products are the foundations of healthy-looking skin.",
+]
+},
+
+{
+heading: "How Long Does a Skincare Routine Take to Show Results?",
+
+blocks: [
+
+{
+type: "paragraph",
+text: [
+"Healthy skin develops through consistency rather than quick fixes. While some products may improve hydration almost immediately, concerns such as uneven skin tone, pigmentation, or acne usually take several weeks of regular use before noticeable improvements appear.",
+
+"The most important habit is following your daily skincare routine consistently. Sticking to a routine that suits your skin type is far more effective than constantly switching between trending products."
+]
+}
+
+]
+},
+
+{
+heading: "Final Thoughts",
+
+blocks: [
+
+{
+type: "paragraph",
+text: [
+"A daily skincare routine doesn't need to be complicated to deliver good results. Understanding your skin type, following the correct morning and night skincare routine, and choosing suitable products are the foundations of healthy-looking skin.",
+
 "At Daily Glam Store, we believe consistency is more important than complexity. Rather than encouraging people to buy more products, our goal is to help you build a routine that suits your skin type and that you can comfortably follow every day.",
-    "Start with the essentials, stay consistent, and gradually build your routine as your skin's needs become clearer. A simple routine that you can follow every day will always be more valuable than a complicated routine that's difficult to maintain."
-  ]
-},
-],
+
+"Start with the essentials, stay consistent, and gradually build your routine as your skin's needs become clearer. A simple routine that you can follow every day will always be more valuable than a complicated routine that's difficult to maintain."
+]
+}
+
+]
+}
+
+]
 
 productRecommendations: {
   title: "Recommended Products for This Routine",
