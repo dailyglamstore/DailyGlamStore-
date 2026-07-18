@@ -937,7 +937,8 @@ metaLine:
       ]
     }
   ]
-},
+}
+],
   
   productRecommendations: {
   title:
