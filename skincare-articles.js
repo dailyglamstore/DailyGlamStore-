@@ -730,51 +730,58 @@ metaLine:
 
   sections: [
     {
-      heading:
-"Lotus Sunscreen vs Be Bodywise Sunscreen: Which SPF 50 Mineral Sunscreen Is Better?",
+  heading:
+    "Lotus Sunscreen vs Be Bodywise Sunscreen: Which SPF 50 Mineral Sunscreen Is Better?",
 
-      paragraphs: [
+  blocks: [
+    {
+      type: "paragraph",
+      text: [
         "Sunscreen is one of the most important steps in a simple skincare routine, especially if you spend time outdoors, work near windows, or want to avoid tanning and sun damage. Since both Lotus Botanicals and Be Bodywise offer SPF 50 mineral sunscreens, many people naturally wonder which one feels better for daily use.",
 
         "The truth is, there is no single sunscreen that works perfectly for everyone. A sunscreen that feels amazing for dry skin may feel heavy on oily skin. Similarly, a lightweight sunscreen loved by oily skin users may not feel moisturising enough for someone with dry skin.",
 
         "Instead of choosing only based on brand popularity, it usually helps to compare texture, finish, comfort, and suitability for your skin type before making a decision."
-      ],
-      
-      infoBox: {
-  type: "note",
-  title: "Before You Decide",
-  text: "Both sunscreens offer SPF 50 mineral protection, but the better choice depends on your skin type, finish preference, and budget—not just the SPF number."
-}
+      ]
     },
-
     {
+      type: "infoBox",
+      boxType: "note",
+      title: "Before You Decide",
+      text: "Both sunscreens offer SPF 50 mineral protection, but the better choice depends on your skin type, finish preference, and budget—not just the SPF number."
+    }
+  ]
+},
+
+{
   heading:
     "Lotus SPF 50 Sunscreen Review: What You Should Know?",
 
-  images: [
+  blocks: [
     {
-      src:
-        "images/beauty-images/blog/lotus-spf50-review.JPG",
+      type: "image",
+      src: "images/beauty-images/blog/lotus-spf50-review.JPG",
+      alt: "Lotus SPF 50 Mineral Sunscreen Review"
+    },
+    {
+      type: "paragraph",
+      text: [
+        "In this Lotus SPF 50 sunscreen review, the sunscreen stands out for its glow-focused positioning and skincare-inspired ingredients. Lotus Botanicals Carrot & Niacinamide Glow and De-Tan Mineral Sunscreen SPF 50 is commonly discussed by people who want daily sun protection while also maintaining a healthy-looking finish on the skin.",
 
-      alt:
-        "Lotus SPF 50 Mineral Sunscreen Review"
+        "Its formula may feel more comfortable for people who enjoy a slightly nourishing sunscreen texture instead of an ultra-light gel-like feel. Since it focuses on glow and skin comfort, some users may prefer it when their skin feels dry or dull. If this sounds suitable for your skin needs, you can check the latest price and available offers for Lotus SPF 50 sunscreen before making your decision.",
+
+        "Overall, this Lotus SPF 50 sunscreen review suggests that the product may appeal more to users who enjoy a healthy-looking glow and a slightly nourishing sunscreen texture."
+      ]
+    },
+    {
+      type: "bullets",
+      items: [
+        "SPF 50 protection for daily use",
+        "Glow-focused positioning",
+        "Often preferred by people who like moisturising textures",
+        "Can suit normal to dry skin preferences"
+      ]
     }
-  ],
-
-  paragraphs: [
-    "In this Lotus SPF 50 sunscreen review, the sunscreen stands out for its glow-focused positioning and skincare-inspired ingredients. Lotus Botanicals Carrot & Niacinamide Glow and De-Tan Mineral Sunscreen SPF 50 is commonly discussed by people who want daily sun protection while also maintaining a healthy-looking finish on the skin.",
-
-    "Its formula may feel more comfortable for people who enjoy a slightly nourishing sunscreen texture instead of an ultra-light gel-like feel. Since it focuses on glow and skin comfort, some users may prefer it when their skin feels dry or dull. If this sounds suitable for your skin needs, you can check the latest price and available offers for Lotus SPF 50 sunscreen before making your decision.",
-    
-     "Overall, this Lotus SPF 50 sunscreen review suggests that the product may appeal more to users who enjoy a healthy-looking glow and a slightly nourishing sunscreen texture."
-  ],
-  
-  bullets: [
-    "SPF 50 protection for daily use",
-    "Glow-focused positioning",
-    "Often preferred by people who like moisturising textures",
-    "Can suit normal to dry skin preferences"
   ]
 },
     
