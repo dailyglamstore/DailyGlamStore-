@@ -112,13 +112,6 @@ text: [
 },
 
 {
-type: "infoBox",
-boxType: "expert",
-title: "",
-text: "Through years of recommending skincare products, we've found that people usually get better long-term results when they first understand their skin type instead of choosing products simply because they're trending."
-},
-
-{
 type: "bullets",
 items: [
 "Oily Skin – Produces excess oil and may be more prone to clogged pores.",
@@ -126,6 +119,13 @@ items: [
 "Combination Skin – Has both oily and dry areas, commonly with an oily T-zone.",
 "Sensitive Skin – May react easily to certain ingredients or environmental factors."
 ]
+},
+
+{
+type: "infoBox",
+boxType: "expert",
+title: "",
+text: "Through years of recommending skincare products, we've found that people usually get better long-term results when they first understand their skin type instead of choosing products simply because they're trending."
 }
 
 ]
