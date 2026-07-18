@@ -853,74 +853,91 @@ metaLine:
 },
 
     {
-      heading:
-        "Which Sunscreen May Suit Oily Skin Better?",
+  heading:
+    "Which Sunscreen May Suit Oily Skin Better?",
 
-      paragraphs: [
+  blocks: [
+    {
+      type: "paragraph",
+      text: [
         "People with oily skin often prefer products that feel lightweight and comfortable throughout the day. If you are searching for a mineral sunscreen for oily skin, texture often becomes one of the most important deciding factors. Heavy sunscreens sometimes feel uncomfortable, especially in humid weather.",
 
         "Because Be Bodywise focuses on a lighter mineral sunscreen experience, many oily or combination skin users may find it easier for regular daytime wear. However, individual experience can still vary depending on skincare layering and personal preference.",
 
         "Lotus sunscreen can still work for oily skin, especially for people who enjoy a slightly more nourishing finish, but some users may prefer lighter textures for everyday comfort."
       ]
-    },
+    }
+  ]
+},
 
+{
+  heading:
+    "Which Sunscreen May Suit Dry Skin Better?",
+
+  blocks: [
     {
-      heading:
-        "Which Sunscreen May Suit Dry Skin Better?",
-
-      paragraphs: [
+      type: "paragraph",
+      text: [
         "Dry skin often benefits from products that feel more comfortable and slightly moisturising. If sunscreen feels too matte or drying, people sometimes skip using it consistently.",
 
         "Lotus SPF 50 sunscreen may feel more comfortable for people with normal to dry skin if they prefer a glow-focused feel. Some users enjoy sunscreens that leave skin looking fresh rather than overly matte.",
 
         "Be Bodywise can still work for dry skin, but people who prefer more nourishment may sometimes combine it with a moisturiser underneath."
       ]
-    },
+    }
+  ]
+},
 
+{
+  heading:
+    "Daily Wear Comfort: Which One Feels Easier for Regular Use?",
+
+  blocks: [
     {
-      heading:
-        "Daily Wear Comfort: Which One Feels Easier for Regular Use?",
-
-      paragraphs: [
+      type: "paragraph",
+      text: [
         "Daily comfort matters because sunscreen only works properly when used consistently. A sunscreen that feels uncomfortable often gets skipped after a few days.",
 
         "If your priority is a lightweight everyday sunscreen that feels simple during office, college, or regular outdoor movement, Be Bodywise may feel easier for many users. This is one reason it is frequently considered a mineral sunscreen for oily skin.",
 
         "If your preference is more toward glow, comfort, and a slightly nourishing finish, Lotus may feel more enjoyable during regular use."
       ]
-    },
+    }
+  ]
+},
 
+{
+  heading:
+    "Final Verdict: Lotus SPF 50 or Be Bodywise SPF 50?",
+
+  blocks: [
     {
-      heading:
-        "Final Verdict: Lotus SPF 50 or Be Bodywise SPF 50?",
-
-infoBox: {
-
-    type: "tip",
-
-    title: "Quick Tip",
-
-    text: "Whichever sunscreen you choose, apply a generous amount and reapply every 2–3 hours when you're outdoors. Consistent sunscreen use matters much more than switching between products."
-
-  },
-  
-      paragraphs: [
+      type: "infoBox",
+      boxType: "tip",
+      title: "Quick Tip",
+      text: "Whichever sunscreen you choose, apply a generous amount and reapply every 2–3 hours when you're outdoors. Consistent sunscreen use matters much more than switching between products."
+    },
+    {
+      type: "paragraph",
+      text: [
         "In this Lotus sunscreen vs Be Bodywise sunscreen comparison, both products offer SPF 50 mineral sun protection but cater to slightly different preferences. The better option depends more on your skin type and preferred finish than on brand popularity alone.",
 
         "If you are looking for the best mineral sunscreen SPF 50 for glow-focused daily wear, Lotus may appeal more. If you prefer lightweight comfort and easy reapplication, Be Bodywise may be the stronger choice.",
 
         "At the end, consistency matters more than perfection. Whether you choose Lotus or Be Bodywise, the winner of this Lotus sunscreen vs Be Bodywise sunscreen comparison is ultimately the sunscreen you enjoy wearing every day."
-      ],
-
-      bullets: [
+      ]
+    },
+    {
+      type: "bullets",
+      items: [
         "Choose Lotus for glow-focused daily wear",
         "Choose Be Bodywise for lightweight feel",
         "Skin type matters more than trends",
         "Daily consistency matters most"
       ]
     }
-  ],
+  ]
+}
   
   productRecommendations: {
   title:
