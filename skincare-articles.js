@@ -789,56 +789,68 @@ metaLine:
   heading:
     "Be Bodywise SPF 50 Sunscreen Review: What You Should Know?",
 
-  images: [
+  blocks: [
     {
+      type: "image",
       src:
         "images/beauty-images/blog/bodywise-spf50-review.JPG",
 
       alt:
         "Be Bodywise SPF 50 Mineral Sunscreen Review"
+    },
+    {
+      type: "paragraph",
+      text: [
+        "In this Be Bodywise SPF 50 sunscreen review, the product is positioned more toward lightweight everyday wear. As the name suggests, the sunscreen focuses on feeling lighter on the skin, which is one reason many people with oily or combination skin become interested in it.",
+
+        "People who dislike heavy or sticky sunscreens often look for lightweight options for daily office, college, or routine wear. Because of this, Be Bodywise may feel easier for people who want mineral sunscreen protection without feeling too heavy during long days. If you prefer lightweight mineral sunscreens, you can explore the latest price and available offers for Be Bodywise SPF 50 sunscreen before making the decision.",
+
+        "Based on this Be Bodywise SPF 50 sunscreen review, the sunscreen may be a practical choice for users who prefer lightweight daily sun protection."
+      ]
+    },
+    {
+      type: "bullets",
+      items: [
+        "SPF 50 mineral protection",
+        "Designed with a lightweight feel in mind",
+        "Often discussed for oily or combination skin",
+        "Suitable for simple daily use routines"
+      ]
     }
-  ],
-
-  paragraphs: [
-    "In this Be Bodywise SPF 50 sunscreen review, the product is positioned more toward lightweight everyday wear. As the name suggests, the sunscreen focuses on feeling lighter on the skin, which is one reason many people with oily or combination skin become interested in it.",
-
-    "People who dislike heavy or sticky sunscreens often look for lightweight options for daily office, college, or routine wear. Because of this, Be Bodywise may feel easier for people who want mineral sunscreen protection without feeling too heavy during long days. If you prefer lightweight mineral sunscreens, you can explore the latest price and available offers for Be Bodywise SPF 50 sunscreen before making the decision.",
-    
-    "Based on this Be Bodywise SPF 50 sunscreen review, the sunscreen may be a practical choice for users who prefer lightweight daily sun protection."
-  ],
-  
-  bullets: [
-    "SPF 50 mineral protection",
-    "Designed with a lightweight feel in mind",
-    "Often discussed for oily or combination skin",
-    "Suitable for simple daily use routines"
   ]
 },
 
-        {
-      heading:
-        "Texture & Finish: Which One Feels Better on Skin?",
+{
+  heading:
+    "Texture & Finish: Which One Feels Better on Skin?",
 
-      paragraphs: [
+  blocks: [
+    {
+      type: "paragraph",
+      text: [
         "Texture is often one of the biggest deciding factors while choosing sunscreen because even a good sunscreen may not be used consistently if it feels uncomfortable on the skin.",
 
         "Lotus SPF 50 sunscreen may feel slightly more nourishing and glow-focused depending on your skin type and personal preference. Some people enjoy this type of finish because it can make skin feel more comfortable, especially during dry weather or when skin feels dehydrated.",
 
         "Be Bodywise SPF 50, on the other hand, is designed around a lighter feel. This may make it more appealing to users who dislike heavier textures or want something that feels easier during humid weather. Many users searching for the best mineral sunscreen SPF 50 often compare these differences before making a decision."
-      ],
-
-      bullets: [
+      ]
+    },
+    {
+      type: "bullets",
+      items: [
         "Choose Lotus if you enjoy a slightly nourishing finish",
         "Choose Be Bodywise if you prefer lightweight feel",
         "Skin type and weather can affect experience"
-      ],
-      
-      infoBox: {
-  type: "expert",
-  title: "Daily Glam Store Recommendation",
-  text: "If you're unsure which sunscreen to buy, choose the one that best matches your skin type and the finish you prefer. A sunscreen you enjoy wearing every day is far more valuable than one with better specifications that you rarely use."
-}
+      ]
     },
+    {
+      type: "infoBox",
+      boxType: "expert",
+      title: "Daily Glam Store Recommendation",
+      text: "If you're unsure which sunscreen to buy, choose the one that best matches your skin type and the finish you prefer. A sunscreen you enjoy wearing every day is far more valuable than one with better specifications that you rarely use."
+    }
+  ]
+},
 
     {
       heading:
