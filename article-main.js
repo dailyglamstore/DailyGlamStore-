@@ -72,13 +72,6 @@ return "<li>" + escapeHtml(item) + "</li>";
 
 case "infoBox":
 
-var defaultTitles = {
-tip: "Quick Tip",
-warning: "Common Mistake",
-note: "Good to Know",
-expert: "Daily Glam Store Insight"
-};
-
 var boxType = block.boxType || "note";
 
 var boxTitle =
