@@ -11,6 +11,13 @@
   function buildTargetAttributes(openNewTab) {
     return openNewTab ? ' target="_blank" rel="noopener noreferrer"' : "";
   }
+  
+  var INFO_BOX_TITLES = {
+  tip: "Quick Tip",
+  warning: "Common Mistake",
+  note: "Good to Know",
+  expert: "Daily Glam Store Insight"
+};
 
 function renderBlock(block) {
 
