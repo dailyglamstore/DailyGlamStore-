@@ -425,33 +425,57 @@ ctaButtons: [
   
   "how-to-choose-face-wash": {
   key: "how-to-choose-face-wash",
+
   url: "/how-to-choose-face-wash.html",
 
   category: "Skincare",
 
   badge: "featured",
-  date: "2026-05-25T18:30:00+05:30",
 
-  title:
-    "How to Choose the Right Face Wash for Your Skin Type?",
+  date: "2026-07-21T18:30:00+05:30",
 
-  seoTitle:
-    "How to Choose the Right Face Wash for Your Skin Type | Daily Glam Store",
+  dateModified: "2026-07-21T18:30:00+05:30",
+
+  author: [
+    {
+      enabled: true,
+      type: "Organization",
+      name: "Daily Glam Store",
+      url: "https://dailyglamstore.in/"
+    }
+  ],
+
+  title: "How to Choose the Right Face Wash for Your Skin Type",
+
+  seoTitle: "How to Choose the Right Face Wash for Your Skin Type | Daily Glam Store",
 
   intro:
-    "Choosing the right face wash can make your skincare routine feel easier and more effective. Different skin types often need different ingredients and textures.",
+    "Learning how to choose the right face wash for your skin type doesn’t have to be confusing. By understanding your skin type, learning which cleanser textures and ingredients suit your skin, and avoiding common mistakes, you can build a skincare routine that keeps your skin feeling clean, comfortable, and balanced. This guide explains how to confidently choose a face wash that matches your skin’s needs.",
 
   seoDescription:
-    "Learn how to choose the right face wash for oily, dry, combination, or sensitive skin with this beginner-friendly skincare guide.",
+    "Learn how to choose the right face wash for your skin type. Discover how to identify your skin type, understand cleanser types and ingredients, avoid common mistakes, and build a beginner-friendly skincare routine.",
+
+  linkPlan: [
+    {
+      anchorText: "daily skincare routine",
+      href: "/skincare-routine.html",
+      type: "internalArticle",
+      newTab: false
+    },
+    {
+      anchorText: "skincare recommendations",
+      href: "/#skincare-recommendations",
+      type: "page",
+      newTab: false
+    }
+  ],
 
   metaLine:
-    "Beginner-friendly • Skin type guide • Ingredient tips",
+    "Beginner-friendly guide • Skin type explained • Ingredient tips",
 
   image: {
-    src:
-      "images/beauty-images/blog/how-to-choose-face-wash.JPG",
-    alt:
-      "How to choose the right face wash for your skin type"
+    src: "images/beauty-images/blog/how-to-choose-face-wash.JPG",
+    alt: "How to choose the right face wash for your skin type"
   },
 
   sections: [
