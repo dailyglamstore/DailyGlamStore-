@@ -11,13 +11,6 @@
   function buildTargetAttributes(openNewTab) {
     return openNewTab ? ' target="_blank" rel="noopener noreferrer"' : "";
   }
-  
-  var INFO_BOX_TITLES = {
-  tip: "Quick Tip",
-  warning: "Common Mistake",
-  note: "Good to Know",
-  expert: "Daily Glam Store Insight"
-};
 
 function renderBlock(block) {
 
@@ -72,12 +65,19 @@ return "<li>" + escapeHtml(item) + "</li>";
 
 case "infoBox":
 
+var defaultTitles = {
+tip: "Quick Tip",
+warning: "Common Mistake",
+note: "Good to Know",
+expert: "Daily Glam Store Insight"
+};
+
 var boxType = block.boxType || "note";
 
 var boxTitle =
 block.title && block.title.trim()
 ? block.title
-: (INFO_BOX_TITLES[boxType] || "Good to Know");
+: (defaultTitles[boxType] || "Good to Know");
 
 return (
 '<div class="article-info-box info-' +
@@ -277,12 +277,114 @@ if (article.author && article.author.length) {
     '<h2 id="' + headingId + '">' + escapeHtml(section.heading) + "</h2>"
 );
 
-(section.blocks || []).forEach(function(block) {
-    sectionParts.push(renderBlock(block));
-});
+if (section.blocks && section.blocks.length) {
 
-return sectionParts.join("\n");
+    section.blocks.forEach(function(block) {
+        sectionParts.push(renderBlock(block));
+    });
 
+    return sectionParts.join("\n");
+
+}
+
+      if (section.images && section.images.length) {
+        section.images.forEach(function(image) {
+          sectionParts.push(
+            '<figure class="article-section-image">' +
+            '<img src="' + escapeHtml(image.src) + '" alt="' + escapeHtml(image.alt) + '" loading="lazy" onerror="this.style.display=\'none\'" />' +
+            "</figure>"
+          );
+        });
+      }
+
+      (section.paragraphs || []).forEach(function (paragraph) {
+        var formattedParagraph = escapeHtml(paragraph);
+        if (article.linkPlan && article.linkPlan.length) {
+          article.linkPlan.forEach(function(link) {
+            if (link.anchorText && link.href && !link._used) {
+              var escapedAnchor = escapeHtml(link.anchorText);
+              if (formattedParagraph.indexOf(escapedAnchor) !== -1) {
+                formattedParagraph = formattedParagraph.replace(
+                  escapedAnchor,
+                  '<a class="inline-product-link" href="' + escapeHtml(link.href) + '"' + buildTargetAttributes(link.newTab) + ">" + escapedAnchor + "</a>"
+                );
+                link._used = true;
+              }
+            }
+          });
+        }
+        sectionParts.push("<p>" + formattedParagraph + "</p>");
+      });
+
+      if (section.bullets && section.bullets.length) {
+        sectionParts.push('<ul class="article-list">');
+        section.bullets.forEach(function (bullet) {
+          sectionParts.push("<li>" + escapeHtml(bullet) + "</li>");
+        });
+        sectionParts.push("</ul>");
+      }
+
+      if (section.recommendationBox && section.recommendationBox.href) {
+        sectionParts.push(
+          '<div class="recommendation-box">' +
+          (section.recommendationBox.productName ? '<p class="recommendation-product">' + escapeHtml(section.recommendationBox.productName) + "</p>" : "") +
+          '<a class="recommendation-btn" href="' + escapeHtml(section.recommendationBox.href) + '"' + buildTargetAttributes(section.recommendationBox.newTab) + ">" +
+          escapeHtml(section.recommendationBox.text || "Check Price & Offers") + "</a>" +
+          "</div>"
+        );
+      }
+      
+      if (
+  section.infoBox &&
+  section.infoBox.text &&
+  section.infoBox.text.trim()
+) {
+
+  var defaultTitles = {
+    tip: "Quick Tip",
+    warning: "Common Mistake",
+    note: "Good to Know",
+    expert: "Daily Glam Store Insight"
+  };
+
+  var boxType = section.infoBox.type || "note";
+
+  var boxTitle =
+    section.infoBox.title &&
+    section.infoBox.title.trim()
+      ? section.infoBox.title
+      : (defaultTitles[boxType] || "Good to Know");
+
+  sectionParts.push(
+    '<div class="article-info-box info-' +
+      escapeHtml(boxType) +
+      '">' +
+
+      '<div class="info-box-title">' +
+      escapeHtml(boxTitle) +
+      '</div>' +
+
+      '<p class="info-box-text">' +
+      escapeHtml(section.infoBox.text) +
+      '</p>' +
+
+    '</div>'
+  );
+}
+
+      if (section.relatedLinkText && section.relatedLinkHref) {
+  sectionParts.push(
+    '<p class="guide-line">Learn more in our <a class="guide-link" href="' +
+    escapeHtml(section.relatedLinkHref) +
+    '"' +
+    buildTargetAttributes(section.relatedLinkNewTab) +
+    ">" +
+    escapeHtml(section.relatedLinkText) +
+    "</a>.</p>"
+  );
+}
+
+      return sectionParts.join("\n");
     })
     .join("\n\n");
 
