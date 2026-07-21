@@ -287,22 +287,6 @@ if (section.blocks && section.blocks.length) {
 
 }
 
-      (section.paragraphs || []).forEach(function (paragraph) {
-        var formattedParagraph = escapeHtml(paragraph);
-        if (article.linkPlan && article.linkPlan.length) {
-          article.linkPlan.forEach(function(link) {
-            if (link.anchorText && link.href && !link._used) {
-              var escapedAnchor = escapeHtml(link.anchorText);
-              if (formattedParagraph.indexOf(escapedAnchor) !== -1) {
-                formattedParagraph = formattedParagraph.replace(
-                  escapedAnchor,
-                  '<a class="inline-product-link" href="' + escapeHtml(link.href) + '"' + buildTargetAttributes(link.newTab) + ">" + escapedAnchor + "</a>"
-                );
-                link._used = true;
-              }
-            }
-          });
-        }
         sectionParts.push("<p>" + formattedParagraph + "</p>");
       });
 
