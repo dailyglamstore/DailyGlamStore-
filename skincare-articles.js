@@ -479,91 +479,85 @@ ctaButtons: [
   },
 
   sections: [
-    {
-      heading:
-        "Why Choosing the Right Face Wash Matters?",
-      paragraphs: [
-        "Face wash is usually the first step in a skincare routine. A cleanser that suits your skin type can help remove dirt, sweat, oil, and daily buildup without making skin feel too dry or uncomfortable. Choosing the wrong face wash may leave skin feeling tight, oily, or irritated."
-      ]
-    },
 
-    {
-      heading:
-        "How to Identify Your Skin Type?",
-      paragraphs: [
-        "Before choosing a face wash, it helps to understand your skin type. Skin needs can vary depending on oiliness, dryness, sensitivity, or breakouts."
-      ],
-      bullets: [
-        "Oily skin may feel greasy or shiny after a few hours",
-        "Dry skin can feel tight or rough after washing",
-        "Combination skin may feel oily in some areas and dry in others",
-        "Sensitive skin may react easily to strong products or fragrances"
-      ]
-    },
+{
+heading: "Why Choosing the Right Face Wash Matters",
 
-    {
-      heading:
-        "Best Face Wash for Oily or Acne-Prone Skin",
-      paragraphs: [
-        "People with oily skin often look for lightweight cleansers that help remove excess oil without over-drying the skin. Ingredients like salicylic acid and niacinamide are commonly discussed for oily or acne-prone skin."
-      ],
-      bullets: [
-        "Salicylic acid is often chosen for oily skin concerns",
-        "Niacinamide is commonly discussed for oil control",
-        "Avoid harsh scrubs or over-cleansing"
-      ],
-      guideLinkText:
-        "Face Wash Buying Guide",
-      guideLinkHref:
-        "/beauty-guides.html#facewash-guide",
-      guideLinkNewTab: true
-    },
+blocks: [
 
-    {
-      heading:
-        "Best Face Wash for Dry Skin",
-      paragraphs: [
-        "Dry skin usually benefits from gentle cleansers that do not leave skin feeling stripped. Many people look for hydrating ingredients when choosing a face wash for dryness."
-      ],
-      bullets: [
-        "Cream or hydrating face washes may feel more comfortable",
-        "Ingredients like hyaluronic acid or ceramides are commonly preferred",
-        "Avoid face washes that leave skin feeling overly tight"
-      ]
-    },
+{
+type: "paragraph",
+text: [
+"A face wash is often the first product people buy when starting a skincare routine, yet it's also one of the easiest products to choose incorrectly. With countless cleansers promising brighter skin, oil control, hydration, or acne relief, it's natural to wonder which one is actually right for you.",
 
-    {
-      heading:
-        "Best Face Wash for Sensitive Skin",
-      paragraphs: [
-        "Sensitive skin often responds better to simple and gentle formulas. Products with fewer strong fragrances or harsh ingredients are commonly preferred."
-      ],
-      bullets: [
-        "Choose mild and fragrance-light formulas when possible",
-        "Patch testing new products may help",
-        "Avoid trying too many new products at once"
-      ]
-    },
+"The truth is that a face wash doesn't need to be expensive or filled with trendy ingredients to be effective. Its primary job is to gently remove dirt, excess oil, sunscreen, makeup, and other impurities without disturbing your skin's natural protective barrier.",
 
-    {
-      heading:
-        "Common Face Wash Mistakes to Avoid",
-      bullets: [
-        "Washing your face too many times a day",
-        "Using very harsh scrubs daily",
-        "Choosing products only because they are trending",
-        "Ignoring your own skin type"
-      ]
-    },
+"Many people believe that skin should feel extremely clean or tight after washing, but that's usually a sign that the cleanser is removing too much of your skin's natural moisture. Over time, this may leave your skin feeling uncomfortable or encourage it to produce even more oil to compensate.",
 
-    {
-      heading:
-        "Final Thoughts",
-      paragraphs: [
-        "The best face wash is usually the one that matches your skin type and feels comfortable to use regularly. Instead of following every trend, it may help to start simple and slowly understand what works best for your skin."
-      ]
-    }
-  ],
+"Choosing a face wash that matches your skin type helps your skin feel balanced and prepares it for the rest of your skincare routine. When cleansing is done properly, products such as moisturisers, serums, and sunscreen can work more comfortably as part of your daily routine."
+]
+}
+
+]
+
+},
+
+{
+heading: "Know Your Skin Type Before Choosing a Face Wash",
+
+blocks: [
+
+{
+type: "paragraph",
+text: [
+"Before looking at ingredients or brands, it's important to understand your skin type. The same face wash can feel completely different depending on the person's skin, which is why recommendations from friends or social media don't always work for everyone.",
+
+"Instead of asking, 'Which face wash is the best?', a better question is, 'Which face wash is best for my skin?' Every skin type has different needs, and understanding those needs makes choosing the right cleanser much easier."
+]
+},
+
+{
+type: "bullets",
+items: [
+"Oily Skin – Produces excess oil and may be more prone to clogged pores and shine.",
+"Dry Skin – Often feels tight, rough, or flaky because it lacks moisture.",
+"Combination Skin – Usually has an oily T-zone (forehead, nose, and chin) with drier cheeks.",
+"Sensitive Skin – May react more easily to certain ingredients, fragrances, or environmental factors."
+]
+},
+
+{
+type: "infoBox",
+boxType: "expert",
+title: "",
+text: "Through years of recommending skincare products, we've found that people usually get better long-term results when they first understand their skin type instead of choosing products simply because they're popular on social media."
+}
+
+]
+
+},
+
+{
+heading: "How to Identify Your Skin Type",
+
+blocks: [
+
+{
+type: "paragraph",
+text: [
+"If you're unsure about your skin type, you don't necessarily need special tools or a professional skin analysis to get started. A simple observation at home can give you a good idea of how your skin behaves.",
+
+"Wash your face with a gentle cleanser, avoid applying any skincare products, and wait for about 30 minutes. Then pay attention to how your skin feels.",
+
+"If your face becomes shiny all over, you may have oily skin. If it feels tight or rough, your skin may be dry. If your forehead and nose become oily while your cheeks remain comfortable or dry, you may have combination skin. If your skin feels irritated, itchy, or reacts easily to products, it may be sensitive.",
+
+"Remember that your skin type isn't always permanent. Weather, age, hormones, lifestyle, and certain medications can all influence how your skin behaves over time. That's why it's helpful to reassess your skincare routine occasionally instead of assuming the same products will always suit you."
+]
+}
+
+]
+
+},
   
 relatedArticles: [
   {
