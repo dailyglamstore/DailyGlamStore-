@@ -290,11 +290,7 @@ if (section.blocks && section.blocks.length) {
         sectionParts.push("<p>" + formattedParagraph + "</p>");
       });
       
-      if (
-  section.infoBox &&
-  section.infoBox.text &&
-  section.infoBox.text.trim()
-) {
+       {
 
   var defaultTitles = {
     tip: "Quick Tip",
