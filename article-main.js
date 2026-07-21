@@ -283,8 +283,6 @@ if (article.author && article.author.length) {
 
 return sectionParts.join("\n");
 
-}
-
     })
     .join("\n\n");
 
