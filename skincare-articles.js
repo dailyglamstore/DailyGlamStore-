@@ -432,9 +432,9 @@ ctaButtons: [
 
   badge: "featured",
 
-  date: "2026-07-21T18:30:00+05:30",
+  date: "2026-05-25T18:30:00+05:30",
 
-  dateModified: "2026-07-21T18:30:00+05:30",
+dateModified: "2026-07-21T18:30:00+05:30",
 
   author: [
     {
