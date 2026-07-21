@@ -324,18 +324,6 @@ if (section.blocks && section.blocks.length) {
   );
 }
 
-      if (section.relatedLinkText && section.relatedLinkHref) {
-  sectionParts.push(
-    '<p class="guide-line">Learn more in our <a class="guide-link" href="' +
-    escapeHtml(section.relatedLinkHref) +
-    '"' +
-    buildTargetAttributes(section.relatedLinkNewTab) +
-    ">" +
-    escapeHtml(section.relatedLinkText) +
-    "</a>.</p>"
-  );
-}
-
       return sectionParts.join("\n");
     })
     .join("\n\n");
