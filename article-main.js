@@ -289,16 +289,6 @@ if (section.blocks && section.blocks.length) {
 
         sectionParts.push("<p>" + formattedParagraph + "</p>");
       });
-
-      if (section.recommendationBox && section.recommendationBox.href) {
-        sectionParts.push(
-          '<div class="recommendation-box">' +
-          (section.recommendationBox.productName ? '<p class="recommendation-product">' + escapeHtml(section.recommendationBox.productName) + "</p>" : "") +
-          '<a class="recommendation-btn" href="' + escapeHtml(section.recommendationBox.href) + '"' + buildTargetAttributes(section.recommendationBox.newTab) + ">" +
-          escapeHtml(section.recommendationBox.text || "Check Price & Offers") + "</a>" +
-          "</div>"
-        );
-      }
       
       if (
   section.infoBox &&
