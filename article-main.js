@@ -290,14 +290,6 @@ if (section.blocks && section.blocks.length) {
         sectionParts.push("<p>" + formattedParagraph + "</p>");
       });
 
-      if (section.bullets && section.bullets.length) {
-        sectionParts.push('<ul class="article-list">');
-        section.bullets.forEach(function (bullet) {
-          sectionParts.push("<li>" + escapeHtml(bullet) + "</li>");
-        });
-        sectionParts.push("</ul>");
-      }
-
       if (section.recommendationBox && section.recommendationBox.href) {
         sectionParts.push(
           '<div class="recommendation-box">' +
