@@ -445,7 +445,7 @@ ctaButtons: [
     }
   ],
 
-  title: "How to Choose the Right Face Wash for Your Skin Type",
+  title: "How to Choose the Right Face Wash for Your Skin Type?",
 
   seoTitle: "How to Choose the Right Face Wash for Your Skin Type | Daily Glam Store",
 
