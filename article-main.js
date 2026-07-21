@@ -77,7 +77,7 @@ var boxType = block.boxType || "note";
 var boxTitle =
 block.title && block.title.trim()
 ? block.title
-: (defaultTitles[boxType] || "Good to Know");
+: (INFO_BOX_TITLES[boxType] || "Good to Know");
 
 return (
 '<div class="article-info-box info-' +
