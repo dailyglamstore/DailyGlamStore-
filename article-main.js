@@ -277,13 +277,11 @@ if (article.author && article.author.length) {
     '<h2 id="' + headingId + '">' + escapeHtml(section.heading) + "</h2>"
 );
 
-if (section.blocks && section.blocks.length) {
+(section.blocks || []).forEach(function(block) {
+    sectionParts.push(renderBlock(block));
+});
 
-    section.blocks.forEach(function(block) {
-        sectionParts.push(renderBlock(block));
-    });
-
-    return sectionParts.join("\n");
+return sectionParts.join("\n");
 
 }
 
