@@ -454,4 +454,5 @@ ctaButtons: [
     newTab: true
   }
 ]
+}
 },
