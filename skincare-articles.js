@@ -848,37 +848,102 @@ text: [
 
 ],
   
-relatedArticles: [
-  {
-    title:
-      "Simple Skincare Routine for Healthy & Glowing Skin",
-    href:
-      "/skincare-routine.html"
-  }
-],
-
-  ctaTitle:
-    "Build a Simple Skincare Routine",
-
-  ctaText:
-    "Explore our skincare guides or browse beginner-friendly beauty recommendations for your daily routine.",
-
-  ctaButtons: [
+productRecommendations: {
+  title: "Recommended Face Washes",
+  items: [
     {
-      text:
-        "Explore Beauty Guides",
-      href:
-        "/beauty-guides.html",
+      title: "Best Face Wash for Oily Skin",
+      href: "YOUR_OILY_FACE_WASH_LINK",
+      type: "affiliateProduct",
+      affiliate: true,
       newTab: true
     },
     {
-      text:
-        "Browse Skincare Recommendations",
-      href:
-        "/#skincare-recommendations",
+      title: "Best Face Wash for Dry Skin",
+      href: "YOUR_DRY_FACE_WASH_LINK",
+      type: "affiliateProduct",
+      affiliate: true,
       newTab: true
     }
   ]
+},
+
+alternativeProducts: {
+  title: "Continue Your Skincare Journey",
+  items: [
+    {
+      title: "Daily Skincare Routine for Beginners",
+      href: "/skincare-routine.html",
+      type: "internalArticle",
+      affiliate: false,
+      newTab: false
+    },
+    {
+      title: "Skincare Recommendations",
+      href: "/#skincare-recommendations",
+      type: "page",
+      affiliate: false,
+      newTab: false
+    }
+  ]
+},
+
+relatedArticles: [
+  {
+    title: "Daily Skincare Routine for Beginners: Simple Morning & Night Steps",
+    href: "/skincare-routine.html"
+  },
+  {
+    title: "Lotus Sunscreen vs Be Bodywise Sunscreen: Which SPF 50 Mineral Sunscreen Is Better?",
+    href: "/lotus-vs-bodywise-sunscreen.html"
+  }
+],
+
+faq: [
+
+{
+question:"How do I know which face wash is right for my skin type?",
+answer:"Start by identifying whether your skin is oily, dry, combination, or sensitive. Then choose a face wash formulated for your skin's needs rather than simply following trends or recommendations from others."
+},
+
+{
+question:"Can I use the same face wash every day?",
+answer:"Yes. Most people can use the same gentle face wash in both their morning and night skincare routine, provided it suits their skin type and doesn't leave their skin feeling dry or irritated."
+},
+
+{
+question:"Is a gel face wash better than a cream face wash?",
+answer:"Neither is universally better. Gel cleansers are often preferred for oily or combination skin, while cream cleansers are generally more comfortable for dry or normal skin. The best choice depends on your individual skin type."
+},
+
+{
+question:"Can the wrong face wash cause breakouts?",
+answer:"A face wash that doesn't suit your skin may contribute to irritation or make certain skin concerns feel worse. Choosing a cleanser that's appropriate for your skin type is usually a better approach than selecting products based only on popularity."
+},
+
+{
+question:"How long should I try a new face wash before deciding if it suits me?",
+answer:"Unless your skin becomes irritated, give a new face wash around two weeks of consistent use. This allows you to better understand how your skin responds before deciding whether to continue using it."
+},
+
+{
+question:"Should I change my face wash during different seasons?",
+answer:"Sometimes. Changes in weather, humidity, or your skin's condition may affect how a cleanser feels. If your skin becomes noticeably drier or oilier, it may be worth choosing a face wash that's better suited to your skin's current needs."
+}
+
+],
+
+ctaTitle:"Looking for the Right Face Wash?",
+
+ctaText:"Explore our curated skincare recommendations to discover face washes selected for oily, dry, combination, and sensitive skin, along with other beginner-friendly skincare essentials.",
+
+ctaButtons: [
+  {
+    text: "Browse Skincare Recommendations",
+    href: "/#skincare-recommendations",
+    newTab: false
+  }
+]
 },
 
 "lotus-vs-bodywise-sunscreen": {
