@@ -48,6 +48,8 @@ window.HAIRCARE_ARTICLES = {
     alt: "Simple haircare routine for healthy hair with shampoo, conditioner, hair serum and hair oil"
   },
 
+sections: [
+    
 {
   heading: "What Is a Haircare Routine?",
 
