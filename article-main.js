@@ -287,16 +287,6 @@ if (section.blocks && section.blocks.length) {
 
 }
 
-      if (section.images && section.images.length) {
-        section.images.forEach(function(image) {
-          sectionParts.push(
-            '<figure class="article-section-image">' +
-            '<img src="' + escapeHtml(image.src) + '" alt="' + escapeHtml(image.alt) + '" loading="lazy" onerror="this.style.display=\'none\'" />' +
-            "</figure>"
-          );
-        });
-      }
-
       (section.paragraphs || []).forEach(function (paragraph) {
         var formattedParagraph = escapeHtml(paragraph);
         if (article.linkPlan && article.linkPlan.length) {
