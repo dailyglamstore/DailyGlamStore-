@@ -287,44 +287,6 @@ if (section.blocks && section.blocks.length) {
 
 }
 
-        sectionParts.push("<p>" + formattedParagraph + "</p>");
-      });
-      
-       {
-
-  var defaultTitles = {
-    tip: "Quick Tip",
-    warning: "Common Mistake",
-    note: "Good to Know",
-    expert: "Daily Glam Store Insight"
-  };
-
-  var boxType = section.infoBox.type || "note";
-
-  var boxTitle =
-    section.infoBox.title &&
-    section.infoBox.title.trim()
-      ? section.infoBox.title
-      : (defaultTitles[boxType] || "Good to Know");
-
-  sectionParts.push(
-    '<div class="article-info-box info-' +
-      escapeHtml(boxType) +
-      '">' +
-
-      '<div class="info-box-title">' +
-      escapeHtml(boxTitle) +
-      '</div>' +
-
-      '<p class="info-box-text">' +
-      escapeHtml(section.infoBox.text) +
-      '</p>' +
-
-    '</div>'
-  );
-}
-
-      return sectionParts.join("\n");
     })
     .join("\n\n");
 
