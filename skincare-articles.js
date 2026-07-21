@@ -558,6 +558,156 @@ text: [
 ]
 
 },
+
+{
+heading: "What Type of Face Wash Should You Choose?",
+
+blocks: [
+
+{
+type: "paragraph",
+text: [
+"Once you've identified your skin type, the next step is choosing a face wash with a texture and formula that suits your skin's needs. While ingredients are important, the type of cleanser you use can also affect how comfortable your skin feels after washing."
+]
+},
+
+{
+type: "subHeading",
+text: "Gel Cleansers"
+},
+
+{
+type: "paragraph",
+text: [
+"Gel cleansers are usually lightweight and are often chosen by people with oily or combination skin. They help remove excess oil, sweat, and daily buildup while leaving the skin feeling fresh. Many gel cleansers also include ingredients that target concerns such as excess oil or occasional breakouts.",
+
+"If your skin tends to become shiny during the day or feels greasy by the evening, a gentle gel cleanser may be a suitable option."
+]
+},
+
+{
+type: "subHeading",
+text: "Cream Cleansers"
+},
+
+{
+type: "paragraph",
+text: [
+"Cream cleansers have a richer texture and are generally preferred by people with dry or normal skin. Instead of focusing mainly on oil removal, they cleanse while helping the skin feel soft and comfortable.",
+
+"If your skin often feels tight after washing, switching to a cream cleanser may provide a more comfortable cleansing experience."
+]
+},
+
+{
+type: "subHeading",
+text: "Foaming Cleansers"
+},
+
+{
+type: "paragraph",
+text: [
+"Foaming cleansers create a rich lather that many people enjoy because they leave the skin feeling clean and refreshed. However, not every foaming cleanser is the same. Some are formulated to cleanse gently, while others may feel too drying for certain skin types.",
+
+"Rather than avoiding foaming cleansers altogether, focus on choosing one that matches your skin type and doesn't leave your skin feeling stripped after use."
+]
+},
+
+{
+type: "subHeading",
+text: "Hydrating Cleansers"
+},
+
+{
+type: "paragraph",
+text: [
+"Hydrating cleansers are designed to cleanse while supporting the skin's moisture barrier. They are commonly chosen by people with dry or sensitive skin and often contain ingredients that help reduce the feeling of dryness after cleansing.",
+
+"If your skin frequently feels uncomfortable after washing, a hydrating cleanser may be worth considering."
+]
+},
+
+{
+type: "infoBox",
+boxType: "tip",
+title: "",
+text: "There isn't a single 'best' type of face wash. The right choice depends on how your skin feels after cleansing. A cleanser that leaves your skin clean, comfortable, and balanced is usually a better choice than one that promises dramatic results."
+}
+
+]
+
+},
+
+{
+heading: "Ingredients to Look For Based on Your Skin Type",
+
+blocks: [
+
+{
+type: "paragraph",
+text: [
+"Once you've chosen a cleanser texture that suits your skin, it's helpful to understand some of the ingredients commonly found in face washes. While ingredient lists can seem overwhelming at first, you don't need to memorise every name. Learning what a few key ingredients do can make choosing a face wash much easier."
+]
+},
+
+{
+type: "subHeading",
+text: "For Oily Skin"
+},
+
+{
+type: "bullets",
+items: [
+"Salicylic Acid – Helps unclog pores and is often chosen for oily or acne-prone skin.",
+"Niacinamide – Commonly used to support oil balance and improve the appearance of uneven skin tone."
+]
+},
+
+{
+type: "subHeading",
+text: "For Dry Skin"
+},
+
+{
+type: "bullets",
+items: [
+"Hyaluronic Acid – Helps attract and retain moisture.",
+"Glycerin – A well-known hydrating ingredient that helps the skin feel soft after cleansing.",
+"Ceramides – Support the skin's natural protective barrier and help reduce moisture loss."
+]
+},
+
+{
+type: "subHeading",
+text: "For Sensitive Skin"
+},
+
+{
+type: "paragraph",
+text: [
+"Sensitive skin usually responds better to simple, gentle formulas that minimise the risk of irritation."
+]
+},
+
+{
+type: "bullets",
+items: [
+"Fragrance-light or fragrance-free formulas.",
+"Free from harsh exfoliating particles.",
+"Designed to support the skin barrier."
+]
+},
+
+{
+type: "paragraph",
+text: [
+"Remember that ingredients work differently for everyone. Instead of buying a face wash because it contains one popular ingredient, consider the overall formula and whether it suits your skin's needs."
+]
+}
+
+]
+
+},
   
 relatedArticles: [
   {
