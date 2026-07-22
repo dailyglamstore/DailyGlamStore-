@@ -131,18 +131,10 @@ data-close-menu-on-click="true">
 
   <button id="backToTop" type="button" aria-label="Back to top">⬆</button>
 
-  <script>
-  window.ARTICLE_PAGE_CONFIG = {
-  source: "SKINCARE_ARTICLES",
-  key: "lotus-vs-bodywise-sunscreen",
-  ariaLabel: "Comparison article content"
-};
-</script>
-  
-   <script src="/skincare-articles.js"></script>
-   <script src="/haircare-articles.js"></script>
-   <script src="/article-seo.js"></script>
-   <script src="/article-main.js"></script>
+    <!-- Dynamic Loader & Execution Scripts -->
+  <script src="/article-loader.js"></script>
+  <script src="/article-seo.js" defer></script>
+  <script src="/article-main.js" defer></script>
   
   <script>
     const menuToggle = document.getElementById("menuToggle");
