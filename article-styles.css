@@ -1096,6 +1096,13 @@ border-radius: 18px;
     line-height: 1.65 !important;
 }
 
+/* Ensure all Table of Contents / Quick Navigation links are bold */
+.quick-navigation a,
+.toc-list a,
+.article-toc a {
+    font-weight: 700 !important;
+}
+
 @media (max-width: 768px) {
     .routine-heading-capsule {
         width: 180px !important;
