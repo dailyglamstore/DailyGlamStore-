@@ -476,8 +476,7 @@
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
       var faqLi = document.createElement("li");
-      faqLi.innerHTML =
-        '<span id="toc-faq-trigger" style="color:var(--brand); cursor:pointer; text-decoration:none; display:block; width: 100%; -webkit-tap-highlight-color:transparent;">Frequently Asked Questions</span>';
+faqLi.innerHTML = '<span id="toc-faq-trigger" style="color:var(--brand); font-weight:700; cursor:pointer; text-decoration:none; display:block; width: 100%; -webkit-tap-highlight-color:transparent;">Frequently Asked Questions</span>';
       tocList.appendChild(faqLi);
 
       var faqTrigger = document.getElementById("toc-faq-trigger");
