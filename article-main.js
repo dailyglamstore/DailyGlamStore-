@@ -403,7 +403,7 @@
         ].join("\n")
       : "";
 
-      // FAQ Markup
+        // FAQ Markup
   var faqMarkup =
     article.faq && article.faq.length
       ? [
@@ -420,7 +420,7 @@
                 '<div class="faq-item">',
                 '  <button class="faq-question" type="button" aria-expanded="false">',
                 "    <span>" + escapeHtml(item.question) + "</span>",
-                '    <span class="faq-toggle">▼</span>',
+                '    <span class="faq-toggle" style="display:inline-flex;align-items:center;justify-content:center;"><svg width="10" height="8" viewBox="0 0 10 8" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 8L0 0H10L5 8Z"/></svg></span>',
                 "  </button>",
                 '  <div class="faq-answer">',
                 '    <p class="faq-answer-inner">' +
