@@ -44,7 +44,6 @@
         })
         .join("\n");
     },
-
     subHeading: function (block) {
       return (
         '<h3 class="article-sub-heading">' +
@@ -52,7 +51,6 @@
         "</h3>"
       );
     },
-
     image: function (block) {
       return (
         '<figure class="article-section-image">' +
@@ -64,7 +62,6 @@
         "</figure>"
       );
     },
-
     bullets: function (block) {
       return [
         '<ul class="article-list">',
@@ -76,7 +73,6 @@
         "</ul>"
       ].join("\n");
     },
-
     infoBox: function (block) {
       var defaultTitles = {
         tip: "Quick Tip",
@@ -102,7 +98,6 @@
         "</div>"
       );
     },
-
     recommendationBox: function (block) {
       return (
         '<div class="recommendation-box">' +
@@ -121,7 +116,6 @@
         "</div>"
       );
     },
-
     relatedLink: function (block) {
       return (
         '<p class="guide-line">Learn more in our <a class="guide-link" href="' +
@@ -139,19 +133,16 @@
     if (!block || !block.type) {
       return "";
     }
-
     const renderer = BLOCK_RENDERERS[block.type];
     if (typeof renderer === "function") {
       return renderer(block, article);
     }
-
     console.warn("Unknown block type:", block.type);
     return "";
   }
 
-  var config = window.ARTICLE_PAGE_CONFIG || {};
-  var source = window[config.source];
-  var article = source && source[config.key];
+  // UPDATED LOGIC: Directly reads from window.CURRENT_ARTICLE loaded by article-loader.js
+  var article = window.CURRENT_ARTICLE;
   if (!article) {
     return;
   }
@@ -170,8 +161,8 @@
     return;
   }
 
-  if (contentContainer && config.ariaLabel) {
-    contentContainer.setAttribute("aria-label", config.ariaLabel);
+  if (contentContainer) {
+    contentContainer.setAttribute("aria-label", article.title || "Article content");
   }
 
   // Render Hero Content
@@ -222,9 +213,9 @@
     '<p class="article-meta">' + escapeHtml(article.metaLine) + "</p>",
     '<figure class="featured-image">',
     ' <img src="' +
-      escapeHtml(article.image.src) +
+      escapeHtml(article.image ? article.image.src : "") +
       '" alt="' +
-      escapeHtml(article.image.alt) +
+      escapeHtml(article.image ? article.image.alt : "") +
       '" onerror="this.style.display=\'none\'" />',
     "</figure>"
   ].join("\n");
@@ -279,16 +270,18 @@
     .map(function (section, index) {
       var sectionParts = [];
       var headingId = "section-" + index;
-      tocitems.push(
-        '<li><a href="#' +
-          headingId +
-          '">' +
-          escapeHtml(section.heading) +
-          "</a></li>"
-      );
-      sectionParts.push(
-        '<h2 id="' + headingId + '">' + escapeHtml(section.heading) + "</h2>"
-      );
+      if (section.heading) {
+        tocitems.push(
+          '<li><a href="#' +
+            headingId +
+            '">' +
+            escapeHtml(section.heading) +
+            "</a></li>"
+        );
+        sectionParts.push(
+          '<h2 id="' + headingId + '">' + escapeHtml(section.heading) + "</h2>"
+        );
+      }
       if (section.blocks && section.blocks.length) {
         section.blocks.forEach(function (block) {
           sectionParts.push(renderBlock(block, article));
@@ -420,7 +413,7 @@
                 '<div class="faq-item">',
                 '  <button class="faq-question" type="button" aria-expanded="false">',
                 "    <span>" + escapeHtml(item.question) + "</span>",
-                '    <span class="faq-toggle" style="display:inline-flex;align-items:center;justify-content:center;"><svg width="10" height="8" viewBox="0 0 10 8" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 8L0 0H10L5 8Z"/></svg></span>',
+                '    <span class="faq-toggle" style="display:inline-flex; align-items:center; justify-content:center;"><svg width="10" height="8" viewBox="0 0 10 8" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 8L0 0H10L5 8Z"/></svg></span>',
                 "  </button>",
                 '  <div class="faq-answer">',
                 '    <p class="faq-answer-inner">' +
