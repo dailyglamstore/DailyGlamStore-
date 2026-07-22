@@ -12,136 +12,146 @@
     return openNewTab ? ' target="_blank" rel="noopener noreferrer"' : "";
   }
 
+  // Block Renderer Registry
+  const BLOCK_RENDERERS = {
+    paragraph: function (block, article) {
+      var paragraphs = Array.isArray(block.text) ? block.text : [block.text];
+      return paragraphs
+        .map(function (text) {
+          var formattedParagraph = escapeHtml(text);
+          // Process linkPlan inline auto-linking for block paragraphs
+          if (article && article.linkPlan && article.linkPlan.length) {
+            article.linkPlan.forEach(function (link) {
+              if (link.anchorText && link.href && !link._used) {
+                var escapedAnchor = escapeHtml(link.anchorText);
+                if (formattedParagraph.indexOf(escapedAnchor) !== -1) {
+                  formattedParagraph = formattedParagraph.replace(
+                    escapedAnchor,
+                    '<a class="inline-product-link" href="' +
+                      escapeHtml(link.href) +
+                      '"' +
+                      buildTargetAttributes(link.newTab) +
+                      ">" +
+                      escapedAnchor +
+                      "</a>"
+                  );
+                  link._used = true;
+                }
+              }
+            });
+          }
+          return "<p>" + formattedParagraph + "</p>";
+        })
+        .join("\n");
+    },
+
+    subHeading: function (block) {
+      return (
+        '<h3 class="article-sub-heading">' +
+        escapeHtml(block.text) +
+        "</h3>"
+      );
+    },
+
+    image: function (block) {
+      return (
+        '<figure class="article-section-image">' +
+        '<img src="' +
+        escapeHtml(block.src) +
+        '" alt="' +
+        escapeHtml(block.alt) +
+        '" loading="lazy" onerror="this.style.display=\'none\'" />' +
+        "</figure>"
+      );
+    },
+
+    bullets: function (block) {
+      return [
+        '<ul class="article-list">',
+        (block.items || [])
+          .map(function (item) {
+            return "<li>" + escapeHtml(item) + "</li>";
+          })
+          .join("\n"),
+        "</ul>"
+      ].join("\n");
+    },
+
+    infoBox: function (block) {
+      var defaultTitles = {
+        tip: "Quick Tip",
+        warning: "Common Mistake",
+        note: "Good to Know",
+        expert: "Daily Glam Store Insight"
+      };
+      var boxType = block.boxType || "note";
+      var boxTitle =
+        block.title && block.title.trim()
+          ? block.title
+          : defaultTitles[boxType] || "Good to Know";
+      return (
+        '<div class="article-info-box info-' +
+        escapeHtml(boxType) +
+        '">' +
+        '<div class="info-box-title">' +
+        escapeHtml(boxTitle) +
+        "</div>" +
+        '<p class="info-box-text">' +
+        escapeHtml(block.text) +
+        "</p>" +
+        "</div>"
+      );
+    },
+
+    recommendationBox: function (block) {
+      return (
+        '<div class="recommendation-box">' +
+        (block.productName
+          ? '<p class="recommendation-product">' +
+            escapeHtml(block.productName) +
+            "</p>"
+          : "") +
+        '<a class="recommendation-btn" href="' +
+        escapeHtml(block.href) +
+        '"' +
+        buildTargetAttributes(block.newTab) +
+        ">" +
+        escapeHtml(block.text || "Check Price & Offers") +
+        "</a>" +
+        "</div>"
+      );
+    },
+
+    relatedLink: function (block) {
+      return (
+        '<p class="guide-line">Learn more in our <a class="guide-link" href="' +
+        escapeHtml(block.href) +
+        '"' +
+        buildTargetAttributes(block.newTab) +
+        ">" +
+        escapeHtml(block.text) +
+        "</a>.</p>"
+      );
+    }
+  };
+
   function renderBlock(block, article) {
     if (!block || !block.type) {
       return "";
     }
 
-    switch (block.type) {
-      case "paragraph":
-        var paragraphs = Array.isArray(block.text) ? block.text : [block.text];
-        return paragraphs
-          .map(function (text) {
-            var formattedParagraph = escapeHtml(text);
-
-            // Process linkPlan inline auto-linking for block paragraphs
-            if (article && article.linkPlan && article.linkPlan.length) {
-              article.linkPlan.forEach(function (link) {
-                if (link.anchorText && link.href && !link._used) {
-                  var escapedAnchor = escapeHtml(link.anchorText);
-                  if (formattedParagraph.indexOf(escapedAnchor) !== -1) {
-                    formattedParagraph = formattedParagraph.replace(
-                      escapedAnchor,
-                      '<a class="inline-product-link" href="' +
-                        escapeHtml(link.href) +
-                        '"' +
-                        buildTargetAttributes(link.newTab) +
-                        ">" +
-                        escapedAnchor +
-                        "</a>"
-                    );
-                    link._used = true;
-                  }
-                }
-              });
-            }
-
-            return "<p>" + formattedParagraph + "</p>";
-          })
-          .join("\n");
-
-      case "subHeading":
-        return (
-          '<h3 class="article-sub-heading">' +
-          escapeHtml(block.text) +
-          "</h3>"
-        );
-
-      case "image":
-        return (
-          '<figure class="article-section-image">' +
-          '<img src="' +
-          escapeHtml(block.src) +
-          '" alt="' +
-          escapeHtml(block.alt) +
-          '" loading="lazy" onerror="this.style.display=\'none\'" />' +
-          "</figure>"
-        );
-
-      case "bullets":
-        return [
-          '<ul class="article-list">',
-          (block.items || [])
-            .map(function (item) {
-              return "<li>" + escapeHtml(item) + "</li>";
-            })
-            .join("\n"),
-          "</ul>"
-        ].join("\n");
-
-      case "infoBox":
-        var defaultTitles = {
-          tip: "Quick Tip",
-          warning: "Common Mistake",
-          note: "Good to Know",
-          expert: "Daily Glam Store Insight"
-        };
-        var boxType = block.boxType || "note";
-        var boxTitle =
-          block.title && block.title.trim()
-            ? block.title
-            : defaultTitles[boxType] || "Good to Know";
-        return (
-          '<div class="article-info-box info-' +
-          escapeHtml(boxType) +
-          '">' +
-          '<div class="info-box-title">' +
-          escapeHtml(boxTitle) +
-          "</div>" +
-          '<p class="info-box-text">' +
-          escapeHtml(block.text) +
-          "</p>" +
-          "</div>"
-        );
-
-      case "recommendationBox":
-        return (
-          '<div class="recommendation-box">' +
-          (block.productName
-            ? '<p class="recommendation-product">' +
-              escapeHtml(block.productName) +
-              "</p>"
-            : "") +
-          '<a class="recommendation-btn" href="' +
-          escapeHtml(block.href) +
-          '"' +
-          buildTargetAttributes(block.newTab) +
-          ">" +
-          escapeHtml(block.text || "Check Price & Offers") +
-          "</a>" +
-          "</div>"
-        );
-
-      case "relatedLink":
-        return (
-          '<p class="guide-line">Learn more in our <a class="guide-link" href="' +
-          escapeHtml(block.href) +
-          '"' +
-          buildTargetAttributes(block.newTab) +
-          ">" +
-          escapeHtml(block.text) +
-          "</a>.</p>"
-        );
-
-      default:
-        return "";
+    const renderer = BLOCK_RENDERERS[block.type];
+    if (typeof renderer === "function") {
+      return renderer(block, article);
     }
+
+    console.warn("Unknown block type:", block.type);
+    return "";
   }
 
   var config = window.ARTICLE_PAGE_CONFIG || {};
   var source = window[config.source];
   var article = source && source[config.key];
-
   if (!article) {
     return;
   }
@@ -179,11 +189,9 @@
           year: "numeric"
         });
       }
-
       var publishedDate = formatDate(article.date);
       var modifiedDate = formatDate(article.dateModified || article.date);
       var displayAuthor = "";
-
       if (article.author && article.author.length) {
         var personAuthor = article.author.find(function (author) {
           return author.enabled && author.type === "Person";
@@ -191,14 +199,12 @@
         var orgAuthor = article.author.find(function (author) {
           return author.enabled && author.type === "Organization";
         });
-
         if (personAuthor) {
           displayAuthor = personAuthor.name;
         } else if (orgAuthor) {
           displayAuthor = orgAuthor.name;
         }
       }
-
       var dateMarkup =
         '<div class="article-dates">' +
         "<div><strong>Published:</strong> " +
@@ -211,12 +217,11 @@
           ? "<div><strong>By:</strong> " + escapeHtml(displayAuthor) + "</div>"
           : "") +
         "</div>";
-
       return dateMarkup;
     })(),
     '<p class="article-meta">' + escapeHtml(article.metaLine) + "</p>",
     '<figure class="featured-image">',
-    '  <img src="' +
+    ' <img src="' +
       escapeHtml(article.image.src) +
       '" alt="' +
       escapeHtml(article.image.alt) +
@@ -274,7 +279,6 @@
     .map(function (section, index) {
       var sectionParts = [];
       var headingId = "section-" + index;
-
       tocitems.push(
         '<li><a href="#' +
           headingId +
@@ -282,17 +286,14 @@
           escapeHtml(section.heading) +
           "</a></li>"
       );
-
       sectionParts.push(
         '<h2 id="' + headingId + '">' + escapeHtml(section.heading) + "</h2>"
       );
-
       if (section.blocks && section.blocks.length) {
         section.blocks.forEach(function (block) {
           sectionParts.push(renderBlock(block, article));
         });
       }
-
       return sectionParts.join("\n");
     })
     .join("\n\n");
@@ -302,7 +303,6 @@
     article.showTableOfContents === true ||
     (article.showTableOfContents !== false &&
       (!!article.comparisonTable || tocitems.length >= 7));
-
   var tocMarkup =
     shouldShowTOC && tocitems.length
       ? [
@@ -403,7 +403,7 @@
         ].join("\n")
       : "";
 
-        // FAQ Markup
+  // FAQ Markup
   var faqMarkup =
     article.faq && article.faq.length
       ? [
@@ -476,9 +476,9 @@
     var tocList = document.querySelector(".toc-list");
     if (tocList) {
       var faqLi = document.createElement("li");
-faqLi.innerHTML = '<span id="toc-faq-trigger" style="color:var(--brand); font-weight:700; cursor:pointer; text-decoration:none; display:block; width: 100%; -webkit-tap-highlight-color:transparent;">Frequently Asked Questions</span>';
+      faqLi.innerHTML =
+        '<span id="toc-faq-trigger" style="color:var(--brand); font-weight:700; cursor:pointer; text-decoration:none; display:block; width: 100%; -webkit-tap-highlight-color:transparent;">Frequently Asked Questions</span>';
       tocList.appendChild(faqLi);
-
       var faqTrigger = document.getElementById("toc-faq-trigger");
       if (faqTrigger) {
         faqTrigger.addEventListener("mouseenter", function () {
@@ -496,12 +496,10 @@ faqLi.innerHTML = '<span id="toc-faq-trigger" style="color:var(--brand); font-we
               targetSection.getBoundingClientRect().top +
               window.pageYOffset -
               headerOffset;
-
             window.scrollTo({
               top: targetPosition,
               behavior: "smooth"
             });
-
             var checkCount = 0;
             var adjustInterval = setInterval(function () {
               var currentTop =
@@ -518,7 +516,7 @@ faqLi.innerHTML = '<span id="toc-faq-trigger" style="color:var(--brand); font-we
               if (checkCount > 25) {
                 clearInterval(adjustInterval);
               }
-            }, 60); // Restored 60ms cadence
+            }, 60);
           }
         });
       }
@@ -531,7 +529,6 @@ faqLi.innerHTML = '<span id="toc-faq-trigger" style="color:var(--brand); font-we
     button.addEventListener("click", function () {
       var answerDiv = button.nextElementSibling;
       var isExpanded = button.getAttribute("aria-expanded") === "true";
-
       faqQuestions.forEach(function (otherButton) {
         if (otherButton !== button) {
           otherButton.setAttribute("aria-expanded", "false");
@@ -542,7 +539,6 @@ faqLi.innerHTML = '<span id="toc-faq-trigger" style="color:var(--brand); font-we
           }
         }
       });
-
       if (isExpanded) {
         button.setAttribute("aria-expanded", "false");
         button.classList.remove("is-active");
