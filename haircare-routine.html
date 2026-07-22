@@ -137,18 +137,10 @@ data-close-menu-on-click="true">
 
   <button id="backToTop" type="button" aria-label="Back to top">⬆</button>
 
-   <script>
-    window.ARTICLE_PAGE_CONFIG = {
-      source: "HAIRCARE_ARTICLES",
-      key: "haircare-routine",
-      ariaLabel: "Haircare article content"
-    };
-  </script>
-  
-   <script src="/skincare-articles.js"></script>
-   <script src="/haircare-articles.js"></script>
-   <script src="/article-seo.js"></script>
-   <script src="/article-main.js"></script>
+     <!-- Dynamic Loader & Execution Scripts -->
+  <script src="/article-loader.js"></script>
+  <script src="/article-seo.js" defer></script>
+  <script src="/article-main.js" defer></script>
   
   <script>
     const menuToggle = document.getElementById("menuToggle");
