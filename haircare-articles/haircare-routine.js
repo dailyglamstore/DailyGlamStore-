@@ -1,4 +1,5 @@
-window.HAIRCARE_ARTICLES = {
+window.CURRENT_ARTICLE = {
+    
 "haircare-routine": {
   key: "haircare-routine",
 
