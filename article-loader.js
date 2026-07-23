@@ -1,23 +1,29 @@
 (function () {
-  // Extract slug from URL (e.g., "skincare-routine")
-  var slug = window.location.pathname
-    .replace(/^\/+/, "")
-    .replace(/\.html$/, "")
-    .toLowerCase();
+  var body = document.body;
+  
+  // 1. First choice: Get slug and folder directly from body attributes (for new subfolder setup)
+  var slug = body ? body.getAttribute("data-slug") : null;
+  var folder = body ? body.getAttribute("data-category") : null;
+
+  // 2. Fallback choice: Extract filename from URL (for old root-level setup)
+  if (!slug) {
+    var pathSegments = window.location.pathname.replace(/\.html$/, "").split("/");
+    slug = pathSegments[pathSegments.length - 1].toLowerCase();
+  }
+
+  if (!folder) {
+    folder = "skincare-articles";
+    if (slug.startsWith("hair") || slug.indexOf("haircare") !== -1) {
+      folder = "haircare-articles";
+    }
+  }
 
   if (!slug) return;
 
-  // Determine category folder
-  var folder = "skincare-articles";
-  if (slug.startsWith("hair") || slug.indexOf("haircare") !== -1) {
-    folder = "haircare-articles";
-  }
-
-  // Inject article data script
+  // 3. Inject article data script
   var script = document.createElement("script");
   script.src = "/" + folder + "/" + slug + ".js";
-  
-  // When the article data finishes loading, load SEO & Main rendering scripts
+
   script.onload = function () {
     loadScript("/article-seo.js");
     loadScript("/article-main.js");
