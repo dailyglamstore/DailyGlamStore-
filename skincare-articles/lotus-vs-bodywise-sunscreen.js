@@ -1,3 +1,5 @@
+window.CURRENT_ARTICLE = {
+
 key: "lotus-vs-bodywise-sunscreen",
 
   url:
