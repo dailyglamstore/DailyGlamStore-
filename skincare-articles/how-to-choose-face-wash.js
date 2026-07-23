@@ -1,3 +1,5 @@
+window.CURRENT_ARTICLE = {
+  
 key: "how-to-choose-face-wash",
 
   url: "/how-to-choose-face-wash.html",
@@ -518,4 +520,4 @@ ctaButtons: [
     newTab: false
   }
 ]
-},
+};
