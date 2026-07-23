@@ -1,6 +1,5 @@
 window.CURRENT_ARTICLE = {
-    
-"haircare-routine": {
+
   key: "haircare-routine",
 
   url: "/haircare-routine.html",
