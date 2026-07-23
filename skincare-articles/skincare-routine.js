@@ -1,5 +1,4 @@
 window.CURRENT_ARTICLE = {
-"skincare-routine": {
  key: "skincare-routine",
 
  url: "/skincare-routine.html",
@@ -421,4 +420,4 @@ ctaButtons: [
         true
     }
   ]
-}
+};
