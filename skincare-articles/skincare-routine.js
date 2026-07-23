@@ -420,4 +420,4 @@ ctaButtons: [
         true
     }
   ]
-}
+};
