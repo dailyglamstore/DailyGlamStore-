@@ -244,47 +244,6 @@ html { scroll-behavior: smooth; }
       display: block;
     }
 
-/* =========================================================
-   ARTICLE SKELETON LOADING ANIMATION
-   ========================================================= */
-
-@keyframes skeletonShimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-.article-hero:empty,
-.article-content:empty {
-  position: relative;
-  min-height: 400px;
-  background: #ffffff;
-  border-radius: 14px;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-
-.article-hero:empty::before,
-.article-content:empty::before {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 380px;
-  border-radius: 12px;
-  background: linear-gradient(
-    90deg,
-    #fff3ee 25%,
-    #ffe7de 37%,
-    #fff3ee 63%
-  );
-  background-size: 200% 100%;
-  animation: skeletonShimmer 1.4s infinite ease-in-out;
-}
-
     .article-content {
       max-width: 760px;
       margin: 0 auto;
