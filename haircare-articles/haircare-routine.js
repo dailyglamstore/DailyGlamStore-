@@ -44,7 +44,7 @@ window.CURRENT_ARTICLE = {
     "Beginner-friendly haircare guide • Simple Everyday Routine • Healthy Hair Steps",
 
   image: {
-    src: "images/beauty-images/blog/simple-haircare-routine-healthy-hair.JPG",
+    src: "/images/beauty-images/blog/simple-haircare-routine-healthy-hair.JPG",
     alt: "Simple haircare routine for healthy hair with shampoo, conditioner, hair serum and hair oil"
   },
 
