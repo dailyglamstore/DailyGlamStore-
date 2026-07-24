@@ -2179,8 +2179,43 @@ respective owners and are used for informational, review, and recommendation pur
   <script src="data/beauty-products/haircare/hair-oil.js"></script>
   <script src="beauty-main.js"></script>
   
-  <script src="/skincare-articles.js"></script>
-  <script src="/haircare-articles.js"></script>
+  <script>
+  // Dynamic Auto-Loader for Daily Glam Store Homepage
+  const REPO_USER = "dailyglamstore";
+  const REPO_NAME = "dailyglamstore.github.io";
+
+  async function autoLoadArticlesFromFolder(folderName) {
+    try {
+      const response = await fetch(`https://api.github.com/repos/${REPO_USER}/${REPO_NAME}/contents/${folderName}`);
+      
+      if (!response.ok) return;
+
+      const files = await response.json();
+
+      for (const file of files) {
+        if (file.name.endsWith('.js')) {
+          const script = document.createElement('script');
+          script.src = `/${folderName}/${file.name}`;
+
+          // Re-render slider whenever a new article file finishes loading
+          script.onload = () => {
+            if (typeof renderBlogSlider === 'function') {
+              renderBlogSlider();
+            }
+          };
+
+          document.body.appendChild(script);
+        }
+      }
+    } catch (error) {
+      console.error(`Error auto-loading articles from ${folderName}:`, error);
+    }
+  }
+
+  // Auto-load articles from both subfolders
+  autoLoadArticlesFromFolder('skincare-articles');
+  autoLoadArticlesFromFolder('haircare-articles');
+</script>
   
   <script>
     const menuToggle = document.getElementById("menuToggle");
