@@ -811,22 +811,49 @@ data-close-menu-on-click="true">
 
   <button id="backToTop" type="button" aria-label="Back to top">⬆</button>
   
-  <!-- Direct Article Script Loader -->
+  <!-- Article Data Files -->
 <script src="/skincare-articles/skincare-routine.js"></script>
 <script src="/skincare-articles/how-to-choose-face-wash.js"></script>
 <script src="/skincare-articles/lotus-vs-bodywise-sunscreen.js"></script>
 <script src="/haircare-articles/haircare-routine.js"></script>
 
 <script>
-  // Re-render components once scripts are loaded
-  document.addEventListener("DOMContentLoaded", () => {
-    if (typeof renderBlogSlider === 'function') {
-      renderBlogSlider();
+  function renderBeautyBlogPage() {
+    const skincareContainer = document.getElementById("skincare-articles-list") || document.querySelector(".skincare-section");
+    const haircareContainer = document.getElementById("haircare-articles-list") || document.querySelector(".haircare-section");
+
+    const skincareArticles = Object.values(window.SKINCARE_ARTICLES || {});
+    const haircareArticles = Object.values(window.HAIRCARE_ARTICLES || {});
+
+    // Helper to generate Card HTML
+    function createCardHTML(art) {
+      return `
+        <a href="${art.url || '#'}" class="blog-card" style="text-decoration:none; color:inherit; display:block;">
+          <div class="card-image-wrap" style="border-radius:12px; overflow:hidden; aspect-ratio:16/9; background:#f0f0f0;">
+            <img src="${art.image || ''}" alt="${art.title || ''}" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+          </div>
+          <div class="card-content" style="padding:12px 4px;">
+            <span class="badge" style="font-size:12px; color:#c2185b; font-weight:600;">${art.category || 'Beauty'}</span>
+            <h3 style="font-size:16px; margin:6px 0; color:#333;">${art.title || ''}</h3>
+            <p style="font-size:13px; color:#666; line-height:1.4;">${art.description || ''}</p>
+          </div>
+        </a>
+      `;
     }
-    if (typeof renderBlogPage === 'function') {
-      renderBlogPage();
+
+    if (skincareContainer && skincareArticles.length > 0) {
+      skincareContainer.innerHTML = skincareArticles.map(createCardHTML).join('');
     }
-  });
+
+    if (haircareContainer && haircareArticles.length > 0) {
+      haircareContainer.innerHTML = haircareArticles.map(createCardHTML).join('');
+    }
+  }
+
+  // Execute rendering after DOM loads
+  window.addEventListener("DOMContentLoaded", renderBeautyBlogPage);
+  // Backup call in case scripts loaded after DOMContentLoaded
+  setTimeout(renderBeautyBlogPage, 300);
 </script>
 
   <script>
