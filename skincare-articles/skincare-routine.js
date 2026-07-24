@@ -1,7 +1,7 @@
 window.CURRENT_ARTICLE = {
  key: "skincare-routine",
 
- url: "/skincare-routine.html",
+ url: "/articles/skincare/skincare-routine.html",
 
 category: "Skincare",
 
