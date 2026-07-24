@@ -42,7 +42,7 @@ metaLine:
   "Beginner-friendly skincare guide • Morning & Night Routine • Simple Everyday Steps",
 
 image: {
-  src: "images/beauty-images/blog/simple-skincare-routine-healthy-glowing-skin.JPG",
+  src: "/images/beauty-images/blog/simple-skincare-routine-healthy-glowing-skin.JPG",
   alt: "Simple daily skincare routine for healthy and glowing skin"
 },
 
