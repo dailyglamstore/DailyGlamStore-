@@ -2,8 +2,7 @@ window.CURRENT_ARTICLE = {
 
 key: "lotus-vs-bodywise-sunscreen",
 
-  url:
-    "/lotus-vs-bodywise-sunscreen.html",
+  url: "/articles/skincare/lotus-vs-bodywise-sunscreen.html",
 
   category:
     "Skincare Comparison",
