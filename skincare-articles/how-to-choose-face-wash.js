@@ -50,7 +50,7 @@ dateModified: "2026-07-21T18:30:00+05:30",
     "Beginner-friendly guide • Skin type explained • Ingredient tips",
 
   image: {
-    src: "images/beauty-images/blog/how-to-choose-face-wash.JPG",
+    src: "/images/beauty-images/blog/how-to-choose-face-wash.JPG",
     alt: "How to choose the right face wash for your skin type"
   },
 
