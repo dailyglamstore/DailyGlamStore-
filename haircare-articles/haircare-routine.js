@@ -2,7 +2,7 @@ window.CURRENT_ARTICLE = {
 
   key: "haircare-routine",
 
-  url: "/haircare-routine.html",
+  url: "/articles/haircare/haircare-routine.html",
 
   category: "Haircare",
 
