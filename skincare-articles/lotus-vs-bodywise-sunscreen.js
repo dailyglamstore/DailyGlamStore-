@@ -184,7 +184,7 @@ metaLine:
   blocks: [
     {
       type: "image",
-      src: "images/beauty-images/blog/lotus-spf50-review.JPG",
+      src: "/images/beauty-images/blog/lotus-spf50-review.JPG",
       alt: "Lotus SPF 50 Mineral Sunscreen Review"
     },
     {
@@ -217,7 +217,7 @@ metaLine:
     {
       type: "image",
       src:
-        "images/beauty-images/blog/bodywise-spf50-review.JPG",
+        "/images/beauty-images/blog/bodywise-spf50-review.JPG",
 
       alt:
         "Be Bodywise SPF 50 Mineral Sunscreen Review"
