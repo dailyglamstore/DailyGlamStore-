@@ -42,11 +42,10 @@ gtag('config', 'G-CM68D7HP38');
       </button>
 
       <nav class="main-nav" id="mainNav">
-        <a href="/"
-data-close-menu-on-click="true">
+        <a href="/" data-close-menu-on-click="true">
           <span class="menu-home-combo">
-<span>🏠 Home</span>
-</span>
+            <span>🏠 Home</span>
+          </span>
         </a>
         <a href="/beauty-blog.html" data-close-menu-on-click="true">📝 Beauty Blog</a>
         <a href="#contact">📞 Contact &amp; Support</a>
@@ -58,9 +57,9 @@ data-close-menu-on-click="true">
     <div class="article-hero-inner" id="articleHeroContent"></div>
   </section>
 
- <main class="article-content" id="articleContentWrapper">
+  <main class="article-content" id="articleContentWrapper">
     <article id="articleContent"></article>
-</main>
+  </main>
 
   <div class="footer-content-area">
     <section class="footer-section" id="about">
@@ -76,24 +75,23 @@ data-close-menu-on-click="true">
     <section class="footer-section" id="ordering">
       <h2>🛍️ How Ordering Works ?</h2>
       <div class="ordering-steps">
-        <p><strong>Step 1:</strong> Browse our beauty recommendations and articles to shortlist the best product options for your needs.</p>
+        <p><strong>Step 1:</strong> Browse our recommendations and guides to shortlist the best product options for your routine.</p>
         <p><strong>Step 2:</strong> Click the product link to visit the official brand website and review final details.</p>
         <p><strong>Step 3:</strong> Complete your purchase securely on the official website using available offers.</p>
       </div>
     </section>
 
     <section class="footer-section" id="disclaimer">
-  <h2>⚠️ Disclaimer</h2>
+      <h2>⚠️ Disclaimer</h2>
 
-  <p>
-    Article content, product references and recommendations are for informational purposes only. Final pricing, offers, stock, and terms may change on official websites.
-  </p>
+      <p>
+        Article content, product references, and recommendations are for informational purposes only. Final pricing, offers, stock, and terms may change on official websites.
+      </p>
 
-  <p>
-    Product images, trademarks, and brand names featured on this website belong to their respective owners and are used for informational, review, and recommendation purposes only.
-  </p>
-
-</section>
+      <p>
+        Product images, trademarks, and brand names featured on this website belong to their respective owners and are used for informational, review, and recommendation purposes only.
+      </p>
+    </section>
 
     <section class="footer-section" id="privacy">
       <h2>🔐 Privacy Policy</h2>
@@ -137,18 +135,8 @@ data-close-menu-on-click="true">
 
   <button id="backToTop" type="button" aria-label="Back to top">⬆</button>
 
-  <script>
-    window.ARTICLE_PAGE_CONFIG = {
-      source: "REPLACE_SOURCE",
-      key: "replace-article-key",
-      ariaLabel: "Article content"
-    };
-  </script>
-  
-   <script src="/skincare-articles.js"></script>
-   <script src="/haircare-articles.js"></script>
-   <script src="/article-seo.js"></script>
-   <script src="/article-main.js"></script>
+  <!-- Dynamic Loader (Automatically detects URL path, loads standalone JS, SEO, and Main scripts) -->
+  <script src="/article-loader.js"></script>
   
   <script>
     const menuToggle = document.getElementById("menuToggle");
