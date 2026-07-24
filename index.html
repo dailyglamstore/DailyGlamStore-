@@ -2179,22 +2179,43 @@ respective owners and are used for informational, review, and recommendation pur
   <script src="data/beauty-products/haircare/hair-oil.js"></script>
   <script src="beauty-main.js"></script>
   
-  <!-- Direct Article Script Loader -->
+  <!-- Article Data Files -->
 <script src="/skincare-articles/skincare-routine.js"></script>
 <script src="/skincare-articles/how-to-choose-face-wash.js"></script>
 <script src="/skincare-articles/lotus-vs-bodywise-sunscreen.js"></script>
 <script src="/haircare-articles/haircare-routine.js"></script>
 
 <script>
-  // Re-render components once scripts are loaded
-  document.addEventListener("DOMContentLoaded", () => {
-    if (typeof renderBlogSlider === 'function') {
-      renderBlogSlider();
-    }
-    if (typeof renderBlogPage === 'function') {
-      renderBlogPage();
-    }
-  });
+  function renderHomepageBlogSlider() {
+    const sliderTrack = document.getElementById("blogSliderTrack") || document.querySelector(".blog-slider-track");
+    if (!sliderTrack) return;
+
+    const allArticles = [
+      ...Object.values(window.SKINCARE_ARTICLES || {}),
+      ...Object.values(window.HAIRCARE_ARTICLES || {})
+    ];
+
+    if (allArticles.length === 0) return;
+
+    sliderTrack.innerHTML = allArticles.map(art => `
+      <div class="blog-slide-item" style="min-width:260px; max-width:280px; flex-shrink:0;">
+        <a href="${art.url || '#'}" style="text-decoration:none; color:inherit; display:block; background:#fff; border-radius:12px; overflow:hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+          <div style="aspect-ratio:16/9; width:100%; overflow:hidden; background:#f7f7f7;">
+            <img src="${art.image || ''}" alt="${art.title || ''}" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+          </div>
+          <div style="padding:14px;">
+            <span style="font-size:11px; text-transform:uppercase; letter-spacing:0.5px; color:#c2185b; font-weight:700;">${art.category || 'Beauty'}</span>
+            <h4 style="font-size:15px; margin:6px 0 8px; color:#222; font-weight:600; line-height:1.3;">${art.title || ''}</h4>
+            <p style="font-size:12px; color:#666; margin:0; line-height:1.4; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">${art.description || ''}</p>
+          </div>
+        </a>
+      </div>
+    `).join('');
+  }
+
+  // Execute rendering
+  window.addEventListener("DOMContentLoaded", renderHomepageBlogSlider);
+  setTimeout(renderHomepageBlogSlider, 300);
 </script>
   
   <script>
