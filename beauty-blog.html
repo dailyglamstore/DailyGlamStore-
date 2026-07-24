@@ -818,8 +818,40 @@ data-close-menu-on-click="true">
 
   <button id="backToTop" type="button" aria-label="Back to top">⬆</button>
   
-  <script src="/skincare-articles.js"></script>
-  <script src="/haircare-articles.js"></script>
+  <script>
+  // Dynamic Auto-Loader for GitHub Pages
+  const REPO_USER = "YOUR_GITHUB_USERNAME"; // Replace with your exact GitHub username
+  const REPO_NAME = "YOUR_REPOSITORY_NAME"; // Replace with your exact GitHub repository name
+
+  async function autoLoadArticlesFromFolder(folderName) {
+    try {
+      // Fetch list of files from GitHub API
+      const response = await fetch(`https://api.github.com/repos/${REPO_USER}/${REPO_NAME}/contents/${folderName}`);
+      
+      if (!response.ok) {
+        console.error(`Could not fetch contents for ${folderName}`);
+        return;
+      }
+
+      const files = await response.json();
+
+      // Dynamically insert each standalone article script
+      for (const file of files) {
+        if (file.name.endsWith('.js')) {
+          const script = document.createElement('script');
+          script.src = `/${folderName}/${file.name}`;
+          document.body.appendChild(script);
+        }
+      }
+    } catch (error) {
+      console.error(`Error auto-loading articles from ${folderName}:`, error);
+    }
+  }
+
+  // Load articles from both folders automatically
+  autoLoadArticlesFromFolder('skincare-articles');
+  autoLoadArticlesFromFolder('haircare-articles');
+</script>
 
   <script>
     const menuToggle = document.getElementById("menuToggle");
