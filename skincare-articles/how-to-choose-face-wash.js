@@ -2,7 +2,7 @@ window.CURRENT_ARTICLE = {
   
 key: "how-to-choose-face-wash",
 
-  url: "/how-to-choose-face-wash.html",
+  url: "/articles/skincare/how-to-choose-face-wash.html",
 
   category: "Skincare",
 
