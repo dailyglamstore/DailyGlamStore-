@@ -810,272 +810,115 @@ data-close-menu-on-click="true">
   </footer>
 
   <button id="backToTop" type="button" aria-label="Back to top">⬆</button>
-  
-  <!-- Article Data Files -->
-<script src="/skincare-articles/skincare-routine.js"></script>
-<script src="/skincare-articles/how-to-choose-face-wash.js"></script>
-<script src="/skincare-articles/lotus-vs-bodywise-sunscreen.js"></script>
-<script src="/haircare-articles/haircare-routine.js"></script>
-
-<script>
-  function renderBeautyBlogPage() {
-    const skincareContainer = document.getElementById("skincare-articles-list") || document.querySelector(".skincare-section");
-    const haircareContainer = document.getElementById("haircare-articles-list") || document.querySelector(".haircare-section");
-
-    const skincareArticles = Object.values(window.SKINCARE_ARTICLES || {});
-    const haircareArticles = Object.values(window.HAIRCARE_ARTICLES || {});
-
-    // Helper to generate Card HTML
-    function createCardHTML(art) {
-      return `
-        <a href="${art.url || '#'}" class="blog-card" style="text-decoration:none; color:inherit; display:block;">
-          <div class="card-image-wrap" style="border-radius:12px; overflow:hidden; aspect-ratio:16/9; background:#f0f0f0;">
-            <img src="${art.image || ''}" alt="${art.title || ''}" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
-          </div>
-          <div class="card-content" style="padding:12px 4px;">
-            <span class="badge" style="font-size:12px; color:#c2185b; font-weight:600;">${art.category || 'Beauty'}</span>
-            <h3 style="font-size:16px; margin:6px 0; color:#333;">${art.title || ''}</h3>
-            <p style="font-size:13px; color:#666; line-height:1.4;">${art.description || ''}</p>
-          </div>
-        </a>
-      `;
-    }
-
-    if (skincareContainer && skincareArticles.length > 0) {
-      skincareContainer.innerHTML = skincareArticles.map(createCardHTML).join('');
-    }
-
-    if (haircareContainer && haircareArticles.length > 0) {
-      haircareContainer.innerHTML = haircareArticles.map(createCardHTML).join('');
-    }
-  }
-
-  // Execute rendering after DOM loads
-  window.addEventListener("DOMContentLoaded", renderBeautyBlogPage);
-  // Backup call in case scripts loaded after DOMContentLoaded
-  setTimeout(renderBeautyBlogPage, 300);
-</script>
+    <!-- Article Data Files -->
+  <script src="/skincare-articles/skincare-routine.js"></script>
+  <script src="/skincare-articles/how-to-choose-face-wash.js"></script>
+  <script src="/skincare-articles/lotus-vs-bodywise-sunscreen.js"></script>
+  <script src="/haircare-articles/haircare-routine.js"></script>
 
   <script>
-    const menuToggle = document.getElementById("menuToggle");
-    const mainNav = document.getElementById("mainNav");
-    const siteHeader = document.getElementById("siteHeader");
-    const backToTopButton = document.getElementById("backToTop");
+    // 1. Mobile Menu & Scroll Logic Fix
+    document.addEventListener("DOMContentLoaded", function () {
+      const menuToggle = document.querySelector(".menu-toggle") || document.getElementById("menuToggle");
+      const mainNav = document.getElementById("mainNav");
+      const siteHeader = document.getElementById("siteHeader");
+      const backToTopButton = document.getElementById("backToTop");
 
-    function closeMenu() {
-      mainNav.classList.remove("show");
-      menuToggle.setAttribute("aria-expanded", "false");
-    }
-
-    function toggleMenu() {
-      const isOpen = mainNav.classList.contains("show");
-      mainNav.classList.toggle("show");
-      menuToggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
-    }
-
-    menuToggle.addEventListener("click", function (e) {
-      e.stopPropagation();
-      toggleMenu();
-    });
-
-    document.addEventListener("click", function (e) {
-      if (!e.target.closest(".header-inner")) {
-        closeMenu();
+      function closeMenu() {
+        if (mainNav) {
+          mainNav.classList.remove("show");
+        }
+        if (menuToggle) {
+          menuToggle.setAttribute("aria-expanded", "false");
+        }
       }
-    });
 
-    document.querySelectorAll("#mainNav a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        closeMenu();
-      });
-    });
+      function toggleMenu() {
+        if (!mainNav || !menuToggle) return;
+        const isOpen = mainNav.classList.contains("show");
+        mainNav.classList.toggle("show");
+        menuToggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
+      }
 
-    document.querySelectorAll('#mainNav a[data-close-menu-on-click="true"]').forEach(function (link) {
-      link.addEventListener("auxclick", function () {
-        closeMenu();
+      if (menuToggle) {
+        menuToggle.addEventListener("click", function (e) {
+          e.stopPropagation();
+          toggleMenu();
+        });
+      }
+
+      document.addEventListener("click", function (e) {
+        if (!e.target.closest(".header-inner")) {
+          closeMenu();
+        }
       });
 
-      link.addEventListener("contextmenu", function () {
-        closeMenu();
+      document.querySelectorAll("#mainNav a").forEach(function (link) {
+        link.addEventListener("click", closeMenu);
       });
-    });
 
-    window.addEventListener("scroll", function () {
-      if (window.scrollY > 18) {
-        siteHeader.classList.add("shrink");
-      } else {
-        siteHeader.classList.remove("shrink");
+      window.addEventListener("scroll", function () {
+        if (siteHeader) {
+          if (window.scrollY > 18) siteHeader.classList.add("shrink");
+          else siteHeader.classList.remove("shrink");
+        }
+
+        if (backToTopButton) {
+          if (window.scrollY > 500) backToTopButton.style.display = "block";
+          else backToTopButton.style.display = "none";
+        }
+      });
+
+      if (backToTopButton) {
+        backToTopButton.addEventListener("click", function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
       }
 
-      if (window.scrollY > 500) {
-        backToTopButton.style.display = "block";
-      } else {
-        backToTopButton.style.display = "none";
+      // 2. Blog Article Rendering Logic Fix
+      function renderBlogPageArticles() {
+        const skincareList = document.getElementById("skincareList");
+        const haircareList = document.getElementById("haircareList");
+
+        const skincareArticles = Object.values(window.SKINCARE_ARTICLES || {});
+        const haircareArticles = Object.values(window.HAIRCARE_ARTICLES || {});
+
+        function getCardHTML(art) {
+          const imgUrl = typeof art.image === "object" ? (art.image.src || "") : (art.image || "");
+          const altText = typeof art.image === "object" ? (art.image.alt || art.title) : (art.title || "Article Image");
+          const descText = art.description || art.excerpt || art.intro || "";
+          const pageUrl = art.url || art.link || "#";
+
+          return `
+            <article class="blog-card" style="background:#fff; border-radius:12px; overflow:hidden; border:1px solid #f0e4e8; display:flex; flex-direction:column; height:100%;">
+              <div class="blog-media" style="aspect-ratio:16/9; width:100%; overflow:hidden; background:#faf5f7;">
+                <img src="${imgUrl}" alt="${altText}" class="blog-img" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+              </div>
+              <div style="padding:16px; flex-grow:1; display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                  <span class="blog-badge" style="font-size:11px; text-transform:uppercase; color:#c2185b; font-weight:700; letter-spacing:0.5px;">${art.category || 'Beauty'}</span>
+                  <h3 style="font-size:16px; margin:8px 0; color:#222; font-weight:600; line-height:1.3;">${art.title || ''}</h3>
+                  <p style="font-size:13px; color:#666; margin-bottom:16px; line-height:1.4;">${descText}</p>
+                </div>
+                <a class="blog-btn" href="${pageUrl}" style="display:inline-block; text-align:center; padding:8px 16px; background:#c2185b; color:#fff; text-decoration:none; border-radius:6px; font-size:13px; font-weight:600; align-self:flex-start;">Read Article</a>
+              </div>
+            </article>
+          `;
+        }
+
+        if (skincareList && skincareArticles.length > 0) {
+          skincareList.innerHTML = skincareArticles.map(getCardHTML).join("");
+        }
+
+        if (haircareList && haircareArticles.length > 0) {
+          haircareList.innerHTML = haircareArticles.map(getCardHTML).join("");
+        }
       }
 
-      if (window.innerWidth <= 768 && mainNav.classList.contains("show")) {
-        closeMenu();
-      }
+      renderBlogPageArticles();
+      setTimeout(renderBlogPageArticles, 200);
     });
-
-    backToTopButton.addEventListener("click", function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
-function getBadgeHTML(article) {
-  if (article.badge === "featured") {
-    return `<span class="blog-badge featured">⭐ Featured</span>`;
-  }
-  if (article.badge === "new") {
-    return `<span class="blog-badge new">✨ New</span>`;
-  }
-  if (article.badge === "popular") {
-    return `<span class="blog-badge popular">🔥 Popular</span>`;
-  }
-  return "";
-}
-
-function safeDate(d) {
-  return d ? new Date(d).getTime() : 0;
-}
-
-function safeImage(article) {
-  return article.image && article.image.src
-    ? article.image.src
-    : "images/placeholder.jpg";
-}
-
-function safeAlt(article) {
-  return article.image && article.image.alt
-    ? article.image.alt
-    : article.title || "Blog image";
-}
-
-function safeText(text, length) {
-  if (!text) return "";
-  return text.length > length ? text.slice(0, length) + "..." : text;
-}
-
-const skincareArticles = Object.values(window.SKINCARE_ARTICLES || {});
-const haircareArticles = Object.values(window.HAIRCARE_ARTICLES || {});
-
-const allArticles = [...skincareArticles, ...haircareArticles]
-  .sort((a, b) => {
-
-    if (a.badge === "featured") return -1;
-    if (b.badge === "featured") return 1;
-
-    return safeDate(b.date) - safeDate(a.date);
-  });
-
-const featuredContainer = document.getElementById("featuredArticle");
-
-const featuredArticle = allArticles.find(a => a.badge === "featured");
-
-if (featuredContainer && featuredArticle) {
-  featuredContainer.innerHTML = `
-    <article class="blog-card featured-card">
-      
-      ${getBadgeHTML(featuredArticle)}
-
-      <div class="blog-media">
-        <img src="${safeImage(featuredArticle)}" alt="${safeAlt(featuredArticle)}" class="blog-img">
-      </div>
-
-      <h3>${featuredArticle.title || ""}</h3>
-      <p>${safeText(featuredArticle.intro, 120)}</p>
-
-      <a class="blog-btn" href="${featuredArticle.url}" target="_blank" rel="noopener noreferrer">
-        Read Article
-      </a>
-    </article>
-  `;
-}
-
-const skincareList = document.getElementById("skincareList");
-
-const sortedSkincare = [...skincareArticles]
-  .sort((a, b) => safeDate(b.date) - safeDate(a.date));
-
-if (skincareList && sortedSkincare.length) {
-  skincareList.innerHTML = sortedSkincare.map(article => `
-    <article class="blog-card">
-      
-      ${getBadgeHTML(article)}
-
-      <div class="blog-media">
-        <img src="${safeImage(article)}" alt="${safeAlt(article)}" class="blog-img">
-      </div>
-
-      <h3>${article.title || ""}</h3>
-      <p>${safeText(article.intro, 100)}</p>
-
-      <a class="blog-btn" href="${article.url}" target="_blank" rel="noopener noreferrer">
-        Read Article
-      </a>
-    </article>
-  `).join("");
-}
-
-const haircareList = document.getElementById("haircareList");
-
-const sortedHaircare = [...haircareArticles]
-  .sort((a, b) => safeDate(b.date) - safeDate(a.date));
-
-if (haircareList && sortedHaircare.length) {
-  haircareList.innerHTML = sortedHaircare.map(article => `
-    <article class="blog-card">
-      
-      ${getBadgeHTML(article)}
-
-      <div class="blog-media">
-        <img src="${safeImage(article)}" alt="${safeAlt(article)}" class="blog-img">
-      </div>
-
-      <h3>${article.title || ""}</h3>
-      <p>${safeText(article.intro, 100)}</p>
-
-      <a class="blog-btn" href="${article.url}" target="_blank" rel="noopener noreferrer">
-        Read Article
-      </a>
-    </article>
-  `).join("");
-}
-
-document.querySelectorAll(".section-title").forEach((heading) => {
-
-  heading.addEventListener("click", () => {
-
-    heading.classList.remove("clicked");
-
-    void heading.offsetWidth;
-
-    heading.classList.add("clicked");
-
-    setTimeout(() => {
-      heading.classList.remove("clicked");
-    }, 350);
-
-  });
-
-});
-
-document.addEventListener("click", function (e) {
-
-  const card = e.target.closest(".blog-card");
-
-  if (!card) return;
-
-  if (e.target.closest(".blog-btn")) return;
-
-  const link = card.querySelector(".blog-btn");
-
-  if (link && link.href) {
-    window.open(link.href, "_blank");
-  }
-
-});
-
   </script>
 </body>
+
 </html>
