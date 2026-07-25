@@ -84,18 +84,14 @@ linkPlan: [
   },
 
   {
-    anchorText:
-      "simple skincare routine",
+  anchorText: "simple skincare routine",
 
-    href:
-      "/skincare-routine.html",
+  href: "/articles/skincare/skincare-routine.html",
 
-    type:
-      "internalArticle",
+  type: "internalArticle",
 
-    newTab:
-      false
-  }
+  newTab: false
+}
 
 ],
 
