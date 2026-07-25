@@ -364,10 +364,10 @@ alternativeProducts: {
 },
 
 relatedArticles: [
-  {
-    title: "Lotus Sunscreen vs Be Bodywise Sunscreen: Which SPF 50 Mineral Sunscreen Is Better?",
-    href: "/lotus-vs-bodywise-sunscreen.html"
-  }
+  {
+    title: "Lotus Sunscreen vs Be Bodywise Sunscreen: Which SPF 50 Mineral Sunscreen Is Better?",
+    href: "/articles/skincare/lotus-vs-bodywise-sunscreen.html"
+  }
 ],
 
 faq: [
