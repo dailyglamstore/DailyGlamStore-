@@ -913,8 +913,7 @@ data-close-menu-on-click="true">
         }
       }
 
-      renderBlogPageArticles();
-      setTimeout(renderBlogPageArticles, 200);
+      document.addEventListener("articlesLoaded", renderBlogPageArticles);
     });
   </script>
 </body>
