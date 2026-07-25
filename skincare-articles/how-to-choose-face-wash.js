@@ -448,12 +448,12 @@ alternativeProducts: {
   title: "Continue Your Skincare Journey",
   items: [
     {
-      title: "Daily Skincare Routine for Beginners",
-      href: "/skincare-routine.html",
-      type: "internalArticle",
-      affiliate: false,
-      newTab: false
-    },
+  title: "Daily Skincare Routine for Beginners",
+  href: "/articles/skincare/skincare-routine.html",
+  type: "internalArticle",
+  affiliate: false,
+  newTab: false
+},
     {
       title: "Skincare Recommendations",
       href: "/#skincare-recommendations",
