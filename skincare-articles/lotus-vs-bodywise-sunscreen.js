@@ -443,22 +443,22 @@ alternativeProducts: {
 },
 
   relatedArticles: [
-    {
-      title:
-        "Simple Skincare Routine for Healthy & Glowing Skin",
+  {
+    title:
+      "Simple Skincare Routine for Healthy & Glowing Skin",
 
-      href:
-        "/skincare-routine.html"
-    },
+    href:
+      "/articles/skincare/skincare-routine.html"
+  },
 
-    {
-      title:
-        "How to Choose the Right Face Wash for Your Skin Type?",
+  {
+    title:
+      "How to Choose the Right Face Wash for Your Skin Type?",
 
-      href:
-        "/how-to-choose-face-wash.html"
-    }
-  ],
+    href:
+      "/articles/skincare/how-to-choose-face-wash.html"
+  }
+],
   
   faq: [
   {
