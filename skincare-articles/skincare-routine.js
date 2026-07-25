@@ -31,11 +31,11 @@ seoDescription:
   "Learn how to build a simple daily skincare routine for beginners. Discover the correct morning and night skincare steps, choose products for your skin type, avoid common mistakes, and build healthy skincare habits.",
 
 linkPlan: [
-  {
-    anchorText: "how to choose the right face wash",
-    href: "/how-to-choose-face-wash.html",
-    newTab: false
-  }
+  {
+    anchorText: "how to choose the right face wash",
+    href: "/articles/skincare/how-to-choose-face-wash.html",
+    newTab: false
+  }
 ],
 
 metaLine:
