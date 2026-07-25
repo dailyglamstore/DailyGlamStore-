@@ -467,11 +467,11 @@ alternativeProducts: {
 relatedArticles: [
   {
     title: "Daily Skincare Routine for Beginners: Simple Morning & Night Steps",
-    href: "/skincare-routine.html"
+    href: "/articles/skincare/skincare-routine.html"
   },
   {
     title: "Lotus Sunscreen vs Be Bodywise Sunscreen: Which SPF 50 Mineral Sunscreen Is Better?",
-    href: "/lotus-vs-bodywise-sunscreen.html"
+    href: "/articles/skincare/lotus-vs-bodywise-sunscreen.html"
   }
 ],
 
