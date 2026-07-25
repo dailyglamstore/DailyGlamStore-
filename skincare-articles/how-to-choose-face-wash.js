@@ -33,11 +33,11 @@ dateModified: "2026-07-21T18:30:00+05:30",
 
   linkPlan: [
     {
-      anchorText: "daily skincare routine",
-      href: "/skincare-routine.html",
-      type: "internalArticle",
-      newTab: false
-    },
+  anchorText: "daily skincare routine",
+  href: "/articles/skincare/skincare-routine.html",
+  type: "internalArticle",
+  newTab: false
+},
     {
       anchorText: "skincare recommendations",
       href: "/#skincare-recommendations",
