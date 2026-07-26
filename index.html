@@ -2198,7 +2198,7 @@ respective owners and are used for informational, review, and recommendation pur
       <div class="blog-slide-item" style="min-width:260px; max-width:280px; flex-shrink:0;">
         <a href="${art.url || '#'}" style="text-decoration:none; color:inherit; display:block; background:#fff; border-radius:12px; overflow:hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
           <div style="aspect-ratio:16/9; width:100%; overflow:hidden; background:#f7f7f7;">
-            <img src="${art.image || ''}" alt="${art.title || ''}" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+            <img src="${art.image && art.image.src ? art.image.src : ''}" alt="${art.image && art.image.alt ? art.image.alt : (art.title || '')}" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
           </div>
           <div style="padding:14px;">
             <span style="font-size:11px; text-transform:uppercase; letter-spacing:0.5px; color:#c2185b; font-weight:700;">${art.category || 'Beauty'}</span>
