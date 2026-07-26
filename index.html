@@ -2211,8 +2211,9 @@ respective owners and are used for informational, review, and recommendation pur
   }
 
   // Execute rendering
-  window.addEventListener("DOMContentLoaded", renderHomepageBlogSlider);
-  setTimeout(renderHomepageBlogSlider, 300);
+  document.addEventListener("articlesLoaded", function () {
+  renderHomepageBlogSlider();
+});
 </script>
   
   <script>
