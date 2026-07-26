@@ -2455,10 +2455,14 @@ respective owners and are used for informational, review, and recommendation pur
       });
     }
 
-const ALL_BLOG_ARTICLES = [
-  ...Object.values(window.SKINCARE_ARTICLES || {}),
-  ...Object.values(window.HAIRCARE_ARTICLES || {})
-];
+let ALL_BLOG_ARTICLES = [];
+
+document.addEventListener("articlesLoaded", function () {
+
+  ALL_BLOG_ARTICLES = [
+    ...Object.values(window.SKINCARE_ARTICLES || {}),
+    ...Object.values(window.HAIRCARE_ARTICLES || {})
+  ];
 
 const blogSliderWrap = document.getElementById("blogSliderWrap");
 
