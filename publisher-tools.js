@@ -967,7 +967,15 @@ if (formattedUrlSegment.charAt(0) !== "/") formattedUrlSegment = "/" + formatted
 var determinedPriority = article.comparisonTable ? "0.9" : "0.8";
 xmlOutputRows.push(" <url>");
 xmlOutputRows.push("  <loc>" + BASE_URL + formattedUrlSegment + "</loc>");
-xmlOutputRows.push("  <lastmod>" + currentFormattedToday + "</lastmod>");
+var lastMod = currentFormattedToday;
+
+if (article.dateModified) {
+lastMod = String(article.dateModified).split("T")[0];
+} else if (article.date) {
+lastMod = String(article.date).split("T")[0];
+}
+
+xmlOutputRows.push("  <lastmod>" + lastMod + "</lastmod>");
 xmlOutputRows.push("  <changefreq>monthly</changefreq>");
 xmlOutputRows.push("  <priority>" + determinedPriority + "</priority>");
 xmlOutputRows.push(" </url>");
