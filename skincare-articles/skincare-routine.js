@@ -22,6 +22,9 @@ author: [
 
 title: "Daily Skincare Routine for Beginners: Simple Morning & Night Steps",
 
+cardDescription:
+  "Learn the correct morning and night skincare routine with simple beginner-friendly steps.",
+  
 seoTitle: "Daily Skincare Routine for Beginners (Morning & Night Guide) | Daily Glam Store",
 
 intro:
