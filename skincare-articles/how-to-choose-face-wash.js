@@ -22,15 +22,15 @@ dateModified: "2026-07-21T18:30:00+05:30",
   ],
 
   title: "How to Choose the Right Face Wash for Your Skin Type?",
-  
-  cardDescription:
-  "Discover how to identify your skin type, choose the right cleanser, understand key ingredients, and avoid common mistakes when selecting a face wash.",
-  
+
   seoTitle: "How to Choose the Right Face Wash for Your Skin Type | Daily Glam Store",
 
   intro:
     "Learning how to choose the right face wash for your skin type doesn’t have to be confusing. By understanding your skin type, learning which cleanser textures and ingredients suit your skin, and avoiding common mistakes, you can build a skincare routine that keeps your skin feeling clean, comfortable, and balanced. This guide explains how to confidently choose a face wash that matches your skin’s needs.",
-
+  
+  cardDescription:
+  "Discover how to identify your skin type, choose the right cleanser, understand key ingredients, and avoid common mistakes when selecting a face wash.",
+  
   seoDescription:
     "Learn how to choose the right face wash for your skin type. Discover how to identify your skin type, understand cleanser types and ingredients, avoid common mistakes, and build a beginner-friendly skincare routine.",
 
