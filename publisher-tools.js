@@ -367,48 +367,21 @@ sec.blocks.length > 0
 
 var hasContent = sec.blocks.some(function(block){
 
-if(
-block.type === "paragraph" &&
-Array.isArray(block.text) &&
-block.text.length
-){
-return true;
+return Object.keys(block).some(function(key){
+
+var value = block[key];
+
+if(typeof value === "string"){
+return value.trim() !== "";
 }
 
-if(
-block.type === "bullets" &&
-Array.isArray(block.items) &&
-block.items.length
-){
-return true;
-}
-
-if(
-block.type === "subHeading" &&
-block.text
-){
-return true;
-}
-
-if(
-block.type === "infoBox"
-){
-return !!(
-block.title ||
-block.text
-);
-}
-
-if(
-block.type === "image"
-){
-return !!(
-block.src ||
-block.alt
-);
+if(Array.isArray(value)){
+return value.length > 0;
 }
 
 return false;
+
+});
 
 });
 
