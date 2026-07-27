@@ -22,13 +22,13 @@ author: [
 
 title: "Daily Skincare Routine for Beginners: Simple Morning & Night Steps",
 
-cardDescription:
-  "Learn the correct morning and night skincare routine with simple beginner-friendly steps.",
-  
 seoTitle: "Daily Skincare Routine for Beginners (Morning & Night Guide) | Daily Glam Store",
 
 intro:
   "A daily skincare routine doesn’t have to be complicated. By understanding your skin type, following the correct order, and staying consistent, you can build healthy skincare habits that work over time. This guide explains the essential morning and night skincare routine for beginners, common mistakes to avoid, and how to confidently choose products for your skin.",
+
+cardDescription:
+  "Learn the correct morning and night skincare routine with simple beginner-friendly steps.",
 
 seoDescription:
   "Learn how to build a simple daily skincare routine for beginners. Discover the correct morning and night skincare steps, choose products for your skin type, avoid common mistakes, and build healthy skincare habits.",
