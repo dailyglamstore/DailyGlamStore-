@@ -950,7 +950,6 @@ var currentFormattedToday = getFormattedToday();
 var baselineStaticPages = [
 { route: "/", priority: "1.0", frequency: "daily" },
 { route: "/beauty-blog.html", priority: "0.9", frequency: "weekly" },
-{ route: "/beauty-guides.html", priority: "0.8", frequency: "weekly" },
 { route: "/shop.html", priority: "0.8", frequency: "monthly" }
 ];
 baselineStaticPages.forEach(function (page) {
