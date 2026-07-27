@@ -358,15 +358,89 @@ return auth && auth.enabled === true && (auth.type === "Person" || auth.type ===
 }
 
 var emptySectionFound = false;
-if (article.sections && Array.isArray(article.sections) && article.sections.length > 0) {
-emptySectionFound = article.sections.some(function (sec) {
-return !(sec.heading && String(sec.heading).trim() !== "") &&
-!(sec.paragraphs && sec.paragraphs.length > 0 && String(sec.paragraphs[0]).trim() !== "") &&
-!(sec.bullets && sec.bullets.length > 0 && String(sec.bullets[0]).trim() !== "");
-});
-} else {
-emptySectionFound = true;
+
+if (
+article.sections &&
+Array.isArray(article.sections) &&
+article.sections.length > 0
+) {
+
+emptySectionFound = article.sections.some(function(sec){
+
+if(
+sec.heading &&
+String(sec.heading).trim() !== ""
+){
+return false;
 }
+
+if(
+sec.blocks &&
+Array.isArray(sec.blocks) &&
+sec.blocks.length > 0
+){
+
+var hasContent = sec.blocks.some(function(block){
+
+if(
+block.type === "paragraph" &&
+Array.isArray(block.text) &&
+block.text.length
+){
+return true;
+}
+
+if(
+block.type === "bullets" &&
+Array.isArray(block.items) &&
+block.items.length
+){
+return true;
+}
+
+if(
+block.type === "subHeading" &&
+block.text
+){
+return true;
+}
+
+if(
+block.type === "infoBox"
+){
+return !!(
+block.title ||
+block.text
+);
+}
+
+if(
+block.type === "image"
+){
+return !!(
+block.src ||
+block.alt
+);
+}
+
+return false;
+
+});
+
+return !hasContent;
+
+}
+
+return true;
+
+});
+
+} else {
+
+emptySectionFound = true;
+
+}
+
 var hasNoEmptySections = !emptySectionFound;
 var hasRelated = !!(article.relatedArticles && Array.isArray(article.relatedArticles) && article.relatedArticles.length > 0);
 var hasLinkPlan = !!(article.linkPlan && Array.isArray(article.linkPlan));
