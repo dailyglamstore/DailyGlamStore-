@@ -156,34 +156,19 @@ if(sec.blocks && Array.isArray(sec.blocks)){
 
 sec.blocks.forEach(function(block){
 
-if(block.type === "paragraph" && Array.isArray(block.text)){
-contentString += " " + block.text.join(" ");
+Object.keys(block).forEach(function(key){
+
+var value = block[key];
+
+if(typeof value === "string"){
+contentString += " " + value;
 }
 
-if(block.type === "bullets" && Array.isArray(block.items)){
-contentString += " " + block.items.join(" ");
-}
-
-if(block.type === "subHeading" && block.text){
-contentString += " " + block.text;
-}
-
-if(block.type === "infoBox"){
-if(block.title)
-contentString += " " + block.title;
-
-if(block.text)
-contentString += " " + block.text;
-}
-
-if(block.type === "image"){
-if(block.alt)
-contentString += " " + block.alt;
+if(Array.isArray(value)){
+contentString += " " + value.join(" ");
 }
 
 });
-
-}
 
 });
 
