@@ -884,7 +884,7 @@ data-close-menu-on-click="true">
         function getCardHTML(art) {
           const imgUrl = typeof art.image === "object" ? (art.image.src || "") : (art.image || "");
           const altText = typeof art.image === "object" ? (art.image.alt || art.title) : (art.title || "Article Image");
-          const descText = art.description || art.excerpt || art.intro || "";
+          const descText = art.cardDescription || art.description || art.excerpt || "";
           const pageUrl = art.url || art.link || "#";
 
           return `
