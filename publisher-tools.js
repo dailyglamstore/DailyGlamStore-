@@ -7,47 +7,72 @@
   var articleUrlsMap = {};
   var uniqueArticleKeys = {};
 
-  // SEO Diagnostic Categories
+  // Independent structural diagnostic schemas (Single source of truth)
   var seoCategories = {
     seoTitle: { label: "SEO Title", items: [], status: "pass" },
     seoDescription: { label: "SEO Description", items: [], status: "pass" },
     intro: { label: "Intro Placement", items: [], status: "pass" },
     image: { label: "Featured Image", items: [], status: "pass" },
-    faq: { label: "FAQ Block", items: [], status: "pass" },
-    author: { label: "Author Details", items: [], status: "pass" },
-    dateModified: { label: "dateModified Timestamp", items: [], status: "pass" },
-    emptySections: { label: "Empty Sections / Blocks", items: [], status: "pass" },
+    faq: { label: "FAQ", items: [], status: "pass" },
+    author: { label: "Author", items: [], status: "pass" },
+    dateModified: { label: "dateModified", items: [], status: "pass" },
+    emptySections: { label: "Empty Sections", items: [], status: "pass" },
     minLength: { label: "Minimum Content Length", items: [], status: "pass" },
     brokenLinks: { label: "Broken Internal Links", items: [], status: "pass" },
     duplicateUrls: { label: "Duplicate URLs Across Manifests", items: [], status: "pass" },
     duplicateKeys: { label: "Duplicate Keys Across Inventories", items: [], status: "pass" }
   };
 
-  // Architecture Diagnostic Categories
   var archCategories = {
     relatedArticles: { label: "Related Articles", items: [], status: "pass" },
-    linkPlan: { label: "Internal Link Coverage", items: [], status: "pass" },
-    productRecommendations: { label: "Product Recommendations", items: [], status: "pass" },
-    alternativeProducts: { label: "Alternative Products Matrix", items: [], status: "pass" },
-    comparisonTable: { label: "Comparison Table", items: [], status: "pass" },
+    linkPlan: { label: "LinkPlan Framework", items: [], status: "pass" },
+    productRecommendations: { label: "productRecommendations", items: [], status: "pass" },
+    alternativeProducts: { label: "alternativeProducts Layouts", items: [], status: "pass" },
+    comparisonTable: { label: "comparisonTable", items: [], status: "pass" },
     minAffiliate: { label: "Minimum two affiliate:true links", items: [], status: "pass" },
-    invalidAffiliateProps: { label: "Invalid Affiliate Link Settings", items: [], status: "pass" }
+    missingLinkTypes: { label: "Missing Link Types", items: [], status: "pass" },
+    invalidAffiliateProps: { label: "Invalid Affiliate Link Settings", items: [], status: "pass" },
+    invalidTargetTabs: { label: "Invalid Target Tab Directives", items: [], status: "pass" },
+    comparisonValidation: { label: "Comparison Article Validation Errors", items: [], status: "pass" }
   };
 
-  // Standards Tracking counters
+  // Parameters mappings used strictly for counting the structural coverage matrix
+  var stdParams = [
+    { key: "seoTitle", label: "SEO Title" },
+    { key: "seoDescription", label: "SEO Description" },
+    { key: "intro", label: "Intro Placement" },
+    { key: "image", label: "Featured Image" },
+    { key: "faq", label: "FAQ" },
+    { key: "dateModified", label: "dateModified" },
+    { key: "author", label: "Author" },
+    { key: "emptySections", label: "No Empty Sections" },
+    { key: "relatedArticles", label: "Related Articles" },
+    { key: "linkPlan", label: "LinkPlan Framework" },
+    { key: "productRecommendations", label: "productRecommendations" }
+  ];
+
+  var compParams = stdParams.concat([
+    { key: "alternativeProducts", label: "alternativeProducts Layouts" },
+    { key: "comparisonTable", label: "comparisonTable" },
+    { key: "minAffiliate", label: "Minimum two affiliate:true links" }
+  ]);
+
   var stdCovered = {
     seoTitle: 0, seoDescription: 0, intro: 0, image: 0, faq: 0, dateModified: 0,
     author: 0, emptySections: 0, relatedArticles: 0, linkPlan: 0, productRecommendations: 0
   };
+
   var compCovered = {
     seoTitle: 0, seoDescription: 0, intro: 0, image: 0, faq: 0, dateModified: 0,
     author: 0, emptySections: 0, relatedArticles: 0, linkPlan: 0, productRecommendations: 0,
     alternativeProducts: 0, comparisonTable: 0, minAffiliate: 0
   };
 
+  // Dynamic lists to feed Today's Scan Summary passively
   var failedSeoNamesList = [];
   var failedArchNamesList = [];
 
+  // Technical site-level variables
   var totalTechnicalDeductionPoints = 0;
   var duplicateUrlCount = 0;
   var duplicateKeyCount = 0;
@@ -64,7 +89,6 @@
     recButtons: 0
   };
 
-  // Timestamp Handler
   function initLiveTimestamp() {
     var scanDateNode = document.getElementById("scanDate");
     if (scanDateNode) {
@@ -82,7 +106,7 @@
       var formattedTime = currentDate.toLocaleTimeString("en-US", {
         hour: "numeric", minute: "2-digit", hour12: true
       });
-      localStorage.setItem("publisherLastScan", formattedDate + " " + formattedTime);
+      localStorage.setItem("publisherLastScan", formattedDate + " • " + formattedTime);
     } catch (e) {}
   }
 
@@ -91,10 +115,9 @@
     var yyyy = today.getFullYear();
     var mm = String(today.getMonth() + 1).padStart(2, "0");
     var dd = String(today.getDate()).padStart(2, "0");
-    return yyyy + "_" + mm + "_" + dd;
+    return yyyy + "-" + mm + "-" + dd;
   }
 
-  // Inventory Aggregation
   function gatherSourceObjects() {
     allArticles = [];
     skincareArticlesList = [];
@@ -127,108 +150,65 @@
     });
   }
 
-  // Robust universal extractor for word counts, embedded links, and structural flags
-  function extractArticleContentAndLinks(article) {
-    var contentText = [];
-    var links = [];
-    var hasFaqBlock = false;
-    var hasCompTable = false;
-    var hasAltProducts = false;
-    var hasRecs = false;
+  function countWordsInContent(article) {
+    var contentString = "";
+    if (article.title) contentString += " " + article.title;
+    if (article.seoTitle) contentString += " " + article.seoTitle;
+    if (article.seoDescription) contentString += " " + article.seoDescription;
+    if (article.intro) contentString += " " + article.intro;
 
-    if (article.title) contentText.push(article.title);
-    if (article.seoTitle) contentText.push(article.seoTitle);
-    if (article.seoDescription) contentText.push(article.seoDescription);
-    if (article.intro) contentText.push(article.intro);
-
-    // Extract links from top-level linkPlan array
-    if (article.linkPlan && Array.isArray(article.linkPlan)) {
-      links = links.concat(article.linkPlan);
-    }
-
-    // Extract recommendations from top-level productRecommendations object
-    if (article.productRecommendations && article.productRecommendations.items) {
-      hasRecs = true;
-      links = links.concat(article.productRecommendations.items);
-    }
-
-    // Extract alternative products from top-level alternativeProducts object
-    if (article.alternativeProducts && article.alternativeProducts.items) {
-      hasAltProducts = true;
-      links = links.concat(article.alternativeProducts.items);
-    }
-
-    if (article.comparisonTable) {
-      hasCompTable = true;
-    }
-
-    // Process block streams across top-level blocks or sections
-    var blocksToProcess = [];
-    if (Array.isArray(article.blocks)) {
-      blocksToProcess = blocksToProcess.concat(article.blocks);
-    }
-    if (Array.isArray(article.sections)) {
+    if (article.sections && Array.isArray(article.sections)) {
       article.sections.forEach(function (sec) {
-        if (sec.heading) contentText.push(sec.heading);
-        if (Array.isArray(sec.blocks)) {
-          blocksToProcess = blocksToProcess.concat(sec.blocks);
+        if (sec.heading) contentString += " " + sec.heading;
+        if (sec.blocks && Array.isArray(sec.blocks)) {
+          sec.blocks.forEach(function (block) {
+            Object.keys(block).forEach(function (key) {
+              var value = block[key];
+              if (typeof value === "string") {
+                contentString += " " + value;
+              } else if (Array.isArray(value)) {
+                contentString += " " + value.join(" ");
+              }
+            });
+          });
         }
       });
     }
 
-    blocksToProcess.forEach(function (b) {
-      if (!b || typeof b !== "object") return;
-
-      if (b.heading) contentText.push(b.heading);
-      if (b.content) contentText.push(b.content);
-      if (b.text) contentText.push(b.text);
-
-      if (Array.isArray(b.paragraphs)) {
-        contentText.push(b.paragraphs.join(" "));
-      }
-      if (Array.isArray(b.items)) {
-        b.items.forEach(function (it) {
-          if (typeof it === "string") contentText.push(it);
-          else if (it && typeof it === "object") {
-            if (it.title) contentText.push(it.title);
-            if (it.description) contentText.push(it.description);
-            if (it.href || it.url) links.push(it);
+    if (article.blocks && Array.isArray(article.blocks)) {
+      article.blocks.forEach(function (block) {
+        Object.keys(block).forEach(function (key) {
+          var value = block[key];
+          if (typeof value === "string") {
+            contentString += " " + value;
+          } else if (Array.isArray(value)) {
+            contentString += " " + value.join(" ");
           }
         });
-      }
-
-      if (b.type === "faq" || b.faq || b.type === "accordion") hasFaqBlock = true;
-      if (b.type === "comparisonTable" || b.comparisonTable) hasCompTable = true;
-      if (b.type === "alternativeProducts" || b.type === "productGrid") hasAltProducts = true;
-      if (b.type === "productRecommendation" || b.type === "productCard") hasRecs = true;
-
-      if (b.href || b.url) links.push(b);
-    });
-
-    // Handle traditional FAQ array
-    if (article.faq && Array.isArray(article.faq) && article.faq.length > 0) {
-      hasFaqBlock = true;
-      article.faq.forEach(function (f) {
-        if (f.question) contentText.push(f.question);
-        if (f.answer) contentText.push(f.answer);
       });
     }
 
-    var fullText = contentText.join(" ").trim();
-    var words = fullText === "" ? [] : fullText.split(/\s+/);
+    if (article.faq && Array.isArray(article.faq)) {
+      article.faq.forEach(function (f) {
+        if (f.question) contentString += " " + f.question;
+        if (f.answer) contentString += " " + f.answer;
+      });
+    }
 
-    return {
-      wordCount: words.length,
-      links: links,
-      hasFaq: hasFaqBlock,
-      hasComparisonTable: hasCompTable,
-      hasAltProducts: hasAltProducts,
-      hasRecommendations: hasRecs
-    };
-  }
+    if (
+      article.comparisonTable &&
+      article.comparisonTable.rows &&
+      Array.isArray(article.comparisonTable.rows)
+    ) {
+      article.comparisonTable.rows.forEach(function (row) {
+        if (row.features && Array.isArray(row.features)) {
+          contentString += " " + row.features.join(" ");
+        }
+      });
+    }
 
-  function countWordsInContent(article) {
-    return extractArticleContentAndLinks(article).wordCount;
+    var words = contentString.trim().split(/\s+/);
+    return contentString.trim() === "" ? 0 : words.length;
   }
 
   function processContentStatistics() {
@@ -272,16 +252,11 @@
     if (validDatedArticles.length > 0) {
       validDatedArticles.sort(function (a, b) { return b.date - a.date; });
       var options = { day: "numeric", month: "short", year: "numeric" };
-      
       var newestNode = document.getElementById("newestArticleInfo");
-      if (newestNode) {
-        newestNode.textContent = validDatedArticles[0].title + " - " + validDatedArticles[0].date.toLocaleDateString("en-GB", options);
-      }
+      if (newestNode) newestNode.textContent = validDatedArticles[0].title + " - " + validDatedArticles[0].date.toLocaleDateString("en-GB", options);
 
       var oldestNode = document.getElementById("oldestArticleInfo");
-      if (oldestNode) {
-        oldestNode.textContent = validDatedArticles[validDatedArticles.length - 1].title + " - " + validDatedArticles[validDatedArticles.length - 1].date.toLocaleDateString("en-GB", options);
-      }
+      if (oldestNode) oldestNode.textContent = validDatedArticles[validDatedArticles.length - 1].title + " - " + validDatedArticles[validDatedArticles.length - 1].date.toLocaleDateString("en-GB", options);
     }
   }
 
@@ -313,10 +288,10 @@
     failedSeoNamesList = [];
     failedArchNamesList = [];
 
-    Object.keys(stdCovered).forEach(function(k) { stdCovered[k] = 0; });
-    Object.keys(compCovered).forEach(function(k) { compCovered[k] = 0; });
-    Object.keys(seoCategories).forEach(function(k){ seoCategories[k].items = []; seoCategories[k].status = "pass"; });
-    Object.keys(archCategories).forEach(function(k){ archCategories[k].items = []; archCategories[k].status = "pass"; });
+    Object.keys(stdCovered).forEach(function (k) { stdCovered[k] = 0; });
+    Object.keys(compCovered).forEach(function (k) { compCovered[k] = 0; });
+    Object.keys(seoCategories).forEach(function (k) { seoCategories[k].items = []; seoCategories[k].status = "pass"; });
+    Object.keys(archCategories).forEach(function (k) { archCategories[k].items = []; archCategories[k].status = "pass"; });
 
     // Technical Check 1: Duplicate Keys
     Object.keys(uniqueArticleKeys).forEach(function (key) {
@@ -326,6 +301,7 @@
       }
     });
 
+    // Map target URLs
     allArticles.forEach(function (article) {
       var displayTitle = article.title || article.key || "Unnamed Article";
       article._missingSeo = [];
@@ -337,7 +313,7 @@
       }
     });
 
-    // Technical Check 2: Duplicate Target URLs
+    // Technical Check 2: Duplicate URLs
     Object.keys(articleUrlsMap).forEach(function (urlPath) {
       if (articleUrlsMap[urlPath].length > 1) {
         duplicateUrlCount += (articleUrlsMap[urlPath].length - 1);
@@ -348,39 +324,59 @@
     // Primary validation loop
     allArticles.forEach(function (article) {
       var displayTitle = article.title || article.key || "Unnamed Article";
-      var extracted = extractArticleContentAndLinks(article);
-      var isComp = !!(article.comparisonTable || extracted.hasComparisonTable);
-      var wordCount = extracted.wordCount;
+      var isComp = !!(article.comparisonTable || (article.comparisonTable && article.comparisonTable.rows));
+      var wordCount = countWordsInContent(article);
 
       var hasSeoTitle = !!(article.seoTitle && String(article.seoTitle).trim() !== "");
       var hasSeoDesc = !!(article.seoDescription && String(article.seoDescription).trim() !== "");
       var hasIntro = !!(article.intro && String(article.intro).trim() !== "");
       var trackingImageSource = (article.image && article.image.src) || article.src || article.featuredImage;
       var hasImage = !!(trackingImageSource && String(trackingImageSource).trim() !== "");
-      var hasFaq = extracted.hasFaq;
+      var hasFaq = !!(article.faq && Array.isArray(article.faq) && article.faq.length > 0);
       var hasDateModified = !!(article.dateModified || article.updatedAt);
 
       var hasValidAuthor = false;
       if (article.author) {
-        if (typeof article.author === "string" && article.author.trim() !== "") {
-          hasValidAuthor = true;
+        if (Array.isArray(article.author)) {
+          hasValidAuthor = article.author.some(function (auth) {
+            return auth && auth.enabled === true && (auth.type === "Person" || auth.type === "Organization" || auth.name);
+          });
         } else if (typeof article.author === "object") {
-          if (Array.isArray(article.author)) {
-            hasValidAuthor = article.author.some(function (auth) {
-              return auth && (auth.enabled === true || auth.name || auth.type);
-            });
-          } else {
-            hasValidAuthor = !!(article.author.name || article.author.enabled);
-          }
+          hasValidAuthor = !!(article.author.name || article.author.enabled);
+        } else if (typeof article.author === "string") {
+          hasValidAuthor = article.author.trim() !== "";
         }
       }
 
-      var hasNoEmptySections = wordCount > 100;
-      var hasRelated = !!(article.relatedArticles && Array.isArray(article.relatedArticles) && article.relatedArticles.length > 0);
-      var hasLinkPlan = extracted.links.length > 0;
-      var hasRecommendations = extracted.hasRecommendations;
+      var emptySectionFound = false;
+      if (article.sections && Array.isArray(article.sections) && article.sections.length > 0) {
+        emptySectionFound = article.sections.some(function (sec) {
+          if (sec.heading && String(sec.heading).trim() !== "") return false;
+          if (sec.blocks && Array.isArray(sec.blocks) && sec.blocks.length > 0) {
+            var hasContent = sec.blocks.some(function (block) {
+              return Object.keys(block).some(function (key) {
+                var value = block[key];
+                if (typeof value === "string") return value.trim() !== "";
+                if (Array.isArray(value)) return value.length > 0;
+                return false;
+              });
+            });
+            return !hasContent;
+          }
+          return true;
+        });
+      } else if (article.blocks && Array.isArray(article.blocks) && article.blocks.length > 0) {
+        emptySectionFound = false;
+      } else {
+        emptySectionFound = wordCount < 100;
+      }
+      var hasNoEmptySections = !emptySectionFound;
 
-      // --- LAYER 1: SEO AUDIT ---
+      var hasRelated = !!(article.relatedArticles && Array.isArray(article.relatedArticles) && article.relatedArticles.length > 0);
+      var hasLinkPlan = !!(article.linkPlan && Array.isArray(article.linkPlan));
+      var hasRecommendations = !!(article.productRecommendations && article.productRecommendations.items && Array.isArray(article.productRecommendations.items));
+
+      // --- LAYER 1: SEO AUDIT ENGINE ---
       var seoEarnedPoints = 0;
       var seoTotalPossible = 9;
 
@@ -388,39 +384,43 @@
       if (hasSeoDesc) seoEarnedPoints++; else { seoCategories.seoDescription.items.push(displayTitle); article._missingSeo.push("SEO Description"); }
       if (hasIntro) seoEarnedPoints++; else { seoCategories.intro.items.push(displayTitle); article._missingSeo.push("Intro Placement"); }
       if (hasImage) seoEarnedPoints++; else { seoCategories.image.items.push(displayTitle); article._missingSeo.push("Featured Image"); }
-      if (hasFaq) seoEarnedPoints++; else { seoCategories.faq.items.push(displayTitle); article._missingSeo.push("FAQ Block"); }
+      if (hasFaq) seoEarnedPoints++; else { seoCategories.faq.items.push(displayTitle); article._missingSeo.push("FAQ"); }
       if (hasDateModified) seoEarnedPoints++; else { seoCategories.dateModified.items.push(displayTitle); article._missingSeo.push("dateModified"); }
-      if (hasValidAuthor) seoEarnedPoints++; else { seoCategories.author.items.push(displayTitle); article._missingSeo.push("Author Details"); }
+      if (hasValidAuthor) seoEarnedPoints++; else { seoCategories.author.items.push(displayTitle); article._missingSeo.push("Author"); }
       if (hasNoEmptySections) seoEarnedPoints++; else { seoCategories.emptySections.items.push(displayTitle); article._missingSeo.push("Empty Sections"); }
 
-      var requiredLength = isComp ? 1000 : 600;
+      var requiredLength = isComp ? 1200 : 700;
       if (wordCount >= requiredLength) {
         seoEarnedPoints++;
       } else {
-        seoCategories.minLength.items.push(displayTitle + " (" + wordCount + "/" + requiredLength + " words)");
+        seoCategories.minLength.items.push(displayTitle + " (" + wordCount + " / " + requiredLength + " words)");
         article._missingSeo.push("Minimum Content Length");
       }
 
       var hasBrokenLinks = false;
-      extracted.links.forEach(function (lnk) {
-        if (lnk && (lnk.type === "internalArticle" || lnk.type === "internal") && (lnk.href || lnk.url)) {
-          var targetHref = String(lnk.href || lnk.url).trim().toLowerCase();
-          if (!articleUrlsMap[targetHref]) {
-            brokenInternalLinksCount++;
-            hasBrokenLinks = true;
-            seoCategories.brokenLinks.items.push("Broken link target: " + displayTitle + " -> " + targetHref);
+      if (article.linkPlan && Array.isArray(article.linkPlan)) {
+        article.linkPlan.forEach(function (lnk) {
+          if (lnk && lnk.type === "internalArticle" && lnk.href) {
+            var targetInternalHref = String(lnk.href).trim().toLowerCase();
+            if (!articleUrlsMap[targetInternalHref]) {
+              brokenInternalLinksCount++;
+              hasBrokenLinks = true;
+              seoCategories.brokenLinks.items.push("Broken link target: " + displayTitle + " -> " + lnk.href);
+            }
           }
-        }
-      });
+        });
+      }
 
       if (hasBrokenLinks) {
         article._missingSeo.push("Broken Internal Links");
       }
 
       article._seoScore = Math.round((seoEarnedPoints / seoTotalPossible) * 100);
-      if (article._missingSeo.length > 0) totalArticlesAffectedBySeoWarnings++;
+      if (article._missingSeo.length > 0) {
+        totalArticlesAffectedBySeoWarnings++;
+      }
 
-      // --- LAYER 2: ARCHITECTURE AUDIT ---
+      // --- LAYER 2: ARTICLE ARCHITECTURE AUDIT ENGINE ---
       var archEarnedPoints = 0;
       var archTotalPossible = isComp ? 14 : 11;
       var trueAffiliateCountForThisArticle = 0;
@@ -429,35 +429,63 @@
       if (hasSeoDesc) archEarnedPoints++; else article._missingArch.push("SEO Description");
       if (hasIntro) archEarnedPoints++; else article._missingArch.push("Intro Placement");
       if (hasImage) archEarnedPoints++; else article._missingArch.push("Featured Image");
-      if (hasFaq) archEarnedPoints++; else article._missingArch.push("FAQ Block");
+      if (hasFaq) archEarnedPoints++; else article._missingArch.push("FAQ");
       if (hasDateModified) archEarnedPoints++; else article._missingArch.push("dateModified");
-      if (hasValidAuthor) archEarnedPoints++; else article._missingArch.push("Author Details");
+      if (hasValidAuthor) archEarnedPoints++; else article._missingArch.push("Author");
       if (hasNoEmptySections) archEarnedPoints++; else article._missingArch.push("No Empty Sections");
 
-      if (hasRelated) archEarnedPoints++; else { article._missingArch.push("Related Articles"); archCategories.relatedArticles.items.push(displayTitle); }
-      if (hasLinkPlan) archEarnedPoints++; else { article._missingArch.push("Internal Link Coverage"); archCategories.linkPlan.items.push(displayTitle); }
-      if (hasRecommendations) archEarnedPoints++; else { article._missingArch.push("Product Recommendations"); archCategories.productRecommendations.items.push(displayTitle); }
+      if (hasRelated) {
+        archEarnedPoints++;
+      } else {
+        article._missingArch.push("Related Articles");
+        archCategories.relatedArticles.items.push(displayTitle);
+      }
 
-      extracted.links.forEach(function (linkItem) {
-        if (!linkItem || typeof linkItem !== "object") return;
+      var extractedLinks = [];
 
-        var typeStr = String(linkItem.type || "").trim();
-        if (typeStr === "affiliateProduct" || linkItem.affiliate !== undefined) {
-          validateAffiliateProperty(linkItem, "product block", displayTitle);
-          if (linkItem.affiliate === true) {
-            trueAffiliateCountForThisArticle++;
-            statTotals.affiliateLinks++;
-          } else {
-            statTotals.nonAffiliateProducts++;
+      if (article.linkPlan && Array.isArray(article.linkPlan)) {
+        archEarnedPoints++;
+        article.linkPlan.forEach(function (linkItem) {
+          if (linkItem && typeof linkItem === "object") {
+            extractedLinks.push(linkItem);
+            if (!linkItem.type || String(linkItem.type).trim() === "") {
+              archCategories.missingLinkTypes.items.push(displayTitle + " -> Missing explicit link type designation");
+            } else {
+              var typeStr = String(linkItem.type).trim();
+              if (typeStr === "affiliateProduct") {
+                validateAffiliateProperty(linkItem, "linkPlan framework block", displayTitle);
+                if (linkItem.affiliate === true) trueAffiliateCountForThisArticle++;
+              }
+              if (typeStr === "externalReference" && linkItem.newTab !== true) {
+                archCategories.invalidTargetTabs.items.push(displayTitle + " (External reference must target a new tab window)");
+              }
+              if ((typeStr === "page" || typeStr === "internalArticle") && linkItem.newTab === true) {
+                archCategories.invalidTargetTabs.items.push(displayTitle + " (Internal standard requires same-tab for: " + typeStr + ")");
+              }
+            }
           }
-        } else if (typeStr === "internalArticle" || typeStr === "internal") {
-          statTotals.internalLinks++;
-        } else if (typeStr === "page") {
-          statTotals.pageLinks++;
-        } else if (typeStr === "externalReference" || typeStr === "external") {
-          statTotals.externalReferences++;
-        }
-      });
+        });
+      } else {
+        article._missingArch.push("LinkPlan Framework");
+        archCategories.linkPlan.items.push(displayTitle);
+      }
+
+      if (article.productRecommendations && article.productRecommendations.items && Array.isArray(article.productRecommendations.items)) {
+        archEarnedPoints++;
+        article.productRecommendations.items.forEach(function (recItem) {
+          if (recItem && typeof recItem === "object") {
+            statTotals.recButtons++;
+            extractedLinks.push(recItem);
+            if (recItem.type === "affiliateProduct") {
+              validateAffiliateProperty(recItem, "productRecommendations node", displayTitle);
+              if (recItem.affiliate === true) trueAffiliateCountForThisArticle++;
+            }
+          }
+        });
+      } else {
+        article._missingArch.push("productRecommendations");
+        archCategories.productRecommendations.items.push(displayTitle);
+      }
 
       if (!isComp) {
         if (hasSeoTitle) stdCovered.seoTitle++;
@@ -485,19 +513,32 @@
         if (hasLinkPlan) compCovered.linkPlan++;
         if (hasRecommendations) compCovered.productRecommendations++;
 
-        if (extracted.hasComparisonTable) {
+        var hasAltProducts = article.alternativeProducts && article.alternativeProducts.items && Array.isArray(article.alternativeProducts.items);
+        var hasCompRows = article.comparisonTable && article.comparisonTable.rows && Array.isArray(article.comparisonTable.rows) && article.comparisonTable.rows.length > 0;
+
+        if (hasCompRows) {
           archEarnedPoints++;
           compCovered.comparisonTable++;
         } else {
-          article._missingArch.push("Comparison Table");
+          article._missingArch.push("comparisonTable");
           archCategories.comparisonTable.items.push(displayTitle);
         }
 
-        if (extracted.hasAltProducts) {
+        if (hasAltProducts) {
           archEarnedPoints++;
           compCovered.alternativeProducts++;
+          statTotals.altProductLinks += article.alternativeProducts.items.length;
+          article.alternativeProducts.items.forEach(function (altItem) {
+            if (altItem && typeof altItem === "object") {
+              extractedLinks.push(altItem);
+              if (altItem.type === "affiliateProduct") {
+                validateAffiliateProperty(altItem, "alternativeProducts grid entry", displayTitle);
+                if (altItem.affiliate === true) trueAffiliateCountForThisArticle++;
+              }
+            }
+          });
         } else {
-          article._missingArch.push("Alternative Products Matrix");
+          article._missingArch.push("alternativeProducts Layouts");
           archCategories.alternativeProducts.items.push(displayTitle);
         }
 
@@ -509,23 +550,49 @@
           article._missingArch.push("Minimum two affiliate:true links");
           archCategories.minAffiliate.items.push(displayTitle + " (" + trueAffiliateCountForThisArticle + " verified)");
         }
+
+        if (!hasFaq || !hasCompRows || !hasRecommendations || !hasAltProducts || !hasLinkPlan || !meetsMinAffiliate) {
+          var detailsMissing = [];
+          if (!hasFaq) detailsMissing.push("FAQ structural block missing");
+          if (!hasCompRows) detailsMissing.push("comparisonTable empty");
+          if (!hasRecommendations) detailsMissing.push("productRecommendations empty");
+          if (!hasAltProducts) detailsMissing.push("alternativeProducts empty");
+          if (!hasLinkPlan) detailsMissing.push("linkPlan missing");
+          if (!meetsMinAffiliate) detailsMissing.push("contains less than two affiliate links");
+          archCategories.comparisonValidation.items.push(displayTitle + " -> " + detailsMissing.join(", "));
+        }
       }
+
+      extractedLinks.forEach(function (lnk) {
+        if (lnk.type === "affiliateProduct") {
+          if (lnk.affiliate === true) statTotals.affiliateLinks++;
+          if (lnk.affiliate === false) statTotals.nonAffiliateProducts++;
+        }
+        if (lnk.type === "internalArticle") statTotals.internalLinks++;
+        if (lnk.type === "page") statTotals.pageLinks++;
+        if (lnk.type === "externalReference") statTotals.externalReferences++;
+      });
 
       article._completenessScore = Math.min(Math.round((archEarnedPoints / archTotalPossible) * 100), 100);
     });
 
     Object.keys(seoCategories).forEach(function (k) {
-      if (seoCategories[k].items.length > 0) {
-        seoCategories[k].status = "warn";
-        failedSeoNamesList.push(seoCategories[k].label);
+      var cat = seoCategories[k];
+      if (cat.items.length > 0) {
+        cat.status = "warn";
+        failedSeoNamesList.push(cat.label);
       }
     });
 
     Object.keys(archCategories).forEach(function (k) {
-      if (archCategories[k].items.length > 0) {
-        archCategories[k].status = "warn";
-        if (failedArchNamesList.indexOf(archCategories[k].label) === -1) {
-          failedArchNamesList.push(archCategories[k].label);
+      var cat = archCategories[k];
+      if (cat.items.length > 0) {
+        cat.status = "warn";
+        if (k === "relatedArticles" || k === "linkPlan" || k === "productRecommendations" || k === "alternativeProducts" || k === "comparisonTable" || k === "minAffiliate") {
+          var labelText = (k === "linkPlan") ? "LinkPlan Framework" : ((k === "alternativeProducts") ? "alternativeProducts Layouts" : cat.label);
+          if (failedArchNamesList.indexOf(labelText) === -1) {
+            failedArchNamesList.push(labelText);
+          }
         }
       }
     });
@@ -534,7 +601,6 @@
     totalTechnicalDeductionPoints = Math.min(totalRawDeductions, 10);
   }
 
-  // Paint UI Elements and Sync All Dashboard Indicators
   function paintInterfaceOutputs() {
     var totalArticleCount = allArticles.length;
     var totalSeoSum = 0;
@@ -544,53 +610,35 @@
     allArticles.forEach(function (art) {
       totalSeoSum += (art._seoScore || 0);
       totalCompletionSum += (art._completenessScore || 0);
-      if ((art._completenessScore || 0) >= 85) fullyOptimizedCount++;
+      if ((art._completenessScore || 0) >= 85) {
+        fullyOptimizedCount++;
+      }
     });
 
     var averageArticleSeoScore = totalArticleCount > 0 ? Math.round(totalSeoSum / totalArticleCount) : 100;
     var websiteSeoScore = Math.max(0, averageArticleSeoScore - totalTechnicalDeductionPoints);
     var globalAvgCompletion = totalArticleCount > 0 ? Math.round(totalCompletionSum / totalArticleCount) : 0;
+    var fullyOptimizedRatio = totalArticleCount > 0 ? (fullyOptimizedCount / totalArticleCount) : 0;
 
-    // Website Health Card
-    document.getElementById("seoScoreValue").textContent = websiteSeoScore + " / 100";
-    document.getElementById("fullyOptimizedCount").textContent = fullyOptimizedCount + " / " + totalArticleCount;
-    document.getElementById("avgArticleCompletion").textContent = globalAvgCompletion + "%";
-    document.getElementById("totalCount").textContent = totalArticleCount;
-
-    // Today's Scan Summary Card
     var setEl = function (id, val) {
       var node = document.getElementById(id);
       if (node) node.textContent = val;
     };
 
-    setEl("summaryArticles", totalArticleCount);
-    setEl("summaryAffiliate", statTotals.affiliateLinks);
-    setEl("summaryInternal", statTotals.internalLinks);
-    setEl("summarySeoScore", websiteSeoScore + "/100");
-    setEl("summaryBrokenLinks", brokenInternalLinksCount);
-    setEl("summarySeoWarningCategories", failedSeoNamesList.length);
-    setEl("summaryAffectedArticles", totalArticlesAffectedBySeoWarnings);
-    setEl("summaryArchWarningCategories", failedArchNamesList.length);
-    setEl("summaryHealthy", fullyOptimizedCount);
-
-    var attentionNode = document.getElementById("summaryNeedsAttentionCategories");
-    if (attentionNode) {
-      attentionNode.innerHTML = "";
-      failedArchNamesList.forEach(function (catName) {
-        var div = document.createElement("div");
-        div.textContent = catName;
-        attentionNode.appendChild(div);
-      });
-    }
-
-    // Article Statistics Card
+    setEl("totalCount", totalArticleCount);
+    setEl("seoScoreValue", websiteSeoScore + " / 100");
+    setEl("fullyOptimizedCount", fullyOptimizedCount + " / " + totalArticleCount);
+    setEl("avgArticleCompletion", globalAvgCompletion + "%");
     setEl("skincareCount", skincareArticlesList.length);
     setEl("haircareCount", haircareArticlesList.length);
     setEl("comparisonCount", comparisonArticlesCount);
     setEl("avgSeoScore", averageArticleSeoScore + " / 100");
-    setEl("techDeductionsValue", totalTechnicalDeductionPoints === 0 ? "0" : "−" + totalTechnicalDeductionPoints);
 
-    // Extended Link Metrics Card
+    var techDeductionsNode = document.getElementById("techDeductionsValue");
+    if (techDeductionsNode) {
+      techDeductionsNode.textContent = totalTechnicalDeductionPoints === 0 ? "0" : "−" + totalTechnicalDeductionPoints;
+    }
+
     setEl("totalAffiliateLinks", statTotals.affiliateLinks);
     setEl("totalNonAffiliateProducts", statTotals.nonAffiliateProducts);
     setEl("totalInternalLinks", statTotals.internalLinks);
@@ -601,127 +649,232 @@
     setEl("avgInternalLinks", totalArticleCount > 0 ? (statTotals.internalLinks / totalArticleCount).toFixed(2) : "0");
     setEl("avgAffiliateLinksPerArticle", totalArticleCount > 0 ? (statTotals.affiliateLinks / totalArticleCount).toFixed(1) : "0.0");
 
-    // Link Distributions
-    var grandTotalLinks = statTotals.affiliateLinks + statTotals.nonAffiliateProducts + statTotals.internalLinks + statTotals.externalReferences + statTotals.pageLinks;
-    if (grandTotalLinks > 0) {
-      setEl("pctAffiliateLinks", Math.round((statTotals.affiliateLinks / grandTotalLinks) * 100) + "%");
-      setEl("pctNonAffiliateLinks", Math.round((statTotals.nonAffiliateProducts / grandTotalLinks) * 100) + "%");
-      setEl("pctInternalLinks", Math.round((statTotals.internalLinks / grandTotalLinks) * 100) + "%");
-      setEl("pctExternalReferences", Math.round((statTotals.externalReferences / grandTotalLinks) * 100) + "%");
-      setEl("pctPageLinks", Math.round((statTotals.pageLinks / grandTotalLinks) * 100) + "%");
+    var sumOfAllLinks = statTotals.affiliateLinks + statTotals.nonAffiliateProducts + statTotals.internalLinks + statTotals.externalReferences + statTotals.pageLinks;
+    if (sumOfAllLinks > 0) {
+      setEl("pctAffiliateLinks", Math.round((statTotals.affiliateLinks / sumOfAllLinks) * 100) + "%");
+      setEl("pctNonAffiliateLinks", Math.round((statTotals.nonAffiliateProducts / sumOfAllLinks) * 100) + "%");
+      setEl("pctInternalLinks", Math.round((statTotals.internalLinks / sumOfAllLinks) * 100) + "%");
+      setEl("pctExternalReferences", Math.round((statTotals.externalReferences / sumOfAllLinks) * 100) + "%");
+      setEl("pctPageLinks", Math.round((statTotals.pageLinks / sumOfAllLinks) * 100) + "%");
     }
 
-    // Website Health Overall Status
     var healthStatusNode = document.getElementById("healthStatus");
-    if (healthStatusNode) {
-      healthStatusNode.textContent = websiteSeoScore >= 85 ? "Excellent" : websiteSeoScore >= 70 ? "Good" : "Needs Attention";
-      healthStatusNode.className = "status-value " + (websiteSeoScore >= 85 ? "health-excellent" : websiteSeoScore >= 70 ? "health-good" : "health-attention");
-    }
-
-    // Health Status Explanations Box
-    var explanationContainer = document.getElementById("statusExplanation");
+    var explanationArea = document.getElementById("statusExplanation");
     var explanationList = document.getElementById("statusExplanationList");
-    if (explanationContainer && explanationList) {
-      explanationList.innerHTML = "";
-      var reasons = [];
-      if (duplicateKeyCount > 0) reasons.push("Duplicate Inventory Keys (" + duplicateKeyCount + ")");
-      if (duplicateUrlCount > 0) reasons.push("Duplicate Target URLs (" + duplicateUrlCount + ")");
-      if (brokenInternalLinksCount > 0) reasons.push("Broken Internal Links (" + brokenInternalLinksCount + ")");
-      if (failedSeoNamesList.length > 0) reasons.push("SEO Audit Warnings (" + failedSeoNamesList.length + " categories)");
-      if (failedArchNamesList.length > 0) reasons.push("Structural Architecture Warnings (" + failedArchNamesList.length + " categories)");
 
-      if (reasons.length > 0) {
-        explanationContainer.style.display = "block";
-        reasons.forEach(function (r) {
+    if (healthStatusNode && explanationList) {
+      healthStatusNode.className = "status-value";
+      explanationList.innerHTML = "";
+      var assignedReasons = [];
+      var calculatedStatus = "Needs Attention";
+      var statusColorClass = "health-attention";
+
+      if (websiteSeoScore >= 90) {
+        calculatedStatus = "Excellent";
+        statusColorClass = "health-excellent";
+      } else if (websiteSeoScore >= 75) {
+        calculatedStatus = "Good";
+        statusColorClass = "health-good";
+      } else if (websiteSeoScore < 50) {
+        calculatedStatus = "Critical";
+        statusColorClass = "health-error";
+      }
+
+      if (fullyOptimizedRatio < 0.50 && calculatedStatus !== "Critical") {
+        calculatedStatus = "Needs Attention";
+        statusColorClass = "health-attention";
+        assignedReasons.push("Less than 50% Fully Optimized Articles");
+      } else {
+        if (calculatedStatus === "Excellent") assignedReasons.push("High Website SEO Score");
+        if (calculatedStatus === "Excellent") assignedReasons.push("More than 50% Fully Optimized Articles");
+        if (calculatedStatus === "Critical") assignedReasons.push("Low Website SEO Score");
+      }
+
+      if (totalTechnicalDeductionPoints > 0 && calculatedStatus === "Needs Attention" && fullyOptimizedRatio >= 0.50) {
+        assignedReasons.push("Technical SEO issues detected");
+      }
+
+      healthStatusNode.textContent = calculatedStatus;
+      healthStatusNode.classList.add(statusColorClass);
+
+      if (assignedReasons.length > 0) {
+        assignedReasons.forEach(function (reasonText) {
           var li = document.createElement("li");
-          li.textContent = "• " + r;
+          li.textContent = "• " + reasonText;
           explanationList.appendChild(li);
         });
+        if (explanationArea) explanationArea.style.display = "block";
       } else {
-        explanationContainer.style.display = "none";
+        if (explanationArea) explanationArea.style.display = "none";
       }
     }
 
-    // SEO Health Audit Log Panel
+    // --- RENDER PANELS LAYER 1: SEO HEALTH AUDIT PANEL ---
     var seoWarningsLogContainer = document.getElementById("seoWarningsLog");
-    var seoSummaryBadge = document.getElementById("seoLogSummary");
     if (seoWarningsLogContainer) {
       seoWarningsLogContainer.innerHTML = "";
       var passedSeoCount = 0;
-      var totalSeoCategoriesCount = Object.keys(seoCategories).length;
 
       Object.keys(seoCategories).forEach(function (catKey) {
         var cat = seoCategories[catKey];
-        if (cat.status === "pass") passedSeoCount++;
-
         var listRowItem = document.createElement("li");
-        listRowItem.className = cat.status === "pass" ? "log-pass" : "log-warn";
 
-        var headerTitle = document.createElement("div");
-        headerTitle.style.fontWeight = "600";
-        headerTitle.textContent = (cat.status === "pass" ? "✔ " : "⚠ ") + cat.label + (cat.items.length ? " (" + cat.items.length + " issues)" : "");
-        listRowItem.appendChild(headerTitle);
-
-        if (cat.items.length > 0) {
-          var nestedList = document.createElement("ul");
-          nestedList.className = "warning-nested-list";
-          cat.items.forEach(function (itemDetail) {
-            var nestedItem = document.createElement("li");
-            nestedItem.textContent = itemDetail;
-            nestedList.appendChild(nestedItem);
+        if (cat.status === "pass") {
+          passedSeoCount++;
+          listRowItem.className = "log-pass";
+          listRowItem.textContent = "✔ " + cat.label;
+        } else {
+          listRowItem.className = "log-warn";
+          listRowItem.textContent = "⚠ " + cat.label + " (" + cat.items.length + " articles)";
+          var nestedUI = document.createElement("ul");
+          nestedUI.className = "warning-nested-list";
+          cat.items.forEach(function (nestedText) {
+            var nestedLi = document.createElement("li");
+            nestedLi.textContent = "• " + nestedText;
+            nestedUI.appendChild(nestedLi);
           });
-          listRowItem.appendChild(nestedList);
+          listRowItem.appendChild(nestedUI);
         }
-
         seoWarningsLogContainer.appendChild(listRowItem);
       });
 
-      if (seoSummaryBadge) {
-        seoSummaryBadge.textContent = "Passed: " + passedSeoCount + "/" + totalSeoCategoriesCount + " | Needs Attention: " + (totalSeoCategoriesCount - passedSeoCount);
+      var totalSeoCategoriesCount = Object.keys(seoCategories).length;
+      var seoLogSummaryNode = document.getElementById("seoLogSummary");
+      if (seoLogSummaryNode) {
+        seoLogSummaryNode.innerHTML = "Passed: " + passedSeoCount + " / " + totalSeoCategoriesCount + " Requirements Covered<br>" +
+          "Needs Attention: " + failedSeoNamesList.length;
       }
     }
 
-    // Article Architecture Audit Log Panel
+    // --- RENDER PANELS LAYER 2: ARTICLE ARCHITECTURE AUDIT PANEL ---
     var archWarningsLogContainer = document.getElementById("archWarningsLog");
-    var archSummaryBadge = document.getElementById("archLogSummary");
     if (archWarningsLogContainer) {
       archWarningsLogContainer.innerHTML = "";
-      var passedArchCount = 0;
-      var totalArchCategoriesCount = Object.keys(archCategories).length;
+      var stdCount = allArticles.filter(function (a) { return !a.comparisonTable; }).length;
+      var compCount = allArticles.filter(function (a) { return !!a.comparisonTable; }).length;
 
-      Object.keys(archCategories).forEach(function (catKey) {
-        var cat = archCategories[catKey];
-        if (cat.status === "pass") passedArchCount++;
+      var stdPassedRequirementsCount = 0;
+      stdParams.forEach(function (p) { if (stdCovered[p.key] === stdCount) stdPassedRequirementsCount++; });
 
-        var listRowItem = document.createElement("li");
-        listRowItem.className = cat.status === "pass" ? "log-pass" : "log-warn";
+      var compPassedRequirementsCount = 0;
+      compParams.forEach(function (p) { if (compCovered[p.key] === compCount) compPassedRequirementsCount++; });
 
-        var headerTitle = document.createElement("div");
-        headerTitle.style.fontWeight = "600";
-        headerTitle.textContent = (cat.status === "pass" ? "✔ " : "⚠ ") + cat.label + (cat.items.length ? " (" + cat.items.length + " issues)" : "");
-        listRowItem.appendChild(headerTitle);
+      var archLogSummaryNode = document.getElementById("archLogSummary");
+      if (archLogSummaryNode) archLogSummaryNode.innerHTML = "";
 
-        if (cat.items.length > 0) {
-          var nestedList = document.createElement("ul");
-          nestedList.className = "warning-nested-list";
-          cat.items.forEach(function (itemDetail) {
-            var nestedItem = document.createElement("li");
-            nestedItem.textContent = itemDetail;
-            nestedList.appendChild(nestedItem);
+      // Standard Articles Section
+      var stdHeader = document.createElement("li");
+      stdHeader.innerHTML = "<strong>STANDARD ARTICLES (Total: " + stdCount + ")</strong><br>" +
+        "<span style='font-size:1em; color:inherit;'>Standard Template &nbsp;•&nbsp; " + stdPassedRequirementsCount + "/11 Requirements Covered</span><br>" +
+        "<span style='font-size:1em; font-weight:normal;'>Needs Attention: " + (11 - stdPassedRequirementsCount) + "</span>";
+      stdHeader.className = "log-header";
+      archWarningsLogContainer.appendChild(stdHeader);
+
+      stdParams.forEach(function (p) {
+        var li = document.createElement("li");
+        var passed = stdCovered[p.key] === stdCount;
+        li.className = passed ? "log-pass" : "log-warn";
+        li.textContent = (passed ? "✔ " : "⚠ ") + p.label + " (" + stdCovered[p.key] + " / " + stdCount + ")";
+
+        if (!passed && archCategories[p.key] && archCategories[p.key].items.length > 0) {
+          var nestedUI = document.createElement("ul");
+          nestedUI.className = "warning-nested-list";
+          archCategories[p.key].items.forEach(function (nestedText) {
+            var isStandardArticle = skincareArticlesList.concat(haircareArticlesList).some(function (sa) {
+              return (sa.title || sa.key) === nestedText.split(" ->")[0];
+            });
+            if (isStandardArticle) {
+              var nestedLi = document.createElement("li");
+              nestedLi.textContent = "• " + nestedText;
+              nestedUI.appendChild(nestedLi);
+            }
           });
-          listRowItem.appendChild(nestedList);
+          if (nestedUI.children.length > 0) li.appendChild(nestedUI);
         }
-
-        archWarningsLogContainer.appendChild(listRowItem);
+        archWarningsLogContainer.appendChild(li);
       });
 
-      if (archSummaryBadge) {
-        archSummaryBadge.textContent = "Passed: " + passedArchCount + "/" + totalArchCategoriesCount + " | Needs Attention: " + (totalArchCategoriesCount - passedArchCount);
+      // Comparison Articles Section
+      var compHeader = document.createElement("li");
+      compHeader.innerHTML = "<br><strong>COMPARISON ARTICLES (Total: " + compCount + ")</strong><br>" +
+        "<span style='font-size:1em; color:inherit;'>Comparison Template &nbsp;•&nbsp; " + compPassedRequirementsCount + "/14 Requirements Covered</span><br>" +
+        "<span style='font-size:1em; font-weight:normal;'>Needs Attention: " + (14 - compPassedRequirementsCount) + "</span>";
+      compHeader.className = "log-header";
+      archWarningsLogContainer.appendChild(compHeader);
+
+      compParams.forEach(function (p) {
+        var li = document.createElement("li");
+        var passed = compCovered[p.key] === compCount;
+        li.className = passed ? "log-pass" : "log-warn";
+        li.textContent = (passed ? "✔ " : "⚠ ") + p.label + " (" + compCovered[p.key] + " / " + compCount + ")";
+
+        if (!passed && archCategories[p.key] && archCategories[p.key].items.length > 0) {
+          var nestedUI = document.createElement("ul");
+          nestedUI.className = "warning-nested-list";
+          archCategories[p.key].items.forEach(function (nestedText) {
+            var nestedLi = document.createElement("li");
+            nestedLi.textContent = "• " + nestedText;
+            nestedUI.appendChild(nestedLi);
+          });
+          if (nestedUI.children.length > 0) li.appendChild(nestedUI);
+        }
+        archWarningsLogContainer.appendChild(li);
+      });
+    }
+
+    // --- CONSUMPTION LAYER: TODAY'S SCAN SUMMARY PANEL ---
+    setEl("summaryArticles", totalArticleCount);
+    setEl("summaryAffiliate", statTotals.affiliateLinks);
+    setEl("summaryInternal", statTotals.internalLinks);
+    setEl("summarySeoScore", websiteSeoScore + "/100");
+    setEl("summaryBrokenLinks", brokenInternalLinksCount);
+    setEl("summaryHealthy", fullyOptimizedCount + " / " + totalArticleCount);
+    setEl("summaryAffectedArticles", totalArticlesAffectedBySeoWarnings + " / " + totalArticleCount);
+
+    var seoCountNode = document.getElementById("summarySeoWarningCategories");
+    if (seoCountNode) seoCountNode.textContent = failedSeoNamesList.length + " Categories";
+
+    var seoNeedsAttentionSlot = document.getElementById("summaryNeedsAttentionSeoCategories");
+    if (!seoNeedsAttentionSlot && seoCountNode && seoCountNode.parentNode) {
+      seoNeedsAttentionSlot = document.createElement("div");
+      seoNeedsAttentionSlot.id = "summaryNeedsAttentionSeoCategories";
+      seoCountNode.parentNode.appendChild(seoNeedsAttentionSlot);
+    }
+    if (seoNeedsAttentionSlot) {
+      seoNeedsAttentionSlot.innerHTML = "";
+      failedSeoNamesList.forEach(function (name) {
+        var badge = document.createElement("div");
+        badge.className = "summary-nested-badges-list";
+        badge.style.fontSize = "1em";
+        badge.textContent = "• " + name;
+        seoNeedsAttentionSlot.appendChild(badge);
+      });
+    }
+
+    var archCountNode = document.getElementById("summaryArchWarningCategories");
+    if (archCountNode) archCountNode.textContent = failedArchNamesList.length + " Categories";
+
+    var archNeedsAttentionSlot = document.getElementById("summaryNeedsAttentionCategories");
+    if (archNeedsAttentionSlot) {
+      archNeedsAttentionSlot.innerHTML = "";
+      if (failedArchNamesList.length === 0) {
+        var noneText = document.createElement("div");
+        noneText.className = "summary-nested-badges-list";
+        noneText.style.fontSize = "1em";
+        noneText.textContent = "• None";
+        archNeedsAttentionSlot.appendChild(noneText);
+      } else {
+        failedArchNamesList.forEach(function (name) {
+          var badge = document.createElement("div");
+          badge.className = "summary-nested-badges-list";
+          badge.style.fontSize = "1em";
+          badge.textContent = "• " + name;
+          archNeedsAttentionSlot.appendChild(badge);
+        });
       }
     }
   }
 
-  // Sitemap Generation Engine
   function manufactureSitemapContent() {
     var xmlOutputRows = [];
     xmlOutputRows.push('<?xml version="1.0" encoding="UTF-8"?>');
@@ -734,8 +887,6 @@
       { route: "/shop.html", priority: "0.8", frequency: "monthly" }
     ];
 
-    var totalUrlCount = baselineStaticPages.length;
-
     baselineStaticPages.forEach(function (page) {
       xmlOutputRows.push("  <url>");
       xmlOutputRows.push("    <loc>" + BASE_URL + page.route + "</loc>");
@@ -747,75 +898,135 @@
 
     allArticles.forEach(function (article) {
       if (article.url) {
-        totalUrlCount++;
         var formattedUrlSegment = String(article.url).trim();
         if (formattedUrlSegment.charAt(0) !== "/") formattedUrlSegment = "/" + formattedUrlSegment;
+        var determinedPriority = article.comparisonTable ? "0.9" : "0.8";
+
         xmlOutputRows.push("  <url>");
         xmlOutputRows.push("    <loc>" + BASE_URL + formattedUrlSegment + "</loc>");
-        xmlOutputRows.push("    <lastmod>" + currentFormattedToday + "</lastmod>");
+        var lastMod = currentFormattedToday;
+        if (article.dateModified) {
+          lastMod = String(article.dateModified).split("T")[0];
+        } else if (article.date) {
+          lastMod = String(article.date).split("T")[0];
+        }
+        xmlOutputRows.push("    <lastmod>" + lastMod + "</lastmod>");
         xmlOutputRows.push("    <changefreq>monthly</changefreq>");
-        xmlOutputRows.push("    <priority>0.8</priority>");
+        xmlOutputRows.push("    <priority>" + determinedPriority + "</priority>");
         xmlOutputRows.push("  </url>");
       }
     });
 
     xmlOutputRows.push("</urlset>");
+    var totalUrlElementsCalculated = baselineStaticPages.length + allArticles.filter(function (a) { return a.url; }).length;
+
     var outputTextarea = document.getElementById("sitemapContainer");
     if (outputTextarea) outputTextarea.value = xmlOutputRows.join("\n");
 
-    var summaryBox = document.getElementById("sitemapSummary");
-    if (summaryBox) summaryBox.style.display = "block";
-
+    var liveDateObject = new Date();
     var urlCountNode = document.getElementById("sitemapUrlCount");
-    if (urlCountNode) urlCountNode.textContent = totalUrlCount + " URLs";
+    if (urlCountNode) urlCountNode.textContent = totalUrlElementsCalculated + " URLs";
 
     var genDateNode = document.getElementById("sitemapGenDate");
     if (genDateNode) {
-      var d = new Date();
-      genDateNode.textContent = d.toLocaleDateString("en-GB") + " " + d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true });
+      genDateNode.textContent = liveDateObject.toLocaleDateString("en-GB", {
+        day: "numeric", month: "short", year: "numeric"
+      });
     }
+
+    var summaryNode = document.getElementById("sitemapSummary");
+    if (summaryNode) summaryNode.style.display = "block";
   }
 
-  // Copy Sitemap Content
-  function copySitemapToClipboard() {
-    var outputTextarea = document.getElementById("sitemapContainer");
-    if (!outputTextarea || !outputTextarea.value) return;
+  function handleClipboardCopyAction() {
+    var sitemapTextarea = document.getElementById("sitemapContainer");
+    if (!sitemapTextarea || sitemapTextarea.value.trim() === "") return;
 
-    outputTextarea.select();
-    navigator.clipboard.writeText(outputTextarea.value).then(function () {
-      var toast = document.getElementById("copyToast");
-      if (toast) {
-        toast.style.display = "inline";
-        setTimeout(function () { toast.style.display = "none"; }, 3000);
+    sitemapTextarea.select();
+    sitemapTextarea.setSelectionRange(0, 99999);
+    try {
+      var secureCopyActionStatus = document.execCommand("copy");
+      if (secureCopyActionStatus) {
+        var toastBox = document.getElementById("copyToast");
+        if (toastBox) {
+          toastBox.style.display = "inline";
+          setTimeout(function () { toastBox.style.display = "none"; }, 2000);
+        }
       }
-    });
+    } catch (err) {}
   }
 
-  // Export Articles CSV Engine
-  function exportArticlesToCsv() {
-    if (allArticles.length === 0) return;
+  function exportHealthyArticlesCsv() {
+    var csvRows = [];
 
-    var csvHeaders = ["Key", "Title", "URL", "Word Count", "SEO Score", "Completeness Score", "Missing SEO Params", "Missing Arch Params"];
-    var csvRows = [csvHeaders.join(",")];
+    function formatCsvDate(rawDateString) {
+      if (!rawDateString || String(rawDateString).trim() === "") return "";
+      var parsedDate = new Date(rawDateString);
+      if (isNaN(parsedDate.getTime())) return rawDateString;
+      var baseFormattedDate = parsedDate.toLocaleDateString("en-GB", {
+        day: "numeric", month: "short", year: "numeric"
+      });
+      if (String(rawDateString).indexOf("T") !== -1 || String(rawDateString).indexOf(":") !== -1) {
+        var baseFormattedTime = parsedDate.toLocaleTimeString("en-US", {
+          hour: "numeric", minute: "2-digit", hour12: true
+        });
+        return baseFormattedDate + " " + baseFormattedTime;
+      }
+      return baseFormattedDate;
+    }
 
-    allArticles.forEach(function (art) {
-      var key = '"' + (art.key || "").replace(/"/g, '""') + '"';
-      var title = '"' + (art.title || "").replace(/"/g, '""') + '"';
-      var url = '"' + (art.url || "").replace(/"/g, '""') + '"';
-      var wordCount = countWordsInContent(art);
-      var seoScore = art._seoScore || 0;
-      var completeness = art._completenessScore || 0;
-      var missingSeo = '"' + (art._missingSeo || []).join("; ").replace(/"/g, '""') + '"';
-      var missingArch = '"' + (art._missingArch || []).join("; ").replace(/"/g, '""') + '"';
+    csvRows.push("Title, URL, Category, SEO Score, Article Completion, Published Date, Last Modified, Word Count, Status, Missing SEO Factors, Missing Architecture Factors");
 
-      csvRows.push([key, title, url, wordCount, seoScore, completeness, missingSeo, missingArch].join(","));
+    allArticles.forEach(function (article) {
+      var cleanTitle = (article.title || article.key || "").replace(/"/g, '""');
+      if (cleanTitle.indexOf(",") !== -1 || cleanTitle.indexOf('"') !== -1 || cleanTitle.indexOf("\n") !== -1) {
+        cleanTitle = '"' + cleanTitle + '"';
+      }
+
+      var relativeUrl = article.url || "";
+      var category = "Skincare";
+      if (article.comparisonTable) {
+        category = "Comparison";
+      } else {
+        var articleKey = article.key || "";
+        var isHaircare = haircareArticlesList.some(function (h) {
+          return h.key === articleKey || (h.url && h.url === article.url);
+        });
+        if (isHaircare) category = "Haircare";
+      }
+
+      var healthScore = article._seoScore || 0;
+      var completionPct = article._completenessScore || 0;
+      var completionScoreText = completionPct + "%";
+      var publishedDate = formatCsvDate(article.date || "");
+      var lastModified = formatCsvDate(article.dateModified || "");
+      var wordCount = countWordsInContent(article);
+
+      var operationalStatus = "Needs Attention";
+      if (completionPct >= 85) {
+        operationalStatus = "Fully Optimized";
+      } else if (completionPct >= 60) {
+        operationalStatus = "Good Progress";
+      }
+
+      var missingSeoString = (article._missingSeo && article._missingSeo.length > 0) ? article._missingSeo.join(", ") : "None";
+      var missingArchString = (article._missingArch && article._missingArch.length > 0) ? article._missingArch.join(", ") : "None";
+
+      if (missingSeoString.indexOf(",") !== -1) missingSeoString = '"' + missingSeoString + '"';
+      if (missingArchString.indexOf(",") !== -1) missingArchString = '"' + missingArchString + '"';
+      if (publishedDate.indexOf(",") !== -1) publishedDate = '"' + publishedDate + '"';
+      if (lastModified.indexOf(",") !== -1) lastModified = '"' + lastModified + '"';
+
+      csvRows.push([cleanTitle, relativeUrl, category, healthScore, completionScoreText, publishedDate, lastModified, wordCount, operationalStatus, missingSeoString, missingArchString].join(","));
     });
 
-    var csvBlob = new Blob([csvRows.join("\n")], { type: "text/csv;charset=utf-8;" });
-    var csvUrl = URL.createObjectURL(csvBlob);
+    var csvStringContent = csvRows.join("\n");
+    var blobObject = new Blob([csvStringContent], { type: "text/csv;charset=utf-8;" });
     var downloadLink = document.createElement("a");
-    downloadLink.setAttribute("href", csvUrl);
-    downloadLink.setAttribute("download", "daily_glam_articles_export_" + getFormattedToday() + ".csv");
+    var todayStamp = getFormattedToday();
+    downloadLink.download = "articles-audit-" + todayStamp + ".csv";
+    downloadLink.href = URL.createObjectURL(blobObject);
+    downloadLink.style.display = "none";
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
@@ -823,13 +1034,12 @@
 
   function attachControlListeners() {
     var generateBtn = document.getElementById("btnGenerateSitemap");
-    if (generateBtn) generateBtn.addEventListener("click", manufactureSitemapContent);
-
     var copyBtn = document.getElementById("btnCopySitemap");
-    if (copyBtn) copyBtn.addEventListener("click", copySitemapToClipboard);
+    var exportCsvBtn = document.getElementById("btnExportCsv");
 
-    var exportBtn = document.getElementById("btnExportCsv");
-    if (exportBtn) exportBtn.addEventListener("click", exportArticlesToCsv);
+    if (generateBtn) generateBtn.addEventListener("click", manufactureSitemapContent);
+    if (copyBtn) copyBtn.addEventListener("click", handleClipboardCopyAction);
+    if (exportCsvBtn) exportCsvBtn.addEventListener("click", exportHealthyArticlesCsv);
   }
 
   function runEnginePipeline() {
