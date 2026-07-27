@@ -136,29 +136,96 @@ uniqueArticleKeys[key].push(item.title || key);
 }
 
 function countWordsInContent(article) {
+
 var contentString = "";
-if (article.intro) contentString += " " + article.intro;
-if (article.title) contentString += " " + article.title;
+
+if (article.title)
+contentString += " " + article.title;
+
+if (article.intro)
+contentString += " " + article.intro;
+
 if (article.sections && Array.isArray(article.sections)) {
-article.sections.forEach(function (sec) {
-if (sec.heading) contentString += " " + sec.heading;
-if (sec.paragraphs && Array.isArray(sec.paragraphs)) contentString += " " + sec.paragraphs.join(" ");
-if (sec.bullets && Array.isArray(sec.bullets)) contentString += " " + sec.bullets.join(" ");
-});
+
+article.sections.forEach(function(sec){
+
+if(sec.heading)
+contentString += " " + sec.heading;
+
+if(sec.blocks && Array.isArray(sec.blocks)){
+
+sec.blocks.forEach(function(block){
+
+if(block.type === "paragraph" && Array.isArray(block.text)){
+contentString += " " + block.text.join(" ");
 }
-if (article.faq && Array.isArray(article.faq)) {
-article.faq.forEach(function (f) {
-if (f.question) contentString += " " + f.question;
-if (f.answer) contentString += " " + f.answer;
-});
+
+if(block.type === "bullets" && Array.isArray(block.items)){
+contentString += " " + block.items.join(" ");
 }
-if (article.comparisonTable && article.comparisonTable.rows && Array.isArray(article.comparisonTable.rows)) {
-article.comparisonTable.rows.forEach(function (row) {
-if (row.features && Array.isArray(row.features)) contentString += " " + row.features.join(" ");
-});
+
+if(block.type === "subHeading" && block.text){
+contentString += " " + block.text;
 }
-var cleanWords = contentString.trim().split(/\s+/);
-return contentString.trim() === "" ? 0 : cleanWords.length;
+
+if(block.type === "infoBox"){
+if(block.title)
+contentString += " " + block.title;
+
+if(block.text)
+contentString += " " + block.text;
+}
+
+if(block.type === "image"){
+if(block.alt)
+contentString += " " + block.alt;
+}
+
+});
+
+}
+
+});
+
+}
+
+if(article.faq && Array.isArray(article.faq)){
+
+article.faq.forEach(function(f){
+
+if(f.question)
+contentString += " " + f.question;
+
+if(f.answer)
+contentString += " " + f.answer;
+
+});
+
+}
+
+if(article.comparisonTable &&
+article.comparisonTable.rows &&
+Array.isArray(article.comparisonTable.rows)){
+
+article.comparisonTable.rows.forEach(function(row){
+
+if(row.features &&
+Array.isArray(row.features)){
+
+contentString += " " + row.features.join(" ");
+
+}
+
+});
+
+}
+
+var words = contentString.trim().split(/\s+/);
+
+return contentString.trim()===""
+?0
+:words.length;
+
 }
 
 function processContentStatistics() {
