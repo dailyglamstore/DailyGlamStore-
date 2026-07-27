@@ -28,7 +28,10 @@ window.CURRENT_ARTICLE = {
 
   intro:
     "A simple haircare routine doesn’t have to be complicated. By understanding your hair type, following the correct order of products, and staying consistent, you can build healthy haircare habits over time. This beginner-friendly guide explains the essential steps, the purpose of each product, common mistakes to avoid, and how to choose products that suit your hair and lifestyle.",
-
+  
+  cardDescription:
+  "Learn the correct order of shampoo, conditioner, serum, and hair oil to build a simple haircare routine for healthy-looking hair.",
+ 
   seoDescription:
     "Learn how to build a simple haircare routine for beginners. Discover the correct order of haircare products, understand shampoo, conditioner, hair serum and hair oil, avoid common mistakes, and build healthy haircare habits.",
 
