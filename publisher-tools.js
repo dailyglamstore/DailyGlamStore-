@@ -174,6 +174,10 @@ contentString += " " + value.join(" ");
 
 }
 
+});
+
+}
+
 if(article.faq && Array.isArray(article.faq)){
 
 article.faq.forEach(function(f){
@@ -188,17 +192,19 @@ contentString += " " + f.answer;
 
 }
 
-if(article.comparisonTable &&
+if(
+article.comparisonTable &&
 article.comparisonTable.rows &&
-Array.isArray(article.comparisonTable.rows)){
+Array.isArray(article.comparisonTable.rows)
+){
 
 article.comparisonTable.rows.forEach(function(row){
 
-if(row.features &&
-Array.isArray(row.features)){
-
+if(
+row.features &&
+Array.isArray(row.features)
+){
 contentString += " " + row.features.join(" ");
-
 }
 
 });
@@ -207,9 +213,9 @@ contentString += " " + row.features.join(" ");
 
 var words = contentString.trim().split(/\s+/);
 
-return contentString.trim()===""
-?0
-:words.length;
+return contentString.trim() === ""
+? 0
+: words.length;
 
 }
 
