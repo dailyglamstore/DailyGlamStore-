@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Tools &amp; Extraction Dashboard | Daily Glam Store</title>
+  <meta name="robots" content="noindex, nofollow" />
+  
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #ec4899;
+      --primary-hover: #db2777;
+      --success: #10b981;
+      --code-bg: #0f172a;
+      --code-text: #38bdf8;
+      --font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 2rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+    }
+
+    .tool-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .status-badge {
+      font-size: 0.85rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      color: var(--text-muted);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--text);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      opacity: 0.9;
+    }
+
+    .btn-secondary:disabled {
+      background-color: var(--border);
+      color: var(--text-muted);
+      cursor: not-allowed;
+    }
+
+    .btn-success {
+      background-color: var(--success) !important;
+      color: white !important;
+    }
+
+    .square-box {
+      width: 100%;
+      height: 380px;
+      background: var(--code-bg);
+      color: var(--code-text);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.88rem;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      resize: vertical;
+      white-space: pre;
+      overflow-x: auto;
+      overflow-y: auto;
+    }
+
+    .placeholder-card {
+      background: var(--card-bg);
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    .progress-status {
+      font-size: 0.85rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      min-height: 1.25rem;
+      font-weight: 500;
+    }
+  </style>
+
+  <!-- Load your master registry script -->
+  <script src="/article-registry.js"></script>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>🛠️ Daily Glam Store - Internal Dashboard</h1>
+      <p class="subtitle">Private utility tool for sitemap generation and data extraction.</p>
+    </header>
+
+    <!-- SECTION 1: SITEMAP GENERATOR TOOL -->
+    <main class="tool-card">
+      <div class="card-header">
+        <h2 class="card-title">📄 XML Sitemap Generator</h2>
+        <div id="lastGenStatus" class="status-badge">Last Generated: Checking...</div>
+      </div>
+
+      <div class="button-group">
+        <button id="generateBtn" class="btn btn-primary" onclick="generateSitemap()">
+          ⚡ Generate Sitemap
+        </button>
+        <button id="copyBtn" class="btn btn-secondary" onclick="copySitemap()" disabled>
+          📋 Copy Sitemap XML
+        </button>
+      </div>
+
+      <div id="progressText" class="progress-status"></div>
+
+      <!-- Square XML Output Box -->
+      <textarea 
+        id="sitemapOutput" 
+        class="square-box" 
+        readonly 
+        placeholder='Click "Generate Sitemap" above to compile sitemap.xml...'
+      ></textarea>
+    </main>
+
+    <!-- SECTION 2: FUTURE DATA EXTRACTION TOOLS PLACEHOLDER -->
+    <section class="placeholder-card">
+      <h3>➕ Future Data Extraction Tools</h3>
+      <p>Reserved section for future utilities (OpenGraph checkers, Link Audits, or Schema Validators).</p>
+    </section>
+  </div>
+
+  <script>
+    const SITE_URL = "https://dailyglamstore.in";
+    const STORAGE_KEY = "dgs_sitemap_last_generated";
+
+    // Initialize Last Generated Date display
+    function updateLastGenDisplay() {
+      const statusElement = document.getElementById("lastGenStatus");
+      const lastGenDate = localStorage.getItem(STORAGE_KEY);
+      
+      if (lastGenDate) {
+        statusElement.textContent = "Last Generated: " + lastGenDate;
+      } else {
+        statusElement.textContent = "Last Generated: Never";
+      }
+    }
+
+    // Dynamic Script Loader for reading individual article JS metadata
+    function loadScriptAsync(src) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = src;
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error("Failed to load " + src));
+        document.body.appendChild(script);
+      });
+    }
+
+    async function generateSitemap() {
+      const generateBtn = document.getElementById("generateBtn");
+      const copyBtn = document.getElementById("copyBtn");
+      const outputTextarea = document.getElementById("sitemapOutput");
+      const progressText = document.getElementById("progressText");
+
+      generateBtn.disabled = true;
+      generateBtn.textContent = "⏳ Reading Articles...";
+      progressText.textContent = "Fetching article registry & metadata...";
+
+      const currentDate = new Date().toISOString().split('T')[0];
+      const registry = window.ARTICLE_REGISTRY || { skincare: [], haircare: [] };
+
+      const staticPages = [
+        { url: "/", priority: "1.0", changefreq: "daily" },
+        { url: "/beauty-blog.html", priority: "0.8", changefreq: "weekly" }
+      ];
+
+      const sitemapEntries = [];
+
+      // Add static pages
+      staticPages.forEach(page => {
+        sitemapEntries.push({
+          loc: `${SITE_URL}${page.url}`,
+          lastmod: currentDate,
+          changefreq: page.changefreq,
+          priority: page.priority
+        });
+      });
+
+      // Helper function to fetch metadata for a list of article slugs
+      async function processCategorySlugs(slugList, category) {
+        if (!Array.isArray(slugList)) return;
+
+        for (const slug of slugList) {
+          // Reset window.CURRENT_ARTICLE before loading next script
+          window.CURRENT_ARTICLE = null;
+
+          // Attempt loading script from primary folder candidates
+          const folderCandidates = [
+            category + "-articles",
+            "articles/" + category
+          ];
+
+          let loaded = false;
+          for (const folder of folderCandidates) {
+            try {
+              await loadScriptAsync(`/${folder}/${slug}.js`);
+              loaded = true;
+              break;
+            } catch (err) {
+              // Try next folder path candidate
+            }
+          }
+
+          const article = window.CURRENT_ARTICLE;
+          let articleUrl = article && article.url ? article.url : `/articles/${category}/${slug}.html`;
+          
+          if (!articleUrl.startsWith('/')) {
+            articleUrl = '/' + articleUrl;
+          }
+
+          let lastModDate = currentDate;
+          if (article) {
+            const rawDate = article.dateModified || article.date;
+            if (rawDate) {
+              lastModDate = rawDate.split('T')[0];
+            }
+          }
+
+          sitemapEntries.push({
+            loc: `${SITE_URL}${articleUrl}`,
+            lastmod: lastModDate,
+            changefreq: "weekly",
+            priority: "0.7"
+          });
+        }
+      }
+
+      // Process skincare and haircare articles
+      await processCategorySlugs(registry.skincare, "skincare");
+      await processCategorySlugs(registry.haircare, "haircare");
+
+      // Construct final XML
+      let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+      xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+
+      sitemapEntries.forEach(entry => {
+        xml += `  <url>\n`;
+        xml += `    <loc>${entry.loc}</loc>\n`;
+        xml += `    <lastmod>${entry.lastmod}</lastmod>\n`;
+        xml += `    <changefreq>${entry.changefreq}</changefreq>\n`;
+        xml += `    <priority>${entry.priority}</priority>\n`;
+        xml += `  </url>\n`;
+      });
+
+      xml += `</urlset>`;
+
+      // Render XML into text area
+      outputTextarea.value = xml;
+
+      // Update Timestamp in localStorage and Console
+      const nowFormatted = new Date().toLocaleString("en-IN", {
+        dateStyle: "medium",
+        timeStyle: "short"
+      });
+
+      localStorage.setItem(STORAGE_KEY, nowFormatted);
+      console.log(`[Daily Glam Store Admin] Sitemap generated at: ${nowFormatted}`);
+      updateLastGenDisplay();
+
+      // UI cleanup
+      generateBtn.disabled = false;
+      generateBtn.textContent = "⚡ Generate Sitemap";
+      copyBtn.disabled = false;
+      progressText.textContent = `✅ Successfully generated ${sitemapEntries.length} URLs!`;
+    }
+
+    function copySitemap() {
+      const outputTextarea = document.getElementById("sitemapOutput");
+      const copyBtn = document.getElementById("copyBtn");
+
+      if (!outputTextarea.value) return;
+
+      navigator.clipboard.writeText(outputTextarea.value).then(() => {
+        const originalText = copyBtn.textContent;
+        copyBtn.textContent = "Copied! ✓";
+        copyBtn.classList.add("btn-success");
+
+        setTimeout(() => {
+          copyBtn.textContent = originalText;
+          copyBtn.classList.remove("btn-success");
+        }, 2000);
+      }).catch(err => {
+        console.error("Failed to copy:", err);
+      });
+    }
+
+    // Initialize display on page load
+    document.addEventListener("DOMContentLoaded", updateLastGenDisplay);
+  </script>
+</body>
+</html>
