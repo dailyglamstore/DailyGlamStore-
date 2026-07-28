@@ -173,8 +173,8 @@
     }
   </style>
 
-  <!-- Loads master article registry -->
-  <script src="/article-registry.js"></script>
+  <!-- Load article registry using relative path -->
+  <script src="article-registry.js"></script>
 </head>
 <body>
 
@@ -230,6 +230,12 @@
 
     function loadScriptAsync(src) {
       return new Promise((resolve, reject) => {
+        // Remove existing element if already injected previously
+        const existingScript = document.querySelector(`script[src="${src}"]`);
+        if (existingScript) {
+          existingScript.remove();
+        }
+
         const script = document.createElement("script");
         script.src = src;
         script.onload = () => resolve();
@@ -251,7 +257,7 @@
       const currentDate = new Date().toISOString().split('T')[0];
       const registry = window.ARTICLE_REGISTRY || { skincare: [], haircare: [] };
 
-      // Base pages matching your live site structure
+      // Core pages
       const staticPages = [
         { url: "/", priority: "1.0", changefreq: "daily" },
         { url: "/shop.html", priority: "0.9", changefreq: "daily" },
@@ -271,23 +277,21 @@
         });
       });
 
-      // Helper function matching your exact subfolder directory paths
+      // Helper function matching exact JS locations (e.g. /skincare-articles/ & /haircare-articles/)
       async function processCategorySlugs(slugList, category) {
         if (!Array.isArray(slugList)) return;
 
         for (const slug of slugList) {
           window.CURRENT_ARTICLE = null;
 
-          // Priority order for script files:
-          // 1. /articles/skincare/skincare-routine.js
-          // 2. /skincare-articles/skincare-routine.js
-          // 3. /skincare/skincare-routine.js
-          // 4. /skincare-routine.js
+          // Ordered paths based on repository screenshots:
+          // 1. /skincare-articles/<slug>.js  or  /haircare-articles/<slug>.js
+          // 2. /articles/skincare/<slug>.js
+          // 3. /<slug>.js
           const pathCandidates = [
-            `/articles/${category}/${slug}.js`,
-            `/${category}-articles/${slug}.js`,
-            `/${category}/${slug}.js`,
-            `/${slug}.js`
+            `${category}-articles/${slug}.js`,
+            `articles/${category}/${slug}.js`,
+            `${slug}.js`
           ];
 
           for (const path of pathCandidates) {
@@ -295,7 +299,7 @@
               await loadScriptAsync(path);
               break;
             } catch (err) {
-              // Try next path candidate
+              // Try next candidate path
             }
           }
 
@@ -326,7 +330,7 @@
       await processCategorySlugs(registry.skincare, "skincare");
       await processCategorySlugs(registry.haircare, "haircare");
 
-      // Build XML Output
+      // Construct final XML
       let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
       xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
