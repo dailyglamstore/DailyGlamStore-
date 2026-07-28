@@ -20,8 +20,37 @@ jobs:
         with:
           node-version: 18
 
-      - name: Generate Sitemap XML
-        run: node build-sitemap.js
+      - name: Debug and Execute Sitemap Script
+        run: |
+          echo "=== CHECKING ROOT FILES ==="
+          ls -la
+          echo "==========================="
+          if [ -f "build-sitemap.js" ]; then
+            node build-sitemap.js
+          elif [ -f "build-sitemap.js.txt" ]; then
+            node build-sitemap.js.txt
+          else
+            echo "⚠️ build-sitemap.js not found in runner. Running inline fallback..."
+            node -e '
+              const fs = require("fs");
+              const path = require("path");
+              const SITE_URL = "https://dailyglamstore.in";
+              const staticPages = [
+                { url: "/", priority: "1.0", changefreq: "daily" },
+                { url: "/shop.html", priority: "0.9", changefreq: "daily" },
+                { url: "/beauty-blog.html", priority: "0.8", changefreq: "weekly" },
+                { url: "/share-feedback/", priority: "0.5", changefreq: "monthly" }
+              ];
+              const fallbackDate = new Date().toISOString().split("T")[0];
+              let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+              staticPages.forEach(p => {
+                xml += `  <url>\n    <loc>${SITE_URL}${p.url}</loc>\n    <lastmod>${fallbackDate}</lastmod>\n    <changefreq>${p.changefreq}</changefreq>\n    <priority>${p.priority}</priority>\n  </url>\n`;
+              });
+              xml += `</urlset>`;
+              fs.writeFileSync(path.join(__dirname, "sitemap.xml"), xml, "utf8");
+              console.log("✅ Basic sitemap.xml generated via inline fallback!");
+            '
+          fi
 
       - name: Commit and push sitemap.xml
         uses: stefanzweifel/git-auto-commit-action@v5
