@@ -21,7 +21,103 @@ jobs:
           node-version: 18
 
       - name: Generate Sitemap XML
-        run: node build-sitemap.js
+        run: |
+          node -e '
+          const fs = require("fs");
+          const path = require("path");
+          const vm = require("vm");
+
+          const SITE_URL = "https://dailyglamstore.in";
+
+          // 1. Core Static Pages
+          const staticPages = [
+            { url: "/", priority: "1.0", changefreq: "daily" },
+            { url: "/shop.html", priority: "0.9", changefreq: "daily" },
+            { url: "/beauty-blog.html", priority: "0.8", changefreq: "weekly" },
+            { url: "/share-feedback/", priority: "0.5", changefreq: "monthly" }
+          ];
+
+          // Safely load ARTICLE_REGISTRY
+          function loadArticleRegistry() {
+            const registryPath = path.join(process.cwd(), "article-registry.js");
+            if (!fs.existsSync(registryPath)) return {};
+            try {
+              const fileContent = fs.readFileSync(registryPath, "utf8");
+              const sandbox = { window: {} };
+              vm.createContext(sandbox);
+              vm.runInContext(fileContent, sandbox);
+              return sandbox.window.ARTICLE_REGISTRY || {};
+            } catch (err) {
+              return {};
+            }
+          }
+
+          // Extract metadata from JS files
+          function getArticleMetaData(category, slug) {
+            const possiblePaths = [
+              path.join(process.cwd(), `${category}-articles`, `${slug}.js`),
+              path.join(process.cwd(), "articles", category, `${slug}.js`),
+              path.join(process.cwd(), `${slug}.js`)
+            ];
+            const filePath = possiblePaths.find(p => fs.existsSync(p));
+            if (!filePath) return null;
+            try {
+              const content = fs.readFileSync(filePath, "utf8");
+              const dateMod = content.match(/dateModified\s*:\s*["\x27]([^"\x27]+)["\x27]/);
+              const dateMatch = content.match(/date\s*:\s*["\x27]([^"\x27]+)["\x27]/);
+              const urlMatch = content.match(/url\s*:\s*["\x27]([^"\x27]+)["\x27]/);
+              let rawDate = dateMod ? dateMod[1] : (dateMatch ? dateMatch[1] : null);
+              return {
+                date: rawDate ? rawDate.split("T")[0] : null,
+                canonicalPath: urlMatch ? urlMatch[1] : null
+              };
+            } catch (e) {
+              return null;
+            }
+          }
+
+          const fallbackDate = new Date().toISOString().split("T")[0];
+          const urlSet = new Map();
+
+          // Add Core Pages
+          staticPages.forEach(p => {
+            urlSet.set(p.url, {
+              loc: `${SITE_URL}${p.url}`,
+              lastmod: fallbackDate,
+              changefreq: p.changefreq,
+              priority: p.priority
+            });
+          });
+
+          // Add Article Pages
+          const registry = loadArticleRegistry();
+          Object.keys(registry).forEach(category => {
+            const slugs = registry[category];
+            if (!Array.isArray(slugs)) return;
+            slugs.forEach(slug => {
+              const meta = getArticleMetaData(category, slug);
+              const lastmod = (meta && meta.date) ? meta.date : fallbackDate;
+              let relativeUrl = (meta && meta.canonicalPath) ? meta.canonicalPath : `/articles/${category}/${slug}.html`;
+              if (!relativeUrl.startsWith("/")) relativeUrl = "/" + relativeUrl;
+              urlSet.set(relativeUrl, {
+                loc: `${SITE_URL}${relativeUrl}`,
+                lastmod: lastmod,
+                changefreq: "weekly",
+                priority: "0.8"
+              });
+            });
+          });
+
+          // Write XML
+          let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+          urlSet.forEach(item => {
+            xml += `  <url>\n    <loc>${item.loc}</loc>\n    <lastmod>${item.lastmod}</lastmod>\n    <changefreq>${item.changefreq}</changefreq>\n    <priority>${item.priority}</priority>\n  </url>\n`;
+          });
+          xml += `</urlset>`;
+
+          fs.writeFileSync(path.join(process.cwd(), "sitemap.xml"), xml, "utf8");
+          console.log(`✅ Fully populated sitemap.xml created with ${urlSet.size} total URLs!`);
+          '
 
       - name: Commit and push sitemap.xml
         uses: stefanzweifel/git-auto-commit-action@v5
