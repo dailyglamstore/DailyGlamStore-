@@ -173,7 +173,7 @@
     }
   </style>
 
-  <!-- Load your master registry script -->
+  <!-- Loads master article registry -->
   <script src="/article-registry.js"></script>
 </head>
 <body>
@@ -184,7 +184,7 @@
       <p class="subtitle">Private utility tool for sitemap generation and data extraction.</p>
     </header>
 
-    <!-- SECTION 1: SITEMAP GENERATOR TOOL -->
+    <!-- SITEMAP GENERATOR TOOL -->
     <main class="tool-card">
       <div class="card-header">
         <h2 class="card-title">📄 XML Sitemap Generator</h2>
@@ -211,7 +211,7 @@
       ></textarea>
     </main>
 
-    <!-- SECTION 2: FUTURE DATA EXTRACTION TOOLS PLACEHOLDER -->
+    <!-- FUTURE DATA EXTRACTION TOOLS PLACEHOLDER -->
     <section class="placeholder-card">
       <h3>➕ Future Data Extraction Tools</h3>
       <p>Reserved section for future utilities (OpenGraph checkers, Link Audits, or Schema Validators).</p>
@@ -222,19 +222,12 @@
     const SITE_URL = "https://dailyglamstore.in";
     const STORAGE_KEY = "dgs_sitemap_last_generated";
 
-    // Initialize Last Generated Date display
     function updateLastGenDisplay() {
       const statusElement = document.getElementById("lastGenStatus");
       const lastGenDate = localStorage.getItem(STORAGE_KEY);
-      
-      if (lastGenDate) {
-        statusElement.textContent = "Last Generated: " + lastGenDate;
-      } else {
-        statusElement.textContent = "Last Generated: Never";
-      }
+      statusElement.textContent = lastGenDate ? "Last Generated: " + lastGenDate : "Last Generated: Never";
     }
 
-    // Dynamic Script Loader for reading individual article JS metadata
     function loadScriptAsync(src) {
       return new Promise((resolve, reject) => {
         const script = document.createElement("script");
@@ -258,14 +251,17 @@
       const currentDate = new Date().toISOString().split('T')[0];
       const registry = window.ARTICLE_REGISTRY || { skincare: [], haircare: [] };
 
+      // Base pages matching your live site structure
       const staticPages = [
         { url: "/", priority: "1.0", changefreq: "daily" },
-        { url: "/beauty-blog.html", priority: "0.8", changefreq: "weekly" }
+        { url: "/shop.html", priority: "0.9", changefreq: "daily" },
+        { url: "/beauty-guides.html", priority: "0.8", changefreq: "weekly" },
+        { url: "/beauty-blog.html", priority: "0.8", changefreq: "weekly" },
+        { url: "/share-feedback/", priority: "0.5", changefreq: "monthly" }
       ];
 
       const sitemapEntries = [];
 
-      // Add static pages
       staticPages.forEach(page => {
         sitemapEntries.push({
           loc: `${SITE_URL}${page.url}`,
@@ -275,28 +271,31 @@
         });
       });
 
-      // Helper function to fetch metadata for a list of article slugs
+      // Helper function matching your exact subfolder directory paths
       async function processCategorySlugs(slugList, category) {
         if (!Array.isArray(slugList)) return;
 
         for (const slug of slugList) {
-          // Reset window.CURRENT_ARTICLE before loading next script
           window.CURRENT_ARTICLE = null;
 
-          // Attempt loading script from primary folder candidates
-          const folderCandidates = [
-            category + "-articles",
-            "articles/" + category
+          // Priority order for script files:
+          // 1. /articles/skincare/skincare-routine.js
+          // 2. /skincare-articles/skincare-routine.js
+          // 3. /skincare/skincare-routine.js
+          // 4. /skincare-routine.js
+          const pathCandidates = [
+            `/articles/${category}/${slug}.js`,
+            `/${category}-articles/${slug}.js`,
+            `/${category}/${slug}.js`,
+            `/${slug}.js`
           ];
 
-          let loaded = false;
-          for (const folder of folderCandidates) {
+          for (const path of pathCandidates) {
             try {
-              await loadScriptAsync(`/${folder}/${slug}.js`);
-              loaded = true;
+              await loadScriptAsync(path);
               break;
             } catch (err) {
-              // Try next folder path candidate
+              // Try next path candidate
             }
           }
 
@@ -324,11 +323,10 @@
         }
       }
 
-      // Process skincare and haircare articles
       await processCategorySlugs(registry.skincare, "skincare");
       await processCategorySlugs(registry.haircare, "haircare");
 
-      // Construct final XML
+      // Build XML Output
       let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
       xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
@@ -343,10 +341,8 @@
 
       xml += `</urlset>`;
 
-      // Render XML into text area
       outputTextarea.value = xml;
 
-      // Update Timestamp in localStorage and Console
       const nowFormatted = new Date().toLocaleString("en-IN", {
         dateStyle: "medium",
         timeStyle: "short"
@@ -356,7 +352,6 @@
       console.log(`[Daily Glam Store Admin] Sitemap generated at: ${nowFormatted}`);
       updateLastGenDisplay();
 
-      // UI cleanup
       generateBtn.disabled = false;
       generateBtn.textContent = "⚡ Generate Sitemap";
       copyBtn.disabled = false;
@@ -378,12 +373,9 @@
           copyBtn.textContent = originalText;
           copyBtn.classList.remove("btn-success");
         }, 2000);
-      }).catch(err => {
-        console.error("Failed to copy:", err);
       });
     }
 
-    // Initialize display on page load
     document.addEventListener("DOMContentLoaded", updateLastGenDisplay);
   </script>
 </body>
