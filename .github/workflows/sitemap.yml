@@ -1,1 +1,30 @@
-.
+name: Auto Generate Sitemap XML
+
+on:
+  push:
+    branches:
+      - main  # Set this to 'master' if your main branch is called master
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Generate Sitemap XML
+        run: node build-sitemap.js
+
+      - name: Commit and push sitemap.xml
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "auto: update sitemap.xml"
+          file_pattern: "sitemap.xml"
