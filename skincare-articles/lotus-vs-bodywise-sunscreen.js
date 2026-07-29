@@ -414,7 +414,7 @@ alternativeProducts: {
         "WishCare Invisible Gel Sunscreen SPF 50",
 
       href:
-        "YOUR_AFFILIATE_LINK",
+        "https://www.mywishcare.com/products/niacinamide-oil-balance-fluid-spf-50-sunscreen?ref=DEEPAKMAHAJAN&utm_campaign=inf",
 
       type:
         "affiliateProduct",
@@ -431,7 +431,7 @@ alternativeProducts: {
         "Gush Beauty Sunscreen",
 
       href:
-        "YOUR_AFFILIATE_LINK",
+        "https://gushbeauty.com/products/sun-spritz?ref=Daily-Glam-Store&utm_campaign=affiliate_promotion&utm_medium=source&utm_source=affiliate",
 
       type:
         "affiliateProduct",
