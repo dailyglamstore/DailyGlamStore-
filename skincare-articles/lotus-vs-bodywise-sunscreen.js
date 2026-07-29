@@ -411,7 +411,7 @@ alternativeProducts: {
   items: [
     {
       title:
-        "WishCare Invisible Gel Sunscreen SPF 50",
+        "WishCare Niacinamide Oil Balance Fluid Sunscreen SPF 50",
 
       href:
         "https://www.mywishcare.com/products/niacinamide-oil-balance-fluid-spf-50-sunscreen?ref=DEEPAKMAHAJAN&utm_campaign=inf",
@@ -428,7 +428,7 @@ alternativeProducts: {
 
     {
       title:
-        "Gush Beauty Sunscreen",
+        "Gush Beauty Sun Spritz Cooling Sunscreen Spray SPF 50",
 
       href:
         "https://gushbeauty.com/products/sun-spritz?ref=Daily-Glam-Store&utm_campaign=affiliate_promotion&utm_medium=source&utm_source=affiliate",
