@@ -52,12 +52,12 @@ author: [
 
 linkPlan: [
 
-  {
+    {
     anchorText:
       "check the latest price and available offers for Lotus SPF 50 sunscreen",
 
     href:
-      "https://www.lotusbotanicals.com/products/carrot-niacinamide-glow-and-de-tan-mineral-sunscreen-spf-50-pa?ref=DGS-Deepak",
+      "https://www.lotusbotanicals.com/products/carrot-niacinamide-glow-and-de-tan-mineral-sunscreen-spf-50-pa?ref=Daily-Glam-Store", // <--- UPDATED HERE
 
     type:
       "affiliateProduct",
