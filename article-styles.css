@@ -779,16 +779,17 @@ html { scroll-behavior: smooth; }
 .article-section-image img {
   width: 100%;
   display: block;
-  border-radius: 18px; /* keeps the rounded corners on the photo itself */
+  border-radius: 18px;
 }
 
 .article-section-image figcaption.article-image-caption {
-  font-size: 0.875rem;
-  color: #666666;
+  font-size: 0.8rem;
+  color: var(--text-soft); /* Uses your root brand soft text color (#9a6b5f) */
   text-align: center;
-  margin-top: 10px;
-  font-style: italic;
-  line-height: 1.4;
+  margin-top: 8px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.35;
   padding: 0 10px;
 }
 
