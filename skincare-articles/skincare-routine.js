@@ -116,7 +116,8 @@ text: [
 {
   type: "image",
   src: "/images/beauty-images/blog/skincare-routine-beginner-skin-types-guide.JPG",
-  alt: "Visual guide showing oily, dry, combination, and sensitive skin types"
+  alt: "Visual guide showing oily, dry, combination, and sensitive skin types",
+  caption: "Identifying your skin type helps you choose products that work with your skin instead of causing irritation."
 },
 
 {
@@ -164,7 +165,8 @@ items: [
 {
   type: "image",
   src: "/images/beauty-images/blog/morning-and-night-skincare-routine-order.JPG",
-  alt: "Infographic showing morning and night skincare application order"
+  alt: "Infographic showing morning and night skincare application order",
+  caption: "Apply skincare products from thinnest to thickest consistency for maximum absorption and effectiveness."
 }
 
 ]
