@@ -51,17 +51,24 @@
         "</h3>"
       );
     },
-    image: function (block) {
-      return (
-        '<figure class="article-section-image">' +
-        '<img src="' +
-        escapeHtml(block.src) +
-        '" alt="' +
-        escapeHtml(block.alt) +
-        '" loading="lazy" onerror="this.style.display=\'none\'" />' +
-        "</figure>"
-      );
-    },
+image: function (block) {
+  var captionMarkup = block.caption
+    ? '<figcaption class="article-image-caption">' +
+      escapeHtml(block.caption) +
+      "</figcaption>"
+    : "";
+
+  return (
+    '<figure class="article-section-image">' +
+    '<img src="' +
+    escapeHtml(block.src) +
+    '" alt="' +
+    escapeHtml(block.alt) +
+    '" loading="lazy" onerror="this.style.display=\'none\'" />' +
+    captionMarkup +
+    "</figure>"
+  );
+},
     bullets: function (block) {
       return [
         '<ul class="article-list">',
