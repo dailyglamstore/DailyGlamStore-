@@ -114,6 +114,12 @@ text: [
 },
 
 {
+  type: "image",
+  src: "/images/beauty-images/blog/skincare-routine-beginner-skin-types-guide.JPG",
+  alt: "Visual guide showing oily, dry, combination, and sensitive skin types"
+},
+
+{
 type: "bullets",
 items: [
 "Oily Skin – Produces excess oil and may be more prone to clogged pores.",
@@ -153,6 +159,12 @@ items: [
 "Morning: Face Wash → Serum (Optional) → Moisturiser → Sunscreen",
 "Night: Face Wash → Treatment Serum (Optional) → Moisturiser"
 ]
+},
+
+{
+  type: "image",
+  src: "/images/beauty-images/blog/morning-and-night-skincare-routine-order.JPG",
+  alt: "Infographic showing morning and night skincare application order"
 }
 
 ]
