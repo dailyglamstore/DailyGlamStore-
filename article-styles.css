@@ -772,15 +772,24 @@ html { scroll-behavior: smooth; }
 }
 
 .article-section-image {
-margin: 20px 0;
-border-radius: 18px;
-overflow: hidden;
+  margin: 20px 0;
+  display: block;
 }
 
 .article-section-image img {
-width: 100%;
-display: block;
-border-radius: 18px;
+  width: 100%;
+  display: block;
+  border-radius: 18px; /* keeps the rounded corners on the photo itself */
+}
+
+.article-section-image figcaption.article-image-caption {
+  font-size: 0.875rem;
+  color: #666666;
+  text-align: center;
+  margin-top: 10px;
+  font-style: italic;
+  line-height: 1.4;
+  padding: 0 10px;
 }
 
 .recommendation-box {
