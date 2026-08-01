@@ -141,35 +141,23 @@ text: "Through years of recommending skincare products, we've found that people 
 },
 
 {
-heading: "The Correct Order to Apply Skincare Products",
+  heading: "The Correct Order to Apply Skincare Products",
 
-blocks: [
-
-{
-type: "paragraph",
-text: [
-"Applying skincare products in the correct order helps each product work more effectively. A simple rule is to apply lighter products before heavier ones, allowing each step to prepare your skin for the next.",
-
-"For most beginners, a daily skincare routine doesn't need many products. Following the correct sequence consistently is far more important than having a large collection of products."
-]
-},
-
-{
-type: "bullets",
-items: [
-"Morning: Face Wash → Serum (Optional) → Moisturiser → Sunscreen",
-"Night: Face Wash → Treatment Serum (Optional) → Moisturiser"
-]
-},
-
-{
-  type: "image",
-  src: "/images/beauty-images/blog/morning-and-night-skincare-routine-order.JPG",
-  alt: "Infographic showing morning and night skincare application order",
-  caption: "Correct application order for morning vs. night."
-}
-
-]
+  blocks: [
+    {
+      type: "paragraph",
+      text: [
+        "Applying skincare products in the correct order helps each product work more effectively. A simple rule is to apply lighter products before heavier ones, allowing each step to prepare your skin for the next.",
+        "For most beginners, a daily skincare routine doesn't need many products. Following the correct sequence consistently is far more important than having a large collection of products—here is a quick breakdown of how your morning and night steps line up:"
+      ]
+    },
+    {
+      type: "image",
+      src: "/images/beauty-images/blog/morning-and-night-skincare-routine-order.JPG",
+      alt: "Infographic showing morning and night skincare application order",
+      caption: "Correct application order for morning vs. night."
+    }
+  ]
 },
 
 {
