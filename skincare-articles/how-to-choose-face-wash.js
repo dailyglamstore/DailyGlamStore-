@@ -151,6 +151,13 @@ text: [
 },
 
 {
+  type: "image",
+  src: "/images/beauty-images/blog/face-wash-cleanser-textures-guide.JPG",
+  alt: "Comparison of gel, cream, foaming, and hydrating face wash textures",
+  caption: "Different cleanser textures suit different skin types."
+},
+
+{
 type: "subHeading",
 text: "Gel Cleansers"
 },
