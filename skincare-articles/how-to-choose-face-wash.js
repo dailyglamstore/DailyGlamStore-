@@ -308,6 +308,13 @@ text: [
 },
 
 {
+  type: "image",
+  src: "/images/beauty-images/blog/face-wash-mistakes-dos-and-donts.JPG",
+  alt: "Infographic showing common face wash mistakes and correct cleansing habits",
+  caption: "Key dos and don'ts when selecting and using a daily cleanser."
+},
+
+{
 type: "subHeading",
 text: "Choosing a Face Wash Just Because It's Trending"
 },
