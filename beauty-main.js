@@ -28,7 +28,6 @@
       .replace(/'/g, "&#039;");
   }
 
-
   function resolveImagePath(imagePath) {
     if (!imagePath || typeof imagePath !== "string") {
       return "";
@@ -51,8 +50,11 @@
       name: product.name || "",
       brand: product.brand || "",
       image: resolveImagePath(product.image),
-      url: product.url || product.link || "#",
-      priceText: product.priceText || "Check on official website",
+      // Brand URL fallback accepts brandUrl, url, or link
+      brandUrl: product.brandUrl || product.url || product.link || "",
+      // Amazon URL fallback accepts amazonUrl or amazonLink
+      amazonUrl: product.amazonUrl || product.amazonLink || "",
+      priceText: product.priceText || "Check Latest Price",
       note: product.note || "",
       details: Array.isArray(product.details) ? product.details : []
     };
@@ -85,6 +87,20 @@
       return "<li>" + escapeHtml(item) + "</li>";
     }).join("");
 
+    // Build Amazon Primary Button (Only renders if amazonUrl is provided)
+    const amazonBtnHtml = product.amazonUrl ? [
+      '    <a href="' + escapeHtml(product.amazonUrl) + '" target="_blank" rel="nofollow sponsored" class="price-btn btn-amazon">',
+      '      🛒 Buy on Amazon',
+      '    </a>'
+    ].join("\n") : "";
+
+    // Build Brand Secondary Button (Only renders if brandUrl/url is provided)
+    const brandBtnHtml = product.brandUrl ? [
+      '    <a href="' + escapeHtml(product.brandUrl) + '" target="_blank" rel="nofollow sponsored" class="price-btn btn-brand">',
+      '      🌐 Buy on Official Website',
+      '    </a>'
+    ].join("\n") : "";
+
     return [
       '<div class="product-card">',
       '  <div class="product-media">',
@@ -94,7 +110,10 @@
       '  <h3 class="product-title">' + escapeHtml(product.name) + "</h3>",
       '  <div class="product-meta">Brand : ' + escapeHtml(product.brand) + "</div>",
       '  <div class="price-row"><span>Price : </span><span>' + formatPriceText(product.priceText) + '</span></div>',
-      '  <a href="' + escapeHtml(product.url) + '" target="_blank" rel="nofollow sponsored" class="price-btn">Buy on Official Website</a>',
+      '  <div class="product-actions">',
+      amazonBtnHtml,
+      brandBtnHtml,
+      '  </div>',
       '  <p class="checkout-note">Offers & Discounts available at checkout</p>',
       '  <p class="price-note">' + escapeHtml(product.note) + "</p>",
       '  <div class="toggle-box">',
@@ -249,24 +268,15 @@
     const data = getBeautyData();
 
     renderProducts("#top-picks .products", data.topPicks, "topPicks");
-    
     renderProducts("#facewash-container", window.BEAUTY_SKINCARE_FACEWASH_PRODUCTS || [], "skincare");
+    renderProducts("#serum-container", window.BEAUTY_SKINCARE_SERUM_PRODUCTS || [], "skincare");
+    renderProducts("#sunscreen-container", window.BEAUTY_SKINCARE_SUNSCREEN_PRODUCTS || [], "skincare");
+    renderProducts("#moisturiser-container", window.BEAUTY_SKINCARE_MOISTURISER_PRODUCTS || [], "skincare");
+    renderProducts("#shampoo-container", window.BEAUTY_HAIRCARE_SHAMPOO_PRODUCTS || [], "haircare");
+    renderProducts("#conditioner-container", window.BEAUTY_HAIRCARE_CONDITIONER_PRODUCTS || [], "haircare");
+    renderProducts("#hairserum-container", window.BEAUTY_HAIRCARE_HAIR_SERUM_PRODUCTS || [], "haircare");
+    renderProducts("#hairoil-container", window.BEAUTY_HAIRCARE_HAIR_OIL_PRODUCTS || [], "haircare");
 
-renderProducts("#serum-container", window.BEAUTY_SKINCARE_SERUM_PRODUCTS || [], "skincare");
-
-renderProducts("#sunscreen-container", window.BEAUTY_SKINCARE_SUNSCREEN_PRODUCTS || [], "skincare");
-
-renderProducts("#moisturiser-container", window.BEAUTY_SKINCARE_MOISTURISER_PRODUCTS || [], "skincare");
-
-renderProducts("#shampoo-container", window.BEAUTY_HAIRCARE_SHAMPOO_PRODUCTS || [], "haircare");
-
-renderProducts("#conditioner-container", window.BEAUTY_HAIRCARE_CONDITIONER_PRODUCTS || [], "haircare");
-
-renderProducts("#hairserum-container", window.BEAUTY_HAIRCARE_HAIR_SERUM_PRODUCTS || [], "haircare");
-
-renderProducts("#hairoil-container", window.BEAUTY_HAIRCARE_HAIR_OIL_PRODUCTS || [], "haircare");
-    
     bindDetailsToggles();
-
   });
 })();
