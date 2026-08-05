@@ -448,49 +448,58 @@
       color: var(--brand);
     }
 
-    /* Container for Dual Action Buttons */
+        /* Container for Dual Action Buttons */
     .product-actions {
       display: flex;
       flex-direction: column;
-      gap: 5px;
-      margin-bottom: 4px;
+      gap: 6px;
+      margin-bottom: 6px;
     }
 
     /* Base Button Styling */
     .price-btn {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
       text-align: center;
       text-decoration: none;
-      padding: 7px 10px;
+      padding: 9px 12px;
       border-radius: 8px;
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 700;
-      line-height: 1.25;
-      transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
+      line-height: 1.2;
+      transition: all 0.2s ease;
     }
 
     .price-btn:hover {
-      opacity: 0.95;
+      opacity: 0.92;
       transform: translateY(-1px);
     }
 
-    /* Primary Action: Amazon (High Visibility) */
+    /* Primary Option 1: Amazon (Warm Amber Gold) */
     .price-btn.btn-amazon {
-      background: #ff9900;
+      background: #f3a847;
       color: #111111;
-      border: 1px solid #e68a00;
-      box-shadow: 0 2px 6px rgba(255, 153, 0, 0.22);
+      border: 1px solid #e29230;
+      box-shadow: 0 2px 5px rgba(243, 168, 71, 0.25);
     }
 
-    /* Secondary Action: Official Brand Website */
+    .price-btn.btn-amazon:hover {
+      background: #e89b37;
+    }
+
+    /* Primary Option 2: Official Website (Deep Theme Rose) */
     .price-btn.btn-brand {
-      background: #fff0ec;
-      color: var(--brand);
-      border: 1px solid var(--border-soft);
+      background: var(--brand, #b2455a);
+      color: #ffffff;
+      border: 1px solid var(--brand, #b2455a);
+      box-shadow: 0 2px 5px rgba(178, 69, 90, 0.2);
     }
 
     .price-btn.btn-brand:hover {
-      background: #ffe3ea;
+      background: #9d3a4d;
+      border-color: #9d3a4d;
     }
 
     .price-note {
