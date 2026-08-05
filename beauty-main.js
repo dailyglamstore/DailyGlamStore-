@@ -87,12 +87,12 @@
       return "<li>" + escapeHtml(item) + "</li>";
     }).join("");
 
-    // Build Amazon Primary Button (Only renders if amazonUrl is provided)
-    const amazonBtnHtml = product.amazonUrl ? [
-      '    <a href="' + escapeHtml(product.amazonUrl) + '" target="_blank" rel="nofollow sponsored" class="price-btn btn-amazon">',
-      '      🛒 Buy on Amazon',
-      '    </a>'
-    ].join("\n") : "";
+    // Wrap the emoji in an icon span class
+const amazonBtnHtml = product.amazonUrl ? [
+  '    <a href="' + escapeHtml(product.amazonUrl) + '" target="_blank" rel="nofollow sponsored" class="price-btn btn-amazon">',
+  '      <span class="btn-icon">🛒</span> Buy on Amazon',
+  '    </a>'
+].join("\n") : "";
 
     // Build Brand Secondary Button (Only renders if brandUrl/url is provided)
     const brandBtnHtml = product.brandUrl ? [
