@@ -375,7 +375,7 @@
       margin-bottom: 8px;
     }
 
-    .products {
+      .products {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 15px;
@@ -448,23 +448,49 @@
       color: var(--brand);
     }
 
+    /* Container for Dual Action Buttons */
+    .product-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 4px;
+    }
+
+    /* Base Button Styling */
     .price-btn {
       display: block;
       text-align: center;
       text-decoration: none;
-      background: var(--brand);
-      color: #fff;
       padding: 7px 10px;
       border-radius: 8px;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
-      margin-bottom: 2px;
-      transition: transform 0.2s ease, opacity 0.2s ease;
+      line-height: 1.25;
+      transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
     }
 
     .price-btn:hover {
       opacity: 0.95;
       transform: translateY(-1px);
+    }
+
+    /* Primary Action: Amazon (High Visibility) */
+    .price-btn.btn-amazon {
+      background: #ff9900;
+      color: #111111;
+      border: 1px solid #e68a00;
+      box-shadow: 0 2px 6px rgba(255, 153, 0, 0.22);
+    }
+
+    /* Secondary Action: Official Brand Website */
+    .price-btn.btn-brand {
+      background: #fff0ec;
+      color: var(--brand);
+      border: 1px solid var(--border-soft);
+    }
+
+    .price-btn.btn-brand:hover {
+      background: #ffe3ea;
     }
 
     .price-note {
