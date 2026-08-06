@@ -16,6 +16,11 @@
       conditioner: "images/beauty-images/haircare/conditioner/",
       hairSerum: "images/beauty-images/haircare/hair-serum/",
       hairOil: "images/beauty-images/haircare/hair-oil/"
+    },
+    makeup: {
+      eyebrow: "images/beauty-images/makeup/eyebrow/",
+      lips: "images/beauty-images/makeup/lips/",
+      face: "images/beauty-images/makeup/face/"
     }
   };
 
@@ -73,7 +78,8 @@
     const badgesBySection = {
       topPicks: "Best Seller",
       skincare: "Trending",
-      haircare: "Popular"
+      haircare: "Popular",
+      makeup: "Must Have"
     };
 
     return badgesBySection[sectionKey] || "";
@@ -258,10 +264,16 @@
       .concat(window.BEAUTY_HAIRCARE_HAIR_SERUM_PRODUCTS || [])
       .concat(window.BEAUTY_HAIRCARE_HAIR_OIL_PRODUCTS || []);
 
+    const makeup = []
+      .concat(window.BEAUTY_COSMETICS_EYE_PRODUCTS || [])
+      .concat(window.BEAUTY_COSMETICS_LIP_PRODUCTS || [])
+      .concat(window.BEAUTY_COSMETICS_FACE_PRODUCTS || []);
+
     return {
       topPicks: topPicks,
       skincare: skincare,
       haircare: haircare,
+      makeup: makeup,
       imagePathReference: IMAGE_PATH_REFERENCE
     };
   }
@@ -278,6 +290,9 @@
     renderProducts("#conditioner-container", window.BEAUTY_HAIRCARE_CONDITIONER_PRODUCTS || [], "haircare");
     renderProducts("#hairserum-container", window.BEAUTY_HAIRCARE_HAIR_SERUM_PRODUCTS || [], "haircare");
     renderProducts("#hairoil-container", window.BEAUTY_HAIRCARE_HAIR_OIL_PRODUCTS || [], "haircare");
+    renderProducts("#eyemakeup-container", window.BEAUTY_COSMETICS_EYE_PRODUCTS || [], "makeup");
+    renderProducts("#lipcare-container", window.BEAUTY_COSMETICS_LIP_PRODUCTS || [], "makeup");
+    renderProducts("#facemakeup-container", window.BEAUTY_COSMETICS_FACE_PRODUCTS || [], "makeup");
 
     bindDetailsToggles();
   });
