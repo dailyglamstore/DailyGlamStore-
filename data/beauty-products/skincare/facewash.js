@@ -4,7 +4,11 @@
       id: "lotus-ubtan-de-tan-radiance-face-wash",
       name: "Ubtan De-Tan Radiance Face Wash",
       brand: "Lotus Botanicals",
-      image: "images/beauty-images/skincare/facewash/lotus-ubtan-de-tan-radiance-face-wash.JPG",
+      // Changed single image string to an array with 2 test images
+      images: [
+        "images/beauty-images/skincare/facewash/lotus-ubtan-de-tan-radiance-face-wash.JPG",
+        "https://via.placeholder.com/500x500/b2455a/ffffff?text=Test+Angle+2"
+      ],
       amazonUrl: " ", // Primary Button
       url: "https://www.lotusbotanicals.com/products/copy-of-ubtan-de-tan-radiance-face-wash?ref=DGS-Deepak", // Secondary Button
       priceText: "₹295 | Offers Available",
