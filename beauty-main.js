@@ -49,12 +49,26 @@
     return imagePath;
   }
 
+  function normalizeImages(product) {
+    let rawImages = [];
+
+    if (Array.isArray(product.images) && product.images.length > 0) {
+      rawImages = product.images;
+    } else if (Array.isArray(product.image) && product.image.length > 0) {
+      rawImages = product.image;
+    } else if (typeof product.image === "string" && product.image.trim()) {
+      rawImages = [product.image];
+    }
+
+    return rawImages.map(resolveImagePath);
+  }
+
   function normalizeProduct(product) {
     return {
       id: product.id || "",
       name: product.name || "",
       brand: product.brand || "",
-      image: resolveImagePath(product.image),
+      images: normalizeImages(product),
       // Brand URL fallback accepts brandUrl, url, or link
       brandUrl: product.brandUrl || product.url || product.link || "",
       // Amazon URL fallback accepts amazonUrl or amazonLink
@@ -85,10 +99,46 @@
     return badgesBySection[sectionKey] || "";
   }
 
+  function renderMediaHtml(product, badgeHtml) {
+    const images = product.images;
+
+    if (images.length <= 1) {
+      const singleImgSrc = images[0] || "";
+      return [
+        '<div class="product-media">',
+        "  " + badgeHtml,
+        '  <img src="' + escapeHtml(singleImgSrc) + '" alt="' + escapeHtml(product.name) + '" class="product-img" />',
+        '</div>'
+      ].join("\n");
+    }
+
+    const imgTagsHtml = images.map(function (src) {
+      return '    <img src="' + escapeHtml(src) + '" alt="' + escapeHtml(product.name) + '" class="product-img" />';
+    }).join("\n");
+
+    const dotsHtml = images.map(function (_, i) {
+      return '<span class="dot' + (i === 0 ? " active" : "") + '"></span>';
+    }).join("");
+
+    return [
+      '<div class="product-media card-media-wrapper">',
+      "  " + badgeHtml,
+      '  <div class="product-slider">',
+      imgTagsHtml,
+      '  </div>',
+      '  <div class="slider-dots">',
+      '    ' + dotsHtml,
+      '  </div>',
+      '</div>'
+    ].join("\n");
+  }
+
   function createProductCard(rawProduct, index, sectionKey) {
     const product = normalizeProduct(rawProduct);
     const badgeText = getAutoBadgeText(sectionKey, index);
     const badgeHtml = badgeText ? '<span class="product-badge">' + escapeHtml(badgeText) + "</span>" : "";
+    const mediaHtml = renderMediaHtml(product, badgeHtml);
+
     const detailsHtml = product.details.map(function (item) {
       return "<li>" + escapeHtml(item) + "</li>";
     }).join("");
@@ -111,10 +161,7 @@
 
     return [
       '<div class="product-card">',
-      '  <div class="product-media">',
-      "    " + badgeHtml,
-      '    <img src="' + escapeHtml(product.image) + '" alt="' + escapeHtml(product.name) + '" class="product-img" />',
-      "  </div>",
+      mediaHtml,
       '  <h3 class="product-title">' + escapeHtml(product.name) + "</h3>",
       '  <div class="product-meta">Brand : ' + escapeHtml(product.brand) + "</div>",
       '  <div class="price-row"><span>Price : </span><span>' + formatPriceText(product.priceText) + '</span></div>',
@@ -148,6 +195,31 @@
     container.innerHTML = products.map(function (product, index) {
       return createProductCard(product, index, sectionKey);
     }).join("\n");
+  }
+
+  function bindSliderDots() {
+    document.querySelectorAll(".card-media-wrapper").forEach(function (wrapper) {
+      const slider = wrapper.querySelector(".product-slider");
+      const dots = wrapper.querySelectorAll(".dot");
+
+      if (!slider || dots.length === 0) {
+        return;
+      }
+
+      slider.addEventListener("scroll", function () {
+        const slideWidth = slider.clientWidth;
+        if (!slideWidth) return;
+        const activeIndex = Math.round(slider.scrollLeft / slideWidth);
+
+        dots.forEach(function (dot, index) {
+          if (index === activeIndex) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+      });
+    });
   }
 
   function bindDetailsToggles() {
@@ -295,5 +367,6 @@
     renderProducts("#facemakeup-container", window.BEAUTY_COSMETICS_FACE_PRODUCTS || [], "makeup");
 
     bindDetailsToggles();
+    bindSliderDots();
   });
 })();
