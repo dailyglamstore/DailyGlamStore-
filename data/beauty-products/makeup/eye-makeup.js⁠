@@ -1,5 +1,5 @@
 (function () {
-  window.BEAUTY_MAKEUP_EYEBROW_PRODUCTS = [
+  window.BEAUTY_COSMETICS_EYE_PRODUCTS = [
     {
       id: "hilary-rhoda-drawing-eyebrow-pencil",
       name: "Drawing Eyebrow Pencil",
@@ -8,7 +8,7 @@
         "images/beauty-images/makeup/eyebrow/drawing-eyebrow-1.JPG",
         "images/beauty-images/makeup/eyebrow/drawing-eyebrow-2.JPG"
       ],
-      amazonUrl: "YOUR_AMAZON_AFFILIATE_LINK_HERE", // Primary Button ("Buy on Amazon")
+      amazonUrl: "https://link.amazon/B0futtWNJ", // Primary Button ("Buy on Amazon")
       url: "https://hilaryrhoda.in/products/drawing-eyebrow?variant=45889928495242", // Secondary Button ("Official Site")
       priceText: "₹150 | Offers Available",
       details: [
