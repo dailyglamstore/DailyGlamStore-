@@ -440,6 +440,59 @@
       margin-bottom: 0;
       background: #fff;
     }
+    
+    /* ===========================================================
+   Product Card Image Slider & Pagination Dots
+=========================================================== */
+.card-media-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.product-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.product-slider::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome/Safari */
+}
+
+.product-slider .product-img {
+  flex: 0 0 100%;
+  width: 100%;
+  scroll-snap-align: start;
+  object-fit: cover;
+}
+
+/* Pagination Dots */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0 2px 0;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background-color: #d1d5db;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+}
+
+.dot.active {
+  background-color: var(--brand); /* Uses your site's #b2455a brand rose color */
+  width: 16px;
+  border-radius: 4px;
+}
 
     .product-title {
       margin: 0 0 1px;
