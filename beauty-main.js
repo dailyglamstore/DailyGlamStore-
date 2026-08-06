@@ -87,16 +87,18 @@
       return "<li>" + escapeHtml(item) + "</li>";
     }).join("");
 
-        // Build Amazon Primary Button (Only renders if amazonUrl is provided)
-    const amazonBtnHtml = product.amazonUrl ? [
-      '    <a href="' + escapeHtml(product.amazonUrl) + '" target="_blank" rel="nofollow sponsored" class="price-btn btn-amazon">',
+    // Render Amazon Primary Button safely if URL is present & non-empty
+    const hasAmazonUrl = Boolean(product.amazonUrl && String(product.amazonUrl).trim());
+    const amazonBtnHtml = hasAmazonUrl ? [
+      '    <a href="' + escapeHtml(String(product.amazonUrl).trim()) + '" target="_blank" rel="nofollow sponsored" class="price-btn btn-amazon">',
       '      🛒 Buy on Amazon',
       '    </a>'
     ].join("\n") : "";
 
-    // Build Brand Secondary Button (Only renders if brandUrl/url is provided)
-    const brandBtnHtml = product.brandUrl ? [
-      '    <a href="' + escapeHtml(product.brandUrl) + '" target="_blank" rel="nofollow sponsored" class="price-btn btn-brand">',
+    // Render Brand Secondary Button safely if URL is present & non-empty
+    const hasBrandUrl = Boolean(product.brandUrl && String(product.brandUrl).trim());
+    const brandBtnHtml = hasBrandUrl ? [
+      '    <a href="' + escapeHtml(String(product.brandUrl).trim()) + '" target="_blank" rel="nofollow sponsored" class="price-btn btn-brand">',
       '      🌐 Buy on Official Website',
       '    </a>'
     ].join("\n") : "";
