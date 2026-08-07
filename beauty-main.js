@@ -18,10 +18,10 @@
       hairOil: "images/beauty-images/haircare/hair-oil/"
     },
     makeup: {
-      eyebrow: "images/beauty-images/makeup/eyebrow/",
-      lips: "images/beauty-images/makeup/lips/",
-      face: "images/beauty-images/makeup/face/"
-    }
+  eyebrow: "images/beauty-images/makeup/eye-makeup/", // Updated to eye-makeup
+  lips: "images/beauty-images/makeup/lip-care/",       // Matched to your lip-care folder
+  face: "images/beauty-images/makeup/face-makeup/"     // Matched to your face-makeup folder
+}
   };
 
   function escapeHtml(value) {
