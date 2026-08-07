@@ -5,12 +5,12 @@
       name: "Drawing Eyebrow Pencil",
       brand: "Hilary Rhoda",
       images: [
-  "images/beauty-images/makeup/eye-makeup/hilary-rhoda-eyebrow-palette-shade-01.jpg",
-  "images/beauty-images/makeup/eye-makeup/hilary-rhoda-eyebrow-palette-shade-02.jpg",
-  "images/beauty-images/makeup/eye-makeup/hilary-rhoda-eyebrow-palette-shade-03.jpg",
-  "images/beauty-images/makeup/eye-makeup/hilary-rhoda-eyebrow-palette-model.jpg",
-  "images/beauty-images/makeup/eye-makeup/hilary-rhoda-eyebrow-palette-benefits.jpg",
-  "images/beauty-images/makeup/eye-makeup/hilary-rhoda-eyebrow-palette-kit.jpg"
+  "images/beauty-images/makeup/eye-makeup/hilary-rhoda-eyebrow-palette-shade-01.JPG",
+  "images/beauty-images/makeup/eye-makeup/hilary-rhoda-eyebrow-palette-shade-02.JPG",
+  "images/beauty-images/makeup/eye-makeup/hilary-rhoda-eyebrow-palette-shade-03.JPG",
+  "images/beauty-images/makeup/eye-makeup/hilary-rhoda-eyebrow-palette-model.JPG",
+  "images/beauty-images/makeup/eye-makeup/hilary-rhoda-eyebrow-palette-benefits.JPG",
+  "images/beauty-images/makeup/eye-makeup/hilary-rhoda-eyebrow-palette-kit.JPG"
 ],
       amazonUrl: "https://link.amazon/B0futtWNJ", // Primary Button ("Buy on Amazon")
       url: "https://hilaryrhoda.in/products/drawing-eyebrow?variant=45889928495242", // Secondary Button ("Official Site")
