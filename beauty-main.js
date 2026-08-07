@@ -18,10 +18,10 @@
       hairOil: "images/beauty-images/haircare/hair-oil/"
     },
     makeup: {
-  eyebrow: "images/beauty-images/makeup/eye-makeup/", // Updated to eye-makeup
-  lips: "images/beauty-images/makeup/lip-care/",       // Matched to your lip-care folder
-  face: "images/beauty-images/makeup/face-makeup/"     // Matched to your face-makeup folder
-}
+      eyebrow: "images/beauty-images/makeup/eye-makeup/", // Updated to eye-makeup
+      lips: "images/beauty-images/makeup/lip-care/",       // Matched to your lip-care folder
+      face: "images/beauty-images/makeup/face-makeup/"     // Matched to your face-makeup folder
+    }
   };
 
   function escapeHtml(value) {
@@ -107,13 +107,13 @@
       return [
         '<div class="product-media">',
         "  " + badgeHtml,
-        '  <img src="' + escapeHtml(singleImgSrc) + '" alt="' + escapeHtml(product.name) + '" class="product-img" />',
+        '  <img src="' + escapeHtml(singleImgSrc) + '" alt="' + escapeHtml(product.name) + '" class="product-img" loading="lazy" />',
         '</div>'
       ].join("\n");
     }
 
     const imgTagsHtml = images.map(function (src) {
-      return '    <img src="' + escapeHtml(src) + '" alt="' + escapeHtml(product.name) + '" class="product-img" />';
+      return '    <img src="' + escapeHtml(src) + '" alt="' + escapeHtml(product.name) + '" class="product-img" loading="lazy" />';
     }).join("\n");
 
     const dotsHtml = images.map(function (_, i) {
