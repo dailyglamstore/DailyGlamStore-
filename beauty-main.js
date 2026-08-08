@@ -352,6 +352,11 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     const data = getBeautyData();
+    document.querySelector("#eyemakeup-container").innerHTML =
+"<div style='background:yellow;color:black;padding:10px;font-weight:bold'>" +
+"Eye Products = " +
+(JSON.stringify(window.BEAUTY_COSMETICS_EYE_PRODUCTS)) +
+"</div>";
 
     renderProducts("#top-picks .products", data.topPicks, "topPicks");
     renderProducts("#facewash-container", window.BEAUTY_SKINCARE_FACEWASH_PRODUCTS || [], "skincare");
