@@ -352,11 +352,16 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     const data = getBeautyData();
-    document.querySelector("#eyemakeup-container").innerHTML =
-"<div style='background:yellow;color:black;padding:10px;font-weight:bold'>" +
-"Eye Products = " +
-(JSON.stringify(window.BEAUTY_COSMETICS_EYE_PRODUCTS)) +
-"</div>";
+    console.log("========== BEAUTY DEBUG ==========");
+
+console.log("Eye Products:", window.BEAUTY_COSMETICS_EYE_PRODUCTS);
+console.log("Face Products:", window.BEAUTY_COSMETICS_FACE_PRODUCTS);
+console.log("Lip Products:", window.BEAUTY_COSMETICS_LIP_PRODUCTS);
+
+console.log("Eye Container:",
+document.querySelector("#eyemakeup-container"));
+
+console.log("=================================");
 
     renderProducts("#top-picks .products", data.topPicks, "topPicks");
     renderProducts("#facewash-container", window.BEAUTY_SKINCARE_FACEWASH_PRODUCTS || [], "skincare");
