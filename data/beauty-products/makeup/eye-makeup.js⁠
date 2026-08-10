@@ -23,4 +23,6 @@
     }
   ];
 })();
+console.log("Eye Makeup JS Loaded");
+console.log(window.BEAUTY_COSMETICS_EYE_PRODUCTS);
 
