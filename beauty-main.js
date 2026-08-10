@@ -182,6 +182,10 @@
   }
 
   function renderProducts(containerSelector, products, sectionKey) {
+
+    console.log("Rendering:", containerSelector);
+    console.log("Products:", products);
+
     const container = document.querySelector(containerSelector);
     if (!container) {
       return;
@@ -195,7 +199,7 @@
     container.innerHTML = products.map(function (product, index) {
       return createProductCard(product, index, sectionKey);
     }).join("\n");
-  }
+}
 
   function bindSliderDots() {
     document.querySelectorAll(".card-media-wrapper").forEach(function (wrapper) {
