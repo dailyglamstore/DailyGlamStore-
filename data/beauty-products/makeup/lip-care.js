@@ -5,9 +5,9 @@
       name: "Ceramide Tinted Lip Balm with SPF 50 PA++++",
       brand: "WishCare",
       images: [
-        "images/beauty-images/makeup/lip-care/wishcare-lip-1.jpg",
-        "images/beauty-images/makeup/lip-care/wishcare-lip-2.jpg",
-        "images/beauty-images/makeup/lip-care/wishcare-lip-3.jpg"
+        "images/beauty-images/makeup/lip-care/wishcare-lip-1.JPG",
+        "images/beauty-images/makeup/lip-care/wishcare-lip-2.JPG",
+        "images/beauty-images/makeup/lip-care/wishcare-lip-3.JPG"
       ],
       amazonUrl: "https://link.amazon/B0izgYZO8",
       url: "https://www.mywishcare.com/products/tinted-lip-balm-with-spf50",
