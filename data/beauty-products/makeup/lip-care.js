@@ -21,5 +21,5 @@
         "Ideal for daily sun protection and lip brightening"
       ]
     }
-  ];
+  ];...
 })();
