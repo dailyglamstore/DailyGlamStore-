@@ -5,10 +5,10 @@
       name: "Ceramide Tinted Lip Balm with SPF 50 PA++++",
       brand: "WishCare",
       images: [
-        "images/beauty-images/makeup/lip-care/wishcare-lip-1.JPG",
-        "images/beauty-images/makeup/lip-care/wishcare-lip-2.JPG",
-        "images/beauty-images/makeup/lip-care/wishcare-lip-3.JPG"
-      ],
+  "images/beauty-images/makeup/face-makeup/wishcare-lip-1.JPG",
+  "images/beauty-images/makeup/face-makeup/wishcare-lip-1.JPG",
+  "images/beauty-images/makeup/face-makeup/wishcare-lip-1.JPG"
+],
       amazonUrl: "https://link.amazon/B0izgYZO8",
       url: "https://www.mywishcare.com/products/tinted-lip-balm-with-spf50",
       priceText: "₹295 | Offers Available",
