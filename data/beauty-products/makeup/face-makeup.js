@@ -5,9 +5,9 @@
       name: "3-in-1 Illuminating Strobe Cream (Pink)",
       brand: "Sotrue",
       images: [
-        "images/beauty-images/makeup/face-makeup/sotrue-3-in-1-illuminating-strobe-cream-pink-tube.JPG",
-        "images/beauty-images/makeup/face-makeup/sotrue-3-in-1-illuminating-strobe-cream-pink-before-after.JPG",
-        "images/beauty-images/makeup/face-makeup/sotrue-3-in-1-illuminating-strobe-cream-pink-usage.JPG"
+        "images/beauty-images/makeup/face-makeup/so true-3-in-1-illuminating-strobe-cream-pink-tube.JPG",
+        "images/beauty-images/makeup/face-makeup/so true-3-in-1-illuminating-strobe-cream-pink-before-after.JPG",
+        "images/beauty-images/makeup/face-makeup/so true-3-in-1-illuminating-strobe-cream-pink-usage.JPG"
       ],
       amazonUrl: "https://link.amazon/B0dHL3heh",
       url: "https://www.sotrue.in/products/strobe-cream",
