@@ -6,8 +6,7 @@
       brand: "Lotus Botanicals",
       // Changed single image string to an array with 2 test images
       images: [
-        "images/beauty-images/skincare/facewash/lotus-ubtan-de-tan-radiance-face-wash.JPG",
-        "https://via.placeholder.com/500x500/b2455a/ffffff?text=Test+Angle+2"
+        "images/beauty-images/skincare/facewash/lotus-ubtan-de-tan-radiance-face-wash.JPG"
       ],
       amazonUrl: "", // Primary Button
       url: "https://www.lotusbotanicals.com/products/copy-of-ubtan-de-tan-radiance-face-wash?ref=DGS-Deepak", // Secondary Button
