@@ -1,8 +1,8 @@
 (function () {
   window.BEAUTY_COSMETICS_EYE_PRODUCTS = [
     {
-      id: "hilary-rhoda-drawing-eyebrow-pencil",
-      name: "Drawing Eyebrow Pencil",
+      id: "hilary-rhoda-eyebrow-palette",
+      name: "Eyebrow Palette",
       brand: "Hilary Rhoda",
       images: [
         "images/beauty-images/makeup/eye-makeup/hilary-rhoda-eyebrow-palette-shade-01.JPG",
@@ -13,12 +13,12 @@
       url: "https://hilaryrhoda.in/products/drawing-eyebrow?variant=45889928495242", // Secondary Button ("Official Site")
       priceText: "₹150 | Offers Available",
       details: [
-        "Defines and fills sparse brow areas effortlessly",
-        "Dual-ended with integrated spoolie for easy blending",
-        "Dual-tip precision for realistic, hair-like strokes",
-        "Smudge-proof & long-wearing formula for all-day brows",
-        "Ideal for daily brow shaping & quick touch-ups",
-        "Best for anyone wanting natural, fuller-looking eyebrows"
+        "Features 3 versatile powder shades to fill and shape brows",
+        "Smooth, blendable texture for a natural-looking finish",
+        "Smudge-proof and long-wearing formula for all-day hold",
+        "Customizable shade combinations for dark and light brows",
+        "Ideal for everyday brow filling and seamless gradients",
+        "Best for anyone seeking fuller, naturally defined eyebrows"
       ]
     },
     {
@@ -32,7 +32,7 @@
       ],
       amazonUrl: "https://link.amazon/B075nvRJl", // Primary Button ("Buy on Amazon")
       url: "https://colorsqueen.com/products/colors-queen-eyebrow-palette", // Secondary Button ("Official Site")
-      priceText: "₹549 | Offers Available",
+      priceText: "₹299 | Offers Available",
       details: [
         "All-in-one kit with 5 brow shades & 1 setting wax",
         "Includes stencils, pencil, tweezer, brush & spoolie",
