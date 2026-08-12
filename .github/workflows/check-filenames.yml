@@ -31,16 +31,16 @@ jobs:
 
           echo "🔍 Checking JS files for syntax errors and invisible characters..."
           while IFS= read -r jsfile; do
-            # 1. Syntax Check (Catches missing quotes, commas, braces)
+            # 1. Syntax Check
             if ! node --check "$jsfile"; then
               echo "❌ SYNTAX ERROR DETECTED IN: \"$jsfile\""
               FOUND_ERRORS=1
             fi
 
             # 2. Invisible Character Check
-            if grep -P -q "[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F\xA0\u200B-\u200D\uFEFF]" "$jsfile"; then
+            if grep -P -q "[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F\xA0\x{200B}-\x{200D}\x{FEFF}]" "$jsfile"; then
               echo "❌ INVISIBLE UNICORN IN JS FILE: \"$jsfile\""
-              grep -n -P "[\xA0\u200B-\u200D\uFEFF]" "$jsfile" || true
+              grep -n -P "[\xA0\x{200B}-\x{200D}\x{FEFF}]" "$jsfile" || true
               FOUND_ERRORS=1
             fi
           done < <(find . -type f -name "*.js" -not -path '*/.*')
