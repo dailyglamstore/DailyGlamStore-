@@ -27,7 +27,7 @@
       brand: "Colors Queen",
       images: [
         "images/beauty-images/makeup/eye-makeup/colors-queen-eyebrow-kit.JPG",
-        "images/beauty-images/makeup/eye-makeup/colors-queen-eyebrow-shades.JPG",
+        "images/beauty-images/makeup/eye-makeup/colors-queen-eyebrow-shade.JPG",
         "images/beauty-images/makeup/eye-makeup/colors-queen-eyebrow-steps.JPG"
       ],
       amazonUrl: "https://link.amazon/B075nvRJl", // Primary Button ("Buy on Amazon")
