@@ -1,0 +1,54 @@
+name: Data & Path Validator
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  scan-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check Paths, Invisible Chars & JS Syntax
+        run: |
+          FOUND_ERRORS=0
+
+          echo "🔍 Scanning file and folder names..."
+          while IFS= read -r item; do
+            if [[ "$item" =~ [[:space:]]$ ]] || echo "$item" | grep -P -q "[^\x00-\x7F]"; then
+              echo "❌ HIDDEN CHAR IN PATH: \"$item\""
+              FOUND_ERRORS=1
+            fi
+          done < <(find . -mindepth 1 -not -path '*/.*')
+
+          echo "🔍 Checking JS files for syntax errors and invisible characters..."
+          while IFS= read -r jsfile; do
+            # 1. Syntax Check (Catches missing quotes, commas, braces)
+            if ! node --check "$jsfile"; then
+              echo "❌ SYNTAX ERROR DETECTED IN: \"$jsfile\""
+              FOUND_ERRORS=1
+            fi
+
+            # 2. Invisible Character Check
+            if grep -P -q "[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F\xA0\u200B-\u200D\uFEFF]" "$jsfile"; then
+              echo "❌ INVISIBLE UNICORN IN JS FILE: \"$jsfile\""
+              grep -n -P "[\xA0\u200B-\u200D\uFEFF]" "$jsfile" || true
+              FOUND_ERRORS=1
+            fi
+          done < <(find . -type f -name "*.js" -not -path '*/.*')
+
+          if [ $FOUND_ERRORS -eq 1 ]; then
+            echo "--------------------------------------------------"
+            echo "🚨 Deployment blocked due to syntax or character errors!"
+            exit 1
+          else
+            echo "✅ All paths, JS syntax, and character encodings are clean!"
+          fi
