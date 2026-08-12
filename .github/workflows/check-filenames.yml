@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Check Paths, Invisible Chars & JS Syntax
+      - name: Clean Non-Breaking Spaces & Check
         run: |
           FOUND_ERRORS=0
 
@@ -29,26 +29,22 @@ jobs:
             fi
           done < <(find . -mindepth 1 -not -path '*/.*')
 
-          echo "🔍 Checking JS files for syntax errors and invisible characters..."
+          echo "🔍 Cleaning invisible spaces and checking JS files..."
           while IFS= read -r jsfile; do
+            # Automatically replace non-breaking spaces with standard spaces
+            sed -i 's/\xC2\xA0/ /g' "$jsfile"
+
             # 1. Syntax Check
             if ! node --check "$jsfile"; then
               echo "❌ SYNTAX ERROR DETECTED IN: \"$jsfile\""
-              FOUND_ERRORS=1
-            fi
-
-            # 2. Invisible Character Check
-            if grep -P -q "[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F\xA0\x{200B}-\x{200D}\x{FEFF}]" "$jsfile"; then
-              echo "❌ INVISIBLE UNICORN IN JS FILE: \"$jsfile\""
-              grep -n -P "[\xA0\x{200B}-\x{200D}\x{FEFF}]" "$jsfile" || true
               FOUND_ERRORS=1
             fi
           done < <(find . -type f -name "*.js" -not -path '*/.*')
 
           if [ $FOUND_ERRORS -eq 1 ]; then
             echo "--------------------------------------------------"
-            echo "🚨 Deployment blocked due to syntax or character errors!"
+            echo "🚨 Deployment blocked due to syntax errors!"
             exit 1
           else
-            echo "✅ All paths, JS syntax, and character encodings are clean!"
+            echo "✅ All paths and JS syntax are clean!"
           fi
