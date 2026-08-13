@@ -154,6 +154,13 @@ sections: [
       ]
     },
 
+{
+  type: "image",
+  src: "/images/beauty-images/blog/haircare-routine-product-order.jpg",
+  alt: "Correct order to use shampoo, conditioner, hair serum, and hair oil in a beginner haircare routine",
+  caption: "Follow the correct order of haircare products for a simple and effective routine."
+},
+
     {
       type: "bullets",
       items: [
@@ -218,13 +225,6 @@ sections: [
         "Apply conditioner mainly to the mid-lengths and ends of your hair, where moisture is usually needed the most. Unless the product specifically states otherwise, avoid applying it directly to your scalp."
       ]
     },
-
-{
-  type: "image",
-  src: "/images/beauty-images/blog/applying-hair-serum-after-conditioning.JPG",
-  alt: "Woman applying hair serum to the mid-lengths and ends of damp hair after conditioning",
-  caption: "Hair serum is commonly applied after conditioning to help reduce frizz and improve manageability."
-},
 
     {
       type: "infoBox",
