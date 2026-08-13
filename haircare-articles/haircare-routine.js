@@ -156,7 +156,7 @@ sections: [
 
 {
   type: "image",
-  src: "/images/beauty-images/blog/haircare-routine-product-order.JPG",
+  src: "/images/beauty-images/blog/haircare-product-order-routine.JPG",
   alt: "Correct order to use shampoo, conditioner, hair serum, and hair oil in a beginner haircare routine",
   caption: "Follow the correct order of haircare products for a simple and effective routine."
 },
