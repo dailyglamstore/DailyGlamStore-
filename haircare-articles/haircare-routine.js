@@ -116,6 +116,13 @@ sections: [
 
 {
   type: "image",
+  src: "/images/beauty-images/blog/oily-vs-dry-scalp-haircare-guide.JPG",
+  alt: "Comparison of oily scalp and dry scalp showing their different characteristics",
+  caption: "Understanding your scalp condition helps you choose more suitable haircare products."
+},
+
+{
+  type: "image",
   src: "/images/beauty-images/blog/hair-types-straight-wavy-curly.JPG",
   alt: "Women with straight, wavy, and curly hair showing different natural hair types",
   caption: "Understanding your natural hair type helps you choose suitable haircare products."
