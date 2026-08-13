@@ -114,6 +114,13 @@ sections: [
       ]
     },
 
+{
+  type: "image",
+  src: "/images/beauty-images/blog/hair-types-straight-wavy-curly.JPG",
+  alt: "Women with straight, wavy, and curly hair showing different natural hair types",
+  caption: "Understanding your natural hair type helps you choose suitable haircare products."
+},
+
     {
       type: "bullets",
       items: [
