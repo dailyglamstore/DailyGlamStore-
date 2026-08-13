@@ -219,6 +219,13 @@ sections: [
       ]
     },
 
+{
+  type: "image",
+  src: "/images/beauty-images/blog/applying-hair-serum-after-conditioning.JPG",
+  alt: "Woman applying hair serum to the mid-lengths and ends of damp hair after conditioning",
+  caption: "Hair serum is commonly applied after conditioning to help reduce frizz and improve manageability."
+},
+
     {
       type: "infoBox",
       boxType: "warning",
