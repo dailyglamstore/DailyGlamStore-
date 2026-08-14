@@ -75,12 +75,21 @@ text: [
 
 "Choosing a face wash that matches your skin type helps your skin feel balanced and prepares it for the rest of your skincare routine. When cleansing is done properly, products such as moisturisers, serums, and sunscreen can work more comfortably as part of your daily routine."
 ]
+},
+
+{
+type: "paragraph",
+text: [
+"Choosing the right face wash is only one part of a healthy skincare routine. Once you've found a cleanser that suits your skin, the next step is understanding how it fits into the correct morning and night routine. Our guide on daily skincare routine explains the complete order of cleansing, moisturising, sunscreen, and other beginner-friendly skincare steps."
+]
 }
 
 ]
 
 },
 
+{
+heading: "Know Your Skin Type Before Choosing a Face Wash",
 {
 heading: "Know Your Skin Type Before Choosing a Face Wash",
 
