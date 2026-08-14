@@ -64,17 +64,22 @@ sections: [
   blocks: [
 
     {
-      type: "paragraph",
-      text: [
-        "A haircare routine is a simple sequence of steps that helps keep your hair and scalp clean, healthy, and easier to manage. Instead of using many products at once, an effective routine focuses on choosing products that suit your hair type, scalp condition, and lifestyle, then using them consistently.",
+  heading: "What Is a Haircare Routine?",
 
-        "For most people, a basic haircare routine includes shampoo, conditioner, and depending on personal preference, products such as hair serum or hair oil. While some people prefer a modern routine that includes a serum after every wash, others continue to follow a traditional routine with weekly hair oiling. Both approaches can be effective when the products are chosen according to your individual needs.",
+  blocks: [
 
-        "The goal of a haircare routine isn't to achieve perfect hair overnight. Healthy-looking hair develops through regular care, patience, and understanding what works best for your hair rather than simply following trends."
-      ]
-    }
+    {
+      type: "paragraph",
+      text: [
+        "A haircare routine is a simple sequence of steps that helps keep your hair and scalp clean, healthy, and easier to manage. Instead of using many products at once, an effective routine focuses on choosing products that suit your hair type, scalp condition, and lifestyle, then using them consistently.",
 
-  ]
+        "For most people, a basic haircare routine includes shampoo, conditioner, and depending on personal preference, products such as hair serum or hair oil. While some people prefer a modern routine that includes a serum after every wash, others continue to follow a traditional routine with weekly hair oiling. Both approaches can be effective when the products are chosen according to your individual needs.",
+
+        "The goal of a haircare routine isn't to achieve perfect hair overnight. Just like following a daily skincare routine, healthy-looking hair develops through regular care, patience, and understanding what works best for your hair rather than simply following trends."
+      ]
+    }
+
+  ]
 },
 
 {
