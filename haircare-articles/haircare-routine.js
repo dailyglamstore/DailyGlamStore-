@@ -40,7 +40,12 @@ window.CURRENT_ARTICLE = {
       anchorText: "haircare recommendations",
       href: "/#haircare-recommendations",
       newTab: false
-    }
+    },
+{
+  anchorText: "daily skincare routine",
+  href: "/articles/skincare/skincare-routine.html",
+  newTab: false
+}
   ],
 
   metaLine:
