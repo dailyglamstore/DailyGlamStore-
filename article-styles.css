@@ -243,6 +243,22 @@ html { scroll-behavior: smooth; }
       object-fit: cover;
       display: block;
     }
+    
+    /* Article Affiliate Disclosure */
+.article-affiliate-disclosure {
+  background: transparent;
+  color: #7a6e69;
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: center;
+  max-width: 500px;
+  margin: 18px auto 22px;
+  padding: 0;
+}
+
+.article-affiliate-disclosure strong {
+  color: var(--brand);
+}
 
     .article-content {
       max-width: 760px;
