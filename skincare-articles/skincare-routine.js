@@ -359,13 +359,13 @@ alternativeProducts: {
       newTab: true
     },
     {
-      title: "Best Sunscreen",
-      href: "YOUR_SUNSCREEN_LINK",
-      type: "affiliateProduct",
-      affiliate: true,
-      newTab: true
-    }
-  ]
+      title: "Dot & Key Vitamin C + E SPF 50 Sunscreen",
+      href: "https://link.amazon/B08tUMxkh",
+      type: "affiliateProduct",
+      affiliate: true,
+      newTab: true
+    }
+  ]
 },
 
 relatedArticles: [
