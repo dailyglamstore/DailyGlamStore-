@@ -90,8 +90,6 @@ text: [
 
 {
 heading: "Know Your Skin Type Before Choosing a Face Wash",
-{
-heading: "Know Your Skin Type Before Choosing a Face Wash",
 
 blocks: [
 
