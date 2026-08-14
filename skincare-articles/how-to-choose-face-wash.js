@@ -436,7 +436,7 @@ blocks: [
 {
 type: "paragraph",
 text: [
-"Choosing the right face wash doesn't have to be confusing. Once you understand your skin type and what your skin needs, it becomes much easier to select a cleanser that fits naturally into your daily skincare routine.",
+"Choosing the right face wash doesn't have to be confusing. Once you understand your skin type and what your skin needs, it becomes much easier to select a cleanser that fits naturally into your daily skincare habits.",
 
 "Instead of chasing every new trend or buying products because they're popular online, focus on finding a face wash that keeps your skin feeling clean, comfortable, and balanced. A simple routine built around products that suit your skin is usually more effective than constantly switching between different cleansers.",
 
