@@ -452,6 +452,13 @@ image: function (block) {
       );
     })
     .join("\n");
+    
+    // Affiliate Disclosure
+var affiliateDisclosureMarkup = [
+  '<div class="article-affiliate-disclosure">',
+  '<strong>Disclosure:</strong> Some links in this article may be affiliate links. As an Amazon Associate and brand partner, Daily Glam Store may earn from qualifying purchases at no extra cost to you.',
+  '</div>'
+].join("\n");
 
   // Inject into DOM
   articleNode.innerHTML = [
