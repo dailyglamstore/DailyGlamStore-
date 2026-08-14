@@ -57,13 +57,8 @@ window.CURRENT_ARTICLE = {
   },
 
 sections: [
-    
+
 {
-  heading: "What Is a Haircare Routine?",
-
-  blocks: [
-
-    {
   heading: "What Is a Haircare Routine?",
 
   blocks: [
