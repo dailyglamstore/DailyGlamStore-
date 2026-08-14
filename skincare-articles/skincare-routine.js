@@ -329,23 +329,23 @@ text: [
 ],
 
 productRecommendations: {
-  title: "Recommended Products for This Routine",
-  items: [
-    {
-  title: "The Derma Co 2% Salicylic Acid + 2% Niacinamide Face Wash",
-  href: "https://link.amazon/B02SZ08k0",
-  type: "affiliateProduct",
-  affiliate: true,
-  newTab: true
-},
-    {
-      title: "Best Face Serum",
-      href: "YOUR_FACE_SERUM_LINK",
-      type: "affiliateProduct",
-      affiliate: true,
-      newTab: true
-    }
-  ]
+  title: "Recommended Products for This Routine",
+  items: [
+    {
+      title: "The Derma Co 2% Salicylic Acid + 2% Niacinamide Face Wash",
+      href: "https://link.amazon/B02SZ08k0",
+      type: "affiliateProduct",
+      affiliate: true,
+      newTab: true
+    },
+    {
+      title: "Minimalist 10% Advanced Vitamin C Face Serum",
+      href: "https://link.amazon/B0cMNJJgm",
+      type: "affiliateProduct",
+      affiliate: true,
+      newTab: true
+    }
+  ]
 },
 
 alternativeProducts: {
