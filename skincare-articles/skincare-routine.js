@@ -352,12 +352,12 @@ alternativeProducts: {
   title: "Complete Your Routine",
   items: [
     {
-      title: "Best Moisturiser",
-      href: "YOUR_MOISTURISER_LINK",
-      type: "affiliateProduct",
-      affiliate: true,
-      newTab: true
-    },
+      title: "Cetaphil Moisturising Lotion",
+      href: "https://link.amazon/B02t7jEZy",
+      type: "affiliateProduct",
+      affiliate: true,
+      newTab: true
+      },
     {
       title: "Dot & Key Vitamin C + E SPF 50 Sunscreen",
       href: "https://link.amazon/B08tUMxkh",
