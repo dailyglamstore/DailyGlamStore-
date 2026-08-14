@@ -462,6 +462,7 @@ var affiliateDisclosureMarkup = [
 
   // Inject into DOM
   articleNode.innerHTML = [
+    affiliateDisclosureMarkup,
     tocMarkup,
     comparisonTableMarkup,
     sectionMarkup,
