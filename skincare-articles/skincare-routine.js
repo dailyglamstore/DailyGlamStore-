@@ -332,12 +332,12 @@ productRecommendations: {
   title: "Recommended Products for This Routine",
   items: [
     {
-      title: "Best Face Wash",
-      href: "YOUR_FACE_WASH_LINK",
-      type: "affiliateProduct",
-      affiliate: true,
-      newTab: true
-    },
+  title: "The Derma Co 2% Salicylic Acid + 2% Niacinamide Face Wash",
+  href: "https://link.amazon/B02SZ08k0",
+  type: "affiliateProduct",
+  affiliate: true,
+  newTab: true
+},
     {
       title: "Best Face Serum",
       href: "YOUR_FACE_SERUM_LINK",
