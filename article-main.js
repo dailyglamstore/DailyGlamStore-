@@ -455,14 +455,14 @@ image: function (block) {
     
     // Affiliate Disclosure
 var affiliateDisclosureMarkup = [
-  '<div class="article-affiliate-disclosure">',
+  '<div class="article-disclosure">',
   '<strong>Disclosure:</strong> Some links in this article may be affiliate links. As an Amazon Associate and brand partner, Daily Glam Store may earn from qualifying purchases at no extra cost to you.',
   '</div>'
 ].join("\n");
 
-  // Inject into DOM
-  articleNode.innerHTML = [
-    affiliateDisclosureMarkup,
+// Inject into DOM
+articleNode.innerHTML = [
+  affiliateDisclosureMarkup,
     tocMarkup,
     comparisonTableMarkup,
     sectionMarkup,
