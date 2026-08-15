@@ -2745,32 +2745,51 @@ window.addEventListener("resize", function () {
   </script>
   
 <script>
-window.addEventListener("load", () => {
+(function () {
+  const HEADER_OFFSET = 95;
+  const SETTLE_TIME = 500;
 
-  if (!window.location.hash) return;
+  function scrollToCurrentHash(behavior) {
+    const hash = window.location.hash;
+    if (!hash) return;
 
-  const scrollToHash = () => {
-    const target = document.querySelector(window.location.hash);
-
+    const target = document.querySelector(hash);
     if (!target) return;
-
-    const headerOffset = 95;
 
     const elementPosition =
       target.getBoundingClientRect().top + window.pageYOffset;
 
-    const offsetPosition = elementPosition - headerOffset;
+    const offsetPosition = elementPosition - HEADER_OFFSET;
 
     window.scrollTo({
       top: offsetPosition,
-      behavior: "smooth"
+      behavior: behavior || "smooth"
     });
-  };
+  }
 
-  // Wait for products + images + layout to fully render
-  setTimeout(scrollToHash, 350);
+  function waitForLayoutAndScroll(behavior) {
+    setTimeout(function () {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          scrollToCurrentHash(behavior);
+        });
+      });
+    }, SETTLE_TIME);
+  }
 
-});
+  // Direct links such as:
+  // https://dailyglamstore.in/#makeup
+  window.addEventListener("load", function () {
+    if (window.location.hash) {
+      waitForLayoutAndScroll("auto");
+    }
+  });
+
+  // Links clicked while already on the page.
+  window.addEventListener("hashchange", function () {
+    waitForLayoutAndScroll("smooth");
+  });
+})();
 </script>
 
 <script>
