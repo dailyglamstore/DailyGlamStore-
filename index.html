@@ -2747,9 +2747,8 @@ window.addEventListener("resize", function () {
 <script>
 (function () {
   const HEADER_OFFSET = 95;
-  const SETTLE_TIME = 500;
 
-  function scrollToCurrentHash(behavior) {
+  function scrollToHash(behavior) {
     const hash = window.location.hash;
     if (!hash) return;
 
@@ -2759,39 +2758,49 @@ window.addEventListener("resize", function () {
     const elementPosition =
       target.getBoundingClientRect().top + window.pageYOffset;
 
-    const offsetPosition = elementPosition - HEADER_OFFSET;
-
     window.scrollTo({
-      top: offsetPosition,
+      top: elementPosition - HEADER_OFFSET,
       behavior: behavior || "smooth"
     });
   }
 
-  function waitForLayoutAndScroll(behavior) {
-    setTimeout(function () {
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
-          scrollToCurrentHash(behavior);
-        });
-      });
-    }, SETTLE_TIME);
+  function correctHashPosition(behavior) {
+    if (!window.location.hash) return;
+
+    let corrections = 0;
+    const maxCorrections = 8;
+
+    function checkPosition() {
+      if (!window.location.hash) return;
+
+      scrollToHash(behavior);
+
+      corrections++;
+
+      if (corrections < maxCorrections) {
+        setTimeout(checkPosition, 250);
+      }
+    }
+
+    // Give the page time to render the dynamically-created product cards.
+    setTimeout(checkPosition, 150);
   }
 
   // Direct links such as:
   // https://dailyglamstore.in/#makeup
   window.addEventListener("load", function () {
     if (window.location.hash) {
-      waitForLayoutAndScroll("auto");
+      correctHashPosition("auto");
     }
   });
 
-  // Links clicked while already on the page.
+  // Category links clicked while already on the page.
   window.addEventListener("hashchange", function () {
-    waitForLayoutAndScroll("smooth");
+    correctHashPosition("smooth");
   });
 })();
 </script>
-
+  
 <script>
 document.querySelectorAll(".section-title").forEach((heading) => {
 
