@@ -315,7 +315,7 @@ image: function (block) {
         ].join("\n")
       : "";
 
-  // Product Recommendations
+    // Product Recommendations
   var productRecommendationsMarkup =
     article.productRecommendations &&
     article.productRecommendations.items &&
@@ -337,6 +337,7 @@ image: function (block) {
                 buildTargetAttributes(product.newTab) +
                 ">" +
                 escapeHtml(product.title) +
+                ' <span class="product-arrow">→</span>' +
                 "</a>"
               );
             })
