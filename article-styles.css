@@ -1004,14 +1004,10 @@ html { scroll-behavior: smooth; }
   height: 40px;
   border-radius: 8px;
   object-fit: contain;
-  background: #fff3ee;
+  background: #fffaf2;
   padding: 2px;
   flex-shrink: 0;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-}
-
-.alternative-product-btn .product-thumb {
-  background: #fffaf2;
 }
 
 .product-btn-text {
