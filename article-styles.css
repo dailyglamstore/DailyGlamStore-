@@ -894,6 +894,7 @@ html { scroll-behavior: smooth; }
   opacity: 0.8;
 }
 
+/* Fixed missing dot selector */
 .final-product-recommendations {
   margin: 42px 0;
   padding: 22px;
@@ -913,7 +914,7 @@ html { scroll-behavior: smooth; }
 .final-product-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px; /* Increased slightly to match alternative grid spacing */
   justify-content: center;
 }
 
@@ -934,22 +935,20 @@ html { scroll-behavior: smooth; }
 }
 
 .final-product-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  display: block; /* Changed from flex to block so arrow sits directly after text */
   width: 100%;
-  padding: 10px 20px; /* Tighter vertical padding fixes pill stretching */
-  border-radius: 999px; /* Preserves pill shape */
+  padding: 12px 20px;
+  border-radius: 999px;
   background: #d16b3d;
   color: #ffffff;
   text-decoration: none;
-  font-size: 0.88rem;
+  font-size: 0.92rem; /* Increased from 0.88rem to match bottom section */
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 1.35; /* Fixes multi-line spacing */
   text-align: center;
   border: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
+  box-sizing: border-box;
 }
 
 .final-product-btn:hover {
@@ -971,9 +970,10 @@ html { scroll-behavior: smooth; }
 .alternative-products {
   margin: 42px 0;
   padding: 22px;
-  background: var(--bg-soft-2);
+  background: #ffffff; /* Changed from var(--bg-soft-2) to match top card */
   border: 1px solid var(--border-soft);
   border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.04); /* Added matching subtle shadow */
 }
 
 .alternative-products h2 {
@@ -995,7 +995,9 @@ html { scroll-behavior: smooth; }
   background: #fff3ee;
   color: inherit;
   text-decoration: none;
+  font-size: 0.92rem; /* Explicitly set to match top section */
   font-weight: 600;
+  line-height: 1.35; /* Tightens gap on multi-line text */
   transition: all .2s ease;
 }
 
@@ -1006,7 +1008,7 @@ html { scroll-behavior: smooth; }
 /* Base Arrow Styling */
 .product-arrow {
   display: inline-block;
-  margin-left: 8px;
+  margin-left: 6px; /* Reduced to sit closer right after product text ends */
   font-size: 0.9rem;
   font-weight: 700;
   color: var(--brand);
@@ -1016,11 +1018,10 @@ html { scroll-behavior: smooth; }
 /* White arrow specifically for orange recommendation pill buttons */
 .final-product-btn .product-arrow {
   color: #ffffff;
-  margin-left: 0; /* Flex gap handles spacing */
-  flex-shrink: 0;
+  margin-left: 6px;
 }
 
-/* Hover effect works for BOTH sections now */
+/* Hover effect works for BOTH sections */
 .alternative-product-btn:hover .product-arrow,
 .final-product-btn:hover .product-arrow {
   transform: translateX(4px);
