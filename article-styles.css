@@ -1005,7 +1005,7 @@ html { scroll-behavior: smooth; }
   border-radius: 8px;
   object-fit: contain;
   background: #fff8e8;
-  padding: 2px;
+  padding: 0;
   flex-shrink: 0;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12);
 }
