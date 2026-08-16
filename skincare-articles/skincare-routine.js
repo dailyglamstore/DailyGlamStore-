@@ -333,7 +333,7 @@ productRecommendations: {
   items: [
     {
       title: "The Derma Co. Salicylic Acid Face Wash",
-      image: "/images/beauty-images/blog/thumb-image/derma-co-facewash.PNG",
+      image: "/images/beauty-images/blog/thumb-image/derma-co-face wash.PNG",
       href: "https://link.amazon/B02SZ08k0",
       type: "affiliateProduct",
       affiliate: true,
@@ -363,7 +363,7 @@ alternativeProducts: {
       },
     {
       title: "Dot & Key Vitamin C + E SPF 50 Sunscreen",
-      image: "/images/beauty-images/blog/thumb-image/derma-co-facewash.PNG",
+      image: "/images/beauty-images/blog/thumb-image/derma-co-face wash.PNG",
       href: "https://link.amazon/B08tUMxkh",
       type: "affiliateProduct",
       affiliate: true,
