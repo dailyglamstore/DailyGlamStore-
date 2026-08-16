@@ -894,7 +894,7 @@ html { scroll-behavior: smooth; }
   opacity: 0.8;
 }
 
-/* Fixed missing dot selector */
+/* --- PRODUCT RECOMMENDATIONS (PRIMARY) --- */
 .final-product-recommendations {
   margin: 42px 0;
   padding: 22px;
@@ -913,42 +913,33 @@ html { scroll-behavior: smooth; }
 
 .final-product-grid {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px; /* Increased slightly to match alternative grid spacing */
-  justify-content: center;
-}
-
-.final-product-card {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  padding: 0;
-  width: 100%;
-}
-
-.final-product-title {
-  margin: 0 0 8px;
-  font-size: 0.92rem;
-  font-weight: 600;
-  line-height: 1.3;
-  color: #222;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .final-product-btn {
-  display: block; /* Changed from flex to block so arrow sits directly after text */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   width: 100%;
   padding: 12px 20px;
   border-radius: 999px;
   background: #d16b3d;
   color: #ffffff;
   text-decoration: none;
-  font-size: 0.92rem; /* Increased from 0.88rem to match bottom section */
+  font-size: 0.92rem;
   font-weight: 600;
-  line-height: 1.35; /* Fixes multi-line spacing */
+  line-height: 1.35;
   text-align: center;
   border: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
   box-sizing: border-box;
+}
+
+/* Reduced left padding when thumbnail badge is present */
+.final-product-btn.has-thumb {
+  padding-left: 6px;
 }
 
 .final-product-btn:hover {
@@ -960,20 +951,14 @@ html { scroll-behavior: smooth; }
   transform: translateY(0);
 }
 
-@media (max-width: 768px) {
-  .final-product-card {
-    width: 100%;
-    min-width: unset;
-  }
-}
-
+/* --- ALTERNATIVE PRODUCTS (SECONDARY) --- */
 .alternative-products {
   margin: 42px 0;
   padding: 22px;
-  background: #ffffff; /* Changed from var(--bg-soft-2) to match top card */
+  background: #ffffff;
   border: 1px solid var(--border-soft);
   border-radius: 14px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.04); /* Added matching subtle shadow */
+  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
 }
 
 .alternative-products h2 {
@@ -988,40 +973,63 @@ html { scroll-behavior: smooth; }
 }
 
 .alternative-product-btn {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
   padding: 14px 18px;
   border: 1px solid var(--border-soft);
-  border-radius: 10px;
+  border-radius: 12px;
   background: #fff3ee;
   color: inherit;
   text-decoration: none;
-  font-size: 0.92rem; /* Explicitly set to match top section */
+  font-size: 0.92rem;
   font-weight: 600;
-  line-height: 1.35; /* Tightens gap on multi-line text */
+  line-height: 1.35;
   transition: all .2s ease;
+  box-sizing: border-box;
+}
+
+.alternative-product-btn.has-thumb {
+  padding-left: 6px;
 }
 
 .alternative-product-btn:hover {
   background: #ffebe4;
 }
 
-/* Base Arrow Styling */
+/* --- INTEGRATED BADGE THUMBNAIL STYLING --- */
+.product-thumb {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #ffffff;
+  padding: 2px;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+.product-btn-text {
+  flex: 1;
+  text-align: center;
+}
+
+/* --- ARROW STYLING & ANIMATION --- */
 .product-arrow {
   display: inline-block;
-  margin-left: 6px; /* Reduced to sit closer right after product text ends */
   font-size: 0.9rem;
   font-weight: 700;
   color: var(--brand);
+  flex-shrink: 0;
   transition: transform .2s ease;
 }
 
-/* White arrow specifically for orange recommendation pill buttons */
 .final-product-btn .product-arrow {
   color: #ffffff;
-  margin-left: 6px;
 }
 
-/* Hover effect works for BOTH sections */
 .alternative-product-btn:hover .product-arrow,
 .final-product-btn:hover .product-arrow {
   transform: translateX(4px);
