@@ -1004,8 +1004,8 @@ html { scroll-behavior: smooth; }
   height: 40px;
   border-radius: 8px;
   object-fit: contain;
-  background: #f0d0b0;
-  padding: 0;
+  background: #fff8e8;
+  padding: 2px;
   flex-shrink: 0;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12);
 }
