@@ -330,13 +330,21 @@ image: function (block) {
           '<div class="final-product-grid">',
           article.productRecommendations.items
             .map(function (product) {
+              var imgTag = product.image
+                ? '<img class="product-thumb" src="' +
+                  escapeHtml(product.image) +
+                  '" alt="" loading="lazy" />'
+                : "";
               return (
-                '<a class="final-product-btn" href="' +
+                '<a class="final-product-btn' + (product.image ? ' has-thumb' : '') + '" href="' +
                 escapeHtml(product.href) +
                 '"' +
                 buildTargetAttributes(product.newTab) +
                 ">" +
+                imgTag +
+                '<span class="product-btn-text">' +
                 escapeHtml(product.title) +
+                "</span>" +
                 ' <span class="product-arrow">→</span>' +
                 "</a>"
               );
@@ -362,13 +370,21 @@ image: function (block) {
           '<div class="alternative-products-grid">',
           article.alternativeProducts.items
             .map(function (product) {
+              var imgTag = product.image
+                ? '<img class="product-thumb" src="' +
+                  escapeHtml(product.image) +
+                  '" alt="" loading="lazy" />'
+                : "";
               return (
-                '<a class="alternative-product-btn" href="' +
+                '<a class="alternative-product-btn' + (product.image ? ' has-thumb' : '') + '" href="' +
                 escapeHtml(product.href) +
                 '"' +
                 buildTargetAttributes(product.newTab) +
                 ">" +
+                imgTag +
+                '<span class="product-btn-text">' +
                 escapeHtml(product.title) +
+                "</span>" +
                 (product.type === "affiliateProduct"
                   ? ' <span class="product-arrow">→</span>'
                   : "") +
