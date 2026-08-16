@@ -333,7 +333,7 @@ productRecommendations: {
   items: [
     {
       title: "The Derma Co. Salicylic Acid Face Wash",
-      image: "/images/beauty-images/blog/thumb-image/derma-co-facewash.JPG",
+      image: "/images/beauty-images/blog/thumb-image/derma-co-facewash.PNG",
       href: "https://link.amazon/B02SZ08k0",
       type: "affiliateProduct",
       affiliate: true,
@@ -341,7 +341,7 @@ productRecommendations: {
     },
     {
       title: "Minimalist 10% Vitamin C Serum",
-      image: "/images/beauty-images/blog/thumb-image/minimalist-vitamin-c.JPG",
+      image: "/images/beauty-images/blog/thumb-image/minimalist-vitamin-c.PNG",
       href: "https://link.amazon/B0cMNJJgm",
       type: "affiliateProduct",
       affiliate: true,
@@ -355,7 +355,7 @@ alternativeProducts: {
   items: [
     {
       title: "Cetaphil Moisturising Lotion",
-      image: "/images/beauty-images/blog/thumb-image/minimalist-vitamin-c.JPG",
+      image: "/images/beauty-images/blog/thumb-image/minimalist-vitamin-c.PNG",
       href: "https://link.amazon/B02t7jEZy",
       type: "affiliateProduct",
       affiliate: true,
@@ -363,7 +363,7 @@ alternativeProducts: {
       },
     {
       title: "Dot & Key Vitamin C + E SPF 50 Sunscreen",
-      image: "/images/beauty-images/blog/thumb-image/derma-co-facewash.JPG",
+      image: "/images/beauty-images/blog/thumb-image/derma-co-facewash.PNG",
       href: "https://link.amazon/B08tUMxkh",
       type: "affiliateProduct",
       affiliate: true,
