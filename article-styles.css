@@ -894,7 +894,6 @@ html { scroll-behavior: smooth; }
   opacity: 0.8;
 }
 
-/* --- PRODUCT RECOMMENDATIONS (PRIMARY) --- */
 .final-product-recommendations {
   margin: 42px 0;
   padding: 22px;
@@ -1001,8 +1000,8 @@ html { scroll-behavior: smooth; }
 
 /* --- INTEGRATED BADGE THUMBNAIL STYLING --- */
 .product-thumb {
-  width: 32px;
-  height: 32px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   object-fit: contain;
   background: #ffffff;
