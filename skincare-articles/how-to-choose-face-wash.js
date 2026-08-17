@@ -453,13 +453,15 @@ productRecommendations: {
   items: [
     {
       title: "Cetaphil Gentle Skin Hydrating Face Wash",
+      image: "/images/beauty-images/blog/thumb-image/cetaphil-gentle-face-wash.PNG",
       href: "https://link.amazon/B05SNpH6l",
       type: "affiliateProduct",
       affiliate: true,
       newTab: true
     },
     {
-      title: "Lotus Botanicals Papaya & Vitamin E Insta Glow Exfoliating Facewash",
+      title: "Lotus Botanicals Papaya & Vitamin E Face Wash",
+      image: "/images/beauty-images/blog/thumb-image/lotus-papaya-vitamin-e-facewash.PNG",
       href: "https://www.lotusbotanicals.com/products/copy-of-papaya-vitamin-e-insta-glow-exfoliating-facewash?ref=Daily-Glam-Store",
       type: "affiliateProduct",
       affiliate: true,
@@ -472,7 +474,8 @@ alternativeProducts: {
   title: "Explore Similar Products",
   items: [
     {
-      title: "Simple's Kind To Skin Refreshing Facial Wash",
+      title: "Simple's Kind To Skin Face Wash",
+      image: "/images/beauty-images/blog/thumb-image/simple-kind-to-skin-face-wash.PNG",
       href: "https://link.amazon/B0i8fp8L4",
       type: "affiliateProduct",
       affiliate: true,
@@ -480,6 +483,7 @@ alternativeProducts: {
     },
     {
       title: "Gush Beauty Clean Slate - Cleansing Balm",
+      image: "/images/beauty-images/blog/thumb-image/gush-beauty-clean-slate-cleansing-balm.PNG",
       href: "https://gushbeauty.com/products/clean-slate-cleansing-balm?ref=Daily-Glam-Store&utm_campaign=affiliate_promotion&utm_medium=source&utm_source=affiliate",
       type: "affiliateProduct",
       affiliate: true,
