@@ -392,43 +392,47 @@ sections: [
 ],
 
 productRecommendations: {
-  title: "Recommended Products for This Routine",
-  items: [
-    {
-      title: "Best Shampoo",
-      href: "YOUR_SHAMPOO_LINK",
-      type: "affiliateProduct",
-      affiliate: true,
-      newTab: true
-    },
-    {
-      title: "Best Conditioner",
-      href: "YOUR_CONDITIONER_LINK",
-      type: "affiliateProduct",
-      affiliate: true,
-      newTab: true
-    }
-  ]
+  title: "Recommended Products for This Routine",
+  items: [
+    {
+      title: "WishCare Anti Hairfall Shampoo",
+      image: "/images/beauty-images/blog/thumb-image/wishcare-anti-hairfall-shampoo.PNG",
+      href: "https://www.mywishcare.com/products/multi-peptide-antihairfall-shampoo-rosemary-250ml?ref=DEEPAKMAHAJAN&utm_campaign=inf",
+      type: "affiliateProduct",
+      affiliate: true,
+      newTab: true
+    },
+    {
+      title: "Dove Intense Repair Conditioner",
+      image: "/images/beauty-images/blog/thumb-image/dove-intense-repair-conditioner.PNG",
+      href: "https://link.amazon/B01tVr5kf",
+      type: "affiliateProduct",
+      affiliate: true,
+      newTab: true
+    }
+  ]
 },
 
 alternativeProducts: {
-  title: "Complete Your Routine",
-  items: [
-    {
-      title: "Best Hair Serum",
-      href: "YOUR_HAIR_SERUM_LINK",
-      type: "affiliateProduct",
-      affiliate: true,
-      newTab: true
-    },
-    {
-      title: "Best Hair Oil",
-      href: "YOUR_HAIR_OIL_LINK",
-      type: "affiliateProduct",
-      affiliate: true,
-      newTab: true
-    }
-  ]
+  title: "Complete Your Routine",
+  items: [
+    {
+      title: "Pilgrim Hair Growth Serum",
+      image: "/images/beauty-images/blog/thumb-image/pilgrim-redensyl-anagain-hair-serum.PNG",
+      href: "https://link.amazon/B0425uJUK",
+      type: "affiliateProduct",
+      affiliate: true,
+      newTab: true
+    },
+    {
+      title: "Indulekha Bringha Hair Oil",
+      image: "/images/beauty-images/blog/thumb-image/indulekha-bringha-hair-oil.PNG",
+      href: "https://link.amazon/B0d5WbZ9W",
+      type: "affiliateProduct",
+      affiliate: true,
+      newTab: true
+    }
+  ]
 },
 
 relatedArticles: [
