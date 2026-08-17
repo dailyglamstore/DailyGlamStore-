@@ -355,7 +355,7 @@ alternativeProducts: {
   items: [
     {
       title: "Cetaphil Moisturising Lotion",
-      image: "/images/beauty-images/blog/thumb-image/minimalist-vitamin-c.PNG",
+      image: "/images/beauty-images/blog/thumb-image/cetaphil-moisturising-lotion.PNG",
       href: "https://link.amazon/B02t7jEZy",
       type: "affiliateProduct",
       affiliate: true,
@@ -363,7 +363,7 @@ alternativeProducts: {
       },
     {
       title: "Dot & Key Vitamin C + E SPF 50 Sunscreen",
-      image: "/images/beauty-images/blog/thumb-image/derma-co-facewash.PNG",
+      image: "/images/beauty-images/blog/thumb-image/dot-key-vitamin-c-e-spf-50-sunscreen.PNG",
       href: "https://link.amazon/B08tUMxkh",
       type: "affiliateProduct",
       affiliate: true,
