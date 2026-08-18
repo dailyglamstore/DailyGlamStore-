@@ -370,7 +370,7 @@ metaLine:
   items: [
     {
       title:
-        "🛍 Buy Lotus SPF 50 Sunscreen",
+        "Buy Lotus SPF 50 Sunscreen",
 
       image:
         "/images/beauty-images/blog/thumb-image/lotus-spf-50-sunscreen-1.PNG",
@@ -390,7 +390,7 @@ metaLine:
 
     {
       title:
-        "🛍 Buy Be Bodywise SPF 50 Sunscreen",
+        "Buy Be Bodywise SPF 50 Sunscreen",
 
       image:
         "/images/beauty-images/blog/thumb-image/be-bodywise-spf-50-sunscreen.PNG",
@@ -417,7 +417,7 @@ alternativeProducts: {
   items: [
     {
       title:
-        "WishCare Niacinamide Oil Balance Fluid Sunscreen SPF 50",
+        "WishCare Niacinamide SPF 50",
 
       image:
         "/images/beauty-images/blog/thumb-image/wishcare-niacinamide-sunscreen-spf-50.PNG",
@@ -437,7 +437,7 @@ alternativeProducts: {
 
     {
       title:
-        "Gush Beauty Sun Spritz Cooling Sunscreen Spray SPF 50",
+        "Gush Beauty Sun Spritz SPF 50",
 
       image:
         "/images/beauty-images/blog/thumb-image/gush-beauty-sun-spritz-spf-50.PNG",
