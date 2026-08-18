@@ -14,18 +14,21 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # CRITICAL: Fetches full Git history to read file commit dates
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Generate Sitemap XML
+      - name: Update Article JS Dates & Generate Sitemap XML
         run: |
           node -e '
           const fs = require("fs");
           const path = require("path");
           const vm = require("vm");
+          const { execSync } = require("child_process");
 
           const SITE_URL = "https://dailyglamstore.in";
 
@@ -34,7 +37,7 @@ jobs:
             { url: "/", priority: "1.0", changefreq: "daily" },
             { url: "/shop.html", priority: "0.9", changefreq: "daily" },
             { url: "/beauty-blog.html", priority: "0.8", changefreq: "weekly" },
-            { url: "/share-feedback/", priority: "0.5", changefreq: "monthly" }
+            { url: "/share-feedback.html", priority: "0.5", changefreq: "monthly" }
           ];
 
           // Safely load ARTICLE_REGISTRY
@@ -52,8 +55,8 @@ jobs:
             }
           }
 
-          // Extract metadata from JS files
-          function getArticleMetaData(category, slug) {
+          // Fetch Git last commit date & auto-update file if needed
+          function processArticleFile(category, slug) {
             const possiblePaths = [
               path.join(process.cwd(), `${category}-articles`, `${slug}.js`),
               path.join(process.cwd(), "articles", category, `${slug}.js`),
@@ -61,14 +64,33 @@ jobs:
             ];
             const filePath = possiblePaths.find(p => fs.existsSync(p));
             if (!filePath) return null;
+
             try {
-              const content = fs.readFileSync(filePath, "utf8");
-              const dateMod = content.match(/dateModified\s*:\s*["\x27]([^"\x27]+)["\x27]/);
-              const dateMatch = content.match(/date\s*:\s*["\x27]([^"\x27]+)["\x27]/);
+              let content = fs.readFileSync(filePath, "utf8");
+
+              // 1. Get the exact date the file was last committed in Git
+              let gitDate = "";
+              try {
+                const gitLog = execSync(`git log -1 --format="%ad" --date=format:"%Y-%m-%d" -- "${filePath}"`, { encoding: "utf8" }).trim();
+                if (gitLog) gitDate = gitLog;
+              } catch (e) {}
+
+              const fallbackToday = new Date().toISOString().split("T")[0];
+              const lastModDate = gitDate || fallbackToday;
+
+              // 2. Automatically update dateModified inside the article .js file
+              if (content.includes("dateModified:")) {
+                content = content.replace(/dateModified\s*:\s*["\x27][^"\x27]*["\x27]/, `dateModified: "${lastModDate}T00:00:00+05:30"`);
+              } else if (content.includes("date:")) {
+                content = content.replace(/(date\s*:\s*["\x27][^"\x27]*["\x27],?)/, `$1\n  dateModified: "${lastModDate}T00:00:00+05:30",`);
+              }
+              fs.writeFileSync(filePath, content, "utf8");
+
+              // 3. Extract canonical URL if present
               const urlMatch = content.match(/url\s*:\s*["\x27]([^"\x27]+)["\x27]/);
-              let rawDate = dateMod ? dateMod[1] : (dateMatch ? dateMatch[1] : null);
+
               return {
-                date: rawDate ? rawDate.split("T")[0] : null,
+                date: lastModDate,
                 canonicalPath: urlMatch ? urlMatch[1] : null
               };
             } catch (e) {
@@ -89,13 +111,13 @@ jobs:
             });
           });
 
-          // Add Article Pages
+          // Add Article Pages & Sync Dates
           const registry = loadArticleRegistry();
           Object.keys(registry).forEach(category => {
             const slugs = registry[category];
             if (!Array.isArray(slugs)) return;
             slugs.forEach(slug => {
-              const meta = getArticleMetaData(category, slug);
+              const meta = processArticleFile(category, slug);
               const lastmod = (meta && meta.date) ? meta.date : fallbackDate;
               let relativeUrl = (meta && meta.canonicalPath) ? meta.canonicalPath : `/articles/${category}/${slug}.html`;
               if (!relativeUrl.startsWith("/")) relativeUrl = "/" + relativeUrl;
@@ -116,11 +138,11 @@ jobs:
           xml += `</urlset>`;
 
           fs.writeFileSync(path.join(process.cwd(), "sitemap.xml"), xml, "utf8");
-          console.log(`✅ Fully populated sitemap.xml created with ${urlSet.size} total URLs!`);
+          console.log(`✅ Updated article dates & generated sitemap.xml with ${urlSet.size} total URLs!`);
           '
 
-      - name: Commit and push sitemap.xml
+      - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "auto: update sitemap.xml"
-          file_pattern: "sitemap.xml"
+          commit_message: "auto: update article dateModified and sitemap.xml"
+          file_pattern: "*.js sitemap.xml"
