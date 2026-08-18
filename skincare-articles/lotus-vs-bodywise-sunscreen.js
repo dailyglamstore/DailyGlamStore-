@@ -373,7 +373,7 @@ metaLine:
         "🛍 Buy Lotus SPF 50 Sunscreen",
 
       image:
-        "/images/beauty-images/blog/thumb-image/lotus-spf-50-sunscreen.PNG",
+        "/images/beauty-images/blog/thumb-image/lotus-spf-50-sunscreen-1.PNG",
 
       href:
         "https://www.lotusbotanicals.com/products/carrot-niacinamide-glow-and-de-tan-mineral-sunscreen-spf-50-pa?ref=Daily-Glam-Store",
@@ -393,7 +393,7 @@ metaLine:
         "🛍 Buy Be Bodywise SPF 50 Sunscreen",
 
       image:
-        "/images/beauty-images/blog/thumb-image/be-bodywise-spf-50-sunscreen-1.PNG",
+        "/images/beauty-images/blog/thumb-image/be-bodywise-spf-50-sunscreen.PNG",
 
       href:
         "https://bebodywise.com/product/lightest-mineral-sunscreen-spf50",
