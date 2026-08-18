@@ -10,7 +10,7 @@ key: "how-to-choose-face-wash",
 
   date: "2026-05-25T18:30:00+05:30",
 
-dateModified: "2026-07-21T18:30:00+05:30",
+dateModified: "2026-08-17T00:00:00+05:30",
 
   author: [
     {

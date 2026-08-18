@@ -10,7 +10,7 @@ window.CURRENT_ARTICLE = {
 
   date: "2026-04-30T17:40:00+05:30",
 
-  dateModified: "2026-07-21T18:30:00+05:30",
+  dateModified: "2026-08-18T00:00:00+05:30",
 
   author: [
     {
