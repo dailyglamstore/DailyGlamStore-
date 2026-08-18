@@ -372,8 +372,11 @@ metaLine:
       title:
         "🛍 Buy Lotus SPF 50 Sunscreen",
 
+      image:
+        "/images/beauty-images/blog/thumb-image/lotus-spf-50-sunscreen.PNG",
+
       href:
-"https://www.lotusbotanicals.com/products/carrot-niacinamide-glow-and-de-tan-mineral-sunscreen-spf-50-pa?ref=Daily-Glam-Store",
+        "https://www.lotusbotanicals.com/products/carrot-niacinamide-glow-and-de-tan-mineral-sunscreen-spf-50-pa?ref=Daily-Glam-Store",
 
       type:
         "affiliateProduct",
@@ -389,8 +392,11 @@ metaLine:
       title:
         "🛍 Buy Be Bodywise SPF 50 Sunscreen",
 
+      image:
+        "/images/beauty-images/blog/thumb-image/be-bodywise-spf-50-sunscreen.PNG",
+
       href:
-"https://bebodywise.com/product/lightest-mineral-sunscreen-spf50",
+        "https://bebodywise.com/product/lightest-mineral-sunscreen-spf50",
 
       type:
         "affiliateProduct",
@@ -413,6 +419,9 @@ alternativeProducts: {
       title:
         "WishCare Niacinamide Oil Balance Fluid Sunscreen SPF 50",
 
+      image:
+        "/images/beauty-images/blog/thumb-image/wishcare-niacinamide-sunscreen-spf-50.PNG",
+
       href:
         "https://www.mywishcare.com/products/niacinamide-oil-balance-fluid-spf-50-sunscreen?ref=DEEPAKMAHAJAN&utm_campaign=inf",
 
@@ -429,6 +438,9 @@ alternativeProducts: {
     {
       title:
         "Gush Beauty Sun Spritz Cooling Sunscreen Spray SPF 50",
+
+      image:
+        "/images/beauty-images/blog/thumb-image/gush-beauty-sun-spritz-spf-50.PNG",
 
       href:
         "https://gushbeauty.com/products/sun-spritz?ref=Daily-Glam-Store&utm_campaign=affiliate_promotion&utm_medium=source&utm_source=affiliate",
