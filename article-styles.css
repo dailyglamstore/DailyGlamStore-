@@ -938,7 +938,7 @@ html { scroll-behavior: smooth; }
 
 /* Reduced left padding when thumbnail badge is present */
 .final-product-btn.has-thumb {
-  padding-left: 14px;
+  padding-left: 18px;
 }
 
 .final-product-btn:hover {
@@ -991,7 +991,7 @@ html { scroll-behavior: smooth; }
 }
 
 .alternative-product-btn.has-thumb {
-  padding-left: 6px;
+  padding-left: 14px;
 }
 
 .alternative-product-btn:hover {
@@ -1003,15 +1003,14 @@ html { scroll-behavior: smooth; }
   width: 40px;
   height: 40px;
   border-radius: 8px;
-  object-fit: contain; /* Keeps entire product shape visible */
+  object-fit: contain;
   background: #fff;
   padding: 0;
-  transform: scale(1.15); /* Zooms the transparent PNG */
-  overflow: hidden; /* CRITICAL: Clips zoomed edges inside the 40px box */
+  transform: scale(1.15);
   flex-shrink: 0;
+  margin-right: 6px; /* NEW: Shifts the title text further to the right */
   box-shadow: 0 1px 3px rgba(0,0,0,0.12);
 }
-
 
 .product-btn-text {
   flex: 1;
