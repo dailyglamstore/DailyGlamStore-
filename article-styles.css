@@ -1003,13 +1003,15 @@ html { scroll-behavior: smooth; }
   width: 40px;
   height: 40px;
   border-radius: 8px;
-  object-fit: contain;
+  object-fit: contain; /* Keeps entire product shape visible */
   background: #fff;
-  padding: 0; /* Removes CSS border padding */
-  transform: scale(1.18); /* Zooms the transparent PNG to fill the empty space */
+  padding: 0;
+  transform: scale(1.15); /* Zooms the transparent PNG */
+  overflow: hidden; /* CRITICAL: Clips zoomed edges inside the 40px box */
   flex-shrink: 0;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12);
 }
+
 
 .product-btn-text {
   flex: 1;
