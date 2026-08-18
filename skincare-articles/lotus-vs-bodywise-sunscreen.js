@@ -393,7 +393,7 @@ metaLine:
         "🛍 Buy Be Bodywise SPF 50 Sunscreen",
 
       image:
-        "/images/beauty-images/blog/thumb-image/be-bodywise-spf-50-sunscreen.PNG",
+        "/images/beauty-images/blog/thumb-image/be-bodywise-spf-50-sunscreen-1.PNG",
 
       href:
         "https://bebodywise.com/product/lightest-mineral-sunscreen-spf50",
