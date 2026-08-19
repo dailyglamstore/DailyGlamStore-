@@ -12,7 +12,7 @@ key: "lotus-vs-bodywise-sunscreen",
 
   date: "2026-06-14T21:38:00+05:30",
 
-  dateModified: "2026-08-18T00:00:00+05:30",
+  dateModified: "2026-08-19T00:00:00+05:30",
 
 author: [
   {
