@@ -2686,6 +2686,74 @@ if (blogSliderWrap) {
   }, { threshold: 0.6 });
 
   blogObserver.observe(blogSliderWrap);
+  
+  function ensureBlogSliderFallback() {
+    const blogTrack = document.getElementById("blogSliderTrack");
+
+    if (!blogTrack) {
+      return;
+    }
+
+    // Primary renderer already populated the slider.
+    if (blogTrack.children.length > 0) {
+      return;
+    }
+
+    const fallbackArticles = [
+      ...Object.values(window.SKINCARE_ARTICLES || {}),
+      ...Object.values(window.HAIRCARE_ARTICLES || {})
+    ];
+
+    if (!fallbackArticles.length) {
+      return;
+    }
+
+    const sortedArticles = [...fallbackArticles].sort((a, b) => {
+      if (a.badge === "featured") return -1;
+      if (b.badge === "featured") return 1;
+
+      return new Date(b.date || 0) - new Date(a.date || 0);
+    });
+
+    blogTrack.innerHTML = sortedArticles.slice(0, 5).map(article => {
+
+      let badgeHTML = "";
+
+      if (article.badge === "featured") {
+        badgeHTML = `<span class="blog-slide-badge">⭐ Featured</span>`;
+      } else if (article.badge === "new") {
+        badgeHTML = `<span class="blog-slide-badge">New</span>`;
+      }
+
+      return `
+        <a href="${article.url}" target="_blank" rel="noopener noreferrer" class="blog-slide-card">
+
+          ${badgeHTML}
+
+          <div class="blog-slide-media">
+            <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
+          </div>
+
+          <h3>${article.title}</h3>
+          <p>${(article.intro || "").slice(0, 90)}...</p>
+
+          <span class="blog-slide-link">
+            Read Article <span aria-hidden="true">→</span>
+          </span>
+
+        </a>
+      `;
+
+    }).join("");
+  }
+
+  document.addEventListener("articlesLoaded", function () {
+    // Primary renderer should already have populated the slider.
+    // Fallback runs only if the slider is still empty.
+    ensureBlogSliderFallback();
+  });
+  
+}
 
 window.addEventListener("resize", function () {
   refreshActiveFaqHeight();
