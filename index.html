@@ -2687,52 +2687,6 @@ if (blogSliderWrap) {
 
   blogObserver.observe(blogSliderWrap);
 
-const blogTrack = document.getElementById("blogSliderTrack");
-
-if (blogTrack && ALL_BLOG_ARTICLES.length) {
-
-  const sortedArticles = [...ALL_BLOG_ARTICLES].sort((a, b) => {
-    
-    if (a.badge === "featured") return -1;
-    if (b.badge === "featured") return 1;
-
-    return new Date(b.date || 0) - new Date(a.date || 0);
-  });
-
-  blogTrack.innerHTML = sortedArticles.slice(0, 5).map(article => {
-
-    let badgeHTML = "";
-
-    if (article.badge === "featured") {
-      badgeHTML = `<span class="blog-slide-badge">⭐ Featured</span>`;
-    } else if (article.badge === "new") {
-      badgeHTML = `<span class="blog-slide-badge">New</span>`;
-    }
-
-    return `
-      <a href="${article.url}" target="_blank" rel="noopener noreferrer" class="blog-slide-card">
-        
-        ${badgeHTML}
-
-        <div class="blog-slide-media">
-          <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
-        </div>
-
-        <h3>${article.title}</h3>
-        <p>${(article.intro || "").slice(0, 90)}...</p>
-
-        <span class="blog-slide-link">
-          Read Article <span aria-hidden="true">→</span>
-        </span>
-      </a>
-    `;
-  }).join("");
-}
-
-  resetBlogSliderToStart();
-  window.requestAnimationFrame(resetBlogSliderToStart);
-}
-
 window.addEventListener("resize", function () {
   refreshActiveFaqHeight();
 });
