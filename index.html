@@ -21,6 +21,83 @@
   <meta name="keywords" content="beauty recommendations, skincare routine, haircare routine, makeup picks, best face wash, best shampoo, eye makeup, lip care" />
   
   <link rel="stylesheet" href="homepage.css" />
+
+  <style>
+    /* Section Headings Animation on Hover/Click */
+    .section-title, .subcategory-heading, .subsection-title, .routine-heading-capsule, .faq-category-title {
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.25s ease;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .section-title:active, .subcategory-heading:active, .subsection-title:active, .routine-heading-capsule:active {
+      transform: translateY(-5px) scale(1.03);
+    }
+
+    /* Menu Toggle Hamburger Bars */
+    .menu-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 6px 10px;
+    }
+    .hamburger-icon {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 18px;
+      height: 14px;
+    }
+    .hamburger-icon span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: #800020;
+      border-radius: 2px;
+    }
+
+    /* FAQ Toggle Arrows */
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #333;
+      cursor: pointer;
+    }
+    .faq-toggle::after {
+      content: '▼';
+      font-size: 12px;
+      margin-left: 8px;
+      transition: transform 0.3s ease;
+      display: inline-block;
+      color: #800020;
+    }
+    .faq-item.active .faq-toggle::after {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      display: none;
+      padding: 0 16px 12px 16px;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    .faq-item:nth-child(n+4) {
+      display: none;
+    }
+    .faq-group-expanded .faq-item {
+      display: block !important;
+    }
+  </style>
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CM68D7HP38"></script>
   <script>
@@ -43,7 +120,11 @@
     </a>
     <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
       <span class="menu-text">Menu</span>
-      <span class="menu-icon"></span>
+      <span class="hamburger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
     </button>
     <nav class="main-nav" id="mainNav">
       <a href="#home">Home</a>
@@ -89,12 +170,12 @@
 </section>
 
 <div class="trust-strip">
-  <div>Expert-curated beauty recommendations</div>
-  <div>Shop directly from official brand websites</div>
-  <div>Save time choosing the right products</div>
-  <div>Explore ongoing discounts &amp; brand offers</div>
-  <div>100% transparent affiliate recommendations</div>
-  <div>Backed by real retail experience</div>
+  <div>✔️ Expert-curated beauty recommendations</div>
+  <div>✔️ Shop directly from official brand websites</div>
+  <div>✔️ Save time choosing the right products</div>
+  <div>✔️ Explore ongoing discounts &amp; brand offers</div>
+  <div>✔️ 100% transparent affiliate recommendations</div>
+  <div>✔️ Backed by real retail experience</div>
 </div>
 
 <section class="brand-strip">
@@ -466,8 +547,11 @@
 <script src="/beauty-blog-loader.js"></script>
 
 <script>
+/* Blog Slider Auto Scroll Setup */
+let sliderTimer = null;
 function renderHomepageBlogSlider() {
   const sliderTrack = document.getElementById("blogSliderTrack") || document.querySelector(".blog-slider-track");
+  const sliderWrap = document.getElementById("blogSliderWrap");
   if (!sliderTrack) return;
   const allArticles = [
     ...Object.values(window.SKINCARE_ARTICLES || {}),
@@ -488,6 +572,31 @@ function renderHomepageBlogSlider() {
       </a>
     </div>
   `).join("");
+
+  /* Auto Scroll Functionality */
+  if (sliderWrap) {
+    if (sliderTimer) clearInterval(sliderTimer);
+    sliderTimer = setInterval(() => {
+      const maxScrollLeft = sliderWrap.scrollWidth - sliderWrap.clientWidth;
+      if (sliderWrap.scrollLeft >= maxScrollLeft - 5) {
+        sliderWrap.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        sliderWrap.scrollBy({ left: 260, behavior: 'smooth' });
+      }
+    }, 3500);
+
+    sliderWrap.addEventListener('mouseenter', () => clearInterval(sliderTimer));
+    sliderWrap.addEventListener('mouseleave', () => {
+      sliderTimer = setInterval(() => {
+        const maxScrollLeft = sliderWrap.scrollWidth - sliderWrap.clientWidth;
+        if (sliderWrap.scrollLeft >= maxScrollLeft - 5) {
+          sliderWrap.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          sliderWrap.scrollBy({ left: 260, behavior: 'smooth' });
+        }
+      }, 3500);
+    });
+  }
 }
 
 document.addEventListener("articlesLoaded", function () {
@@ -496,6 +605,7 @@ document.addEventListener("articlesLoaded", function () {
 </script>
 
 <script>
+/* Menu Navigation */
 const menuToggle = document.getElementById("menuToggle");
 const mainNav = document.getElementById("mainNav");
 const siteHeader = document.getElementById("siteHeader");
@@ -549,21 +659,33 @@ document.addEventListener("click", function (e) {
   }
 });
 
-function isCrossPageLink(link) {
-  const href = link.getAttribute("href") || "";
-  return href.trim() !== "" && !href.startsWith("#");
-}
-
-document.querySelectorAll("#mainNav a").forEach(function (link) {
-  link.addEventListener("click", function () {
-    closeMenu();
+/* FAQ Expand & Accordion Logic */
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".faq-question").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const parentItem = this.closest(".faq-item");
+      const expanded = this.getAttribute("aria-expanded") === "true";
+      this.setAttribute("aria-expanded", !expanded);
+      parentItem.classList.toggle("active");
+    });
   });
-  if (isCrossPageLink(link)) {
-    link.addEventListener("contextmenu", function () { closeMenu(); });
-    link.addEventListener("auxclick", function () { closeMenu(); });
-  }
+
+  document.querySelectorAll(".faq-more-toggle").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const categoryGroup = this.closest(".faq-category");
+      const isExpanded = categoryGroup.classList.contains("faq-group-expanded");
+      if (isExpanded) {
+        categoryGroup.classList.remove("faq-group-expanded");
+        this.textContent = "+ Show more questions";
+      } else {
+        categoryGroup.classList.add("faq-group-expanded");
+        this.textContent = "- Show less questions";
+      }
+    });
+  });
 });
 
+/* Smooth Scroll & Window Effects */
 window.addEventListener("scroll", function () {
   if (window.scrollY > 18) {
     siteHeader.classList.add("shrink");
@@ -576,57 +698,11 @@ window.addEventListener("scroll", function () {
   } else {
     backToTopButton.style.display = "none";
   }
-  
-  if (window.innerWidth <= 768 && mainNav.classList.contains("show")) {
-    closeMenu();
-  }
 });
 
 backToTopButton.addEventListener("click", function () {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
-</script>
-
-<script>
-(function () {
-  const HEADER_OFFSET = 95;
-  function scrollToHash(behavior) {
-    const hash = window.location.hash;
-    if (!hash) return;
-    const target = document.querySelector(hash);
-    if (!target) return;
-    const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
-    window.scrollTo({
-      top: elementPosition - HEADER_OFFSET,
-      behavior: behavior || "smooth"
-    });
-  }
-
-  function correctHashPosition(behavior) {
-    if (!window.location.hash) return;
-    let corrections = 0;
-    const maxCorrections = 8;
-    function checkPosition() {
-      if (!window.location.hash) return;
-      scrollToHash(behavior);
-      corrections++;
-      if (corrections < maxCorrections) {
-        setTimeout(checkPosition, 250);
-      }
-    }
-    setTimeout(checkPosition, 150);
-  }
-
-  window.addEventListener("load", function () {
-    if (window.location.hash) {
-      correctHashPosition("auto");
-    }
-  });
-
-  window.addEventListener("hashchange", function () {
-    correctHashPosition("smooth");
-  });
-})();
 </script>
 
 <script type="application/ld+json">
@@ -637,30 +713,5 @@ backToTopButton.addEventListener("click", function () {
   "url": "https://dailyglamstore.in/"
 }
 </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Daily Glam Store",
-  "url": "https://dailyglamstore.in/",
-  "logo": "https://dailyglamstore.in/images/logo.png"
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Daily Glam Store Beauty Recommendations",
-  "url": "https://dailyglamstore.in/",
-  "description": "Curated skincare and haircare product recommendations, beauty routines, blog articles and trusted brand selections.",
-  "about": [
-    "Skincare",
-    "Haircare",
-    "Makeup & Cosmetics",
-    "Beauty Recommendations"
-  ]
-}
-</script>
-
 </body>
 </html>
