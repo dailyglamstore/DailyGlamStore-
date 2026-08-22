@@ -1,1823 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Beauty Recommendations, Skincare, Haircare & Makeup Guides | Daily Glam Store</title>
-
-  <meta
-    name="description"
-    content="Explore skincare, haircare, and makeup product recommendations by Daily Glam Store. Find the best face wash, serum, shampoo, eye makeup, and lip care with easy buying guides."
-  />
-
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://dailyglamstore.in/" />
-  
-  <meta property="og:title" content="Daily Glam Store | Skincare, Haircare & Makeup Recommendations">
-  <meta property="og:description" content="Explore skincare, haircare, and makeup recommendations, beauty guides, routines, and curated product picks by Daily Glam Store.">
-  <meta property="og:url" content="https://dailyglamstore.in/">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://dailyglamstore.in/images/logo.png">
-    
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Daily Glam Store | Beauty & Makeup Recommendations">
-  <meta name="twitter:description" content="Skincare, haircare, makeup picks, beauty guides, and curated recommendations by Daily Glam Store.">
-  <meta name="twitter:image" content="https://dailyglamstore.in/images/logo.png">
-
-  <meta name="keywords" content="beauty recommendations, skincare routine, haircare routine, makeup picks, best face wash, best shampoo, eye makeup, lip care" />
-  
-  <style>
-  
-    html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 95px;
-}
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #faf7f6;
-      color: #4b3f3a;
-      line-height: 1.6;
-    }
-
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    :root {
-      --bg-main: #faf7f6;
-      --bg-soft: #fff7f4;
-      --bg-soft-2: #fff3ee;
-      --bg-header: #ffe0ea;
-      --brand: #b2455a;
-      --brand-dark: #7a3b4a;
-      --text-soft: #9a6b5f;
-      --border: #f1b6c6;
-      --border-soft: #f1cfc4;
-      --white: #ffffff;
-      --shadow: 0 8px 24px rgba(178, 69, 90, 0.08);
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: var(--bg-header);
-      border-bottom: 1px solid var(--border);
-      padding: 6px 10px;
-      transition: padding 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .site-header.shrink {
-      padding: 3px 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-    }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      position: relative;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .brand {
-      text-decoration: none;
-      color: inherit;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 0;
-      padding: 2px 4px;
-      margin: -2px -4px;
-      border-radius: 8px;
-      flex-shrink: 0;
-    }
-
-    .brand-logo {
-      width: 48px;
-      height: 48px;
-      object-fit: contain;
-      flex-shrink: 0;
-      transition: width 0.25s ease, height 0.25s ease;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      line-height: 1.15;
-      min-width: 0;
-      transition: transform 0.25s ease;
-    }
-
-    .brand-name {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--brand);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transition: font-size 0.25s ease;
-    }
-
-    .brand-tagline {
-      font-size: 11px;
-      color: var(--text-soft);
-      margin-top: 2px;
-      transition: font-size 0.25s ease;
-    }
-
-    .site-header.shrink .brand-logo { width: 36px; height: 36px; }
-    .site-header.shrink .brand-name { font-size: 17px; }
-    .site-header.shrink .brand-tagline { font-size: 11px; }
-
-    .menu-toggle {
-      color: var(--brand-dark);
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 6px;
-      background: transparent;
-      border: 0;
-      padding: 6px 8px;
-      font-family: inherit;
-      line-height: 1;
-      border-radius: 0;
-    }
-
-    .menu-toggle:hover {
-      background: rgba(255, 255, 255, 0.28);
-    }
-
-    .menu-toggle .menu-icon {
-      font-size: 22px;
-      line-height: 1;
-    }
-
-    .main-nav {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .main-nav > a,
-    .nav-dropbtn {
-      text-decoration: none;
-      color: #4b3f3a;
-      font-size: 14px;
-      font-weight: 600;
-      background: none;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      font-family: inherit;
-    }
-
-    .main-nav > a:hover,
-    .nav-dropbtn:hover {
-      color: var(--brand);
-    }
-
-    .categories-icon {
-      color: #d4a514;
-      font-size: 14px;
-      font-weight: 700;
-      margin-right: 2px;
-    }
-
-    .nav-dropdown {
-      position: relative;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 24px;
-      left: 0;
-      min-width: 230px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      box-shadow: var(--shadow);
-      padding: 8px 0;
-    }
-
-    .dropdown-content a {
-      display: block;
-      padding: 10px 14px;
-      font-size: 13px;
-      color: #4b3f3a;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .dropdown-content a:hover {
-      background: var(--bg-soft);
-      color: var(--brand);
-    }
-
-    @media (min-width: 769px) {
-      .nav-dropdown:hover .dropdown-content {
-        display: block;
-      }
-    }
-
-    .hero,
-.section,
-.footer-section,
-#home,
-#top-picks,
-#skincare-recommendations,
-#haircare-recommendations,
-#quick-skincare-routine,
-#quick-haircare-routine,
-#beauty-faqs,
-#about,
-#ordering,
-#disclaimer,
-#affiliate,
-#privacy,
-#contact,
-#makeup {
-  scroll-margin-top: 95px;
-}
-
-        .hero {
-      background: var(--white);
-      text-align: center;
-      padding: 28px 16px 22px;
-      border-bottom: 1px solid #f4e1e7;
-    }
-
-    .hero-inner {
-      max-width: 800px;
-      margin: auto;
-    }
-
-            /* Compact Affiliate Disclosure Note (Before Brands) */
-    .top-affiliate-banner {
-      background: transparent;
-      color: #7a6e69;
-      font-size: 11px;
-      line-height: 1.4;
-      text-align: center;
-      margin: 0 auto 16px auto; /* 16px gap before the Featured Brands heading */
-      max-width: 500px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .top-affiliate-banner strong {
-      color: var(--brand, #b2455a);
-    }
-
-    .hero h1 {
-      margin: 0 0 10px;
-      font-size: 26px;
-      line-height: 1.3;
-      color: var(--brand);
-    }
-
-    .hero p {
-      margin: 0;
-      font-size: 15px;
-      color: var(--text-soft);
-    }
-
-    .trust-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      padding: 12px;
-      background: var(--bg-soft);
-      border-top: 1px solid var(--border-soft);
-      border-bottom: 1px solid var(--border-soft);
-      font-size: 12.5px;
-      font-weight: 600;
-    }
-
-    .trust-strip div {
-      text-align: center;
-      color: var(--brand-dark);
-    }
-
-    .brand-strip {
-      background: var(--white);
-      text-align: center;
-      padding: 22px 16px;
-      border-bottom: 1px solid var(--border-soft);
-    }
-
-    .brand-strip h2 {
-      margin: 0 0 14px;
-      font-size: 20px;
-      color: #9b4562;
-    }
-
-    .brand-logos {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 22px;
-      margin-bottom: 12px;
-    }
-
-    .brand-logos img {
-      height: 34px;
-      width: auto;
-      max-width: 120px;
-      object-fit: contain;
-    }
-
-    .brand-note {
-      margin: 0;
-      font-size: 13px;
-      color: var(--text-soft);
-    }
-
-    .section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 28px 16px;
-    }
-
-    .section-title {
-  margin: 0 0 10px;
-  padding: 11px 14px;
-  border-left: 6px solid var(--brand);
-  border-radius: 10px;
-  background: #ffe0ea;
-  font-size: 21px;
-  line-height: 1.35;
-  color: var(--brand-dark);
-  text-align: left;
-  transition:
-    transform 0.22s ease,
-    box-shadow 0.22s ease,
-    background-color 0.22s ease;
-}
-
-.section-title.clicked {
-  transform: scale(0.985);
-  background: #ffd2e1;
-
-  box-shadow:
-    0 0 0 2px rgba(201, 90, 123, 0.12),
-    0 8px 18px rgba(201, 90, 123, 0.22);
-}
-    
-    .section-intro {
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto 18px;
-      color: var(--text-soft);
-      font-size: 14px;
-    }
-
-    .section-divider { display: none; }
-
-    .section-heading-wrap {
-      margin-bottom: 8px;
-    }
-
-      .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 15px;
-    }
-
-    .product-card {
-      background: var(--white);
-      border: 1.5px solid var(--border-soft);
-      border-radius: 12px;
-      padding: 7px 7px 6px;
-      box-shadow: 0 4px 14px rgba(178, 69, 90, 0.08);
-    }
-
-    .product-media {
-      position: relative;
-      border-radius: 10px;
-      padding: 5px;
-      margin-bottom: 3px;
-      border: 1px solid #d7a0ac;
-      background: linear-gradient(145deg, #fff9f6 0%, #fff1ec 100%);
-      box-shadow: inset 0 0 0 1px rgba(178, 69, 90, 0.08);
-      overflow: hidden;
-    }
-
-    .product-badge {
-      position: absolute;
-      top: 9px;
-      left: 9px;
-      z-index: 2;
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #b2455a;
-      color: #fff;
-      font-size: 11px;
-      line-height: 1;
-      font-weight: 700;
-      box-shadow: 0 2px 8px rgba(58, 19, 29, 0.18);
-    }
-
-    .product-img {
-      width: 100%;
-      border-radius: 7px;
-      display: block;
-      margin-bottom: 0;
-      background: #fff;
-    }
-    
-    /* ===========================================================
-   Product Card Image Slider & Pagination Dots
-=========================================================== */
-.card-media-wrapper {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.product-slider {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Hide scrollbar for Firefox */
-}
-
-.product-slider::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for Chrome/Safari */
-}
-
-.product-slider .product-img {
-  flex: 0 0 100%;
-  width: 100%;
-  scroll-snap-align: start;
-  object-fit: cover;
-}
-
-/* Pagination Dots */
-.slider-dots {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 0 2px 0;
-}
-
-.dot {
-  width: 6px;
-  height: 6px;
-  background-color: #d1d5db;
-  border-radius: 50%;
-  transition: all 0.2s ease-in-out;
-}
-
-.dot.active {
-  background-color: var(--brand); /* Uses your site's #b2455a brand rose color */
-  width: 16px;
-  border-radius: 4px;
-}
-
-    .product-title {
-      margin: 0 0 1px;
-      font-size: 14px;
-      line-height: 1.3;
-      color: #4b3f3a;
-    }
-
-    .product-meta {
-      font-size: 11.5px;
-      color: var(--text-soft);
-      margin-bottom: 2px;
-    }
-
-    .price-row {
-      font-size: 12px;
-      margin-bottom: 3px;
-      color: var(--text-soft);
-    }
-
-    .discount-highlight {
-      font-weight: 700;
-      color: var(--brand);
-    }
-
-                            /* Container for Dual Action Buttons */
-    .product-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 6px;
-      width: 100%;
-    }
-
-    /* Base Button Styling (Full Width) */
-    .price-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      text-align: center;
-      text-decoration: none;
-      padding: 9px 12px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.2;
-      width: 100%;
-      box-sizing: border-box;
-      transition: all 0.2s ease;
-    }
-
-    .price-btn:hover {
-      opacity: 0.92;
-      transform: translateY(-1px);
-    }
-
-    /* Primary Option 1: Amazon (Warm Amber Gold) */
-    .price-btn.btn-amazon {
-      background: #f3a847;
-      color: #111111;
-      border: 1px solid #e29230;
-      box-shadow: 0 2px 5px rgba(243, 168, 71, 0.22);
-    }
-
-    .price-btn.btn-amazon:hover {
-      background: #e89b37;
-    }
-
-    /* Primary Option 2: Official Website (Deep Theme Rose) */
-    .price-btn.btn-brand {
-      background: var(--brand, #b2455a);
-      color: #ffffff;
-      border: 1px solid var(--brand, #b2455a);
-      box-shadow: 0 2px 5px rgba(178, 69, 90, 0.18);
-    }
-
-    .price-btn.btn-brand:hover {
-      background: #9d3a4d;
-      border-color: #9d3a4d;
-    }
-
-    .price-note {
-      margin: 0;
-      text-align: center;
-      font-size: 10.5px;
-      line-height: 1.3;
-      color: var(--text-soft);
-    }
-
-    .checkout-note {
-      margin: 0 0 2px;
-      text-align: center;
-      font-size: 10.5px;
-      line-height: 1.3;
-      color: var(--text-soft);
-    }
-
-    .toggle-header {
-      margin-top: 12px;
-      font-size: 11.5px;
-      color: var(--brand);
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .toggle-content {
-      display: none;
-      margin-top: 4px;
-      font-size: 11.5px;
-      color: #5c514c;
-    }
-
-    .toggle-content ul {
-      margin: 0;
-      padding-left: 18px;
-    }
-
-    .toggle-content li {
-      margin-bottom: 3px;
-    }
-
-    .guide-box {
-      background: var(--white);
-      border: 1px solid var(--border-soft);
-      border-radius: 12px;
-      padding: 18px;
-      margin-top: 18px;
-      box-shadow: 0 4px 12px rgba(178, 69, 90, 0.08);
-      transition: box-shadow 0.2s ease;
-    }
-
-    .guide-box:active {
-      box-shadow: 0 7px 16px rgba(178, 69, 90, 0.12);
-    }
-
-    .guide-box h3 {
-      margin-top: 0;
-      color: var(--brand);
-    }
-
-    .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      max-width: 760px;
-      margin: 0 auto;
-    }
-
-    .mini-card {
-      background: var(--white);
-      border: 1px solid var(--border-soft);
-      border-radius: 12px;
-      padding: 12px;
-      box-shadow: 0 4px 12px rgba(178, 69, 90, 0.08);
-      transition: box-shadow 0.2s ease;
-    }
-
-    .mini-card:active {
-      box-shadow: 0 8px 18px rgba(178, 69, 90, 0.13);
-    }
-
-    .mini-card h4 {
-      margin: 0 0 8px;
-      color: var(--brand);
-      font-size: 15px;
-    }
-
-    .mini-card ul {
-      margin: 0;
-      padding-left: 18px;
-      font-size: 13px;
-    }
-
-    .routine-flow {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      text-align: center;
-      font-size: 13px;
-      color: #4b3f3a;
-    }
-
-    .routine-arrow {
-      position: relative;
-      display: block;
-      width: 14px;
-      height: 20px;
-      margin: 0 auto;
-      overflow: hidden;
-      text-indent: -9999px;
-      user-select: none;
-    }
-
-    .routine-arrow::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 0;
-      width: 2px;
-      height: 13px;
-      transform: translateX(-50%);
-      border-radius: 3px;
-      background: linear-gradient(180deg, #c56a82 0%, #b2455a 100%);
-      opacity: 0.8;
-    }
-
-    .routine-arrow::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 8px;
-      width: 7px;
-      height: 7px;
-      transform: translateX(-50%) rotate(45deg);
-      border-right: 2px solid #b2455a;
-      border-bottom: 2px solid #b2455a;
-      opacity: 0.8;
-    }
-
-    .routine-heading-capsule {
-      display: flex;
-      width: fit-content;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto;
-      padding: 12px 30px;
-      border-radius: 999px;
-      border: 1.5px solid #e7b2c0;
-      background: #fff9f8;
-      box-shadow: 0 4px 10px rgba(178, 69, 90, 0.08);
-      text-align: center;
-      line-height: 1.15;
-    }
-
-    .routine-heading-lines {
-      display: block;
-      font-size: 20px;
-      color: var(--brand-dark);
-      letter-spacing: 0.01em;
-    }
-
-    .routine-intro {
-      text-align: center;
-      max-width: 640px;
-      margin: 10px auto 18px;
-      color: var(--text-soft);
-      font-size: 14px;
-    }
-
-    .routine-card {
-      text-align: center;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      border: 1.5px solid var(--border-soft);
-      box-shadow: 0 5px 14px rgba(178, 69, 90, 0.1);
-    }
-
-    .routine-card:hover,
-    .routine-card:focus-within {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 11px 24px rgba(178, 69, 90, 0.16);
-      border-color: #e2a8b8;
-    }
-
-    .routine-card:active {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 12px 24px rgba(178, 69, 90, 0.18);
-      border-color: #d98ea4;
-    }
-    
-    .routine-card.clicked {
-  transform: translateY(-2px) scale(1.015);
-
-  background: #fff7fa;
-
-  border-color: #d98ea4;
-
-  box-shadow:
-    0 0 0 2px rgba(201, 90, 123, 0.08),
-    0 10px 22px rgba(201, 90, 123, 0.16);
-}
-
-.routine-card.in-view {
-  transform: translateY(-2px) scale(1.01);
-
-  background: #fff9fb;
-
-  border-color: #e3a7b7;
-
-  box-shadow:
-    0 0 0 3px rgba(201, 90, 123, 0.08),
-    0 10px 22px rgba(201, 90, 123, 0.14);
-}
-
-    .routine-card h4 {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .routine-flow-step {
-      font-weight: 600;
-    }
-
-    .routine-hint {
-      font-size: 12px;
-      color: var(--text-soft);
-      line-height: 1.3;
-      margin-top: -2px;
-    }
-
-    .routine-single {
-      grid-template-columns: 1fr;
-      max-width: 520px;
-    }
-
-    .routine-single > .mini-card:last-child:nth-child(odd) {
-      width: 100%;
-    }
-
-    .faq-section {
-      padding-top: 22px;
-      padding-bottom: 26px;
-    }
-
-    .faq-wrap {
-      max-width: 860px;
-      margin: 0 auto;
-      display: grid;
-      gap: 14px;
-    }
-
-    .faq-category {
-      background: var(--white);
-      border: 1px solid #efcfca;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(178, 69, 90, 0.08);
-      overflow: hidden;
-    }
-
-    .faq-category-title {
-      margin: 0;
-      padding: 13px 14px;
-      font-size: 16px;
-      line-height: 1.35;
-      color: var(--brand-dark);
-      background: #fff3ee;
-      border-bottom: 1px solid #f1ddd7;
-    }
-
-    .faq-list {
-      display: block;
-    }
-
-    .faq-list.faq-extras-collapsed .faq-extra-item {
-      display: none;
-    }
-
-    .faq-extra-item {
-      display: block;
-    }
-
-    .faq-item + .faq-item {
-      border-top: 1px solid #f3e1dc;
-    }
-
-    .faq-question {
-      width: 100%;
-      border: 0;
-      background: transparent;
-      text-align: left;
-      padding: 13px 14px;
-      color: #4b3f3a;
-      font: inherit;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.45;
-      cursor: pointer;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 10px;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .faq-question:hover {
-      background: #fff8f6;
-    }
-
-    .faq-toggle {
-      color: var(--brand);
-      font-size: 13px;
-      line-height: 1;
-      margin-top: 3px;
-      transition: transform 0.25s ease;
-      flex: 0 0 auto;
-    }
-
-    .faq-item.open .faq-toggle {
-      transform: rotate(180deg);
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.28s ease;
-      background: #fffdfc;
-    }
-
-    .faq-answer-inner {
-      margin: 0;
-      padding: 0 14px 14px;
-      color: #655752;
-      font-size: 13px;
-      line-height: 1.65;
-    }
-
-    .faq-more-wrap {
-      padding: 8px 14px 14px;
-      display: flex;
-      justify-content: center;
-      background: var(--white);
-    }
-
-    .faq-more-toggle {
-      border: 1px solid #d78ea3;
-      background: #fff4f7;
-      color: var(--brand);
-      border-radius: 999px;
-      padding: 8px 14px;
-      font: inherit;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.1px;
-      cursor: pointer;
-      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .faq-more-toggle:hover {
-      background: #ffeaf0;
-      border-color: #cc758f;
-      color: var(--brand-dark);
-    }
-
-    .tip-note {
-      margin-top: 12px;
-      background: #fff0ec;
-      border-left: 4px solid var(--brand);
-      border-radius: 10px;
-      padding: 10px 12px;
-      font-size: 13px;
-      color: #5c514c;
-      max-width: 760px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .tip-note .tip-body {
-      font-style: italic;
-    }
-
-    .mini-grid > .mini-card:last-child:nth-child(odd) {
-      grid-column: 1 / -1;
-      width: calc((100% - 12px) / 2);
-      justify-self: center;
-    }
-
-    .guide-links-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .guide-deep-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      text-decoration: none;
-      background: #ffe8ee;
-      border: 1px solid #efc2cf;
-      color: var(--brand-dark);
-      font-size: 12.5px;
-      font-weight: 700;
-      padding: 8px 12px;
-      border-radius: 999px;
-      transition: transform 0.2s ease, background-color 0.2s ease;
-    }
-
-    .guide-deep-link:hover {
-      background: #ffd9e4;
-      transform: translateY(-1px);
-    }
-
-.blog-trending {
-  padding-top: 30px;
-  padding-bottom: 32px;
-}
-
-.blog-trending-intro {
-  margin: 0 auto 16px;
-  max-width: 660px;
-  text-align: center;
-  color: var(--text-soft);
-  font-size: 14px;
-}
-
-.blog-slider-wrap {
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-  padding-bottom: 4px;
-}
-
-.blog-slider-track {
-  display: flex;
-  gap: 14px;
-  width: max-content;
-  min-width: 100%;
-}
-
-.blog-slide-card {
-  width: min(290px, calc(100vw - 46px));
-  scroll-snap-align: start;
-  background: var(--white);
-  border: 1.5px solid var(--border-soft);
-  border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(178, 69, 90, 0.08);
-
-  padding: 8px;
-  padding-top: 18px;
-
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-
-  position: relative;
-}
-
-.blog-slide-card:link {
-  color: var(--brand-dark);
-}
-
-.blog-slide-card:hover h3 {
-  color: var(--brand);
-}
-
-.blog-slide-card h3 {
-  transition: color 0.25s ease;
-}
-
-.blog-slide-media {
-  position: relative;
-  border-radius: 10px;
-  border: 1px solid #d7a0ac;
-  overflow: hidden;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  aspect-ratio: 16 / 9;
-  display: block;
-}
-
-.blog-slide-badge {
-  position: absolute;
-  top: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
-
-  padding: 3px 10px;
-  border-radius: 999px;
-
-  background: linear-gradient(135deg, #b2455a, #d86a83);
-  color: #fff;
-
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.2px;
-
-  box-shadow: 
-    0 3px 8px rgba(178, 69, 90, 0.22),
-    0 1px 0 rgba(255,255,255,0.25) inset;
-}
-
-.blog-slide-card p {
-  margin: 4px 0 10px;
-  font-size: 13px;
-  color: var(--text-soft);
-  flex-grow: 1;
-}
-
-.blog-slide-link {
-  text-decoration: none;
-  color: var(--brand);
-  font-size: 13px;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.blog-slide-link:hover {
-  color: var(--brand-dark);
-}
-
-.articles-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
-  align-items: start;
-}
-
-.blog-card {
-  background: var(--white);
-  border: 1.5px solid var(--border-soft);
-  border-radius: 12px;
-  padding: 8px;
-  padding-top: 18px;
-  box-shadow: 0 4px 14px rgba(178, 69, 90, 0.08);
-
-  display: flex;
-  flex-direction: column;
-
-  position: relative;
-}
-
-.blog-media {
-  width: 100%;
-  height: 160px;
-  overflow: hidden;
-  border-radius: 10px;
-  margin-bottom: 8px;
-}
-
-.blog-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 70% center;
-  display: block;
-}
-
-.blog-badge {
-  position: absolute;
-  top: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
-
-  padding: 4px 10px;
-  font-size: 10px;
-  font-weight: 700;
-  border-radius: 999px;
-  color: #fff;
-}
-
-.blog-badge.featured {
-  background: #b2455a;
-}
-
-.blog-badge.new {
-  background: #b2455a;
-}
-
-.blog-badge.popular {
-  background: #b2455a;
-}
-
-/* Blog Slider Dynamic Card Styles */
-.blog-slide-item {
-  min-width: 260px;
-  max-width: 280px;
-  flex-shrink: 0;
-}
-
-.blog-card-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-.blog-card-thumb {
-  aspect-ratio: 16 / 9;
-  width: 100%;
-  overflow: hidden;
-  background: #f7f7f7;
-}
-
-.blog-card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.blog-card-body {
-  padding: 14px;
-}
-
-.blog-card-category {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #c2185b;
-  font-weight: 700;
-}
-
-.blog-card-title {
-  font-size: 15px;
-  margin: 6px 0 8px;
-  color: #222;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-.blog-card-desc {
-  font-size: 12px;
-  color: #666;
-  margin: 0;
-  line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.fashion-box {
-  background:#fff0ec;
-  border:1.5px solid #f4d4cb;
-  border-radius:16px;
-  padding:24px 20px;
-  text-align:center;
-  box-shadow:0 4px 14px rgba(178,69,90,.08);
-}
-
-.fashion-box h3 {
-  margin:0 0 12px;
-  color:var(--brand-dark);
-  font-size:22px;
-  line-height:1.3;
-}
-
-.fashion-box p {
-  margin:0 auto 12px;
-  max-width:700px;
-  line-height:1.6;
-  color:#555;
-}
-
-.fashion-categories {
-  font-weight:600;
-  color:var(--brand);
-  margin-bottom:18px;
-}
-
-.fashion-btn {
-  display:inline-block;
-  padding:10px 20px;
-  border-radius:999px;
-  background:var(--brand);
-  color:#fff;
-  text-decoration:none;
-  font-size:16px;
-  font-weight:700;
-  line-height:1.3;
-  white-space:nowrap;
-  box-shadow:0 4px 12px rgba(178,69,90,.20);
-  transition:all .25s ease;
-}
-
-.fashion-btn:hover {
-  transform:translateY(-2px);
-  box-shadow:0 8px 18px rgba(178,69,90,.28);
-}
-
-.fashion-btn:active {
-  transform:scale(0.97);
-}
-
-@media (max-width:520px) {
-
-  .fashion-box {
-    padding:20px 16px;
-  }
-
-  .fashion-box h3 {
-    font-size:20px;
-  }
-
-  .fashion-btn {
-    width:100%;
-    max-width:300px;
-  }
-
-}
-
-    .footer-section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 0 16px;
-    }
-
-    .footer-content-area {
-      background: #fff6f2;
-      padding: 24px 0 8px;
-      margin-top: 8px;
-    }
-
-    .footer-section + .footer-section {
-      margin-top: 0;
-    }
-
-    .footer-section h2 {
-      margin: 0 0 8px;
-      font-size: 16px;
-      line-height: 1.3;
-      color: var(--brand-dark);
-    }
-
-    .footer-section p {
-      margin: 0;
-      font-size: 13px;
-      line-height: 1.6;
-      color: #555;
-    }
-
-    .footer-section p + p {
-      margin-top: 8px;
-    }
-
-    .footer-note {
-      margin-top: 8px;
-    }
-
-    .footer-contact-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .footer-contact-list li {
-      font-size: 13px;
-      line-height: 1.6;
-      color: #555;
-      margin-bottom: 5px;
-    }
-
-    .footer-contact-list li:last-child {
-      margin-bottom: 0;
-    }
-
-    .footer-contact-list a {
-      color: var(--brand-dark);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .footer-contact-list a:hover {
-      text-decoration: underline;
-    }
-
-    .contact-support-row {
-      display: block;
-    }
-
-    .contact-support-text {
-      margin: 0;
-    }
-
-    .contact-support-email {
-      font-size: 13px;
-      line-height: 1.6;
-      font-weight: 700;
-      color: var(--brand-dark);
-      text-decoration: none;
-    }
-
-    .contact-support-email:hover {
-      text-decoration: underline;
-    }
-
-    .footer-label {
-      color: var(--brand);
-      font-weight: 700;
-      margin-right: 4px;
-    }
-
-    .ordering-steps {
-      background: #fff0ec;
-      border-left: 4px solid var(--brand);
-      border-radius: 10px;
-      padding: 12px 12px 12px 14px;
-    }
-
-    .ordering-steps p + p {
-      margin-top: 10px;
-    }
-
-    .footer-section ul {
-      margin: 0;
-      padding-left: 18px;
-      color: #555;
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .footer-section li + li {
-      margin-top: 5px;
-    }
-
-    .footer-intro {
-      max-width: 1100px;
-      margin: 0 auto 12px;
-      padding: 0 16px;
-      text-align: center;
-      color: #7a3b4a;
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .footer-intro strong {
-      color: var(--brand-dark);
-    }
-
-    .footer-section {
-      padding-top: 16px;
-      padding-bottom: 16px;
-    }
-
-    #contact.footer-section {
-      padding-bottom: 8px;
-    }
-
-    .site-footer {
-      background: #fff3ee;
-      color: #7a3b4a;
-      text-align: center;
-      padding: 14px 16px 16px;
-      font-size: 11px;
-    }
-
-    .site-footer a {
-      color: #9a6b5f;
-      text-decoration: underline;
-      margin: 0;
-    }
-
-    .footer-link-feedback {
-      display: inline-block;
-      border-radius: 8px;
-      padding: 2px 6px;
-      transition: background-color 0.2s ease, transform 0.15s ease, color 0.2s ease;
-    }
-
-    .footer-link-feedback:hover {
-      background: #ffe7de;
-      color: var(--brand-dark);
-    }
-
-    .footer-link-feedback:active {
-      transform: scale(0.97);
-      background: #f9d8cc;
-    }
-
-    .footer-trust-line {
-      font-size: 13px;
-      color: #7a3b4a;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .footer-bottom-note {
-      font-size: 11px;
-      color: #9a6b5f;
-      margin-top: 6px;
-      display: inline-flex;
-      align-items: center;
-      gap: 1px;
-    }
-
-    .footer-bottom-note .globe-icon {
-      line-height: 1;
-    }
-
-    .footer-bottom-note .footer-link-feedback {
-      padding: 2px 3px;
-    }
-
-#backToTop {
-      position: fixed;
-      bottom: 20px;
-      right: 18px;
-      width: 50px;
-      height: 50px;
-      border: none;
-      border-radius: 50%;
-      background: rgba(178, 69, 90, 0.75);
-      color: #fff;
-      font-size: 26px;
-      font-weight: bold;
-      cursor: pointer;
-      display: none;
-      z-index: 9999;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    }
-
-    .footer-copy {
-      font-size: 11px;
-      color: #999;
-    }
-
-    .footer-powered {
-      font-size: 11px;
-      color: #7a3b4a;
-      margin-top: 6px;
-      font-weight: 500;
-    }
-
-    .footer-location {
-      font-size: 10px;
-      color: #9a6b5f;
-      margin-top: 2px;
-    }
-
-    @media (max-width: 768px) {
-      .main-nav {
-        display: none;
-        position: absolute;
-        top: calc(100% + 6px);
-        right: 8px;
-        flex-direction: column;
-        align-items: stretch;
-        background: var(--white);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 10px 0 0;
-        width: min(270px, calc(100vw - 16px));
-        box-shadow: var(--shadow);
-        gap: 0;
-        overflow: hidden;
-      }
-
-      .main-nav.show {
-        display: flex;
-      }
-
-      .main-nav > a {
-        display: block;
-        padding: 12px 14px;
-        border-bottom: 1px solid #f4dedf;
-      }
-
-      .main-nav > a:last-of-type {
-        border-bottom: none;
-      }
-
-      .nav-dropdown {
-        width: 100%;
-        border-bottom: 1px solid #f4dedf;
-      }
-
-      .nav-dropbtn {
-        width: 100%;
-        text-align: left;
-        padding: 12px 14px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: var(--brand-dark);
-      }
-
-      .nav-dropbtn .menu-arrow {
-        font-size: 12px;
-        transition: transform 0.25s ease;
-      }
-
-      .nav-dropdown.open .nav-dropbtn .menu-arrow {
-        transform: rotate(180deg);
-      }
-
-      .dropdown-content {
-        position: static;
-        display: none;
-        border: none;
-        box-shadow: none;
-        border-radius: 0;
-        min-width: auto;
-        padding: 0;
-        background: var(--bg-soft);
-        border-top: none;
-      }
-
-      .nav-dropdown.open .dropdown-content {
-        display: block;
-      }
-
-      .nav-dropdown.open .dropdown-content::before,
-      .nav-dropdown.open .dropdown-content::after {
-        content: "";
-        display: block;
-        height: 3px;
-        background: #d9a9b2;
-      }
-
-      .dropdown-content a {
-        padding: 11px 14px 11px 28px;
-        font-size: 13px;
-        background: var(--bg-soft);
-        border-bottom: 1px solid #f1d2c9;
-        color: var(--brand-dark);
-      }
-
-      .dropdown-content a:last-child {
-        border-bottom: none;
-      }
-      
-      .product-nav-link {
-  background: #fff7df !important;
-  font-weight: 700 !important;
-}
-      
-      .hero h1 {
-        font-size: 22px;
-      }
-
-      .trust-strip {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .brand-name {
-        font-size: 20px;
-      }
-
-      .brand-logo {
-        width: 48px;
-        height: 48px;
-      }
-
-      .section-title {
-        font-size: 20px;
-        padding: 10px 12px;
-        border-left-width: 5px;
-      }
-
-      .faq-category-title {
-        font-size: 15px;
-        padding: 12px 13px;
-      }
-
-      .faq-question {
-        padding: 12px 13px;
-        font-size: 13.5px;
-      }
-
-      .faq-answer-inner {
-        padding: 0 13px 13px;
-      }
-
-      .blog-slide-card {
-        width: min(274px, calc(100vw - 38px));
-      }
-    }
-
-    @media (max-width: 520px) {
-      .trust-strip {
-        grid-template-columns: 1fr;
-      }
-
-      .main-nav {
-        width: min(268px, calc(100vw - 12px));
-        right: 6px;
-      }
-
-      .brand-tagline {
-        font-size: 10.8px;
-      }
-
-      .routine-heading-capsule {
-        max-width: 100%;
-        padding: 11px 22px;
-      }
-
-      .brand {
-        gap: 8px;
-      }
-
-      .hero {
-        padding-top: 24px;
-      }
-
-      .products {
-        grid-template-columns: 1fr;
-      }
-
-      .product-card {
-        padding: 6px 6px 5px;
-      }
-
-      .product-media {
-        padding: 3px;
-      }
-
-      .product-img {
-        margin-bottom: 2px;
-      }
-
-      .product-title {
-        margin-bottom: 1px;
-      }
-
-      .product-meta {
-        margin-bottom: 1px;
-      }
-
-      .price-row {
-        margin-bottom: 2px;
-      }
-
-      .price-btn {
-        margin-bottom: 2px;
-      }
-
-      .price-note {
-        font-size: 10px;
-        line-height: 1.25;
-      }
-
-      .checkout-note {
-        font-size: 10px;
-        line-height: 1.25;
-      }
-
-      .toggle-header {
-        margin-top: 10px;
-      }
-
-      .toggle-content {
-        margin-top: 3px;
-      }
-
-      .footer-content-area {
-        padding: 20px 0 0;
-      }
-
-      .footer-section h2 {
-        font-size: 16px;
-      }
-
-      .footer-section p,
-      .footer-section ul,
-      .footer-contact-list li {
-        font-size: 13px;
-      }
-
-      .contact-support-row {
-        display: block;
-      }
-
-      .contact-support-email {
-        white-space: normal;
-        word-break: break-word;
-      }
-      
-      .subcategory-heading {
-  margin-top: 40px;
-  padding: 12px 16px;
-  background: #ffe3ea;
-  color: #b23a48;
-  border-left: 5px solid #ff4d6d;
-  font-size: 18px;
-  font-weight: 600;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  scroll-margin-top: 150px;
-}
-
-.subcategory-heading:hover {
-  background: #ffd6df;
-  transform: translateX(3px);
-}
-
-.subcategory-heading:target {
-  background: #ffe6ec;
-  color: #a52d45;
-  border-left: 5px solid #ff4d6d;
-
-  box-shadow:
-    0 0 0 4px rgba(255, 77, 109, 0.24),
-    0 12px 28px rgba(255, 77, 109, 0.20);
-
-  animation: subcategoryPulse 1.6s ease-in-out 2;
-}
-
-@keyframes subcategoryPulse {
-
-  0%,
-  100% {
-    box-shadow:
-      0 0 0 4px rgba(255, 77, 109, 0.22),
-      0 12px 26px rgba(255, 77, 109, 0.18);
-  }
-
-  50% {
-    box-shadow:
-      0 0 0 7px rgba(255, 77, 109, 0.34),
-      0 16px 34px rgba(255, 77, 109, 0.28);
-  }
-}
-}
-    }
-  </style>
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CM68D7HP38"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Beauty Recommendations, Skincare, Haircare & Makeup Guides | Daily Glam Store</title>
+
+  <meta
+    name="description"
+    content="Explore skincare, haircare, and makeup product recommendations by Daily Glam Store. Find the best face wash, serum, shampoo, eye makeup, and lip care with easy buying guides."
+  />
+
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dailyglamstore.in/" />
+  
+  <meta property="og:title" content="Daily Glam Store | Skincare, Haircare & Makeup Recommendations">
+  <meta property="og:description" content="Explore skincare, haircare, and makeup recommendations, beauty guides, routines, and curated product picks by Daily Glam Store.">
+  <meta property="og:url" content="https://dailyglamstore.in/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://dailyglamstore.in/images/logo.png">
+    
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Daily Glam Store | Beauty & Makeup Recommendations">
+  <meta name="twitter:description" content="Skincare, haircare, makeup picks, beauty guides, and curated recommendations by Daily Glam Store.">
+  <meta name="twitter:image" content="https://dailyglamstore.in/images/logo.png">
+
+  <meta name="keywords" content="beauty recommendations, skincare routine, haircare routine, makeup picks, best face wash, best shampoo, eye makeup, lip care" />
+  
+<link rel="stylesheet" href="homepage.css" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CM68D7HP38"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -1828,175 +40,175 @@ gtag('config', 'G-CM68D7HP38');
 
 </head>
 <body>
-  <header class="site-header" id="siteHeader">
-    <div class="header-inner">
-      <a href="#home" class="brand">
-        <img src="images/logo.png" alt="Daily Glam Store" class="brand-logo" />
-        <span class="brand-text">
-          <span class="brand-name">Daily Glam Store</span>
-          <span class="brand-tagline">Curated Beauty Recommendations</span>
-        </span>
-      </a>
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="#home" class="brand">
+        <img src="images/logo.png" alt="Daily Glam Store" class="brand-logo" />
+        <span class="brand-text">
+          <span class="brand-name">Daily Glam Store</span>
+          <span class="brand-tagline">Curated Beauty Recommendations</span>
+        </span>
+      </a>
 
-      <button
-        class="menu-toggle"
-        id="menuToggle"
-        type="button"
-        aria-label="Open menu"
-        aria-expanded="false"
-        aria-controls="mainNav"
-      >
-        <span class="menu-text">Menu</span>
-        <span class="menu-icon">☰</span>
-      </button>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mainNav"
+      >
+        <span class="menu-text">Menu</span>
+        <span class="menu-icon">☰</span>
+      </button>
 
-      <nav class="main-nav" id="mainNav">
-        <a href="#home">🏠 Home</a>
-        
-        <div class="nav-dropdown" id="categoriesDropdown">
-          <button class="nav-dropbtn product-nav-link" type="button" id="categoriesBtn" aria-expanded="false">
-            <span><span class="categories-icon">✦</span> Categories</span>
-            <span class="menu-arrow">▼</span>
-          </button>
-                    <div class="dropdown-content">
-            <a href="#top-picks">🔥 Editor’s Top Picks</a>
-            <a href="#skincare-recommendations">🌿 Skincare Recommendations</a>
-            <a href="#haircare-recommendations">🪮 Haircare Recommendations</a>
-            <a href="#makeup">💄 Beauty &amp; Makeup Picks</a>
-          </div>
-        </div>
-        <a href="#quick-skincare-routine">✨ Quick Skincare Routine</a>
-        <a href="#quick-haircare-routine">💆 Quick Haircare Routine</a>
-        <a href="#beauty-faqs">❓ Beauty FAQs</a>
-        <a href="#fashion-accessories" class="product-nav-link">👜 Fashion Accessories</a>
-        <a href="#about">💎 About Us</a>
-        <a href="#ordering">🛍️ How Ordering Works ?</a>
+      <nav class="main-nav" id="mainNav">
+        <a href="#home">🏠 Home</a>
+        
+        <div class="nav-dropdown" id="categoriesDropdown">
+          <button class="nav-dropbtn product-nav-link" type="button" id="categoriesBtn" aria-expanded="false">
+            <span><span class="categories-icon">✦</span> Categories</span>
+            <span class="menu-arrow">▼</span>
+          </button>
+                    <div class="dropdown-content">
+            <a href="#top-picks">🔥 Editor’s Top Picks</a>
+            <a href="#skincare-recommendations">🌿 Skincare Recommendations</a>
+            <a href="#haircare-recommendations">🪮 Haircare Recommendations</a>
+            <a href="#makeup">💄 Beauty &amp; Makeup Picks</a>
+          </div>
+        </div>
+        <a href="#quick-skincare-routine">✨ Quick Skincare Routine</a>
+        <a href="#quick-haircare-routine">💆 Quick Haircare Routine</a>
+        <a href="#beauty-faqs">❓ Beauty FAQs</a>
+        <a href="#fashion-accessories" class="product-nav-link">👜 Fashion Accessories</a>
+        <a href="#about">💎 About Us</a>
+        <a href="#ordering">🛍️ How Ordering Works ?</a>
 
-        <div class="nav-dropdown" id="legalDropdown">
-          <button class="nav-dropbtn" type="button" id="legalBtn" aria-expanded="false">
-            <span>⚖️ Legal &amp; Policies</span>
-            <span class="menu-arrow">▼</span>
-          </button>
-          <div class="dropdown-content">
-            <a href="#disclaimer">⚠️ Disclaimer</a>
-            <a href="#privacy">🔐 Privacy Policy</a>
-            <a href="#affiliate">💼 Affiliate Disclosure</a>
-          </div>
-        </div>
+        <div class="nav-dropdown" id="legalDropdown">
+          <button class="nav-dropbtn" type="button" id="legalBtn" aria-expanded="false">
+            <span>⚖️ Legal &amp; Policies</span>
+            <span class="menu-arrow">▼</span>
+          </button>
+          <div class="dropdown-content">
+            <a href="#disclaimer">⚠️ Disclaimer</a>
+            <a href="#privacy">🔐 Privacy Policy</a>
+            <a href="#affiliate">💼 Affiliate Disclosure</a>
+          </div>
+        </div>
 
-        <a href="#contact">📞 Contact &amp; Support</a>
-      </nav>
-    </div>
-  </header>
+        <a href="#contact">📞 Contact &amp; Support</a>
+      </nav>
+    </div>
+  </header>
 
- <section class="hero" id="home">
-  <div class="hero-inner">
+ <section class="hero" id="home">
+  <div class="hero-inner">
 
-    <h1>Best Skincare, Haircare &amp; Makeup Recommendations</h1>
+    <h1>Best Skincare, Haircare &amp; Makeup Recommendations</h1>
 <p>
-  Discover curated skincare, haircare, and makeup recommendations, including face washes, serums, shampoos, everyday beauty picks, and more — selected to help you build the right routine easily.
+  Discover curated skincare, haircare, and makeup recommendations, including face washes, serums, shampoos, everyday beauty picks, and more — selected to help you build the right routine easily.
 </p>
 
-  </div>
+  </div>
 </section>
 
 <div class="trust-strip">
-  <div>✔ Expert-curated beauty recommendations</div>
-  <div>✔ Shop directly from official brand websites</div>
-  <div>✔ Save time choosing the right products</div>
-  <div>✔ Explore ongoing discounts & brand offers</div>
-  <div>✔ 100% transparent affiliate recommendations</div>
-  <div>✔ Backed by real retail experience</div>
+  <div>✔ Expert-curated beauty recommendations</div>
+  <div>✔ Shop directly from official brand websites</div>
+  <div>✔ Save time choosing the right products</div>
+  <div>✔ Explore ongoing discounts & brand offers</div>
+  <div>✔ 100% transparent affiliate recommendations</div>
+  <div>✔ Backed by real retail experience</div>
 </div>
 
 <section class="brand-strip">
-  <!-- Shortened Affiliate Disclosure (Placed before Featured Beauty Brands) -->
-  <div class="top-affiliate-banner">
-    💡 <strong>Disclosure:</strong> As an Amazon Associate & brand partner, we earn from qualifying purchases.
-  </div>
+  <!-- Shortened Affiliate Disclosure (Placed before Featured Beauty Brands) -->
+  <div class="top-affiliate-banner">
+    💡 <strong>Disclosure:</strong> As an Amazon Associate & brand partner, we earn from qualifying purchases.
+  </div>
 
-  <h2>Featured Beauty Brands</h2>
-  <div class="brand-logos">
-    <img src="images/beauty-images/brand-logo-images/lotus-logo.png" alt="Lotus Botanicals skincare brand" />
-    <img src="images/beauty-images/brand-logo-images/DotNKey-logo.png" alt="Dot & Key skincare brand" />
-    <img src="images/beauty-images/brand-logo-images/plum-logo.png" alt="Plum beauty products brand" />
-    <img src="images/beauty-images/brand-logo-images/mamaearth-logo.png" alt="Mamaearth skincare and haircare brand" />
-    <img src="images/beauty-images/brand-logo-images/bebodywise-logo.png" alt="BeBodywise wellness and skincare brand" />
-  </div>
-  <p class="brand-note">and many more trusted skincare and haircare brands...</p>
+  <h2>Featured Beauty Brands</h2>
+  <div class="brand-logos">
+    <img src="images/beauty-images/brand-logo-images/lotus-logo.png" alt="Lotus Botanicals skincare brand" />
+    <img src="images/beauty-images/brand-logo-images/DotNKey-logo.png" alt="Dot & Key skincare brand" />
+    <img src="images/beauty-images/brand-logo-images/plum-logo.png" alt="Plum beauty products brand" />
+    <img src="images/beauty-images/brand-logo-images/mamaearth-logo.png" alt="Mamaearth skincare and haircare brand" />
+    <img src="images/beauty-images/brand-logo-images/bebodywise-logo.png" alt="BeBodywise wellness and skincare brand" />
+  </div>
+  <p class="brand-note">and many more trusted skincare and haircare brands...</p>
 </section>
 
 <section class="section" id="top-picks">
-  <div class="section-heading-wrap">
-    <h2 class="section-title">🔥 Editor’s Top Picks</h2>
-  </div>
-  <div class="section-divider"></div>
-  <p class="section-intro">
-    Discover top-rated skincare and haircare products, including face washes, serums, shampoos, and more — carefully selected for daily beauty routines.
-  </p>
+  <div class="section-heading-wrap">
+    <h2 class="section-title">🔥 Editor’s Top Picks</h2>
+  </div>
+  <div class="section-divider"></div>
+  <p class="section-intro">
+    Discover top-rated skincare and haircare products, including face washes, serums, shampoos, and more — carefully selected for daily beauty routines.
+  </p>
 
-  <div class="products">
-    <!-- Top picks render from data/beauty-products/top-picks/products.js -->
-  </div>
+  <div class="products">
+    <!-- Top picks render from data/beauty-products/top-picks/products.js -->
+  </div>
 </section>
 
 <section class="section" id="skincare-recommendations">
-  <div class="section-heading-wrap">
-    <h2 class="section-title">🌿 Skincare Recommendations</h2>
-  </div>
-  <div class="section-divider"></div>
-  <p class="section-intro">
-    Explore skincare products such as face washes, serums, moisturisers, and sunscreens to build a simple and effective daily skincare routine.
-  </p>
+  <div class="section-heading-wrap">
+    <h2 class="section-title">🌿 Skincare Recommendations</h2>
+  </div>
+  <div class="section-divider"></div>
+  <p class="section-intro">
+    Explore skincare products such as face washes, serums, moisturisers, and sunscreens to build a simple and effective daily skincare routine.
+  </p>
 
-  <h3 id="facewash-products" class="subcategory-heading">
-  🧼 Face Wash Recommendations
+  <h3 id="facewash-products" class="subcategory-heading">
+  🧼 Face Wash Recommendations
 </h3>
 <div id="facewash-container" class="products"></div>
 
 <h3 id="serum-products" class="subcategory-heading">
-  💧 Face Serum Recommendations
+  💧 Face Serum Recommendations
 </h3>
 <div id="serum-container" class="products"></div>
 
 <h3 id="sunscreen-products" class="subcategory-heading">
-  ☀️ Sunscreen Recommendations
+  ☀️ Sunscreen Recommendations
 </h3>
 <div id="sunscreen-container" class="products"></div>
 
 <h3 id="moisturiser-products" class="subcategory-heading">
-  🧴 Moisturiser Recommendations
+  🧴 Moisturiser Recommendations
 </h3>
 <div id="moisturiser-container" class="products"></div>
 
 </section>
 
 <section class="section" id="haircare-recommendations">
-  <div class="section-heading-wrap">
-    <h2 class="section-title">🪮 Haircare Recommendations</h2>
-  </div>
-  <div class="section-divider"></div>
-  <p class="section-intro">
-    Explore haircare products including shampoos, conditioners, and hair oils to maintain healthy, smooth, and manageable hair.
-  </p>
+  <div class="section-heading-wrap">
+    <h2 class="section-title">🪮 Haircare Recommendations</h2>
+  </div>
+  <div class="section-divider"></div>
+  <p class="section-intro">
+    Explore haircare products including shampoos, conditioners, and hair oils to maintain healthy, smooth, and manageable hair.
+  </p>
 
-  <h3 id="shampoo-products" class="subcategory-heading">
-  🧴 Shampoo Recommendations
+  <h3 id="shampoo-products" class="subcategory-heading">
+  🧴 Shampoo Recommendations
 </h3>
 <div id="shampoo-container" class="products"></div>
 
 <h3 id="conditioner-products" class="subcategory-heading">
-  💧 Conditioner Recommendations
+  💧 Conditioner Recommendations
 </h3>
 <div id="conditioner-container" class="products"></div>
 
 <h3 id="hairserum-products" class="subcategory-heading">
-  ✨ Hair Serum Recommendations
+  ✨ Hair Serum Recommendations
 </h3>
 <div id="hairserum-container" class="products"></div>
 
 <h3 id="hairoil-products" class="subcategory-heading">
-  🌿 Hair Oil Recommendations
+  🌿 Hair Oil Recommendations
 </h3>
 <div id="hairoil-container" class="products"></div>
 
@@ -2004,897 +216,897 @@ gtag('config', 'G-CM68D7HP38');
 
 <!-- BEAUTY & MAKEUP PICKS SECTION -->
 <section class="section" id="makeup">
-  <div class="section-heading-wrap">
-    <h2 class="section-title">💄 Beauty & Makeup Picks</h2>
-  </div>
-  <div class="section-divider"></div>
-  <p class="section-intro">
-    Discover curated makeup essentials for eyes, lips, and face — selected for effortless, everyday looks.
-  </p>
+  <div class="section-heading-wrap">
+    <h2 class="section-title">💄 Beauty & Makeup Picks</h2>
+  </div>
+  <div class="section-divider"></div>
+  <p class="section-intro">
+    Discover curated makeup essentials for eyes, lips, and face — selected for effortless, everyday looks.
+  </p>
 
-  <h3 class="subsection-title">Eye Makeup</h3>
-  <div id="eyemakeup-container" class="products"></div>
+  <h3 class="subsection-title">Eye Makeup</h3>
+  <div id="eyemakeup-container" class="products"></div>
 
-  <h3 class="subsection-title">Lip Care & Color</h3>
-  <div id="lipcare-container" class="products"></div>
+  <h3 class="subsection-title">Lip Care & Color</h3>
+  <div id="lipcare-container" class="products"></div>
 
-  <h3 class="subsection-title">Face Makeup</h3>
-  <div id="facemakeup-container" class="products"></div>
+  <h3 class="subsection-title">Face Makeup</h3>
+  <div id="facemakeup-container" class="products"></div>
 </section>
 
-  <section class="section" id="quick-skincare-routine">
-    <div class="section-heading-wrap">
-      <h2 class="section-title routine-heading-capsule"><span class="routine-heading-lines">Quick<br>Skincare<br>Routine</span></h2>
-    </div>
-    <div class="section-divider"></div>
-    <p class="routine-intro">A simple daily skincare flow to help you follow the right steps without confusion.</p>
-    <div class="mini-grid">
-      <div class="mini-card routine-card">
-        <h4>Morning</h4>
-        <div class="routine-flow">
-          <span class="routine-flow-step">Face Wash</span>
-          <span class="routine-arrow" aria-hidden="true"></span>
-          <span class="routine-hint">(Removes dirt &amp; oil)</span>
-          <span class="routine-flow-step">Serum</span>
-          <span class="routine-arrow" aria-hidden="true"></span>
-          <span class="routine-hint">(Targets specific concerns)</span>
-          <span class="routine-flow-step">Moisturiser</span>
-          <span class="routine-arrow" aria-hidden="true"></span>
-          <span class="routine-hint">(Locks hydration)</span>
-          <span class="routine-flow-step">Sunscreen</span>
-          <span class="routine-hint">(Protects from UV)</span>
-        </div>
-      </div>
-      <div class="mini-card routine-card">
-        <h4>Night</h4>
-        <div class="routine-flow">
-          <span class="routine-flow-step">Face Wash</span>
-          <span class="routine-arrow" aria-hidden="true"></span>
-          <span class="routine-hint">(Cleans skin)</span>
-          <span class="routine-flow-step">Serum</span>
-          <span class="routine-arrow" aria-hidden="true"></span>
-          <span class="routine-hint">(Repairs skin)</span>
-          <span class="routine-flow-step">Moisturiser</span>
-          <span class="routine-hint">(Hydrates overnight)</span>
-        </div>
-      </div>
-    </div>
-    <div class="tip-note"><strong><em>Routine Tip:</em></strong> <span class="tip-body">Consistency is more important than using too many products.</span></div>
-      
-  </section>
+  <section class="section" id="quick-skincare-routine">
+    <div class="section-heading-wrap">
+      <h2 class="section-title routine-heading-capsule"><span class="routine-heading-lines">Quick<br>Skincare<br>Routine</span></h2>
+    </div>
+    <div class="section-divider"></div>
+    <p class="routine-intro">A simple daily skincare flow to help you follow the right steps without confusion.</p>
+    <div class="mini-grid">
+      <div class="mini-card routine-card">
+        <h4>Morning</h4>
+        <div class="routine-flow">
+          <span class="routine-flow-step">Face Wash</span>
+          <span class="routine-arrow" aria-hidden="true"></span>
+          <span class="routine-hint">(Removes dirt &amp; oil)</span>
+          <span class="routine-flow-step">Serum</span>
+          <span class="routine-arrow" aria-hidden="true"></span>
+          <span class="routine-hint">(Targets specific concerns)</span>
+          <span class="routine-flow-step">Moisturiser</span>
+          <span class="routine-arrow" aria-hidden="true"></span>
+          <span class="routine-hint">(Locks hydration)</span>
+          <span class="routine-flow-step">Sunscreen</span>
+          <span class="routine-hint">(Protects from UV)</span>
+        </div>
+      </div>
+      <div class="mini-card routine-card">
+        <h4>Night</h4>
+        <div class="routine-flow">
+          <span class="routine-flow-step">Face Wash</span>
+          <span class="routine-arrow" aria-hidden="true"></span>
+          <span class="routine-hint">(Cleans skin)</span>
+          <span class="routine-flow-step">Serum</span>
+          <span class="routine-arrow" aria-hidden="true"></span>
+          <span class="routine-hint">(Repairs skin)</span>
+          <span class="routine-flow-step">Moisturiser</span>
+          <span class="routine-hint">(Hydrates overnight)</span>
+        </div>
+      </div>
+    </div>
+    <div class="tip-note"><strong><em>Routine Tip:</em></strong> <span class="tip-body">Consistency is more important than using too many products.</span></div>
+      
+  </section>
 
-  <section class="section" id="quick-haircare-routine">
-    <div class="section-heading-wrap">
-      <h2 class="section-title routine-heading-capsule"><span class="routine-heading-lines">Quick<br>Haircare<br>Routine</span></h2>
-    </div>
-    <div class="section-divider"></div>
-    <p class="routine-intro">A simple weekly routine to maintain healthy and manageable hair.</p>
-    <div class="mini-grid routine-single">
-      <div class="mini-card routine-card">
-        <div class="routine-flow">
-          <span class="routine-flow-step">Oiling</span>
-          <span class="routine-arrow" aria-hidden="true"></span>
-          <span class="routine-hint">Apply &amp; leave for 1–2 hours</span>
-          <span class="routine-flow-step">Cleansing</span>
-          <span class="routine-arrow" aria-hidden="true"></span>
-          <span class="routine-hint">Use mild shampoo</span>
-          <span class="routine-flow-step">Conditioning</span>
-          <span class="routine-hint">Apply on lengths only</span>
-        </div>
-      </div>
-    </div>
-    <div class="tip-note"><strong><em>Routine Tip:</em></strong> <span class="tip-body">Weekly consistency matters more than using many products at once.</span></div>
-    
-  </section>
-  
+  <section class="section" id="quick-haircare-routine">
+    <div class="section-heading-wrap">
+      <h2 class="section-title routine-heading-capsule"><span class="routine-heading-lines">Quick<br>Haircare<br>Routine</span></h2>
+    </div>
+    <div class="section-divider"></div>
+    <p class="routine-intro">A simple weekly routine to maintain healthy and manageable hair.</p>
+    <div class="mini-grid routine-single">
+      <div class="mini-card routine-card">
+        <div class="routine-flow">
+          <span class="routine-flow-step">Oiling</span>
+          <span class="routine-arrow" aria-hidden="true"></span>
+          <span class="routine-hint">Apply &amp; leave for 1–2 hours</span>
+          <span class="routine-flow-step">Cleansing</span>
+          <span class="routine-arrow" aria-hidden="true"></span>
+          <span class="routine-hint">Use mild shampoo</span>
+          <span class="routine-flow-step">Conditioning</span>
+          <span class="routine-hint">Apply on lengths only</span>
+        </div>
+      </div>
+    </div>
+    <div class="tip-note"><strong><em>Routine Tip:</em></strong> <span class="tip-body">Weekly consistency matters more than using many products at once.</span></div>
+    
+  </section>
+  
 <section class="section blog-trending" id="trending-blog">
-  <div class="section-heading-wrap">
-    <h2 class="section-title">✨ Latest on Our Blog</h2>
-  </div>
+  <div class="section-heading-wrap">
+    <h2 class="section-title">✨ Latest on Our Blog</h2>
+  </div>
 
-  <p class="blog-trending-intro">
-    Read the latest skincare routines, haircare tips, and beauty product buying guides to build the right daily routine with ease.
-  </p>
+  <p class="blog-trending-intro">
+    Read the latest skincare routines, haircare tips, and beauty product buying guides to build the right daily routine with ease.
+  </p>
 
-  <div 
-    class="blog-slider-wrap" 
-    id="blogSliderWrap" 
-    aria-label="Latest skincare and haircare blog articles" 
-    tabindex="0"
-  >
-    
-    <div class="blog-slider-track" id="blogSliderTrack"></div>
-  </div>
+  <div 
+    class="blog-slider-wrap" 
+    id="blogSliderWrap" 
+    aria-label="Latest skincare and haircare blog articles" 
+    tabindex="0"
+  >
+    
+    <div class="blog-slider-track" id="blogSliderTrack"></div>
+  </div>
 </section>
 
-  <section class="section faq-section" id="beauty-faqs">
-    <div class="section-heading-wrap">
-      <h2 class="section-title routine-heading-capsule"><span class="routine-heading-lines">❓ Beauty FAQs</span></h2>
-    </div>
-    <div class="section-divider"></div>
-    <p class="routine-intro">
-      Quick answers to common skincare and haircare questions to help you choose and use beauty products more confidently.
-    </p>
+  <section class="section faq-section" id="beauty-faqs">
+    <div class="section-heading-wrap">
+      <h2 class="section-title routine-heading-capsule"><span class="routine-heading-lines">❓ Beauty FAQs</span></h2>
+    </div>
+    <div class="section-divider"></div>
+    <p class="routine-intro">
+      Quick answers to common skincare and haircare questions to help you choose and use beauty products more confidently.
+    </p>
 
-    <div class="faq-wrap">
-      <div class="faq-category">
-        <h3 class="faq-category-title">🌿 Skincare FAQs</h3>
-        <div class="faq-list" data-faq-group="skincare">
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">How do I choose the right skincare routine for my skin?<span class="faq-toggle">▼</span></button>
-            <div class="faq-answer">
-              <p class="faq-answer-inner">Start by identifying your skin type, such as oily, dry, combination, or sensitive. Then choose basic steps like face wash, serum, moisturiser, and sunscreen based on your main concern.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">Why does my skin feel oily even after washing?<span class="faq-toggle">▼</span></button>
-            <div class="faq-answer">
-              <p class="faq-answer-inner">Over-washing or using harsh products can strip your skin, which may make it produce even more oil to compensate.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">Do I really need both serum and moisturiser?<span class="faq-toggle">▼</span></button>
-            <div class="faq-answer">
-              <p class="faq-answer-inner">Yes. Serum helps target specific concerns, while moisturiser locks in hydration and supports the skin barrier. They work better together.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">Can I skip sunscreen if I stay indoors?<span class="faq-toggle">▼</span></button>
-            <div class="faq-answer">
-              <p class="faq-answer-inner">It is better not to skip it. Indoor exposure near windows and daily light exposure can still affect skin over time.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">How often should I wash my face in a day?<span class="faq-toggle">▼</span></button>
-            <div class="faq-answer">
-              <p class="faq-answer-inner">Most people do well with washing twice daily. Over-washing can make skin feel dry or even oilier.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">Why is moisturiser important even for oily skin?<span class="faq-toggle">▼</span></button>
-            <div class="faq-answer">
-              <p class="faq-answer-inner">Skipping moisturiser can make oily skin feel more unbalanced because dehydrated skin may still try to compensate.</p>
-            </div>
-          </div>
-        </div>
-        <div class="faq-more-wrap">
-          <button class="faq-more-toggle" type="button" data-faq-toggle="skincare">+ Show more questions</button>
-        </div>
-      </div>
+    <div class="faq-wrap">
+      <div class="faq-category">
+        <h3 class="faq-category-title">🌿 Skincare FAQs</h3>
+        <div class="faq-list" data-faq-group="skincare">
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">How do I choose the right skincare routine for my skin?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Start by identifying your skin type, such as oily, dry, combination, or sensitive. Then choose basic steps like face wash, serum, moisturiser, and sunscreen based on your main concern.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Why does my skin feel oily even after washing?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Over-washing or using harsh products can strip your skin, which may make it produce even more oil to compensate.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Do I really need both serum and moisturiser?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Yes. Serum helps target specific concerns, while moisturiser locks in hydration and supports the skin barrier. They work better together.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Can I skip sunscreen if I stay indoors?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">It is better not to skip it. Indoor exposure near windows and daily light exposure can still affect skin over time.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">How often should I wash my face in a day?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Most people do well with washing twice daily. Over-washing can make skin feel dry or even oilier.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Why is moisturiser important even for oily skin?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Skipping moisturiser can make oily skin feel more unbalanced because dehydrated skin may still try to compensate.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-more-wrap">
+          <button class="faq-more-toggle" type="button" data-faq-toggle="skincare">+ Show more questions</button>
+        </div>
+      </div>
 
-      <div class="faq-category">
-        <h3 class="faq-category-title">💇 Haircare FAQs</h3>
-        <div class="faq-list" data-faq-group="haircare">
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">How do I choose the right haircare routine?<span class="faq-toggle">▼</span></button>
-            <div class="faq-answer">
-              <p class="faq-answer-inner">Start with your scalp type and your main hair concern, such as frizz, dryness, damage, or oiliness. Then choose shampoo, conditioner, serum, and oil accordingly.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">Why does my hair become oily quickly?<span class="faq-toggle">▼</span></button>
-            <div class="faq-answer">
-              <p class="faq-answer-inner">This can happen due to scalp type, over-washing, or product buildup. The wrong shampoo can also make the scalp feel oilier.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">Do I need both conditioner and serum?<span class="faq-toggle">▼</span></button>
-            <div class="faq-answer">
-              <p class="faq-answer-inner">Yes. Conditioner helps during washing, while serum helps afterward with frizz control, smoothness, and shine.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">Why does my hair feel dry even after conditioning?<span class="faq-toggle">▼</span></button>
-            <div class="faq-answer">
-              <p class="faq-answer-inner">Possible reasons include using the wrong conditioner, not applying it properly, or lacking regular nourishment in your routine.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">How often should I oil my hair?<span class="faq-toggle">▼</span></button>
-            <div class="faq-answer">
-              <p class="faq-answer-inner">For most people, 1–2 times a week is enough. A short pre-wash oiling routine often works better than heavy frequent oiling.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">How do I control frizz effectively?<span class="faq-toggle">▼</span></button>
-            <div class="faq-answer">
-              <p class="faq-answer-inner">A combination of the right conditioner, serum, and occasional oiling usually works better than relying on one product alone.</p>
-            </div>
-          </div>
-        </div>
-        <div class="faq-more-wrap">
-          <button class="faq-more-toggle" type="button" data-faq-toggle="haircare">+ Show more questions</button>
-        </div>
-      </div>
+      <div class="faq-category">
+        <h3 class="faq-category-title">💇 Haircare FAQs</h3>
+        <div class="faq-list" data-faq-group="haircare">
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">How do I choose the right haircare routine?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Start with your scalp type and your main hair concern, such as frizz, dryness, damage, or oiliness. Then choose shampoo, conditioner, serum, and oil accordingly.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Why does my hair become oily quickly?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">This can happen due to scalp type, over-washing, or product buildup. The wrong shampoo can also make the scalp feel oilier.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Do I need both conditioner and serum?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Yes. Conditioner helps during washing, while serum helps afterward with frizz control, smoothness, and shine.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Why does my hair feel dry even after conditioning?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Possible reasons include using the wrong conditioner, not applying it properly, or lacking regular nourishment in your routine.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">How often should I oil my hair?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">For most people, 1–2 times a week is enough. A short pre-wash oiling routine often works better than heavy frequent oiling.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">How do I control frizz effectively?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">A combination of the right conditioner, serum, and occasional oiling usually works better than relying on one product alone.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-more-wrap">
+          <button class="faq-more-toggle" type="button" data-faq-toggle="haircare">+ Show more questions</button>
+        </div>
+      </div>
 
-      <div class="faq-category">
-        <h3 class="faq-category-title">💡 General Beauty FAQs</h3>
-        <div class="faq-list" data-faq-group="general">
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">How long does it take to see results from skincare or haircare products?<span class="faq-toggle">▼</span></button>
-            <div class="faq-answer">
-              <p class="faq-answer-inner">Most products need regular use for a few weeks before visible results appear. Consistency matters more than changing products too quickly.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">Can I use multiple products together or should I keep it simple?<span class="faq-toggle">▼</span></button>
-            <div class="faq-answer">
-              <p class="faq-answer-inner">It is usually better to keep your routine simple and focused. Too many products can make it harder to understand what is actually helping.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">Does diet or lifestyle affect skin and hair?<span class="faq-toggle">▼</span></button>
-            <div class="faq-answer">
-              <p class="faq-answer-inner">Yes. Stress, sleep, hydration, and food habits can all affect how your skin and hair look and feel. Good products work best with good routines.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">I’m confused — where should I start?<span class="faq-toggle">▼</span></button>
-            <div class="faq-answer">
-              <p class="faq-answer-inner">Start with basics based on your skin or hair type, and avoid overcomplicating your routine. A simple routine is easier to follow consistently.</p>
-            </div>
-          </div>
-        </div>
-        <div class="faq-more-wrap">
-          <button class="faq-more-toggle" type="button" data-faq-toggle="general">+ Show more questions</button>
-        </div>
-      </div>
-    </div>
-  </section>
+      <div class="faq-category">
+        <h3 class="faq-category-title">💡 General Beauty FAQs</h3>
+        <div class="faq-list" data-faq-group="general">
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">How long does it take to see results from skincare or haircare products?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Most products need regular use for a few weeks before visible results appear. Consistency matters more than changing products too quickly.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Can I use multiple products together or should I keep it simple?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">It is usually better to keep your routine simple and focused. Too many products can make it harder to understand what is actually helping.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">Does diet or lifestyle affect skin and hair?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Yes. Stress, sleep, hydration, and food habits can all affect how your skin and hair look and feel. Good products work best with good routines.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">I’m confused — where should I start?<span class="faq-toggle">▼</span></button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Start with basics based on your skin or hair type, and avoid overcomplicating your routine. A simple routine is easier to follow consistently.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-more-wrap">
+          <button class="faq-more-toggle" type="button" data-faq-toggle="general">+ Show more questions</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
 <section class="section" id="fashion-accessories">
 
-  <div class="section-divider"></div>
+  <div class="section-divider"></div>
 
-  <div class="fashion-box">
-    <h3>✨Looking for more than beauty?</h3>
-    
-    <p>
-  Beyond beauty recommendations, we also feature a dedicated collection of jewellery,
-  handbags, watches, wallets, belts, and other everyday fashion accessories to help
-  you complete your personal style.
+  <div class="fashion-box">
+    <h3>✨Looking for more than beauty?</h3>
+    
+    <p>
+  Beyond beauty recommendations, we also feature a dedicated collection of jewellery,
+  handbags, watches, wallets, belts, and other everyday fashion accessories to help
+  you complete your personal style.
 </p>
 
 <p class="fashion-categories">
-  👜 Jewellery • Handbags • Watches • Wallets • Belts
+  👜 Jewellery • Handbags • Watches • Wallets • Belts
 </p>
 
 <a href="/shop.html" class="fashion-btn">
-  🛍️ Explore Fashion & Accessories
+  🛍️ Explore Fashion & Accessories
 </a>
 
-  </div>
+  </div>
 </section>
 
-  <div class="footer-content-area">
-    <section class="footer-section" id="about">
-      <h2>💎 About Us</h2>
-      <p>
-        Daily Glam Store shares curated beauty recommendations from selected brands and official websites to help customers discover trending and suitable product options without any hassle.
-      </p>
-      <p>
-        Having more than a decade of cosmetic retail experience, we focus on practical selections and clear product highlights so you can shortlist confidently without spending extra time.
-      </p>
-    </section>
+  <div class="footer-content-area">
+    <section class="footer-section" id="about">
+      <h2>💎 About Us</h2>
+      <p>
+        Daily Glam Store shares curated beauty recommendations from selected brands and official websites to help customers discover trending and suitable product options without any hassle.
+      </p>
+      <p>
+        Having more than a decade of cosmetic retail experience, we focus on practical selections and clear product highlights so you can shortlist confidently without spending extra time.
+      </p>
+    </section>
 
-    <section class="footer-section" id="ordering">
-      <h2>🛍️ How Ordering Works ?</h2>
-      <div class="ordering-steps">
-        <p>
-          <strong>Step 1:</strong> Browse products from our curated list and quickly <strong>review key product details</strong> to select the best product for your skin within seconds.
-        </p>
-        <p>
-          <strong>Step 2:</strong> Click <strong>“Buy on Amazon”</strong> for fast delivery, or click <strong>“Buy on Official Website”</strong> to shop directly from the brand's store.
-        </p>
-        <p>
-          <strong>Step 3:</strong> During checkout, available brand discounts, offers, or promotional pricing may apply depending on the product and official website.
-        </p>
-        <p>
-          <strong>Step 4:</strong> Final pricing, discounts, and offers may vary by brand. Please check the official website during checkout for the latest applicable offers. If you face any issue or have recommendation-related queries, feel free to contact us at <a class="contact-support-email" href="mailto:dailyglamstoreofficial@gmail.com"><strong>dailyglamstoreofficial@gmail.com</strong></a>.
-        </p>
-      </div>
-    </section>
+    <section class="footer-section" id="ordering">
+      <h2>🛍️ How Ordering Works ?</h2>
+      <div class="ordering-steps">
+        <p>
+          <strong>Step 1:</strong> Browse products from our curated list and quickly <strong>review key product details</strong> to select the best product for your skin within seconds.
+        </p>
+        <p>
+          <strong>Step 2:</strong> Click <strong>“Buy on Amazon”</strong> for fast delivery, or click <strong>“Buy on Official Website”</strong> to shop directly from the brand's store.
+        </p>
+        <p>
+          <strong>Step 3:</strong> During checkout, available brand discounts, offers, or promotional pricing may apply depending on the product and official website.
+        </p>
+        <p>
+          <strong>Step 4:</strong> Final pricing, discounts, and offers may vary by brand. Please check the official website during checkout for the latest applicable offers. If you face any issue or have recommendation-related queries, feel free to contact us at <a class="contact-support-email" href="mailto:dailyglamstoreofficial@gmail.com"><strong>dailyglamstoreofficial@gmail.com</strong></a>.
+        </p>
+      </div>
+    </section>
 
-    <section class="footer-section" id="disclaimer">
-      <h2>⚠️ Disclaimer</h2>
-      <p>
-        Product images and details on this page are for reference only. Final pricing, offers, stock,
-        packaging, and terms may change on official brand websites, so please verify final details
-        there before purchase.
-      </p>
-      <p>
-        Product images, trademarks, and brand names featured on this website belong to their
-        respective owners and are used for informational, review, and recommendation purposes only.
-      </p>
-    </section>
+    <section class="footer-section" id="disclaimer">
+      <h2>⚠️ Disclaimer</h2>
+      <p>
+        Product images and details on this page are for reference only. Final pricing, offers, stock,
+        packaging, and terms may change on official brand websites, so please verify final details
+        there before purchase.
+      </p>
+      <p>
+        Product images, trademarks, and brand names featured on this website belong to their
+        respective owners and are used for informational, review, and recommendation purposes only.
+      </p>
+    </section>
 
-    <section class="footer-section" id="privacy">
-      <h2>🔐 Privacy Policy</h2>
-      <p>
-        This page does not directly process payments made on affiliate brand websites. Official brand
-        websites may use their own cookies, tracking, and privacy practices, and this site may use
-        analytics to improve user experience.
-      </p>
-    </section>
+    <section class="footer-section" id="privacy">
+      <h2>🔐 Privacy Policy</h2>
+      <p>
+        This page does not directly process payments made on affiliate brand websites. Official brand
+        websites may use their own cookies, tracking, and privacy practices, and this site may use
+        analytics to improve user experience.
+      </p>
+    </section>
 
-    <section class="footer-section" id="affiliate">
-      <h2>💼 Affiliate Disclosure</h2>
-      <p>
-        Daily Glam Store is a participant in the Amazon Services LLC Associates Program and various brand affiliate programs. As an Amazon Associate, we earn from qualifying purchases at no extra cost to you when you buy through our links.
-      </p>
-      <p class="footer-note">
-        Our recommendations are selected carefully for usefulness and relevance, not only for
-        commission.
-      </p>
-    </section>
+    <section class="footer-section" id="affiliate">
+      <h2>💼 Affiliate Disclosure</h2>
+      <p>
+        Daily Glam Store is a participant in the Amazon Services LLC Associates Program and various brand affiliate programs. As an Amazon Associate, we earn from qualifying purchases at no extra cost to you when you buy through our links.
+      </p>
+      <p class="footer-note">
+        Our recommendations are selected carefully for usefulness and relevance, not only for
+        commission.
+      </p>
+    </section>
 
-    <section class="footer-section" id="contact">
-      <h2>📞 Contact &amp; Support</h2>
-      <div class="contact-support-row">
-        <p class="contact-support-text">
-          For recommendation-related queries or discount-related queries, please contact at :
-          <a class="contact-support-email" href="mailto:dailyglamstoreofficial@gmail.com"
-            ><strong>dailyglamstoreofficial@gmail.com</strong></a
-          >.
-        </p>
-      </div>
-    </section>
-  </div>
+    <section class="footer-section" id="contact">
+      <h2>📞 Contact &amp; Support</h2>
+      <div class="contact-support-row">
+        <p class="contact-support-text">
+          For recommendation-related queries or discount-related queries, please contact at :
+          <a class="contact-support-email" href="mailto:dailyglamstoreofficial@gmail.com"
+            ><strong>dailyglamstoreofficial@gmail.com</strong></a
+          >.
+        </p>
+      </div>
+    </section>
+  </div>
 
-  <footer class="site-footer">
-    <div class="footer-trust-line">Daily Glam Store - Beauty Recommendations</div>
-    <div class="footer-trust-line">🌟 Trust • Quality • Style • Consistency 🌟</div>
-    <div class="footer-copy">© 2026 Daily Glam Store. All rights reserved.</div>
-    <div class="footer-powered">In Collaboration With Deepak Cosmetic Store</div>
-    <div class="footer-location">Main Bazar, Gurdaspur</div>
-    <div class="footer-bottom-note">
-      <span class="globe-icon">🌐</span><a class="footer-link-feedback" href="https://dailyglamstore.in/"
-  >https://dailyglamstore.in/</a
+  <footer class="site-footer">
+    <div class="footer-trust-line">Daily Glam Store - Beauty Recommendations</div>
+    <div class="footer-trust-line">🌟 Trust • Quality • Style • Consistency 🌟</div>
+    <div class="footer-copy">© 2026 Daily Glam Store. All rights reserved.</div>
+    <div class="footer-powered">In Collaboration With Deepak Cosmetic Store</div>
+    <div class="footer-location">Main Bazar, Gurdaspur</div>
+    <div class="footer-bottom-note">
+      <span class="globe-icon">🌐</span><a class="footer-link-feedback" href="https://dailyglamstore.in/"
+  >https://dailyglamstore.in/</a
 >
-    </div>
-  </footer>
-  
-  <button id="backToTop" type="button" aria-label="Back to top">⬆</button>
+    </div>
+  </footer>
+  
+  <button id="backToTop" type="button" aria-label="Back to top">⬆</button>
 
-  <script src="data/beauty-products/top-picks/products.js"></script>
-  <script src="data/beauty-products/skincare/facewash.js"></script>
-  <script src="data/beauty-products/skincare/serum.js"></script>
-  <script src="data/beauty-products/skincare/moisturiser.js"></script>
-  <script src="data/beauty-products/skincare/sunscreen.js"></script>
-  <script src="data/beauty-products/haircare/shampoo.js"></script>
-  <script src="data/beauty-products/haircare/conditioner.js"></script>
-  <script src="data/beauty-products/haircare/hair-serum.js"></script>
-  <script src="data/beauty-products/haircare/hair-oil.js"></script>
-  <script src="data/beauty-products/makeup/eye-makeup.js"></script>
-  <script src="data/beauty-products/makeup/face-makeup.js"></script>
-  <script src="data/beauty-products/makeup/lip-care.js"></script>
-  <script src="beauty-main.js"></script>
+  <script src="data/beauty-products/top-picks/products.js"></script>
+  <script src="data/beauty-products/skincare/facewash.js"></script>
+  <script src="data/beauty-products/skincare/serum.js"></script>
+  <script src="data/beauty-products/skincare/moisturiser.js"></script>
+  <script src="data/beauty-products/skincare/sunscreen.js"></script>
+  <script src="data/beauty-products/haircare/shampoo.js"></script>
+  <script src="data/beauty-products/haircare/conditioner.js"></script>
+  <script src="data/beauty-products/haircare/hair-serum.js"></script>
+  <script src="data/beauty-products/haircare/hair-oil.js"></script>
+  <script src="data/beauty-products/makeup/eye-makeup.js"></script>
+  <script src="data/beauty-products/makeup/face-makeup.js"></script>
+  <script src="data/beauty-products/makeup/lip-care.js"></script>
+  <script src="beauty-main.js"></script>
 
-  
-  <script src="/article-registry.js"></script>
-  <script src="/beauty-blog-loader.js"></script>
+  
+  <script src="/article-registry.js"></script>
+  <script src="/beauty-blog-loader.js"></script>
 
 <script>
-  function renderHomepageBlogSlider() {
-    const sliderTrack = document.getElementById("blogSliderTrack") || document.querySelector(".blog-slider-track");
-    if (!sliderTrack) return;
+  function renderHomepageBlogSlider() {
+    const sliderTrack = document.getElementById("blogSliderTrack") || document.querySelector(".blog-slider-track");
+    if (!sliderTrack) return;
 
-    const allArticles = [
-      ...Object.values(window.SKINCARE_ARTICLES || {}),
-      ...Object.values(window.HAIRCARE_ARTICLES || {})
-    ];
+    const allArticles = [
+      ...Object.values(window.SKINCARE_ARTICLES || {}),
+      ...Object.values(window.HAIRCARE_ARTICLES || {})
+    ];
 
-    if (allArticles.length === 0) return;
+    if (allArticles.length === 0) return;
 
-    sliderTrack.innerHTML = allArticles.map(art => `
-  <div class="blog-slide-item">
-    <a href="${art.url || '#'}" class="blog-card-link">
-      <div class="blog-card-thumb">
-        <img src="${art.image && art.image.src ? art.image.src : ''}" alt="${art.image && art.image.alt ? art.image.alt : (art.title || '')}" class="blog-card-img" loading="lazy">
-      </div>
-      <div class="blog-card-body">
-        <span class="blog-card-category">${art.category || 'Beauty'}</span>
-        <h4 class="blog-card-title">${art.title || ''}</h4>
-        <p class="blog-card-desc">${art.description || ''}</p>
-      </div>
-    </a>
-  </div>
+    sliderTrack.innerHTML = allArticles.map(art => `
+  <div class="blog-slide-item">
+    <a href="${art.url || '#'}" class="blog-card-link">
+      <div class="blog-card-thumb">
+        <img src="${art.image && art.image.src ? art.image.src : ''}" alt="${art.image && art.image.alt ? art.image.alt : (art.title || '')}" class="blog-card-img" loading="lazy">
+      </div>
+      <div class="blog-card-body">
+        <span class="blog-card-category">${art.category || 'Beauty'}</span>
+        <h4 class="blog-card-title">${art.title || ''}</h4>
+        <p class="blog-card-desc">${art.description || ''}</p>
+      </div>
+    </a>
+  </div>
 `).join('');
 }
 
 // Execute rendering
 document.addEventListener("articlesLoaded", function () {
-  renderHomepageBlogSlider();
+  renderHomepageBlogSlider();
 });
 </script>
-  
-  <script>
-    const menuToggle = document.getElementById("menuToggle");
-    const mainNav = document.getElementById("mainNav");
-    const siteHeader = document.getElementById("siteHeader");
-    const navDropdowns = Array.from(document.querySelectorAll(".nav-dropdown"));
-    const backToTopButton = document.getElementById("backToTop");
+  
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const mainNav = document.getElementById("mainNav");
+    const siteHeader = document.getElementById("siteHeader");
+    const navDropdowns = Array.from(document.querySelectorAll(".nav-dropdown"));
+    const backToTopButton = document.getElementById("backToTop");
 
-    function setDropdownOpen(dropdown, isOpen) {
-      const button = dropdown.querySelector(".nav-dropbtn");
-      dropdown.classList.toggle("open", isOpen);
-      if (button) {
-        button.setAttribute("aria-expanded", isOpen ? "true" : "false");
-      }
-    }
+    function setDropdownOpen(dropdown, isOpen) {
+      const button = dropdown.querySelector(".nav-dropbtn");
+      dropdown.classList.toggle("open", isOpen);
+      if (button) {
+        button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      }
+    }
 
-    function closeMenu() {
-      mainNav.classList.remove("show");
-      menuToggle.setAttribute("aria-expanded", "false");
-      navDropdowns.forEach((dropdown) => setDropdownOpen(dropdown, false));
-    }
+    function closeMenu() {
+      mainNav.classList.remove("show");
+      menuToggle.setAttribute("aria-expanded", "false");
+      navDropdowns.forEach((dropdown) => setDropdownOpen(dropdown, false));
+    }
 
-    function toggleMenu() {
-      const isOpen = mainNav.classList.contains("show");
-      mainNav.classList.toggle("show");
-      menuToggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
-    }
+    function toggleMenu() {
+      const isOpen = mainNav.classList.contains("show");
+      mainNav.classList.toggle("show");
+      menuToggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
+    }
 
-    menuToggle.addEventListener("click", function (e) {
-      e.stopPropagation();
-      toggleMenu();
-    });
+    menuToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      toggleMenu();
+    });
 
-    navDropdowns.forEach(function (dropdown) {
-      const button = dropdown.querySelector(".nav-dropbtn");
-      if (!button) {
-        return;
-      }
+    navDropdowns.forEach(function (dropdown) {
+      const button = dropdown.querySelector(".nav-dropbtn");
+      if (!button) {
+        return;
+      }
 
-      button.addEventListener("click", function (e) {
-        if (window.innerWidth <= 768) {
-          e.preventDefault();
-          e.stopPropagation();
-          const willOpen = !dropdown.classList.contains("open");
-          navDropdowns.forEach((item) => {
-            if (item !== dropdown) {
-              setDropdownOpen(item, false);
-            }
-          });
-          setDropdownOpen(dropdown, willOpen);
-        }
-      });
-    });
+      button.addEventListener("click", function (e) {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          e.stopPropagation();
+          const willOpen = !dropdown.classList.contains("open");
+          navDropdowns.forEach((item) => {
+            if (item !== dropdown) {
+              setDropdownOpen(item, false);
+            }
+          });
+          setDropdownOpen(dropdown, willOpen);
+        }
+      });
+    });
 
 
-    document.addEventListener("click", function (e) {
-      if (!e.target.closest(".header-inner")) {
-        closeMenu();
-      }
-    });
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest(".header-inner")) {
+        closeMenu();
+      }
+    });
 
-    function isCrossPageLink(link) {
-      const href = link.getAttribute("href") || "";
-      return href.trim() !== "" && !href.startsWith("#");
-    }
+    function isCrossPageLink(link) {
+      const href = link.getAttribute("href") || "";
+      return href.trim() !== "" && !href.startsWith("#");
+    }
 
-    document.querySelectorAll("#mainNav a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        closeMenu();
-      });
+    document.querySelectorAll("#mainNav a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        closeMenu();
+      });
 
-      if (isCrossPageLink(link)) {
-        link.addEventListener("contextmenu", function () {
-          closeMenu();
-        });
+      if (isCrossPageLink(link)) {
+        link.addEventListener("contextmenu", function () {
+          closeMenu();
+        });
 
-        link.addEventListener("auxclick", function () {
-          closeMenu();
-        });
-      }
-    });
+        link.addEventListener("auxclick", function () {
+          closeMenu();
+        });
+      }
+    });
 
-    window.addEventListener("scroll", function () {
-      if (window.scrollY > 18) {
-        siteHeader.classList.add("shrink");
-      } else {
-        siteHeader.classList.remove("shrink");
-      }
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 18) {
+        siteHeader.classList.add("shrink");
+      } else {
+        siteHeader.classList.remove("shrink");
+      }
 
-      if (window.scrollY > 500) {
-        backToTopButton.style.display = "block";
-      } else {
-        backToTopButton.style.display = "none";
-      }
+      if (window.scrollY > 500) {
+        backToTopButton.style.display = "block";
+      } else {
+        backToTopButton.style.display = "none";
+      }
 
-      if (window.innerWidth <= 768 && mainNav.classList.contains("show")) {
-        closeMenu();
-      }
-    });
+      if (window.innerWidth <= 768 && mainNav.classList.contains("show")) {
+        closeMenu();
+      }
+    });
 
-    backToTopButton.addEventListener("click", function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+    backToTopButton.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
 
-    const faqVisibleLimitByGroup = {
-      skincare: 3,
-      haircare: 3,
-      general: 2
-    };
+    const faqVisibleLimitByGroup = {
+      skincare: 3,
+      haircare: 3,
+      general: 2
+    };
 
-    let activeFaqItem = null;
+    let activeFaqItem = null;
 
-    function closeFaqItem(faqItem) {
-      if (!faqItem) {
-        return;
-      }
-      faqItem.classList.remove("open");
-      const question = faqItem.querySelector(".faq-question");
-      const answer = faqItem.querySelector(".faq-answer");
-      if (question) {
-        question.setAttribute("aria-expanded", "false");
-      }
-      if (answer) {
-        answer.style.maxHeight = "0px";
-      }
-    }
+    function closeFaqItem(faqItem) {
+      if (!faqItem) {
+        return;
+      }
+      faqItem.classList.remove("open");
+      const question = faqItem.querySelector(".faq-question");
+      const answer = faqItem.querySelector(".faq-answer");
+      if (question) {
+        question.setAttribute("aria-expanded", "false");
+      }
+      if (answer) {
+        answer.style.maxHeight = "0px";
+      }
+    }
 
-    function openFaqItem(faqItem) {
-      if (!faqItem) {
-        return;
-      }
-      const question = faqItem.querySelector(".faq-question");
-      const answer = faqItem.querySelector(".faq-answer");
-      if (!question || !answer) {
-        return;
-      }
-      faqItem.classList.add("open");
-      question.setAttribute("aria-expanded", "true");
-      answer.style.maxHeight = answer.scrollHeight + "px";
-    }
+    function openFaqItem(faqItem) {
+      if (!faqItem) {
+        return;
+      }
+      const question = faqItem.querySelector(".faq-question");
+      const answer = faqItem.querySelector(".faq-answer");
+      if (!question || !answer) {
+        return;
+      }
+      faqItem.classList.add("open");
+      question.setAttribute("aria-expanded", "true");
+      answer.style.maxHeight = answer.scrollHeight + "px";
+    }
 
-    function closeHiddenOpenItems(hiddenFaqItems) {
-      hiddenFaqItems.forEach(function (item) {
-        if (item.classList.contains("open")) {
-          closeFaqItem(item);
-          if (activeFaqItem === item) {
-            activeFaqItem = null;
-          }
-        }
-      });
-    }
+    function closeHiddenOpenItems(hiddenFaqItems) {
+      hiddenFaqItems.forEach(function (item) {
+        if (item.classList.contains("open")) {
+          closeFaqItem(item);
+          if (activeFaqItem === item) {
+            activeFaqItem = null;
+          }
+        }
+      });
+    }
 
-    function collapseFaqGroup(groupData) {
-      groupData.faqList.classList.add("faq-extras-collapsed");
-      closeHiddenOpenItems(groupData.hiddenFaqItems);
-      if (groupData.toggleButton) {
-        groupData.toggleButton.textContent = "+ Show more questions";
-      }
-    }
+    function collapseFaqGroup(groupData) {
+      groupData.faqList.classList.add("faq-extras-collapsed");
+      closeHiddenOpenItems(groupData.hiddenFaqItems);
+      if (groupData.toggleButton) {
+        groupData.toggleButton.textContent = "+ Show more questions";
+      }
+    }
 
-    function isFaqGroupExpanded(groupData) {
-      return groupData && groupData.faqList && !groupData.faqList.classList.contains("faq-extras-collapsed");
-    }
+    function isFaqGroupExpanded(groupData) {
+      return groupData && groupData.faqList && !groupData.faqList.classList.contains("faq-extras-collapsed");
+    }
 
-    function refreshActiveFaqHeight() {
-      if (!activeFaqItem || !activeFaqItem.classList.contains("open")) {
-        return;
-      }
-      const activeAnswer = activeFaqItem.querySelector(".faq-answer");
-      if (activeAnswer) {
-        activeAnswer.style.maxHeight = activeAnswer.scrollHeight + "px";
-      }
-    }
+    function refreshActiveFaqHeight() {
+      if (!activeFaqItem || !activeFaqItem.classList.contains("open")) {
+        return;
+      }
+      const activeAnswer = activeFaqItem.querySelector(".faq-answer");
+      if (activeAnswer) {
+        activeAnswer.style.maxHeight = activeAnswer.scrollHeight + "px";
+      }
+    }
 
-    const faqGroupData = [];
+    const faqGroupData = [];
 
-    document.querySelectorAll(".faq-list").forEach(function (faqList) {
-      const faqItems = Array.from(faqList.querySelectorAll(".faq-item"));
-      const faqGroup = faqList.getAttribute("data-faq-group");
-      const visibleLimit = faqVisibleLimitByGroup[faqGroup] || faqItems.length;
-      const hiddenFaqItems = faqItems.slice(visibleLimit);
-      const toggleButton = document.querySelector('.faq-more-toggle[data-faq-toggle="' + faqGroup + '"]');
-      const faqCategory = faqList.closest(".faq-category");
+    document.querySelectorAll(".faq-list").forEach(function (faqList) {
+      const faqItems = Array.from(faqList.querySelectorAll(".faq-item"));
+      const faqGroup = faqList.getAttribute("data-faq-group");
+      const visibleLimit = faqVisibleLimitByGroup[faqGroup] || faqItems.length;
+      const hiddenFaqItems = faqItems.slice(visibleLimit);
+      const toggleButton = document.querySelector('.faq-more-toggle[data-faq-toggle="' + faqGroup + '"]');
+      const faqCategory = faqList.closest(".faq-category");
 
-      hiddenFaqItems.forEach(function (item) {
-        item.classList.add("faq-extra-item");
-      });
+      hiddenFaqItems.forEach(function (item) {
+        item.classList.add("faq-extra-item");
+      });
 
-      if (hiddenFaqItems.length > 0) {
-        faqList.classList.add("faq-extras-collapsed");
-      } else if (toggleButton && toggleButton.parentElement) {
-        toggleButton.parentElement.style.display = "none";
-      }
+      if (hiddenFaqItems.length > 0) {
+        faqList.classList.add("faq-extras-collapsed");
+      } else if (toggleButton && toggleButton.parentElement) {
+        toggleButton.parentElement.style.display = "none";
+      }
 
-      faqItems.forEach(function (faqItem) {
-        const question = faqItem.querySelector(".faq-question");
-        if (!question) {
-          return;
-        }
+      faqItems.forEach(function (faqItem) {
+        const question = faqItem.querySelector(".faq-question");
+        if (!question) {
+          return;
+        }
 
-        question.addEventListener("click", function () {
-          const shouldOpen = !faqItem.classList.contains("open");
+        question.addEventListener("click", function () {
+          const shouldOpen = !faqItem.classList.contains("open");
 
-          if (activeFaqItem && activeFaqItem !== faqItem) {
-            closeFaqItem(activeFaqItem);
-          }
+          if (activeFaqItem && activeFaqItem !== faqItem) {
+            closeFaqItem(activeFaqItem);
+          }
 
-          if (shouldOpen) {
-            openFaqItem(faqItem);
-            activeFaqItem = faqItem;
-          } else {
-            closeFaqItem(faqItem);
-            if (activeFaqItem === faqItem) {
-              activeFaqItem = null;
-            }
-          }
+          if (shouldOpen) {
+            openFaqItem(faqItem);
+            activeFaqItem = faqItem;
+          } else {
+            closeFaqItem(faqItem);
+            if (activeFaqItem === faqItem) {
+              activeFaqItem = null;
+            }
+          }
 
-        });
-      });
+        });
+      });
 
-      const groupData = {
-        faqCategory: faqCategory,
-        faqList: faqList,
-        hiddenFaqItems: hiddenFaqItems,
-        toggleButton: toggleButton
-      };
-      faqGroupData.push(groupData);
+      const groupData = {
+        faqCategory: faqCategory,
+        faqList: faqList,
+        hiddenFaqItems: hiddenFaqItems,
+        toggleButton: toggleButton
+      };
+      faqGroupData.push(groupData);
 
-      if (toggleButton && hiddenFaqItems.length > 0) {
-        toggleButton.addEventListener("click", function () {
-          const isCollapsed = faqList.classList.contains("faq-extras-collapsed");
+      if (toggleButton && hiddenFaqItems.length > 0) {
+        toggleButton.addEventListener("click", function () {
+          const isCollapsed = faqList.classList.contains("faq-extras-collapsed");
 
-          if (isCollapsed) {
-            faqGroupData.forEach(function (otherGroupData) {
-              if (otherGroupData !== groupData && !otherGroupData.faqList.classList.contains("faq-extras-collapsed")) {
-                collapseFaqGroup(otherGroupData);
-              }
-            });
-            faqList.classList.remove("faq-extras-collapsed");
-            toggleButton.textContent = "– Show less";
-          } else {
-            collapseFaqGroup(groupData);
-          }
-        });
-      }
-    });
+          if (isCollapsed) {
+            faqGroupData.forEach(function (otherGroupData) {
+              if (otherGroupData !== groupData && !otherGroupData.faqList.classList.contains("faq-extras-collapsed")) {
+                collapseFaqGroup(otherGroupData);
+              }
+            });
+            faqList.classList.remove("faq-extras-collapsed");
+            toggleButton.textContent = "– Show less";
+          } else {
+            collapseFaqGroup(groupData);
+          }
+        });
+      }
+    });
 
-    if ("IntersectionObserver" in window) {
-      const faqAwayObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          const groupData = faqGroupData.find(function (data) {
-            return data.faqCategory === entry.target;
-          });
+    if ("IntersectionObserver" in window) {
+      const faqAwayObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          const groupData = faqGroupData.find(function (data) {
+            return data.faqCategory === entry.target;
+          });
 
-          if (!groupData || !isFaqGroupExpanded(groupData)) {
-            return;
-          }
+          if (!groupData || !isFaqGroupExpanded(groupData)) {
+            return;
+          }
 
-          if (entry.intersectionRatio < 0.2) {
-            collapseFaqGroup(groupData);
-          }
-        });
-      }, {
-        threshold: [0, 0.2, 0.35],
-        rootMargin: "-10% 0px -10% 0px"
-      });
+          if (entry.intersectionRatio < 0.2) {
+            collapseFaqGroup(groupData);
+          }
+        });
+      }, {
+        threshold: [0, 0.2, 0.35],
+        rootMargin: "-10% 0px -10% 0px"
+      });
 
-      faqGroupData.forEach(function (groupData) {
-        if (groupData.faqCategory) {
-          faqAwayObserver.observe(groupData.faqCategory);
-        }
-      });
-    }
+      faqGroupData.forEach(function (groupData) {
+        if (groupData.faqCategory) {
+          faqAwayObserver.observe(groupData.faqCategory);
+        }
+      });
+    }
 
 const blogSliderWrap = document.getElementById("blogSliderWrap");
 
 if (blogSliderWrap) {
-  let sliderInterval = null;
-  let resumeTimer = null;
+  let sliderInterval = null;
+  let resumeTimer = null;
 
-  function resetBlogSliderToStart() {
-    blogSliderWrap.scrollTo({ left: 0, behavior: "auto" });
-    blogSliderWrap.scrollLeft = 0;
-  }
+  function resetBlogSliderToStart() {
+    blogSliderWrap.scrollTo({ left: 0, behavior: "auto" });
+    blogSliderWrap.scrollLeft = 0;
+  }
 
-  function startAutoSlide() {
-    if (sliderInterval) {
-      return;
-    }
+  function startAutoSlide() {
+    if (sliderInterval) {
+      return;
+    }
 
-    sliderInterval = window.setInterval(function () {
-      const step = Math.max(blogSliderWrap.clientWidth * 0.82, 220);
-      const nearEnd = blogSliderWrap.scrollLeft + blogSliderWrap.clientWidth >= blogSliderWrap.scrollWidth - 6;
+    sliderInterval = window.setInterval(function () {
+      const step = Math.max(blogSliderWrap.clientWidth * 0.82, 220);
+      const nearEnd = blogSliderWrap.scrollLeft + blogSliderWrap.clientWidth >= blogSliderWrap.scrollWidth - 6;
 
-      if (nearEnd) {
-        blogSliderWrap.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        blogSliderWrap.scrollBy({ left: step, behavior: "smooth" });
-      }
-    }, 4600);
-  }
+      if (nearEnd) {
+        blogSliderWrap.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        blogSliderWrap.scrollBy({ left: step, behavior: "smooth" });
+      }
+    }, 4600);
+  }
 
-  function stopAutoSlide() {
-    if (sliderInterval) {
-      window.clearInterval(sliderInterval);
-      sliderInterval = null;
-    }
-  }
+  function stopAutoSlide() {
+    if (sliderInterval) {
+      window.clearInterval(sliderInterval);
+      sliderInterval = null;
+    }
+  }
 
-  function pauseAndResume() {
-    stopAutoSlide();
-    if (resumeTimer) {
-      window.clearTimeout(resumeTimer);
-    }
-    resumeTimer = window.setTimeout(startAutoSlide, 5200);
-  }
+  function pauseAndResume() {
+    stopAutoSlide();
+    if (resumeTimer) {
+      window.clearTimeout(resumeTimer);
+    }
+    resumeTimer = window.setTimeout(startAutoSlide, 5200);
+  }
 
-  ["pointerdown", "touchstart", "wheel", "keydown", "mouseenter"].forEach(function (eventName) {
-    blogSliderWrap.addEventListener(eventName, pauseAndResume, { passive: true });
-  });
+  ["pointerdown", "touchstart", "wheel", "keydown", "mouseenter"].forEach(function (eventName) {
+    blogSliderWrap.addEventListener(eventName, pauseAndResume, { passive: true });
+  });
 
-  blogSliderWrap.addEventListener("mouseleave", function () {
-    if (!sliderInterval) {
-      startAutoSlide();
-    }
-  });
+  blogSliderWrap.addEventListener("mouseleave", function () {
+    if (!sliderInterval) {
+      startAutoSlide();
+    }
+  });
 
-  const blogObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        resetBlogSliderToStart();
-        blogSliderWrap.scrollTo({ left: 0, behavior: "instant" }); // extra safety
-        startAutoSlide();
-      } else {
-        stopAutoSlide();
-      }
-    });
-  }, { threshold: 0.6 });
+  const blogObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        resetBlogSliderToStart();
+        blogSliderWrap.scrollTo({ left: 0, behavior: "instant" }); // extra safety
+        startAutoSlide();
+      } else {
+        stopAutoSlide();
+      }
+    });
+  }, { threshold: 0.6 });
 
-  blogObserver.observe(blogSliderWrap);
-  
-  function ensureBlogSliderFallback() {
-    const blogTrack = document.getElementById("blogSliderTrack");
+  blogObserver.observe(blogSliderWrap);
+  
+  function ensureBlogSliderFallback() {
+    const blogTrack = document.getElementById("blogSliderTrack");
 
-    if (!blogTrack) {
-      return;
-    }
+    if (!blogTrack) {
+      return;
+    }
 
-    // Primary renderer already populated the slider.
-    if (blogTrack.children.length > 0) {
-      return;
-    }
+    // Primary renderer already populated the slider.
+    if (blogTrack.children.length > 0) {
+      return;
+    }
 
-    const fallbackArticles = [
-      ...Object.values(window.SKINCARE_ARTICLES || {}),
-      ...Object.values(window.HAIRCARE_ARTICLES || {})
-    ];
+    const fallbackArticles = [
+      ...Object.values(window.SKINCARE_ARTICLES || {}),
+      ...Object.values(window.HAIRCARE_ARTICLES || {})
+    ];
 
-    if (!fallbackArticles.length) {
-      return;
-    }
+    if (!fallbackArticles.length) {
+      return;
+    }
 
-    const sortedArticles = [...fallbackArticles].sort((a, b) => {
-      if (a.badge === "featured") return -1;
-      if (b.badge === "featured") return 1;
+    const sortedArticles = [...fallbackArticles].sort((a, b) => {
+      if (a.badge === "featured") return -1;
+      if (b.badge === "featured") return 1;
 
-      return new Date(b.date || 0) - new Date(a.date || 0);
-    });
+      return new Date(b.date || 0) - new Date(a.date || 0);
+    });
 
-    blogTrack.innerHTML = sortedArticles.slice(0, 5).map(article => {
+    blogTrack.innerHTML = sortedArticles.slice(0, 5).map(article => {
 
-      let badgeHTML = "";
+      let badgeHTML = "";
 
-      if (article.badge === "featured") {
-        badgeHTML = `<span class="blog-slide-badge">⭐ Featured</span>`;
-      } else if (article.badge === "new") {
-        badgeHTML = `<span class="blog-slide-badge">New</span>`;
-      }
+      if (article.badge === "featured") {
+        badgeHTML = `<span class="blog-slide-badge">⭐ Featured</span>`;
+      } else if (article.badge === "new") {
+        badgeHTML = `<span class="blog-slide-badge">New</span>`;
+      }
 
-      return `
-        <a href="${article.url}" target="_blank" rel="noopener noreferrer" class="blog-slide-card">
+      return `
+        <a href="${article.url}" target="_blank" rel="noopener noreferrer" class="blog-slide-card">
 
-          ${badgeHTML}
+          ${badgeHTML}
 
-          <div class="blog-slide-media">
-            <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
-          </div>
+          <div class="blog-slide-media">
+            <img src="${article.image.src}" alt="${article.image.alt}" class="blog-img">
+          </div>
 
-          <h3>${article.title}</h3>
-          <p>${(article.intro || "").slice(0, 90)}...</p>
+          <h3>${article.title}</h3>
+          <p>${(article.intro || "").slice(0, 90)}...</p>
 
-          <span class="blog-slide-link">
-            Read Article <span aria-hidden="true">→</span>
-          </span>
+          <span class="blog-slide-link">
+            Read Article <span aria-hidden="true">→</span>
+          </span>
 
-        </a>
-      `;
+        </a>
+      `;
 
-    }).join("");
-  }
+    }).join("");
+  }
 
-  document.addEventListener("articlesLoaded", function () {
-    // Primary renderer should already have populated the slider.
-    // Fallback runs only if the slider is still empty.
-    ensureBlogSliderFallback();
-  });
-  
+  document.addEventListener("articlesLoaded", function () {
+    // Primary renderer should already have populated the slider.
+    // Fallback runs only if the slider is still empty.
+    ensureBlogSliderFallback();
+  });
+  
 }
 
 window.addEventListener("resize", function () {
-  refreshActiveFaqHeight();
+  refreshActiveFaqHeight();
 });
 
-  </script>
-  
+  </script>
+  
 <script>
 (function () {
-  const HEADER_OFFSET = 95;
+  const HEADER_OFFSET = 95;
 
-  function scrollToHash(behavior) {
-    const hash = window.location.hash;
-    if (!hash) return;
+  function scrollToHash(behavior) {
+    const hash = window.location.hash;
+    if (!hash) return;
 
-    const target = document.querySelector(hash);
-    if (!target) return;
+    const target = document.querySelector(hash);
+    if (!target) return;
 
-    const elementPosition =
-      target.getBoundingClientRect().top + window.pageYOffset;
+    const elementPosition =
+      target.getBoundingClientRect().top + window.pageYOffset;
 
-    window.scrollTo({
-      top: elementPosition - HEADER_OFFSET,
-      behavior: behavior || "smooth"
-    });
-  }
+    window.scrollTo({
+      top: elementPosition - HEADER_OFFSET,
+      behavior: behavior || "smooth"
+    });
+  }
 
-  function correctHashPosition(behavior) {
-    if (!window.location.hash) return;
+  function correctHashPosition(behavior) {
+    if (!window.location.hash) return;
 
-    let corrections = 0;
-    const maxCorrections = 8;
+    let corrections = 0;
+    const maxCorrections = 8;
 
-    function checkPosition() {
-      if (!window.location.hash) return;
+    function checkPosition() {
+      if (!window.location.hash) return;
 
-      scrollToHash(behavior);
+      scrollToHash(behavior);
 
-      corrections++;
+      corrections++;
 
-      if (corrections < maxCorrections) {
-        setTimeout(checkPosition, 250);
-      }
-    }
+      if (corrections < maxCorrections) {
+        setTimeout(checkPosition, 250);
+      }
+    }
 
-    // Give the page time to render the dynamically-created product cards.
-    setTimeout(checkPosition, 150);
-  }
+    // Give the page time to render the dynamically-created product cards.
+    setTimeout(checkPosition, 150);
+  }
 
-  // Direct links such as:
-  // https://dailyglamstore.in/#makeup
-  window.addEventListener("load", function () {
-    if (window.location.hash) {
-      correctHashPosition("auto");
-    }
-  });
+  // Direct links such as:
+  // https://dailyglamstore.in/#makeup
+  window.addEventListener("load", function () {
+    if (window.location.hash) {
+      correctHashPosition("auto");
+    }
+  });
 
-  // Category links clicked while already on the page.
-  window.addEventListener("hashchange", function () {
-    correctHashPosition("smooth");
-  });
+  // Category links clicked while already on the page.
+  window.addEventListener("hashchange", function () {
+    correctHashPosition("smooth");
+  });
 })();
 </script>
-  
+  
 <script>
 document.querySelectorAll(".section-title").forEach((heading) => {
 
-  heading.addEventListener("click", () => {
+  heading.addEventListener("click", () => {
 
-    heading.classList.remove("clicked");
+    heading.classList.remove("clicked");
 
-    void heading.offsetWidth;
+    void heading.offsetWidth;
 
-    heading.classList.add("clicked");
+    heading.classList.add("clicked");
 
-    setTimeout(() => {
-      heading.classList.remove("clicked");
-    }, 350);
+    setTimeout(() => {
+      heading.classList.remove("clicked");
+    }, 350);
 
-  });
+  });
 
 });
 </script>
@@ -2902,19 +1114,19 @@ document.querySelectorAll(".section-title").forEach((heading) => {
 <script>
 document.querySelectorAll(".routine-card").forEach((card) => {
 
-  card.addEventListener("click", () => {
+  card.addEventListener("click", () => {
 
-    card.classList.remove("clicked");
+    card.classList.remove("clicked");
 
-    void card.offsetWidth;
+    void card.offsetWidth;
 
-    card.classList.add("clicked");
+    card.classList.add("clicked");
 
-    setTimeout(() => {
-      card.classList.remove("clicked");
-    }, 320);
+    setTimeout(() => {
+      card.classList.remove("clicked");
+    }, 320);
 
-  });
+  });
 
 });
 </script>
@@ -2924,152 +1136,152 @@ const routineCards = document.querySelectorAll(".routine-card");
 
 const observer = new IntersectionObserver((entries) => {
 
-  entries.forEach((entry) => {
+  entries.forEach((entry) => {
 
-    if (entry.isIntersecting) {
+    if (entry.isIntersecting) {
 
-      entry.target.classList.add("in-view");
+      entry.target.classList.add("in-view");
 
-      setTimeout(() => {
-        entry.target.classList.remove("in-view");
-      }, 700);
+      setTimeout(() => {
+        entry.target.classList.remove("in-view");
+      }, 700);
 
-    }
+    }
 
-  });
+  });
 
 }, {
-  threshold: 0.95
+  threshold: 0.95
 });
 
 routineCards.forEach((card) => {
-  observer.observe(card);
+  observer.observe(card);
 });
 </script>
 
 <script>
 /* ===========================================================
-   Daily Glam Store
-   Automatic FAQPage JSON-LD Generator
+   Daily Glam Store
+   Automatic FAQPage JSON-LD Generator
 
-   Workflow:
-   • Edit FAQs only in HTML.
-   • Add or remove FAQs freely.
-   • JSON-LD updates automatically.
-   • No manual FAQ schema maintenance required.
+   Workflow:
+   • Edit FAQs only in HTML.
+   • Add or remove FAQs freely.
+   • JSON-LD updates automatically.
+   • No manual FAQ schema maintenance required.
 =========================================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  const faqItems = document.querySelectorAll(".faq-item");
+  const faqItems = document.querySelectorAll(".faq-item");
 
-  if (!faqItems.length) return;
+  if (!faqItems.length) return;
 
-  const mainEntity = [];
+  const mainEntity = [];
 
-  faqItems.forEach(function (item) {
+  faqItems.forEach(function (item) {
 
-    const questionButton = item.querySelector(".faq-question");
-    const answerElement = item.querySelector(".faq-answer-inner");
+    const questionButton = item.querySelector(".faq-question");
+    const answerElement = item.querySelector(".faq-answer-inner");
 
-    if (!questionButton || !answerElement) return;
+    if (!questionButton || !answerElement) return;
 
-    /* ---------------------------------------------
-       Extract clean question text
-       (ignores the ▼ toggle span)
-    ---------------------------------------------- */
+    /* ---------------------------------------------
+       Extract clean question text
+       (ignores the ▼ toggle span)
+    ---------------------------------------------- */
 
-    const question = Array.from(questionButton.childNodes)
-  .filter(node => node.nodeType === Node.TEXT_NODE)
-  .map(node => node.textContent)
-  .join(" ")
-  .replace(/\s+/g, " ")
-  .trim();
+    const question = Array.from(questionButton.childNodes)
+  .filter(node => node.nodeType === Node.TEXT_NODE)
+  .map(node => node.textContent)
+  .join(" ")
+  .replace(/\s+/g, " ")
+  .trim();
 
-    /* ---------------------------------------------
-       Extract clean answer text
-    ---------------------------------------------- */
+    /* ---------------------------------------------
+       Extract clean answer text
+    ---------------------------------------------- */
 
-    let answer = answerElement.textContent
-      .replace(/\s+/g, " ")
-      .trim();
+    let answer = answerElement.textContent
+      .replace(/\s+/g, " ")
+      .trim();
 
-    if (!question || !answer) return;
+    if (!question || !answer) return;
 
-    mainEntity.push({
+    mainEntity.push({
 
-      "@type": "Question",
+      "@type": "Question",
 
-      "name": question,
+      "name": question,
 
-      "acceptedAnswer": {
+      "acceptedAnswer": {
 
-        "@type": "Answer",
+        "@type": "Answer",
 
-        "text": answer
+        "text": answer
 
-      }
+      }
 
-    });
+    });
 
-  });
+  });
 
-  if (!mainEntity.length) return;
+  if (!mainEntity.length) return;
 
-  const faqSchema = {
+  const faqSchema = {
 
-    "@context": "https://schema.org",
+    "@context": "https://schema.org",
 
-    "@type": "FAQPage",
+    "@type": "FAQPage",
 
-    "mainEntity": mainEntity
+    "mainEntity": mainEntity
 
-  };
+  };
 
-  const schemaScript = document.createElement("script");
+  const schemaScript = document.createElement("script");
 
-  schemaScript.type = "application/ld+json";
+  schemaScript.type = "application/ld+json";
 
-  schemaScript.textContent = JSON.stringify(faqSchema);
+  schemaScript.textContent = JSON.stringify(faqSchema);
 
-  document.head.appendChild(schemaScript);
+  document.head.appendChild(schemaScript);
 
 });
 </script>
-  
-  <script type="application/ld+json">
+  
+  <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Daily Glam Store",
-  "url": "https://dailyglamstore.in/"
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Daily Glam Store",
+  "url": "https://dailyglamstore.in/"
 }
 </script>
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Daily Glam Store",
-  "url": "https://dailyglamstore.in/",
-  "logo": "https://dailyglamstore.in/images/logo.png",
-  "sameAs": []
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Daily Glam Store",
+  "url": "https://dailyglamstore.in/",
+  "logo": "https://dailyglamstore.in/images/logo.png",
+  "sameAs": []
 }
 </script>
 
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"WebPage",
-  "name":"Daily Glam Store Beauty Recommendations",
-  "url":"https://dailyglamstore.in/",
-  "description":"Curated skincare and haircare product recommendations, beauty routines, blog articles and trusted brand selections.",
-    "about":[
-    "Skincare",
-    "Haircare",
-    "Makeup & Cosmetics",
-    "Beauty Recommendations"
-  ]
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"Daily Glam Store Beauty Recommendations",
+  "url":"https://dailyglamstore.in/",
+  "description":"Curated skincare and haircare product recommendations, beauty routines, blog articles and trusted brand selections.",
+    "about":[
+    "Skincare",
+    "Haircare",
+    "Makeup & Cosmetics",
+    "Beauty Recommendations"
+  ]
 }
 </script>
 
