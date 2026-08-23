@@ -188,10 +188,13 @@ a {
 }
 
 .categories-icon {
-  color: #d4a514;
   font-size: 14px;
-  font-weight: 700;
   margin-right: 2px;
+  line-height: 1;
+}
+
+.categories-icon::before {
+  content: "💎";
 }
 
 .nav-dropdown {
