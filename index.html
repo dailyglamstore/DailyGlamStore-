@@ -1,635 +1,499 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beauty Recommendations, Skincare, Haircare & Makeup Guides | Daily Glam Store</title>
-  <meta name="description" content="Explore skincare, haircare, and makeup product recommendations by Daily Glam Store. Find the best face wash, serum, shampoo, eye makeup, and lip care with easy buying guides." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://dailyglamstore.in/" />
-  
-  <meta property="og:title" content="Daily Glam Store | Skincare, Haircare & Makeup Recommendations">
-  <meta property="og:description" content="Explore skincare, haircare, and makeup recommendations, beauty guides, routines, and curated product picks by Daily Glam Store.">
-  <meta property="og:url" content="https://dailyglamstore.in/">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://dailyglamstore.in/images/logo.png">
-  
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Daily Glam Store | Beauty & Makeup Recommendations">
-  <meta name="twitter:description" content="Skincare, haircare, makeup picks, beauty guides, and curated recommendations by Daily Glam Store.">
-  <meta name="twitter:image" content="https://dailyglamstore.in/images/logo.png">
-  <meta name="keywords" content="beauty recommendations, skincare routine, haircare routine, makeup picks, best face wash, best shampoo, eye makeup, lip care" />
-  
-  <link rel="stylesheet" href="homepage.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deepak Beauty & Fashion - Skincare, Haircare & Makeup Recommendations</title>
+  <meta name="description" content="Discover curated skincare, haircare, and makeup recommendations at Deepak Beauty. Explore daily routines, beauty tips, and top picks for healthy skin and hair.">
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CM68D7HP38"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-CM68D7HP38');
-  </script>
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="Deepak Beauty & Fashion - Skincare, Haircare & Makeup Recommendations">
+  <meta property="og:description" content="Explore curated skincare, haircare, and makeup recommendations at Deepak Beauty. Find top picks and step-by-step beauty routines.">
+  <meta property="og:type" content="website">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="homepage.css">
+
+  <!-- Category & Data Scripts -->
+  <script src="top-picks/products.js" defer></script>
+  <script src="facewash.js" defer></script>
+  <script src="serum.js" defer></script>
+  <script src="moisturiser.js" defer></script>
+  <script src="sunscreen.js" defer></script>
+  <script src="shampoo.js" defer></script>
+  <script src="conditioner.js" defer></script>
+  <script src="hair-serum.js" defer></script>
+  <script src="hair-oil.js" defer></script>
+  <script src="eye-makeup.js" defer></script>
+  <script src="face-makeup.js" defer></script>
+  <script src="lip-care.js" defer></script>
+  
+  <!-- Article Registry & Blog Loader -->
+  <script src="/article-registry.js" defer></script>
+  <script src="/beauty-blog-loader.js" defer></script>
+  
+  <!-- Main Beauty Script -->
+  <script src="beauty-main.js" defer></script>
 </head>
 <body>
 
-<header class="site-header" id="siteHeader">
-  <div class="header-inner">
-    <a href="#home" class="brand">
-      <img src="images/logo.png" alt="Daily Glam Store" class="brand-logo" />
-      <span class="brand-text">
-        <span class="brand-name">Daily Glam Store</span>
-        <span class="brand-tagline">Curated Beauty Recommendations</span>
-      </span>
-    </a>
-    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
-      <span class="menu-text">Menu</span>
-      <span class="hamburger-icon">
-        <span></span>
-        <span></span>
-        <span></span>
-      </span>
-    </button>
-    <nav class="main-nav" id="mainNav">
-      <a href="#home">Home</a>
-      <div class="nav-dropdown" id="categoriesDropdown">
-        <button class="nav-dropbtn product-nav-link" type="button" id="categoriesBtn" aria-expanded="false">
-          <span><span class="categories-icon"></span> Categories</span>
-          <span class="menu-arrow"></span>
-        </button>
-        <div class="dropdown-content">
-          <a href="#top-picks">Editor's Top Picks</a>
-          <a href="#skincare-recommendations">Skincare Recommendations</a>
-          <a href="#haircare-recommendations">Haircare Recommendations</a>
-          <a href="#makeup">Beauty &amp; Makeup Picks</a>
-        </div>
-      </div>
-      <a href="#quick-skincare-routine">Quick Skincare Routine</a>
-      <a href="#quick-haircare-routine">Quick Haircare Routine</a>
-      <a href="#fashion-accessories" class="product-nav-link">Fashion Accessories</a>
-      <a href="#beauty-faqs"> Beauty FAQs</a>
-      <a href="#about">About Us</a>
-      <a href="#ordering">How Ordering Works?</a>
-      <div class="nav-dropdown" id="legalDropdown">
-        <button class="nav-dropbtn" type="button" id="legalBtn" aria-expanded="false">
-          <span>Legal &amp; Policies</span>
-          <span class="menu-arrow"></span>
-        </button>
-        <div class="dropdown-content">
-          <a href="#disclaimer">Disclaimer</a>
-          <a href="#privacy">Privacy Policy</a>
-          <a href="#affiliate">Affiliate Disclosure</a>
-        </div>
-      </div>
-      <a href="#contact">Contact &amp; Support</a>
-    </nav>
-  </div>
-</header>
-
-<section class="hero" id="home">
-  <div class="hero-inner">
-    <h1>Best Skincare, Haircare &amp; Makeup Recommendations</h1>
-    <p>Discover curated skincare, haircare, and makeup recommendations, including face washes, serums, shampoos, everyday beauty picks, and more selected to help you build the right routine easily.</p>
-  </div>
-</section>
-
-<div class="trust-strip">
-  <div>✔️ Expert-curated beauty recommendations</div>
-  <div>✔️ Shop directly from official brand websites</div>
-  <div>✔️ Save time choosing the right products</div>
-  <div>✔️ Explore ongoing discounts &amp; brand offers</div>
-  <div>✔️ 100% transparent affiliate recommendations</div>
-  <div>✔️ Backed by real retail experience</div>
-</div>
-
-<section class="brand-strip">
-  <div class="top-affiliate-banner">
-    <strong>Disclosure:</strong> As an Amazon Associate &amp; brand partner, we earn from qualifying purchases.
-  </div>
-  <h2>Featured Beauty Brands</h2>
-  <div class="brand-logos">
-    <img src="images/beauty-images/brand-logo-images/lotus-logo.png" alt="Lotus Botanicals skincare brand" />
-    <img src="images/beauty-images/brand-logo-images/DotNKey-logo.png" alt="Dot & Key skincare brand" />
-    <img src="images/beauty-images/brand-logo-images/plum-logo.png" alt="Plum beauty products brand" />
-    <img src="images/beauty-images/brand-logo-images/mamaearth-logo.png" alt="Mamaearth skincare and haircare brand" />
-    <img src="images/beauty-images/brand-logo-images/bebodywise-logo.png" alt="BeBodywise wellness and skincare brand" />
-  </div>
-  <p class="brand-note">and many more trusted skincare and haircare brands...</p>
-</section>
-
-<section class="section" id="top-picks">
-  <div class="section-heading-wrap">
-    <h2 class="section-title">Editor's Top Picks</h2>
-  </div>
-  <div class="section-divider"></div>
-  <p class="section-intro">Discover top-rated skincare and haircare products, including face washes, serums, shampoos, and more carefully selected for daily beauty routines.</p>
-  <div class="products"></div>
-</section>
-
-<section class="section" id="skincare-recommendations">
-  <div class="section-heading-wrap">
-    <h2 class="section-title">Skincare Recommendations</h2>
-  </div>
-  <div class="section-divider"></div>
-  <p class="section-intro">Explore skincare products such as face washes, serums, moisturisers, and sunscreens to build a simple and effective daily skincare routine.</p>
-  
-  <h3 id="facewash-products" class="subcategory-heading">Face Wash Recommendations</h3>
-  <div id="facewash-container" class="products"></div>
-  
-  <h3 id="serum-products" class="subcategory-heading">Face Serum Recommendations</h3>
-  <div id="serum-container" class="products"></div>
-  
-  <h3 id="sunscreen-products" class="subcategory-heading">Sunscreen Recommendations</h3>
-  <div id="sunscreen-container" class="products"></div>
-  
-  <h3 id="moisturiser-products" class="subcategory-heading">Moisturiser Recommendations</h3>
-  <div id="moisturiser-container" class="products"></div>
-</section>
-
-<section class="section" id="haircare-recommendations">
-  <div class="section-heading-wrap">
-    <h2 class="section-title">Haircare Recommendations</h2>
-  </div>
-  <div class="section-divider"></div>
-  <p class="section-intro">Explore haircare products including shampoos, conditioners, and hair oils to maintain healthy, smooth, and manageable hair.</p>
-  
-  <h3 id="shampoo-products" class="subcategory-heading">Shampoo Recommendations</h3>
-  <div id="shampoo-container" class="products"></div>
-  
-  <h3 id="conditioner-products" class="subcategory-heading">Conditioner Recommendations</h3>
-  <div id="conditioner-container" class="products"></div>
-  
-  <h3 id="hairserum-products" class="subcategory-heading">Hair Serum Recommendations</h3>
-  <div id="hairserum-container" class="products"></div>
-  
-  <h3 id="hairoil-products" class="subcategory-heading">Hair Oil Recommendations</h3>
-  <div id="hairoil-container" class="products"></div>
-</section>
-
-<section class="section" id="makeup">
-  <div class="section-heading-wrap">
-    <h2 class="section-title">Beauty &amp; Makeup Picks</h2>
-  </div>
-  <div class="section-divider"></div>
-  <p class="section-intro">Discover curated makeup essentials for eyes, lips, and face selected for effortless, everyday looks.</p>
-  
-  <h3 class="subsection-title">Eye Makeup</h3>
-  <div id="eyemakeup-container" class="products"></div>
-  
-  <h3 class="subsection-title">Lip Care &amp; Color</h3>
-  <div id="lipcare-container" class="products"></div>
-  
-  <h3 class="subsection-title">Face Makeup</h3>
-  <div id="facemakeup-container" class="products"></div>
-</section>
-
-<section class="section" id="quick-skincare-routine">
-  <div class="section-heading-wrap">
-    <h2 class="section-title routine-heading-capsule"><span class="routine-heading-lines">Quick<br>Skincare<br>Routine</span></h2>
-  </div>
-  <div class="section-divider"></div>
-  <p class="routine-intro">A simple daily skincare flow to help you follow the right steps without confusion.</p>
-  <div class="mini-grid">
-    <div class="mini-card routine-card">
-      <h4>Morning</h4>
-      <div class="routine-flow">
-        <span class="routine-flow-step">Face Wash</span>
-        <span class="routine-arrow" aria-hidden="true"></span>
-        <span class="routine-hint">(Removes dirt &amp; oil)</span>
-        <span class="routine-flow-step">Serum</span>
-        <span class="routine-arrow" aria-hidden="true"></span>
-        <span class="routine-hint">(Targets specific concerns)</span>
-        <span class="routine-flow-step">Moisturiser</span>
-        <span class="routine-arrow" aria-hidden="true"></span>
-        <span class="routine-hint">(Locks hydration)</span>
-        <span class="routine-flow-step">Sunscreen</span>
-        <span class="routine-hint">(Protects from UV)</span>
-      </div>
-    </div>
-    <div class="mini-card routine-card">
-      <h4>Night</h4>
-      <div class="routine-flow">
-        <span class="routine-flow-step">Face Wash</span>
-        <span class="routine-arrow" aria-hidden="true"></span>
-        <span class="routine-hint">(Cleans skin)</span>
-        <span class="routine-flow-step">Serum</span>
-        <span class="routine-arrow" aria-hidden="true"></span>
-        <span class="routine-hint">(Repairs skin)</span>
-        <span class="routine-flow-step">Moisturiser</span>
-        <span class="routine-hint">(Hydrates overnight)</span>
-      </div>
-    </div>
-  </div>
-  <div class="tip-note"><strong><em>Routine Tip:</em></strong> <span class="tip-body">Consistency is more important than using too many products.</span></div>
-</section>
-
-<section class="section" id="quick-haircare-routine">
-  <div class="section-heading-wrap">
-    <h2 class="section-title routine-heading-capsule"><span class="routine-heading-lines">Quick<br>Haircare<br>Routine</span></h2>
-  </div>
-  <div class="section-divider"></div>
-  <p class="routine-intro">A simple weekly routine to maintain healthy and manageable hair.</p>
-  <div class="mini-grid routine-single">
-    <div class="mini-card routine-card">
-      <div class="routine-flow">
-        <span class="routine-flow-step">Oiling</span>
-        <span class="routine-arrow" aria-hidden="true"></span>
-        <span class="routine-hint">Apply &amp; leave for 1-2 hours</span>
-        <span class="routine-flow-step">Cleansing</span>
-        <span class="routine-arrow" aria-hidden="true"></span>
-        <span class="routine-hint">Use mild shampoo</span>
-        <span class="routine-flow-step">Conditioning</span>
-        <span class="routine-hint">Apply on lengths only</span>
-      </div>
-    </div>
-  </div>
-  <div class="tip-note"><strong><em>Routine Tip:</em></strong> <span class="tip-body">Weekly consistency matters more than using many products at once.</span></div>
-</section>
-
-<section class="section blog-trending" id="trending-blog">
-  <div class="section-heading-wrap">
-    <h2 class="section-title">Latest on Our Blog</h2>
-  </div>
-  <p class="blog-trending-intro">Read the latest skincare routines, haircare tips, and beauty product buying guides to build the right daily routine with ease.</p>
-  <div class="blog-slider-wrap" id="blogSliderWrap" aria-label="Latest skincare and haircare blog articles" tabindex="0">
-    <div class="blog-slider-track" id="blogSliderTrack"></div>
-  </div>
-</section>
-
-<section class="section faq-section" id="beauty-faqs">
-  <div class="section-heading-wrap">
-    <h2 class="section-title routine-heading-capsule"><span class="routine-heading-lines">Beauty FAQs</span></h2>
-  </div>
-  <div class="section-divider"></div>
-  <p class="routine-intro">Quick answers to common skincare and haircare questions to help you choose and use beauty products more confidently.</p>
-  
-  <div class="faq-wrap">
-    <div class="faq-category">
-      <h3 class="faq-category-title">Skincare FAQs</h3>
-      <div class="faq-list" data-faq-group="skincare">
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false">How do I choose the right skincare routine for my skin?<span class="faq-toggle"></span></button>
-          <div class="faq-answer">
-            <p class="faq-answer-inner">Start by identifying your skin type, such as oily, dry, combination, or sensitive. Then choose basic steps like face wash, serum, moisturiser, and sunscreen based on your main concern.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false">Why does my skin feel oily even after washing?<span class="faq-toggle"></span></button>
-          <div class="faq-answer">
-            <p class="faq-answer-inner">Over-washing or using harsh products can strip your skin, which may make it produce even more oil to compensate.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false">Do I really need both serum and moisturiser?<span class="faq-toggle"></span></button>
-          <div class="faq-answer">
-            <p class="faq-answer-inner">Yes. Serum helps target specific concerns, while moisturiser locks in hydration and supports the skin barrier. They work better together.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false">Can I skip sunscreen if I stay indoors?<span class="faq-toggle"></span></button>
-          <div class="faq-answer">
-            <p class="faq-answer-inner">It is better not to skip it. Indoor exposure near windows and daily light exposure can still affect skin over time.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false">How often should I wash my face in a day?<span class="faq-toggle"></span></button>
-          <div class="faq-answer">
-            <p class="faq-answer-inner">Most people do well with washing twice daily. Over-washing can make skin feel dry or even oilier.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false">Why is moisturiser important even for oily skin?<span class="faq-toggle"></span></button>
-          <div class="faq-answer">
-            <p class="faq-answer-inner">Skipping moisturiser can make oily skin feel more unbalanced because dehydrated skin may still try to compensate.</p>
-          </div>
-        </div>
-      </div>
-      <div class="faq-more-wrap">
-        <button class="faq-more-toggle" type="button" data-faq-toggle="skincare">+ Show more questions</button>
-      </div>
-    </div>
-
-    <div class="faq-category">
-      <h3 class="faq-category-title">Haircare FAQs</h3>
-      <div class="faq-list" data-faq-group="haircare">
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false">How do I choose the right haircare routine?<span class="faq-toggle"></span></button>
-          <div class="faq-answer">
-            <p class="faq-answer-inner">Start with your scalp type and your main hair concern, such as frizz, dryness, damage, or oiliness. Then choose shampoo, conditioner, serum, and oil accordingly.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false">Why does my hair become oily quickly?<span class="faq-toggle"></span></button>
-          <div class="faq-answer">
-            <p class="faq-answer-inner">This can happen due to scalp type, over-washing, or product buildup. The wrong shampoo can also make the scalp feel oilier.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false">Do I need both conditioner and serum?<span class="faq-toggle"></span></button>
-          <div class="faq-answer">
-            <p class="faq-answer-inner">Yes. Conditioner helps during washing, while serum helps afterward with frizz control, smoothness, and shine.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false">Why does my hair feel dry even after conditioning?<span class="faq-toggle"></span></button>
-          <div class="faq-answer">
-            <p class="faq-answer-inner">Possible reasons include using the wrong conditioner, not applying it properly, or lacking regular nourishment in your routine.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false">How often should I oil my hair?<span class="faq-toggle"></span></button>
-          <div class="faq-answer">
-            <p class="faq-answer-inner">For most people, 1-2 times a week is enough. A short pre-wash oiling routine often works better than heavy frequent oiling.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false">How do I control frizz effectively?<span class="faq-toggle"></span></button>
-          <div class="faq-answer">
-            <p class="faq-answer-inner">A combination of the right conditioner, serum, and occasional oiling usually works better than relying on one product alone.</p>
-          </div>
-        </div>
-      </div>
-      <div class="faq-more-wrap">
-        <button class="faq-more-toggle" type="button" data-faq-toggle="haircare">+ Show more questions</button>
-      </div>
-    </div>
-
-    <div class="faq-category">
-      <h3 class="faq-category-title">General Beauty FAQs</h3>
-      <div class="faq-list" data-faq-group="general">
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false">How long does it take to see results from skincare or haircare products?<span class="faq-toggle"></span></button>
-          <div class="faq-answer">
-            <p class="faq-answer-inner">Most products need regular use for a few weeks before visible results appear. Consistency matters more than changing products too quickly.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false">Can I use multiple products together or should I keep it simple?<span class="faq-toggle"></span></button>
-          <div class="faq-answer">
-            <p class="faq-answer-inner">It is usually better to keep your routine simple and focused. Too many products can make it harder to understand what is actually helping.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false">Does diet or lifestyle affect skin and hair?<span class="faq-toggle"></span></button>
-          <div class="faq-answer">
-            <p class="faq-answer-inner">Yes. Stress, sleep, hydration, and food habits can all affect how your skin and hair look and feel. Good products work best with good routines.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false">I'm confused — where should I start?<span class="faq-toggle"></span></button>
-          <div class="faq-answer">
-            <p class="faq-answer-inner">Start with basics based on your skin or hair type, and avoid overcomplicating your routine. A simple routine is easier to follow consistently.</p>
-          </div>
-        </div>
-      </div>
-      <div class="faq-more-wrap">
-        <button class="faq-more-toggle" type="button" data-faq-toggle="general">+ Show more questions</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="fashion-accessories">
-  <div class="section-divider"></div>
-  <div class="fashion-box">
-    <h3>Looking for more than beauty?</h3>
-    <p>Beyond beauty recommendations, we also feature a dedicated collection of jewellery, handbags, watches, wallets, belts, and other everyday fashion accessories to help you complete your personal style.</p>
-    <p class="fashion-categories">Jewellery | Handbags | Watches | Wallets | Belts</p>
-    <a href="/shop.html" class="fashion-btn">Explore Fashion &amp; Accessories</a>
-  </div>
-</section>
-
-<div class="footer-content-area">
-  <section class="footer-section" id="about">
-    <h2>About Us</h2>
-    <p>Daily Glam Store shares curated beauty recommendations from selected brands and official websites to help customers discover trending and suitable product options without any hassle.</p>
-    <p>Having more than a decade of cosmetic retail experience, we focus on practical selections and clear product highlights so you can shortlist confidently without spending extra time.</p>
-  </section>
-
-  <section class="footer-section" id="ordering">
-    <h2>How Ordering Works?</h2>
-    <div class="ordering-steps">
-      <p><strong>Step 1:</strong> Browse products from our curated list and quickly <strong>review key product details</strong> to select the best product for your skin within seconds.</p>
-      <p><strong>Step 2:</strong> Click <strong>"Buy on Amazon"</strong> for fast delivery, or click <strong>"Buy on Official Website"</strong> to shop directly from the brand's store.</p>
-      <p><strong>Step 3:</strong> During checkout, available brand discounts, offers, or promotional pricing may apply depending on the product and official website.</p>
-      <p><strong>Step 4:</strong> Final pricing, discounts, and offers may vary by brand. Please check the official website during checkout for the latest applicable offers. If you face any issue or have recommendation-related queries, feel free to contact us at <a class="contact-support-email" href="mailto:dailyglamstoreofficial@gmail.com"><strong>dailyglamstoreofficial@gmail.com</strong></a>.</p>
-    </div>
-  </section>
-
-  <section class="footer-section" id="disclaimer">
-    <h2>Disclaimer</h2>
-    <p>Product images and details on this page are for reference only. Final pricing, offers, stock, packaging, and terms may change on official brand websites, so please verify final details there before purchase.</p>
-    <p>Product images, trademarks, and brand names featured on this website belong to their respective owners and are used for informational, review, and recommendation purposes only.</p>
-  </section>
-
-  <section class="footer-section" id="privacy">
-    <h2>Privacy Policy</h2>
-    <p>This page does not directly process payments made on affiliate brand websites. Official brand websites may use their own cookies, tracking, and privacy practices, and this site may use analytics to improve user experience.</p>
-  </section>
-
-  <section class="footer-section" id="affiliate">
-    <h2>Affiliate Disclosure</h2>
-    <p>Daily Glam Store is a participant in the Amazon Services LLC Associates Program and various brand affiliate programs. As an Amazon Associate, we earn from qualifying purchases at no extra cost to you when you buy through our links.</p>
-    <p class="footer-note">Our recommendations are selected carefully for usefulness and relevance, not only for commission.</p>
-  </section>
-
-  <section class="footer-section" id="contact">
-    <h2>Contact &amp; Support</h2>
-    <div class="contact-support-row">
-      <p class="contact-support-text">For recommendation-related queries or discount-related queries, please contact at: <a class="contact-support-email" href="mailto:dailyglamstoreofficial@gmail.com"><strong>dailyglamstoreofficial@gmail.com</strong></a>.</p>
-    </div>
-  </section>
-</div>
-
-<footer class="site-footer">
-  <div class="footer-trust-line">Daily Glam Store - Beauty Recommendations</div>
-  <div class="footer-trust-line">Trust Quality Style Consistency</div>
-  <div class="footer-copy">© 2026 Daily Glam Store. All rights reserved.</div>
-  <div class="footer-powered">In Collaboration With Deepak Cosmetic Store</div>
-  <div class="footer-location">Main Bazar, Gurdaspur</div>
-  <div class="footer-bottom-note">
-    <span class="globe-icon"></span><a class="footer-link-feedback" href="https://dailyglamstore.in/">https://dailyglamstore.in/</a>
-  </div>
-</footer>
-
-<button id="backToTop" type="button" aria-label="Back to top"></button>
-
-<script src="data/beauty-products/top-picks/products.js"></script>
-<script src="data/beauty-products/skincare/facewash.js"></script>
-<script src="data/beauty-products/skincare/serum.js"></script>
-<script src="data/beauty-products/skincare/moisturiser.js"></script>
-<script src="data/beauty-products/skincare/sunscreen.js"></script>
-<script src="data/beauty-products/haircare/shampoo.js"></script>
-<script src="data/beauty-products/haircare/conditioner.js"></script>
-<script src="data/beauty-products/haircare/hair-serum.js"></script>
-<script src="data/beauty-products/haircare/hair-oil.js"></script>
-<script src="data/beauty-products/makeup/eye-makeup.js"></script>
-<script src="data/beauty-products/makeup/face-makeup.js"></script>
-<script src="data/beauty-products/makeup/lip-care.js"></script>
-<script src="beauty-main.js"></script>
-<script src="/article-registry.js"></script>
-<script src="/beauty-blog-loader.js"></script>
-
-<script>
-let sliderTimer = null;
-function renderHomepageBlogSlider() {
-  const sliderTrack = document.getElementById("blogSliderTrack") || document.querySelector(".blog-slider-track");
-  const sliderWrap = document.getElementById("blogSliderWrap");
-  if (!sliderTrack) return;
-  const allArticles = [
-    ...Object.values(window.SKINCARE_ARTICLES || {}),
-    ...Object.values(window.HAIRCARE_ARTICLES || {})
-  ];
-  if (allArticles.length === 0) return;
-  sliderTrack.innerHTML = allArticles.map(art => `
-    <div class="blog-slide-item">
-      <a href="${art.url || '#'}" class="blog-card-link">
-        <div class="blog-card-thumb">
-          <img src="${art.image && art.image.src ? art.image.src : ''}" alt="${art.image && art.image.alt ? art.image.alt : (art.title || '')}" class="blog-card-img" loading="lazy">
-        </div>
-        <div class="blog-card-body">
-          <span class="blog-card-category">${art.category || 'Beauty'}</span>
-          <h4 class="blog-card-title">${art.title || ''}</h4>
-          <p class="blog-card-desc">${art.description || ''}</p>
-        </div>
+  <!-- Header & Navigation -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="#home" class="brand">
+        <img src="logo.jpg" alt="Deepak Beauty Logo" class="brand-logo" width="48" height="48">
+        <span class="brand-text">
+          <span class="brand-name">Deepak Beauty</span>
+          <span class="brand-tagline">Curated Care &amp; Style</span>
+        </span>
       </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
+        <span class="menu-icon">&#9776;</span>
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="#home">Home</a>
+        <div class="nav-dropdown" id="navDropdown">
+          <button class="nav-dropbtn" id="categoriesDropbtn">
+            Categories <span class="menu-arrow">&#9662;</span>
+          </button>
+          <div class="dropdown-content" id="categoriesDropdown">
+            <a href="#skincare-recommendations">&#10024; Skincare Essentials</a>
+            <a href="#haircare-recommendations">&#128135; Haircare Routine</a>
+            <a href="#makeup">&#128091; Makeup Picks</a>
+            <a href="/shop.html" class="product-nav-link">&#128092; Fashion Accessories</a>
+          </div>
+        </div>
+        <a href="#beauty-faqs">FAQs</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
-  `).join("");
+  </header>
 
-  if (sliderWrap) {
-    if (sliderTimer) clearInterval(sliderTimer);
-    sliderTimer = setInterval(() => {
-      const maxScrollLeft = sliderWrap.scrollWidth - sliderWrap.clientWidth;
-      if (sliderWrap.scrollLeft >= maxScrollLeft - 5) {
-        sliderWrap.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        sliderWrap.scrollBy({ left: 260, behavior: 'smooth' });
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div class="top-affiliate-banner">
+        <strong>Transparency Note:</strong> Some links on this page are affiliate links. We may earn a small commission at no extra cost to you.
+      </div>
+      <h1>Curated Beauty &amp; Skincare Recommendations</h1>
+      <p>Discover handpicked products, daily routines, and honest recommendations for skincare, haircare, and makeup.</p>
+    </div>
+  </section>
+
+  <!-- Trust Strip -->
+  <div class="trust-strip">
+    <div>&#10004; Handpicked Quality</div>
+    <div>&#10004; Honest Reviews</div>
+    <div>&#10004; Verified Products</div>
+  </div>
+
+  <!-- Brand Strip -->
+  <section class="brand-strip">
+    <h2>Trusted Brands We Feature</h2>
+    <div class="brand-logos">
+      <img src="brands/loreal.png" alt="L'Oreal" loading="lazy">
+      <img src="brands/maybelline.png" alt="Maybelline" loading="lazy">
+      <img src="brands/cetaphil.png" alt="Cetaphil" loading="lazy">
+      <img src="brands/plum.png" alt="Plum" loading="lazy">
+      <img src="brands/minimalist.png" alt="Minimalist" loading="lazy">
+    </div>
+    <p class="brand-note">We curate recommendations from top beauty and skincare brands.</p>
+  </section>
+
+  <!-- Top Picks Section -->
+  <section class="section" id="top-picks">
+    <div class="section-heading-wrap">
+      <h2 class="section-title">Top Handpicked Beauty Picks</h2>
+    </div>
+    <p class="section-intro">Our absolute favorite product recommendations across skincare and haircare.</p>
+    <div class="products" id="top-picks-container"></div>
+  </section>
+
+  <!-- Skincare Recommendations -->
+  <section class="section" id="skincare-recommendations">
+    <div class="section-heading-wrap">
+      <h2 class="section-title">&#10024; Skincare Recommendations</h2>
+    </div>
+    <p class="section-intro">Targeted solutions for glowing, healthy skin.</p>
+
+    <h3 class="subcategory-heading" id="facewash">Face Wash &amp; Cleansers</h3>
+    <div class="products" id="facewash-container"></div>
+
+    <h3 class="subcategory-heading" id="serum">Serums &amp; Treatments</h3>
+    <div class="products" id="serum-container"></div>
+
+    <h3 class="subcategory-heading" id="moisturiser">Moisturizers &amp; Hydration</h3>
+    <div class="products" id="moisturiser-container"></div>
+
+    <h3 class="subcategory-heading" id="sunscreen">Sunscreen &amp; UV Protection</h3>
+    <div class="products" id="sunscreen-container"></div>
+  </section>
+
+  <!-- Quick Skincare Routine -->
+  <section class="section" id="quick-skincare-routine">
+    <div class="routine-heading-capsule">
+      <span class="routine-heading-lines">&#10024; Quick Skincare Routine</span>
+    </div>
+    <p class="routine-intro">Follow this essential 4-step daily skincare routine for clear and radiant skin.</p>
+    <div class="mini-grid">
+      <div class="mini-card routine-card">
+        <h4>1. Cleanse</h4>
+        <p class="routine-hint">Wash away impurities with a gentle face wash morning and night.</p>
+      </div>
+      <div class="mini-card routine-card">
+        <h4>2. Treat</h4>
+        <p class="routine-hint">Apply active serum targeting your specific skin concerns.</p>
+      </div>
+      <div class="mini-card routine-card">
+        <h4>3. Moisturize</h4>
+        <p class="routine-hint">Lock in hydration with a lightweight moisturizer.</p>
+      </div>
+      <div class="mini-card routine-card">
+        <h4>4. Protect</h4>
+        <p class="routine-hint">Apply broad-spectrum sunscreen daily before stepping out.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Haircare Recommendations -->
+  <section class="section" id="haircare-recommendations">
+    <div class="section-heading-wrap">
+      <h2 class="section-title">&#128135; Haircare Recommendations</h2>
+    </div>
+    <p class="section-intro">Nourish and strengthen your locks with our top haircare picks.</p>
+
+    <h3 class="subcategory-heading" id="shampoo">Shampoos</h3>
+    <div class="products" id="shampoo-container"></div>
+
+    <h3 class="subcategory-heading" id="conditioner">Conditioners</h3>
+    <div class="products" id="conditioner-container"></div>
+
+    <h3 class="subcategory-heading" id="hair-serum">Hair Serums</h3>
+    <div class="products" id="hair-serum-container"></div>
+
+    <h3 class="subcategory-heading" id="hair-oil">Hair Oils</h3>
+    <div class="products" id="hair-oil-container"></div>
+  </section>
+
+  <!-- Quick Haircare Routine -->
+  <section class="section" id="quick-haircare-routine">
+    <div class="routine-heading-capsule">
+      <span class="routine-heading-lines">&#128135; Quick Haircare Routine</span>
+    </div>
+    <p class="routine-intro">Keep your hair healthy, shiny, and strong with this 3-step regimen.</p>
+    <div class="mini-grid">
+      <div class="mini-card routine-card">
+        <h4>1. Oil &amp; Nourish</h4>
+        <p class="routine-hint">Massage hair oil into scalp 1-2 hours before washing.</p>
+      </div>
+      <div class="mini-card routine-card">
+        <h4>2. Wash &amp; Condition</h4>
+        <p class="routine-hint">Cleanse with shampoo and apply conditioner to ends.</p>
+      </div>
+      <div class="mini-card routine-card">
+        <h4>3. Serum &amp; Style</h4>
+        <p class="routine-hint">Apply hair serum on damp hair to control frizz and add shine.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Makeup Recommendations -->
+  <section class="section" id="makeup">
+    <div class="section-heading-wrap">
+      <h2 class="section-title">&#128091; Makeup Picks</h2>
+    </div>
+    <p class="section-intro">Enhance your natural beauty with our favorite makeup products.</p>
+
+    <h3 class="subcategory-heading" id="face-makeup">Face Makeup</h3>
+    <div class="products" id="face-makeup-container"></div>
+
+    <h3 class="subcategory-heading" id="eye-makeup">Eye Makeup</h3>
+    <div class="products" id="eye-makeup-container"></div>
+
+    <h3 class="subcategory-heading" id="lip-care">Lip Care &amp; Colors</h3>
+    <div class="products" id="lip-care-container"></div>
+  </section>
+
+  <!-- Fashion Promotion Banner -->
+  <section class="section">
+    <div class="fashion-box">
+      <h3>&#128092; Looking for Fashion Accessories?</h3>
+      <p>Explore our curated collection of jewelry, handbags, hair accessories, and fashion items with instant WhatsApp ordering!</p>
+      <a href="/shop.html" class="fashion-btn">Visit Our Fashion Shop &rarr;</a>
+    </div>
+  </section>
+
+  <!-- Blog & Articles Section -->
+  <section class="section blog-trending" id="blog-trending">
+    <div class="section-heading-wrap">
+      <h2 class="section-title">&#128221; Beauty Tips &amp; Guides</h2>
+    </div>
+    <p class="blog-trending-intro">Read our latest articles on skincare routines, haircare tips, and product guides.</p>
+    <div class="blog-slider-wrap">
+      <div class="blog-slider-track" id="blogSliderTrack"></div>
+    </div>
+  </section>
+
+  <!-- FAQs Section -->
+  <section class="section faq-section" id="beauty-faqs">
+    <div class="section-heading-wrap">
+      <h2 class="section-title">&#10067; Frequently Asked Questions</h2>
+    </div>
+    <p class="section-intro">Find quick answers to common beauty, skincare, and ordering questions.</p>
+
+    <div class="faq-wrap">
+      <!-- FAQ Category 1: Skincare -->
+      <div class="faq-category">
+        <h3 class="faq-category-title">&#10024; Skincare FAQs</h3>
+        <div class="faq-list faq-extras-collapsed">
+          <div class="faq-item">
+            <button class="faq-question">
+              How do I choose the right face wash for my skin type?
+              <span class="faq-toggle">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">For oily skin, pick gel or foaming cleansers containing salicylic acid or niacinamide. Dry skin benefits from hydrating, cream-based cleansers with hyaluronic acid or glycerin. Sensitive skin requires gentle, fragrance-free formulas.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              When should I apply vitamin C serum in my routine?
+              <span class="faq-toggle">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Vitamin C serum is best applied in the morning after cleansing and before moisturizing and sunscreen. It helps protect skin from environmental damage, reduces dark spots, and boosts overall glow.</p>
+            </div>
+          </div>
+
+          <div class="faq-item faq-extra-item">
+            <button class="faq-question">
+              Is sunscreen necessary indoors?
+              <span class="faq-toggle">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Yes! UVA rays pass through standard window glass, and digital screen blue light can cause subtle skin damage over time. Applying a lightweight broad-spectrum SPF 30+ sunscreen indoors is always recommended.</p>
+            </div>
+          </div>
+
+          <div class="faq-item faq-extra-item">
+            <button class="faq-question">
+              How long does it take to see results from a new serum?
+              <span class="faq-toggle">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Skincare products generally require 4 to 8 weeks of consistent daily use to show visible improvements. Hydration serums show instant results, while dark spot and anti-aging treatments require at least 6 weeks.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-more-wrap">
+          <button class="faq-more-toggle">+ Show more questions</button>
+        </div>
+      </div>
+
+      <!-- FAQ Category 2: Haircare -->
+      <div class="faq-category">
+        <h3 class="faq-category-title">&#128135; Haircare FAQs</h3>
+        <div class="faq-list faq-extras-collapsed">
+          <div class="faq-item">
+            <button class="faq-question">
+              How often should I oil my hair?
+              <span class="faq-toggle">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Oiling 1 to 2 times a week before washing is usually sufficient. Avoid leaving oil overnight if you have an oily scalp or are prone to scalp acne, as it can clog hair follicles.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              How do I use hair serum effectively?
+              <span class="faq-toggle">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Apply hair serum to damp or towel-dried hair, focusing on the mid-lengths to ends. Avoid applying serum directly to the roots or scalp to prevent greasy buildup.</p>
+            </div>
+          </div>
+
+          <div class="faq-item faq-extra-item">
+            <button class="faq-question">
+              Can I use conditioner every day?
+              <span class="faq-toggle">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Conditioner can be used every time you wash your hair. If you wash daily, choose a lightweight formula and apply only to hair lengths, keeping it away from your scalp.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-more-wrap">
+          <button class="faq-more-toggle">+ Show more questions</button>
+        </div>
+      </div>
+
+      <!-- FAQ Category 3: Orders & Shipping -->
+      <div class="faq-category">
+        <h3 class="faq-category-title">&#128091; Ordering FAQs</h3>
+        <div class="faq-list faq-extras-collapsed">
+          <div class="faq-item">
+            <button class="faq-question">
+              How do I buy recommended products?
+              <span class="faq-toggle">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">Clicking on any product button on this homepage will take you directly to verified merchant storefronts (like Amazon) to complete your purchase securely.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              How does WhatsApp ordering work for Fashion products?
+              <span class="faq-toggle">&#9660;</span>
+            </button>
+            <div class="faq-answer">
+              <p class="faq-answer-inner">When visiting our dedicated Fashion Shop page, clicking "Order via WhatsApp" pre-fills an order message with product details directly to Deepak Cosmetic Store for immediate assistance and retail delivery.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-more-wrap">
+          <button class="faq-more-toggle">+ Show more questions</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Content Area -->
+  <div class="footer-content-area">
+    <section id="about" class="footer-section">
+      <h2>&#128038; About Deepak Beauty</h2>
+      <p>Deepak Beauty is your trusted destination for curated beauty, skincare, and haircare recommendations. We carefully select products based on ingredients, customer reviews, and overall efficacy to help you build your ideal care routine.</p>
+      <p>Our team works tirelessly to research and verify popular beauty products across leading global brands, ensuring you receive genuine advice tailored for everyday self-care routines.</p>
+    </section>
+
+    <section id="ordering" class="footer-section">
+      <h2>&#128091; How Ordering Works</h2>
+      <div class="ordering-steps">
+        <p><strong>Affiliate Recommendations:</strong> Clicking on product links under our skincare, haircare, and makeup sections redirects you directly to trusted merchant platforms (such as Amazon) to complete your purchase securely.</p>
+        <p><strong>Fashion Shop Orders:</strong> Fashion accessories on our dedicated shop page can be ordered directly through WhatsApp for local retail delivery or store pickup at Deepak Cosmetic Store.</p>
+      </div>
+    </section>
+
+    <section id="disclaimer" class="footer-section">
+      <h2>&#9888;&#65039; Legal Disclaimer</h2>
+      <p>The information provided on Deepak Beauty is for general informational and educational purposes only. Product results may vary depending on individual skin and hair types. Always perform a patch test before trying new cosmetic products.</p>
+      <p>Consult a dermatologist or qualified healthcare specialist for severe skin conditions, severe hair loss, or medical concerns before starting specialized skincare regimens.</p>
+    </section>
+
+    <section id="affiliate" class="footer-section">
+      <h2>&#129309; Affiliate Disclosure</h2>
+      <p>Deepak Beauty participates in affiliate marketing programs. This means we may earn a small commission on purchases made through links on this website at no additional cost to you.</p>
+      <p>These small commissions help us maintain our website operations, conduct product evaluations, and continue offering high-quality beauty guides for our readers.</p>
+    </section>
+
+    <section id="privacy" class="footer-section">
+      <h2>&#128274; Privacy Policy</h2>
+      <p>We respect your privacy. We do not collect or store personal sensitive data without your explicit consent. Standard web analytics and third-party affiliate tracking cookies may be used to improve your site experience.</p>
+      <p>You can manage or disable cookie preferences in your browser settings at any time without impacting your basic browsing experience on our platform.</p>
+    </section>
+
+    <section id="contact" class="footer-section">
+      <h2>&#128231; Contact Us</h2>
+      <p class="contact-support-row">Have questions, feedback, or product recommendations? Reach out to us at:</p>
+      <p><a href="mailto:support@deepakbeauty.com" class="contact-support-email">support@deepakbeauty.com</a></p>
+      <ul class="footer-contact-list">
+        <li><strong>Retail Store:</strong> Deepak Cosmetic Store</li>
+        <li><strong>Support Hours:</strong> Monday - Saturday, 10:00 AM - 8:00 PM</li>
+      </ul>
+    </section>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+      <div class="footer-trust-line">Deepak Beauty &amp; Fashion &bull; Quality Curations</div>
+      <p class="footer-copy">&copy; 2026 Deepak Beauty. All rights reserved.</p>
+      <p class="footer-powered">Powered by Deepak Cosmetic Store</p>
+      <p class="footer-bottom-note">
+        <span class="globe-icon">&#127760;</span> Serving Beauty Enthusiasts Worldwide
+      </p>
+    </footer>
+  </div>
+
+  <!-- Back To Top Floating Button -->
+  <button id="back-to-top" aria-label="Back to Top">&#8679;</button>
+
+  <!-- Interactive JavaScript Engine -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Header Shrink on Scroll
+      const siteHeader = document.getElementById('siteHeader');
+      if (siteHeader) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 50) {
+            siteHeader.classList.add('shrink');
+          } else {
+            siteHeader.classList.remove('shrink');
+          }
+        });
       }
-    }, 3500);
 
-    sliderWrap.addEventListener('mouseenter', () => clearInterval(sliderTimer));
-    sliderWrap.addEventListener('mouseleave', () => {
-      sliderTimer = setInterval(() => {
-        const maxScrollLeft = sliderWrap.scrollWidth - sliderWrap.clientWidth;
-        if (sliderWrap.scrollLeft >= maxScrollLeft - 5) {
-          sliderWrap.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          sliderWrap.scrollBy({ left: 260, behavior: 'smooth' });
-        }
-      }, 3500);
-    });
-  }
-}
+      // 2. Mobile Navigation Toggle
+      const menuToggle = document.getElementById('menuToggle');
+      const mainNav = document.getElementById('mainNav');
+      if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', () => {
+          mainNav.classList.toggle('show');
+        });
+      }
 
-document.addEventListener("articlesLoaded", function () {
-  renderHomepageBlogSlider();
-});
-</script>
+      // 3. Dropdown Menu Toggle for Mobile
+      const categoriesDropbtn = document.getElementById('categoriesDropbtn');
+      const navDropdown = document.getElementById('navDropdown');
+      if (categoriesDropbtn && navDropdown) {
+        categoriesDropbtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          navDropdown.classList.toggle('open');
+        });
+      }
 
-<script>
-const menuToggle = document.getElementById("menuToggle");
-const mainNav = document.getElementById("mainNav");
-const siteHeader = document.getElementById("siteHeader");
-const navDropdowns = Array.from(document.querySelectorAll(".nav-dropdown"));
-const backToTopButton = document.getElementById("backToTop");
-
-function setDropdownOpen(dropdown, isOpen) {
-  const button = dropdown.querySelector(".nav-dropbtn");
-  dropdown.classList.toggle("open", isOpen);
-  if (button) {
-    button.setAttribute("aria-expanded", isOpen ? "true" : "false");
-  }
-}
-
-function closeMenu() {
-  mainNav.classList.remove("show");
-  menuToggle.setAttribute("aria-expanded", "false");
-  navDropdowns.forEach((dropdown) => setDropdownOpen(dropdown, false));
-}
-
-function toggleMenu() {
-  const isOpen = mainNav.classList.contains("show");
-  mainNav.classList.toggle("show");
-  menuToggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
-}
-
-menuToggle.addEventListener("click", function (e) {
-  e.stopPropagation();
-  toggleMenu();
-});
-
-navDropdowns.forEach(function (dropdown) {
-  const button = dropdown.querySelector(".nav-dropbtn");
-  if (!button) return;
-  button.addEventListener("click", function (e) {
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      e.stopPropagation();
-      const willOpen = !dropdown.classList.contains("open");
-      navDropdowns.forEach((item) => {
-        if (item !== dropdown) setDropdownOpen(item, false);
+      // 4. FAQ Accordion Toggle
+      document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const parentItem = btn.closest('.faq-item');
+          if (parentItem) {
+            parentItem.classList.toggle('open');
+          }
+        });
       });
-      setDropdownOpen(dropdown, willOpen);
-    }
-  });
-});
 
-document.addEventListener("click", function (e) {
-  if (!e.target.closest(".header-inner")) {
-    closeMenu();
-  }
-});
+      // 5. FAQ "Show More Questions" Toggle
+      document.querySelectorAll('.faq-more-toggle').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const faqList = this.closest('.faq-category').querySelector('.faq-list');
+          if (faqList) {
+            faqList.classList.toggle('faq-extras-collapsed');
+            const isCollapsed = faqList.classList.contains('faq-extras-collapsed');
+            this.textContent = isCollapsed ? "+ Show more questions" : "- Show less questions";
+          }
+        });
+      });
 
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".faq-question").forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const parentItem = this.closest(".faq-item");
-      const expanded = this.getAttribute("aria-expanded") === "true";
-      this.setAttribute("aria-expanded", !expanded);
-      parentItem.classList.toggle("active");
-    });
-  });
+      // 6. Back To Top Floating Button Handler
+      const backToTopBtn = document.getElementById('back-to-top');
+      if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 300) {
+            backToTopBtn.style.display = 'block';
+          } else {
+            backToTopBtn.style.display = 'none';
+          }
+        });
 
-  document.querySelectorAll(".faq-more-toggle").forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const categoryGroup = this.closest(".faq-category");
-      const isExpanded = categoryGroup.classList.contains("faq-group-expanded");
-      if (isExpanded) {
-        categoryGroup.classList.remove("faq-group-expanded");
-        this.textContent = "+ Show more questions";
-      } else {
-        categoryGroup.classList.add("faq-group-expanded");
-        this.textContent = "- Show less questions";
+        backToTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
       }
     });
-  });
-});
-
-window.addEventListener("scroll", function () {
-  if (window.scrollY > 18) {
-    siteHeader.classList.add("shrink");
-  } else {
-    siteHeader.classList.remove("shrink");
-  }
-  
-  if (window.scrollY > 500) {
-    backToTopButton.style.display = "block";
-  } else {
-    backToTopButton.style.display = "none";
-  }
-});
-
-backToTopButton.addEventListener("click", function () {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Daily Glam Store",
-  "url": "https://dailyglamstore.in/"
-}
-</script>
+  </script>
 </body>
 </html>
