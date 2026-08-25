@@ -1473,14 +1473,16 @@ a {
   height: 50px;
   border: none;
   border-radius: 50%;
-  background: rgba(178, 69, 90, 0.75);
+  background: #b2455a;
   color: #fff;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: bold;
   cursor: pointer;
   display: none;
   z-index: 9999;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  align-items: center;
+  justify-content: center;
 }
 
 .footer-copy {
