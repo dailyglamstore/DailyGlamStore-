@@ -1473,7 +1473,7 @@ a {
   height: 50px;
   border: none;
   border-radius: 50%;
-  background: #b2455a;
+  background: rgba(178, 69, 90, 0.85); /* Slightly lighter maroon blend */
   color: #fff;
   font-size: 22px;
   font-weight: bold;
