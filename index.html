@@ -528,6 +528,24 @@ const siteHeader = document.getElementById("siteHeader");
 const navDropdowns = Array.from(document.querySelectorAll(".nav-dropdown"));
 const backToTopButton = document.getElementById("back-to-top");
 
+// Dynamic scroll offset handler for smooth navbar navigation
+function correctHashPosition() {
+  if (!window.location.hash) return;
+  const target = document.querySelector(window.location.hash);
+  if (!target) return;
+  const siteHeader = document.getElementById("siteHeader");
+  const headerOffset = siteHeader ? siteHeader.offsetHeight + 15 : 95;
+  const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+  const offsetPosition = elementPosition - headerOffset;
+
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: "smooth"
+  });
+}
+
+window.addEventListener("hashchange", correctHashPosition);
+
 function setDropdownOpen(dropdown, isOpen) {
   const button = dropdown.querySelector(".nav-dropbtn");
   dropdown.classList.toggle("open", isOpen);
@@ -583,7 +601,9 @@ function isCrossPageLink(link) {
 document.querySelectorAll("#mainNav a").forEach(function (link) {
   link.addEventListener("click", function () {
     closeMenu();
+    setTimeout(correctHashPosition, 10);
   });
+
   if (isCrossPageLink(link)) {
     link.addEventListener("contextmenu", function () {
       closeMenu();
