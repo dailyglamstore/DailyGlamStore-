@@ -742,17 +742,22 @@ window.addEventListener("scroll", function () {
   } else {
     siteHeader.classList.remove("shrink");
   }
-  
+
   if (window.scrollY > 500) {
     backToTopButton.style.display = "block";
   } else {
     backToTopButton.style.display = "none";
+  }
+
+  if (window.innerWidth <= 768 && mainNav.classList.contains("show")) {
+    closeMenu();
   }
 });
 
 backToTopButton.addEventListener("click", function () {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
 </script>
 
 <script type="application/ld+json">
