@@ -820,14 +820,15 @@ a {
 }
 
 .mini-grid.routine-single {
-  grid-template-columns: 1fr;
-  max-width: 360px;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 760px;
   margin: 0 auto;
 }
 
-.routine-single > .mini-card:last-child:nth-child(odd) {
-  width: 100%;
-  justify-self: center;
+.routine-single .routine-card {
+  max-width: 340px !important;
+  width: 100% !important;
 }
 
 .tip-note {
