@@ -819,13 +819,15 @@ a {
   margin-top: -2px;
 }
 
-.routine-single {
+.mini-grid.routine-single {
   grid-template-columns: 1fr;
-  max-width: 520px;
+  max-width: 360px;
+  margin: 0 auto;
 }
 
 .routine-single > .mini-card:last-child:nth-child(odd) {
   width: 100%;
+  justify-self: center;
 }
 
 .tip-note {
