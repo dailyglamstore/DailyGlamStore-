@@ -820,20 +820,21 @@ a {
 }
 
 .mini-grid.routine-single {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    max-width: 760px;
-    margin: 0 auto;
-    width: 100%;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin: 0 auto !important;
 }
 
-.mini-grid.routine-single .routine-card,
-.routine-single .mini-card {
-    max-width: 340px !important;
-    width: 100% !important;
-    margin: 0 auto !important;
-    flex: 0 1 340px !important;
+#quick-haircare-routine .mini-grid.routine-single .mini-card,
+.routine-single .routine-card {
+  width: 50% !important;
+  min-width: 240px !important;
+  max-width: 280px !important;
+  margin: 0 auto !important;
+  flex: 0 0 auto !important;
+  box-sizing: border-box !important;
 }
 
 .tip-note {
