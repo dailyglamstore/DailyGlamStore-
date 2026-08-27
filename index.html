@@ -793,6 +793,96 @@ backToTopButton.addEventListener("click", function () {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+// Section title click feedback
+document.querySelectorAll(".section-title").forEach((heading) => {
+  heading.addEventListener("click", () => {
+    heading.classList.remove("clicked");
+    void heading.offsetWidth;
+    heading.classList.add("clicked");
+    setTimeout(() => {
+      heading.classList.remove("clicked");
+    }, 350);
+  });
+});
+
+// Routine card click & scroll animations
+const routineCards = document.querySelectorAll(".routine-card");
+
+routineCards.forEach((card) => {
+  card.addEventListener("click", () => {
+    card.classList.remove("clicked");
+    void card.offsetWidth;
+    card.classList.add("clicked");
+    setTimeout(() => {
+      card.classList.remove("clicked");
+    }, 320);
+  });
+});
+
+if ("IntersectionObserver" in window) {
+  const routineObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in-view");
+        setTimeout(() => {
+          entry.target.classList.remove("in-view");
+        }, 700);
+      }
+    });
+  }, { threshold: 0.95 });
+
+  routineCards.forEach((card) => {
+    routineObserver.observe(card);
+  });
+}
+
+// Automatic FAQ Schema Generator
+document.addEventListener("DOMContentLoaded", function () {
+  const faqItems = document.querySelectorAll(".faq-item");
+  if (!faqItems.length) return;
+
+  const mainEntity = [];
+
+  faqItems.forEach(function (item) {
+    const questionButton = item.querySelector(".faq-question");
+    const answerElement = item.querySelector(".faq-answer-inner");
+    if (!questionButton || !answerElement) return;
+
+    const question = Array.from(questionButton.childNodes)
+      .filter((node) => node.nodeType === Node.TEXT_NODE)
+      .map((node) => node.textContent)
+      .join(" ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    const answer = answerElement.textContent.replace(/\s+/g, " ").trim();
+
+    if (!question || !answer) return;
+
+    mainEntity.push({
+      "@type": "Question",
+      "name": question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": answer
+      }
+    });
+  });
+
+  if (!mainEntity.length) return;
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": mainEntity
+  };
+
+  const schemaScript = document.createElement("script");
+  schemaScript.type = "application/ld+json";
+  schemaScript.textContent = JSON.stringify(faqSchema);
+  document.head.appendChild(schemaScript);
+});
+
 </script>
 
 <script type="application/ld+json">
@@ -803,5 +893,33 @@ backToTopButton.addEventListener("click", function () {
   "url": "https://dailyglamstore.in/"
 }
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Daily Glam Store",
+  "url": "https://dailyglamstore.in/",
+  "logo": "https://dailyglamstore.in/images/logo.png",
+  "sameAs": []
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"Daily Glam Store Beauty Recommendations",
+  "url":"https://dailyglamstore.in/",
+  "description":"Curated skincare and haircare product recommendations, beauty routines, blog articles and trusted brand selections.",
+  "about":[
+    "Skincare",
+    "Haircare",
+    "Makeup & Cosmetics",
+    "Beauty Recommendations"
+  ]
+}
+</script>
+
 </body>
 </html>
