@@ -18,20 +18,25 @@
   ]
 },
 {
-  id: "bebodywise-lightest-mineral-sunscreen-spf50",
-  name: "Niacinamide Lightest Mineral Sunscreen SPF 50+",
-  brand: "Be Bodywise",
-  image: "images/beauty-images/skincare/sunscreen/be-bodywise-lightest-mineral-sunscreen-spf50.JPG",
-  url: "https://track.vcommission.com/t/MTI5Njk1XzEzMDQ0/?p1=bebodywise-lightest-mineral-sunscreen&source=DGS-Home-Skincare&url=https://bebodywise.com/product/lightest-mineral-sunscreen-spf50",
-    priceText: "₹899 | Offers Available",
-  details: [
-    "100% Mineral SPF 50+ with UVA/UVB protection",
-    "Zinc Oxide + Titanium Dioxide sun filters",
-    "Ultra-light, non-greasy & minimal white cast",
-    "Niacinamide + Ceramides support skin barrier",
-    "Safe for sensitive, acne-prone & pregnant women",
-    "Fragrance-free with pollution defense technology"
-  ]
-}
+    id: "wishcare-niacinamide-oil-balance-fluid-sunscreen-spf-50",
+    name: "Niacinamide Oil Balance Fluid Sunscreen SPF 50 PA++++",
+    brand: "WishCare",
+    images: [
+      "images/beauty-images/skincare/sunscreen/wishcare-niacinamide-fluid-sunscreen.JPG",
+      "images/beauty-images/skincare/sunscreen/wishcare-sunscreen-texture-benefits.JPG",
+      "images/beauty-images/skincare/sunscreen/wishcare-sunscreen-sensitive-skin.JPG"
+    ],
+    amazonUrl: "https://link.amazon/B0chdwsqT",
+    url: "https://www.mywishcare.com/products/niacinamide-oil-balance-fluid-spf-50-sunscreen?ref=DEEPAKMAHAJAN&utm_campaign=inf",
+    priceText: "₹499 | Offers Available",
+    details: [
+      "SPF 50 PA++++ broad-spectrum fluid protection",
+      "Niacinamide + Zinc PCA to control excess oil",
+      "Ultra-lightweight with zero white cast finish",
+      "Best for oily, acne-prone & combination skin",
+      "Fades dark spots & minimizes open pores",
+      "Apply daily as final morning skincare step"
+    ]
+  }
 ];
 })();
