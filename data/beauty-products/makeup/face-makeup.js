@@ -10,7 +10,7 @@
         "images/beauty-images/makeup/face-makeup/sotrue-3-in-1-illuminating-strobe-cream-pink-usage.JPG"
       ],
       amazonUrl: "https://link.amazon/B0dHL3heh",
-      url: "https://www.sotrue.in/products/strobe-cream",
+      url: "https://bellavitaorganic.com/products/luxury-perfume-gift-set-for-men-4x20-ml",
       priceText: "MRP ₹349 | Offers Available",
       details: [
         "3-in-1 primer, highlighter, and hydrating moisturizer",
