@@ -6,7 +6,7 @@
       name: "Vitamin C Skin Brightening Face Serum",
       brand: "Lotus Botanicals",
       image: "images/beauty-images/skincare/serum/lotus-vitamin-c-serum.JPG",
-      url: "https://www.lotusbotanicals.com/products/vitamin-c-skin-brightening-face-serum?ref=DGS-Deepak",
+      url: "https://clnk.in/B5zA",
       priceText: "₹845 | Offers Available",
       details: [
         "Brightens dull skin & boosts glow",
