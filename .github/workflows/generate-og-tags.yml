@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build-og:
@@ -24,7 +27,6 @@ jobs:
           const path = require("path");
           const SITE_URL = "https://dailyglamstore.in";
 
-          // 1. Read Registry
           const registryFile = fs.readFileSync("./article-registry.js", "utf8");
           const registryMatch = registryFile.match(/window\.ARTICLE_REGISTRY\s*=\s*(\{[\s\S]*?\});/);
           if (!registryMatch) {
@@ -36,7 +38,8 @@ jobs:
           const folderMap = { skincare: "skincare-articles", haircare: "haircare-articles" };
           const htmlMap = { skincare: "articles/skincare", haircare: "articles/haircare" };
 
-          // 2. Iterate through categories and slugs
+          const cleanStr = (str) => (str || "").split("\"").join("&#34;").replace(/\n/g, " ");
+
           Object.keys(registry).forEach((category) => {
             const slugs = registry[category];
             const jsFolder = folderMap[category];
@@ -58,16 +61,16 @@ jobs:
               if (!articleMatch) return;
 
               const article = eval("(" + articleMatch[1] + ")");
-              const title = article.seoTitle || article.title || "Daily Glam Store";
-              const description = article.seoDescription || article.intro || "";
+              const title = cleanStr(article.seoTitle || article.title || "Daily Glam Store");
+              const description = cleanStr(article.seoDescription || article.intro || "");
               const cleanCanonical = article.url ? (article.url.startsWith("http") ? article.url : `${SITE_URL}${article.url}`) : `${SITE_URL}/${htmlFolder}/${slug}.html`;
 
-              let imgUrl = `${SITE_URL}/images/logo.png`;
+              let imgUrl = `${SITE_URL}/images/daily-glam-logo.jpg`;
               if (article.image && article.image.src) {
                 imgUrl = article.image.src.startsWith("http") ? article.image.src : `${SITE_URL}${article.image.src.startsWith("/") ? "" : "/"}${article.image.src}`;
               }
 
-              const ogTags = `<!-- OG_TAGS_START -->\n  <title>${title}</title>\n  <meta name="description" content="${description.replace(/"/g, '&quot;')}" />\n  <meta property="og:type" content="article" />\n  <meta property="og:title" content="${title.replace(/"/g, '&quot;')}" />\n  <meta property="og:description" content="${description.replace(/"/g, '&quot;')}" />\n  <meta property="og:url" content="${cleanCanonical}" />\n  <meta property="og:image" content="${imgUrl}" />\n  <meta property="og:image:width" content="1200" />\n  <meta property="og:image:height" content="675" />\n  <meta property="og:site_name" content="Daily Glam Store" />\n  <meta name="twitter:card" content="summary_large_image" />\n  <meta name="twitter:title" content="${title.replace(/"/g, '&quot;')}" />\n  <meta name="twitter:description" content="${description.replace(/"/g, '&quot;')}" />\n  <meta name="twitter:image" content="${imgUrl}" />\n  <!-- OG_TAGS_END -->`;
+              const ogTags = `<!-- OG_TAGS_START -->\n  <title>${title}</title>\n  <meta name="description" content="${description}" />\n  <meta property="og:type" content="article" />\n  <meta property="og:title" content="${title}" />\n  <meta property="og:description" content="${description}" />\n  <meta property="og:url" content="${cleanCanonical}" />\n  <meta property="og:image" content="${imgUrl}" />\n  <meta property="og:image:width" content="1200" />\n  <meta property="og:image:height" content="675" />\n  <meta property="og:site_name" content="Daily Glam Store" />\n  <meta name="twitter:card" content="summary_large_image" />\n  <meta name="twitter:title" content="${title}" />\n  <meta name="twitter:description" content="${description}" />\n  <meta name="twitter:image" content="${imgUrl}" />\n  <!-- OG_TAGS_END -->`;
 
               let htmlContent = fs.readFileSync(htmlPath, "utf8");
               if (htmlContent.includes("<!-- OG_TAGS_START -->")) {
