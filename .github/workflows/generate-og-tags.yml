@@ -1,0 +1,91 @@
+name: Generate Static Meta Tags
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-og:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Extract Data and Update HTML Files
+        run: |
+          node -e '
+          const fs = require("fs");
+          const path = require("path");
+          const SITE_URL = "https://dailyglamstore.in";
+
+          // 1. Read Registry
+          const registryFile = fs.readFileSync("./article-registry.js", "utf8");
+          const registryMatch = registryFile.match(/window\.ARTICLE_REGISTRY\s*=\s*(\{[\s\S]*?\});/);
+          if (!registryMatch) {
+            console.error("Could not parse ARTICLE_REGISTRY");
+            process.exit(1);
+          }
+
+          const registry = eval("(" + registryMatch[1] + ")");
+          const folderMap = { skincare: "skincare-articles", haircare: "haircare-articles" };
+          const htmlMap = { skincare: "articles/skincare", haircare: "articles/haircare" };
+
+          // 2. Iterate through categories and slugs
+          Object.keys(registry).forEach((category) => {
+            const slugs = registry[category];
+            const jsFolder = folderMap[category];
+            const htmlFolder = htmlMap[category];
+
+            if (!jsFolder || !htmlFolder) return;
+
+            slugs.forEach((slug) => {
+              const jsPath = path.join("./", jsFolder, `${slug}.js`);
+              const htmlPath = path.join("./", htmlFolder, `${slug}.html`);
+
+              if (!fs.existsSync(jsPath) || !fs.existsSync(htmlPath)) {
+                console.warn(`Skipping missing files for: ${slug}`);
+                return;
+              }
+
+              const jsContent = fs.readFileSync(jsPath, "utf8");
+              const articleMatch = jsContent.match(/window\.CURRENT_ARTICLE\s*=\s*(\{[\s\S]*?\});/);
+              if (!articleMatch) return;
+
+              const article = eval("(" + articleMatch[1] + ")");
+              const title = article.seoTitle || article.title || "Daily Glam Store";
+              const description = article.seoDescription || article.intro || "";
+              const cleanCanonical = article.url ? (article.url.startsWith("http") ? article.url : `${SITE_URL}${article.url}`) : `${SITE_URL}/${htmlFolder}/${slug}.html`;
+
+              let imgUrl = `${SITE_URL}/images/logo.png`;
+              if (article.image && article.image.src) {
+                imgUrl = article.image.src.startsWith("http") ? article.image.src : `${SITE_URL}${article.image.src.startsWith("/") ? "" : "/"}${article.image.src}`;
+              }
+
+              const ogTags = `<!-- OG_TAGS_START -->\n  <title>${title}</title>\n  <meta name="description" content="${description.replace(/"/g, '&quot;')}" />\n  <meta property="og:type" content="article" />\n  <meta property="og:title" content="${title.replace(/"/g, '&quot;')}" />\n  <meta property="og:description" content="${description.replace(/"/g, '&quot;')}" />\n  <meta property="og:url" content="${cleanCanonical}" />\n  <meta property="og:image" content="${imgUrl}" />\n  <meta property="og:image:width" content="1200" />\n  <meta property="og:image:height" content="675" />\n  <meta property="og:site_name" content="Daily Glam Store" />\n  <meta name="twitter:card" content="summary_large_image" />\n  <meta name="twitter:title" content="${title.replace(/"/g, '&quot;')}" />\n  <meta name="twitter:description" content="${description.replace(/"/g, '&quot;')}" />\n  <meta name="twitter:image" content="${imgUrl}" />\n  <!-- OG_TAGS_END -->`;
+
+              let htmlContent = fs.readFileSync(htmlPath, "utf8");
+              if (htmlContent.includes("<!-- OG_TAGS_START -->")) {
+                htmlContent = htmlContent.replace(/<!-- OG_TAGS_START -->[\s\S]*?<!-- OG_TAGS_END -->/, ogTags);
+              } else {
+                htmlContent = htmlContent.replace("</head>", `  ${ogTags}\n</head>`);
+              }
+
+              fs.writeFileSync(htmlPath, htmlContent, "utf8");
+              console.log(`Updated meta tags in ${slug}.html`);
+            });
+          });
+          '
+
+      - name: Commit and Push Updated HTML Files
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add articles/
+          git diff-index --quiet HEAD || git commit -m "auto: update static OG meta tags [skip ci]"
+          git push
