@@ -6,7 +6,7 @@
   name: "Carrot & Niacinamide Glow and De-Tan Mineral Sunscreen SPF 50 PA+++",
   brand: "Lotus Botanicals",
   image: "images/beauty-images/skincare/sunscreen/lotus-carrot-niacinamide-sunscreen.JPG",
-  url: "https://www.dotandkey.com/products/dot-key-vitamin-c-e-spf-50-pa-face-sunscreen-for-glowing-skin-uv-protection-for-dull-skin",
+  url: "https://www.lotusbotanicals.com/products/carrot-niacinamide-glow-and-de-tan-mineral-sunscreen-spf-50-pa?ref=DGS-Deepak",
   priceText: "₹645 | Offers Available",
   details: [
     "SPF 50 PA+++ protects from UV damage",
