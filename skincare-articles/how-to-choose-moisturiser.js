@@ -683,18 +683,61 @@ window.CURRENT_ARTICLE = {
           ]
         },
 
-        {
-          type: "infoBox",
-          boxType: "tip",
-          title: "",
-          text: "When in doubt, keep the decision simple: Skin Type → Current Skin Feel → Texture → Ingredients → Labels → Weather → Routine. Then ask yourself one final question: Does my skin feel comfortable with it?"
-        }
+                {
+          type: "infoBox",
+          boxType: "tip",
+          title: "",
+          text: "When in doubt, keep the decision simple: Skin Type → Current Skin Feel → Texture → Ingredients → Labels → Weather → Routine. Then ask yourself one final question: Does my skin feel comfortable with it?"
+        }
 
-      ]
-    },
+      ]
+    }
+  ],
 
- productRecommendations: {  title: “Ready to Choose Your Moisturiser?”,  items: [  {  title: “Dot & Key Cica + Niacinamide Oil-Free Moisturizer”,  image: “/images/beauty-images/blog/thumb-image/dot-key-cica-niacinamide-moisturizer.PNG”,  href: “https://linksredirect.com/?cid=315768&subid=DGS_ART_MOISTURISER&source=linkkit&url=https%3A%2F%2Fwww.dotandkey.com%2Fproducts%2Fcica-5-niacinamide-oil-free-moisturizer-for-dark-spots-acne-fragrance-free-oily-sensitive-acne-prone-skin”,  type: “affiliateProduct”,  affiliate: true,  newTab: true  },  {  title: “Dot & Key Ceramides + Hyaluronic Hydrating Face Cream”,  image: “/images/beauty-images/blog/thumb-image/dot-key-ceramides-hyaluronic-moisturizer.PNG”,  href: “https://linksredirect.com/?cid=315768&subid=DGS_ART_MOISTURISER&source=linkkit&url=https%3A%2F%2Fwww.dotandkey.com%2Fproducts%2Fdot-key-ceramides-hyaluronic-hydrating-face-cream-i-repairs-skin-barrier-intense-moisturization-sensitive-dry-skin-fragrance-free”,  type: “affiliateProduct”,  affiliate: true,  newTab: true  }  ]  },
-alternativeProducts: {  title: “Explore More Moisturiser Options”,  items: [  {  title: “WishCare 3:1:1 Barrier Bounce Moisturizer”,  image: “/images/beauty-images/blog/thumb-image/wishcare-barrier-repair-moisturizer.PNG”,  href: “https://www.mywishcare.com/products/barrier-repair-moisturizer-for-dry-skin?ref=DEEPAKMAHAJAN&utm_campaign=inf”,  type: “affiliateProduct”,  affiliate: true,  newTab: true  },  {  title: “Lotus Vitamin C Skin Brightening Face Moisturiser”,  image: “/images/beauty-images/blog/thumb-image/lotus-vitamin-c-moisturizer.PNG”,  href: “https://www.lotusbotanicals.com/products/vitamin-c-skin-brightening-face-moisturiser?ref=Daily-Glam-Store”,  type: “affiliateProduct”,  affiliate: true,  newTab: true  }  ]  },
+  productRecommendations: {
+    title: "Ready to Choose Your Moisturiser?",
+    items: [
+      {
+        title: "Dot & Key Cica + Niacinamide Oil-Free Moisturizer",
+        image: "/images/beauty-images/blog/thumb-image/dot-key-cica-niacinamide-moisturizer.PNG",
+        href: "https://linksredirect.com/?cid=315768&subid=DGS_ART_MOISTURISER&source=linkkit&url=https%3A%2F%2Fwww.dotandkey.com%2Fproducts%2Fcica-5-niacinamide-oil-free-moisturizer-for-dark-spots-acne-fragrance-free-oily-sensitive-acne-prone-skin",
+        type: "affiliateProduct",
+        affiliate: true,
+        newTab: true
+      },
+      {
+        title: "Dot & Key Ceramides + Hyaluronic Hydrating Face Cream",
+        image: "/images/beauty-images/blog/thumb-image/dot-key-ceramides-hyaluronic-moisturizer.PNG",
+        href: "https://linksredirect.com/?cid=315768&subid=DGS_ART_MOISTURISER&source=linkkit&url=https%3A%2F%2Fwww.dotandkey.com%2Fproducts%2Fdot-key-ceramides-hyaluronic-hydrating-face-cream-i-repairs-skin-barrier-intense-moisturization-sensitive-dry-skin-fragrance-free",
+        type: "affiliateProduct",
+        affiliate: true,
+        newTab: true
+      }
+    ]
+  },
+
+  alternativeProducts: {
+    title: "Explore More Moisturiser Options",
+    items: [
+      {
+        title: "WishCare 3:1:1 Barrier Bounce Moisturizer",
+        image: "/images/beauty-images/blog/thumb-image/wishcare-barrier-repair-moisturizer.PNG",
+        href: "https://www.mywishcare.com/products/barrier-repair-moisturizer-for-dry-skin?ref=DEEPAKMAHAJAN&utm_campaign=inf",
+        type: "affiliateProduct",
+        affiliate: true,
+        newTab: true
+      },
+      {
+        title: "Lotus Vitamin C Skin Brightening Face Moisturiser",
+        image: "/images/beauty-images/blog/thumb-image/lotus-vitamin-c-moisturizer.PNG",
+        href: "https://www.lotusbotanicals.com/products/vitamin-c-skin-brightening-face-moisturiser?ref=Daily-Glam-Store",
+        type: "affiliateProduct",
+        affiliate: true,
+        newTab: true
+      }
+    ]
+  },
+
  relatedArticles: [
     {
       title:
