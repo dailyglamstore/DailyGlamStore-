@@ -85,10 +85,8 @@ jobs:
           });
           '
 
-      - name: Commit and Push Updated HTML Files
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add articles/
-          git diff-index --quiet HEAD || git commit -m "auto: update static OG meta tags [skip ci]"
-          git push
+            - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "auto: update static OG meta tags [skip ci]"
+          file_pattern: "articles/**/*.html"
