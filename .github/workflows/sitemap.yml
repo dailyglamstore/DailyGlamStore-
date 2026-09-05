@@ -1,4 +1,4 @@
-name: Auto Generate Sitemap XML
+name: Auto Generate Sitemap XML & Registry
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: 18
 
-      - name: Auto-Scan Articles & Generate Sitemap XML
+      - name: Auto-Scan Articles, Update Registry & Generate Sitemap XML
         run: |
           node -e '
           const fs = require("fs");
@@ -31,7 +31,7 @@ jobs:
 
           const SITE_URL = "https://dailyglamstore.in";
 
-          // 1. Static Pages
+          // 1. Static Core Pages
           const staticPages = [
             { url: "/", priority: "1.0", changefreq: "daily" },
             { url: "/shop.html", priority: "0.9", changefreq: "daily" },
@@ -41,8 +41,9 @@ jobs:
 
           const fallbackToday = new Date().toISOString().split("T")[0];
           const urlSet = new Map();
+          const registryData = {};
 
-          // Add Static Core Pages
+          // Add Core Pages to Sitemap
           staticPages.forEach(p => {
             urlSet.set(p.url, {
               loc: `${SITE_URL}${p.url}`,
@@ -65,7 +66,7 @@ jobs:
 
               const lastModDate = gitDate || fallbackToday;
 
-              // Auto-update dateModified inside the JS file
+              // Auto-update dateModified inside the article .js file
               if (content.includes("dateModified:")) {
                 content = content.replace(/dateModified\s*:\s*["\x27][^"\x27]*["\x27]/, `dateModified: "${lastModDate}T00:00:00+05:30"`);
               } else if (content.includes("date:")) {
@@ -83,12 +84,18 @@ jobs:
                 changefreq: "weekly",
                 priority: "0.8"
               });
+
+              // Add slug to registry
+              if (!registryData[category]) registryData[category] = [];
+              if (!registryData[category].includes(slug)) {
+                registryData[category].push(slug);
+              }
             } catch (e) {
               console.error(`Error processing ${filePath}:`, e);
             }
           }
 
-          // 2. DYNAMICALLY SCAN ALL ARTICLE DIRECTORIES
+          // 2. Scan folders dynamically
           const searchFolders = ["articles", "skincare-articles", "haircare-articles"];
 
           searchFolders.forEach(folderName => {
@@ -99,7 +106,6 @@ jobs:
 
             entries.forEach(entry => {
               if (entry.isDirectory()) {
-                // Nested structure: articles/skincare/slug.js
                 const category = entry.name;
                 const subFolderPath = path.join(folderPath, category);
                 const files = fs.readdirSync(subFolderPath);
@@ -111,7 +117,6 @@ jobs:
                   }
                 });
               } else if (entry.isFile() && entry.name.endsWith(".js") && entry.name !== "article-registry.js") {
-                // Flat structure: skincare-articles/slug.js
                 const category = folderName.replace("-articles", "");
                 const slug = path.basename(entry.name, ".js");
                 processArticleFile(path.join(folderPath, entry.name), category, slug);
@@ -119,7 +124,12 @@ jobs:
             });
           });
 
-          // 3. Generate XML
+          // 3. Auto-generate article-registry.js
+          const registryFileContent = `window.ARTICLE_REGISTRY = ${JSON.stringify(registryData, null, 2)};\n`;
+          fs.writeFileSync(path.join(process.cwd(), "article-registry.js"), registryFileContent, "utf8");
+          console.log("✅ Dynamically generated article-registry.js!");
+
+          // 4. Generate XML
           let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
           urlSet.forEach(item => {
             xml += `  <url>\n    <loc>${item.loc}</loc>\n    <lastmod>${item.lastmod}</lastmod>\n    <changefreq>${item.changefreq}</changefreq>\n    <priority>${item.priority}</priority>\n  </url>\n`;
@@ -127,11 +137,11 @@ jobs:
           xml += `</urlset>`;
 
           fs.writeFileSync(path.join(process.cwd(), "sitemap.xml"), xml, "utf8");
-          console.log(`✅ Dynamically scanned articles and generated sitemap.xml with ${urlSet.size} total URLs!`);
+          console.log(`✅ Generated sitemap.xml with ${urlSet.size} total URLs!`);
           '
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "auto: update article dateModified and sitemap.xml"
-          file_pattern: "**/*.js sitemap.xml"
+          commit_message: "auto: update article-registry.js, dateModified, and sitemap.xml"
+          file_pattern: "**/*.js sitemap.xml article-registry.js"
