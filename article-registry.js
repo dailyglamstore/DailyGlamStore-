@@ -1,11 +1,11 @@
 window.ARTICLE_REGISTRY = {
-  skincare: [
-    "skincare-routine",
+  "skincare": [
     "how-to-choose-face-wash",
-    "lotus-vs-bodywise-sunscreen"
+    "how-to-choose-moisturiser",
+    "lotus-vs-bodywise-sunscreen",
+    "skincare-routine"
   ],
-
-  haircare: [
+  "haircare": [
     "haircare-routine"
   ]
 };
