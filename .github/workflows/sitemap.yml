@@ -31,23 +31,33 @@ jobs:
 
           const SITE_URL = "https://dailyglamstore.in";
 
-          // 1. Static Core Pages
+          // 1. Core Static Pages (Mapped to actual local files for Git date lookup)
           const staticPages = [
-            { url: "/", priority: "1.0", changefreq: "daily" },
-            { url: "/shop.html", priority: "0.9", changefreq: "daily" },
-            { url: "/beauty-blog.html", priority: "0.8", changefreq: "weekly" },
-            { url: "/share-feedback/", priority: "0.5", changefreq: "monthly" }
+            { url: "/", file: "index.html", priority: "1.0", changefreq: "daily" },
+            { url: "/shop.html", file: "shop.html", priority: "0.9", changefreq: "daily" },
+            { url: "/beauty-blog.html", file: "beauty-blog.html", priority: "0.8", changefreq: "weekly" },
+            { url: "/share-feedback/", file: "share-feedback/index.html", priority: "0.5", changefreq: "monthly" }
           ];
 
           const fallbackToday = new Date().toISOString().split("T")[0];
           const urlSet = new Map();
           const registryData = {};
 
-          // Add Core Pages to Sitemap
+          // Add Core Pages with real Git last modification dates
           staticPages.forEach(p => {
+            let gitDate = "";
+            const filePath = path.join(process.cwd(), p.file);
+
+            if (fs.existsSync(filePath)) {
+              try {
+                const gitLog = execSync(`git log -1 --format="%ad" --date=format:"%Y-%m-%d" -- "${filePath}"`, { encoding: "utf8" }).trim();
+                if (gitLog) gitDate = gitLog;
+              } catch (e) {}
+            }
+
             urlSet.set(p.url, {
               loc: `${SITE_URL}${p.url}`,
-              lastmod: fallbackToday,
+              lastmod: gitDate || fallbackToday,
               changefreq: p.changefreq,
               priority: p.priority
             });
@@ -66,7 +76,7 @@ jobs:
 
               const lastModDate = gitDate || fallbackToday;
 
-              // Auto-update dateModified inside the article .js file
+              // Auto-update dateModified inside article .js file
               if (content.includes("dateModified:")) {
                 content = content.replace(/dateModified\s*:\s*["\x27][^"\x27]*["\x27]/, `dateModified: "${lastModDate}T00:00:00+05:30"`);
               } else if (content.includes("date:")) {
