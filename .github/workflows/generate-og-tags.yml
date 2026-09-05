@@ -11,6 +11,9 @@ on:
 jobs:
   build-og:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -85,7 +88,7 @@ jobs:
           });
           '
 
-            - name: Commit and push changes
+      - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "auto: update static OG meta tags [skip ci]"
